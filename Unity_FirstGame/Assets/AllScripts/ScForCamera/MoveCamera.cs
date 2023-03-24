@@ -4,31 +4,29 @@ using UnityEngine;
 
 public class MoveCamera : MonoBehaviour
 {
-    float mousex = 0;
-    float mousey = 0;
-    [SerializeField] GameObject Cam;
-    [SerializeField] GameObject Player;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] GameObject TargetCamera;
+    [SerializeField] Vector3 Offset;
+    [SerializeField] float MouseSens = 1.0f;
+    [SerializeField] float MoveBack = 5.0f;
+
+    private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+            
     }
 
-    // Update is called once per frame
-    void Update() 
+    private void Update()
     {
-        mousex += Input.GetAxis("Mouse X")*10;
-        mousey += Input.GetAxis("Mouse Y")*10;
-        Vector3 rotation = new Vector3(mousey, 0, -mousex);
-        Cam.transform.position = Player.transform.position;
-        Cam.transform.rotation = Quaternion.Euler(rotation);
-        Cam.transform.forward -= new Vector3(0, 0, 2);
-        RaycastHit Hit_Result;
-        if (Physics.Raycast(Cam.transform.position, -Player.transform.forward, out Hit_Result, 5.00f))
-        {
-            Cam.transform.position = Hit_Result.point;
-            Cam.transform.forward -= new Vector3(0, 0, 2);
-            Cam.transform.LookAt(Hit_Result.point - Player.transform.position);
-        }
+        
+
+        transform.localEulerAngles = new Vector3(
+        transform.localEulerAngles.x - Input.GetAxis("Mouse Y") * MouseSens, 
+        transform.localEulerAngles.y + Input.GetAxis("Mouse X") * MouseSens, 
+        0.0f);
+
+        Vector3 TargetPosition = TargetCamera.transform.TransformPoint(Offset);
+        transform.position = TargetPosition - transform.forward * MoveBack;
     }
+
+
 }
