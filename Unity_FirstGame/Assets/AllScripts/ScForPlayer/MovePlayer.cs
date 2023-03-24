@@ -7,17 +7,29 @@ public class MovePlayer : MonoBehaviour
     [SerializeField] float Force = 1.0f;
     [SerializeField] ForceMode MyForceMode;
     [SerializeField] Rigidbody MyRigidbody;
-            
+
+    [SerializeField] protected Transform CameraTransform;
+
     void Start()
     {
         MyRigidbody = GetComponent<Rigidbody>();
-    } 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Plane"))
+        {
+
+        }    
+    }
     
     void Update()
     {
         float MoveVertical = Input.GetAxis("Vertical");
         float MoveHorizontal = Input.GetAxis("Horizontal");
-    
+
+        transform.rotation = Quaternion.Euler(0.0f, CameraTransform.eulerAngles.y, 0.0f);
+        
         if (MoveVertical == 1.0f)
         {
             MyRigidbody.drag = 0.05f;
