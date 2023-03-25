@@ -11,15 +11,16 @@ public class MovePlayer : MonoBehaviour
     [SerializeField] protected Transform CameraTransform;
     [SerializeField] protected float Sens = 1.0f;
     bool dontInJamp = true;
+    int jumpcount;
 
     void Start()
     {
         MyRigidbody = GetComponent<Rigidbody>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (gameObject.CompareTag("Plane"))
+        if (other.gameObject.CompareTag("Plane"))
         {
             Debug.Log("Yes");
             dontInJamp = true;
@@ -67,13 +68,30 @@ public class MovePlayer : MonoBehaviour
             {
                 MyRigidbody.drag = 500.0f;
             }
+            else
+            {
+                MyRigidbody.drag = 0f;
+            }
         }
-
-    }
-    private void OnCollisionExit(Collision collision)
-    {
-        if (gameObject.CompareTag("Plane"))
+        if (Input.GetKey(KeyCode.Space) && dontInJamp)
         {
+            MyRigidbody.drag = 0f;
+            jumpcount = 100;
+            dontInJamp = false;
+        }
+        if (jumpcount > 0.0f)
+        {
+            Vector3 addForce = new Vector3(0.00f, 2f * Force, 0f);
+            MyRigidbody.AddRelativeForce(addForce, MyForceMode);
+            jumpcount--;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        Debug.Log("No1");
+        if (other.gameObject.CompareTag("Plane"))
+        {
+            Debug.Log("No");
             dontInJamp = false;
         }
     }
