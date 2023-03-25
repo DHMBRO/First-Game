@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,12 +17,12 @@ public class MovePlayer : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Plane"))
+        if (gameObject.CompareTag("Plane"))
         {
-
-        }    
+            Debug.Log("Yes");
+        }
     }
-    
+
     void Update()
     {
         float MoveVertical = Input.GetAxis("Vertical");
