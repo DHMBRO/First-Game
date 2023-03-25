@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveCamera : MonoBehaviour
+public class Camera : MonoBehaviour
 {
     [SerializeField] GameObject TargetCamera;
     [SerializeField] Vector3 Offset;
@@ -23,6 +23,7 @@ public class MoveCamera : MonoBehaviour
         transform.localEulerAngles.x - Input.GetAxis("Mouse Y") * MouseSens, 
         transform.localEulerAngles.y + Input.GetAxis("Mouse X") * MouseSens, 
         0.0f);
+        TargetCamera.transform.localEulerAngles = new Vector3(0.0f, TargetCamera.transform.localEulerAngles.y + Input.GetAxis("Mouse X") * MouseSens, 0.0f);
 
         Vector3 TargetPosition = TargetCamera.transform.TransformPoint(Offset);
         transform.position = TargetPosition - transform.forward * MoveBack;
