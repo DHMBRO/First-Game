@@ -10,7 +10,7 @@ public class MovePlayer : MonoBehaviour
 
     [SerializeField] protected Transform CameraTransform;
     [SerializeField] protected float Sens = 1.0f;
-
+    bool dontInJamp = true;
 
     void Start()
     {
@@ -22,6 +22,7 @@ public class MovePlayer : MonoBehaviour
         if (gameObject.CompareTag("Plane"))
         {
             Debug.Log("Yes");
+            dontInJamp = true;
         }
     }
 
@@ -29,13 +30,6 @@ public class MovePlayer : MonoBehaviour
     {
         float MoveVertical = Input.GetAxis("Vertical");
         float MoveHorizontal = Input.GetAxis("Horizontal");
-        float MoveRotationY = Input.GetAxis("Mouse X");
-
-        Vector3 Trque = new Vector3(0.0f, MoveRotationY * Sens, 0.0f);
-        MyRigidbody.AddRelativeTorque(Trque, ForceMode.Force);
-        
-
-        //transform.rotation = Quaternion.Euler(0.0f, CameraTransform.eulerAngles.y, 0.0f);
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -55,21 +49,32 @@ public class MovePlayer : MonoBehaviour
         else if (Input.GetKey(KeyCode.A))
         {
             MyRigidbody.drag = 0f;
+
             Vector3 ForceRight = new Vector3(MoveHorizontal * Force, 0.0f, 0.0f);
-            MyRigidbody.AddRelativeForce(ForceRight,MyForceMode);
+            MyRigidbody.AddRelativeForce(ForceRight, MyForceMode);
 
         }
         else if (Input.GetKey(KeyCode.D))
         {
             MyRigidbody.drag = 0f;
             Vector3 ForceLeft = new Vector3(MoveHorizontal * Force, 0.0f, 0.0f);
-            MyRigidbody.AddRelativeForce(ForceLeft,MyForceMode);
+            MyRigidbody.AddRelativeForce(ForceLeft, MyForceMode);
 
         }
         else
         {
-            MyRigidbody.drag = 500.0f;
+            if (dontInJamp)
+            {
+                MyRigidbody.drag = 500.0f;
+            }
         }
 
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (gameObject.CompareTag("Plane"))
+        {
+            dontInJamp = false;
+        }
     }
 }
