@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MovePlayer : MonoBehaviour
 {
+
     [SerializeField] float Force = 1.0f;
     [SerializeField] ForceMode MyForceMode;
     [SerializeField] Rigidbody MyRigidbody;
@@ -86,6 +87,7 @@ public class MovePlayer : MonoBehaviour
         }
         Debug.Log(dontInJamp);
     }
+
     private void OnTriggerExit(Collider other)
     {
         Debug.Log("No1");
@@ -96,5 +98,3 @@ public class MovePlayer : MonoBehaviour
         }
     }
 }
-
-
