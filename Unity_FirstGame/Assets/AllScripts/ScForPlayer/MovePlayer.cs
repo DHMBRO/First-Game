@@ -18,7 +18,7 @@ public class MovePlayer : MonoBehaviour
         MyRigidbody = GetComponent<Rigidbody>();
     }
 
-    private void OnTriggerEnter(Collider other) 
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Plane"))
         {
@@ -96,3 +96,5 @@ public class MovePlayer : MonoBehaviour
         }
     }
 }
+
+
