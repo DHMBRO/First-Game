@@ -18,13 +18,20 @@ public class MovePlayer : MonoBehaviour
         MyRigidbody = GetComponent<Rigidbody>();
     }
 
+<<<<<<< Updated upstream
     private void OnTriggerEnter(Collider other)
+=======
+   
+
+    private void OnCollisionExit(Collision collision)
+>>>>>>> Stashed changes
     {
         if (other.gameObject.CompareTag("Plane"))
         {
-            Debug.Log("Yes");
-            dontInJamp = true;
+            dontInJamp = false;            
         }
+
+
     }
 
     void Update()
@@ -73,6 +80,7 @@ public class MovePlayer : MonoBehaviour
                 MyRigidbody.drag = 0f;
             }
         }
+<<<<<<< Updated upstream
         if (Input.GetKey(KeyCode.Space) && dontInJamp)
         {
             MyRigidbody.drag = 0f;
@@ -95,4 +103,9 @@ public class MovePlayer : MonoBehaviour
             dontInJamp = false;
         }
     }
+=======
+
+    }
+   
+>>>>>>> Stashed changes
 }
