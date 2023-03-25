@@ -33,7 +33,7 @@ public class Gun : MonoBehaviour
         
         Weapon_Transform.rotation = Quaternion.Lerp(Weapon_Transform.rotation, RotationToTarget, 0.05f);
 
-        bool audit01 = Input.GetAxis("Fire1") == 1.0f;
+        bool audit01 = Input.GetKey(KeyCode.Mouse0);
                 
         if (audit01 && Time.time >= ShotTime)
         {
