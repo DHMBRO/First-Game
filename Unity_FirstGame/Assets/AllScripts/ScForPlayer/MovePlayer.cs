@@ -9,6 +9,8 @@ public class MovePlayer : MonoBehaviour
     [SerializeField] Rigidbody MyRigidbody;
 
     [SerializeField] protected Transform CameraTransform;
+    [SerializeField] protected float Sens = 1.0f;
+
 
     void Start()
     {
@@ -27,8 +29,13 @@ public class MovePlayer : MonoBehaviour
     {
         float MoveVertical = Input.GetAxis("Vertical");
         float MoveHorizontal = Input.GetAxis("Horizontal");
+        float MoveRotationY = Input.GetAxis("Mouse X");
 
-        transform.rotation = Quaternion.Euler(0.0f, CameraTransform.eulerAngles.y, 0.0f);
+        Vector3 Trque = new Vector3(0.0f, MoveRotationY * Sens, 0.0f);
+        MyRigidbody.AddRelativeTorque(Trque, ForceMode.Force);
+        
+
+        //transform.rotation = Quaternion.Euler(0.0f, CameraTransform.eulerAngles.y, 0.0f);
 
         if (Input.GetKey(KeyCode.W))
         {
