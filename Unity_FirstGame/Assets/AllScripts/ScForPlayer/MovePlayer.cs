@@ -29,40 +29,39 @@ public class MovePlayer : MonoBehaviour
         float MoveHorizontal = Input.GetAxis("Horizontal");
 
         transform.rotation = Quaternion.Euler(0.0f, CameraTransform.eulerAngles.y, 0.0f);
-        
-        if (MoveVertical == 1.0f)
+
+        if (Input.GetKey(KeyCode.W))
         {
-            MyRigidbody.drag = 0.05f;
-            Vector3 ForceFronte = new Vector3(0.0f,0.0f,MoveVertical * Force);
+            MyRigidbody.drag = 0f;
+            Vector3 ForceFronte = new Vector3(0.0f, 0.0f, MoveVertical * Force);
             MyRigidbody.AddRelativeForce(ForceFronte, MyForceMode);
 
         }
-        else if (MoveVertical != 1.0f && MoveVertical != -1.0f && MoveHorizontal != 1.0f && MoveHorizontal != -1.0f)
+        else if (Input.GetKey(KeyCode.S))
         {
-            MyRigidbody.drag = 100.0f;
-        }
-
-        else if (MoveVertical == -1.0f)
-        {
-            MyRigidbody.drag = 0.05f;
+            MyRigidbody.drag = 0f;
             Vector3 ForceBack = new Vector3(0.0f, 0.0f, MoveVertical * Force);
             MyRigidbody.AddRelativeForce(ForceBack, MyForceMode);
 
         }
 
-        if (MoveHorizontal == 1.0f)
+        else if (Input.GetKey(KeyCode.A))
         {
-            MyRigidbody.drag = 0.05f;
+            MyRigidbody.drag = 0f;
             Vector3 ForceRight = new Vector3(MoveHorizontal * Force, 0.0f, 0.0f);
             MyRigidbody.AddRelativeForce(ForceRight,MyForceMode);
 
         }
-        else if (MoveHorizontal == -1.0f)
+        else if (Input.GetKey(KeyCode.D))
         {
-            MyRigidbody.drag = 0.05f;
+            MyRigidbody.drag = 0f;
             Vector3 ForceLeft = new Vector3(MoveHorizontal * Force, 0.0f, 0.0f);
             MyRigidbody.AddRelativeForce(ForceLeft,MyForceMode);
 
+        }
+        else
+        {
+            MyRigidbody.drag = 500.0f;
         }
 
     }
