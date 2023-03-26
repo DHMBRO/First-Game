@@ -12,44 +12,49 @@ public class Gun : MonoBehaviour
 
     [SerializeField] public float ShotDeley = 1.0f;
     [SerializeField] public float ShotTime = 0.0f;
+
+    private Vector3 TargetPoint;
+    private RaycastHit HitResult;
+
     void Start()
     {
-    
+        
     }
 
     void Update()
     {
-        Vector3 Target_Point = Camera_Transform.position + Camera_Transform.forward * 100.0f;
-        
-        RaycastHit Hit_Result;
-        
-        if (Physics.Raycast(Camera_Transform.position, Camera_Transform.forward, out Hit_Result, 100.0f))
+        TargetPoint = Camera_Transform.position + Camera_Transform.forward * 100.0f;
+                        
+        if (Physics.Raycast(Camera_Transform.position, Camera_Transform.forward, out HitResult, 100.0f))
         {
-            Target_Point = Hit_Result.point;
+            TargetPoint = HitResult.point;
         }
         
-        Quaternion RotationToTarget = Quaternion.LookRotation(Target_Point - Weapon_Transform.position);
+        Quaternion RotationToTarget = Quaternion.LookRotation(TargetPoint - Weapon_Transform.position);
         
         Weapon_Transform.rotation = Quaternion.Lerp(Weapon_Transform.rotation, RotationToTarget, 0.05f);
 
         bool audit01 = Input.GetKey(KeyCode.Mouse0);
 
-            if (audit01 && Time.time >= ShotTime)
-            {
+        if (audit01 && Time.time >= ShotTime)
+        {
 
-                ShotTime = ShotDeley + Time.time;
+            ShotTime = ShotDeley + Time.time;
 
-                Debug.DrawLine(Camera_Transform.position, Camera_Transform.position + Camera_Transform.forward * 10.0f, Color.blue, 5.0f);
+            Debug.DrawLine(Camera_Transform.position, Camera_Transform.position + Camera_Transform.forward * 10.0f, Color.blue, 5.0f);
 
-                GameObject new_Bullet = Instantiate(Bullet, Muzzle_Transform.position, Quaternion.LookRotation(Target_Point - Muzzle_Transform.position));
-                Destroy(new_Bullet, 5.0f);
+            GameObject new_Bullet = Instantiate(Bullet, Muzzle_Transform.position, Quaternion.LookRotation(TargetPoint - Muzzle_Transform.position));
+            Destroy(new_Bullet, 5.0f);
 
-                Rigidbody new_BulletRB = new_Bullet.GetComponent<Rigidbody>();
-                new_BulletRB.AddForce(new_Bullet.transform.forward * Bullet_Speed, ForceMode.Impulse);
-            }
+            Rigidbody new_BulletRB = new_Bullet.GetComponent<Rigidbody>();
+            new_BulletRB.AddForce(new_Bullet.transform.forward * Bullet_Speed, ForceMode.Impulse);
+        }
     }
     
-    
+    void GuidanceWeapon()
+    {
+
+    }
 
 
 }

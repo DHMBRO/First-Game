@@ -145,6 +145,6 @@ public class MovePlayer : MonoBehaviour
             Vector3 addForce = new Vector3(0.00f, 2f * JumpForce, 0f);
             MyRigidbody.AddRelativeForce(addForce, MyForceMode);
             JumpCount--;
-        }
-    }
+        }        
+    }        
 }
