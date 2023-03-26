@@ -58,12 +58,13 @@ public class Gun : MonoBehaviour
         {            
             if (audit01 && Time.time >= ShotTime)
             {
-
                 ShotTime = ShotDeley + Time.time;
 
                 Debug.DrawLine(Camera_Transform.position, Camera_Transform.position + Camera_Transform.forward * 10.0f, Color.blue, 5.0f);
 
                 GameObject new_Bullet = Instantiate(Bullet, Muzzle_Transform.position, Quaternion.LookRotation(TargetPoint - Muzzle_Transform.position));
+                
+                
                 Destroy(new_Bullet, 5.0f);
 
                 Rigidbody new_BulletRB = new_Bullet.GetComponent<Rigidbody>();
