@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    
+    [SerializeField] GameObject audioToMetalic;
+    GameObject audio;
     void Start()
     {
         
@@ -10,8 +11,8 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        audio = GameObject.Instantiate(audioToMetalic);
         Destroy(gameObject);
-        
     }
 
     void Update()
