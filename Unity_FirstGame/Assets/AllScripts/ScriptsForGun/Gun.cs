@@ -7,7 +7,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private Transform Muzzle_Transform;
     [SerializeField] private Transform Camera_Transform;
     [SerializeField] private float Bullet_Speed = 20.0f;
-    [SerializeField] private GunControler GunControler;
+    [SerializeField] private SlotControler MySlotControler;
 
     [SerializeField] public float ShotDeley = 0.3f;
     [SerializeField] public float ShotTime = 0.0f;
@@ -21,7 +21,7 @@ public class Gun : MonoBehaviour
 
     void Start()
     {
-        GunControler = gameObject.GetComponent<GunControler>();
+        MySlotControler = gameObject.GetComponent<SlotControler>();
         
     }
 
@@ -35,7 +35,7 @@ public class Gun : MonoBehaviour
     
     void GuidanceWeapon()
     {
-        if (GunControler.CanFire)
+        if (MySlotControler.CanFire)
         {
             TargetPoint = Camera_Transform.position + Camera_Transform.forward * 100.0f;
             
@@ -54,7 +54,7 @@ public class Gun : MonoBehaviour
     {        
         bool audit01 = Input.GetKey(KeyCode.Mouse0);
 
-        if (GunControler.CanFire)
+        if (MySlotControler.CanFire)
         {            
             if (audit01 && Time.time >= ShotTime)
             {

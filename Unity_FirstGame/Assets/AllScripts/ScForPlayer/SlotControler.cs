@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GunControler : MonoBehaviour
+public class SlotControler : MonoBehaviour
 {
     [SerializeField] private Transform SlotGun;
     [SerializeField] private Transform SlotHand;
@@ -8,13 +8,13 @@ public class GunControler : MonoBehaviour
 
     [SerializeField] private int counter;
     [SerializeField] public bool CanFire = true;
-        
+
     void Start()
     {
         CanFire = false;
         Appropriation01();
     }
-    
+
     void Update()
     {
         if (counter == 1 && Input.GetKeyUp("1"))
@@ -22,9 +22,9 @@ public class GunControler : MonoBehaviour
             counter = 0;
             Debug.Log("1");
         }
-        MovingGunForSlots();    
+        MovingGunForSlots();
     }
-    
+
     void Appropriation01()
     {
         MyGun.transform.position = SlotGun.transform.position;
@@ -43,20 +43,20 @@ public class GunControler : MonoBehaviour
         if (Input.GetKey("1"))
         {
             if (counter < 1 && !CanFire)
-            {                
+            {
                 Appropriation02();
                 CanFire = true;
                 counter++;
             }
             else if (counter < 1 && CanFire)
-            {                
+            {
                 Appropriation01();
                 CanFire = false;
-                counter++;                
-            }                        
+                counter++;
+            }
         }
     }
-    
-    
+
+
 
 }

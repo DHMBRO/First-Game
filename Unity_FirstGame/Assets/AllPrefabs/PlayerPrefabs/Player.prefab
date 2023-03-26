@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 7220017703158707578}
   - component: {fileID: 2185093954581992406}
   - component: {fileID: 325107177150783432}
-  - component: {fileID: 8914014373757452291}
   - component: {fileID: 7589032840163134755}
+  - component: {fileID: 7785237847769309149}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -157,10 +157,23 @@ MonoBehaviour:
   Muzzle_Transform: {fileID: 6207926461529233119}
   Camera_Transform: {fileID: 3811309240065978825, guid: 99b382a7a7090204b9bd10d055fa8870, type: 3}
   Bullet_Speed: 20
-  GunControler: {fileID: 0}
+  MySlotControler: {fileID: 0}
   ShotDeley: 1
   ShotTime: 0
---- !u!114 &8914014373757452291
+--- !u!65 &7589032840163134755
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758934435905196194}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7785237847769309149
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,19 +190,6 @@ MonoBehaviour:
   MyGun: {fileID: 2487990949159229112}
   counter: 0
   CanFire: 1
---- !u!65 &7589032840163134755
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 758934435905196194}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6292107291961540590
 GameObject:
   m_ObjectHideFlags: 0
