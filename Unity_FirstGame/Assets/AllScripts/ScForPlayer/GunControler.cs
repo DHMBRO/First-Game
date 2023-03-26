@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GunControler : MonoBehaviour
@@ -17,22 +15,27 @@ public class GunControler : MonoBehaviour
     
     void Update()
     {
-        
+        PutWeaponInSlote();
+        PickUpWeaponFromeSlot();                
+    }
+    
+    void PutWeaponInSlote()
+    {
         if (CanFire && Input.GetKey("1"))
         {
             CanFire = false;
             MyGun.transform.position = SlotForGun.transform.position;
-            MyGun.transform.rotation = SlotForGun.transform.rotation;               
+            MyGun.transform.rotation = SlotForGun.transform.rotation;
         }
-        else if (!CanFire && Input.GetKey("2"))
+    }
+    
+    void PickUpWeaponFromeSlot()
+    {
+        if (!CanFire && Input.GetKey("2"))
         {
             CanFire = true;
             //MyGun.transform.position =                      
         }
-        
     }
-    
-
-    
 
 }

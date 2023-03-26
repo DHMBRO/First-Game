@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Gun : MonoBehaviour
@@ -15,6 +13,8 @@ public class Gun : MonoBehaviour
 
     private Vector3 TargetPoint;
     private RaycastHit HitResult;
+    private Quaternion RotationToTarget;
+    private
 
     void Start()
     {
@@ -23,17 +23,28 @@ public class Gun : MonoBehaviour
 
     void Update()
     {
+        GuidanceWeapon();
+        FireForTarget();
+
+       
+    }
+    
+    void GuidanceWeapon()
+    {
         TargetPoint = Camera_Transform.position + Camera_Transform.forward * 100.0f;
-                        
+
         if (Physics.Raycast(Camera_Transform.position, Camera_Transform.forward, out HitResult, 100.0f))
         {
             TargetPoint = HitResult.point;
         }
-        
-        Quaternion RotationToTarget = Quaternion.LookRotation(TargetPoint - Weapon_Transform.position);
-        
-        Weapon_Transform.rotation = Quaternion.Lerp(Weapon_Transform.rotation, RotationToTarget, 0.05f);
 
+        RotationToTarget = Quaternion.LookRotation(TargetPoint - Weapon_Transform.position);
+
+        Weapon_Transform.rotation = Quaternion.Lerp(Weapon_Transform.rotation, RotationToTarget, 0.05f);
+    }
+
+    void FireForTarget()
+    {
         bool audit01 = Input.GetKey(KeyCode.Mouse0);
 
         if (audit01 && Time.time >= ShotTime)
@@ -50,11 +61,5 @@ public class Gun : MonoBehaviour
             new_BulletRB.AddForce(new_Bullet.transform.forward * Bullet_Speed, ForceMode.Impulse);
         }
     }
-    
-    void GuidanceWeapon()
-    {
-
-    }
-
 
 }

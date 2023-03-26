@@ -1,23 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.ProBuilder.Shapes;
 
 public class SpawnPrefab : MonoBehaviour
 {
     [SerializeField] GameObject cube;
     GameObject Cube;
-    // Start is called before the first frame update
+    
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         
     }
+    
     private void OnTriggerEnter(Collider other)
     {
         Cube = GameObject.Instantiate(cube,
