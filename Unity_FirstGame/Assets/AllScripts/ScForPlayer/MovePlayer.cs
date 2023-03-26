@@ -10,9 +10,11 @@ public class MovePlayer : MonoBehaviour
     [SerializeField] Rigidbody MyRigidbody;
     [SerializeField] protected Transform CameraTransform;
     [SerializeField] protected float Sens = 1.0f;
-    bool dontInJamp = true;
+    bool donJumping = true;
     int JumpCount;
     bool chengebutton = false;
+    float MoveHorizontal;
+    float MoveVertical;
     void Start()
     {
         MyRigidbody = GetComponent<Rigidbody>();
@@ -21,21 +23,24 @@ public class MovePlayer : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Plane"))
         {
-            if (!dontInJamp)
+            if (!donJumping)
             {
-                dontInJamp = true;
-                Debug.Log("1" + dontInJamp);
+                donJumping = true;
+                Debug.Log("1" + donJumping);
             }
         }
     }
     void Update()
     {
-        float MoveVertical = Input.GetAxis("Vertical");
-        float MoveHorizontal = Input.GetAxis("Horizontal");
-        
-        if (Input.GetKeyUp(KeyCode.W))
+        Addition();
+        Move();
+        Jump();
+    }
+    void Addition()
+    {
+        if (Input.GetKeyUp(KeyCode.W) && Input.GetKey(KeyCode.S))
         {
-            if (dontInJamp)
+            if (donJumping)
             {
                 MyRigidbody.isKinematic = true;
             }
@@ -45,9 +50,9 @@ public class MovePlayer : MonoBehaviour
             }
             chengebutton = true;
         }
-        else if (Input.GetKeyUp(KeyCode.S))
+        else if (Input.GetKey(KeyCode.W) && Input.GetKeyUp(KeyCode.S))
         {
-            if (dontInJamp)
+            if (donJumping)
             {
                 MyRigidbody.isKinematic = true;
             }
@@ -57,9 +62,9 @@ public class MovePlayer : MonoBehaviour
             }
             chengebutton = true;
         }
-        else if (Input.GetKeyUp(KeyCode.A))
+        else if (Input.GetKeyUp(KeyCode.A) && Input.GetKey(KeyCode.D))
         {
-            if (dontInJamp)
+            if (donJumping)
             {
                 MyRigidbody.isKinematic = true;
             }
@@ -69,9 +74,9 @@ public class MovePlayer : MonoBehaviour
             }
             chengebutton = true;
         }
-        else if (Input.GetKeyUp(KeyCode.D))
+        else if (Input.GetKeyUp(KeyCode.D) && Input.GetKey(KeyCode.A))
         {
-            if (dontInJamp)
+            if (donJumping)
             {
                 MyRigidbody.isKinematic = true;
             }
@@ -81,6 +86,11 @@ public class MovePlayer : MonoBehaviour
             }
             chengebutton = true;
         }
+    }
+    void Move()
+    {
+        MoveVertical = Input.GetAxis("Vertical");
+        MoveHorizontal = Input.GetAxis("Horizontal");
         if (Input.GetKey(KeyCode.W))
         {
             if (!chengebutton)
@@ -124,7 +134,7 @@ public class MovePlayer : MonoBehaviour
         }
         else
         {
-            if (dontInJamp)
+            if (donJumping)
             {
                 MyRigidbody.isKinematic = true;
             }
@@ -134,11 +144,15 @@ public class MovePlayer : MonoBehaviour
             }
             chengebutton = false;
         }
-        if (Input.GetKey(KeyCode.Space) && dontInJamp)
+    }
+
+    void Jump()
+    {
+        if (Input.GetKey(KeyCode.Space) && donJumping)
         {
             MyRigidbody.isKinematic = false;
             JumpCount = 100;
-            dontInJamp = false;
+            donJumping = false;
         }
         if (JumpCount > 0.0f)
         {
