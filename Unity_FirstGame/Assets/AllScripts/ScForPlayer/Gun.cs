@@ -12,10 +12,8 @@ public class Gun : MonoBehaviour
 
     [SerializeField] public float ShotDeley = 1.0f;
     [SerializeField] public float ShotTime = 0.0f;
-    protected GunsControl GunsControlScript;
     void Start()
     {
-        GunsControlScript = GetComponent<GunsControl>();
     }
 
     void Update()
@@ -35,7 +33,7 @@ public class Gun : MonoBehaviour
 
         bool audit01 = Input.GetKey(KeyCode.Mouse0);
 
-            if (audit01 && Time.time >= ShotTime && GunsControlScript.GunIndackpack == false)
+            if (audit01 && Time.time >= ShotTime)
             {
 
                 ShotTime = ShotDeley + Time.time;
