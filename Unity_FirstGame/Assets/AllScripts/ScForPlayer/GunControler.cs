@@ -2,40 +2,61 @@ using UnityEngine;
 
 public class GunControler : MonoBehaviour
 {
-    [SerializeField] private Transform SlotForGun;
+    [SerializeField] private Transform SlotGun;
+    [SerializeField] private Transform SlotHand;
     [SerializeField] private Transform MyGun;
-    [SerializeField] private Gun MyWeaponScript;
 
-    [SerializeField] public bool CanFire;
-    
+    [SerializeField] private int counter;
+    [SerializeField] public bool CanFire = true;
+        
     void Start()
     {
-        
+        CanFire = false;
+        Appropriation01();
     }
     
     void Update()
     {
-        PutWeaponInSlote();
-        PickUpWeaponFromeSlot();                
+        if (counter == 1 && Input.GetKeyUp("1"))
+        {
+            counter = 0;
+            Debug.Log("1");
+        }
+        MovingGunForSlots();    
     }
     
-    void PutWeaponInSlote()
+    void Appropriation01()
     {
-        if (CanFire && Input.GetKey("1"))
+        MyGun.transform.position = SlotGun.transform.position;
+        MyGun.transform.rotation = SlotGun.transform.rotation;
+
+    }
+
+    void Appropriation02()
+    {
+        MyGun.transform.position = SlotHand.transform.position;
+
+    }
+
+    void MovingGunForSlots()
+    {
+        if (Input.GetKey("1"))
         {
-            CanFire = false;
-            MyGun.transform.position = SlotForGun.transform.position;
-            MyGun.transform.rotation = SlotForGun.transform.rotation;
+            if (counter < 1 && !CanFire)
+            {                
+                Appropriation02();
+                CanFire = true;
+                counter++;
+            }
+            else if (counter < 1 && CanFire)
+            {                
+                Appropriation01();
+                CanFire = false;
+                counter++;                
+            }                        
         }
     }
     
-    void PickUpWeaponFromeSlot()
-    {
-        if (!CanFire && Input.GetKey("2"))
-        {
-            CanFire = true;
-            //MyGun.transform.position =                      
-        }
-    }
+    
 
 }
