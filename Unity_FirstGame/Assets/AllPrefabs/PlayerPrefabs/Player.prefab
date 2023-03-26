@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7220017703158707578}
   - component: {fileID: 2185093954581992406}
   - component: {fileID: 325107177150783432}
-  - component: {fileID: 238240330004887001}
+  - component: {fileID: 642765542702254693}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -156,18 +156,19 @@ MonoBehaviour:
   Bullet_Speed: 20
   ShotDeley: 1
   ShotTime: 0
---- !u!114 &238240330004887001
-MonoBehaviour:
+--- !u!65 &642765542702254693
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 758934435905196194}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92e1d57ea0101a7478b95cc7b1f7275f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  serializedVersion: 2
+  m_Size: {x: 10, y: 6, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!1 &1883063614520114802
 GameObject:
   m_ObjectHideFlags: 0
