@@ -11,7 +11,7 @@ public class MovePlayer : MonoBehaviour
     [SerializeField] protected Transform CameraTransform;
     [SerializeField] protected float Sens = 1.0f;
     bool dontInJamp = true;
-    int jumpcount;
+    int JumpCount;
     bool chengebutton = false;
     void Start()
     {
@@ -32,15 +32,16 @@ public class MovePlayer : MonoBehaviour
     {
         float MoveVertical = Input.GetAxis("Vertical");
         float MoveHorizontal = Input.GetAxis("Horizontal");
+        
         if (Input.GetKeyUp(KeyCode.W))
         {
             if (dontInJamp)
             {
-                MyRigidbody.drag = 500000.0f;
+                MyRigidbody.isKinematic = true;
             }
             else
             {
-                MyRigidbody.drag = 0f;
+                MyRigidbody.isKinematic = false;
             }
             chengebutton = true;
         }
@@ -48,11 +49,11 @@ public class MovePlayer : MonoBehaviour
         {
             if (dontInJamp)
             {
-                MyRigidbody.drag = 500000.0f;
+                MyRigidbody.isKinematic = true;
             }
             else
             {
-                MyRigidbody.drag = 0f;
+                MyRigidbody.isKinematic = false;
             }
             chengebutton = true;
         }
@@ -60,11 +61,11 @@ public class MovePlayer : MonoBehaviour
         {
             if (dontInJamp)
             {
-                MyRigidbody.drag = 500000.0f;
+                MyRigidbody.isKinematic = true;
             }
             else
             {
-                MyRigidbody.drag = 1f;
+                MyRigidbody.isKinematic = false;
             }
             chengebutton = true;
         }
@@ -72,11 +73,11 @@ public class MovePlayer : MonoBehaviour
         {
             if (dontInJamp)
             {
-                MyRigidbody.drag = 500000.0f;
+                MyRigidbody.isKinematic = true;
             }
             else
             {
-                MyRigidbody.drag = 1f;
+                MyRigidbody.isKinematic = false;
             }
             chengebutton = true;
         }
@@ -84,7 +85,7 @@ public class MovePlayer : MonoBehaviour
         {
             if (!chengebutton)
             {
-                MyRigidbody.drag = 1f;
+                MyRigidbody.isKinematic = false;
                 Vector3 ForceFronte = new Vector3(0.0f, 0.0f, MoveVertical * Force);
                 MyRigidbody.AddRelativeForce(ForceFronte, MyForceMode);
             }
@@ -94,7 +95,7 @@ public class MovePlayer : MonoBehaviour
         {
             if (!chengebutton)
             {
-                MyRigidbody.drag = 1f;
+                MyRigidbody.isKinematic = false;
                 Vector3 ForceBack = new Vector3(0.0f, 0.0f, MoveVertical * Force);
                 MyRigidbody.AddRelativeForce(ForceBack, MyForceMode);
             }
@@ -104,7 +105,7 @@ public class MovePlayer : MonoBehaviour
         {
             if (!chengebutton)
             {
-                MyRigidbody.drag = 1f;
+                MyRigidbody.isKinematic = false;
 
                 Vector3 ForceRight = new Vector3(MoveHorizontal * Force, 0.0f, 0.0f);
                 MyRigidbody.AddRelativeForce(ForceRight, MyForceMode);
@@ -115,7 +116,7 @@ public class MovePlayer : MonoBehaviour
         {
             if (!chengebutton)
             {
-                MyRigidbody.drag = 1f;
+                MyRigidbody.isKinematic = false;
                 Vector3 ForceLeft = new Vector3(MoveHorizontal * Force, 0.0f, 0.0f);
                 MyRigidbody.AddRelativeForce(ForceLeft, MyForceMode);
             }
@@ -125,25 +126,25 @@ public class MovePlayer : MonoBehaviour
         {
             if (dontInJamp)
             {
-                MyRigidbody.drag = 500.0f;
+                MyRigidbody.isKinematic = true;
             }
             else
             {
-                MyRigidbody.drag = 1f;
+                MyRigidbody.isKinematic = false;
             }
             chengebutton = false;
         }
         if (Input.GetKey(KeyCode.Space) && dontInJamp)
         {
-            MyRigidbody.drag = 1f;
-            jumpcount = 100;
+            MyRigidbody.isKinematic = false;
+            JumpCount = 100;
             dontInJamp = false;
         }
-        if (jumpcount > 0.0f)
+        if (JumpCount > 0.0f)
         {
             Vector3 addForce = new Vector3(0.00f, 2f * JumpForce, 0f);
             MyRigidbody.AddRelativeForce(addForce, MyForceMode);
-            jumpcount--;
+            JumpCount--;
         }
     }
 }
