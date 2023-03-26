@@ -19,14 +19,22 @@ public class MovePlayer : MonoBehaviour
         MyRigidbody = GetComponent<Rigidbody>();
     }
 
-    private void OnTriggerEnter(Collider other)
+
+
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.CompareTag("Plane"))
+        if (collision.gameObject.CompareTag("Plane"))
         {
-            dontInJamp = true;
+
+            if (!dontInJamp)
+            {
+                dontInJamp = true;
+                Debug.Log("1" + dontInJamp);
+            }
+
+
         }
     }
-
     void Update()
     {
         float MoveVertical = Input.GetAxis("Vertical");
@@ -84,17 +92,6 @@ public class MovePlayer : MonoBehaviour
             Vector3 addForce = new Vector3(0.00f, 2f * Force, 0f);
             MyRigidbody.AddRelativeForce(addForce, MyForceMode);
             jumpcount--;
-        }
-        Debug.Log(dontInJamp);
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        Debug.Log("No1");
-        if (other.gameObject.CompareTag("Plane"))
-        {
-            Debug.Log("No");
-            dontInJamp = false;
         }
     }
 }

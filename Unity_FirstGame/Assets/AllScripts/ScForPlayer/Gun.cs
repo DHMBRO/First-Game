@@ -12,10 +12,10 @@ public class Gun : MonoBehaviour
 
     [SerializeField] public float ShotDeley = 1.0f;
     [SerializeField] public float ShotTime = 0.0f;
-
+    protected GunsControl GunsControlScript;
     void Start()
     {
-
+        GunsControlScript = GetComponent<GunsControl>();
     }
 
     void Update()
@@ -34,20 +34,20 @@ public class Gun : MonoBehaviour
         Weapon_Transform.rotation = Quaternion.Lerp(Weapon_Transform.rotation, RotationToTarget, 0.05f);
 
         bool audit01 = Input.GetKey(KeyCode.Mouse0);
-                
-        if (audit01 && Time.time >= ShotTime)
-        {
-            
-            ShotTime = ShotDeley + Time.time;
 
-            Debug.DrawLine(Camera_Transform.position, Camera_Transform.position + Camera_Transform.forward * 10.0f, Color.blue, 5.0f);
+            if (audit01 && Time.time >= ShotTime && GunsControlScript.GunIndackpack == false)
+            {
 
-            GameObject new_Bullet = Instantiate(Bullet, Muzzle_Transform.position, Quaternion.LookRotation(Target_Point - Muzzle_Transform.position));
-            Destroy(new_Bullet, 5.0f);
+                ShotTime = ShotDeley + Time.time;
 
-            Rigidbody new_BulletRB = new_Bullet.GetComponent<Rigidbody>();
-            new_BulletRB.AddForce(new_Bullet.transform.forward * Bullet_Speed, ForceMode.Impulse);
+                Debug.DrawLine(Camera_Transform.position, Camera_Transform.position + Camera_Transform.forward * 10.0f, Color.blue, 5.0f);
+
+                GameObject new_Bullet = Instantiate(Bullet, Muzzle_Transform.position, Quaternion.LookRotation(Target_Point - Muzzle_Transform.position));
+                Destroy(new_Bullet, 5.0f);
+
+                Rigidbody new_BulletRB = new_Bullet.GetComponent<Rigidbody>();
+                new_BulletRB.AddForce(new_Bullet.transform.forward * Bullet_Speed, ForceMode.Impulse);
+            }
         }
-
-    }
+    
 }
