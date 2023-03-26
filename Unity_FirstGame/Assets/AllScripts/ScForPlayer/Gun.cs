@@ -14,6 +14,7 @@ public class Gun : MonoBehaviour
     [SerializeField] public float ShotTime = 0.0f;
     void Start()
     {
+    
     }
 
     void Update()
@@ -46,6 +47,9 @@ public class Gun : MonoBehaviour
                 Rigidbody new_BulletRB = new_Bullet.GetComponent<Rigidbody>();
                 new_BulletRB.AddForce(new_Bullet.transform.forward * Bullet_Speed, ForceMode.Impulse);
             }
-        }
+    }
     
+    
+
+
 }
