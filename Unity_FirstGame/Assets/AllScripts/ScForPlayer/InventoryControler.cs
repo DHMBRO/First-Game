@@ -54,7 +54,7 @@ public class InventoryControler : MonoBehaviour
 
 
          Destroy(Original);
-                            //тут ссилка на інвенторі
+                            
          M4Ammo += 10;
         Debug.Log("Ammp += 10");
     }

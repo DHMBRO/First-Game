@@ -22,7 +22,7 @@ public class ScContM4 : MonoBehaviour
     {
         if (M4ControlerForFire && M4Parent)
         {
-            Debug.Log(M4Parent == transform.CompareTag("SlotForUse"));
+            //Debug.Log(M4Parent == transform.CompareTag("SlotForUse"));
 
             if (M4Parent == transform.CompareTag("SlotForUse"))
             {
