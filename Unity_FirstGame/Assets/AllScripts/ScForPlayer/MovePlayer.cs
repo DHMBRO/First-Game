@@ -4,40 +4,50 @@ public class MovePlayer : MonoBehaviour
 {
     [SerializeField] float Force = 1.0f;
     [SerializeField] float JumpForce = 1.0f;
-    [SerializeField] ForceMode MyForceMode;
-    [SerializeField] Rigidbody MyRigidbody;
-    [SerializeField] protected Transform CameraTransform;
     [SerializeField] protected float Sens = 1.0f;
-    bool donJumping = true;
-    int JumpCount;
+
+    [SerializeField] ForceMode MyForceMode;
+
+    [SerializeField] Rigidbody MyRigidbody;
+
+    [SerializeField] protected Transform CameraTransform;
+
+    bool DontJumping = true;
     bool chengebutton = false;
+
+    int JumpCount;
+
     float MoveHorizontal;
     float MoveVertical;
+
     void Start()
     {
         MyRigidbody = GetComponent<Rigidbody>();
     }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Plane"))
         {
-            if (!donJumping)
+            if (!DontJumping)
             {
-                donJumping = true;                
+                DontJumping = true;                
             }
         }
     }
+
     void Update()
     {
         Addition();
         Move();
         Jump();
     }
+
     void Addition()
     {
         if (Input.GetKeyUp(KeyCode.W) && Input.GetKey(KeyCode.S))
         {
-            if (donJumping)
+            if (DontJumping)
             {
                 MyRigidbody.isKinematic = true;
             }
@@ -49,7 +59,7 @@ public class MovePlayer : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.W) && Input.GetKeyUp(KeyCode.S))
         {
-            if (donJumping)
+            if (DontJumping)
             {
                 MyRigidbody.isKinematic = true;
             }
@@ -61,7 +71,7 @@ public class MovePlayer : MonoBehaviour
         }
         else if (Input.GetKeyUp(KeyCode.A) && Input.GetKey(KeyCode.D))
         {
-            if (donJumping)
+            if (DontJumping)
             {
                 MyRigidbody.isKinematic = true;
             }
@@ -73,7 +83,7 @@ public class MovePlayer : MonoBehaviour
         }
         else if (Input.GetKeyUp(KeyCode.D) && Input.GetKey(KeyCode.A))
         {
-            if (donJumping)
+            if (DontJumping)
             {
                 MyRigidbody.isKinematic = true;
             }
@@ -133,7 +143,7 @@ public class MovePlayer : MonoBehaviour
         }
         else
         {
-            if (donJumping)
+            if (DontJumping)
             {
                 MyRigidbody.isKinematic = true;
             }
@@ -147,11 +157,11 @@ public class MovePlayer : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetKey(KeyCode.Space) && donJumping)
+        if (Input.GetKey(KeyCode.Space) && DontJumping)
         {
             MyRigidbody.isKinematic = false;
             JumpCount = 100;
-            donJumping = false;
+            DontJumping = false;
         }
         if (JumpCount > 0.0f)
         {
