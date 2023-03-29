@@ -399,10 +399,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92e1d57ea0101a7478b95cc7b1f7275f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SlotGun: {fileID: 3117495610539897358}
   SlotHand: {fileID: 887236312477455917}
-  MyGun: {fileID: 0}
+  SlotBack01: {fileID: 0}
+  SlotBack02: {fileID: 0}
+  SlotPistol01: {fileID: 0}
+  SlotKnife01: {fileID: 0}
+  SlotShpo01: {fileID: 0}
+  SlotShpo02: {fileID: 0}
+  SlotShpo03: {fileID: 0}
+  MyWeapon01: {fileID: 0}
+  MyWeapon02: {fileID: 0}
+  MyPistol01: {fileID: 0}
+  MyKnife01: {fileID: 0}
+  MyShop01: {fileID: 0}
+  MyShop03: {fileID: 0}
+  MyShop02: {fileID: 0}
   Counter: 0
+  MainCounter: 0
   CanFire: 1
   PickUp: {fileID: 0}
   InventoryControler: {fileID: 0}
@@ -1827,7 +1840,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 887236312477455917}
-  - component: {fileID: 4677532288702730935}
   m_Layer: 0
   m_Name: SlotForUse
   m_TagString: SlotForUse
@@ -1850,19 +1862,6 @@ Transform:
   m_Father: {fileID: 780860326346338877}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!65 &4677532288702730935
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7918234205984739604}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8062488579378612376
 GameObject:
   m_ObjectHideFlags: 0
