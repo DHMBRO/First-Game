@@ -11,6 +11,7 @@ public class PickUp : MonoBehaviour
 
     [SerializeField] private SlotControler MySlotControler;
 
+    
     private void OnTriggerEnter(Collider other)
     {
 
@@ -18,9 +19,7 @@ public class PickUp : MonoBehaviour
         {
             TakeObject = other.gameObject;
             Debug.Log("You can pick up M4");
-        }
-       
-
+        }       
     }
 
     private void OnTriggerExit(Collider other)
@@ -40,9 +39,9 @@ public class PickUp : MonoBehaviour
 
     void Update()
     {
-        if (MySlotControler && TakeObject && Input.GetKey(KeyCode.E))
+        if (MySlotControler && TakeObject.transform.CompareTag("M4") && Input.GetKey(KeyCode.E))
         {
-            TakeOject();
+            TakeM4();
         }
         else if (Count == 1)
         {
@@ -50,7 +49,7 @@ public class PickUp : MonoBehaviour
         }                
     }
 
-    void TakeOject()
+    void TakeM4()
     {
         if (Count == 0)
         {            
@@ -71,8 +70,8 @@ public class PickUp : MonoBehaviour
             }
 
             Count++;
-        }
-        
+        }        
     } 
+    
 
 }

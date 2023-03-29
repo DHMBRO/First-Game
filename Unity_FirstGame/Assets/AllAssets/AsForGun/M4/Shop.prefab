@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3626209618775102241}
   - component: {fileID: 5329599864773476208}
   - component: {fileID: 7565655534699369514}
+  - component: {fileID: 8879509237013042564}
   m_Layer: 0
   m_Name: Shop
   m_TagString: ShopForM4
@@ -114,3 +115,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.06111248, y: 0.17667845, z: 0.023385491}
   m_Center: {x: 0.0031375065, y: -0.012902141, z: 0.0011866409}
+--- !u!114 &8879509237013042564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7945646813490313421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0c6187986862c44a3f7fbb40d1acf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  M4ShopAmmo: 30
