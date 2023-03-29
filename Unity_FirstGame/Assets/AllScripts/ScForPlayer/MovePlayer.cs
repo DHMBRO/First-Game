@@ -42,7 +42,7 @@ public class MovePlayer : MonoBehaviour
         Move();
         Jump();
     }
-
+    void Addition() { }
     void Addition()
     {
         if (Input.GetKeyUp(KeyCode.W) && Input.GetKey(KeyCode.S))
