@@ -16,7 +16,9 @@ public class SlotControler : MonoBehaviour
     [SerializeField] private Transform SlotShpo02;
     [SerializeField] private Transform SlotShpo03;
     //
-
+    [SerializeField] private Transform UsingShope01;
+    [SerializeField] private Transform UsingShope02;
+    [SerializeField] private Transform UsingShope03;
     //Weapons for slots
     [SerializeField] public Transform MyWeapon01;
     [SerializeField] public Transform MyWeapon02;
@@ -25,9 +27,6 @@ public class SlotControler : MonoBehaviour
     //
     [SerializeField] private Transform MyKnife01;
     //
-    [SerializeField] private Transform MyShop01;
-    [SerializeField] private Transform MyShop03;
-    [SerializeField] private Transform MyShop02;
     
     //All counet for work Script        
     [SerializeField] protected int Counter;
@@ -163,7 +162,7 @@ public class SlotControler : MonoBehaviour
 
     public void PutKnike01()
     {
-        //if ()
+        if (SlotKnife01 && MyKnife01)
         {
 
         }
