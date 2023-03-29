@@ -377,6 +377,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8396809761774759401, guid: 948341d46a68ec740b2923ba90adbc42, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8396809761774759401, guid: 948341d46a68ec740b2923ba90adbc42, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 948341d46a68ec740b2923ba90adbc42, type: 3}
 --- !u!43 &192306389
@@ -1105,11 +1113,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3994893304370285142, guid: 99b382a7a7090204b9bd10d055fa8870, type: 3}
       propertyPath: Offset.x
-      value: 1.7
+      value: 1.16
       objectReference: {fileID: 0}
     - target: {fileID: 3994893304370285142, guid: 99b382a7a7090204b9bd10d055fa8870, type: 3}
       propertyPath: Offset.y
-      value: 0.8
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 3994893304370285142, guid: 99b382a7a7090204b9bd10d055fa8870, type: 3}
+      propertyPath: Offset.z
+      value: 2.35
       objectReference: {fileID: 0}
     - target: {fileID: 3994893304370285142, guid: 99b382a7a7090204b9bd10d055fa8870, type: 3}
       propertyPath: TargetCamera
