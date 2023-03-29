@@ -2,61 +2,88 @@ using UnityEngine;
 
 public class SlotControler : MonoBehaviour
 {
+    //All Slots
     [SerializeField] private Transform SlotGun;
-    [SerializeField] private Transform SlotHand;
-    [SerializeField] private Transform MyGun;
+    [SerializeField] public Transform SlotHand;
 
-    [SerializeField] private int counter;
+    //Weapons for slots
+    [SerializeField] public Transform MyGun;
+
+
+    //All counet for work Script        
+    [SerializeField] protected int Counter;
     [SerializeField] public bool CanFire = true;
+
+    //Fiset for other Scripts 
+    [SerializeField] private PickUp PickUp;
+    [SerializeField] private InventoryControler InventoryControler;
+
 
     void Start()
     {
+        PickUp = gameObject.GetComponent<PickUp>();
+        InventoryControler = gameObject.GetComponent<InventoryControler>();
+        
+
         CanFire = false;
-        Appropriation01();
+        Appropriation01();    
     }
 
     void Update()
     {
-        if (counter == 1 && Input.GetKeyUp("1"))
+        if (Counter == 1 && Input.GetKeyUp("1"))
         {
-            counter = 0;
-            Debug.Log("1");
+            Counter = 0;            
         }
         MovingGunForSlots();
-    }
-
-    void Appropriation01()
-    {
-        MyGun.transform.position = SlotGun.transform.position;
-        MyGun.transform.rotation = SlotGun.transform.rotation;
+        
+        
 
     }
 
-    void Appropriation02()
-    {
-        MyGun.transform.position = SlotHand.transform.position;
-
-    }
+   
 
     void MovingGunForSlots()
     {
-        if (Input.GetKey("1"))
+        if (MyGun && SlotGun && SlotHand)
         {
-            if (counter < 1 && !CanFire)
+            if (Input.GetKey("1"))
             {
-                Appropriation02();
-                CanFire = true;
-                counter++;
-            }
-            else if (counter < 1 && CanFire)
-            {
-                Appropriation01();
-                CanFire = false;
-                counter++;
+                if (Counter < 1 && !CanFire)
+                {
+                    Appropriation02();
+                    CanFire = true;
+                    Counter++;
+                }
+                else if (Counter < 1 && CanFire)
+                {
+                    Appropriation01();
+                    CanFire = false;
+                    Counter++;
+                }
             }
         }
+
     }
 
+    public void Appropriation01()
+    {
+        if (MyGun)
+        {
 
+            MyGun.SetParent(SlotGun);
+            MyGun.transform.position = SlotGun.transform.position;
+            MyGun.transform.rotation = SlotGun.transform.rotation;
+        }
+
+    }
+
+    public void Appropriation02()
+    {
+
+        MyGun.SetParent(SlotHand);
+        MyGun.transform.position = SlotHand.transform.position;
+        MyGun.transform.rotation = SlotHand.transform.rotation;
+    }
 
 }

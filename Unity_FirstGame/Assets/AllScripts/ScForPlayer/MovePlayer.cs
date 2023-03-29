@@ -23,8 +23,7 @@ public class MovePlayer : MonoBehaviour
         {
             if (!donJumping)
             {
-                donJumping = true;
-                Debug.Log("1" + donJumping);
+                donJumping = true;                
             }
         }
     }
@@ -85,10 +84,12 @@ public class MovePlayer : MonoBehaviour
             chengebutton = true;
         }
     }
+
     void Move()
     {
         MoveVertical = Input.GetAxis("Vertical");
         MoveHorizontal = Input.GetAxis("Horizontal");
+        
         if (Input.GetKey(KeyCode.W))
         {
             if (!chengebutton)
@@ -157,6 +158,6 @@ public class MovePlayer : MonoBehaviour
             Vector3 addForce = new Vector3(0.00f, 2f * JumpForce, 0f);
             MyRigidbody.AddRelativeForce(addForce, MyForceMode);
             JumpCount--;
-        }        
-    }        
+        }
+    }
 }
