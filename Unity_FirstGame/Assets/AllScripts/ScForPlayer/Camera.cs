@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Camera : MonoBehaviour
 {
-    [SerializeField] GameObject TargetCamera;
+    [SerializeField] public GameObject TargetCamera;
     [SerializeField] Vector3 Offset;
     [SerializeField] float MouseSens = 1.0f;
     [SerializeField] float MoveBack = 5.0f;
@@ -15,6 +15,8 @@ public class Camera : MonoBehaviour
 
     private void Update()
     {
+
+
         RotateCamera();
         CammeraOffset();        
     }
@@ -34,5 +36,14 @@ public class Camera : MonoBehaviour
     {
         Vector3 TargetPosition = TargetCamera.transform.TransformPoint(Offset);
         transform.position = TargetPosition - transform.forward * MoveBack;
+    }
+    public RaycastHit Raycast()
+    {
+        RaycastHit Hitresult;
+
+        Physics.Raycast(TargetCamera.transform.position, TargetCamera.transform.forward, out Hitresult);
+
+
+        return Hitresult;
     }
 }

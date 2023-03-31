@@ -10,14 +10,16 @@ public class PickUp : MonoBehaviour
 
 
     [SerializeField] protected SlotControler MySlotControler;
-
+    [SerializeField] public Camera CameraScript;
+     public GameObject WatchObject;
     void Start()
     {
         MySlotControler = gameObject.GetComponent<SlotControler>();
+        
     }
 
     
-
+   
     private void OnTriggerEnter(Collider other)
     {
         /*
@@ -55,6 +57,10 @@ public class PickUp : MonoBehaviour
 
     private void Update()
     {
+
+        RaycastHit Hitresult =  CameraScript.Raycast();
+        WatchObject = Hitresult.collider.gameObject;
+        
         if (TakeObject && Input.GetKey(KeyCode.E) && Count == 0)
         {
             TakeM4();
