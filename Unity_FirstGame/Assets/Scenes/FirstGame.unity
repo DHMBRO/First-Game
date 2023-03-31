@@ -551,6 +551,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!4 &202403577 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9199015319033859867, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
+  m_PrefabInstance: {fileID: 983206547}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &292911078
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -665,6 +670,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6ed3ef124acb0a468c8a5d43f470a11, type: 3}
+--- !u!4 &659292604 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1798571222997357014, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
+  m_PrefabInstance: {fileID: 983206547}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &717168098
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,6 +772,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 717168098}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &961443501 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3117495610539897358, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
+  m_PrefabInstance: {fileID: 983206547}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &977363038
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -935,6 +950,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2185093954581992406, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
+      propertyPath: Sens
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2185093954581992406, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
       propertyPath: Force
       value: 4
       objectReference: {fileID: 0}
@@ -1043,9 +1062,25 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7785237847769309149, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
+      propertyPath: MyShope01
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7785237847769309149, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7785237847769309149, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
+      propertyPath: SlotBack01
+      value: 
+      objectReference: {fileID: 961443501}
+    - target: {fileID: 7785237847769309149, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
+      propertyPath: SlotBack02
+      value: 
+      objectReference: {fileID: 202403577}
+    - target: {fileID: 7785237847769309149, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
+      propertyPath: SlotShpo01
+      value: 
+      objectReference: {fileID: 659292604}
     - target: {fileID: 8494592990740565431, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
       propertyPath: m_RootOrder
       value: 6

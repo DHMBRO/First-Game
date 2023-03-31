@@ -5,20 +5,13 @@ public class SlotControler : MonoBehaviour
     //All Slots
     [SerializeField] public Transform SlotHand;
     //
-    [SerializeField] private Transform SlotBack01;
-    [SerializeField] private Transform SlotBack02;    
+    [SerializeField] public Transform SlotBack01;
+    [SerializeField] private Transform SlotBack02;
     //
     [SerializeField] private Transform SlotPistol01;
     //
     [SerializeField] private Transform SlotKnife01;
-    //
-    [SerializeField] private Transform SlotShpo01;
-    [SerializeField] private Transform SlotShpo02;
-    [SerializeField] private Transform SlotShpo03;
-    //
-    [SerializeField] private Transform UsingShope01;
-    [SerializeField] private Transform UsingShope02;
-    [SerializeField] private Transform UsingShope03;
+
     //Weapons for slots
     [SerializeField] public Transform MyWeapon01;
     [SerializeField] public Transform MyWeapon02;
@@ -27,7 +20,18 @@ public class SlotControler : MonoBehaviour
     //
     [SerializeField] private Transform MyKnife01;
     //
-    
+    [SerializeField] public Transform MyShope01;
+    [SerializeField] private Transform MyShope02;
+    [SerializeField] private Transform MyShope03;
+    //
+    [SerializeField] public Transform SlotShpo01;
+    [SerializeField] private Transform SlotShpo02;
+    [SerializeField] private Transform SlotShpo03;
+    //
+    [SerializeField] private Transform UsingShope01;
+    //[SerializeField] private Transform UsingShope02;
+    //[SerializeField] private Transform UsingShope03;
+
     //All counet for work Script        
     [SerializeField] protected int Counter;
     [SerializeField] private int MainCounter;
@@ -44,23 +48,23 @@ public class SlotControler : MonoBehaviour
     {
         PickUp = gameObject.GetComponent<PickUp>();
         InventoryControler = gameObject.GetComponent<InventoryControler>();
-        
+
 
         CanFire = false;
-        
+
     }
 
     void Update()
     {
         if (Counter == 1 && Input.GetKeyUp("1"))
         {
-            Counter = 0;            
+            Counter = 0;
         }
         MovingGunForSlots();
-                
+
     }
 
-   
+
 
     void MovingGunForSlots()
     {
@@ -68,44 +72,90 @@ public class SlotControler : MonoBehaviour
         {
             if (Counter < 1 && !CanFire)
             {
-                UseWeapon01();
+                UseWeapon(MyWeapon01,SlotHand);
                 CanFire = true;
                 Counter++;
             }
             else if (Counter < 1 && CanFire)
             {
-                PutWeapon01();
+                PutWeapon(MyWeapon01,SlotBack01);
                 CanFire = false;
                 Counter++;
             }
-        }
-        //else if ()
-        {
+        }      
+    }
 
-        }
 
+
+    public void ChargeM4()
+    {
 
     }
 
-    public void UseWeapon01()
+    public void DisChargeM4()
     {
-        if (SlotHand && MyWeapon01)
-        {
-            MyWeapon01.SetParent(SlotHand);
-            MyWeapon01.transform.position = SlotHand.transform.position;
-            MyWeapon01.transform.rotation = SlotHand.transform.rotation;
 
+    }
+
+
+    public Transform UseShope(Transform ShopeForUse, Transform PosForUse)
+    {
+        if (ShopeForUse && PosForUse)
+        {
+            ShopeForUse.SetParent(PosForUse);
+            ShopeForUse.position = PosForUse.position;
+            ShopeForUse.rotation = PosForUse.rotation;
+
+            return ShopeForUse;
+        }
+        else
+        {
+            return ShopeForUse;
         }
     }
 
-    public void PutWeapon01()
+    public Transform PutShop(Transform ShopForPut, Transform PosForPutShop)
     {
-        if (SlotHand && MyWeapon01)
-        {
-            MyWeapon01.SetParent(SlotBack01);
-            MyWeapon01.transform.position = SlotBack01.transform.position;
-            MyWeapon01.transform.rotation = SlotBack01.transform.rotation;
-        }
+
+        ShopForPut.SetParent(PosForPutShop);
+        ShopForPut.position = PosForPutShop.position;
+        ShopForPut.rotation = PosForPutShop.rotation;
+        Debug.Log("2");
+        return ShopForPut;
+
+    }
+
+    public Transform PutShopeInSlot(Transform PutingShop, Transform SlotForPutingShop)
+    {
+        PutingShop.SetParent(SlotForPutingShop);
+        PutingShop.position = SlotForPutingShop.position;
+        PutingShop.rotation = SlotForPutingShop.rotation;
+        return PutingShop;
+
+    }
+
+    public void UsingWeapons()
+    {
+
+    }
+
+    public  Transform UseWeapon(Transform WeaponForUse, Transform PosForUseWeapon)
+    {
+
+        WeaponForUse.SetParent(PosForUseWeapon);
+        WeaponForUse.position = PosForUseWeapon.position;
+        WeaponForUse.rotation = PosForUseWeapon.rotation;
+
+        return WeaponForUse.transform;    
+    }
+    
+    public Transform PutWeapon(Transform WeaponForPut, Transform PosForPutWeapon)
+    {        
+        WeaponForPut.SetParent(PosForPutWeapon);
+        WeaponForPut.position = PosForPutWeapon.position;
+        WeaponForPut.rotation = PosForPutWeapon.rotation;
+        
+        return WeaponForPut;
     }
 
     public void UseWeapon02()
@@ -157,7 +207,7 @@ public class SlotControler : MonoBehaviour
             MyKnife01.SetParent(SlotHand);
             MyKnife01.transform.position = SlotHand.transform.position;
             MyKnife01.transform.rotation = SlotHand.transform.rotation;
-        }        
+        }
     }
 
     public void PutKnike01()
@@ -167,20 +217,4 @@ public class SlotControler : MonoBehaviour
 
         }
     }
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

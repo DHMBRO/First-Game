@@ -25,18 +25,22 @@ public class M4ControlerForFire : MonoBehaviour
     {
         float MouseY = Input.GetAxis("Mouse Y");
 
-        if (MouseY > 0.0f)
-        {
-            Vector3 Cursor = new Vector3(0.0f, 0.0f, 0.0f + MouseY * SensY);
-            transform.Rotate(Cursor);
+        if (gameObject.transform.parent && gameObject.transform.parent.CompareTag("SlotForUse"))
+        {            
+            if (MouseY > 0.0f )
+            {
+                Vector3 Cursor = new Vector3(0.0f, 0.0f, 0.0f + MouseY * SensY);
+                transform.Rotate(Cursor);
 
-        }
-        if (MouseY < 0.0f)
-        {
-            Vector3 Cursor = new Vector3(0.0f, 0.0f, 0.0f - MouseY * SensY);
-            transform.Rotate(Cursor);
+            }
+            if (MouseY < 0.0f)
+            {
+                Vector3 Cursor = new Vector3(0.0f, 0.0f, 0.0f - MouseY * SensY);
+                transform.Rotate(Cursor);
 
+            }
         }
+            
     }
     
     void GuidanceWeapon()
