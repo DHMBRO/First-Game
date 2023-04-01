@@ -5,18 +5,17 @@ using UnityEngine;
 public class StelsScript : MonoBehaviour
 {
     public bool StelsOn;
-    public MovePlayer MovePlayer;
-    private bool ButtonActive = false;
+    
+    
     void Start()
     {
-        MovePlayer = GetComponent<MovePlayer>();      
+        
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Bach") && ButtonActive == true)
+        if (other.gameObject.CompareTag("Bach") && Input.GetKeyDown(KeyCode.X))
         {
-            Debug.Log("Stels.On");
             StelsOn = true;
         }
     }
@@ -26,19 +25,8 @@ public class StelsScript : MonoBehaviour
     }
     void Update()
     {
-       
-        ButonActive();
+
+        Debug.Log(StelsOn + "Stels>>>>>>>>>");
     }
-    bool ButonActive()
-    {
-        if (ButtonActive = false && Input.GetKeyDown(KeyCode.Z))
-        {
-            ButtonActive = true;
-        }
-        if (ButtonActive = true && Input.GetKeyDown(KeyCode.Z))
-        {
-            ButtonActive = false;
-        }
-        return ButtonActive;
-    }
+
 }

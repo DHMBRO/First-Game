@@ -14,11 +14,11 @@ public class LocateScript : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Player")&& !StelsScript.StelsOn)
+        if (other.gameObject.CompareTag("Player")&& StelsScript.StelsOn == false)
         {
             Agr = true;
             PlayerTransform = other.transform;
-            Debug.Log("Located");
+            
            
         }
     }
@@ -30,15 +30,13 @@ public class LocateScript : MonoBehaviour
     {
        
 
-        if (Agr && PlayerTransform && Rigidbody && !StelsScript.StelsOn)
+        if (Agr && PlayerTransform && Rigidbody && StelsScript.StelsOn == false)
         {
 
             Rigidbody.isKinematic = false;
             
             transform.position = Vector3.MoveTowards(transform.position, PlayerTransform.transform.position, Time.deltaTime);
-           /* Vector3 Vector3Target = new Vector3(0.0f, PlayerTransform.transform.position.y, 0.0f);
-            transform.Rotate(Vector3Target);*/
-            Debug.Log("yanechmo");
+           
         }
     }
 }
