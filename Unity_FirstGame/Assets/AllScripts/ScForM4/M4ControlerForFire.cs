@@ -5,7 +5,7 @@ public class M4ControlerForFire : MonoBehaviour
     [SerializeField] private Transform MyWeapon;
     [SerializeField] private Transform Muzzle;
 
-    [SerializeField] private float SensY = 0.3f;
+    [SerializeField] private float Sens = 0.5f;
 
     [SerializeField] public float ShotDeley = 0.3f;
     [SerializeField] public float ShotTime = 0.0f;
@@ -23,24 +23,19 @@ public class M4ControlerForFire : MonoBehaviour
 
     void Update()
     {
-        float MouseY = Input.GetAxis("Mouse Y");
+        
 
         if (gameObject.transform.parent && gameObject.transform.parent.CompareTag("SlotForUse"))
-        {            
-            if (MouseY > 0.0f )
-            {
-                Vector3 Cursor = new Vector3(0.0f, 0.0f, 0.0f + MouseY * SensY);
-                transform.Rotate(Cursor);
+        {
+            float MouseX = Input.GetAxis("Mouse X");
+            float MouseY = Input.GetAxis("Mouse Y");
 
-            }
-            /*
-            if (MouseY < 0.0f)
-            {
-                Vector3 Cursor = new Vector3(0.0f, 0.0f, 0.0f + MouseY * SensY);
-                transform.Rotate(Cursor);
+            gameObject.transform.Rotate(-MouseY * new Vector3(Sens, 0.0f, 0.0f));
 
-            }
-            */
+            //transform.Rotate(MouseX * new Vector3(0.0f, Sens, 0.0f));
+            
+            
+
         }
             
     }

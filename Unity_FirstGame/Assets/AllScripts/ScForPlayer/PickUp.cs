@@ -30,13 +30,13 @@ public class PickUp : MonoBehaviour
             
         }
         
-        
+        /*
         if (other.gameObject.CompareTag("ShopForM4"))
         {
             TakeObject = other.gameObject;
             
         }
-        
+        */
     }
 
     private void OnTriggerExit(Collider other)
@@ -48,12 +48,12 @@ public class PickUp : MonoBehaviour
     
         }        
         
-        
+        /*
         if (other.gameObject.CompareTag("ShopForM4"))
         {
             TakeObject = null;            
         }
-        
+        */
     }
 
     private void Update()
@@ -63,7 +63,7 @@ public class PickUp : MonoBehaviour
         if (TakeObject && Input.GetKey(KeyCode.E) && Count == 0)
         {
             TakeM4();
-            TakeShopForM4();
+            
         }        
         else if (Count == 1)
         {
@@ -82,13 +82,9 @@ public class PickUp : MonoBehaviour
             CopyM4.transform.position = TakeObject.transform.position;
             CopyM4.transform.rotation = TakeObject.transform.rotation;
 
+            MySlotControler.MyWeapon01 = TransformForCopyM4;
+            MySlotControler.PutWeapon(MySlotControler.MyWeapon01, MySlotControler.SlotBack01);
 
-            if (true)
-            {
-                MySlotControler.MyWeapon01 = TransformForCopyM4;
-                MySlotControler.PutWeapon(MySlotControler.MyWeapon01, MySlotControler.SlotBack01);
-
-            }
             Destroy(OriginalObject);
             Count++;
         }

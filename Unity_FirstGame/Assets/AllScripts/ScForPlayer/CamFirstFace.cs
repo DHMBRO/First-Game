@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CamFirstFace : MonoBehaviour
@@ -35,14 +33,13 @@ public class CamFirstFace : MonoBehaviour
     
     void Raycast()
     {
-        Ray RayForPickUp = new Ray(transform.position, transform.forward * DistanzeForRay);
+        Ray RayForPickUp = new Ray(transform.position, transform.forward * DistanzeForRay);        
         if (Physics.Raycast(RayForPickUp, out RaycastHit HitResult))
         {
             Debug.Log(HitResult.collider.tag);
         }
 
         Debug.DrawRay(transform.position, transform.forward * DistanzeForRay, Color.blue);
-
-
+        
     }
 }

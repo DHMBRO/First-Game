@@ -10,16 +10,24 @@ public class LocateScript : MonoBehaviour
     [SerializeField] protected Rigidbody Rigidbody;
     void Start()
     {
-       
+        Rigidbody = gameObject.GetComponent<Rigidbody>();   
+        
     }
-    private void OnTriggerStay(Collider other)
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player")&& StelsScript.StelsOn == false)
+        if (other.gameObject.CompareTag("Player01"))
+        {
+            StelsScript = other.gameObject.GetComponent<StelsScript>();
+            PlayerTransform = other.gameObject.GetComponent<Transform>();
+            
+        }
+        if (other.gameObject.CompareTag("Player01") && !StelsScript.StelsOn)
         {
             Agr = true;
             PlayerTransform = other.transform;
+            Debug.Log("IsWork");
             
-           
         }
     }
     private void OnTriggerExit(Collider other)

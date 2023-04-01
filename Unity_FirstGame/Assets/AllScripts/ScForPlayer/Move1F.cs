@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Move1F : MonoBehaviour
@@ -11,9 +9,7 @@ public class Move1F : MonoBehaviour
     [SerializeField] private Transform PlayerTransform;
     [SerializeField] private Rigidbody RigidbodyForPlayer;
 
-    [SerializeField] private float TimeForjump;
-    [SerializeField] private float JumpDeley = 2.0f;
-
+    
 
     void Start()
     {
@@ -42,12 +38,10 @@ public class Move1F : MonoBehaviour
             {
                 PlayerTransform.transform.localPosition += -transform.right * SpeedForMove;
             }
-            else if (Input.GetKey(KeyCode.Space) && RigidbodyForPlayer && TimeForjump >= Time.time)
+            else if (Input.GetKey(KeyCode.Space))
             {
-                Vector3 Jumping = new Vector3(0.0f, 1.0f * PowerForJump, 0.0f);
-                RigidbodyForPlayer.AddRelativeForce(Jumping, ForceMode.Force);
-                TimeForjump = Time.time + JumpDeley;
-            }   
+
+            }
         }                
     }
 }
