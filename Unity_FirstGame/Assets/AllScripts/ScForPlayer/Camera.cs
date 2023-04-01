@@ -40,10 +40,11 @@ public class Camera : MonoBehaviour
     public RaycastHit Raycast()
     {
         RaycastHit Hitresult;
-
-        Physics.Raycast(TargetCamera.transform.position, TargetCamera.transform.forward, out Hitresult);
-
-
-        return Hitresult;
+        
+        
+            Physics.Raycast(TargetCamera.transform.position, TargetCamera.transform.forward, out Hitresult);
+            return Hitresult;
+        
+        
     }
 }
