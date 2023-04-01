@@ -11,7 +11,8 @@ public class PickUp : MonoBehaviour
 
     [SerializeField] protected SlotControler MySlotControler;
     [SerializeField] public Camera CameraScript;
-     public GameObject WatchObject;
+    [SerializeField] public GameObject WatchObject;
+    
     void Start()
     {
         MySlotControler = gameObject.GetComponent<SlotControler>();
@@ -22,13 +23,13 @@ public class PickUp : MonoBehaviour
    
     private void OnTriggerEnter(Collider other)
     {
-        /*
+        
         if (other.gameObject.CompareTag("M4"))
         {
             TakeObject = other.gameObject;
             
         }
-        */
+        
         
         if (other.gameObject.CompareTag("ShopForM4"))
         {
@@ -40,13 +41,13 @@ public class PickUp : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        /*
+        
         if (other.gameObject.CompareTag("M4"))
         {
             TakeObject = null;
     
         }        
-        */
+        
         
         if (other.gameObject.CompareTag("ShopForM4"))
         {
@@ -57,15 +58,12 @@ public class PickUp : MonoBehaviour
 
     private void Update()
     {
-
-        RaycastHit Hitresult =  CameraScript.Raycast();
-        WatchObject = Hitresult.collider.gameObject;
+        
         
         if (TakeObject && Input.GetKey(KeyCode.E) && Count == 0)
         {
             TakeM4();
             TakeShopForM4();
-
         }        
         else if (Count == 1)
         {

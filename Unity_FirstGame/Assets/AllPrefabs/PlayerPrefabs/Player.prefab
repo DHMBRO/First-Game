@@ -245,12 +245,12 @@ GameObject:
   - component: {fileID: 6685183969156581734}
   - component: {fileID: 7220017703158707578}
   - component: {fileID: 7589032840163134755}
-  - component: {fileID: 2185093954581992406}
   - component: {fileID: 7785237847769309149}
   - component: {fileID: 1427766268900275734}
+  - component: {fileID: 2860246637410159893}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player01
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -273,6 +273,7 @@ Transform:
   - {fileID: 7929048146738501610}
   - {fileID: 4722131321118458857}
   - {fileID: 2857305726002041631}
+  - {fileID: 7131751254960923315}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -367,26 +368,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 3, z: 2.5}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2185093954581992406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 758934435905196194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e16453a710a00549bbd19cb19b8c4dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Force: 1
-  JumpForce: 1
-  MyForceMode: 0
-  MyRigidbody: {fileID: 0}
-  CameraTransform: {fileID: 0}
-  Sens: 1
+  m_Size: {x: 2.5, y: 2.0612102, z: 2.0701098}
+  m_Center: {x: 0, y: 0.05154252, z: 0.62505496}
 --- !u!114 &7785237847769309149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,16 +387,17 @@ MonoBehaviour:
   SlotBack02: {fileID: 0}
   SlotPistol01: {fileID: 0}
   SlotKnife01: {fileID: 0}
-  SlotShpo01: {fileID: 0}
-  SlotShpo02: {fileID: 0}
-  SlotShpo03: {fileID: 0}
   MyWeapon01: {fileID: 0}
   MyWeapon02: {fileID: 0}
   MyPistol01: {fileID: 0}
   MyKnife01: {fileID: 0}
-  MyShop01: {fileID: 0}
-  MyShop03: {fileID: 0}
-  MyShop02: {fileID: 0}
+  MyShope01: {fileID: 0}
+  MyShope02: {fileID: 0}
+  MyShope03: {fileID: 0}
+  SlotShpo01: {fileID: 0}
+  SlotShpo02: {fileID: 0}
+  SlotShpo03: {fileID: 0}
+  UsingShope01: {fileID: 0}
   Counter: 0
   MainCounter: 0
   CanFire: 1
@@ -435,6 +419,27 @@ MonoBehaviour:
   TakeObjects: []
   Count: 0
   MySlotControler: {fileID: 0}
+  CameraScript: {fileID: 0}
+  WatchObject: {fileID: 0}
+--- !u!114 &2860246637410159893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758934435905196194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83e44ebe7bfed1f4fbb96f32da31a04e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpeedForMove: 0
+  PowerForJump: 0
+  CanJump: 0
+  PlayerTransform: {fileID: 0}
+  RigidbodyForPlayer: {fileID: 0}
+  TimeForjump: 0
+  JumpDeley: 2
 --- !u!1 &1178526370762970660
 GameObject:
   m_ObjectHideFlags: 0
@@ -1855,7 +1860,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7918234205984739604}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.528, y: 0.371, z: 0}
+  m_LocalPosition: {x: 0.239, y: 0.479, z: 0.571}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2184,3 +2189,65 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &7032442265301501673
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 780860326346338877}
+    m_Modifications:
+    - target: {fileID: 243564915377906778, guid: 549f4220318def44b990ba8e126aeb71, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 243564915377906778, guid: 549f4220318def44b990ba8e126aeb71, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 243564915377906778, guid: 549f4220318def44b990ba8e126aeb71, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.583
+      objectReference: {fileID: 0}
+    - target: {fileID: 243564915377906778, guid: 549f4220318def44b990ba8e126aeb71, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.214
+      objectReference: {fileID: 0}
+    - target: {fileID: 243564915377906778, guid: 549f4220318def44b990ba8e126aeb71, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 243564915377906778, guid: 549f4220318def44b990ba8e126aeb71, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 243564915377906778, guid: 549f4220318def44b990ba8e126aeb71, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 243564915377906778, guid: 549f4220318def44b990ba8e126aeb71, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 243564915377906778, guid: 549f4220318def44b990ba8e126aeb71, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 243564915377906778, guid: 549f4220318def44b990ba8e126aeb71, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 243564915377906778, guid: 549f4220318def44b990ba8e126aeb71, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2323451537488390066, guid: 549f4220318def44b990ba8e126aeb71, type: 3}
+      propertyPath: m_Name
+      value: CamFirstFace
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 549f4220318def44b990ba8e126aeb71, type: 3}
+--- !u!4 &7131751254960923315 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 243564915377906778, guid: 549f4220318def44b990ba8e126aeb71, type: 3}
+  m_PrefabInstance: {fileID: 7032442265301501673}
+  m_PrefabAsset: {fileID: 0}

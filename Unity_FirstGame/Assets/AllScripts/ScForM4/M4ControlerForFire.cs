@@ -33,12 +33,14 @@ public class M4ControlerForFire : MonoBehaviour
                 transform.Rotate(Cursor);
 
             }
+            /*
             if (MouseY < 0.0f)
             {
-                Vector3 Cursor = new Vector3(0.0f, 0.0f, 0.0f - MouseY * SensY);
+                Vector3 Cursor = new Vector3(0.0f, 0.0f, 0.0f + MouseY * SensY);
                 transform.Rotate(Cursor);
 
             }
+            */
         }
             
     }
