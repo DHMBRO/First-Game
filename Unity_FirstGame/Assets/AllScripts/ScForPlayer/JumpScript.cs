@@ -35,9 +35,7 @@ public class JumpScript : MonoBehaviour
             if (Physics.Raycast(RayForCheckJump, out RaycastHit Hitresult))
             {
                 ResultRay = Hitresult.collider.gameObject;
-                Debug.DrawRay(transform.position, transform.forward * DistanzeRay, Color.red);                
-                Debug.Log(ResultRay);
-                Debug.Log(ResultRay.gameObject.tag);
+                Debug.DrawRay(transform.position, transform.forward * DistanzeRay, Color.red);                                                
 
             }
             

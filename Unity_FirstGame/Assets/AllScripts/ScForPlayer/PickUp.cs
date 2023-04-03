@@ -40,11 +40,7 @@ public class PickUp : MonoBehaviour
             {
                 Count = 0;
             }
-        }
-        else
-        {
-            Debug.Log("TakeObject = null");
-        }
+        }        
     }
 
     void Appropriation01()
@@ -59,8 +55,7 @@ public class PickUp : MonoBehaviour
             {
                 TakeObject = MyCamFirstFace.ObjectForWatch.gameObject; 
             }
-        }
-                
+        }                
     }
 
     void TakeM4()
@@ -103,8 +98,7 @@ public class PickUp : MonoBehaviour
 
 
                 if (true)
-                {
-                    Debug.Log("1");
+                {                    
                     MySlotControler.MyShope01 = TransformForCopyShopForM4;
                     MySlotControler.PutObjects(MySlotControler.MyShope01, MySlotControler.SlotShpo01);
                 }
