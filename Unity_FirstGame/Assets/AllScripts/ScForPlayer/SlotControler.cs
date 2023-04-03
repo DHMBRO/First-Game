@@ -64,6 +64,7 @@ public class SlotControler : MonoBehaviour
 
     }
 
+    
 
 
     void MovingGunForSlots()
@@ -98,20 +99,23 @@ public class SlotControler : MonoBehaviour
     }
 
 
+    public Transform PutObjects(Transform ObjectForPut, Transform PosForPut)
+    {
+        ObjectForPut.transform.SetParent(PosForPut);
+        
+        ObjectForPut.position = PosForPut.transform.position;
+        ObjectForPut.rotation = PosForPut.transform.rotation;
+
+        return ObjectForPut;
+    }
+
     public Transform UseShope(Transform ShopeForUse, Transform PosForUse)
     {
-        if (ShopeForUse && PosForUse)
-        {
-            ShopeForUse.SetParent(PosForUse);
-            ShopeForUse.position = PosForUse.position;
-            ShopeForUse.rotation = PosForUse.rotation;
+        ShopeForUse.SetParent(PosForUse);
+        ShopeForUse.position = PosForUse.position;
+        ShopeForUse.rotation = PosForUse.rotation;
 
-            return ShopeForUse;
-        }
-        else
-        {
-            return ShopeForUse;
-        }
+        return ShopeForUse;
     }
 
     public Transform PutShop(Transform ShopForPut, Transform PosForPutShop)

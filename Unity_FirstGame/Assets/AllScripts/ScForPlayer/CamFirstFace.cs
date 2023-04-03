@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class CamFirstFace : MonoBehaviour
 {
-    [SerializeField] private Transform Player;
-    [SerializeField] public Ray ResultForRay;
-    [SerializeField] private float DistanzeForRay = 6.0f;
-    [SerializeField] private float Sens = 0.5f;
     [SerializeField] public GameObject ObjectForWatch;
+    [SerializeField] private Transform Player;    
+    [SerializeField] public Ray ResultForRay;
+    
+    [SerializeField] private float DistanzeForRay = 1.0f;
+    [SerializeField] private float Sens = 0.5f;
+    
 
     private void Start()
     {
@@ -26,8 +28,7 @@ public class CamFirstFace : MonoBehaviour
         }
         else
         {
-            Player = transform.parent;
-            Debug.Log("1");
+            Player = transform.parent;            
         }
         Raycast();
     }
@@ -35,15 +36,34 @@ public class CamFirstFace : MonoBehaviour
     void Raycast()
     {
         
-        Ray RayForPickUp = new Ray(transform.position, transform.forward * DistanzeForRay);        
+        Ray RayForPickUp = new Ray(transform.position, transform.forward * DistanzeForRay);
         if (Physics.Raycast(RayForPickUp, out RaycastHit HitResult))
         {
-            ResultForRay = RayForPickUp;            
-            ObjectForWatch = HitResult.collider.gameObject.GetComponent<GameObject>();
+            ResultForRay = RayForPickUp;
+            
+            if (HitResult.collider.gameObject.tag == "M4")
+            {
+                ObjectForWatch = HitResult.collider.gameObject;                
+            }
+            else if (HitResult.collider.gameObject.tag == "ShopForM4")
+            {
+                ObjectForWatch = HitResult.collider.gameObject;
+            }
+            else if (HitResult.collider.gameObject.tag != "M4")
+            {
+                ObjectForWatch = null;
+            }
+
             
         }
 
         Debug.DrawRay(transform.position, transform.forward * DistanzeForRay, Color.blue);
         
     }
+    
+    void AuditForTag()
+    {
+        
+    }
+
 }

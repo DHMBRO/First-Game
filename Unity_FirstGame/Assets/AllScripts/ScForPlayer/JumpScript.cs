@@ -11,10 +11,10 @@ public class JumpScript : MonoBehaviour
     [SerializeField] private int Counter = 0;
     
     [SerializeField] private float DistanzeRay = 0.01f;
-    [SerializeField] private float PowerForJump = 10.0f;           
+    //x[SerializeField] private float PowerForJump = 10.0f;           
     
     [SerializeField] private bool CanWork = true;
-    [SerializeField] private bool CanJump = true;    
+    //[SerializeField] private bool CanJump = true;    
     
     void Start()
     {
@@ -35,15 +35,14 @@ public class JumpScript : MonoBehaviour
             if (Physics.Raycast(RayForCheckJump, out RaycastHit Hitresult))
             {
                 ResultRay = Hitresult.collider.gameObject;
-                Debug.DrawRay(transform.position, transform.forward * DistanzeRay, Color.red);
-                Debug.Log("1");
+                Debug.DrawRay(transform.position, transform.forward * DistanzeRay, Color.red);                
                 Debug.Log(ResultRay);
                 Debug.Log(ResultRay.gameObject.tag);
 
             }
-            Debug.Log("2");
+            
             CanWork = false;
-            CanJump = true;
+            //CanJump = true;
 
         }
     }

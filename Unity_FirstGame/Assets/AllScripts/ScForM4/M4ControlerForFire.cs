@@ -5,7 +5,7 @@ public class M4ControlerForFire : MonoBehaviour
     [SerializeField] private Transform MyWeapon;
     [SerializeField] private Transform Muzzle;
 
-    [SerializeField] private float Sens = 0.5f;
+    //[SerializeField] private float Sens = 0.5f;
 
     [SerializeField] public float ShotDeley = 0.3f;
     [SerializeField] public float ShotTime = 0.0f;
