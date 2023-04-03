@@ -4,41 +4,47 @@ using UnityEngine;
 
 public class JumpScript : MonoBehaviour
 {
-    [SerializeField] private GameObject ResultMeasured;
+
+    [SerializeField] private GameObject ResultRay;
     [SerializeField] private Rigidbody PlayerRigidbody;
-    [SerializeField] private float RayForJump = 0.01f;
-    [SerializeField] private float PowerForJump = 3.0f; 
-    private bool JumpAwalable;
+
+    [SerializeField] private int Counter = 0;
+    
+    [SerializeField] private float DistanzeRay = 0.01f;
+    [SerializeField] private float PowerForJump = 10.0f;           
+    
+    [SerializeField] private bool CanWork = true;
+    [SerializeField] private bool CanJump = true;    
     
     void Start()
     {
         
     }
 
-
     void Update()
     {
         JumpRay();
-        if (ResultMeasured && PlayerRigidbody)
-        {
-           JumpAwalable = true;
-           Debug.Log(JumpAwalable+ "JumpAwwalable");
-           if (Input.GetKey(KeyCode.Space))
-           {
-                Vector3 Jump = new Vector3(0.0f, 1.0f * PowerForJump, 0.0f);
-                PlayerRigidbody.AddRelativeForce(Jump,ForceMode.Force);
-           }
-        }
+        
     }
+    
     void JumpRay()
     {
-        Ray RayForCheckJump = new Ray(transform.position, transform.forward * RayForJump);
-        if (Physics.Raycast(RayForCheckJump, out RaycastHit Hitresult))
+        if (Counter == 0 && CanWork)
         {
-            ResultMeasured = Hitresult.collider.gameObject;
-            Debug.Log("ray work");
-            
+            Ray RayForCheckJump = new Ray(transform.position, transform.forward * DistanzeRay);
+            if (Physics.Raycast(RayForCheckJump, out RaycastHit Hitresult))
+            {
+                ResultRay = Hitresult.collider.gameObject;
+                Debug.DrawRay(transform.position, transform.forward * DistanzeRay, Color.red);
+                Debug.Log("1");
+                Debug.Log(ResultRay);
+                Debug.Log(ResultRay.gameObject.tag);
+
+            }
+            Debug.Log("2");
+            CanWork = false;
+            CanJump = true;
+
         }
-        
     }
 }

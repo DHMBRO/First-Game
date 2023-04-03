@@ -3,10 +3,11 @@ using UnityEngine;
 public class CamFirstFace : MonoBehaviour
 {
     [SerializeField] private Transform Player;
-
+    [SerializeField] public Ray ResultForRay;
     [SerializeField] private float DistanzeForRay = 6.0f;
     [SerializeField] private float Sens = 0.5f;
-    
+    [SerializeField] public GameObject ObjectForWatch;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -33,10 +34,13 @@ public class CamFirstFace : MonoBehaviour
     
     void Raycast()
     {
+        
         Ray RayForPickUp = new Ray(transform.position, transform.forward * DistanzeForRay);        
         if (Physics.Raycast(RayForPickUp, out RaycastHit HitResult))
         {
-            Debug.Log(HitResult.collider.tag);
+            ResultForRay = RayForPickUp;            
+            ObjectForWatch = HitResult.collider.gameObject.GetComponent<GameObject>();
+            
         }
 
         Debug.DrawRay(transform.position, transform.forward * DistanzeForRay, Color.blue);

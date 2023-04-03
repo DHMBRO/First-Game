@@ -11,7 +11,7 @@ public class M4ControlerForFire : MonoBehaviour
     [SerializeField] public float ShotTime = 0.0f;
 
     [SerializeField] private Rigidbody WeaonRigidbody;
-
+    [SerializeField] private Transform CameraTransform;
     [SerializeField] private SlotControler MySlotControler;
 
     void Start()
@@ -25,17 +25,16 @@ public class M4ControlerForFire : MonoBehaviour
     {
         
 
-        if (gameObject.transform.parent && gameObject.transform.parent.CompareTag("SlotForUse"))
+        if (gameObject.transform.parent && CameraTransform && gameObject.transform.parent.CompareTag("SlotForUse"))
         {
             float MouseX = Input.GetAxis("Mouse X");
             float MouseY = Input.GetAxis("Mouse Y");
 
-            gameObject.transform.Rotate(-MouseY * new Vector3(Sens, 0.0f, 0.0f));
-
+            //gameObject.transform.Rotate(-MouseY * new Vector3(Sens, 0.0f, 0.0f));
             //transform.Rotate(MouseX * new Vector3(0.0f, Sens, 0.0f));
-            
-            
 
+            transform.rotation = CameraTransform.rotation;
+            Debug.Log("1");
         }
             
     }

@@ -24,9 +24,7 @@ public class StelsScript : MonoBehaviour
         StelsOn = false;
     }
     void Update()
-    {
-
-        Debug.Log(StelsOn + "Stels>>>>>>>>>");
+    {        
     }
 
 }

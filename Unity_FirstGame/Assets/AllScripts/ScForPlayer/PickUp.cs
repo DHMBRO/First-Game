@@ -3,16 +3,18 @@ using UnityEngine;
 public class PickUp : MonoBehaviour
 {
     [SerializeField] protected GameObject TakeObject;
-
+    [SerializeField] public GameObject WatchObject;
     [SerializeField] protected Transform[] TakeObjects;
-
+    [SerializeField] public Camera CameraScript;
     [SerializeField] protected int Count = 0;
 
 
     [SerializeField] protected SlotControler MySlotControler;
-    [SerializeField] public Camera CameraScript;
-    [SerializeField] public GameObject WatchObject;
+    [SerializeField] private CamFirstFace MyCamFirstFace;
     
+
+
+
     void Start()
     {
         MySlotControler = gameObject.GetComponent<SlotControler>();
@@ -23,12 +25,16 @@ public class PickUp : MonoBehaviour
    
     private void OnTriggerEnter(Collider other)
     {
-        
-        if (other.gameObject.CompareTag("M4"))
+
+        if (MyCamFirstFace)
         {
-            TakeObject = other.gameObject;
-            
+            if (MyCamFirstFace.ObjectForWatch.gameObject.CompareTag("M4") && other.gameObject.CompareTag("M4"))
+            {
+                TakeObject = other.gameObject;
+
+            }
         }
+        
         
         /*
         if (other.gameObject.CompareTag("ShopForM4"))

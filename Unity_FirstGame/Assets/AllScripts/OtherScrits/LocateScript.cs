@@ -26,7 +26,7 @@ public class LocateScript : MonoBehaviour
         {
             Agr = true;
             PlayerTransform = other.transform;
-            Debug.Log("IsWork");
+            
             
         }
     }
