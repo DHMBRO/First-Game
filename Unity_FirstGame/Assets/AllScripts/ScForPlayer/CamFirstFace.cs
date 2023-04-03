@@ -1,14 +1,9 @@
 using UnityEngine;
 
 public class CamFirstFace : MonoBehaviour
-{
-    [SerializeField] public GameObject ObjectForWatch;
-    [SerializeField] private Transform Player;    
-    [SerializeField] public Ray ResultForRay;
-    
-    [SerializeField] private float DistanzeForRay = 1.0f;
-    [SerializeField] private float Sens = 0.5f;
-    
+{    
+    [SerializeField] private Transform Player;                
+    [SerializeField] private float Sens = 0.5f;    
 
     private void Start()
     {
@@ -35,45 +30,9 @@ public class CamFirstFace : MonoBehaviour
     
     void Raycast()
     {
-        
-        Ray RayForPickUp = new Ray(transform.position, transform.forward * DistanzeForRay);
-        if (Physics.Raycast(RayForPickUp, out RaycastHit HitResult))
-        {
-            ResultForRay = RayForPickUp;
-
-            // Pick Up all weapon 
-            if (HitResult.collider.gameObject.tag == "M4")
-            {
-                ObjectForWatch = HitResult.collider.gameObject;                
-            }
-            else if (HitResult.collider.gameObject.tag == "Glok")
-            {
-                ObjectForWatch = HitResult.collider.gameObject;
-            }
-            // Pick Up Shop For all
-            if (HitResult.collider.gameObject.tag == "ShopForM4")
-            {
-                ObjectForWatch = HitResult.collider.gameObject;
-            }
-            else if (HitResult.collider.gameObject.tag == "ShopForGlok")
-            {
-                ObjectForWatch = HitResult.collider.gameObject;
-            }
-            else if (HitResult.collider.gameObject.tag == "Untagged")
-            {
-                ObjectForWatch = null;
-            }
-
-            
-        }
-
-        Debug.DrawRay(transform.position, transform.forward * DistanzeForRay, Color.blue);
-        
+              
     }
     
-    void AuditForTag()
-    {
-        
-    }
+  
 
 }

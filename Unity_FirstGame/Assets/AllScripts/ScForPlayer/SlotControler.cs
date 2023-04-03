@@ -49,9 +49,7 @@ public class SlotControler : MonoBehaviour
         PickUp = gameObject.GetComponent<PickUp>();
         InventoryControler = gameObject.GetComponent<InventoryControler>();
 
-
         CanFire = false;
-
     }
 
     void Update()

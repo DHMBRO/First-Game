@@ -1,81 +1,98 @@
 using UnityEngine;
 
 public class PickUp : MonoBehaviour
-{
-    [SerializeField] protected GameObject TakeObject;
-    [SerializeField] public GameObject WatchObject;
-    [SerializeField] protected Transform[] TakeObjects;
-    [SerializeField] public Camera CameraScript;
-    [SerializeField] protected int Count = 0;
-
-
-    [SerializeField] protected SlotControler MySlotControler;
-    [SerializeField] private CamFirstFace MyCamFirstFace;
+{    
+    [SerializeField] private GameObject ObjectToBeLifted;    
     
-
-
+    [SerializeField] private SlotControler SlotControler;    
+    [SerializeField] private Transform TransformForCamera;    
+    
+    [SerializeField] private float DistanceForRay = 0.6f;
+    
+    private Ray RayForFindingObject;
+    private int Counter = 0;
 
     void Start()
     {
-        MySlotControler = gameObject.GetComponent<SlotControler>();
-        
-    }
-           
-    
-
-    
+        SlotControler = gameObject.GetComponent<SlotControler>();        
+    }                   
 
     private void Update()
-    {
-        Appropriation01();
+    {        
+        RayForLoot();
 
-        if (TakeObject)
+
+
+        if (ObjectToBeLifted)
         {            
-            if (Input.GetKey(KeyCode.E) && Count == 0)
+            if (Input.GetKey(KeyCode.E) && Counter == 0)
             {
                 TakeM4();
                 TakeShopForM4();                
             }            
-            else if (Count == 1)
+            else if (Counter == 1)
             {
-                Count = 0;
+                Counter = 0;
             }
         }        
     }
 
-    void Appropriation01()
+    void RayForLoot()
     {
-        if (MyCamFirstFace.ObjectForWatch)
+        if (TransformForCamera)
         {
-            if (MyCamFirstFace.ObjectForWatch.gameObject.tag == "M4")
-            {
-                TakeObject = MyCamFirstFace.ObjectForWatch.gameObject;                
+            RayForFindingObject = new Ray(TransformForCamera.transform.position, TransformForCamera.transform.forward * DistanceForRay);
+            
+            Debug.DrawRay(TransformForCamera.transform.position, TransformForCamera.transform.forward * DistanceForRay, Color.blue);
+
+            if (Physics.Raycast(RayForFindingObject, out RaycastHit HitResult))
+            {                
+                // Pick Up all weapon 
+                if (HitResult.collider.gameObject.tag == "M4")
+                {
+                    ObjectToBeLifted = HitResult.collider.gameObject;
+                }
+                else if (HitResult.collider.gameObject.tag == "Glok")
+                {
+                    ObjectToBeLifted = HitResult.collider.gameObject;
+                }
+                // Pick Up Shop For all
+                if (HitResult.collider.gameObject.tag == "ShopForM4")
+                {
+                    ObjectToBeLifted = HitResult.collider.gameObject;
+                }
+                else if (HitResult.collider.gameObject.tag == "ShopForGlok")
+                {
+                    ObjectToBeLifted = HitResult.collider.gameObject;
+                }
+                else if (HitResult.collider.gameObject.tag == "Untagged")
+                {
+                    ObjectToBeLifted = null;
+                }
+
             }
-            else if (MyCamFirstFace.ObjectForWatch.gameObject.tag == "ShopForM4")
-            {
-                TakeObject = MyCamFirstFace.ObjectForWatch.gameObject; 
-            }
-        }                
+        }
     }
+    
 
     void TakeM4()
     {
-        if (TakeObject && MyCamFirstFace.ObjectForWatch)
+        if (ObjectToBeLifted)
         {
-            if (MyCamFirstFace.ObjectForWatch.gameObject.tag == "M4")
+            if (ObjectToBeLifted.gameObject.tag == "M4")
             {
-                GameObject CopyM4 = Instantiate(TakeObject);
+                GameObject CopyM4 = Instantiate(ObjectToBeLifted);
                 Transform TransformForCopyM4 = CopyM4.GetComponent<Transform>();
-                GameObject OriginalObject = TakeObject.gameObject;
+                GameObject OriginalObject = ObjectToBeLifted.gameObject;
 
-                CopyM4.transform.position = TakeObject.transform.position;
-                CopyM4.transform.rotation = TakeObject.transform.rotation;
+                CopyM4.transform.position = ObjectToBeLifted.transform.position;
+                CopyM4.transform.rotation = ObjectToBeLifted.transform.rotation;
 
-                MySlotControler.MyWeapon01 = TransformForCopyM4;
-                MySlotControler.PutObjects(MySlotControler.MyWeapon01, MySlotControler.SlotBack01);
-
+                SlotControler.MyWeapon01 = TransformForCopyM4;
+                SlotControler.PutObjects(SlotControler.MyWeapon01, SlotControler.SlotBack01);
+                
                 Destroy(OriginalObject);
-                Count++;
+                Counter++;
 
             }
 
@@ -85,37 +102,28 @@ public class PickUp : MonoBehaviour
 
     void TakeShopForM4()
     {
-        if (TakeObject && MyCamFirstFace.ObjectForWatch)
+        if (ObjectToBeLifted)
         {
-            if (MyCamFirstFace.ObjectForWatch.gameObject.tag == "ShopForM4")
+            if (ObjectToBeLifted.gameObject.tag == "ShopForM4")
             {
-                GameObject CopyShopForM4 = Instantiate(TakeObject);
+                GameObject CopyShopForM4 = Instantiate(ObjectToBeLifted);
                 Transform TransformForCopyShopForM4 = CopyShopForM4.GetComponent<Transform>();
-                GameObject OriginalShop = TakeObject.gameObject;
+                GameObject OriginalShop = ObjectToBeLifted.gameObject;
 
-                CopyShopForM4.transform.position = TakeObject.transform.position;
-                CopyShopForM4.transform.rotation = TakeObject.transform.rotation;
-
+                CopyShopForM4.transform.position = ObjectToBeLifted.transform.position;
+                CopyShopForM4.transform.rotation = ObjectToBeLifted.transform.rotation;
 
                 if (true)
-                {                    
-                    MySlotControler.MyShope01 = TransformForCopyShopForM4;
-                    MySlotControler.PutObjects(MySlotControler.MyShope01, MySlotControler.SlotShpo01);
+                {
+                    SlotControler.MyShope01 = TransformForCopyShopForM4;
+                    SlotControler.PutObjects(SlotControler.MyShope01, SlotControler.SlotShpo01);
                 }
                 Destroy(OriginalShop);
-                Count++;
+                Counter++;
 
             }
-        }
-        
+        }        
     }
-
-
-
-
-
-
-
 }
 
 
