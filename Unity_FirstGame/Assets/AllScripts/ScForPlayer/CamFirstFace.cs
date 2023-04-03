@@ -40,16 +40,26 @@ public class CamFirstFace : MonoBehaviour
         if (Physics.Raycast(RayForPickUp, out RaycastHit HitResult))
         {
             ResultForRay = RayForPickUp;
-            
+
+            // Pick Up all weapon 
             if (HitResult.collider.gameObject.tag == "M4")
             {
                 ObjectForWatch = HitResult.collider.gameObject;                
             }
-            else if (HitResult.collider.gameObject.tag == "ShopForM4")
+            else if (HitResult.collider.gameObject.tag == "Glok")
             {
                 ObjectForWatch = HitResult.collider.gameObject;
             }
-            else if (HitResult.collider.gameObject.tag != "M4")
+            // Pick Up Shop For all
+            if (HitResult.collider.gameObject.tag == "ShopForM4")
+            {
+                ObjectForWatch = HitResult.collider.gameObject;
+            }
+            else if (HitResult.collider.gameObject.tag == "ShopForGlok")
+            {
+                ObjectForWatch = HitResult.collider.gameObject;
+            }
+            else if (HitResult.collider.gameObject.tag == "Untagged")
             {
                 ObjectForWatch = null;
             }
