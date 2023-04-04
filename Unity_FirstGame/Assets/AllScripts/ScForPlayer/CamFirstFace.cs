@@ -10,7 +10,7 @@ public class CamFirstFace : MonoBehaviour
     {
         
         Cursor.lockState = CursorLockMode.Locked;
-        
+           
     }
 
     void Update()
