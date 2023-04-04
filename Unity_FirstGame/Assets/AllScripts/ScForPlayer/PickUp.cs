@@ -25,7 +25,7 @@ public class PickUp : MonoBehaviour
 
         if (ObjectToBeLifted)
         {            
-            if (Input.GetKey(KeyCode.E) && Counter == 0)
+            if (Input.GetKey(KeyCode.E) && Counter == 0 && ObjectToBeLifted)
             {
                 //Take all Knife
                 TakeKnife();
@@ -89,26 +89,23 @@ public class PickUp : MonoBehaviour
 
     void TakeM4()
     {
-        if (ObjectToBeLifted)
+        if (ObjectToBeLifted.gameObject.tag == "M4" && !SlotControler.MyWeapon01)
         {
-            Debug.Log(ObjectToBeLifted.gameObject.tag == "M4" && SlotControler.MyWeapon01 == null);
-            if (ObjectToBeLifted.gameObject.tag == "M4" && SlotControler.MyWeapon01 == null)
-            {
-                GameObject CopyM4 = Instantiate(ObjectToBeLifted);
-                Transform TransformForCopyM4 = CopyM4.GetComponent<Transform>();
-                GameObject OriginalObject = ObjectToBeLifted.gameObject;
+            GameObject CopyM4 = Instantiate(ObjectToBeLifted);
+            Transform TransformForCopyM4 = CopyM4.GetComponent<Transform>();
+            GameObject OriginalObject = ObjectToBeLifted.gameObject;
 
-                CopyM4.transform.position = ObjectToBeLifted.transform.position;
-                CopyM4.transform.rotation = ObjectToBeLifted.transform.rotation;
+            CopyM4.transform.position = ObjectToBeLifted.transform.position;
+            CopyM4.transform.rotation = ObjectToBeLifted.transform.rotation;
 
-                SlotControler.MyWeapon01 = TransformForCopyM4;
-                SlotControler.PutObjects(SlotControler.MyWeapon01, SlotControler.SlotBack01);
-                
-                Destroy(OriginalObject);
-                Counter++;
+            SlotControler.MyWeapon01 = TransformForCopyM4;
+            SlotControler.PutObjects(SlotControler.MyWeapon01, SlotControler.SlotBack01);
 
-            }
-        }        
+            Destroy(OriginalObject);
+            Counter++;
+
+        }
+
     }
 
     void TakeGlok()

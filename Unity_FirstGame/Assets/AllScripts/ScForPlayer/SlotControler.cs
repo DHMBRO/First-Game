@@ -81,6 +81,17 @@ public class SlotControler : MonoBehaviour
                 Counter++;
             }
         }
+        else if (MyWeapon02 && SlotBack02 && SlotHand && Input.GetKey("1"))
+        {
+            //if ()
+            {
+
+            }
+        }
+
+
+
+
     }
 
     
