@@ -1,12 +1,17 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SlotControler : MonoBehaviour
 {
+    
+    
     //All Slots
     [SerializeField] public Transform SlotHand;
     //
+    [SerializeField] public Transform[] SlotsForBack01;
+    //
     [SerializeField] public Transform SlotBack01;
     [SerializeField] public Transform SlotBack02;
+    [SerializeField] public Transform AdditionalSlot01;
     //
     [SerializeField] public Transform SlotPistol01;
     //
@@ -32,10 +37,10 @@ public class SlotControler : MonoBehaviour
     //[SerializeField] private Transform UsingShope03;
 
     //All counet for work Script        
-    [SerializeField] protected int Counter;
-    [SerializeField] private int MainCounter;
-    [SerializeField] public bool CanFire = true;
-
+    protected int Counter;
+    private int MainCounter;    
+    //
+    [SerializeField] private Transform ObjectInHand;
 
     //Fiset for other Scripts 
     [SerializeField] private PickUp PickUp;
@@ -48,7 +53,7 @@ public class SlotControler : MonoBehaviour
         PickUp = gameObject.GetComponent<PickUp>();
         InventoryControler = gameObject.GetComponent<InventoryControler>();
 
-        CanFire = false;
+        
     }
 
     void Update()
@@ -66,31 +71,87 @@ public class SlotControler : MonoBehaviour
 
     void MovingGunForSlots()
     {
-        if (MyWeapon01 && SlotBack01 && SlotHand && Input.GetKey("1"))
+        if (SlotHand && Input.GetKey("1"))
         {
-            if (Counter < 1 && !CanFire)
+            if (MyKnife01 && MainCounter == 0 && Counter == 0)
+            {
+                PutObjects(MyKnife01,SlotHand);
+                ObjectInHand = MyKnife01;
+
+                MainCounter = 1;
+                Counter++;
+            }
+            else if (MyKnife01 && SlotKnife01 && MainCounter == 1 && Counter == 0)
+            {
+                PutObjects(MyKnife01, SlotKnife01);
+                ObjectInHand = null;
+                Debug.Log("1");
+                
+                MainCounter = 2;
+                Counter++;
+            }
+
+            if (MyPistol01 && MainCounter == 2 && Counter == 0)
+            {
+                PutObjects(MyPistol01, SlotHand);
+                ObjectInHand = MyPistol01;
+
+                MainCounter = 3;
+                Counter++;
+
+            }
+            else if (MyPistol01 && SlotPistol01 && MainCounter == 3 && Counter == 0)
+            {
+                PutObjects(MyPistol01,SlotPistol01);
+                ObjectInHand = null;
+
+                MainCounter = 4;
+                Counter++;
+
+            }
+            
+            if (MyWeapon01 && MainCounter == 4 && Counter == 0)
             {
                 PutObjects(MyWeapon01, SlotHand);
-                CanFire = true;
+                ObjectInHand = MyWeapon01;
+
+                MainCounter = 5;
                 Counter++;
+
             }
-            else if (Counter < 1 && CanFire)
+            else if (MyWeapon01 && SlotBack01 && MainCounter == 5 && Counter == 0)
             {
                 PutObjects(MyWeapon01, SlotBack01);
-                CanFire = false;
+                ObjectInHand = null;
+
+                MainCounter = 0;
                 Counter++;
+
             }
-        }
-        else if (MyWeapon02 && SlotBack02 && SlotHand && Input.GetKey("1"))
-        {
-            //if ()
+            /*
+            if (MyWeapon02 && MainCounter == 6 && Counter == 0)
             {
 
+                PutObjects(MyWeapon02, SlotHand);
+                ObjectInHand = MyWeapon02;
+
+                MainCounter = 7;
+                Counter++;
+
             }
+            else if (MyWeapon02 && SlotBack02 && MainCounter == 7 && Counter == 0)
+            {
+
+                PutObjects(MyWeapon02, SlotBack02);
+                ObjectInHand = null;
+
+                MainCounter = 0;
+                Counter++;
+
+            }
+
+            */
         }
-
-
-
 
     }
 

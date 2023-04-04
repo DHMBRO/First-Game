@@ -50,7 +50,7 @@ public class M4ControlerForFire : MonoBehaviour
     {        
         bool audit01 = Input.GetKey(KeyCode.Mouse0);
 
-        if (MySlotControler.CanFire)
+        //if (MySlotControler)
         {            
             if (audit01 && Time.time >= ShotTime)
             {
