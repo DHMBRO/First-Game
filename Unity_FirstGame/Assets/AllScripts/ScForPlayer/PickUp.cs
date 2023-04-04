@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {    
-    [SerializeField] private GameObject ObjectToBeLifted;    
+    [SerializeField] public GameObject ObjectToBeLifted;    
     
     [SerializeField] private SlotControler SlotControler;    
     [SerializeField] private Transform TransformForCamera;    
     
-    [SerializeField] private float DistanceForRay = 0.6f;
+    [SerializeField] private float DistanceForRay = 2.0f;
     
     private Ray RayForFindingObject;
     private int Counter = 0;
@@ -27,8 +27,14 @@ public class PickUp : MonoBehaviour
         {            
             if (Input.GetKey(KeyCode.E) && Counter == 0)
             {
+                //Take all Knife
+                TakeKnife();
+                //Pick up Weapons
                 TakeM4();
-                TakeShopForM4();                
+                TakeGlok();                
+                //Pick up Shop for Weapons
+                TakeShopForM4();
+                TakeShopForGlok();
             }            
             else if (Counter == 1)
             {
@@ -40,14 +46,20 @@ public class PickUp : MonoBehaviour
     void RayForLoot()
     {
         if (TransformForCamera)
-        {
-            RayForFindingObject = new Ray(TransformForCamera.transform.position, TransformForCamera.transform.forward * DistanceForRay);
+        {            
             
-            Debug.DrawRay(TransformForCamera.transform.position, TransformForCamera.transform.forward * DistanceForRay, Color.blue);
+            Ray Asadas = new Ray(TransformForCamera.transform.position, TransformForCamera.transform.forward);
+            
+            Debug.DrawRay(TransformForCamera.transform.position, TransformForCamera.transform.forward * DistanceForRay, Color.red);
 
-            if (Physics.Raycast(RayForFindingObject, out RaycastHit HitResult))
-            {                
-                // Pick Up all weapon 
+            if (Physics.Raycast(Asadas, out RaycastHit HitResult, DistanceForRay))
+            {
+                //Pick up all Knife
+                if (HitResult.collider.gameObject.tag == "Knife")
+                {
+                    ObjectToBeLifted = HitResult.collider.gameObject;
+                }
+                // Pick Up all weapon                 
                 if (HitResult.collider.gameObject.tag == "M4")
                 {
                     ObjectToBeLifted = HitResult.collider.gameObject;
@@ -70,7 +82,7 @@ public class PickUp : MonoBehaviour
                     ObjectToBeLifted = null;
                 }
 
-            }
+            }            
         }
     }
     
@@ -79,7 +91,8 @@ public class PickUp : MonoBehaviour
     {
         if (ObjectToBeLifted)
         {
-            if (ObjectToBeLifted.gameObject.tag == "M4")
+            Debug.Log(ObjectToBeLifted.gameObject.tag == "M4" && SlotControler.MyWeapon01 == null);
+            if (ObjectToBeLifted.gameObject.tag == "M4" && SlotControler.MyWeapon01 == null)
             {
                 GameObject CopyM4 = Instantiate(ObjectToBeLifted);
                 Transform TransformForCopyM4 = CopyM4.GetComponent<Transform>();
@@ -95,9 +108,78 @@ public class PickUp : MonoBehaviour
                 Counter++;
 
             }
+        }        
+    }
 
+    void TakeGlok()
+    {
+        if (ObjectToBeLifted)
+        {            
+            if (ObjectToBeLifted.gameObject.tag == "Glok" && SlotControler.MyPistol01 == null)
+            {
+                GameObject CopyGlok = Instantiate(ObjectToBeLifted);
+                Transform TransformForCopyGlok = CopyGlok.GetComponent<Transform>();
+                GameObject OriginalObject = ObjectToBeLifted.gameObject;
+
+                CopyGlok.transform.position = ObjectToBeLifted.transform.position;
+                CopyGlok.transform.rotation = ObjectToBeLifted.transform.rotation;
+
+                SlotControler.MyPistol01 = TransformForCopyGlok;
+                SlotControler.PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01);
+
+                Destroy(OriginalObject);
+                Counter++;
+
+            }
         }
-        
+    }
+
+    void TakeKnife()
+    {
+        if (ObjectToBeLifted)
+        {
+            if (ObjectToBeLifted.gameObject.tag == "Knife" && SlotControler.MyKnife01 == null)
+            {
+                GameObject CopyKnife = Instantiate(ObjectToBeLifted);
+                Transform TransformForCopyKnife = CopyKnife.GetComponent<Transform>();
+                GameObject OriginalObject = ObjectToBeLifted.gameObject;
+
+                CopyKnife.transform.position = ObjectToBeLifted.transform.position;
+                CopyKnife.transform.rotation = ObjectToBeLifted.transform.rotation;
+
+                SlotControler.MyKnife01 = TransformForCopyKnife;
+                SlotControler.PutObjects(SlotControler.MyKnife01, SlotControler.SlotKnife01);
+
+                Destroy(OriginalObject);
+                Counter++;
+
+            }
+        }
+    }
+
+    void TakeShopForGlok()
+    {
+        if (ObjectToBeLifted)
+        {
+            if (ObjectToBeLifted.gameObject.tag == "ShopForGlok")
+            {
+                GameObject CopyShopForGlok = Instantiate(ObjectToBeLifted);
+                Transform TransformForCopyShopForGlok = CopyShopForGlok.GetComponent<Transform>();
+                GameObject OriginalShop = ObjectToBeLifted.gameObject;
+
+                CopyShopForGlok.transform.position = ObjectToBeLifted.transform.position;
+                CopyShopForGlok.transform.rotation = ObjectToBeLifted.transform.rotation;
+
+                if (true)
+                {
+                    SlotControler.MyShope01 = TransformForCopyShopForGlok;
+                    SlotControler.PutObjects(SlotControler.MyShope01, SlotControler.SlotShpo02);
+                }
+                Destroy(OriginalShop);
+                Counter++;
+
+            }
+        }
     }
 
     void TakeShopForM4()

@@ -6,26 +6,25 @@ public class SlotControler : MonoBehaviour
     [SerializeField] public Transform SlotHand;
     //
     [SerializeField] public Transform SlotBack01;
-    [SerializeField] private Transform SlotBack02;
+    [SerializeField] public Transform SlotBack02;
     //
-    [SerializeField] private Transform SlotPistol01;
+    [SerializeField] public Transform SlotPistol01;
     //
-    [SerializeField] private Transform SlotKnife01;
-
+    [SerializeField] public Transform SlotKnife01;
     //Weapons for slots
     [SerializeField] public Transform MyWeapon01;
     [SerializeField] public Transform MyWeapon02;
     //    
     [SerializeField] public Transform MyPistol01;
     //
-    [SerializeField] private Transform MyKnife01;
+    [SerializeField] public Transform MyKnife01;
     //
     [SerializeField] public Transform MyShope01;
-    [SerializeField] private Transform MyShope02;
-    [SerializeField] private Transform MyShope03;
+    [SerializeField] public Transform MyShope02;
+    [SerializeField] public Transform MyShope03;
     //
     [SerializeField] public Transform SlotShpo01;
-    [SerializeField] private Transform SlotShpo02;
+    [SerializeField] public Transform SlotShpo02;
     [SerializeField] private Transform SlotShpo03;
     //
     [SerializeField] private Transform UsingShope01;
