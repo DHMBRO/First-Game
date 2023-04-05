@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class PickUp : MonoBehaviour
+public class PickUp : MethodsFromDevelopers
 {    
-    [SerializeField] public GameObject ObjectToBeLifted;    
-    
-    [SerializeField] private SlotControler SlotControler;    
-    [SerializeField] private Transform TransformForCamera;    
+    [SerializeField] public GameObject ObjectToBeLifted;
+    [SerializeField] private Transform TransformForCamera;
     
     [SerializeField] private float DistanceForRay = 2.0f;
-    
+
+    [SerializeField] private SlotControler SlotControler;    
+                    
     private Ray RayForFindingObject;
     private int Counter = 0;
 
@@ -20,34 +20,28 @@ public class PickUp : MonoBehaviour
     private void Update()
     {        
         RayForLoot();
-
-
-
+        
         if (ObjectToBeLifted)
-        {            
+        {
             if (Input.GetKey(KeyCode.E) && Counter == 0 && ObjectToBeLifted)
             {
-                //Take all Knife
-                TakeKnife();
-                //Pick up Weapons
-                TakeM4();
-                TakeGlok();                
-                //Pick up Shop for Weapons
-                TakeShopForM4();
-                TakeShopForGlok();
+                TakeWeapon01();
+                TakeWeapon02();
+                TakePistol01();
+                
             }            
-            else if (Counter == 1)
-            {
-                Counter = 0;
-            }
-        }        
+        }
+        
+        if (Counter == 1)
+        {
+            Counter = 0;
+        }
     }
 
     void RayForLoot()
     {
         if (TransformForCamera)
-        {            
-            
+        {                        
             Ray Asadas = new Ray(TransformForCamera.transform.position, TransformForCamera.transform.forward);
             
             Debug.DrawRay(TransformForCamera.transform.position, TransformForCamera.transform.forward * DistanceForRay, Color.red);
@@ -87,9 +81,31 @@ public class PickUp : MonoBehaviour
     }
     
 
-    void TakeM4()
+    private GameObject PickUpWeapon(GameObject OriginalObject)
     {
-        if (ObjectToBeLifted.gameObject.tag == "M4" && !SlotControler.MyWeapon01)
+        if (!SlotControler.MyWeapon01)
+        {
+            GameObject CopyObject = Instantiate(ObjectToBeLifted);
+            Transform TransformForCopyM4 = CopyObject.GetComponent<Transform>();
+            GameObject GameObkect = ObjectToBeLifted.gameObject;
+
+            CopyObject.transform.position = ObjectToBeLifted.transform.position;
+            CopyObject.transform.rotation = ObjectToBeLifted.transform.rotation;
+
+            SlotControler.MyWeapon01 = TransformForCopyM4;
+            SlotControler.PutObjects(SlotControler.MyWeapon01, SlotControler.SlotBack01);
+
+            Destroy(GameObkect);            
+            Counter++;
+            
+            
+        }
+        return OriginalObject;
+    }
+
+    void TakeWeapon01()
+    {
+        if (!SlotControler.MyWeapon01)
         {
             GameObject CopyM4 = Instantiate(ObjectToBeLifted);
             Transform TransformForCopyM4 = CopyM4.GetComponent<Transform>();
@@ -108,100 +124,108 @@ public class PickUp : MonoBehaviour
 
     }
 
-    void TakeGlok()
+    void TakeWeapon02()
     {
-        if (ObjectToBeLifted)
-        {            
-            if (ObjectToBeLifted.gameObject.tag == "Glok" && SlotControler.MyPistol01 == null)
-            {
-                GameObject CopyGlok = Instantiate(ObjectToBeLifted);
-                Transform TransformForCopyGlok = CopyGlok.GetComponent<Transform>();
-                GameObject OriginalObject = ObjectToBeLifted.gameObject;
+        if (!SlotControler.MyWeapon01)
+        {
+            GameObject CopyM4 = Instantiate(ObjectToBeLifted);
+            Transform TransformForCopyM4 = CopyM4.GetComponent<Transform>();
+            GameObject OriginalObject = ObjectToBeLifted.gameObject;
 
-                CopyGlok.transform.position = ObjectToBeLifted.transform.position;
-                CopyGlok.transform.rotation = ObjectToBeLifted.transform.rotation;
+            CopyM4.transform.position = ObjectToBeLifted.transform.position;
+            CopyM4.transform.rotation = ObjectToBeLifted.transform.rotation;
 
-                SlotControler.MyPistol01 = TransformForCopyGlok;
-                SlotControler.PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01);
+            SlotControler.MyWeapon01 = TransformForCopyM4;
+            SlotControler.PutObjects(SlotControler.MyWeapon01, SlotControler.SlotBack01);
 
-                Destroy(OriginalObject);
-                Counter++;
+            Destroy(OriginalObject);
+            Counter++;
 
-            }
+        }
+
+    }
+
+    void TakePistol01()
+    {
+        if (!SlotControler.MyPistol01)
+        {
+            GameObject CopyGlok = Instantiate(ObjectToBeLifted);
+            Transform TransformForCopyGlok = CopyGlok.GetComponent<Transform>();
+            GameObject OriginalObject = ObjectToBeLifted.gameObject;
+
+            CopyGlok.transform.position = ObjectToBeLifted.transform.position;
+            CopyGlok.transform.rotation = ObjectToBeLifted.transform.rotation;
+
+            SlotControler.MyPistol01 = TransformForCopyGlok;
+            SlotControler.PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01);
+
+            Destroy(OriginalObject);
+            Counter++;
+
         }
     }
 
     void TakeKnife()
     {
-        if (ObjectToBeLifted)
+        if (!SlotControler.MyKnife01)
         {
-            if (ObjectToBeLifted.gameObject.tag == "Knife" && SlotControler.MyKnife01 == null)
-            {
-                GameObject CopyKnife = Instantiate(ObjectToBeLifted);
-                Transform TransformForCopyKnife = CopyKnife.GetComponent<Transform>();
-                GameObject OriginalObject = ObjectToBeLifted.gameObject;
+            GameObject CopyKnife = Instantiate(ObjectToBeLifted);
+            Transform TransformForCopyKnife = CopyKnife.GetComponent<Transform>();
+            GameObject OriginalObject = ObjectToBeLifted.gameObject;
 
-                CopyKnife.transform.position = ObjectToBeLifted.transform.position;
-                CopyKnife.transform.rotation = ObjectToBeLifted.transform.rotation;
+            CopyKnife.transform.position = ObjectToBeLifted.transform.position;
+            CopyKnife.transform.rotation = ObjectToBeLifted.transform.rotation;
 
-                SlotControler.MyKnife01 = TransformForCopyKnife;
-                SlotControler.PutObjects(SlotControler.MyKnife01, SlotControler.SlotKnife01);
+            SlotControler.MyKnife01 = TransformForCopyKnife;
+            SlotControler.PutObjects(SlotControler.MyKnife01, SlotControler.SlotKnife01);
 
-                Destroy(OriginalObject);
-                Counter++;
+            Destroy(OriginalObject);
+            Counter++;
 
-            }
         }
     }
 
     void TakeShopForGlok()
     {
-        if (ObjectToBeLifted)
+        if (!SlotControler.MyShope01)
         {
-            if (ObjectToBeLifted.gameObject.tag == "ShopForGlok")
+            GameObject CopyShopForGlok = Instantiate(ObjectToBeLifted);
+            Transform TransformForCopyShopForGlok = CopyShopForGlok.GetComponent<Transform>();
+            GameObject OriginalShop = ObjectToBeLifted.gameObject;
+
+            CopyShopForGlok.transform.position = ObjectToBeLifted.transform.position;
+            CopyShopForGlok.transform.rotation = ObjectToBeLifted.transform.rotation;
+
+            if (true)
             {
-                GameObject CopyShopForGlok = Instantiate(ObjectToBeLifted);
-                Transform TransformForCopyShopForGlok = CopyShopForGlok.GetComponent<Transform>();
-                GameObject OriginalShop = ObjectToBeLifted.gameObject;
-
-                CopyShopForGlok.transform.position = ObjectToBeLifted.transform.position;
-                CopyShopForGlok.transform.rotation = ObjectToBeLifted.transform.rotation;
-
-                if (true)
-                {
-                    SlotControler.MyShope01 = TransformForCopyShopForGlok;
-                    SlotControler.PutObjects(SlotControler.MyShope01, SlotControler.SlotShpo02);
-                }
-                Destroy(OriginalShop);
-                Counter++;
-
+                SlotControler.MyShope01 = TransformForCopyShopForGlok;
+                SlotControler.PutObjects(SlotControler.MyShope01, SlotControler.SlotShpo02);
             }
+            Destroy(OriginalShop);
+            Counter++;
         }
     }
 
     void TakeShopForM4()
     {
-        if (ObjectToBeLifted)
+        if (ObjectToBeLifted.gameObject.tag == "ShopForM4")
         {
-            if (ObjectToBeLifted.gameObject.tag == "ShopForM4")
+            GameObject CopyShopForM4 = Instantiate(ObjectToBeLifted);
+            Transform TransformForCopyShopForM4 = CopyShopForM4.GetComponent<Transform>();
+            GameObject OriginalShop = ObjectToBeLifted.gameObject;
+
+            CopyShopForM4.transform.position = ObjectToBeLifted.transform.position;
+            CopyShopForM4.transform.rotation = ObjectToBeLifted.transform.rotation;
+
+            if (true)
             {
-                GameObject CopyShopForM4 = Instantiate(ObjectToBeLifted);
-                Transform TransformForCopyShopForM4 = CopyShopForM4.GetComponent<Transform>();
-                GameObject OriginalShop = ObjectToBeLifted.gameObject;
-
-                CopyShopForM4.transform.position = ObjectToBeLifted.transform.position;
-                CopyShopForM4.transform.rotation = ObjectToBeLifted.transform.rotation;
-
-                if (true)
-                {
-                    SlotControler.MyShope01 = TransformForCopyShopForM4;
-                    SlotControler.PutObjects(SlotControler.MyShope01, SlotControler.SlotShpo01);
-                }
-                Destroy(OriginalShop);
-                Counter++;
-
+                SlotControler.MyShope01 = TransformForCopyShopForM4;
+                SlotControler.PutObjects(SlotControler.MyShope01, SlotControler.SlotShpo01);
             }
-        }        
+            Destroy(OriginalShop);
+            Counter++;
+
+        }
     }
 }
 
