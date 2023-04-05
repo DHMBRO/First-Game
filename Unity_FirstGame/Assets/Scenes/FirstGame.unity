@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,6 +123,21 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &13492827 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7578455642217627832, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
+  m_PrefabInstance: {fileID: 747938059}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &110021972 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5786097810451525583, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
+  m_PrefabInstance: {fileID: 747938059}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &134308907 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5786097810451525583, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
+  m_PrefabInstance: {fileID: 1666609690}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &188754527
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -220,6 +235,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 948341d46a68ec740b2923ba90adbc42, type: 3}
+--- !u!54 &299282846 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 2730850875192762559, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
+  m_PrefabInstance: {fileID: 747938059}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &520799359
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -277,6 +297,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0108486abf8b8d74ca4e833f14c9c6a7, type: 3}
+--- !u!4 &734849254 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7131751254960923315, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
+  m_PrefabInstance: {fileID: 1908756856}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &747938059
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -284,6 +309,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1357051501843773120, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
+      propertyPath: MyGun
+      value: 
+      objectReference: {fileID: 110021972}
+    - target: {fileID: 1357051501843773120, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
+      propertyPath: Bullet
+      value: 
+      objectReference: {fileID: 6671005759312339746, guid: d1e5869b3a5207f4aa3d12870e530bfd, type: 3}
+    - target: {fileID: 1357051501843773120, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
+      propertyPath: Muzzle
+      value: 
+      objectReference: {fileID: 13492827}
+    - target: {fileID: 1357051501843773120, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
+      propertyPath: MyWeapon
+      value: 
+      objectReference: {fileID: 110021972}
+    - target: {fileID: 1357051501843773120, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
+      propertyPath: ShotDeley
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1357051501843773120, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
+      propertyPath: WeaonRigidbody
+      value: 
+      objectReference: {fileID: 299282846}
+    - target: {fileID: 1357051501843773120, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
+      propertyPath: CameraTransform
+      value: 
+      objectReference: {fileID: 734849254}
+    - target: {fileID: 1357051501843773120, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
+      propertyPath: MySlotControler
+      value: 
+      objectReference: {fileID: 1375750234}
     - target: {fileID: 5786097810451525583, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
       propertyPath: m_Name
       value: M4
@@ -618,6 +675,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 780860326346338877, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
   m_PrefabInstance: {fileID: 1908756856}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1375750234 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7785237847769309149, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
+  m_PrefabInstance: {fileID: 1908756856}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e1d57ea0101a7478b95cc7b1f7275f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1425594860
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,6 +787,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1357051501843773120, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
+      propertyPath: Bullet
+      value: 
+      objectReference: {fileID: 1986207316622465744, guid: 52b13520b1fe6ed41bd8ad93277822f7, type: 3}
+    - target: {fileID: 1357051501843773120, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
+      propertyPath: MyWeapon
+      value: 
+      objectReference: {fileID: 134308907}
+    - target: {fileID: 1357051501843773120, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
+      propertyPath: WeaonRigidbody
+      value: 
+      objectReference: {fileID: 299282846}
+    - target: {fileID: 1357051501843773120, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
+      propertyPath: CameraTransform
+      value: 
+      objectReference: {fileID: 734849254}
+    - target: {fileID: 1357051501843773120, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
+      propertyPath: MySlotControler
+      value: 
+      objectReference: {fileID: 1375750234}
     - target: {fileID: 5786097810451525583, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
       propertyPath: m_Name
       value: M4 (1)
