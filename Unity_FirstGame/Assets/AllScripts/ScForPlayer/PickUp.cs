@@ -95,8 +95,12 @@ public class PickUp : MethodsFromDevelopers
             }            
             else
             {
+<<<<<<< Updated upstream
                 ObjectToBeLifted = null; 
                  
+=======
+                ObjectToBeLifted = null;
+>>>>>>> Stashed changes
             }
         }
     }

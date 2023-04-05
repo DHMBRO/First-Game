@@ -39,6 +39,18 @@ public class M4ControlerForFire : MonoBehaviour
                 GameObject(gameObject,Muzzle,Bullet);
                 Debug.Log("I can fire");
             }
+            else if (!MyWeapon)
+            {
+                Debug.Log("You dont have Weapon");
+            }
+            else if (!Muzzle)
+            {
+                Debug.Log("You dont have Muzzle");
+            }
+            else if (!Bullet)
+            {
+                Debug.Log("You dont have Bullet");
+            }
 
         }
 
@@ -52,12 +64,12 @@ public class M4ControlerForFire : MonoBehaviour
     }
     GameObject GameObject(GameObject Weapon, GameObject Muzzle, GameObject Bullet )
     {
-       
+        Debug.Log("Is work ");
         Vector3 TargetPoint = CameraTransform.position + CameraTransform.forward * 100.0f;
         RaycastHit Hitresult;
         if (Physics.Raycast(CameraTransform.position, CameraTransform.forward, out Hitresult))
         {
-
+            Debug.DrawRay(CameraTransform.transform.position, CameraTransform.transform.forward * 100.0f, Color.black);
             TargetPoint = Hitresult.point;
         }              
         if ( Input.GetKey(KeyCode.Mouse0) && Time.time >= ShotTime)
