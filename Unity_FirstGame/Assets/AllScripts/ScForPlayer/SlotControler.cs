@@ -83,53 +83,54 @@ public class SlotControler : MonoBehaviour
             }
             else if (MyKnife01 && SlotKnife01 && MainCounter == 1 && Counter == 0)
             {
-                PutObjects(MyKnife01, SlotKnife01);
+                PutObjects(MyKnife01, SlotKnife01);                
                 ObjectInHand = null;
-                Debug.Log("1");
                 
                 MainCounter = 2;
-                Counter++;
-            }
 
-            if (MyPistol01 && MainCounter == 2 && Counter == 0)
+                Appropriation01();
+                Counter++;                                
+            }
+            //Pistol 01
+            if (MyPistol01 && MainCounter == 3 && Counter == 0)
             {
                 PutObjects(MyPistol01, SlotHand);
                 ObjectInHand = MyPistol01;
 
-                MainCounter = 3;
+                MainCounter = 4;
+                
                 Counter++;
-
             }
-            else if (MyPistol01 && SlotPistol01 && MainCounter == 3 && Counter == 0)
+            else if (MyPistol01 && SlotPistol01 && MainCounter == 4 && Counter == 0)
             {
                 PutObjects(MyPistol01,SlotPistol01);
                 ObjectInHand = null;
 
-                MainCounter = 4;
+                
+                Appropriation01();
                 Counter++;
-
             }
-            
-            if (MyWeapon01 && MainCounter == 4 && Counter == 0)
+            //Weapon 01
+            if (MyWeapon01 && MainCounter == 5 && Counter == 0)
             {
                 PutObjects(MyWeapon01, SlotHand);
                 ObjectInHand = MyWeapon01;
 
-                MainCounter = 5;
+                MainCounter = 6;
+                
                 Counter++;
-
             }
-            else if (MyWeapon01 && SlotBack01 && MainCounter == 5 && Counter == 0)
+            else if (MyWeapon01 && SlotBack01 && MainCounter == 6 && Counter == 0)
             {
                 PutObjects(MyWeapon01, SlotBack01);
                 ObjectInHand = null;
 
                 MainCounter = 0;
                 Counter++;
-
             }
+            //Weapon 02
             /*
-            if (MyWeapon02 && MainCounter == 6 && Counter == 0)
+            if (MyWeapon02 && MainCounter == 7 && Counter == 0)
             {
 
                 PutObjects(MyWeapon02, SlotHand);
@@ -139,32 +140,74 @@ public class SlotControler : MonoBehaviour
                 Counter++;
 
             }
-            else if (MyWeapon02 && SlotBack02 && MainCounter == 7 && Counter == 0)
+            else if (MyWeapon02 && SlotBack02 && MainCounter == 8 && Counter == 0)
             {
 
                 PutObjects(MyWeapon02, SlotBack02);
                 ObjectInHand = null;
-
                 MainCounter = 0;
+
                 Counter++;
 
             }
 
             */
+          
+
+
         }
 
     }
 
-    
-
-    public void ChargeM4()
+    void Appropriation01()
     {
+        if (MyPistol01 && MainCounter == 2)
+        {
+            MainCounter = 3;
+        }
+        else if (MainCounter == 2)
+        {
+            if (!MyPistol01)
+            {
+                if (MyWeapon01 && !MyWeapon02)
+                {
+                    MainCounter = 0;
+                }
+                else if (!MyWeapon01 && MyWeapon02)
+                {
+                    MainCounter = 0;
+                }
+                else if (!MyWeapon01 && !MyWeapon02)
+                {
+                    MainCounter = 0;
+                }
+            }
+        }                
+        //
+        if (MyWeapon01 && MainCounter == 4)
+        {
+            MainCounter = 5;
+        }
+        else if (MainCounter == 4)
+        {
+            if (!MyWeapon01)
+            {
+                if (MyWeapon02)
+                {
+                    MainCounter = 7;
+                }
+                else if (!MyWeapon01 && !MyWeapon02)
+                {
+                    MainCounter = 0;
+                }
+            }
+        }
+        else if (MainCounter == 4)
+        {
+            MainCounter = 0;
+        }
 
-    }
-
-    public void DisChargeM4()
-    {
-
+        Debug.Log(MainCounter);
     }
 
 

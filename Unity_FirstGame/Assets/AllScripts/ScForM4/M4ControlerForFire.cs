@@ -14,6 +14,7 @@ public class M4ControlerForFire : MonoBehaviour
     [SerializeField] private Transform CameraTransform;
     [SerializeField] private SlotControler MySlotControler;
 
+
     void Start()
     {
         MySlotControler = gameObject.GetComponent<SlotControler>();
