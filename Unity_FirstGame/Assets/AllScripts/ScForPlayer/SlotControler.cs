@@ -125,18 +125,16 @@ public class SlotControler : MonoBehaviour
                 PutObjects(MyWeapon01, SlotBack01);
                 ObjectInHand = null;
 
-                MainCounter = 0;
+                Appropriation01();
                 Counter++;
             }
-            //Weapon 02
-            /*
             if (MyWeapon02 && MainCounter == 7 && Counter == 0)
             {
 
                 PutObjects(MyWeapon02, SlotHand);
-                ObjectInHand = MyWeapon02;
+                ObjectInHand = MyWeapon02.gameObject;
 
-                MainCounter = 7;
+                MainCounter = 8;
                 Counter++;
 
             }
@@ -146,17 +144,11 @@ public class SlotControler : MonoBehaviour
                 PutObjects(MyWeapon02, SlotBack02);
                 ObjectInHand = null;
                 MainCounter = 0;
-
+                
                 Counter++;
 
-            }
-
-            */
-          
-
-
+            }                      
         }
-
     }
 
     void Appropriation01()
@@ -182,8 +174,7 @@ public class SlotControler : MonoBehaviour
                     MainCounter = 0;
                 }
             }
-        }                
-        //
+        }                        
         if (MyWeapon01 && MainCounter == 4)
         {
             MainCounter = 5;
@@ -206,8 +197,7 @@ public class SlotControler : MonoBehaviour
         {
             MainCounter = 0;
         }
-
-        Debug.Log(MainCounter);
+        
     }
 
 
