@@ -7,14 +7,14 @@ public class M4ControlerForFire : MonoBehaviour
     [SerializeField] private GameObject Bullet;
     //[SerializeField] private float Sens = 0.5f;
    
-    [SerializeField] public float ShotDeley = 0.3f;
+    [SerializeField] public float ShotDeley = 1.0f;
     [SerializeField] public float ShotTime = 0.0f;
 
     [SerializeField] private Rigidbody WeaonRigidbody;
     [SerializeField] private Transform CameraTransform;
     [SerializeField] private SlotControler MySlotControler;
     private Transform ShootPoint;
-    private float BulletSpeed = 10;
+    private float BulletSpeed = 100;
     void Start()
     {
         MySlotControler = gameObject.GetComponent<SlotControler>();
@@ -33,7 +33,7 @@ public class M4ControlerForFire : MonoBehaviour
             //gameObject.transform.Rotate(-MouseY * new Vector3(Sens, 0.0f, 0.0f));
             //transform.Rotate(MouseX * new Vector3(0.0f, Sens, 0.0f));
 
-            transform.rotation = CameraTransform.rotation;
+           /* transform.rotation = CameraTransform.rotation;*/
             if (MyWeapon && Muzzle && Bullet)
             {
                 GameObject(gameObject,Muzzle,Bullet);
@@ -51,7 +51,8 @@ public class M4ControlerForFire : MonoBehaviour
 
     }
     GameObject GameObject(GameObject Weapon, GameObject Muzzle, GameObject Bullet )
-    {        
+    {
+       
         Vector3 TargetPoint = CameraTransform.position + CameraTransform.forward * 100.0f;
         RaycastHit Hitresult;
         if (Physics.Raycast(CameraTransform.position, CameraTransform.forward, out Hitresult))
@@ -59,18 +60,16 @@ public class M4ControlerForFire : MonoBehaviour
 
             TargetPoint = Hitresult.point;
         }              
-        if ( Input.GetKey(KeyCode.Mouse0))
+        if ( Input.GetKey(KeyCode.Mouse0) && Time.time >= ShotTime)
         {
+            ShotTime = ShotDeley + Time.time;
             GameObject newBullet = Instantiate(Bullet, Muzzle.transform.position, Quaternion.LookRotation(TargetPoint - Muzzle.transform.position));
-
-
-            Destroy(newBullet, 5.0f);
-
-
-
+            newBullet.transform.rotation = Muzzle.transform.rotation;
 
             Rigidbody newBulletRB = newBullet.GetComponent<Rigidbody>();
+            
             newBulletRB.AddForce(newBullet.transform.forward * BulletSpeed, ForceMode.Impulse);
+            
         }
         return Bullet;
     }
