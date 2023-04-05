@@ -171,7 +171,7 @@ public class SlotControler : MonoBehaviour
             {
                 if (MyWeapon01 && !MyWeapon02)
                 {
-                    MainCounter = 0;
+                    MainCounter = 5;
                 }
                 else if (!MyWeapon01 && MyWeapon02)
                 {
