@@ -25,8 +25,15 @@ public class PickUp : MethodsFromDevelopers
         {
             if (Input.GetKey(KeyCode.E) && Counter == 0 && ObjectToBeLifted)
             {
-                TakeWeapon01();
-               
+                if (ObjectToBeLifted.CompareTag("M4"))
+                {
+                    PickUpWeapon(ObjectToBeLifted);
+                }
+                if (ObjectToBeLifted.CompareTag("Glok"))
+                {
+                    PickUpPistol(ObjectToBeLifted);
+                }
+                
                 
             }            
         }
@@ -78,7 +85,7 @@ public class PickUp : MethodsFromDevelopers
             }            
         }
     }
-    /*
+    
 
     private GameObject PickUpWeapon(GameObject OriginalObject)
     {
@@ -101,7 +108,29 @@ public class PickUp : MethodsFromDevelopers
         }
         return OriginalObject;
     }
-    */
+
+    private GameObject PickUpPistol(GameObject OriginalObject)
+    {
+        if (!SlotControler.MyPistol01)
+        {
+            GameObject CopyObject = Instantiate(ObjectToBeLifted);
+            Transform TransformForCopyM4 = CopyObject.GetComponent<Transform>();
+            GameObject GameObkect = ObjectToBeLifted.gameObject;
+
+            CopyObject.transform.position = ObjectToBeLifted.transform.position;
+            CopyObject.transform.rotation = ObjectToBeLifted.transform.rotation;
+
+            SlotControler.MyPistol01 = TransformForCopyM4;
+            SlotControler.PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01);
+
+            Destroy(GameObkect);
+            Counter++;
+
+
+        }
+        return OriginalObject;
+    }
+
     void TakeWeapon01()
     {
         if (!SlotControler.MyWeapon01)
