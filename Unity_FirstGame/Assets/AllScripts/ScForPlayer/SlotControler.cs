@@ -40,7 +40,7 @@ public class SlotControler : MonoBehaviour
     protected int Counter;
     private int MainCounter;    
     //
-    [SerializeField] private Transform ObjectInHand;
+    [SerializeField] private GameObject ObjectInHand;
 
     //Fiset for other Scripts 
     [SerializeField] private PickUp PickUp;
@@ -76,7 +76,7 @@ public class SlotControler : MonoBehaviour
             if (MyKnife01 && MainCounter == 0 && Counter == 0)
             {
                 PutObjects(MyKnife01,SlotHand);
-                ObjectInHand = MyKnife01;
+                ObjectInHand = MyKnife01.gameObject;
 
                 MainCounter = 1;
                 Counter++;
@@ -95,7 +95,7 @@ public class SlotControler : MonoBehaviour
             if (MyPistol01 && MainCounter == 3 && Counter == 0)
             {
                 PutObjects(MyPistol01, SlotHand);
-                ObjectInHand = MyPistol01;
+                ObjectInHand = MyPistol01.gameObject;
 
                 MainCounter = 4;
                 
@@ -114,7 +114,7 @@ public class SlotControler : MonoBehaviour
             if (MyWeapon01 && MainCounter == 5 && Counter == 0)
             {
                 PutObjects(MyWeapon01, SlotHand);
-                ObjectInHand = MyWeapon01;
+                ObjectInHand = MyWeapon01.gameObject;
 
                 MainCounter = 6;
                 

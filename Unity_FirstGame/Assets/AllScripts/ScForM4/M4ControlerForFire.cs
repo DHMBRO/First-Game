@@ -6,7 +6,7 @@ public class M4ControlerForFire : MonoBehaviour
     [SerializeField] private Transform Muzzle;
     [SerializeField] private GameObject Bullet;
     //[SerializeField] private float Sens = 0.5f;
-
+   
     [SerializeField] public float ShotDeley = 0.3f;
     [SerializeField] public float ShotTime = 0.0f;
 
@@ -24,9 +24,9 @@ public class M4ControlerForFire : MonoBehaviour
 
     void Update()
     {
+        
 
-
-        if (gameObject.transform.parent && CameraTransform && gameObject.transform.parent.CompareTag("SlotForUse"))
+        if (gameObject.transform.parent && CameraTransform && gameObject.transform.parent.CompareTag("SlotForUse")) 
         {
             float MouseX = Input.GetAxis("Mouse X");
             float MouseY = Input.GetAxis("Mouse Y");
@@ -46,9 +46,9 @@ public class M4ControlerForFire : MonoBehaviour
 
 
     }
-    GameObject GameObject(GameObject Bullet, GameObject Weapon)
+    GameObject GameObject(GameObject Weapon, GameObject Muzzle, GameObject Bullet )
     {
-       
+        
         Vector3 TargetPoint = CameraTransform.position + CameraTransform.forward * 100.0f;
         RaycastHit Hitresult;
         if (Physics.Raycast(CameraTransform.position, CameraTransform.forward, out Hitresult))
@@ -56,9 +56,10 @@ public class M4ControlerForFire : MonoBehaviour
 
             TargetPoint = Hitresult.point;
         }
-        if (true   )
+        Muzzle = Weapon.gameObject.GetComponentInChildren<GameObject>();
+        if ( Input.GetKey(KeyCode.Mouse0))
         {
-            GameObject newBullet = Instantiate(Bullet, Muzzle.position, Quaternion.LookRotation(TargetPoint - Muzzle.position));
+            GameObject newBullet = Instantiate(Bullet, Muzzle.transform.position, Quaternion.LookRotation(TargetPoint - Muzzle.transform.position));
 
 
             Destroy(newBullet, 5.0f);
