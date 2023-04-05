@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class M4ControlerForFire : MonoBehaviour
 {
-    [SerializeField] private Transform MyWeapon;
-    [SerializeField] private Transform Muzzle;
+    [SerializeField] private GameObject MyWeapon;
+    [SerializeField] private GameObject Muzzle;
     [SerializeField] private GameObject Bullet;
     //[SerializeField] private float Sens = 0.5f;
    
@@ -18,8 +18,7 @@ public class M4ControlerForFire : MonoBehaviour
     void Start()
     {
         MySlotControler = gameObject.GetComponent<SlotControler>();
-        WeaonRigidbody = gameObject.GetComponent<Rigidbody>();
-        MyWeapon = gameObject.GetComponent<Transform>();
+        WeaonRigidbody = gameObject.GetComponent<Rigidbody>();        
     }
 
     void Update()
@@ -35,7 +34,12 @@ public class M4ControlerForFire : MonoBehaviour
             //transform.Rotate(MouseX * new Vector3(0.0f, Sens, 0.0f));
 
             transform.rotation = CameraTransform.rotation;
-            Debug.Log("1");
+            if (MyWeapon && Muzzle && Bullet)
+            {
+                GameObject(gameObject,Muzzle,Bullet);
+                Debug.Log("I can fire");
+            }
+
         }
 
     }
@@ -47,16 +51,14 @@ public class M4ControlerForFire : MonoBehaviour
 
     }
     GameObject GameObject(GameObject Weapon, GameObject Muzzle, GameObject Bullet )
-    {
-        
+    {        
         Vector3 TargetPoint = CameraTransform.position + CameraTransform.forward * 100.0f;
         RaycastHit Hitresult;
         if (Physics.Raycast(CameraTransform.position, CameraTransform.forward, out Hitresult))
         {
 
             TargetPoint = Hitresult.point;
-        }
-        Muzzle = Weapon.gameObject.GetComponentInChildren<GameObject>();
+        }              
         if ( Input.GetKey(KeyCode.Mouse0))
         {
             GameObject newBullet = Instantiate(Bullet, Muzzle.transform.position, Quaternion.LookRotation(TargetPoint - Muzzle.transform.position));

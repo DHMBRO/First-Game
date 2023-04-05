@@ -26,8 +26,7 @@ public class PickUp : MethodsFromDevelopers
             if (Input.GetKey(KeyCode.E) && Counter == 0 && ObjectToBeLifted)
             {
                 TakeWeapon01();
-                TakeWeapon02();
-                TakePistol01();
+               
                 
             }            
         }
@@ -79,7 +78,7 @@ public class PickUp : MethodsFromDevelopers
             }            
         }
     }
-    
+    /*
 
     private GameObject PickUpWeapon(GameObject OriginalObject)
     {
@@ -102,7 +101,7 @@ public class PickUp : MethodsFromDevelopers
         }
         return OriginalObject;
     }
-
+    */
     void TakeWeapon01()
     {
         if (!SlotControler.MyWeapon01)
