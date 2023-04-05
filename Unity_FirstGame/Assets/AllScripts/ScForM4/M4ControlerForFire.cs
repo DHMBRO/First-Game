@@ -46,8 +46,9 @@ public class M4ControlerForFire : MonoBehaviour
 
 
     }
-    void Shoot()
+    GameObject GameObject(GameObject Bullet, GameObject Weapon)
     {
+       
         Vector3 TargetPoint = CameraTransform.position + CameraTransform.forward * 100.0f;
         RaycastHit Hitresult;
         if (Physics.Raycast(CameraTransform.position, CameraTransform.forward, out Hitresult))
@@ -55,7 +56,7 @@ public class M4ControlerForFire : MonoBehaviour
 
             TargetPoint = Hitresult.point;
         }
-        if ()
+        if (true   )
         {
             GameObject newBullet = Instantiate(Bullet, Muzzle.position, Quaternion.LookRotation(TargetPoint - Muzzle.position));
 
@@ -68,13 +69,13 @@ public class M4ControlerForFire : MonoBehaviour
             Rigidbody newBulletRB = newBullet.GetComponent<Rigidbody>();
             newBulletRB.AddForce(newBullet.transform.forward * BulletSpeed, ForceMode.Impulse);
         }
-
+        return Bullet;
     }
     void FireForTarget()
     {
         bool audit01 = Input.GetKey(KeyCode.Mouse0);
 
-        if (MySlotControler.CanFire)
+        if (MySlotControler)
         {
             if (audit01 && Time.time >= ShotTime)
             {
