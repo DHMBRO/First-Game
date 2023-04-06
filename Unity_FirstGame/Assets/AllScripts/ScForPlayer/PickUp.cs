@@ -24,27 +24,26 @@ public class PickUp : MethodsFromDevelopers
         
         if (ObjectToBeLifted)
         {
-            if (Input.GetKey(KeyCode.E) && ObjectToBeLifted && Counter == 0)
+            if (Input.GetKey(KeyCode.E) && ObjectToBeLifted)
             {
-                if (ObjectToBeLifted.CompareTag("M4"))
+                if (ObjectToBeLifted.CompareTag("Glok") && !SlotControler.MyPistol01 && Counter == 0)
+                {
+                    MainCounter = 1;
+                    PickUpPistol(ObjectToBeLifted);
+                    Debug.Log("1");
+                }
+                else if (ObjectToBeLifted.CompareTag("M4") && !SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 && Counter == 0)
                 {
                     MainCounter = 2;
-                    PickUpWeapon(ObjectToBeLifted);
-                }
-                /*
-                if (ObjectToBeLifted.CompareTag("M4"))
-                {
-                    MainCounter = 2;
-                    PickUpWeapon(ObjectToBeLifted);
-                }
-                */
-                if (ObjectToBeLifted.CompareTag("Glok"))
+                    PickUpWeapon01(ObjectToBeLifted);
+                    Debug.Log("2");
+                }                
+                else if (ObjectToBeLifted.CompareTag("M4") && !SlotControler.MyWeapon02 && SlotControler.MyWeapon01 && Counter == 0)
                 {
                     MainCounter = 3;
-                    PickUpWeapon(ObjectToBeLifted);
-                }
-                
-                
+                    PickUpWeapon02(ObjectToBeLifted);
+                    Debug.Log("3");
+                }                                                               
             }            
         }
         
@@ -104,48 +103,11 @@ public class PickUp : MethodsFromDevelopers
     }
     
 
-    private GameObject PickUpWeapon(GameObject OriginalObject)
+    private GameObject PickUpPistol(GameObject OriginalObject)
     {
-        if (!SlotControler.MyWeapon01 && MainCounter == 1)
+        if (MainCounter == 1 && Counter == 0)
         {
-            Debug.Log("1");
-            GameObject CopyObject = Instantiate(ObjectToBeLifted);
-            Transform TransformForCopy = CopyObject.GetComponent<Transform>();
-            GameObject GameObkect = ObjectToBeLifted.gameObject;
-
-            CopyObject.transform.position = ObjectToBeLifted.transform.position;
-            CopyObject.transform.rotation = ObjectToBeLifted.transform.rotation;
-
-            SlotControler.MyWeapon02 = TransformForCopy;
-            SlotControler.PutObjects(SlotControler.MyWeapon02, SlotControler.SlotBack02);
-
-            Destroy(GameObkect);
-            Counter++;
-
             
-
-        }
-        else if (!SlotControler.MyWeapon01 && MainCounter == 2)
-        {
-            Debug.Log("2");
-            GameObject CopyObject = Instantiate(ObjectToBeLifted);
-            Transform TransformForCopy = CopyObject.GetComponent<Transform>();
-            GameObject GameObject = ObjectToBeLifted.gameObject;
-
-            CopyObject.transform.position = ObjectToBeLifted.transform.position;
-            CopyObject.transform.rotation = ObjectToBeLifted.transform.rotation;
-
-            SlotControler.MyWeapon01 = TransformForCopy;
-            SlotControler.PutObjects(SlotControler.MyWeapon01, SlotControler.SlotBack01);
-
-            Destroy(GameObject);
-            Counter++;
-
-
-        }
-        else if (!SlotControler.MyWeapon02 && MainCounter == 3)
-        {
-            Debug.Log("3");
             GameObject CopyObject = Instantiate(ObjectToBeLifted);
             Transform TransformForCopy = CopyObject.GetComponent<Transform>();
             GameObject GameObject = ObjectToBeLifted.gameObject;
@@ -160,9 +122,52 @@ public class PickUp : MethodsFromDevelopers
             Counter++;
 
 
+        }              
+        return OriginalObject;
+    }
+    private GameObject PickUpWeapon01(GameObject OriginalObject)
+    {
+        if (MainCounter == 2 && Counter == 0)
+        {
+            GameObject CopyObject = Instantiate(ObjectToBeLifted);
+            Transform TransformForCopy = CopyObject.GetComponent<Transform>();
+            GameObject GameObject = ObjectToBeLifted.gameObject;
+
+            CopyObject.transform.position = ObjectToBeLifted.transform.position;
+            CopyObject.transform.rotation = ObjectToBeLifted.transform.rotation;
+
+            SlotControler.MyWeapon01 = TransformForCopy;
+            SlotControler.PutObjects(SlotControler.MyWeapon01, SlotControler.SlotBack01);
+
+            Destroy(GameObject);
+            Counter++;
+
+        }
+
+        return OriginalObject;
+    }
+    
+    private GameObject PickUpWeapon02(GameObject OriginalObject)
+    {
+        if (MainCounter == 3 && Counter == 0)
+        {
+            GameObject CopyObject = Instantiate(ObjectToBeLifted);
+            Transform TransformForCopy = CopyObject.GetComponent<Transform>();
+            GameObject GameObject = ObjectToBeLifted.gameObject;
+
+            CopyObject.transform.position = ObjectToBeLifted.transform.position;
+            CopyObject.transform.rotation = ObjectToBeLifted.transform.rotation;
+
+            SlotControler.MyWeapon02 = TransformForCopy;
+            SlotControler.PutObjects(SlotControler.MyWeapon02, SlotControler.SlotBack02);
+
+            Destroy(GameObject);
+            Counter++;
+
         }
         return OriginalObject;
     }
+
 }
 
 

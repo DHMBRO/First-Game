@@ -109,9 +109,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6559362985659250037}
+  - component: {fileID: 9071493728336264004}
   - component: {fileID: 5340629801406763826}
   - component: {fileID: 1357051501843773120}
-  - component: {fileID: 5617146139289961650}
   m_Layer: 0
   m_Name: M4
   m_TagString: M4
@@ -142,6 +142,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &9071493728336264004
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5786097810451525583}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9996616, y: 0.25249845, z: 0.09384206}
+  m_Center: {x: -0.1694049, y: 0.026802719, z: -0.0033273026}
 --- !u!65 &5340629801406763826
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -175,20 +188,6 @@ MonoBehaviour:
   WeaonRigidbody: {fileID: 2730850875192762559}
   CameraTransform: {fileID: 0}
   MySlotControler: {fileID: 0}
---- !u!64 &5617146139289961650
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5786097810451525583}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &5873469072906034301
 GameObject:
   m_ObjectHideFlags: 0

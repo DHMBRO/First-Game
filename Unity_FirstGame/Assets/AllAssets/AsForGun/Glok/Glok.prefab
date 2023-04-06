@@ -93,6 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5738456080911321149}
   - component: {fileID: 4847926056169815492}
+  - component: {fileID: 5752078726147703554}
   m_Layer: 0
   m_Name: Glok
   m_TagString: Glok
@@ -129,8 +130,21 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.039495476, y: 0.07452226, z: 0.024345942}
-  m_Center: {x: 0, y: 0.010401005, z: 0}
+  m_Size: {x: 0.039495476, y: 0.07452226, z: 0.024334755}
+  m_Center: {x: 0, y: 0.010401003, z: -0.000005593989}
+--- !u!65 &5752078726147703554
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4965438261709640327}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.24532056, y: 0.15652673, z: 0.035754405}
+  m_Center: {x: -0.06803681, y: 0.019251056, z: 0.00034312904}
 --- !u!1 &8502960412684221905
 GameObject:
   m_ObjectHideFlags: 0
