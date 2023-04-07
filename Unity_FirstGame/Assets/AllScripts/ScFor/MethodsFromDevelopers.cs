@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MethodsFromDevelopers : MonoBehaviour
@@ -10,7 +8,8 @@ public class MethodsFromDevelopers : MonoBehaviour
     }
 
     
-    public Transform PutObjects(Transform ObjectForPut, Transform PosForPut)
+
+    protected Transform PutObjects(Transform ObjectForPut, Transform PosForPut)
     {
         ObjectForPut.transform.SetParent(PosForPut);
 
