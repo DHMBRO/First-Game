@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 33705837635148522}
   - component: {fileID: 23860282398207496}
   - component: {fileID: 3503319775836327837}
-  - component: {fileID: 526674573206278164}
+  - component: {fileID: 6338134665276035707}
   m_Layer: 0
   m_Name: AK74
   m_TagString: AK47
@@ -195,7 +195,7 @@ Transform:
   m_GameObject: {fileID: 1487774384131766}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4871155855958596}
@@ -267,8 +267,8 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.033782385, y: 0.023900358, z: 0.062172793}
   m_Center: {x: -0.0017576702, y: -0.013944547, z: -0.036026273}
---- !u!64 &526674573206278164
-MeshCollider:
+--- !u!65 &6338134665276035707
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -277,10 +277,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.033782385, y: 0.16676848, z: 0.7707256}
+  m_Center: {x: -0.0017576693, y: -0.036212504, z: -0.06259711}
 --- !u!1 &3278276624203103808
 GameObject:
   m_ObjectHideFlags: 0

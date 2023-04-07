@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+
 public class SlotControler : MethodsFromDevelopers
 {
     
@@ -64,7 +65,7 @@ public class SlotControler : MethodsFromDevelopers
             Counter = 0;
         }
         MovingGunForSlots();
-
+        
     }
 
 
@@ -74,24 +75,24 @@ public class SlotControler : MethodsFromDevelopers
     {
         if (SlotHand && Input.GetKey("1"))
         {
-            //if ()
-            {
-
-            }
+           
         }
     }
 
     void Appropriation01()
     {
-        if (MyPistol01 && SlotPistol01 && SlotCounter == 2 && Counter == 0)
-        {
 
-        }
-        
-        
+        bool HaveKnife = MyKnife01 && SlotKnife01;
+        bool HavePistol = MyPistol01 && SlotPistol01;
+        bool HaveWeapon01 = MyWeapon01 && SlotBack01;
+        bool HaveWeapon02 = MyWeapon02 && SlotBack02;
+
+        bool CounterIs1 = Counter == 0;
+
+            
     }
 
 
-   
+
 
 }

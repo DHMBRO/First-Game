@@ -26,28 +26,28 @@ public class PickUp : MethodsFromDevelopers
         {
             if (Input.GetKey(KeyCode.E) && ObjectToBeLifted)
             {
-                if (ObjectToBeLifted.CompareTag("Glok") && !SlotControler.MyPistol01 && Counter == 0)
+                if (ObjectToBeLifted.CompareTag("Glok") && Counter == 0)
                 {
                     MainCounter = 1;
-                    PickUpPistol(ObjectToBeLifted);                    
+                    PickUpWeapons(ObjectToBeLifted);
                 }
-                else if (ObjectToBeLifted.CompareTag("M4") && !SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 && Counter == 0)
+                else if (ObjectToBeLifted.CompareTag("M4") && Counter == 0)
                 {
                     MainCounter = 2;
-                    PickUpWeapon01(ObjectToBeLifted);                   
+                    PickUpWeapons(ObjectToBeLifted);
                 }                                
-                else if (ObjectToBeLifted.CompareTag("M4") && !SlotControler.MyWeapon02 && SlotControler.MyWeapon01 && Counter == 0)
+                else if (ObjectToBeLifted.CompareTag("M4") && Counter == 0)
                 {                    
-                    MainCounter = 3;
-                    PickUpWeapon02(ObjectToBeLifted);                    
+                    MainCounter = 2;
+                    PickUpWeapons(ObjectToBeLifted);                 
                 }
 
                 
-                if (ObjectToBeLifted.CompareTag("ShopForGlok") && Counter == 0)
+                if (ObjectToBeLifted.CompareTag("ShopGlok") && Counter == 0)
                 {
                     PickUpShops(ObjectToBeLifted);                    
                 }
-                else if (ObjectToBeLifted.CompareTag("ShopForM4") && Counter == 0)
+                else if (ObjectToBeLifted.CompareTag("ShopM4") && Counter == 0)
                 {
                     PickUpShops(ObjectToBeLifted);
                 
@@ -73,11 +73,7 @@ public class PickUp : MethodsFromDevelopers
 
             if (Physics.Raycast(RayForPickUp, out RaycastHit HitResult, DistanceForRay))
             {
-                //Pick up all Knife
-                if (HitResult.collider.gameObject.tag == "Knife")
-                {
-                    ObjectToBeLifted = HitResult.collider.gameObject;
-                }
+                
                 // Pick Up all weapon                 
                 if (HitResult.collider.gameObject.tag == "M4")
                 {
@@ -88,11 +84,11 @@ public class PickUp : MethodsFromDevelopers
                     ObjectToBeLifted = HitResult.collider.gameObject;
                 }
                 // Pick Up Shop For all
-                if (HitResult.collider.gameObject.tag == "ShopForM4")
+                if (HitResult.collider.gameObject.tag == "ShopM4")
                 {
                     ObjectToBeLifted = HitResult.collider.gameObject;
                 }
-                else if (HitResult.collider.gameObject.tag == "ShopForGlok")
+                else if (HitResult.collider.gameObject.tag == "ShopGlok")
                 {
                     ObjectToBeLifted = HitResult.collider.gameObject;
                 }
@@ -110,11 +106,12 @@ public class PickUp : MethodsFromDevelopers
     }
     
 
-    private GameObject PickUpPistol(GameObject OriginalObject)
+  
+
+    private GameObject PickUpWeapons(GameObject ObjectForPickUp)
     {
         if (MainCounter == 1 && Counter == 0)
         {
-            
             GameObject CopyObject = Instantiate(ObjectToBeLifted);
             Transform TransformForCopy = CopyObject.GetComponent<Transform>();
             GameObject GameObject = ObjectToBeLifted.gameObject;
@@ -128,14 +125,8 @@ public class PickUp : MethodsFromDevelopers
             Destroy(GameObject);
             Counter++;
 
-
-        }              
-        return OriginalObject;
-    }
-
-    private GameObject PickUpWeapon01(GameObject OriginalObject)
-    {
-        if (MainCounter == 2 && Counter == 0)
+        }
+        else if (!SlotControler.MyWeapon01  && !SlotControler.MyWeapon02 && MainCounter == 2 && Counter == 0)
         {
             GameObject CopyObject = Instantiate(ObjectToBeLifted);
             Transform TransformForCopy = CopyObject.GetComponent<Transform>();
@@ -151,13 +142,7 @@ public class PickUp : MethodsFromDevelopers
             Counter++;
 
         }
-
-        return OriginalObject;
-    }
-    
-    private GameObject PickUpWeapon02(GameObject OriginalObject)
-    {
-        if (MainCounter == 3 && Counter == 0)
+        else if (SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 &&MainCounter == 2 && Counter == 0)
         {
             GameObject CopyObject = Instantiate(ObjectToBeLifted);
             Transform TransformForCopy = CopyObject.GetComponent<Transform>();
@@ -173,12 +158,16 @@ public class PickUp : MethodsFromDevelopers
             Counter++;
 
         }
-        return OriginalObject;
+        else if (Counter == 0)
+        {
+            Debug.Log("Cant take !");
+        }
+        return ObjectForPickUp;
     }
-    
+       
     private GameObject PickUpShops(GameObject ShopForPickUp)
     {
-        Debug.Log("2");
+        
         if (!SlotControler.MyShope01 && SlotControler.SlotShpo01 &&Counter == 0)
         {
             GameObject CopyObject = Instantiate(ObjectToBeLifted);
@@ -192,8 +181,7 @@ public class PickUp : MethodsFromDevelopers
             PutObjects(SlotControler.MyShope01, SlotControler.SlotShpo01);
 
             Destroy(GameObject);
-            Counter++;
-            Debug.Log("A");
+            Counter++;            
         }
         else if (!SlotControler.MyShope02 && SlotControler.SlotShpo02 && Counter == 0)
         {
@@ -208,8 +196,7 @@ public class PickUp : MethodsFromDevelopers
             PutObjects(SlotControler.MyShope02, SlotControler.SlotShpo02);
 
             Destroy(GameObject);
-            Counter++;
-            Debug.Log("B");
+            Counter++;        
         }
         else if (!SlotControler.MyShope03 && SlotControler.SlotShpo03 && Counter == 0)
         {
@@ -224,8 +211,7 @@ public class PickUp : MethodsFromDevelopers
             PutObjects(SlotControler.MyShope03, SlotControler.SlotShpo03);
 
             Destroy(GameObject);
-            Counter++;
-            Debug.Log("C");
+            Counter++;           
         }
         else if (true)
         {
