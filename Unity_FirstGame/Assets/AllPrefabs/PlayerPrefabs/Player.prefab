@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 8740764673410187273}
   - component: {fileID: 7785237847769309149}
   - component: {fileID: 1427766268900275734}
+  - component: {fileID: 8823763917516572830}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player01
@@ -254,6 +255,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObjectToBeLifted: {fileID: 0}
   TransformForCamera: {fileID: 7131751254960923315}
+--- !u!114 &8823763917516572830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758934435905196194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d2e13c0bdd472048a4ce7b554c40e32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Move: {fileID: 2860246637410159893}
+  PlayerCamera: {fileID: 7131751254960923315}
+  StelsScript: {fileID: 8740764673410187273}
+  PickUp: {fileID: 1427766268900275734}
+  SlotControler: {fileID: 7785237847769309149}
+  ShootControler: {fileID: 0}
 --- !u!1 &1059009059662341174
 GameObject:
   m_ObjectHideFlags: 0
@@ -839,6 +858,10 @@ PrefabInstance:
     - target: {fileID: 2323451537488390066, guid: 549f4220318def44b990ba8e126aeb71, type: 3}
       propertyPath: m_Name
       value: CamFirstFace
+      objectReference: {fileID: 0}
+    - target: {fileID: 2323451537488390066, guid: 549f4220318def44b990ba8e126aeb71, type: 3}
+      propertyPath: m_TagString
+      value: CameraPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 5784031991753197310, guid: 549f4220318def44b990ba8e126aeb71, type: 3}
       propertyPath: field of view

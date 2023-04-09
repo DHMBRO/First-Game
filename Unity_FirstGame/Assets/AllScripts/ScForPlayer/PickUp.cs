@@ -15,81 +15,15 @@ public class PickUp : MethodsFromDevelopers
     void Start()
     {
         SlotControler = gameObject.GetComponent<SlotControler>();        
-    }                   
-
-    private void Update()
-    {        
-        RayForLoot();
-        
-        if (ObjectToBeLifted)
-        {
-            if (Input.GetKey(KeyCode.E) && ObjectToBeLifted)
-            {
-                //Pick up weapons 
-                if (ObjectToBeLifted.CompareTag("Glok") && Counter == 0)
-                {
-                    MainCounter = 1;
-                    PickUpWeapons(ObjectToBeLifted);
-                }
-                else if (ObjectToBeLifted.CompareTag("M1911") && Counter == 0)
-                {
-                    MainCounter = 1;
-                    PickUpWeapons(ObjectToBeLifted);
-                }
-                else if (ObjectToBeLifted.CompareTag("M4") && Counter == 0)
-                {
-                    MainCounter = 2;
-                    PickUpWeapons(ObjectToBeLifted);
-                }                                
-                else if (ObjectToBeLifted.CompareTag("AK47") && Counter == 0)
-                {                    
-                    MainCounter = 2;
-                    PickUpWeapons(ObjectToBeLifted);                 
-                }
-                else if (ObjectToBeLifted.CompareTag("M249") && Counter == 0)
-                {
-                    MainCounter = 2;
-                    PickUpWeapons(ObjectToBeLifted);
-                }
-                //Pick up shops 
-                if (ObjectToBeLifted.CompareTag("ShopM4") && Counter == 0)
-                {
-                    PickUpShops(ObjectToBeLifted);                    
-                }
-                else if (ObjectToBeLifted.CompareTag("ShopAK47") && Counter == 0)
-                {
-                    PickUpShops(ObjectToBeLifted);
-                }
-                else if (ObjectToBeLifted.CompareTag("ShopM249") && Counter == 0)
-                {
-                    PickUpShops(ObjectToBeLifted);
-                }
-                else if (ObjectToBeLifted.CompareTag("ShopM1911") && Counter == 0)
-                {
-                    PickUpShops(ObjectToBeLifted);
-                }
-                else if (ObjectToBeLifted.CompareTag("ShopGlok") && Counter == 0)
-                {
-                    PickUpShops(ObjectToBeLifted);                
-                }
-                     
-            }            
-                
-        }
-        
-        if (Counter == 1 && Input.GetKeyUp(KeyCode.E))
-        {
-            Counter = 0;
-        }
-                        
     }
 
-    void RayForLoot()
+
+    public void RayForLoot()
     {
         if (TransformForCamera)
-        {                        
+        {
             Ray RayForPickUp = new Ray(TransformForCamera.transform.position, TransformForCamera.transform.forward);
-            
+
             Debug.DrawRay(TransformForCamera.transform.position, TransformForCamera.transform.forward * DistanceForRay, Color.red);
 
             if (Physics.Raycast(RayForPickUp, out RaycastHit HitResult, DistanceForRay))
@@ -131,22 +65,84 @@ public class PickUp : MethodsFromDevelopers
                 {
                     ObjectToBeLifted = HitResult.collider.gameObject;
                 }
-                
-                
+
+
 
             }
             else
             {
                 ObjectToBeLifted = null;
-            }                                  
+            }
         }
     }
-    
 
-  
 
-    private GameObject PickUpWeapons(GameObject ObjectForPickUp)
-    {
+    public void ComplertingTheLink()
+    {        
+        if (ObjectToBeLifted)
+        {
+            if (Input.GetKey(KeyCode.E) && ObjectToBeLifted)
+            {
+                //Pick up weapons 
+                if (ObjectToBeLifted.CompareTag("Glok") && Counter == 0)
+                {
+                    MainCounter = 1;
+                    PickUpWeapons(ObjectToBeLifted);
+                }
+                else if (ObjectToBeLifted.CompareTag("M1911") && Counter == 0)
+                {
+                    MainCounter = 1;
+                    PickUpWeapons(ObjectToBeLifted);
+                }
+                else if (ObjectToBeLifted.CompareTag("M4") && Counter == 0)
+                {
+                    MainCounter = 2;
+                    PickUpWeapons(ObjectToBeLifted);
+                }
+                else if (ObjectToBeLifted.CompareTag("AK47") && Counter == 0)
+                {
+                    MainCounter = 2;
+                    PickUpWeapons(ObjectToBeLifted);
+                }
+                else if (ObjectToBeLifted.CompareTag("M249") && Counter == 0)
+                {
+                    MainCounter = 2;
+                    PickUpWeapons(ObjectToBeLifted);
+                }
+                //Pick up shops 
+                if (ObjectToBeLifted.CompareTag("ShopM4") && Counter == 0)
+                {
+                    PickUpShops(ObjectToBeLifted);
+                }
+                else if (ObjectToBeLifted.CompareTag("ShopAK47") && Counter == 0)
+                {
+                    PickUpShops(ObjectToBeLifted);
+                }
+                else if (ObjectToBeLifted.CompareTag("ShopM249") && Counter == 0)
+                {
+                    PickUpShops(ObjectToBeLifted);
+                }
+                else if (ObjectToBeLifted.CompareTag("ShopM1911") && Counter == 0)
+                {
+                    PickUpShops(ObjectToBeLifted);
+                }
+                else if (ObjectToBeLifted.CompareTag("ShopGlok") && Counter == 0)
+                {
+                    PickUpShops(ObjectToBeLifted);
+                }
+                     
+                if (Counter == 1 && Input.GetKey(KeyCode.E))
+                {
+                    Counter = 0;
+                    
+                }
+            }
+        }
+    }
+
+         
+    public GameObject PickUpWeapons(GameObject ObjectForPickUp)
+    {        
         if (MainCounter == 1 && Counter == 0)
         {
             GameObject CopyObject = Instantiate(ObjectToBeLifted);
@@ -201,8 +197,8 @@ public class PickUp : MethodsFromDevelopers
         }
         return ObjectForPickUp;
     }
-       
-    private GameObject PickUpShops(GameObject ShopForPickUp)
+
+    public GameObject PickUpShops(GameObject ShopForPickUp)
     {
         
         if (!SlotControler.MyShope01 && SlotControler.SlotShpo01 &&Counter == 0)

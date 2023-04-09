@@ -41,7 +41,7 @@ public class SlotControler : MethodsFromDevelopers
     protected int Counter;
     private int SlotCounter;    
     //
-    [SerializeField] private GameObject ObjectInHand;
+    [SerializeField] public GameObject ObjectInHand;
 
     //Fiset for other Scripts 
     [SerializeField] private PickUp PickUp;
@@ -98,43 +98,40 @@ public class SlotControler : MethodsFromDevelopers
 
     void Appropriation01()
     {
-        if (MyKnife01 && ObjectInHand == null)
+        if (SlotHand && Input.GetKey("1"))
         {
-            if (SlotCounter == 0 && Counter == 0)
+            if (MyKnife01 && ObjectInHand == null && Counter == 0)
             {
+                PutObjects(MyKnife01,SlotHand);
+
                 ObjectInHand = MyKnife01.gameObject;
-                
-                SlotCounter = 1;
                 Counter = 1;
-            
             }
-        }
+            else if (MyKnife01 && SlotKnife01 && ObjectInHand == MyKnife01.gameObject && Counter == 1)
+            {
+                PutObjects(MyKnife01, SlotKnife01);
+                ObjectInHand = null;
+                if (MyPistol01)
+                {
+                    PutObjects(MyPistol01, SlotHand);
+                }
 
-        //if ()
-        {
 
+                ObjectInHand = MyKnife01.gameObject;
+                Counter = 1;
+
+            }
+            //else if ()
+            {
+
+            }
+            //else if ()
+            {
+
+            }
         }
         
-        if (ObjectInHand == MyWeapon01.gameObject)
-        {
-            if (SlotCounter == 3 && Counter == 0)
-            {
-                ObjectInHand = MyWeapon01.gameObject;
 
-                SlotCounter = 4;
-                Counter = 1;
-            }
-        }
-        else if (ObjectInHand == MyWeapon02.gameObject)
-        {
-            if (SlotCounter == 4 && Counter == 0)
-            {
-                ObjectInHand = MyWeapon02.gameObject;
-
-                SlotCounter = 5;
-                Counter = 1;
-            }
-        }
     }
 
     

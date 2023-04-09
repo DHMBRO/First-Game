@@ -18,7 +18,8 @@ public class Move1F : MonoBehaviour
     }
         
 
-    void Update()
+
+    public void Move()
     {
         if (PlayerTransform)
         {
@@ -42,6 +43,7 @@ public class Move1F : MonoBehaviour
             {
 
             }
-        }                
+        }
+
     }
 }
