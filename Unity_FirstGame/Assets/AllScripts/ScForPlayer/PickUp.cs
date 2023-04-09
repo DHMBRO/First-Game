@@ -12,7 +12,6 @@ public class PickUp : MethodsFromDevelopers
     private SlotControler SlotControler;
     private Ray RayForFindingObject;
     
-
     void Start()
     {
         SlotControler = gameObject.GetComponent<SlotControler>();        
@@ -26,7 +25,13 @@ public class PickUp : MethodsFromDevelopers
         {
             if (Input.GetKey(KeyCode.E) && ObjectToBeLifted)
             {
+                //Pick up weapons 
                 if (ObjectToBeLifted.CompareTag("Glok") && Counter == 0)
+                {
+                    MainCounter = 1;
+                    PickUpWeapons(ObjectToBeLifted);
+                }
+                else if (ObjectToBeLifted.CompareTag("M1911") && Counter == 0)
                 {
                     MainCounter = 1;
                     PickUpWeapons(ObjectToBeLifted);
@@ -36,23 +41,38 @@ public class PickUp : MethodsFromDevelopers
                     MainCounter = 2;
                     PickUpWeapons(ObjectToBeLifted);
                 }                                
-                else if (ObjectToBeLifted.CompareTag("M4") && Counter == 0)
+                else if (ObjectToBeLifted.CompareTag("AK47") && Counter == 0)
                 {                    
                     MainCounter = 2;
                     PickUpWeapons(ObjectToBeLifted);                 
                 }
-
-                
-                if (ObjectToBeLifted.CompareTag("ShopGlok") && Counter == 0)
+                else if (ObjectToBeLifted.CompareTag("M249") && Counter == 0)
+                {
+                    MainCounter = 2;
+                    PickUpWeapons(ObjectToBeLifted);
+                }
+                //Pick up shops 
+                if (ObjectToBeLifted.CompareTag("ShopM4") && Counter == 0)
                 {
                     PickUpShops(ObjectToBeLifted);                    
                 }
-                else if (ObjectToBeLifted.CompareTag("ShopM4") && Counter == 0)
+                else if (ObjectToBeLifted.CompareTag("ShopAK47") && Counter == 0)
                 {
                     PickUpShops(ObjectToBeLifted);
-                
                 }
-                
+                else if (ObjectToBeLifted.CompareTag("ShopM249") && Counter == 0)
+                {
+                    PickUpShops(ObjectToBeLifted);
+                }
+                else if (ObjectToBeLifted.CompareTag("ShopM1911") && Counter == 0)
+                {
+                    PickUpShops(ObjectToBeLifted);
+                }
+                else if (ObjectToBeLifted.CompareTag("ShopGlok") && Counter == 0)
+                {
+                    PickUpShops(ObjectToBeLifted);                
+                }
+                     
             }            
                 
         }
@@ -61,6 +81,7 @@ public class PickUp : MethodsFromDevelopers
         {
             Counter = 0;
         }
+                        
     }
 
     void RayForLoot()
@@ -73,9 +94,9 @@ public class PickUp : MethodsFromDevelopers
 
             if (Physics.Raycast(RayForPickUp, out RaycastHit HitResult, DistanceForRay))
             {
-                
+
                 // Pick Up all weapon                 
-                if (HitResult.collider.gameObject.tag == "M4")
+                if (HitResult.collider.gameObject.tag == "M1911")
                 {
                     ObjectToBeLifted = HitResult.collider.gameObject;
                 }
@@ -83,6 +104,20 @@ public class PickUp : MethodsFromDevelopers
                 {
                     ObjectToBeLifted = HitResult.collider.gameObject;
                 }
+                else if (HitResult.collider.gameObject.tag == "M4")
+                {
+                    ObjectToBeLifted = HitResult.collider.gameObject;
+                }
+                else if (HitResult.collider.gameObject.tag == "AK47")
+                {
+                    ObjectToBeLifted = HitResult.collider.gameObject;
+                }
+                else if (HitResult.collider.gameObject.tag == "M249")
+                {
+                    ObjectToBeLifted = HitResult.collider.gameObject;
+                }
+
+
                 // Pick Up Shop For all
                 if (HitResult.collider.gameObject.tag == "ShopM4")
                 {
@@ -92,10 +127,12 @@ public class PickUp : MethodsFromDevelopers
                 {
                     ObjectToBeLifted = HitResult.collider.gameObject;
                 }
-                else if (HitResult.collider.gameObject.tag == "Untagged")
+                else if (HitResult.collider.gameObject.tag == "ShopAK47")
                 {
-                    ObjectToBeLifted = null;
+                    ObjectToBeLifted = HitResult.collider.gameObject;
                 }
+                
+                
 
             }
             else

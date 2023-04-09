@@ -67,31 +67,58 @@ public class SlotControler : MethodsFromDevelopers
         MovingGunForSlots();
         
     }
-
-
-
-
+        
     void MovingGunForSlots()
     {
         if (SlotHand && Input.GetKey("1"))
         {
-           
+            Appropriation01();
+            
         }
     }
 
     void Appropriation01()
     {
-
-        bool HaveKnife = MyKnife01 && SlotKnife01;
-        bool HavePistol = MyPistol01 && SlotPistol01;
-        bool HaveWeapon01 = MyWeapon01 && SlotBack01;
-        bool HaveWeapon02 = MyWeapon02 && SlotBack02;
-
-        bool CounterIs1 = Counter == 0;
-
+        if (MyKnife01 && ObjectInHand == null)
+        {
+            if (SlotCounter == 0 && Counter == 0)
+            {
+                ObjectInHand = MyKnife01.gameObject;
+                
+                SlotCounter = 1;
+                Counter = 1;
             
+            }
+        }
+
+        //if ()
+        {
+
+        }
+        
+        if (ObjectInHand == MyWeapon01.gameObject)
+        {
+            if (SlotCounter == 3 && Counter == 0)
+            {
+                ObjectInHand = MyWeapon01.gameObject;
+
+                SlotCounter = 4;
+                Counter = 1;
+            }
+        }
+        else if (ObjectInHand == MyWeapon02.gameObject)
+        {
+            if (SlotCounter == 4 && Counter == 0)
+            {
+                ObjectInHand = MyWeapon02.gameObject;
+
+                SlotCounter = 5;
+                Counter = 1;
+            }
+        }
     }
 
+    
 
 
 
