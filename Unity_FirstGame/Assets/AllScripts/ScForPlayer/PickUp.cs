@@ -12,11 +12,22 @@ public class PickUp : MethodsFromDevelopers
     private SlotControler SlotControler;
     private Ray RayForFindingObject;
     
+
     void Start()
     {
         SlotControler = gameObject.GetComponent<SlotControler>();        
     }
 
+    private void Update()
+    {
+        
+        if (Counter == 1 && Input.GetKeyUp(KeyCode.E))
+        {
+            Counter = 0;
+
+        }
+        
+    }
 
     public void RayForLoot()
     {
@@ -66,8 +77,6 @@ public class PickUp : MethodsFromDevelopers
                     ObjectToBeLifted = HitResult.collider.gameObject;
                 }
 
-
-
             }
             else
             {
@@ -81,7 +90,7 @@ public class PickUp : MethodsFromDevelopers
     {        
         if (ObjectToBeLifted)
         {
-            if (Input.GetKey(KeyCode.E) && ObjectToBeLifted)
+            if (Input.GetKeyDown(KeyCode.E) && ObjectToBeLifted)
             {
                 //Pick up weapons 
                 if (ObjectToBeLifted.CompareTag("Glok") && Counter == 0)
@@ -131,11 +140,7 @@ public class PickUp : MethodsFromDevelopers
                     PickUpShops(ObjectToBeLifted);
                 }
                      
-                if (Counter == 1 && Input.GetKey(KeyCode.E))
-                {
-                    Counter = 0;
-                    
-                }
+              
             }
         }
     }

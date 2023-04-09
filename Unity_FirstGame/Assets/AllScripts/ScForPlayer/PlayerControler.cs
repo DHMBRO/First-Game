@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerControler : MonoBehaviour
@@ -20,19 +18,13 @@ public class PlayerControler : MonoBehaviour
         PickUp = gameObject.GetComponent<PickUp>();
         SlotControler = gameObject.GetComponent<SlotControler>();
         ShootControler = gameObject.GetComponent<ShootControler>();
-
+        
     }
-
     
     void Update()
     {
         Moving();
-        ShootControlerForAllWeapon();
-
-        
         PickUpAll();
-        SlotControlerForAll();
-
     }
     
     void Moving()
@@ -46,15 +38,14 @@ public class PlayerControler : MonoBehaviour
         { 
             SlotControler.ObjectInHand.GetComponent<ShootControler>();
         }
-        
-        
-
+                
     }
 
     void PickUpAll()
-    {        
+    {
         PickUp.RayForLoot();
-        PickUp.ComplertingTheLink();        
+        PickUp.ComplertingTheLink();
+
     }
 
     void SlotControlerForAll()
