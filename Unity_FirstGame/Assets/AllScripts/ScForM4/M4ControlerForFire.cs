@@ -5,38 +5,43 @@ public class M4ControlerForFire : MonoBehaviour
     [SerializeField] private GameObject MyWeapon;
     [SerializeField] private GameObject Muzzle;
     [SerializeField] private GameObject Bullet;
+    [SerializeField] private GameObject Collet;
+    [SerializeField] private GameObject ColletPoint;
     //[SerializeField] private float Sens = 0.5f;
-   
+
     [SerializeField] public float ShotDeley = 1.0f;
     [SerializeField] public float ShotTime = 0.0f;
 
     [SerializeField] private Rigidbody WeaonRigidbody;
     [SerializeField] private Transform CameraTransform;
     [SerializeField] private SlotControler MySlotControler;
+    private float ColletSpeed = 3.0f;
     private Transform ShootPoint;
     private float BulletSpeed = 100;
     void Start()
     {
+
         MySlotControler = gameObject.GetComponent<SlotControler>();
-        WeaonRigidbody = gameObject.GetComponent<Rigidbody>();        
+        WeaonRigidbody = gameObject.GetComponent<Rigidbody>();
     }
 
     void Update()
     {
-        
 
-        if (gameObject.transform.parent && CameraTransform && gameObject.transform.parent.CompareTag("SlotForUse")) 
+        Debug.Log(gameObject.transform.parent && CameraTransform && gameObject.transform.parent.CompareTag("SlotForUse"));
+        if (gameObject.transform.parent && CameraTransform && gameObject.transform.parent.CompareTag("SlotForUse"))
         {
+            Debug.Log("work");
             float MouseX = Input.GetAxis("Mouse X");
             float MouseY = Input.GetAxis("Mouse Y");
 
             //gameObject.transform.Rotate(-MouseY * new Vector3(Sens, 0.0f, 0.0f));
             //transform.Rotate(MouseX * new Vector3(0.0f, Sens, 0.0f));
 
-           /* transform.rotation = CameraTransform.rotation;*/
+            /* transform.rotation = CameraTransform.rotation;*/
             if (MyWeapon && Muzzle && Bullet)
             {
-                GameObject(gameObject,Muzzle,Bullet);
+                GameObject(gameObject, Muzzle, ColletPoint, Collet, Bullet);
                 Debug.Log("I can fire");
             }
             else if (!MyWeapon)
@@ -53,7 +58,7 @@ public class M4ControlerForFire : MonoBehaviour
             }
 
         }
-
+        
     }
 
     void GuidanceWeapon()
@@ -62,7 +67,7 @@ public class M4ControlerForFire : MonoBehaviour
 
 
     }
-    GameObject GameObject(GameObject Weapon, GameObject Muzzle, GameObject Bullet )
+    GameObject GameObject(GameObject Weapon, GameObject Muzzle, GameObject ColletPoint, GameObject Collet, GameObject Bullet)
     {
         Debug.Log("Is work ");
         Vector3 TargetPoint = CameraTransform.position + CameraTransform.forward * 100.0f;
@@ -71,17 +76,22 @@ public class M4ControlerForFire : MonoBehaviour
         {
             Debug.DrawRay(CameraTransform.transform.position, CameraTransform.transform.forward * 100.0f, Color.black);
             TargetPoint = Hitresult.point;
-        }              
-        if ( Input.GetKey(KeyCode.Mouse0) && Time.time >= ShotTime)
+        }
+        if (Input.GetKey(KeyCode.Mouse0) && Time.time >= ShotTime)
         {
+            Debug.Log("Shoot");
             ShotTime = ShotDeley + Time.time;
             GameObject newBullet = Instantiate(Bullet, Muzzle.transform.position, Quaternion.LookRotation(TargetPoint - Muzzle.transform.position));
             newBullet.transform.rotation = Muzzle.transform.rotation;
 
             Rigidbody newBulletRB = newBullet.GetComponent<Rigidbody>();
-            
+
             newBulletRB.AddForce(newBullet.transform.forward * BulletSpeed, ForceMode.Impulse);
-            
+
+            GameObject newCollet = Instantiate(Bullet, Muzzle.transform.position, Quaternion.LookRotation(TargetPoint - Muzzle.transform.position));
+            newCollet.transform.rotation = Muzzle.transform.rotation;
+            Rigidbody newColletRB = newBullet.GetComponent<Rigidbody>();
+            newColletRB.AddRelativeForce(ColletPoint.transform.forward * ColletSpeed, ForceMode.Impulse);
         }
         return Bullet;
     }
