@@ -46,8 +46,8 @@ public class SlotControler : MethodsFromDevelopers
     //Fiset for other Scripts 
     [SerializeField] private PickUp PickUp;
     [SerializeField] private InventoryControler InventoryControler;
-
-
+    //
+    
 
     void Start()
     {
@@ -59,8 +59,7 @@ public class SlotControler : MethodsFromDevelopers
 
     void Update()
     {
-        MovingGunForSlots();
-
+        MovingGunForSlots();        
         if (Counter == 1 && Input.GetKeyUp("1"))
         {
             Counter = 0;
@@ -79,39 +78,27 @@ public class SlotControler : MethodsFromDevelopers
             
         }
     }
-
-    void UseM4()
-    {
-        if (SlotHand && Input.GetKey("1"))
-        {
-            if (MyWeapon01 && Counter == 0)
-            {
-                PutObjects(MyWeapon01,SlotHand);
-                ObjectInHand = MyWeapon01.gameObject;
-                Counter = 1;
-            }
-            else if (MyWeapon01 && SlotBack01 && Counter == 0)
-            {
-                PutObjects(MyWeapon01,SlotBack01);
-                ObjectInHand = null;
-                Counter = 1;
-            }            
-        }        
-    }
-
+   
     void Appropriation01()
     {
-        if (SlotHand && Input.GetKeyDown("1"))
+        
+        bool ObjectInHand01 = MyKnife01 && ObjectInHand == MyKnife01.gameObject;
+        bool ObjectInHand02 = MyPistol01 && ObjectInHand == MyPistol01.gameObject;
+        bool ObjectInHand03 = MyWeapon01 && ObjectInHand == MyWeapon01.gameObject;
+        bool ObjectInHand04 = MyWeapon02 && ObjectInHand == MyWeapon02.gameObject;
+
+        bool Input01 = Input.GetKeyDown("1");
+
+        if (SlotHand && Input01)
         {
             if (MyKnife01 && ObjectInHand == null && Counter == 0)
             {
-                PutObjects(MyKnife01,SlotHand);
+                PutObjects(MyKnife01, SlotHand);
 
                 ObjectInHand = MyKnife01.gameObject;
-                Counter = 1;
-                Debug.Log("I take Knife");
+                Counter = 1;                
             }
-            else if (MyKnife01 && SlotKnife01 && ObjectInHand == MyKnife01.gameObject && Counter == 0)
+            else if (MyKnife01 && SlotKnife01 && ObjectInHand01 && Counter == 0)
             {
                 PutObjects(MyKnife01, SlotKnife01);
                 ObjectInHand = null;
@@ -119,52 +106,88 @@ public class SlotControler : MethodsFromDevelopers
                 if (MyPistol01)
                 {
                     PutObjects(MyPistol01, SlotHand);
-                    ObjectInHand = MyPistol01.gameObject;
+                    ObjectInHand = MyPistol01.gameObject;                    
+                    Counter = 1;
+                    
                 }
-                Debug.Log("I take pistol");
-                Counter = 1;
-
-            }
-            else if (MyWeapon01 && SlotBack01 && ObjectInHand == MyPistol01.gameObject && Counter == 0)
-            {
-                PutObjects(MyPistol01, SlotPistol01);
-                ObjectInHand = null;                
-                
-                if (MyWeapon01)
+                else if (!ObjectInHand02 && MyWeapon01)
                 {
                     PutObjects(MyWeapon01, SlotHand);
                     ObjectInHand = MyWeapon01.gameObject;
+                    Counter = 1;
+
+                }
+                else if (!ObjectInHand02 && !ObjectInHand03 && MyWeapon02)
+                {
+                    PutObjects(MyWeapon02, SlotHand);
+                    ObjectInHand = MyWeapon02.gameObject;
+                    Counter = 1;
+
+                }
+                
+            }            
+            else if (MyWeapon01 && SlotBack01 && MyPistol01 && Counter == 0)
+            {
+                PutObjects(MyPistol01, SlotPistol01);
+                ObjectInHand = null;
+                Counter = 1;
+                
+                if (!ObjectInHand02 && ObjectInHand03)
+                {
                     
                 }
-                Debug.Log("I take weapon 1");
-                Counter = 1;
+                else if (!ObjectInHand02 && !ObjectInHand03 && ObjectInHand04)
+                {
+
+                }
+
             }
-            else if (MyWeapon02 && SlotBack02 && ObjectInHand == MyWeapon01.gameObject && Counter == 0)
+            /*
+            else if (MyWeapon02 && SlotBack01 && ObjectInHand03 && Counter == 0)
             {
-                PutObjects(MyWeapon01,SlotBack01);
+                PutObjects(MyWeapon01, SlotBack01);
                 ObjectInHand = null;
                 
                 if (MyWeapon02)
                 {
                     PutObjects(MyWeapon02, SlotHand);
                     ObjectInHand = MyWeapon02.gameObject;
-                }
-                Debug.Log("I take weapon 2");
+                }                
                 Counter = 1;
             }
-            else if (MyWeapon02 && SlotBack02 && ObjectInHand == MyWeapon02.gameObject && Counter == 0)
+            */
+
+
+            ////////////////////////////////////////////////////////////////
+            if (MyPistol01 && SlotPistol01 && ObjectInHand02 && Counter == 0)
             {
-                PutObjects(MyWeapon02,SlotBack02);
+                PutObjects(MyPistol01, SlotPistol01);
                 
                 ObjectInHand = null;
-                                                                
+                                                                                
+                Counter = 1;
+
+            }
+            else if (MyWeapon01 && SlotBack01 && ObjectInHand03 && Counter == 0)
+            {
+                PutObjects(MyWeapon01, SlotBack01);
+
+                ObjectInHand = null;
+
+                Counter = 1;
+
+            }
+            else if (MyWeapon02 && SlotBack02 && ObjectInHand04 && Counter == 0)
+            {
+                PutObjects(MyWeapon02, SlotBack02);
+
+                ObjectInHand = null;
+
                 Counter = 1;
 
             }
 
-        }
-        
-
+        }        
     }
 
     
