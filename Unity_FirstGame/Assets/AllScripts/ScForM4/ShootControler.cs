@@ -21,6 +21,7 @@ public class ShootControler : MonoBehaviour
 
     private string NameForWeapon;
     private bool CanFire = false;
+    
 
     void Start()
     {
