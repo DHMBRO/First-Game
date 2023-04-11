@@ -54,7 +54,7 @@ public class InventoryControler : MonoBehaviour
 
 
          Destroy(Original);
-                            
+                             
          M4Ammo += 10;
         Debug.Log("Ammp += 10");
     }
