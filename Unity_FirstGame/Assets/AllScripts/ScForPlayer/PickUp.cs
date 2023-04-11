@@ -53,7 +53,7 @@ public class PickUp : MethodsFromDevelopers
             else
             {
                 ObjectToBeLifted = null;
-            }
+            }            
         }
     }
 
@@ -182,7 +182,7 @@ public class PickUp : MethodsFromDevelopers
             //if (!InventoryControler.ObjectInInventory[i] && Counter == 0)
             {
                 GameObject CopyObject = ObjectToPickUp.gameObject;
-                InventoryControler.ObjectInInventory[0] = CopyObject.gameObject;
+                //InventoryControler.ObjectInInventory[0] = CopyObject.gameObject;
 
                 GameObject GameObject = ObjectToPickUp.gameObject;
                 Destroy(GameObject);
