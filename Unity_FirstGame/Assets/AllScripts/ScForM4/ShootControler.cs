@@ -14,12 +14,12 @@ public class ShootControler : MonoBehaviour
     [SerializeField] private Rigidbody WeaonRigidbody;
     [SerializeField] public Transform CameraTransform;
     [SerializeField] private SlotControler MySlotControler;
+    
 
     private float ColletSpeed = 3.0f;
     private Transform ShootPoint;
     private float BulletSpeed = 100;
-
-    private string NameForWeapon;
+        private string NameForWeapon;
     private bool CanFire = false;
     
 

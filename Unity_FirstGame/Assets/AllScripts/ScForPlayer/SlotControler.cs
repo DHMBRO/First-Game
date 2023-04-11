@@ -59,30 +59,23 @@ public class SlotControler : MethodsFromDevelopers
 
     void Update()
     {
-        MovingGunForSlots();
+        
+                
+    }
+        
+    public void MovingGunForSlots()
+    {
+        Appropriation01();
         if (!MyWeapon01 && MyWeapon02)
         {
             MyWeapon01 = MyWeapon02;
             PutObjects(MyWeapon01, SlotBack01);
 
-            MyWeapon02 = null;            
+            MyWeapon02 = null;
         }
-        if (Counter == 1 && Input.GetKeyUp("1"))
+        else if (Counter == 1 && Input.GetKeyUp("1"))
         {
             Counter = 0;
-        }
-        
-
-
-    }
-        
-    void MovingGunForSlots()
-    {
-        if (SlotHand && Input.GetKey("1"))
-        {
-            
-            Appropriation01();
-            
         }
     }
    

@@ -25,6 +25,7 @@ public class PlayerControler : MonoBehaviour
     {
         Moving();
         PickUpAll();
+        SlotControlerForAll();
     }
     
     void Moving()
@@ -34,10 +35,6 @@ public class PlayerControler : MonoBehaviour
 
     void ShootControlerForAllWeapon()
     {
-        if (SlotControler.ObjectInHand)
-        { 
-            SlotControler.ObjectInHand.GetComponent<ShootControler>();
-        }
                 
     }
 
@@ -50,7 +47,8 @@ public class PlayerControler : MonoBehaviour
 
     void SlotControlerForAll()
     {
-
+        SlotControler.MovingGunForSlots();
+        
     }
 
 }

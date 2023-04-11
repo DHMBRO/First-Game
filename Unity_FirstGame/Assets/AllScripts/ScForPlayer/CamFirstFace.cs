@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class CamFirstFace : MonoBehaviour
 {    
-    [SerializeField] private Transform Player;                    
-    [SerializeField] private float Sens = 0.5f;        
+    [SerializeField] private Transform Player;
+    [SerializeField] public Transform ObjectRay;
+    [SerializeField] private float Sens = 0.5f;
     
 
     private void Start()

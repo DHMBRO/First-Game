@@ -5,7 +5,7 @@ public class Camera : MonoBehaviour
     [SerializeField] public GameObject TargetCamera;
     [SerializeField] Vector3 Offset;
     [SerializeField] float MouseSens = 1.0f;
-    [SerializeField] float MoveBack = 5.0f;
+    [SerializeField] float MoveBack = 5.0f;    
 
     private void Start()
     {
@@ -37,14 +37,6 @@ public class Camera : MonoBehaviour
         Vector3 TargetPosition = TargetCamera.transform.TransformPoint(Offset);
         transform.position = TargetPosition - transform.forward * MoveBack;
     }
-    public RaycastHit Raycast()
-    {
-        RaycastHit Hitresult;
-        
-        
-            Physics.Raycast(TargetCamera.transform.position, TargetCamera.transform.forward, out Hitresult);
-            return Hitresult;
-        
-        
-    }
+
+    
 }

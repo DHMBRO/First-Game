@@ -4,18 +4,24 @@ public class PickUp : MethodsFromDevelopers
 {
     [SerializeField] public GameObject ObjectToBeLifted;
     [SerializeField] private Transform TransformForCamera;
-    
+    [SerializeField] private CamFirstFace ReferenceForCamera;
+
     private float DistanceForRay = 2.0f;
     private int MainCounter = 0;
     private int Counter = 0;
 
-    private SlotControler SlotControler;
-    private Ray RayForFindingObject;
+    private SlotControler SlotControler;    
     
 
     void Start()
     {
-        SlotControler = gameObject.GetComponent<SlotControler>();        
+        if (TransformForCamera)
+        {
+            ReferenceForCamera = TransformForCamera.gameObject.GetComponent<CamFirstFace>();
+        }
+        
+        SlotControler = gameObject.GetComponent<SlotControler>();
+        
     }
 
     private void Update()
@@ -31,11 +37,11 @@ public class PickUp : MethodsFromDevelopers
 
     public void RayForLoot()
     {
-        if (TransformForCamera)
+        if (TransformForCamera && ReferenceForCamera)
         {
-            Ray RayForPickUp = new Ray(TransformForCamera.transform.position, TransformForCamera.transform.forward);
+            Ray RayForPickUp = new Ray(ReferenceForCamera.ObjectRay.transform.position, ReferenceForCamera.ObjectRay.transform.forward);
 
-            Debug.DrawRay(TransformForCamera.transform.position, TransformForCamera.transform.forward * DistanceForRay, Color.red);
+            Debug.DrawRay(ReferenceForCamera.ObjectRay.position, ReferenceForCamera.ObjectRay.forward * DistanceForRay, Color.red);
 
             if (Physics.Raycast(RayForPickUp, out RaycastHit HitResult, DistanceForRay))
             {
