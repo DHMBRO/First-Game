@@ -26,23 +26,30 @@ public class Move1F : MonoBehaviour
             if (Input.GetKey(KeyCode.W))
             {
                 PlayerTransform.transform.localPosition += transform.forward * SpeedForMove;
+            }            
+            else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
+            {
+                PlayerTransform.transform.localPosition += transform.forward * SpeedForMove;
+                PlayerTransform.transform.localPosition += transform.right * SpeedForMove;
             }
-            else if (Input.GetKey(KeyCode.S))
+            else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
+            {
+                PlayerTransform.transform.localPosition += transform.forward * SpeedForMove;
+                PlayerTransform.transform.localPosition += -transform.right * SpeedForMove;
+            }                                    
+            else if (Input.GetKey(KeyCode.S))            
             {
                 PlayerTransform.transform.localPosition -= transform.forward * SpeedForMove;
-            }
+            }                                                            
             else if (Input.GetKey(KeyCode.D))
             {
                 PlayerTransform.transform.localPosition += transform.right * SpeedForMove;
-            }
+            }                                                
             else if (Input.GetKey(KeyCode.A))
             {
                 PlayerTransform.transform.localPosition += -transform.right * SpeedForMove;
             }
-            else if (Input.GetKey(KeyCode.Space))
-            {
-
-            }
+            
         }
 
     }
