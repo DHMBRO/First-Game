@@ -87,9 +87,9 @@ public class SlotControler : MethodsFromDevelopers
         bool ObjectInHand03 = MyWeapon01 && ObjectInHand == MyWeapon01.gameObject;
         bool ObjectInHand04 = MyWeapon02 && ObjectInHand == MyWeapon02.gameObject;
 
-        bool Input01 = Input.GetKeyDown("1");
+        bool InputSlots = Input.GetKeyDown("1");
 
-        if (SlotHand && Input01)
+        if (SlotHand && InputSlots)
         {
             if (MyKnife01 && ObjectInHand == null && Counter == 0)
             {                

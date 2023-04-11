@@ -10,8 +10,8 @@ public class PickUp : MethodsFromDevelopers
     private int MainCounter = 0;
     private int Counter = 0;
 
-    private SlotControler SlotControler;    
-    
+    private SlotControler SlotControler;
+    private InventoryControler InventoryControler;
 
     void Start()
     {
@@ -19,7 +19,7 @@ public class PickUp : MethodsFromDevelopers
         {
             ReferenceForCamera = TransformForCamera.gameObject.GetComponent<CamFirstFace>();
         }
-        
+        InventoryControler = gameObject.GetComponent<InventoryControler>(); 
         SlotControler = gameObject.GetComponent<SlotControler>();
         
     }
@@ -30,7 +30,6 @@ public class PickUp : MethodsFromDevelopers
         if (Counter == 1 && Input.GetKeyUp(KeyCode.E))
         {
             Counter = 0;
-
         }
         
     }
@@ -45,44 +44,13 @@ public class PickUp : MethodsFromDevelopers
 
             if (Physics.Raycast(RayForPickUp, out RaycastHit HitResult, DistanceForRay))
             {
+                
 
-                // Pick Up all weapon                 
-                if (HitResult.collider.gameObject.tag == "M1911")
-                {
-                    ObjectToBeLifted = HitResult.collider.gameObject;
-                }
-                else if (HitResult.collider.gameObject.tag == "Glok")
-                {
-                    ObjectToBeLifted = HitResult.collider.gameObject;
-                }
-                else if (HitResult.collider.gameObject.tag == "M4")
-                {
-                    ObjectToBeLifted = HitResult.collider.gameObject;
-                }
-                else if (HitResult.collider.gameObject.tag == "AK47")
-                {
-                    ObjectToBeLifted = HitResult.collider.gameObject;
-                }
-                else if (HitResult.collider.gameObject.tag == "M249")
-                {
-                    ObjectToBeLifted = HitResult.collider.gameObject;
-                }
-
-
-                // Pick Up Shop For all
-                if (HitResult.collider.gameObject.tag == "ShopM4")
-                {
-                    ObjectToBeLifted = HitResult.collider.gameObject;
-                }
-                else if (HitResult.collider.gameObject.tag == "ShopGlok")
-                {
-                    ObjectToBeLifted = HitResult.collider.gameObject;
-                }
-                else if (HitResult.collider.gameObject.tag == "ShopAK47")
-                {
-                    ObjectToBeLifted = HitResult.collider.gameObject;
-                }
-
+                PickUpWeapons(HitResult);
+                
+                PickUpShops(HitResult);
+                
+                
             }
             else
             {
@@ -91,9 +59,8 @@ public class PickUp : MethodsFromDevelopers
         }
     }
 
-
     public void ComplertingTheLink()
-    {        
+    {
         if (ObjectToBeLifted)
         {
             if (Input.GetKeyDown(KeyCode.E) && ObjectToBeLifted)
@@ -145,13 +112,77 @@ public class PickUp : MethodsFromDevelopers
                 {
                     PickUpShops(ObjectToBeLifted);
                 }
-                     
-              
+
+
             }
         }
     }
 
-         
+
+    public GameObject PickUpOther(GameObject ObjectToPickUp)
+    {
+        GameObject CopyObject = Instantiate(ObjectToBeLifted);
+        Transform TransformForCopy = CopyObject.GetComponent<Transform>();
+        GameObject GameObject = ObjectToBeLifted.gameObject;
+
+        CopyObject.transform.position = ObjectToBeLifted.transform.position;
+        CopyObject.transform.rotation = ObjectToBeLifted.transform.rotation;
+
+        SlotControler.MyPistol01 = TransformForCopy;
+        PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01);
+
+        Destroy(GameObject);
+        Counter++;
+
+        return ObjectToPickUp;
+    }
+
+    private RaycastHit PickUpWeapons(RaycastHit RayResult)
+    {
+        if (RayResult.collider.gameObject.tag == "M1911")
+        {
+            ObjectToBeLifted = RayResult.collider.gameObject;
+        }
+        else if (RayResult.collider.gameObject.tag == "Glok")
+        {
+            ObjectToBeLifted = RayResult.collider.gameObject;
+        }
+        else if (RayResult.collider.gameObject.tag == "M4")
+        {
+            ObjectToBeLifted = RayResult.collider.gameObject;
+        }
+        else if (RayResult.collider.gameObject.tag == "AK47")
+        {
+            ObjectToBeLifted = RayResult.collider.gameObject;
+        }
+        else if (RayResult.collider.gameObject.tag == "M249")
+        {
+            ObjectToBeLifted = RayResult.collider.gameObject;
+        }
+
+
+        return RayResult;
+    }
+
+    private RaycastHit PickUpShops(RaycastHit RayResult)
+    {
+        if (RayResult.collider.gameObject.tag == "ShopM4")
+        {
+            ObjectToBeLifted = RayResult.collider.gameObject;
+        }
+        else if (RayResult.collider.gameObject.tag == "ShopGlok")
+        {
+            ObjectToBeLifted = RayResult.collider.gameObject;
+        }
+        else if (RayResult.collider.gameObject.tag == "ShopAK47")
+        {
+            ObjectToBeLifted = RayResult.collider.gameObject;
+        }
+      
+        return RayResult;
+    }
+
+                
     public GameObject PickUpWeapons(GameObject ObjectForPickUp)
     {        
         if (MainCounter == 1 && Counter == 0)
