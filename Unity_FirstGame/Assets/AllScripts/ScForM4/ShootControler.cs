@@ -91,7 +91,7 @@ public class ShootControler : MonoBehaviour
     }
 
 
-    GameObject Shoot(GameObject Weapon, GameObject Muzzle, GameObject TransformCamera, GameObject ColletPoint, GameObject Collet, GameObject Bullet)
+    void Shoot(GameObject Weapon, GameObject Muzzle, GameObject TransformCamera, GameObject ColletPoint, GameObject Collet, GameObject Bullet)
     {
         if (CanFire)
         {
@@ -121,6 +121,6 @@ public class ShootControler : MonoBehaviour
             }
         }
         
-        return Bullet;
+        
     }
 }

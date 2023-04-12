@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -277,6 +277,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 948341d46a68ec740b2923ba90adbc42, type: 3}
+--- !u!1 &277940195 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 758934435905196194, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
+  m_PrefabInstance: {fileID: 1452546880}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &277940199 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8740764673410187273, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
+  m_PrefabInstance: {fileID: 1452546880}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277940195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc25977b344794640ba2c6a96042d896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &277940202 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 7220017703158707578, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
+  m_PrefabInstance: {fileID: 1452546880}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &277940206 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 780860326346338877, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
+  m_PrefabInstance: {fileID: 1452546880}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &324275448
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1588,9 +1614,25 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5342706582384582949, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 277940195}
+    - target: {fileID: 5342706582384582949, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+      propertyPath: Rigidbody
+      value: 
+      objectReference: {fileID: 277940202}
+    - target: {fileID: 5342706582384582949, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+      propertyPath: StelsScript
+      value: 
+      objectReference: {fileID: 277940199}
+    - target: {fileID: 5342706582384582949, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+      propertyPath: SpeedForMove
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342706582384582949, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
       propertyPath: PlayerTransform
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 277940206}
     - target: {fileID: 5428616973792416952, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
       propertyPath: m_Name
       value: Zombie1A
@@ -1637,6 +1679,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7280841711503965072, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9059890606803252926, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+      propertyPath: m_Size.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9059890606803252926, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+      propertyPath: m_Size.z
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9059890606803252926, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+      propertyPath: m_Center.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -108,8 +108,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7280841711503965072}
   - component: {fileID: 2053234066314126869}
-  - component: {fileID: 9059890606803252926}
   - component: {fileID: 5342706582384582949}
+  - component: {fileID: 8380841528293721671}
   m_Layer: 0
   m_Name: Zombie1A
   m_TagString: Untagged
@@ -150,19 +150,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!65 &9059890606803252926
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5428616973792416952}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4, y: 2, z: 7}
-  m_Center: {x: 0, y: 0, z: 4.1098776}
 --- !u!114 &5342706582384582949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +166,19 @@ MonoBehaviour:
   StelsScript: {fileID: 0}
   PlayerTransform: {fileID: 7280841711503965072}
   Rigidbody: {fileID: 0}
+--- !u!135 &8380841528293721671
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5428616973792416952}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 8.27
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8349985219191236876
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,8 @@ public class LocateScript : MonoBehaviour
     [SerializeField] public StelsScript StelsScript;
     [SerializeField] private Transform PlayerTransform;
     [SerializeField] protected Rigidbody Rigidbody;
+    [SerializeField] protected GameObject Player;
+    [SerializeField] private float SpeedForMove = 0.01f;
     void Start()
     {
         Rigidbody = gameObject.GetComponent<Rigidbody>();   
@@ -36,15 +38,15 @@ public class LocateScript : MonoBehaviour
     }
     void Update()
     {
-       
 
+        Vector3 target =  gameObject.transform.forward - Player.transform.forward;
         if (Agr && PlayerTransform && Rigidbody && StelsScript.StelsOn == false)
         {
 
             Rigidbody.isKinematic = false;
-            
-            transform.position = Vector3.MoveTowards(transform.position, PlayerTransform.transform.position, Time.deltaTime);
            
+            transform.localPosition += transform.forward * SpeedForMove;
+            transform.rotation = Quaternion.LookRotation(target);
         }
     }
 }
