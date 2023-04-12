@@ -18,8 +18,7 @@ public class InventoryControler : MonoBehaviour
     {
         for (int i = 0;i < InventoryPlayer.Count; i++)
         {
-            
-
+             
         }
 
     }    

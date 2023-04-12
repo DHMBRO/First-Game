@@ -32,6 +32,7 @@ public class JumpScript : MonoBehaviour
         if (Counter == 0 && CanWork)
         {
             Ray RayForCheckJump = new Ray(transform.position, transform.forward * DistanzeRay);
+            Debug.DrawRay(transform.position, transform.forward * DistanzeRay, Color.blue);
             if (Physics.Raycast(RayForCheckJump, out RaycastHit Hitresult))
             {
                 ResultRay = Hitresult.collider.gameObject;
@@ -39,7 +40,8 @@ public class JumpScript : MonoBehaviour
 
             }
             
-            CanWork = false;
+
+            //CanWork = false;
             //CanJump = true;
 
         }
