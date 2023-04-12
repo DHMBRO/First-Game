@@ -53,6 +53,7 @@ public class Move1F : MonoBehaviour
             {
                 RaycastHit Result = new RaycastHit();
                 Ray RayForJump = new Ray(transform.position, -transform.up);
+                Debug.DrawRay(transform.position, -transform.up * 1.01f, Color.blue);
                 if (Physics.Raycast(RayForJump, out RaycastHit HitResult, 1.01f))
                 {
                     Result = HitResult;
