@@ -9,7 +9,7 @@ public class Move1F : MonoBehaviour
     [SerializeField] private Transform PlayerTransform;
     [SerializeField] private Rigidbody RigidbodyForPlayer;
 
-    
+    int JumpCount = 0;
 
     void Start()
     {
@@ -49,7 +49,28 @@ public class Move1F : MonoBehaviour
             {
                 PlayerTransform.transform.localPosition += -transform.right * SpeedForMove;
             }
-            
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                RaycastHit Result = new RaycastHit();
+                Ray RayForJump = new Ray(transform.position, -transform.up);
+                if (Physics.Raycast(RayForJump, out RaycastHit HitResult, 1.01f))
+                {
+                    Result = HitResult;
+                    if (Result.collider)
+                    {
+                        if (Result.collider.tag != "")
+                        {
+                            JumpCount = 7;
+                        }
+                    }
+                }
+
+            }
+            if(JumpCount > 0)
+            {
+                RigidbodyForPlayer.AddRelativeForce(new Vector3(0f, 1f * PowerForJump,0f), ForceMode.Force);
+                JumpCount--;
+            }
         }
 
     }
