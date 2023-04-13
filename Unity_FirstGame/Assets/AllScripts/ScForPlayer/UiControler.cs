@@ -6,8 +6,11 @@ public class UiControler : MonoBehaviour
     [SerializeField] Image scopeUi;
     [SerializeField] Image inventorySlot1x1;
     [SerializeField] Image inventorySlot2x1;
+
+    public bool inventoryIsOpen;
     void Start()
     {
+        inventoryIsOpen = false;
         scopeUi.enabled = true;
         inventorySlot1x1.enabled = false;
         inventorySlot2x1.enabled = false;
@@ -21,7 +24,15 @@ public class UiControler : MonoBehaviour
             scopeUi.enabled = !scopeUi.enabled;
             inventorySlot1x1.enabled = !scopeUi.enabled;
             inventorySlot2x1.enabled = !scopeUi.enabled;
-            Cursor.lockState = CursorLockMode.None;
+            if (Cursor.lockState == CursorLockMode.Confined)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Confined;
+            }
+            inventoryIsOpen = !inventoryIsOpen;
         }
     }
 }
