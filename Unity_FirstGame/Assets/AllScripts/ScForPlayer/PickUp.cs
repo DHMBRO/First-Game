@@ -5,25 +5,23 @@ public class PickUp : MethodsFromDevelopers
     [SerializeField] public GameObject ObjectToBeLifted;
     [SerializeField] private Transform TransformForCamera;
     [SerializeField] private CamFirstFace ReferenceForCamera;
+    [SerializeField] private Transform TransformPos;
+
+    [SerializeField] private Inventory Inv;
 
     private float DistanceForRay = 2.0f;
     private int MainCounter = 0;
     private int Counter = 0;
 
-    private SlotControler SlotControler;
-    [SerializeField] private InventoryControler InventoryControler;
-
-    [SerializeField] private GameObject A;
+    private SlotControler SlotControler;        
 
     void Start()
     {
         if (TransformForCamera)
         {
             ReferenceForCamera = TransformForCamera.gameObject.GetComponent<CamFirstFace>();
-        }
-        InventoryControler = gameObject.GetComponent<InventoryControler>(); 
-        SlotControler = gameObject.GetComponent<SlotControler>();
-        
+        }        
+        SlotControler = gameObject.GetComponent<SlotControler>();        
     }
 
     private void Update()
@@ -35,9 +33,7 @@ public class PickUp : MethodsFromDevelopers
     }
 
     public void RayForLoot()
-    {
-        
-        
+    {                
         if (TransformForCamera && ReferenceForCamera)
         {
             Ray RayForPickUp = new Ray(ReferenceForCamera.ObjectRay.transform.position, ReferenceForCamera.ObjectRay.transform.forward);
@@ -61,7 +57,7 @@ public class PickUp : MethodsFromDevelopers
     {
         if (ObjectToBeLifted)
         {
-            if (Input.GetKeyDown(KeyCode.F) && ObjectToBeLifted)
+            if (Input.GetKeyDown(KeyCode.E) && ObjectToBeLifted)
             {
                 //Pick up weapons 
                 if (ObjectToBeLifted.CompareTag("Glok") && Counter == 0)
@@ -111,26 +107,49 @@ public class PickUp : MethodsFromDevelopers
                     PickUpShops(ObjectToBeLifted);
                 }
                 //
-                if (ObjectToBeLifted.CompareTag("BoxAmmo") && Counter == 0)
+                if (ObjectToBeLifted.CompareTag("Ammo9MM") && Counter == 0)
                 {
                     PickUpOther(ObjectToBeLifted);
                 }
-                
+                else if (ObjectToBeLifted.CompareTag("Ammo45_APC") && Counter == 0)
+                {
+                    PickUpOther(ObjectToBeLifted);
+                }
+                else if (ObjectToBeLifted.CompareTag("Ammo5_56MM") && Counter == 0)
+                {
+                    PickUpOther(ObjectToBeLifted);
+                }
+                else if (ObjectToBeLifted.CompareTag("Ammo7_62MM") && Counter == 0)
+                {
+                    PickUpOther(ObjectToBeLifted);
+                }
+
             }
         }
     }
 
-    private RaycastHit LinkOther(RaycastHit RayResult)
+    private void LinkOther(RaycastHit RayResult)
     {                 
-        if (RayResult.collider.gameObject.tag == "BoxAmmo")
+        if (RayResult.collider.gameObject.tag == "Ammo9MM")
         {
             ObjectToBeLifted = RayResult.collider.gameObject;
         }
-        return RayResult;
+        else if (RayResult.collider.gameObject.tag == "Ammo45_APC")
+        {
+            ObjectToBeLifted = RayResult.collider.gameObject;
+        }
+        else if (RayResult.collider.gameObject.tag == "Ammo5_56MM")
+        {
+            ObjectToBeLifted = RayResult.collider.gameObject;
+        }
+        else if (RayResult.collider.gameObject.tag == "Ammo7_62MM")
+        {
+            ObjectToBeLifted = RayResult.collider.gameObject;
+        }        
     }
     
 
-    private RaycastHit LinkWeapons(RaycastHit RayResult)
+    private void LinkWeapons(RaycastHit RayResult)
     {
         if (RayResult.collider.gameObject.tag == "M1911")
         {
@@ -151,13 +170,10 @@ public class PickUp : MethodsFromDevelopers
         else if (RayResult.collider.gameObject.tag == "M249")
         {
             ObjectToBeLifted = RayResult.collider.gameObject;
-        }
-
-
-        return RayResult;
+        }        
     }
 
-    private RaycastHit LinkShops(RaycastHit RayResult)
+    private void LinkShops(RaycastHit RayResult)
     {
         if (RayResult.collider.gameObject.tag == "ShopM4")
         {
@@ -170,31 +186,24 @@ public class PickUp : MethodsFromDevelopers
         else if (RayResult.collider.gameObject.tag == "ShopAK47")
         {
             ObjectToBeLifted = RayResult.collider.gameObject;
-        }
-      
-        return RayResult;
+        }              
     }
 
-    public GameObject PickUpOther(GameObject ObjectToPickUp)
+    public void PickUpOther(GameObject ObjectToPickUp)
     {
-        //for (int i = 0; i < InventoryControler.ObjectInInventory.Length; i++)
-        {
-            //if (!InventoryControler.ObjectInInventory[i] && Counter == 0)
-            {
-                GameObject CopyObject = ObjectToPickUp.gameObject;
-                //InventoryControler.ObjectInInventory[0] = CopyObject.gameObject;
+        GameObject CopyObject = Instantiate(ObjectToBeLifted);
+        GameObject GameObject = ObjectToBeLifted.gameObject;
 
-                GameObject GameObject = ObjectToPickUp.gameObject;
-                Destroy(GameObject);
-                Counter++;
-            }
-        }
+        
+        Inv.A.Add(CopyObject);
+        CopyObject.transform.position = TransformPos.position;
 
-        return ObjectToPickUp;
+        Destroy(GameObject);
+        Counter++;        
     }
 
 
-    public GameObject PickUpWeapons(GameObject ObjectForPickUp)
+    public void PickUpWeapons(GameObject ObjectForPickUp)
     {        
         if (MainCounter == 1 && Counter == 0)
         {
@@ -247,11 +256,10 @@ public class PickUp : MethodsFromDevelopers
         else if (Counter == 0)
         {
             Debug.Log("Cant take !");
-        }
-        return ObjectForPickUp;
+        }        
     }
 
-    public GameObject PickUpShops(GameObject ShopForPickUp)
+    public void PickUpShops(GameObject ShopForPickUp)
     {
         
         if (!SlotControler.MyShope01 && SlotControler.SlotShpo01 &&Counter == 0)
@@ -302,8 +310,7 @@ public class PickUp : MethodsFromDevelopers
         else if (true)
         {
             Debug.Log("Cant do this !");
-        }
-        return ShopForPickUp;
+        }        
     }
 
 }

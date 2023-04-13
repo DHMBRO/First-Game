@@ -12,15 +12,14 @@ public class MethodsFromDevelopers : MonoBehaviour
                 
     }    
 
-    protected Transform PutObjects(Transform ObjectForPut, Transform PosForPut)
+    protected void PutObjects(Transform ObjectForPut, Transform PosForPut)
     {
         
         ObjectForPut.transform.SetParent(PosForPut);
 
         ObjectForPut.position = PosForPut.transform.position;
         ObjectForPut.rotation = PosForPut.transform.rotation;
-
-        return ObjectForPut;
+      
     }
 
 
