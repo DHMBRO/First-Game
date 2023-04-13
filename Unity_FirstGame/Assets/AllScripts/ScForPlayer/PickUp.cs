@@ -4,6 +4,7 @@ public class PickUp : MethodsFromDevelopers
 {
     [SerializeField] public GameObject ObjectToBeLifted;
     [SerializeField] private Transform TransformForCamera;
+    [SerializeField] private Transform TransformPos;
     [SerializeField] private CamFirstFace ReferenceForCamera;
     [SerializeField] private Move1F Move;
 
@@ -180,10 +181,11 @@ public class PickUp : MethodsFromDevelopers
         Transform TransformForCopy = CopyObject.GetComponent<Transform>();
         GameObject GameObject = ObjectToBeLifted.gameObject;
 
-        InventoryControler.InventoryBackPack.Add(CopyObject);
+        InventoryControler.InventoryBackPack.Add(CopyObject);        
+        TransformForCopy.transform.position = TransformPos.transform.position;
         
-
         Destroy(GameObject);
+        
         return ObjectToPickUp;
     }
     

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealPointController : MonoBehaviour
 {
-    public int PlayerHP = 100;
+    public float PlayerHP = 100.0f;
     
     void Start()
     {
