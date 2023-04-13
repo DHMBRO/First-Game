@@ -14,14 +14,24 @@ public class StelsScript : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Bach") && Input.GetKeyDown(KeyCode.X))
+        if (other.gameObject.CompareTag("Bach") && Input.GetKey(KeyCode.X))
         {
+
+
             StelsOn = true;
+            Debug.Log(StelsOn+"789");
+        }
+        else if(other.gameObject.CompareTag("Bach") && !Input.GetKey(KeyCode.X))
+        {
+
+            StelsOn = false;
+            Debug.Log(StelsOn+"456");
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        StelsOn = false;
+      StelsOn = false;
+        Debug.Log(StelsOn+"123");
     }
     void Update()
     {        
