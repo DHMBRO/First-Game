@@ -195,7 +195,7 @@ public class PickUp : MethodsFromDevelopers
         GameObject GameObject = ObjectToBeLifted.gameObject;
 
         
-        Inv.A.Add(CopyObject);
+        Inv.SlotsForBackPack.Add(CopyObject);
         CopyObject.transform.position = TransformPos.position;
 
         Destroy(GameObject);

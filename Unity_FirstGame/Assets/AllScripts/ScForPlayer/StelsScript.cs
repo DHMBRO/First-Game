@@ -30,8 +30,8 @@ public class StelsScript : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-      StelsOn = false;
-        Debug.Log(StelsOn+"123");
+        StelsOn = false;
+        //Debug.Log(StelsOn+"123");
     }
     void Update()
     {        

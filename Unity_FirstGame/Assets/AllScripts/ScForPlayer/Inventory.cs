@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] public List<GameObject> A = new List<GameObject>();  
+    [SerializeField] public List<GameObject> SlotsForBackPack= new List<GameObject>();  
 
     void Start()
     {
@@ -13,6 +13,9 @@ public class Inventory : MonoBehaviour
 
     void Update()
     {
-        
+        for (int i = 0;i < SlotsForBackPack.Count; i++)
+        {
+
+        }
     }
 }
