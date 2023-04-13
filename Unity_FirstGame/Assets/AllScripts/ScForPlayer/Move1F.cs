@@ -4,7 +4,7 @@ public class Move1F : MonoBehaviour
 {
     [SerializeField] private float SpeedForMove;
     [SerializeField] private float PowerForJump;
-    [SerializeField] private bool CanJump;
+    [SerializeField] private bool CanJump;    
 
     [SerializeField] private Transform PlayerTransform;
     [SerializeField] private Rigidbody RigidbodyForPlayer;

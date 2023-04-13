@@ -1,14 +1,13 @@
 using UnityEngine;
-//using System.Collections;
 using System.Collections.Generic;
 
 public class InventoryControler : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> InventoryPlayer = new List<GameObject>();
+    [SerializeField] public List<GameObject> InventoryBackPack = new List<GameObject>();
 
-    [SerializeField] public int NumberOfCells = 10;
-    [SerializeField] private int i = 0;
-    
+    [SerializeField] public float MaxMass = 100.0f;
+    [SerializeField] public float CurrentMass = 0.0f;
+
     void Start()
     {
         
@@ -16,13 +15,6 @@ public class InventoryControler : MonoBehaviour
 
     void Update()
     {
-        for (int i = 0;i < InventoryPlayer.Count; i++)
-        {
-             
-        }
-
-    }    
-
-    
-
+        
+    }
 }

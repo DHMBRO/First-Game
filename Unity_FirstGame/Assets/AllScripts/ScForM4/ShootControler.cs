@@ -19,15 +19,16 @@ public class ShootControler : MonoBehaviour
     private float ColletSpeed = 3.0f;
     private Transform ShootPoint;
     private float BulletSpeed = 100;
-        private string NameForWeapon;
+    private string NameForWeapon;
     private bool CanFire = false;
     
+
 
     void Start()
     {
         if (gameObject.CompareTag("M4"))
         {
-            NameForWeapon = "M4";
+            NameForWeapon = "M4";                    
         }
         else if (gameObject.CompareTag("AK47"))
         {
