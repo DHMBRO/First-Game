@@ -338,6 +338,7 @@ MonoBehaviour:
   scopeUi: {fileID: 89202796}
   inventorySlot1x1: {fileID: 1108536501}
   inventorySlot2x1: {fileID: 356519112}
+  inventoryIsOpen: 0
 --- !u!1001 &324275448
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1468,11 +1469,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2860246637410159893, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
       propertyPath: PowerForJump
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2860246637410159893, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
       propertyPath: SpeedForMove
-      value: 0.05
+      value: 0.005
       objectReference: {fileID: 0}
     - target: {fileID: 7785237847769309149, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
       propertyPath: m_Enabled
@@ -1482,6 +1483,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8751771685571931881, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
+      propertyPath: uiControler
+      value: 
+      objectReference: {fileID: 277940215}
     - target: {fileID: 8823763917516572830, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
       propertyPath: m_Enabled
       value: 1

@@ -4,25 +4,24 @@ public class PickUp : MethodsFromDevelopers
 {
     [SerializeField] public GameObject ObjectToBeLifted;
     [SerializeField] private Transform TransformForCamera;
-    [SerializeField] private Transform TransformPos;
     [SerializeField] private CamFirstFace ReferenceForCamera;
-    [SerializeField] private Move1F Move;
 
     private float DistanceForRay = 2.0f;
     private int MainCounter = 0;
     private int Counter = 0;
 
-    private SlotControler SlotControler;    
+    private SlotControler SlotControler;
     [SerializeField] private InventoryControler InventoryControler;
-    
+
+    [SerializeField] private GameObject A;
+
     void Start()
     {
         if (TransformForCamera)
         {
             ReferenceForCamera = TransformForCamera.gameObject.GetComponent<CamFirstFace>();
         }
-        Move = gameObject.GetComponent<Move1F>();
-                
+        InventoryControler = gameObject.GetComponent<InventoryControler>(); 
         SlotControler = gameObject.GetComponent<SlotControler>();
         
     }
@@ -62,7 +61,7 @@ public class PickUp : MethodsFromDevelopers
     {
         if (ObjectToBeLifted)
         {
-            if (Input.GetKeyDown(KeyCode.E) && ObjectToBeLifted)
+            if (Input.GetKeyDown(KeyCode.F) && ObjectToBeLifted)
             {
                 //Pick up weapons 
                 if (ObjectToBeLifted.CompareTag("Glok") && Counter == 0)
@@ -112,14 +111,25 @@ public class PickUp : MethodsFromDevelopers
                     PickUpShops(ObjectToBeLifted);
                 }
                 //
-                else if (ObjectToBeLifted.CompareTag("BoxAmmo") && Counter == 0)
+                if (ObjectToBeLifted.CompareTag("BoxAmmo") && Counter == 0)
                 {
                     PickUpOther(ObjectToBeLifted);
                 }
+                
             }
         }
     }
+
+    private RaycastHit LinkOther(RaycastHit RayResult)
+    {                 
+        if (RayResult.collider.gameObject.tag == "BoxAmmo")
+        {
+            ObjectToBeLifted = RayResult.collider.gameObject;
+        }
+        return RayResult;
+    }
     
+
     private RaycastHit LinkWeapons(RaycastHit RayResult)
     {
         if (RayResult.collider.gameObject.tag == "M1911")
@@ -142,6 +152,8 @@ public class PickUp : MethodsFromDevelopers
         {
             ObjectToBeLifted = RayResult.collider.gameObject;
         }
+
+
         return RayResult;
     }
 
@@ -163,32 +175,24 @@ public class PickUp : MethodsFromDevelopers
         return RayResult;
     }
 
-    public RaycastHit LinkOther(RaycastHit RayResult)
-    {
-        if (RayResult.collider.gameObject.tag == "BoxAmmo")
-        {
-            ObjectToBeLifted = RayResult.collider.gameObject;
-        }
-
-        return RayResult;
-    }
-
     public GameObject PickUpOther(GameObject ObjectToPickUp)
     {
-        Debug.Log("PickUp Other is work");
-        
-        GameObject CopyObject = Instantiate(ObjectToBeLifted);
-        Transform TransformForCopy = CopyObject.GetComponent<Transform>();
-        GameObject GameObject = ObjectToBeLifted.gameObject;
+        //for (int i = 0; i < InventoryControler.ObjectInInventory.Length; i++)
+        {
+            //if (!InventoryControler.ObjectInInventory[i] && Counter == 0)
+            {
+                GameObject CopyObject = ObjectToPickUp.gameObject;
+                //InventoryControler.ObjectInInventory[0] = CopyObject.gameObject;
 
-        InventoryControler.InventoryBackPack.Add(CopyObject);        
-        TransformForCopy.transform.position = TransformPos.transform.position;
-        
-        Destroy(GameObject);
-        
+                GameObject GameObject = ObjectToPickUp.gameObject;
+                Destroy(GameObject);
+                Counter++;
+            }
+        }
+
         return ObjectToPickUp;
     }
-    
+
 
     public GameObject PickUpWeapons(GameObject ObjectForPickUp)
     {        
@@ -249,9 +253,8 @@ public class PickUp : MethodsFromDevelopers
 
     public GameObject PickUpShops(GameObject ShopForPickUp)
     {
-
-        Debug.Log("PickUp Shops is work");
-        if (!SlotControler.MyShope01 && SlotControler.SlotShpo01 && Counter == 0)
+        
+        if (!SlotControler.MyShope01 && SlotControler.SlotShpo01 &&Counter == 0)
         {
             GameObject CopyObject = Instantiate(ObjectToBeLifted);
             Transform TransformForCopy = CopyObject.GetComponent<Transform>();

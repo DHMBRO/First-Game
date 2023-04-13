@@ -5,6 +5,7 @@ public class CamFirstFace : MonoBehaviour
     [SerializeField] private Transform Player;
     [SerializeField] public Transform ObjectRay;
     [SerializeField] private float Sens = 0.5f;
+    [SerializeField] UiControler uiControler;
     
 
     private void Start()
@@ -16,17 +17,18 @@ public class CamFirstFace : MonoBehaviour
 
     void Update()
     {
-        float MouseX = Input.GetAxis("Mouse X");
-        float MouseY = Input.GetAxis("Mouse Y");
-
-        gameObject.transform.Rotate(-MouseY * new Vector3(Sens, 0.0f, 0.0f));
-        
-        if (Player)
+        if (!uiControler.inventoryIsOpen)
         {
-            Player.Rotate(MouseX * new Vector3(0.0f, Sens, 0.0f));            
-        }
-        
+            float MouseX = Input.GetAxis("Mouse X");
+            float MouseY = Input.GetAxis("Mouse Y");
 
+            gameObject.transform.Rotate(-MouseY * new Vector3(Sens, 0.0f, 0.0f));
+
+            if (Player)
+            {
+                Player.Rotate(MouseX * new Vector3(0.0f, Sens, 0.0f));
+            }
+        }
     }
     
    
