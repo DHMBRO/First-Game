@@ -735,28 +735,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &708889920 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6420968320066798095, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
-  m_PrefabInstance: {fileID: 1452546880}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f1bcccee1cefaf468bf96a56d045813, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &708889921 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4422802144324993440, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
-  m_PrefabInstance: {fileID: 1452546880}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 859b6b88854eaea4390fb612cd34b227, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &726010780 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4965438261709640327, guid: a35b8c32acba1334b9b31dfe8cdbc9be, type: 3}
@@ -849,6 +827,7 @@ GameObject:
   - component: {fileID: 894118974}
   - component: {fileID: 894118973}
   - component: {fileID: 894118972}
+  - component: {fileID: 894118976}
   m_Layer: 0
   m_Name: BoxAmmo
   m_TagString: Ammo9MM
@@ -934,6 +913,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &894118976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894118971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ef3b5b486fd1d43b53d47da52f3fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mass: 0
 --- !u!1 &1030723568
 GameObject:
   m_ObjectHideFlags: 0
@@ -1290,6 +1282,7 @@ GameObject:
   - component: {fileID: 1352961139}
   - component: {fileID: 1352961138}
   - component: {fileID: 1352961137}
+  - component: {fileID: 1352961141}
   m_Layer: 0
   m_Name: BoxAmmo (3)
   m_TagString: Ammo7_62MM
@@ -1375,6 +1368,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1352961141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352961136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ef3b5b486fd1d43b53d47da52f3fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mass: 0
 --- !u!1001 &1353997770
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1581,10 +1587,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1018996094966413981, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
+      propertyPath: MaxMass
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1427766268900275734, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
+      propertyPath: A
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1427766268900275734, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
       propertyPath: Inv
       value: 
-      objectReference: {fileID: 708889921}
+      objectReference: {fileID: 0}
     - target: {fileID: 1427766268900275734, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1596,11 +1610,15 @@ PrefabInstance:
     - target: {fileID: 1427766268900275734, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
       propertyPath: InventoryContr
       value: 
-      objectReference: {fileID: 708889920}
+      objectReference: {fileID: 0}
+    - target: {fileID: 1427766268900275734, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
+      propertyPath: PlayerInventory
+      value: 
+      objectReference: {fileID: 1706891992}
     - target: {fileID: 1427766268900275734, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
       propertyPath: InventoryControler
       value: 
-      objectReference: {fileID: 708889920}
+      objectReference: {fileID: 0}
     - target: {fileID: 2860246637410159893, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1878,6 +1896,7 @@ GameObject:
   - component: {fileID: 1685341739}
   - component: {fileID: 1685341738}
   - component: {fileID: 1685341737}
+  - component: {fileID: 1685341741}
   m_Layer: 0
   m_Name: BoxAmmo (1)
   m_TagString: Ammo45_APC
@@ -1963,6 +1982,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1685341741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685341736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ef3b5b486fd1d43b53d47da52f3fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mass: 0
+--- !u!114 &1706891992 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1018996094966413981, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
+  m_PrefabInstance: {fileID: 1452546880}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 859b6b88854eaea4390fb612cd34b227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1711609747
 GameObject:
   m_ObjectHideFlags: 0
@@ -2129,6 +2172,7 @@ GameObject:
   - component: {fileID: 1964252055}
   - component: {fileID: 1964252054}
   - component: {fileID: 1964252053}
+  - component: {fileID: 1964252057}
   m_Layer: 0
   m_Name: BoxAmmo (2)
   m_TagString: Ammo5_56MM
@@ -2214,6 +2258,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1964252057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964252052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ef3b5b486fd1d43b53d47da52f3fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mass: 0
 --- !u!1001 &2074844515
 PrefabInstance:
   m_ObjectHideFlags: 0

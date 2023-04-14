@@ -8,10 +8,12 @@ public class InventoryControler : MonoBehaviour
     [SerializeField] public float MaxMass = 100.0f;
     [SerializeField] public float CurrentMass = 0.0f;     
     
-
+    
 
     void Update()
     {
+            
         
     }
+    
 }

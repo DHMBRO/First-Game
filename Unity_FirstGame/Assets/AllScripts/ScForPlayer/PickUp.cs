@@ -5,15 +5,17 @@ public class PickUp : MethodsFromDevelopers
     [SerializeField] public GameObject ObjectToBeLifted;
     [SerializeField] private Transform TransformForCamera;
     [SerializeField] private CamFirstFace ReferenceForCamera;
-    [SerializeField] private Transform TransformPos;
+    [SerializeField] private Transform TransformPos;    
 
-    [SerializeField] private Inventory Inv;
+    [SerializeField] private Inventory PlayerInventory;
 
     private float DistanceForRay = 2.0f;
     private int MainCounter = 0;
     private int Counter = 0;
 
-    private SlotControler SlotControler;        
+    private SlotControler SlotControler;
+    
+    
 
     void Start()
     {
@@ -191,15 +193,26 @@ public class PickUp : MethodsFromDevelopers
 
     public void PickUpOther(GameObject ObjectToPickUp)
     {
-        GameObject CopyObject = Instantiate(ObjectToBeLifted);
-        GameObject GameObject = ObjectToBeLifted.gameObject;
+        if (PlayerInventory)
+        {
+            GameObject CopyObject = Instantiate(ObjectToBeLifted);
+            GameObject GameObject = ObjectToBeLifted.gameObject;
+            AllAmmo LootMass = CopyObject.gameObject.GetComponent<AllAmmo>();
+            
+            Debug.Log("Is work");
 
+            if (PlayerInventory.CurrentMass + LootMass.Mass <= PlayerInventory.MaxMass)
+            {
+                PlayerInventory.SlotsForBackPack.Add(CopyObject);
+                PlayerInventory.CurrentMass += LootMass.Mass;
+                CopyObject.transform.position = TransformPos.position;
+            }
+            
+            Destroy(GameObject);
+            Counter++;
+            
+        }
         
-        Inv.SlotsForBackPack.Add(CopyObject);
-        CopyObject.transform.position = TransformPos.position;
-
-        Destroy(GameObject);
-        Counter++;        
     }
 
 
