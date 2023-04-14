@@ -22,7 +22,7 @@ public class LocateScript : MonoBehaviour
         {
             StelsScript = other.gameObject.GetComponent<StelsScript>();
             PlayerTransform = other.gameObject.GetComponent<Transform>();
-            
+            Player = other.gameObject.GetComponent<GameObject>();
         }
         if (other.gameObject.CompareTag("Player01") && !StelsScript.StelsOn)
         {
