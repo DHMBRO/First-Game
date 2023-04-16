@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
-
+using System.Collections.Generic;
 
 public class SlotControler : MethodsFromDevelopers
-{
-    
-    
+{    
     //All Slots
     [SerializeField] public Transform SlotHand;
     //
@@ -33,15 +31,15 @@ public class SlotControler : MethodsFromDevelopers
     [SerializeField] public Transform SlotShpo02;
     [SerializeField] public Transform SlotShpo03;
     //
-    [SerializeField] private Transform UsingShope01;
-    //[SerializeField] private Transform UsingShope02;
-    //[SerializeField] private Transform UsingShope03;
-
+    [SerializeField] public Transform SlotUsingShop01;
+    [SerializeField] public Transform SlotUsingShop02;
+    [SerializeField] public Transform SlotUsingShop03;
+    
     //All counet for work Script        
     protected int Counter;
     private int SlotCounter;    
     //
-    [SerializeField] public GameObject ObjectInHand = null;
+    [SerializeField] public GameObject ObjectInHand = null;    
 
     //Fiset for other Scripts 
     [SerializeField] private PickUp PickUp;
@@ -52,9 +50,7 @@ public class SlotControler : MethodsFromDevelopers
     void Start()
     {
         PickUp = gameObject.GetComponent<PickUp>();
-        InventoryControler = gameObject.GetComponent<InventoryControler>();
-
-        
+        InventoryControler = gameObject.GetComponent<InventoryControler>();       
     }
 
     void Update()
@@ -65,7 +61,12 @@ public class SlotControler : MethodsFromDevelopers
         
     public void MovingGunForSlots()
     {
-        Appropriation01();
+        ChangingSlots();
+
+        
+
+        
+
         if (!MyWeapon01 && MyWeapon02)
         {
             MyWeapon01 = MyWeapon02;
@@ -79,7 +80,35 @@ public class SlotControler : MethodsFromDevelopers
         }
     }
    
-    void Appropriation01()
+    void UsingShops()
+    {        
+        
+        if (!ObjectInHand && ObjectInHand != MyKnife01 && Input.GetKey(KeyCode.R))
+        {
+            if (ObjectInHand == MyPistol01)
+            {
+                if (MyPistol01.tag == "Glok")
+                {
+
+                }
+            }   
+            else if (ObjectInHand == MyPistol01)
+            {
+
+            }
+            else if (ObjectInHand == MyPistol01)
+            {
+
+            }
+        
+        }
+        
+        
+    }
+
+
+
+    void ChangingSlots()
     {
         
         bool ObjectInHand01 = MyKnife01 && ObjectInHand == MyKnife01.gameObject;

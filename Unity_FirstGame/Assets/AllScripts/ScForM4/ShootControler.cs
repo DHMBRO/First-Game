@@ -3,11 +3,13 @@ using UnityEngine;
 public class ShootControler : MonoBehaviour
 {
     [SerializeField] private GameObject MyWeapon;
+    [SerializeField] public Transform SlotForUseShop; 
     [SerializeField] private GameObject Muzzle;
     [SerializeField] private GameObject Bullet;
     [SerializeField] private GameObject Collet;
     [SerializeField] private GameObject ColletPoint;
     
+
     [SerializeField] public float ShotDeley = 1.0f;
     [SerializeField] public float ShotTime = 0.0f;
 
