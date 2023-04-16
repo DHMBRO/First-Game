@@ -257,7 +257,7 @@ MonoBehaviour:
   TransformForCamera: {fileID: 6676864599705618737}
   ReferenceForCamera: {fileID: 0}
   TransformPos: {fileID: 0}
-  Inventory: {fileID: 1018996094966413981}
+  PlayerInventory: {fileID: 0}
 --- !u!114 &8823763917516572830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,6 +441,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2658336507376180096}
   - component: {fileID: 1018996094966413981}
+  - component: {fileID: 1091941196938390544}
   m_Layer: 0
   m_Name: SlotoForBackPack
   m_TagString: Untagged
@@ -479,6 +480,23 @@ MonoBehaviour:
   SlotsForBackPack: []
   MaxMass: 0
   CurrentMass: 0
+--- !u!114 &1091941196938390544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3473425412364573875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49d2503a3b54bdb4da8afb594aaec6e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ReferencePrefabs:
+  - {fileID: 3854627152845606923, guid: 504bd38bce5d1434db74afa896215001, type: 3}
+  - {fileID: 3536394116540115441, guid: 7a808e386b8e28d4e9067e232e3d7aa6, type: 3}
+  - {fileID: 6241354838596384437, guid: 46bb1e56a157ecd408afc046e1cc7505, type: 3}
+  - {fileID: 7075932931500231764, guid: 2b849ca68a7e81748babf56ab0c18e97, type: 3}
 --- !u!1 &5041169986317159292
 GameObject:
   m_ObjectHideFlags: 0

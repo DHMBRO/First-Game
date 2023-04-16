@@ -6,7 +6,7 @@ public class AllAmmo : MonoBehaviour
 {
     [SerializeField] public float Mass;
     
-
+    
     void Start()
     {
         if (gameObject.CompareTag("Ammo9MM"))
@@ -15,7 +15,7 @@ public class AllAmmo : MonoBehaviour
         }
         else if (gameObject.CompareTag("Ammo45_APC"))
         {
-            Mass = 0.5f;
+            Mass = 0.4f;
         }
         else if (gameObject.CompareTag("Ammo5_56MM"))
         {

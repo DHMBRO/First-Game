@@ -8,6 +8,7 @@ public class PickUp : MethodsFromDevelopers
     [SerializeField] private Transform TransformPos;    
 
     [SerializeField] private Inventory PlayerInventory;
+    [SerializeField] private ReferenseForAllLoot ReferencesForLoots;
 
     private float DistanceForRay = 2.0f;
     private int MainCounter = 0;
@@ -195,74 +196,72 @@ public class PickUp : MethodsFromDevelopers
     {
         if (PlayerInventory)
         {
-            GameObject CopyObject = Instantiate(ObjectToBeLifted);
-            GameObject GameObject = ObjectToBeLifted.gameObject;
-            AllAmmo LootMass = CopyObject.gameObject.GetComponent<AllAmmo>();
+            AllAmmo LootMass = ObjectToBeLifted.gameObject.GetComponent<AllAmmo>();
             
-            Debug.Log("Is work");
-
+            
+            
             if (PlayerInventory.CurrentMass + LootMass.Mass <= PlayerInventory.MaxMass)
             {
-                PlayerInventory.SlotsForBackPack.Add(CopyObject);
-                PlayerInventory.CurrentMass += LootMass.Mass;
-                CopyObject.transform.position = TransformPos.position;
+                PickUpBullets(ObjectToPickUp);
+
+                PlayerInventory.CurrentMass += LootMass.Mass;                
             }
-            
-            Destroy(GameObject);
+            Destroy(ObjectToPickUp);
             Counter++;
             
         }
         
+        void PickUpBullets(GameObject ObjectToPickUp)
+        {
+            if (ObjectToPickUp.gameObject.tag == "Ammo9MM")
+            {
+                PlayerInventory.SlotsForBackPack.Add(ReferencesForLoots.ValueLoots["9MM"]);                
+            }
+            else if (ObjectToPickUp.gameObject.tag == "Ammo45_APC")
+            {
+                PlayerInventory.SlotsForBackPack.Add(ReferencesForLoots.ValueLoots["45ACP"]);
+            }
+            else if (ObjectToPickUp.gameObject.tag == "Ammo5_56MM")
+            {
+                PlayerInventory.SlotsForBackPack.Add(ReferencesForLoots.ValueLoots["5,56MM"]);
+            }
+            else if (ObjectToPickUp.gameObject.tag == "Ammo7_62MM")
+            {
+                PlayerInventory.SlotsForBackPack.Add(ReferencesForLoots.ValueLoots["7,62MM"]);
+            }
+        }
     }
 
 
     public void PickUpWeapons(GameObject ObjectForPickUp)
     {        
         if (MainCounter == 1 && Counter == 0)
-        {
-            GameObject CopyObject = Instantiate(ObjectToBeLifted);
-            Transform TransformForCopy = CopyObject.GetComponent<Transform>();
-            GameObject GameObject = ObjectToBeLifted.gameObject;
+        {            
+            ObjectToBeLifted.transform.position = ObjectToBeLifted.transform.position;
+            ObjectToBeLifted.transform.rotation = ObjectToBeLifted.transform.rotation;
 
-            CopyObject.transform.position = ObjectToBeLifted.transform.position;
-            CopyObject.transform.rotation = ObjectToBeLifted.transform.rotation;
-
-            SlotControler.MyPistol01 = TransformForCopy;
-            PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01);
-
-            Destroy(GameObject);
+            SlotControler.MyPistol01 = ObjectToBeLifted.transform;
+            PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01);            
             Counter++;
 
         }
-        else if (!SlotControler.MyWeapon01  && !SlotControler.MyWeapon02 && MainCounter == 2 && Counter == 0)
+        else if (!SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 && MainCounter == 2 && Counter == 0)
         {
-            GameObject CopyObject = Instantiate(ObjectToBeLifted);
-            Transform TransformForCopy = CopyObject.GetComponent<Transform>();
-            GameObject GameObject = ObjectToBeLifted.gameObject;
+            ObjectForPickUp.transform.position = ObjectToBeLifted.transform.position;
+            ObjectForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
 
-            CopyObject.transform.position = ObjectToBeLifted.transform.position;
-            CopyObject.transform.rotation = ObjectToBeLifted.transform.rotation;
-
-            SlotControler.MyWeapon01 = TransformForCopy;
-            PutObjects(SlotControler.MyWeapon01, SlotControler.SlotBack01);
-
-            Destroy(GameObject);
+            SlotControler.MyWeapon01 = ObjectForPickUp.transform;
+            PutObjects(SlotControler.MyWeapon01, SlotControler.SlotBack01);            
             Counter++;
 
         }
-        else if (SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 &&MainCounter == 2 && Counter == 0)
+        else if (SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 && MainCounter == 2 && Counter == 0)
         {
-            GameObject CopyObject = Instantiate(ObjectToBeLifted);
-            Transform TransformForCopy = CopyObject.GetComponent<Transform>();
-            GameObject GameObject = ObjectToBeLifted.gameObject;
+            ObjectForPickUp.transform.position = ObjectToBeLifted.transform.position;
+            ObjectForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
 
-            CopyObject.transform.position = ObjectToBeLifted.transform.position;
-            CopyObject.transform.rotation = ObjectToBeLifted.transform.rotation;
-
-            SlotControler.MyWeapon02 = TransformForCopy;
-            PutObjects(SlotControler.MyWeapon02, SlotControler.SlotBack02);
-
-            Destroy(GameObject);
+            SlotControler.MyWeapon02 = ObjectForPickUp.transform;
+            PutObjects(SlotControler.MyWeapon02, SlotControler.SlotBack02);           
             Counter++;
 
         }
@@ -276,48 +275,30 @@ public class PickUp : MethodsFromDevelopers
     {
         
         if (!SlotControler.MyShope01 && SlotControler.SlotShpo01 &&Counter == 0)
-        {
-            GameObject CopyObject = Instantiate(ObjectToBeLifted);
-            Transform TransformForCopy = CopyObject.GetComponent<Transform>();
-            GameObject GameObject = ObjectToBeLifted.gameObject;
+        {            
+            ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
+            ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
 
-            CopyObject.transform.position = ObjectToBeLifted.transform.position;
-            CopyObject.transform.rotation = ObjectToBeLifted.transform.rotation;
-
-            SlotControler.MyShope01 = TransformForCopy;
-            PutObjects(SlotControler.MyShope01, SlotControler.SlotShpo01);
-
-            Destroy(GameObject);
+            SlotControler.MyShope01 = ShopForPickUp.transform;
+            PutObjects(SlotControler.MyShope01, SlotControler.SlotShpo01);            
             Counter++;            
         }
         else if (!SlotControler.MyShope02 && SlotControler.SlotShpo02 && Counter == 0)
         {
-            GameObject CopyObject = Instantiate(ObjectToBeLifted);
-            Transform TransformForCopy = CopyObject.GetComponent<Transform>();
-            GameObject GameObject = ObjectToBeLifted.gameObject;
+            ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
+            ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
 
-            CopyObject.transform.position = ObjectToBeLifted.transform.position;
-            CopyObject.transform.rotation = ObjectToBeLifted.transform.rotation;
-
-            SlotControler.MyShope02 = TransformForCopy;
-            PutObjects(SlotControler.MyShope02, SlotControler.SlotShpo02);
-
-            Destroy(GameObject);
+            SlotControler.MyShope02 = ShopForPickUp.transform;
+            PutObjects(SlotControler.MyShope02, SlotControler.SlotShpo02);            
             Counter++;        
         }
         else if (!SlotControler.MyShope03 && SlotControler.SlotShpo03 && Counter == 0)
         {
-            GameObject CopyObject = Instantiate(ObjectToBeLifted);
-            Transform TransformForCopy = CopyObject.GetComponent<Transform>();
-            GameObject GameObject = ObjectToBeLifted.gameObject;
+            ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
+            ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
 
-            CopyObject.transform.position = ObjectToBeLifted.transform.position;
-            CopyObject.transform.rotation = ObjectToBeLifted.transform.rotation;
-
-            SlotControler.MyShope03 = TransformForCopy;
-            PutObjects(SlotControler.MyShope03, SlotControler.SlotShpo03);
-
-            Destroy(GameObject);
+            SlotControler.MyShope03 = ShopForPickUp.transform;
+            PutObjects(SlotControler.MyShope03, SlotControler.SlotShpo03);            
             Counter++;           
         }
         else if (true)
