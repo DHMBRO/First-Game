@@ -14,9 +14,9 @@ public class ShootControler : MonoBehaviour
     [SerializeField] private Rigidbody WeaonRigidbody;
     [SerializeField] public Transform CameraTransform;
     [SerializeField] private SlotControler MySlotControler;
-    
 
-    private float ColletSpeed = 3.0f;
+
+    [SerializeField] private float ColletSpeed = 0.0f;
     private Transform ShootPoint;
     private float BulletSpeed = 100;
     private string NameForWeapon;
@@ -81,7 +81,7 @@ public class ShootControler : MonoBehaviour
         if (MyWeapon && Muzzle && Bullet)
         {
             CanFire = true;
-            Shoot(MyWeapon, Muzzle, Bullet, Collet, ColletPoint);
+            Shoot(MyWeapon, Muzzle,ColletPoint,  Collet, Bullet);
         }
 
     }
@@ -114,6 +114,7 @@ public class ShootControler : MonoBehaviour
             Debug.Log("Is work ");
             Vector3 TargetPoint = Muzzle.transform.position + Muzzle.transform.forward * 100.0f;
             RaycastHit Hitresult;
+            
             if (Physics.Raycast(Muzzle.transform.position, Muzzle.transform.forward, out Hitresult))
             {
                 Debug.DrawRay(Muzzle.transform.position, Muzzle.transform.forward * 100.0f, Color.blue);
@@ -129,13 +130,15 @@ public class ShootControler : MonoBehaviour
                 Rigidbody newBulletRB = newBullet.GetComponent<Rigidbody>();
                 newBulletRB.AddForce(newBullet.transform.forward * BulletSpeed, ForceMode.Impulse);
 
-                GameObject newCollet = Instantiate(Bullet, Muzzle.transform.position, Quaternion.LookRotation(TargetPoint - Muzzle.transform.position));
+                GameObject newCollet = Instantiate(Collet, ColletPoint.transform.position, Quaternion.LookRotation(TargetPoint - Muzzle.transform.position));
                 newCollet.transform.rotation = Muzzle.transform.rotation;
                 
                 Rigidbody newColletRB = newBullet.GetComponent<Rigidbody>();
                 
                 newColletRB.AddRelativeForce(ColletPoint.transform.forward * ColletSpeed, ForceMode.Impulse);//Colect Point 
-                
+                Destroy(newCollet,3.0f);
+                Destroy(newColletRB, 0.5f);
+                Destroy(newBullet, 3.0f);
             }
         }
         

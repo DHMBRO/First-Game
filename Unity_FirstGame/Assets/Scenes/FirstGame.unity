@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -409,6 +409,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ReferencePrefabs: []
+--- !u!114 &277940227 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7785237847769309149, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
+  m_PrefabInstance: {fileID: 1452546880}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277940195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e1d57ea0101a7478b95cc7b1f7275f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &324275448
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -888,6 +899,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1357051501843773120, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
+      propertyPath: ColletSpeed
+      value: 5.07
+      objectReference: {fileID: 0}
     - target: {fileID: 5617146139289961650, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
       propertyPath: m_Convex
       value: 1
@@ -1922,6 +1937,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 887236312477455917, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 887236312477455917, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 887236312477455917, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 1018996094966413981, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
       propertyPath: MaxMass
       value: 10
@@ -2006,6 +2033,10 @@ PrefabInstance:
       propertyPath: uiControler
       value: 
       objectReference: {fileID: 277940215}
+    - target: {fileID: 8751771685571931881, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
+      propertyPath: SlotControlerScript
+      value: 
+      objectReference: {fileID: 277940227}
     - target: {fileID: 8823763917516572830, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
       propertyPath: m_Enabled
       value: 1
