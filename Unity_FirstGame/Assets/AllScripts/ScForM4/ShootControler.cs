@@ -1,4 +1,4 @@
-;using UnityEngine;
+using UnityEngine;
 
 public class ShootControler : MonoBehaviour
 {
@@ -24,7 +24,7 @@ public class ShootControler : MonoBehaviour
     private string NameForWeapon;
     private bool CanFire = false;
     
-
+    
 
     void Start()
     {
@@ -73,9 +73,6 @@ public class ShootControler : MonoBehaviour
                 ShootForM4();
             }
         }
-        
-        
-
     }
 
     public void ShootForM4()
