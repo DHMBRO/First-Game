@@ -28,26 +28,7 @@ public class ShootControler : MonoBehaviour
 
     void Start()
     {
-        if (gameObject.CompareTag("M4"))
-        {
-            NameForWeapon = "M4";                    
-        }
-        else if (gameObject.CompareTag("AK47"))
-        {
-            NameForWeapon = "AK47";
-        }
-        else if (gameObject.CompareTag("M249"))
-        {
-            NameForWeapon = "M249";
-        }
-        else if (gameObject.CompareTag("Glok"))
-        {
-            NameForWeapon = "Glok";
-        }        
-        else if (gameObject.CompareTag("M1911"))
-        {
-            NameForWeapon = "M1911";
-        }
+        NameForWeapon = gameObject.tag;
         //
         if (!MyWeapon)
         {
@@ -60,6 +41,33 @@ public class ShootControler : MonoBehaviour
         else if (!Bullet)
         {
             Debug.Log("You dont have Bullet");
+        }
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("ShopGlok"))
+        {
+            UseNumbersBullets01();
+        }
+        else if(other.gameObject.CompareTag("ShopM4"))
+        {
+            UseNumbersBullets01();
+        }
+        else if(other.gameObject.CompareTag("ShopAK47"))
+        {
+            UseNumbersBullets01();    
+        }
+        
+        void UseNumbersBullets01(GameObject Shop)
+        {
+            ShootControler WeaponHaveBullets = Shop.gameObject.GetComponent<ShootControler>();
+            
+            if(Shop)
+            {
+                return;
+            }            
         }
 
     }
