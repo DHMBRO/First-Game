@@ -239,7 +239,7 @@ public class PickUp : MethodsFromDevelopers
         if (MainCounter == 1 && Counter == 0)
         {            
             ShootControler SlotForUseShop = ObjectForPickUp.GetComponent<ShootControler>();
-            SlotControler.SlotUsingShop01.gameObject = SlotForUseShop.SlotForUseShop.gameObject;
+            SlotControler.SlotUsingShop01 = SlotForUseShop.SlotForUseShop;
 
             ObjectToBeLifted.transform.position = ObjectToBeLifted.transform.position;
             ObjectToBeLifted.transform.rotation = ObjectToBeLifted.transform.rotation;

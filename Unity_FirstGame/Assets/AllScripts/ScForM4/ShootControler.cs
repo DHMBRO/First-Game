@@ -49,15 +49,15 @@ public class ShootControler : MonoBehaviour
     {
         if(other.gameObject.CompareTag("ShopGlok"))
         {
-            UseNumbersBullets01();
+            UseNumbersBullets01(other.gameObject);
         }
         else if(other.gameObject.CompareTag("ShopM4"))
         {
-            UseNumbersBullets01();
+            UseNumbersBullets01(other.gameObject);
         }
         else if(other.gameObject.CompareTag("ShopAK47"))
         {
-            UseNumbersBullets01();    
+            UseNumbersBullets01(other.gameObject);    
         }
         
         void UseNumbersBullets01(GameObject Shop)

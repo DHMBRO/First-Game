@@ -29,20 +29,20 @@ public class CamFirstFace : MonoBehaviour
             {
                 Player.Rotate(MouseX * new Vector3(0.0f, Sens, 0.0f));
             }
-        }
-        if(PlayerHand)
-        {
-            RaycastHit HitResult;
-            Vector3 TargertPoint = gameObject.position * gameObject.forward * 100.0f; 
-            if(Physics.Raycast(gameObject.position, gameObject.forward * 100.0f))
+            if (PlayerHand)
             {
-                TargertPoint = HitResult.point;
+                RaycastHit Hitesult;
+                Vector3 TargetPoint = transform.position + transform.forward * 100.0f;
+                if (Physics.Raycast(transform.position, transform.forward, out Hitesult, 100.0f))
+                {
+                    TargetPoint = Hitesult.point;                    
+                }
+                
+                Quaternion RotateToTarget = Quaternion.LookRotation(TargetPoint - PlayerHand.position);
+                PlayerHand.rotation = Quaternion.Lerp(PlayerHand.rotation, RotateToTarget, 0.1f);
+
             }
-            Quaternion RotateToTarget = Quaternion.LookRotation(TargertPoint - PlayerHand.position);
-            PlayerHand.rotation = Quaternion.Lerp(PlayerHand.rotation, RotateToTarget, 0.1f);
         }
-
-
     }
     
    
