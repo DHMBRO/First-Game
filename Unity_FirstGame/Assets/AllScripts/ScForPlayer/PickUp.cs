@@ -235,10 +235,15 @@ public class PickUp : MethodsFromDevelopers
 
     public void PickUpWeapons(GameObject ObjectForPickUp)
     {        
+        
         if (MainCounter == 1 && Counter == 0)
         {            
+            ShootControler SlotForUseShop = ObjectForPickUp.GetComponent<ShootControler>();
+            SlotControler.SlotUsingShop01.gameObject = SlotForUseShop.SlotForUseShop.gameObject;
+
             ObjectToBeLifted.transform.position = ObjectToBeLifted.transform.position;
             ObjectToBeLifted.transform.rotation = ObjectToBeLifted.transform.rotation;
+
 
             SlotControler.MyPistol01 = ObjectToBeLifted.transform;
             PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01);            
@@ -247,6 +252,8 @@ public class PickUp : MethodsFromDevelopers
         }
         else if (!SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 && MainCounter == 2 && Counter == 0)
         {
+            ShootControler SlotForUseShop = ObjectForPickUp.GetComponent<ShootControler>();
+
             ObjectForPickUp.transform.position = ObjectToBeLifted.transform.position;
             ObjectForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
 
@@ -269,6 +276,12 @@ public class PickUp : MethodsFromDevelopers
         {
             Debug.Log("Cant take !");
         }        
+
+        void CopyTransform(Transform ObjectForCopy, Transform PointForCopy)
+        {
+            
+        }
+
     }
 
     public void PickUpShops(GameObject ShopForPickUp)
@@ -306,6 +319,8 @@ public class PickUp : MethodsFromDevelopers
             Debug.Log("Cant do this !");
         }        
     }
+
+
 
 }
 

@@ -61,10 +61,6 @@ public class SlotControler : MethodsFromDevelopers
         
     public void MovingGunForSlots()
     {
-        ChangingSlots();
-
-        
-
         
 
         if (!MyWeapon01 && MyWeapon02)
@@ -80,30 +76,17 @@ public class SlotControler : MethodsFromDevelopers
         }
     }
    
-    void UsingShops()
+    void AppropriationReferenceForUseShop()
     {        
+        GameObject UsingSlotForShopPistol01;
+        GameObject UsingSlotForShopWeapon01;
+        GameObject UsingSlotForShopWeapon02;
         
-        if (!ObjectInHand && ObjectInHand != MyKnife01 && Input.GetKey(KeyCode.R))
-        {
-            if (ObjectInHand == MyPistol01)
-            {
-                if (MyPistol01.tag == "Glok")
-                {
+        
 
-                }
-            }   
-            else if (ObjectInHand == MyPistol01)
-            {
+        
 
-            }
-            else if (ObjectInHand == MyPistol01)
-            {
 
-            }
-        
-        }
-        
-        
     }
 
 
