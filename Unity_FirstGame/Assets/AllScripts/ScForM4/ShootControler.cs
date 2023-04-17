@@ -12,6 +12,7 @@ public class ShootControler : MonoBehaviour
 
     [SerializeField] public float ShotDeley = 1.0f;
     [SerializeField] public float ShotTime = 0.0f;
+    [SerializeField] public byte AtemptForFire; 
 
     [SerializeField] private Rigidbody WeaonRigidbody;
     [SerializeField] public Transform CameraTransform;
@@ -62,12 +63,13 @@ public class ShootControler : MonoBehaviour
         
         void UseNumbersBullets01(GameObject Shop)
         {
-            ShootControler WeaponHaveBullets = Shop.gameObject.GetComponent<ShootControler>();
-            
-            if(Shop)
+            ShopControler WeaponHaveBullets = Shop.gameObject.GetComponent<ShopControler>();
+            if (WeaponHaveBullets.CurrentAmmo > 0)
             {
-                return;
-            }            
+                AtemptForFire = WeaponHaveBullets.CurrentAmmo;
+                Debug.Log(AtemptForFire);
+            }
+                        
         }
 
     }
@@ -117,8 +119,7 @@ public class ShootControler : MonoBehaviour
     void Shoot(GameObject Weapon, GameObject Muzzle,  GameObject ColletPoint, GameObject Collet, GameObject Bullet)//ColectPoint
     {
         if (CanFire)
-        {
-            Debug.Log("Is work ");
+        {            
             Vector3 TargetPoint = Muzzle.transform.position + Muzzle.transform.forward * 100.0f;
             RaycastHit Hitresult;
             
@@ -129,7 +130,6 @@ public class ShootControler : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.Mouse0) && Time.time >= ShotTime)
             {                
-                Debug.Log("Shoot");
                 ShotTime = ShotDeley + Time.time;
                 GameObject newBullet = Instantiate(Bullet, Muzzle.transform.position, Quaternion.LookRotation(TargetPoint - Muzzle.transform.position));
                 newBullet.transform.rotation = Muzzle.transform.rotation;

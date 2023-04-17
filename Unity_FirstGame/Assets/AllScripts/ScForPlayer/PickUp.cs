@@ -237,10 +237,7 @@ public class PickUp : MethodsFromDevelopers
     {        
         
         if (MainCounter == 1 && Counter == 0)
-        {            
-            ShootControler SlotForUseShop = ObjectForPickUp.GetComponent<ShootControler>();
-            SlotControler.SlotUsingShop01 = SlotForUseShop.SlotForUseShop;
-
+        {                        
             ObjectToBeLifted.transform.position = ObjectToBeLifted.transform.position;
             ObjectToBeLifted.transform.rotation = ObjectToBeLifted.transform.rotation;
 
@@ -251,8 +248,7 @@ public class PickUp : MethodsFromDevelopers
 
         }
         else if (!SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 && MainCounter == 2 && Counter == 0)
-        {
-            ShootControler SlotForUseShop = ObjectForPickUp.GetComponent<ShootControler>();
+        {            
 
             ObjectForPickUp.transform.position = ObjectToBeLifted.transform.position;
             ObjectForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;

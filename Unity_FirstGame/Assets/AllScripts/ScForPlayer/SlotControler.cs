@@ -31,15 +31,16 @@ public class SlotControler : MethodsFromDevelopers
     [SerializeField] public Transform SlotShpo02;
     [SerializeField] public Transform SlotShpo03;
     //
-    [SerializeField] public Transform SlotUsingShop01;
-    [SerializeField] public Transform SlotUsingShop02;
-    [SerializeField] public Transform SlotUsingShop03;
+    [SerializeField] public Transform PointForShopPistol01;
+    [SerializeField] public Transform PointForShopWeapon01;
+    [SerializeField] public Transform PointForShopWeapon02;
     
     //All counet for work Script        
     protected int Counter;
     private int SlotCounter;    
     //
     [SerializeField] public GameObject ObjectInHand = null;    
+    
 
     //Fiset for other Scripts 
     [SerializeField] private PickUp PickUp;
@@ -55,12 +56,16 @@ public class SlotControler : MethodsFromDevelopers
 
     void Update()
     {
-        
-                
+        AppropriationReferenceForUseShop();
     }
-        
+
     public void MovingGunForSlots()
     {
+        ChangingSlots();
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            
+        }
         
 
         if (!MyWeapon01 && MyWeapon02)
@@ -77,19 +82,31 @@ public class SlotControler : MethodsFromDevelopers
     }
    
     void AppropriationReferenceForUseShop()
-    {        
-        GameObject UsingSlotForShopPistol01;
-        GameObject UsingSlotForShopWeapon01;
-        GameObject UsingSlotForShopWeapon02;
+    {
+        ShootControler ShootControler;
         
-        
-
-        
-
+        if (MyPistol01 && !PointForShopPistol01)
+        {
+            ShootControler = MyPistol01.GetComponent<ShootControler>();
+            PointForShopPistol01 = ShootControler.SlotForUseShop;
+        }
+        if (MyWeapon01 && !PointForShopPistol01 && !PointForShopWeapon02)
+        {
+            ShootControler = MyWeapon01.GetComponent<ShootControler>();
+            PointForShopWeapon01 = ShootControler.SlotForUseShop;
+        }
+        if (MyWeapon02 && PointForShopWeapon01 &&!PointForShopWeapon02)
+        {
+            ShootControler = MyWeapon02.GetComponent<ShootControler>();
+            PointForShopWeapon02 = ShootControler.SlotForUseShop;
+        }
 
     }
 
+    void ChangingShops()
+    {
 
+    }
 
     void ChangingSlots()
     {

@@ -38,8 +38,8 @@ public class CamFirstFace : MonoBehaviour
                     TargetPoint = Hitesult.point;                    
                 }
                 
-                Quaternion RotateToTarget = Quaternion.LookRotation(TargetPoint - PlayerHand.position);
-                PlayerHand.rotation = Quaternion.Lerp(PlayerHand.rotation, RotateToTarget, 0.1f);
+                //Quaternion RotateToTarget = Quaternion.LookRotation(TargetPoint - PlayerHand.position);
+                //PlayerHand.rotation = Quaternion.Lerp(PlayerHand.rotation, RotateToTarget, 1.0f);
 
             }
         }

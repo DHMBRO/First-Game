@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1858561144992952984}
   - component: {fileID: 1991016611763347114}
   - component: {fileID: 7042012713582904745}
+  - component: {fileID: 6679083313953220752}
   m_Layer: 0
   m_Name: ShopForGlok
   m_TagString: ShopGlok
@@ -98,3 +99,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5433442519505195169, guid: fdf00ae655c6f9d4abac02c38bd47b3e, type: 3}
+--- !u!114 &6679083313953220752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7933510159314380724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0c6187986862c44a3f7fbb40d1acf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentAmmo: 0

@@ -2,26 +2,31 @@ using UnityEngine;
 
 public class ShopControler : MonoBehaviour
 {
-    [SerializeField] public byte MaxAmmoInShop;
+    [SerializeField] public byte CurrentAmmo;
+
 
     private void Start()
     {
         if (gameObject.CompareTag("ShopM249"))
         {
-            MaxAmmoInShop = 100;
+            CurrentAmmo = 100;
         }
         else if (gameObject.CompareTag("ShopM4"))
         {
-            MaxAmmoInShop = 30;
+            CurrentAmmo = 30;
         }
         else if (gameObject.CompareTag("ShopAK47"))
         {
-            MaxAmmoInShop = 30;
+            CurrentAmmo = 35;
+        }
+        else if (gameObject.CompareTag("ShopGlok"))
+        {
+            CurrentAmmo = 20;
         }
         else if (gameObject.CompareTag("ShopM1911"))
         {
-            MaxAmmoInShop = 10;
+            CurrentAmmo = 10;
         }
-        
+        Debug.Log(CurrentAmmo);
     }
 }
