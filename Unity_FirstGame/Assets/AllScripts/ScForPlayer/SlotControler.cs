@@ -74,13 +74,11 @@ public class SlotControler : MethodsFromDevelopers
             }
             else if (MyWeapon01 && ObjectInHand == MyWeapon01.gameObject && MyWeapon01.gameObject.tag == "M4")
             {
-                Charge(MyWeapon01.gameObject, PointForShopWeapon01, "M4", "ShopM4");
-                
+                Charge(MyWeapon01.gameObject, PointForShopWeapon01, "M4", "ShopM4");                
             }
             else if (MyWeapon02 && ObjectInHand == MyWeapon02.gameObject && MyWeapon02.gameObject.tag == "M4")
             {
-                Charge(MyWeapon02.gameObject, PointForShopWeapon02, "M4", "ShopM4");
-                Debug.Log("1-1");
+                Charge(MyWeapon02.gameObject, PointForShopWeapon02, "M4", "ShopM4");                
             }
         }
                 
