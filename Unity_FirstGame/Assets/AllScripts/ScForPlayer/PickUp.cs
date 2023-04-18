@@ -196,19 +196,14 @@ public class PickUp : MethodsFromDevelopers
     {
         if (PlayerInventory)
         {
-            AllAmmo LootMass = ObjectToBeLifted.gameObject.GetComponent<AllAmmo>();
-            
-            
-            
+            AllAmmo LootMass = ObjectToBeLifted.gameObject.GetComponent<AllAmmo>();                                    
             if (PlayerInventory.CurrentMass + LootMass.Mass <= PlayerInventory.MaxMass)
             {
                 PickUpBullets(ObjectToPickUp);
-
-                PlayerInventory.CurrentMass += LootMass.Mass;                
-            }
-            Destroy(ObjectToPickUp);
-            Counter++;
-            
+                PlayerInventory.CurrentMass += LootMass.Mass;
+                Destroy(ObjectToPickUp);
+                Counter++;
+            }                                    
         }
         
         void PickUpBullets(GameObject ObjectToPickUp)
@@ -273,7 +268,7 @@ public class PickUp : MethodsFromDevelopers
             Debug.Log("Cant take !");
         }        
 
-        void CopyTransform(Transform ObjectForCopy, Transform PointForCopy)
+        //void CopyTransform(Transform ObjectForCopy, Transform PointForCopy)
         {
             
         }

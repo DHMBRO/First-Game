@@ -12,6 +12,7 @@ public class ShootControler : MonoBehaviour
 
     [SerializeField] public float ShotDeley = 1.0f;
     [SerializeField] public float ShotTime = 0.0f;
+    [SerializeField] public float Mass = 0.0f;
     [SerializeField] public byte AtemptForFire; 
 
     [SerializeField] private Rigidbody WeaonRigidbody;

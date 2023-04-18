@@ -3,7 +3,8 @@ using UnityEngine;
 public class ShopControler : MonoBehaviour
 {
     [SerializeField] public byte CurrentAmmo;
-
+    [SerializeField] public float Mass = 0.0f;
+    [SerializeField] public bool IsUsing = false;
 
     private void Start()
     {
@@ -27,6 +28,20 @@ public class ShopControler : MonoBehaviour
         {
             CurrentAmmo = 10;
         }
-        Debug.Log(CurrentAmmo);
+
+        if (transform.parent && transform.parent.tag == "SlotForShopInWeapon")
+        {
+            IsUsing = true;
+        }
+        else IsUsing = false;
+    }
+
+    private void Update()
+    {
+        if (transform.parent && transform.parent.tag == "SlotForShopInWeapon")
+        {
+            IsUsing = true;
+        }
+        else IsUsing = false;
     }
 }
