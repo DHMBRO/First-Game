@@ -71,6 +71,7 @@ public class SlotControler : MethodsFromDevelopers
             if (MyPistol01 && ObjectInHand == MyPistol01.gameObject && MyPistol01.gameObject.tag == "Glok")
             {
                 Charge(MyPistol01.gameObject, PointForShopPistol01, "Glok", "ShopGlok");
+                Debug.Log("if is work");
             }
             else if (MyWeapon01 && ObjectInHand == MyWeapon01.gameObject && MyWeapon01.gameObject.tag == "M4")
             {
@@ -105,37 +106,56 @@ public class SlotControler : MethodsFromDevelopers
         ShopControler ShopControler02;
         ShopControler ShopControler03;
 
+        //ShootControler ReferenseForWeapon = Weapon.gameObject.GetComponent<ShootControler>();
+        Debug.Log("Method Is work");
         if (Weapon.gameObject.tag == MyWeapon)
         {                                               
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.R) /*&& ReferenseForWeapon*/)
             {        
+                
                 if (MyShope01)
                 {
                     ShopControler01 = MyShope01.GetComponent<ShopControler>();
                     if (!ShopControler01.IsUsing && MyShope01 && MyShope01.gameObject.tag == MyShops && CounetrForCharge == 0)
                     {                        
+                        
                         PutObjects(MyShope01, PointFroRecharge);
-                        CounetrForCharge = 1;                        
-                    }
+                        
+                        CounetrForCharge = 1;
+                        Debug.Log("1");
+                        
+                    }                    
                 }
-                if (MyShope02)
+                if(MyShope02)
                 {
-                    ShopControler02 = MyShope01.GetComponent<ShopControler>();
+                    ShopControler02 = MyShope02.GetComponent<ShopControler>();
                     if (!ShopControler02.IsUsing && MyShope02 && MyShope02.gameObject.tag == MyShops && CounetrForCharge == 0)
-                    {                        
+                    {
+
                         PutObjects(MyShope02, PointFroRecharge);
-                        CounetrForCharge = 1;                        
+
+                        CounetrForCharge = 1;
+                        Debug.Log("2");
+
                     }
+                    
                 }
                 if (MyShope03)
                 {
-                    ShopControler03 = MyShope01.GetComponent<ShopControler>();
-                    if (ShopControler03.IsUsing && MyShope03 && MyShope03.gameObject.tag == MyShops && CounetrForCharge == 0)
-                    {                        
+                    ShopControler03 = MyShope03.GetComponent<ShopControler>();
+                    if (!ShopControler03.IsUsing && MyShope03 && MyShope03.gameObject.tag == MyShops && CounetrForCharge == 0)
+                    {
+
                         PutObjects(MyShope03, PointFroRecharge);
-                        CounetrForCharge = 1;                        
+
+                        CounetrForCharge = 1;
+                        Debug.Log("2");
+
                     }
-                }                
+
+                }
+                Debug.Log(MyShope02 + "Reference for shop 2");
+             
             }
         }
         

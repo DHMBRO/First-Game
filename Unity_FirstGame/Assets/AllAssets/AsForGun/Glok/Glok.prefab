@@ -163,12 +163,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MyWeapon: {fileID: 4965438261709640327}
   SlotForUseShop: {fileID: 7749285495643769842}
+  WeaponShoop: {fileID: 0}
   Muzzle: {fileID: 8918663486306701883}
   Bullet: {fileID: 6134681609783580483, guid: 05538b2b752e7e345bcb59dba9fa8e2f, type: 3}
   Collet: {fileID: 4900720745357472234, guid: 2485882dcbb795244bdd424f30296fd4, type: 3}
   ColletPoint: {fileID: 5362117552002414686}
   ShotDeley: 1
   ShotTime: 0
+  Mass: 0
+  AtemptForFire: 0
   WeaonRigidbody: {fileID: 0}
   CameraTransform: {fileID: 0}
   MySlotControler: {fileID: 0}
@@ -341,14 +344,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8918663486306701883}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.2136, y: 0.0785, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5738456080911321149}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &9051692995052618235
 GameObject:
   m_ObjectHideFlags: 0

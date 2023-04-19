@@ -3,7 +3,8 @@ using UnityEngine;
 public class ShootControler : MonoBehaviour
 {
     [SerializeField] private GameObject MyWeapon;
-    [SerializeField] public Transform SlotForUseShop; 
+    [SerializeField] public Transform SlotForUseShop;
+    [SerializeField] public GameObject WeaponShoop;
     [SerializeField] private GameObject Muzzle;
     [SerializeField] private GameObject Bullet;
     [SerializeField] private GameObject Collet;
@@ -13,6 +14,7 @@ public class ShootControler : MonoBehaviour
     [SerializeField] public float ShotDeley = 1.0f;
     [SerializeField] public float ShotTime = 0.0f;
     [SerializeField] public float Mass = 0.0f;
+    [SerializeField] public float SpeedForBullet = 0.0f;
     [SerializeField] public byte AtemptForFire; 
 
     [SerializeField] private Rigidbody WeaonRigidbody;
@@ -52,28 +54,31 @@ public class ShootControler : MonoBehaviour
         if(other.gameObject.CompareTag("ShopGlok"))
         {
             UseNumbersBullets01(other.gameObject);
+            Debug.Log("1");
         }
         else if(other.gameObject.CompareTag("ShopM4"))
         {
             UseNumbersBullets01(other.gameObject);
+            Debug.Log("2");
         }
         else if(other.gameObject.CompareTag("ShopAK47"))
         {
-            UseNumbersBullets01(other.gameObject);    
-        }
-        
-        void UseNumbersBullets01(GameObject Shop)
+            UseNumbersBullets01(other.gameObject);
+            Debug.Log("3");
+        }                
+    }
+
+    void UseNumbersBullets01(GameObject Shop)
+    {
+        ShopControler WeaponHaveBullets = Shop.gameObject.GetComponent<ShopControler>();
+        if (WeaponHaveBullets)
         {
-            ShopControler WeaponHaveBullets = Shop.gameObject.GetComponent<ShopControler>();
-            if (WeaponHaveBullets.CurrentAmmo > 0)
-            {
-                AtemptForFire = WeaponHaveBullets.CurrentAmmo;
-                Debug.Log(AtemptForFire);
-            }
-                        
+            AtemptForFire = WeaponHaveBullets.CurrentAmmo;
+            WeaponShoop = WeaponHaveBullets.gameObject;
         }
 
     }
+
 
     private void Update()
     {
