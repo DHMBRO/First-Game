@@ -32,7 +32,9 @@ public class ShootControler : MonoBehaviour
 
     void Start()
     {
+        MyWeapon = gameObject;
         NameForWeapon = gameObject.tag;
+
         //
         if (!MyWeapon)
         {
@@ -83,10 +85,12 @@ public class ShootControler : MonoBehaviour
     private void Update()
     {
         if (gameObject.transform.parent && gameObject.transform.parent.tag == "SlotForUse")
-        {
-            if (Input.GetKeyDown(KeyCode.Mouse0)) ;
+        {            
+            if (Input.GetKeyDown(KeyCode.Mouse0)) 
             {
-                ShootForM4();
+                BoxCollider boxCollider = gameObject.GetComponent<BoxCollider>();
+                boxCollider.enabled = false;
+                ShootForM4();                
             }
         }
     }
@@ -123,7 +127,7 @@ public class ShootControler : MonoBehaviour
 
 
     void Shoot(GameObject Weapon, GameObject Muzzle,  GameObject ColletPoint, GameObject Collet, GameObject Bullet)//ColectPoint
-    {
+    {        
         if (CanFire)
         {            
             Vector3 TargetPoint = Muzzle.transform.position + Muzzle.transform.forward * 100.0f;

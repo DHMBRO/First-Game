@@ -77,10 +77,15 @@ public class SlotControler : MethodsFromDevelopers
             {
                 Charge(MyWeapon01.gameObject, PointForShopWeapon01, "M4", "ShopM4");                
             }
+            else if (MyWeapon01 && ObjectInHand == MyWeapon01.gameObject && MyWeapon01.gameObject.tag == "AK47")
+            {
+                Charge(MyWeapon01.gameObject, PointForShopWeapon01, "AK47", "ShopAK47");
+            }            
             else if (MyWeapon02 && ObjectInHand == MyWeapon02.gameObject && MyWeapon02.gameObject.tag == "M4")
             {
                 Charge(MyWeapon02.gameObject, PointForShopWeapon02, "M4", "ShopM4");                
             }
+            
         }
                 
         if (!MyWeapon01 && MyWeapon02)
