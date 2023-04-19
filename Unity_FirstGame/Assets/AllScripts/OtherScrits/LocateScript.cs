@@ -39,7 +39,7 @@ public class LocateScript : MonoBehaviour
     void Update()
     {
 
-        Vector3 target =  gameObject.transform.forward - Player.transform.forward;
+        Vector3 target = Player.transform.position -gameObject.transform.position ;
         if (Agr && PlayerTransform && Rigidbody && StelsScript.StelsOn == false)
         {
 
