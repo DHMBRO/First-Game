@@ -3,7 +3,7 @@ using UnityEngine;
 public class ShootControler : MonoBehaviour
 {
     [SerializeField] private GameObject MyWeapon;
-    [SerializeField] private BoxCollider ColiderForWeapon;
+    //[SerializeField] private BoxCollider ColiderForWeapon;
 
     [SerializeField] public Transform SlotForUseShop;
     [SerializeField] public GameObject WeaponShoop;
@@ -29,9 +29,7 @@ public class ShootControler : MonoBehaviour
     private float BulletSpeed = 100;
     private string NameForWeapon;
     private bool CanFire = false;
-    
-    
-
+        
     void Start()
     {
         MyWeapon = gameObject;
@@ -89,24 +87,26 @@ public class ShootControler : MonoBehaviour
         if(WeaponShoop)
         {
             UseNumbersBullets01(WeaponShoop.gameObject);
-        }
+        }        
         if (gameObject.transform.parent && gameObject.transform.parent.tag == "SlotForUse")
-        {            
-            if (Input.GetKeyDown(KeyCode.Mouse0) && ColiderForWeapon) 
+        {
+            Debug.Log("3");
+            if (Input.GetKeyDown(KeyCode.Mouse0)) 
             {
-                ColiderForWeapon.enabled = false;
-
+                
+                Debug.Log("4");
                 ShootForM4();                
             }
         }        
     }
-
+    
     public void ShootForM4()
     {
         if (MyWeapon && Muzzle && Bullet)
         {
             CanFire = true;
             Shoot(MyWeapon, Muzzle,ColletPoint,  Collet, Bullet);
+            Debug.Log("2");
         }
 
     }

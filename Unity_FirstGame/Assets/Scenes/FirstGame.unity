@@ -911,6 +911,10 @@ PrefabInstance:
       propertyPath: ColletSpeed
       value: 5.07
       objectReference: {fileID: 0}
+    - target: {fileID: 1357051501843773120, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
+      propertyPath: ColiderForWeapon
+      value: 
+      objectReference: {fileID: 1176759934}
     - target: {fileID: 5617146139289961650, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
       propertyPath: m_Convex
       value: 1
@@ -1292,6 +1296,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99ae510ec7b11ce46a53d751b1055ba0, type: 3}
+--- !u!65 &1176759934 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 9071493728336264004, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
+  m_PrefabInstance: {fileID: 850156078}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1177401941
 PrefabInstance:
   m_ObjectHideFlags: 0
