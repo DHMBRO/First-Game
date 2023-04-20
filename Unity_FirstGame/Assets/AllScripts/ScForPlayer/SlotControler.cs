@@ -71,8 +71,7 @@ public class SlotControler : MethodsFromDevelopers
             if (MyPistol01 && ObjectInHand == MyPistol01.gameObject && MyPistol01.gameObject.tag == "Glok")
             {
                 Charge(MyPistol01.gameObject, PointForShopPistol01, "Glok", "ShopGlok");
-                Debug.Log("if is work");
-
+                if (CounetrForCharge == 0) ChangingShops(MyPistol01.gameObject, PointForShopPistol01, "Glok", "ShopGlok");
             }
             else if (MyWeapon01 && ObjectInHand == MyWeapon01.gameObject && MyWeapon01.gameObject.tag == "M4")
             {
@@ -215,9 +214,7 @@ public class SlotControler : MethodsFromDevelopers
                             CounetrForCharge = 1;
                         }
                     }
-
-                    
-                    
+                                        
                 }
 
                 
