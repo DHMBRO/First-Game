@@ -72,18 +72,22 @@ public class SlotControler : MethodsFromDevelopers
             {
                 Charge(MyPistol01.gameObject, PointForShopPistol01, "Glok", "ShopGlok");
                 Debug.Log("if is work");
+
             }
             else if (MyWeapon01 && ObjectInHand == MyWeapon01.gameObject && MyWeapon01.gameObject.tag == "M4")
             {
                 Charge(MyWeapon01.gameObject, PointForShopWeapon01, "M4", "ShopM4");                
+             //   if(CounetrForCharge == 0) ChangingShops(MyWeapon01.gameObject, PointForShopWeapon01, "M4", "ShopM4" );            
             }
             else if (MyWeapon01 && ObjectInHand == MyWeapon01.gameObject && MyWeapon01.gameObject.tag == "AK47")
             {
                 Charge(MyWeapon01.gameObject, PointForShopWeapon01, "AK47", "ShopAK47");
+                //if(CounetrForCharge == 0) ChangingShops(MyWeapon01.gameObject, PointForShopWeapon01, "M4", "ShopM4" );
             }            
             else if (MyWeapon02 && ObjectInHand == MyWeapon02.gameObject && MyWeapon02.gameObject.tag == "M4")
             {
-                Charge(MyWeapon02.gameObject, PointForShopWeapon02, "M4", "ShopM4");                
+                Charge(MyWeapon02.gameObject, PointForShopWeapon02, "M4", "ShopM4");                            
+               // if(CounetrForCharge == 0) ChangingShops(MyWeapon02.gameObject, PointForShopWeapon02, "M4", "ShopM4" );
             }
             
         }
