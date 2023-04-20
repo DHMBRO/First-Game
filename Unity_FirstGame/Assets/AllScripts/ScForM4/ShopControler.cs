@@ -5,6 +5,7 @@ public class ShopControler : MonoBehaviour
     [SerializeField] public byte CurrentAmmo;
     [SerializeField] public float Mass = 0.0f;
     [SerializeField] public bool IsUsing = false;
+    [SerializeField] public bool InInventory = false;
 
     private void Start()
     {
@@ -41,7 +42,19 @@ public class ShopControler : MonoBehaviour
         if (transform.parent && transform.parent.tag == "SlotForShopInWeapon")
         {
             IsUsing = true;
+            InInventory = true;
         }
         else IsUsing = false;
+        
+        if (transform.parent && transform.parent.tag == "UnloadingSlot")
+        {
+            InInventory = true;
+            IsUsing = false;            
+        }
+        else  
+        {
+            InInventory = false;            
+        }
+
     }
 }

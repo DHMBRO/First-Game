@@ -178,18 +178,23 @@ public class PickUp : MethodsFromDevelopers
 
     private void LinkShops(RaycastHit RayResult)
     {
-        if (RayResult.collider.gameObject.tag == "ShopM4")
+        if (RayResult.collider.gameObject.GetComponent<ShopControler>())
         {
-            ObjectToBeLifted = RayResult.collider.gameObject;
-        }
-        else if (RayResult.collider.gameObject.tag == "ShopGlok")
-        {
-            ObjectToBeLifted = RayResult.collider.gameObject;
-        }
-        else if (RayResult.collider.gameObject.tag == "ShopAK47")
-        {
-            ObjectToBeLifted = RayResult.collider.gameObject;
-        }              
+            ShopControler ShopControler = RayResult.collider.gameObject.GetComponent<ShopControler>();
+         
+            if (!ShopControler.InInventory && RayResult.collider.gameObject.tag == "ShopM4")
+            {
+                ObjectToBeLifted = RayResult.collider.gameObject;
+            }
+            else if (!ShopControler.InInventory && RayResult.collider.gameObject.tag == "ShopGlok")
+            {
+                ObjectToBeLifted = RayResult.collider.gameObject;
+            }
+            else if (!ShopControler.InInventory && RayResult.collider.gameObject.tag == "ShopAK47")
+            {
+                ObjectToBeLifted = RayResult.collider.gameObject;
+            }
+        }                      
     }
 
     public void PickUpOther(GameObject ObjectToPickUp)
@@ -278,7 +283,7 @@ public class PickUp : MethodsFromDevelopers
     public void PickUpShops(GameObject ShopForPickUp)
     {
         
-        if (!SlotControler.MyShope01 && SlotControler.SlotShpo01 &&Counter == 0)
+        if (!SlotControler.MyShope01 && SlotControler.SlotShpo01 && Counter == 0)
         {            
             ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
             ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;

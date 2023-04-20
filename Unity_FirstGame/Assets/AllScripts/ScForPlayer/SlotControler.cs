@@ -196,7 +196,7 @@ public class SlotControler : MethodsFromDevelopers
                         {
                             PutObjects(MyShope01, SlotShpo01);
                             PutObjects(MyShope02, PointForCharge);
-
+    
                             ShootControlerWeapon.WeaponShoop = MyShope02.gameObject;
                             CounetrForCharge = 1;
                         }
