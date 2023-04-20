@@ -111,24 +111,23 @@ public class SlotControler : MethodsFromDevelopers
         ShopControler ShopControler02;
         ShopControler ShopControler03;
 
-        //ShootControler ReferenseForWeapon = Weapon.gameObject.GetComponent<ShootControler>();
-        Debug.Log("Method Is work");
+        ShootControler ReferenseForWeapon = Weapon.gameObject.GetComponent<ShootControler>();
+        
         if (Weapon.gameObject.tag == MyWeapon)
         {                                               
-            if (Input.GetKeyDown(KeyCode.R) /*&& ReferenseForWeapon*/)
+            if (Input.GetKeyDown(KeyCode.R) && ReferenseForWeapon)
             {        
                 
                 if (MyShope01)
                 {
                     ShopControler01 = MyShope01.GetComponent<ShopControler>();
+                    
                     if (!ShopControler01.IsUsing && MyShope01 && MyShope01.gameObject.tag == MyShops && CounetrForCharge == 0)
-                    {                        
+                    {                                                
+                        PutObjects(MyShope01, PointFroRecharge);                        
+                        ReferenseForWeapon.WeaponShoop = MyShope01.gameObject;    
                         
-                        PutObjects(MyShope01, PointFroRecharge);
-                        
-                        CounetrForCharge = 1;
-                        Debug.Log("1");
-                        
+                        CounetrForCharge = 1;                        
                     }                    
                 }
                 if(MyShope02)
@@ -136,12 +135,10 @@ public class SlotControler : MethodsFromDevelopers
                     ShopControler02 = MyShope02.GetComponent<ShopControler>();
                     if (!ShopControler02.IsUsing && MyShope02 && MyShope02.gameObject.tag == MyShops && CounetrForCharge == 0)
                     {
-
                         PutObjects(MyShope02, PointFroRecharge);
-
-                        CounetrForCharge = 1;
-                        Debug.Log("2");
-
+                        ReferenseForWeapon.WeaponShoop = MyShope02.gameObject;    
+                        
+                        CounetrForCharge = 1;        
                     }
                     
                 }
@@ -150,16 +147,14 @@ public class SlotControler : MethodsFromDevelopers
                     ShopControler03 = MyShope03.GetComponent<ShopControler>();
                     if (!ShopControler03.IsUsing && MyShope03 && MyShope03.gameObject.tag == MyShops && CounetrForCharge == 0)
                     {
-
                         PutObjects(MyShope03, PointFroRecharge);
-
-                        CounetrForCharge = 1;
-                        Debug.Log("2");
-
+                        ReferenseForWeapon.WeaponShoop = MyShope03.gameObject;    
+                        
+                        CounetrForCharge = 1;                        
                     }
 
                 }
-                Debug.Log(MyShope02 + "Reference for shop 2");
+                
              
             }
         }

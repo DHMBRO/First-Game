@@ -3,6 +3,8 @@ using UnityEngine;
 public class ShootControler : MonoBehaviour
 {
     [SerializeField] private GameObject MyWeapon;
+    [SerializeField] private BoxCollider ColiderForWeapon;
+
     [SerializeField] public Transform SlotForUseShop;
     [SerializeField] public GameObject WeaponShoop;
     [SerializeField] private GameObject Muzzle;
@@ -84,15 +86,19 @@ public class ShootControler : MonoBehaviour
 
     private void Update()
     {
+        if(WeaponShoop)
+        {
+            UseNumbersBullets01(WeaponShoop.gameObject);
+        }
         if (gameObject.transform.parent && gameObject.transform.parent.tag == "SlotForUse")
         {            
-            if (Input.GetKeyDown(KeyCode.Mouse0)) 
+            if (Input.GetKeyDown(KeyCode.Mouse0) && ColiderForWeapon) 
             {
-                BoxCollider boxCollider = gameObject.GetComponent<BoxCollider>();
-                boxCollider.enabled = false;
+                ColiderForWeapon.enabled = false;
+
                 ShootForM4();                
             }
-        }
+        }        
     }
 
     public void ShootForM4()
