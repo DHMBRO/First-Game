@@ -90,11 +90,9 @@ public class ShootControler : MonoBehaviour
         }        
         if (gameObject.transform.parent && gameObject.transform.parent.tag == "SlotForUse")
         {
-            Debug.Log("3");
+            
             if (Input.GetKeyDown(KeyCode.Mouse0)) 
-            {
-                
-                Debug.Log("4");
+            {                                
                 ShootForM4();                
             }
         }        
@@ -106,7 +104,7 @@ public class ShootControler : MonoBehaviour
         {
             CanFire = true;
             Shoot(MyWeapon, Muzzle,ColletPoint,  Collet, Bullet);
-            Debug.Log("2");
+            
         }
 
     }
