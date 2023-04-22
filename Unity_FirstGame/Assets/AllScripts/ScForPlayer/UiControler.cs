@@ -1,29 +1,39 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UiControler : MonoBehaviour
 {
-    [SerializeField] Image scopeUi;
-    [SerializeField] Image inventorySlot1x1;
-    [SerializeField] Image inventorySlot2x1;
+
+    /*[SerializeField] Image scopeUi;
+    [SerializeField] public List<Image> inventorySlot1x1 = new List<Image>();
+    [SerializeField] public List<Image> inventorySlot1x2 = new List<Image>();
+    [SerializeField] public Dictionary<string, Image> inventorySlot = new Dictionary<string, Image>();
 
     public bool inventoryIsOpen;
     void Start()
     {
         inventoryIsOpen = false;
         scopeUi.enabled = true;
-        inventorySlot1x1.enabled = false;
-        inventorySlot2x1.enabled = false;
-    }
+        for (int count = 0,i = 0; i < inventorySlot.Count; i++)
+        {
 
+            inventorySlot[];
+        }
     
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
             scopeUi.enabled = !scopeUi.enabled;
-            inventorySlot1x1.enabled = !scopeUi.enabled;
-            inventorySlot2x1.enabled = !scopeUi.enabled;
+            for (int i = 0; i < inventorySlot1x1.Count; i++)
+            {
+                inventorySlot1x1[i].enabled = !inventorySlot1x1[i].enabled;
+            }
+            for (int i = 0; i < inventorySlot1x2.Count; i++)
+            {
+                inventorySlot1x2[i].enabled = !inventorySlot1x2[i].enabled;
+            }
             if (Cursor.lockState == CursorLockMode.Confined)
             {
                 Cursor.lockState = CursorLockMode.Locked;
@@ -34,5 +44,5 @@ public class UiControler : MonoBehaviour
             }
             inventoryIsOpen = !inventoryIsOpen;
         }
-    }
+    }*/
 }

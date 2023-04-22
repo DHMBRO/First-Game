@@ -18,7 +18,7 @@ public class CamFirstFace : MonoBehaviour
 
     void Update()
     {
-        if (!uiControler.inventoryIsOpen)
+        if (/*!uiControler.inventoryIsOpen*/true)
         {
             float MouseX = Input.GetAxis("Mouse X");
             float MouseY = Input.GetAxis("Mouse Y");
