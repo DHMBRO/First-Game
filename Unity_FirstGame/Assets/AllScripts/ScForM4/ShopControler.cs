@@ -9,6 +9,7 @@ public class ShopControler : MonoBehaviour
 
     private void Start()
     {
+        /*
         if (gameObject.CompareTag("ShopM249"))
         {
             CurrentAmmo = 100;
@@ -35,6 +36,7 @@ public class ShopControler : MonoBehaviour
             IsUsing = true;
         }
         else IsUsing = false;
+        */   
     }
 
     private void Update()
