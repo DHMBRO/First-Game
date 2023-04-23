@@ -35,12 +35,12 @@ public class AttackMethod : MonoBehaviour
     }
     public void DoCloseAttack(float Damage,Vector3 NpcForvard,Vector3 PlayerTransform)
     {
-        Debug.Log("work");
+        
         if(Time.time >= AttackTime)
         {
             AttackTime = AttackDelay + Time.time;
             TargetHp -= Damage;
-            Debug.Log("Attack"+TargetHp);
+            
         }
     }
     
