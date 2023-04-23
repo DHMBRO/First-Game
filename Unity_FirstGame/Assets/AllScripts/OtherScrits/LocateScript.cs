@@ -8,7 +8,7 @@ public class LocateScript : MonoBehaviour
     [SerializeField] public StelsScript StelsScript;
     [SerializeField] private Transform PlayerTransform;
     [SerializeField] protected Rigidbody Rigidbody;
-    [SerializeField] protected GameObject Player;
+    [SerializeField] public GameObject Player;
     [SerializeField] private float SpeedForMove = 0.01f;
     void Start()
     {
@@ -39,7 +39,7 @@ public class LocateScript : MonoBehaviour
     void Update()
     {
 
-        Vector3 target = Player.transform.position -gameObject.transform.position ;
+        Vector3 target = Player.transform.position - gameObject.transform.position ;
         if (Agr && PlayerTransform && Rigidbody && StelsScript.StelsOn == false)
         {
 
