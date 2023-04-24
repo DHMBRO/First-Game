@@ -6,7 +6,7 @@ public class SlotControler : MethodsFromDevelopers
     //All Slots
     [SerializeField] public Transform SlotHand;
     //
-    [SerializeField] public Transform[] SlotsForBack01;
+    [SerializeField] public Dictionary<string,Transform> AllSlots = new Dictionary<string,Transform>();
     //
     [SerializeField] public Transform SlotBack01;
     [SerializeField] public Transform SlotBack02;
@@ -24,11 +24,11 @@ public class SlotControler : MethodsFromDevelopers
     [SerializeField] public Transform MyKnife01;
     //
     [SerializeField] public Transform MyHelmet;
-    //
+    [SerializeField] public Transform MyArmor;
     [SerializeField] public Transform MyBackPack;
     //
     [SerializeField] public Transform SlotHelmet;
-    //[SerializeField] public Transform Slot
+    [SerializeField] public Transform SlotArmor;
     [SerializeField] public Transform SlotBackPack;
     //
     [SerializeField] public Transform MyShope01;
@@ -60,7 +60,16 @@ public class SlotControler : MethodsFromDevelopers
     void Start()
     {
         PickUp = gameObject.GetComponent<PickUp>();
-        InventoryControler = gameObject.GetComponent<InventoryControler>();       
+        InventoryControler = gameObject.GetComponent<InventoryControler>();
+
+        AllSlots.Add("SlotShpo01", SlotShpo01);
+        AllSlots.Add("SlotShpo02", SlotShpo02);
+        AllSlots.Add("SlotShpo03", SlotShpo03);
+        
+        AllSlots.Add("SlotBack01", SlotBack01);
+        AllSlots.Add("SlotBack02", SlotBack02);
+        AllSlots.Add("SlotPistol01", SlotPistol01);
+        AllSlots.Add("SlotKnife01", SlotKnife01);        
     }
 
     void Update()

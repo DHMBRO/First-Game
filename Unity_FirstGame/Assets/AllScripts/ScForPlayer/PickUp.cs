@@ -115,6 +115,10 @@ public class PickUp : MethodsFromDevelopers
                 {
                     PickUpEqipment(ObjectToBeLifted);
                 }
+                else if (ObjectToBeLifted.CompareTag("Armor") && Counter == 0)
+                {
+                    PickUpEqipment(ObjectToBeLifted);
+                }
                 else if (ObjectToBeLifted.CompareTag("BackPack") && Counter == 0)
                 {
                     PickUpEqipment(ObjectToBeLifted);
@@ -164,6 +168,10 @@ public class PickUp : MethodsFromDevelopers
     private void LinkEquipment(RaycastHit RayResult)
     {
         if (RayResult.collider.gameObject.tag == "Helmet")
+        {
+            ObjectToBeLifted = RayResult.collider.gameObject;
+        }
+        else if (RayResult.collider.gameObject.tag == "Armor")
         {
             ObjectToBeLifted = RayResult.collider.gameObject;
         }
@@ -264,10 +272,17 @@ public class PickUp : MethodsFromDevelopers
             PutObjects(SlotControler.MyHelmet, SlotControler.SlotHelmet);
             Counter++;
         }
+        else if (ObjectToPickUp.CompareTag("Armor") && Counter == 0)
+        {
+            SlotControler.MyArmor = ObjectToBeLifted.transform;
+            PutObjects(SlotControler.MyArmor, SlotControler.SlotArmor);
+            Counter++;
+        }
         else if (ObjectToPickUp.CompareTag("BackPack") && Counter == 0)
         {
             SlotControler.MyBackPack = ObjectToBeLifted.transform;
             PutObjects(SlotControler.MyBackPack, SlotControler.SlotBackPack);
+            Debug.Log("Yes");
             Counter++;
         }
     }
