@@ -127,7 +127,7 @@ public class ShootControler : MonoBehaviour
                     Destroy(newCollet, 3.0f);
                     
                     Shop.CurrentAmmo--;
-                    Debug.Log(Shop.CurrentAmmo);
+                    
                 }
             }
         }        

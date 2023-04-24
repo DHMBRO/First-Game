@@ -23,6 +23,14 @@ public class SlotControler : MethodsFromDevelopers
     //
     [SerializeField] public Transform MyKnife01;
     //
+    [SerializeField] public Transform MyHelmet;
+    //
+    [SerializeField] public Transform MyBackPack;
+    //
+    [SerializeField] public Transform SlotHelmet;
+    //[SerializeField] public Transform Slot
+    [SerializeField] public Transform SlotBackPack;
+    //
     [SerializeField] public Transform MyShope01;
     [SerializeField] public Transform MyShope02;
     [SerializeField] public Transform MyShope03;
@@ -283,7 +291,7 @@ public class SlotControler : MethodsFromDevelopers
             }
         }        
         
-        void CompeltingTheLinkForShops()
+        //void CompeltingTheLinkForShops()
         {
             
         }

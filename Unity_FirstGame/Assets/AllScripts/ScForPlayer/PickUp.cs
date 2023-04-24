@@ -46,6 +46,7 @@ public class PickUp : MethodsFromDevelopers
             if (Physics.Raycast(RayForPickUp, out RaycastHit HitResult, DistanceForRay))
             {
                 LinkOther(HitResult);
+                LinkEquipment(HitResult);
                 LinkWeapons(HitResult);                
                 LinkShops(HitResult);                                
             }
@@ -110,6 +111,15 @@ public class PickUp : MethodsFromDevelopers
                     PickUpShops(ObjectToBeLifted);
                 }
                 //
+                if (ObjectToBeLifted.CompareTag("Helmet") && Counter == 0)
+                {
+                    PickUpEqipment(ObjectToBeLifted);
+                }
+                else if (ObjectToBeLifted.CompareTag("BackPack") && Counter == 0)
+                {
+                    PickUpEqipment(ObjectToBeLifted);
+                }
+                //
                 if (ObjectToBeLifted.CompareTag("Ammo9MM") && Counter == 0)
                 {
                     PickUpOther(ObjectToBeLifted);
@@ -151,6 +161,18 @@ public class PickUp : MethodsFromDevelopers
         }        
     }
     
+    private void LinkEquipment(RaycastHit RayResult)
+    {
+        if (RayResult.collider.gameObject.tag == "Helmet")
+        {
+            ObjectToBeLifted = RayResult.collider.gameObject;
+        }
+        else if (RayResult.collider.gameObject.tag == "BackPack")
+        {
+            ObjectToBeLifted = RayResult.collider.gameObject;
+        }
+    }
+
 
     private void LinkWeapons(RaycastHit RayResult)
     {
@@ -201,16 +223,18 @@ public class PickUp : MethodsFromDevelopers
     {
         if (PlayerInventory)
         {
-            AllAmmo LootMass = ObjectToBeLifted.gameObject.GetComponent<AllAmmo>();                                    
+            AllAmmo LootMass = ObjectToBeLifted.gameObject.GetComponent<AllAmmo>();
             if (PlayerInventory.CurrentMass + LootMass.Mass <= PlayerInventory.MaxMass)
             {
                 PickUpBullets(ObjectToPickUp);
                 PlayerInventory.CurrentMass += LootMass.Mass;
                 Destroy(ObjectToPickUp);
                 Counter++;
-            }                                    
+            }
         }
+
         
+
         void PickUpBullets(GameObject ObjectToPickUp)
         {
             if (ObjectToPickUp.gameObject.tag == "Ammo9MM")
@@ -232,37 +256,40 @@ public class PickUp : MethodsFromDevelopers
         }
     }
 
+    void PickUpEqipment(GameObject ObjectToPickUp)
+    {
+        if (ObjectToPickUp.CompareTag("Helmet") && Counter == 0)
+        {
+            SlotControler.MyHelmet = ObjectToBeLifted.transform;
+            PutObjects(SlotControler.MyHelmet, SlotControler.SlotHelmet);
+            Counter++;
+        }
+        else if (ObjectToPickUp.CompareTag("BackPack") && Counter == 0)
+        {
+            SlotControler.MyBackPack = ObjectToBeLifted.transform;
+            PutObjects(SlotControler.MyBackPack, SlotControler.SlotBackPack);
+            Counter++;
+        }
+    }
 
     public void PickUpWeapons(GameObject ObjectForPickUp)
     {        
         
         if (MainCounter == 1 && Counter == 0)
-        {                        
-            ObjectToBeLifted.transform.position = ObjectToBeLifted.transform.position;
-            ObjectToBeLifted.transform.rotation = ObjectToBeLifted.transform.rotation;
-
-
+        {                                    
             SlotControler.MyPistol01 = ObjectToBeLifted.transform;
             PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01);            
             Counter++;
 
         }
         else if (!SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 && MainCounter == 2 && Counter == 0)
-        {            
-
-            ObjectForPickUp.transform.position = ObjectToBeLifted.transform.position;
-            ObjectForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
-
+        {                        
             SlotControler.MyWeapon01 = ObjectForPickUp.transform;
             PutObjects(SlotControler.MyWeapon01, SlotControler.SlotBack01);            
             Counter++;
-
         }
         else if (SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 && MainCounter == 2 && Counter == 0)
-        {
-            ObjectForPickUp.transform.position = ObjectToBeLifted.transform.position;
-            ObjectForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
-
+        {            
             SlotControler.MyWeapon02 = ObjectForPickUp.transform;
             PutObjects(SlotControler.MyWeapon02, SlotControler.SlotBack02);           
             Counter++;
