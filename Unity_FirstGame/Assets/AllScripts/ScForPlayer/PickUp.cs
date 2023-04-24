@@ -276,6 +276,7 @@ public class PickUp : MethodsFromDevelopers
         {
             SlotControler.MyArmor = ObjectToBeLifted.transform;
             PutObjects(SlotControler.MyArmor, SlotControler.SlotArmor);
+            PutOn();
             Counter++;
         }
         else if (ObjectToPickUp.CompareTag("BackPack") && Counter == 0)
@@ -284,6 +285,27 @@ public class PickUp : MethodsFromDevelopers
             PutObjects(SlotControler.MyBackPack, SlotControler.SlotBackPack);
             Debug.Log("Yes");
             Counter++;
+        }
+        
+        void PutOn()
+        {
+            ArmorControler Armor = SlotControler.MyArmor.GetComponent<ArmorControler>();
+            
+            SlotControler.SlotShpo01 = Armor.SlotShop01;
+            SlotControler.SlotShpo02 = Armor.SlotShop02;
+            SlotControler.SlotShpo03 = Armor.SlotShop03;
+
+
+            SlotControler.SlotPistol01 = Armor.SlotPistol01;
+            SlotControler.SlotKnife01 = Armor.SlotKnife01;
+            
+            
+            if (SlotControler.MyShope01) PutObjects(SlotControler.MyShope01, SlotControler.SlotShpo01);           
+            if (SlotControler.MyShope02) PutObjects(SlotControler.MyShope02, SlotControler.SlotShpo02);            
+            if (SlotControler.MyShope03) PutObjects(SlotControler.MyShope03, SlotControler.SlotShpo03);            
+            
+            if (SlotControler.MyPistol01) PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01);
+            PutObjects(SlotControler.MyKnife01, SlotControler.SlotKnife01);
         }
     }
 
