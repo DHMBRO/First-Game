@@ -53,14 +53,14 @@ public class SlotControler : MethodsFromDevelopers
 
     //Fiset for other Scripts 
     [SerializeField] private PickUp PickUp;
-    [SerializeField] private InventoryControler InventoryControler;
+    [SerializeField] private Inventory Inventory;
     //
     
 
     void Start()
     {
         PickUp = gameObject.GetComponent<PickUp>();
-        InventoryControler = gameObject.GetComponent<InventoryControler>();
+        Inventory = gameObject.GetComponent<Inventory>();
 
         AllSlots.Add("SlotShpo01", SlotShpo01);
         AllSlots.Add("SlotShpo02", SlotShpo02);

@@ -15,9 +15,7 @@ public class PickUp : MethodsFromDevelopers
     private int Counter = 0;
 
     private SlotControler SlotControler;
-    
-    
-
+        
     void Start()
     {
         if (TransformForCamera)
@@ -181,7 +179,6 @@ public class PickUp : MethodsFromDevelopers
         }
     }
 
-
     private void LinkWeapons(RaycastHit RayResult)
     {
         if (RayResult.collider.gameObject.tag == "M1911")
@@ -240,9 +237,7 @@ public class PickUp : MethodsFromDevelopers
                 Counter++;
             }
         }
-
         
-
         void PickUpBullets(GameObject ObjectToPickUp)
         {
             if (ObjectToPickUp.gameObject.tag == "Ammo9MM")
@@ -295,10 +290,8 @@ public class PickUp : MethodsFromDevelopers
             SlotControler.SlotShpo02 = Armor.SlotShop02;
             SlotControler.SlotShpo03 = Armor.SlotShop03;
 
-
             SlotControler.SlotPistol01 = Armor.SlotPistol01;
-            SlotControler.SlotKnife01 = Armor.SlotKnife01;
-            
+            SlotControler.SlotKnife01 = Armor.SlotKnife01;            
             
             if (SlotControler.MyShope01) PutObjects(SlotControler.MyShope01, SlotControler.SlotShpo01);           
             if (SlotControler.MyShope02) PutObjects(SlotControler.MyShope02, SlotControler.SlotShpo02);            
@@ -310,14 +303,12 @@ public class PickUp : MethodsFromDevelopers
     }
 
     public void PickUpWeapons(GameObject ObjectForPickUp)
-    {        
-        
+    {                
         if (MainCounter == 1 && Counter == 0)
         {                                    
             SlotControler.MyPistol01 = ObjectToBeLifted.transform;
             PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01);            
             Counter++;
-
         }
         else if (!SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 && MainCounter == 2 && Counter == 0)
         {                        
@@ -326,12 +317,11 @@ public class PickUp : MethodsFromDevelopers
             Counter++;
         }
         else if (SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 && MainCounter == 2 && Counter == 0)
-        {            
+        {                        
             SlotControler.MyWeapon02 = ObjectForPickUp.transform;
             PutObjects(SlotControler.MyWeapon02, SlotControler.SlotBack02);           
             Counter++;
-
-        }
+        }                
         else if (Counter == 0)
         {
             Debug.Log("Cant take !");
