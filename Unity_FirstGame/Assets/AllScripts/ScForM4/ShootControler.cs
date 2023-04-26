@@ -25,7 +25,7 @@ public class ShootControler : MonoBehaviour
 
     [SerializeField] private float ColletSpeed = 0.0f;
     private Transform ShootPoint;
-    private float BulletSpeed = 100;
+    private float BulletSpeed = 90;
     private string NameForWeapon;
     private bool CanFire = false;
         
@@ -124,7 +124,7 @@ public class ShootControler : MonoBehaviour
                     Rigidbody newColletRB = newCollet.GetComponent<Rigidbody>();                    
                     
                     newColletRB.AddRelativeForce(ColletPoint.transform.forward * ColletSpeed, ForceMode.Impulse);
-                    Destroy(newCollet, 3.0f);
+                    Destroy(newCollet, 2.5f);
                     
                     Shop.CurrentAmmo--;
                     

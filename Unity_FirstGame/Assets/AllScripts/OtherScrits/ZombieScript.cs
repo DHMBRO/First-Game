@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ZombieScript : MonoBehaviour
 {
-    protected float ZombieHp = 100;
+    [SerializeField] protected float ZombieHp = 100;
     void Start()
     {
         
