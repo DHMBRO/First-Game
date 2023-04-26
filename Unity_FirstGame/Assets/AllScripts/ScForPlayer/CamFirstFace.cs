@@ -29,7 +29,7 @@ public class CamFirstFace : MonoBehaviour
             {
                 Player.Rotate(MouseX * new Vector3(0.0f, Sens, 0.0f));
             }
-            if (PlayerHand)
+            if (false)
             {
                 RaycastHit Hitesult;
                 Vector3 TargetPoint = ObjectRay.transform.position + ObjectRay.transform.forward * 100.0f;
