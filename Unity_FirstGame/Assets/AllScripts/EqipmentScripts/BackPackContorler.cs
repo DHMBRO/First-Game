@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BackPackContorler : MonoBehaviour
 {
-    [SerializeField] int LevelBackPack;
+    [SerializeField] public int LevelBackPack;
 
     void Start()    
     {

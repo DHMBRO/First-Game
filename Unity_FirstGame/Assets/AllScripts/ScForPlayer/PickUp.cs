@@ -277,14 +277,15 @@ public class PickUp : MethodsFromDevelopers
         else if (ObjectToPickUp.CompareTag("BackPack") && Counter == 0)
         {
             SlotControler.MyBackPack = ObjectToBeLifted.transform;
-            PutObjects(SlotControler.MyBackPack, SlotControler.SlotBackPack);
-            Debug.Log("Yes");
+            PutObjects(SlotControler.MyBackPack, SlotControler.SlotBackPack);            
+            PlayerInventory.BackPack = SlotControler.MyBackPack.gameObject;
+            PlayerInventory.ChargingValueMaxMass();                        
             Counter++;
         }
         
         void PutOn()
         {
-            ArmorControler Armor = SlotControler.MyArmor.GetComponent<ArmorControler>();
+            ArmorControler Armor = SlotControler.MyArmor.GetComponent<ArmorControler>();    
             
             SlotControler.SlotShpo01 = Armor.SlotShop01;
             SlotControler.SlotShpo02 = Armor.SlotShop02;
@@ -326,12 +327,7 @@ public class PickUp : MethodsFromDevelopers
         {
             Debug.Log("Cant take !");
         }        
-
-        //void CopyTransform(Transform ObjectForCopy, Transform PointForCopy)
-        {
-            
-        }
-
+        
     }
 
     public void PickUpShops(GameObject ShopForPickUp)
@@ -369,12 +365,4 @@ public class PickUp : MethodsFromDevelopers
             Debug.Log("Cant do this !");
         }        
     }
-
-
-
 }
-
-
-
-
-

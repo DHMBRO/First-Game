@@ -157,7 +157,7 @@ public class SlotControler : MethodsFromDevelopers
                     {
                         PutObjects(MyShope02, PointForRecharge);
                         ReferenseForWeapon.WeaponShoop = MyShope02.gameObject;
-                        //Debug.Log(!ShopControler02.IsUsing);
+                        
                         CounetrForCharge = 1;        
                     }
                     
@@ -169,7 +169,7 @@ public class SlotControler : MethodsFromDevelopers
                     {
                         PutObjects(MyShope03, PointForRecharge);
                         ReferenseForWeapon.WeaponShoop = MyShope03.gameObject;
-                        //Debug.Log(!ShopControler03.IsUsing);
+                        
                         CounetrForCharge = 1;                        
                     }
 
@@ -183,7 +183,7 @@ public class SlotControler : MethodsFromDevelopers
     
     void ChangingShops(GameObject Weapon, Transform PointForCharge, string MyWeaponTag, string MyShopTag)
     {
-        Debug.Log("1");
+        
         ShopControler ShopControler01; 
         ShopControler ShopControler02;
         ShopControler ShopControler03;
@@ -192,19 +192,10 @@ public class SlotControler : MethodsFromDevelopers
 
         if(Weapon.tag == MyWeaponTag)            
         {
-            Debug.Log("2");
             if(Input.GetKeyDown(KeyCode.R) && ShootControlerWeapon)
-            {
-                
-                Debug.Log("3");
-                
-                                
+            {                                                                
                 if (MyShope01 && ShootControlerWeapon.WeaponShoop == MyShope01.gameObject)
-                {
-                    Debug.Log("2-1");
-                    
-                    
-
+                {                                        
                     if (MyShope02)
                     {
                         ShopControler02 = MyShope02.gameObject.GetComponent<ShopControler>();
@@ -236,10 +227,7 @@ public class SlotControler : MethodsFromDevelopers
 
                 
                 if (MyShope02 && ShootControlerWeapon.WeaponShoop == MyShope02.gameObject)
-                {                    
-                    Debug.Log("2-2");
-                    
-                    
+                {                                                            
                     if (MyShope01)
                     {
                         ShopControler01 = MyShope01.gameObject.GetComponent<ShopControler>();
@@ -268,8 +256,7 @@ public class SlotControler : MethodsFromDevelopers
                 }
                                 
                 if (MyShope03 && ShootControlerWeapon.WeaponShoop == MyShope03.gameObject)
-                {
-                    Debug.Log("2-3");                                        
+                {                    
                     if (MyShope01)
                     {
                         ShopControler01 = MyShope01.gameObject.GetComponent<ShopControler>();
@@ -447,5 +434,5 @@ public class SlotControler : MethodsFromDevelopers
         }
 
     }
-
 }
+

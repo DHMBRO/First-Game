@@ -425,6 +425,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2297166037515554392}
   - component: {fileID: 2062650820928372484}
+  - component: {fileID: 5135733334343120382}
   m_Layer: 0
   m_Name: Helmet
   m_TagString: Helmet
@@ -466,6 +467,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.6011012, y: 0.5497689, z: 1.6710327}
   m_Center: {x: 0.30055058, y: -0.22511554, z: 0.064052224}
+--- !u!114 &5135733334343120382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3980498935504593382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bdaeac6dbf647a49b27e565783da4c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LevelHelmet: 1
 --- !u!1 &5640391877881487479
 GameObject:
   m_ObjectHideFlags: 0
