@@ -62,6 +62,7 @@ GameObject:
   - component: {fileID: 7785237847769309149}
   - component: {fileID: 1427766268900275734}
   - component: {fileID: 8823763917516572830}
+  - component: {fileID: 7446413381223648327}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player01
@@ -287,6 +288,21 @@ MonoBehaviour:
   PickUp: {fileID: 1427766268900275734}
   SlotControler: {fileID: 7785237847769309149}
   ShootControler: {fileID: 0}
+--- !u!114 &7446413381223648327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758934435905196194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbc3d5cc9bcf76c40a42460809249f8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PointForDrop: {fileID: 7434336520898069995}
+  ObjerctToDrop: {fileID: 0}
+  ControlerForSklots: {fileID: 0}
 --- !u!1 &1059009059662341174
 GameObject:
   m_ObjectHideFlags: 0
