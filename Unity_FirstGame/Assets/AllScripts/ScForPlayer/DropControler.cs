@@ -11,7 +11,9 @@ public class DropControler : MethodsFromDevelopers
 
     void Start()
     {
-        if(ControlerForSklots)
+         ControlerForSklots = gameObject.GetComponent<SlotControler>();
+
+        if (ControlerForSklots)
         {
             ObjerctToDrop = ControlerForSklots.ObjectInHand.gameObject;
         }
@@ -33,19 +35,33 @@ public class DropControler : MethodsFromDevelopers
                 }
                 else Debug.Log("If isnt work");
             }
-        }
-
-
-        
+        }        
     }
 
     void Drop(GameObject ObjerctToDrop02, Transform PointForDrop02)
     {
-        Rigidbody RigidbodyObjectToDrop = ObjerctToDrop02.GetComponent<Rigidbody>();        
-        PutObjects(ObjerctToDrop02.transform, PointForDrop02);
+        Rigidbody Rigidbody = ObjerctToDrop02.GetComponent<Rigidbody>();
+        Vector3 Drop = new Vector3(0.0f, 0.0f, 0.0f + 10.0f);
+        if (!Rigidbody)
+        {
+            Rigidbody RigidbodyObjectToDrop = ObjerctToDrop02.AddComponent<Rigidbody>();
+            
+            PutObjects(ObjerctToDrop02.transform, PointForDrop02);
+            RigidbodyObjectToDrop.AddRelativeForce(Drop, ForceMode.Force);
 
-        SettingsRigidbody(RigidbodyObjectToDrop);
-        Debug.Log("Method 1 is work ");
+            SettingsRigidbody(RigidbodyObjectToDrop);
+            Debug.Log("Method 1 is work ");
+
+        }
+        else
+        {
+            PutObjects(ObjerctToDrop02.transform, PointForDrop02);
+            Rigidbody.AddRelativeForce(Drop, ForceMode.Force);
+
+            SettingsRigidbody(Rigidbody);
+            Debug.Log("Method 1 is work ");
+
+        }
 
         void SettingsRigidbody(Rigidbody ReferenceFroRigidbody)
         {                        
