@@ -35,26 +35,26 @@ public class DropControler : MethodsFromDevelopers
             }
         }
 
-        
+
         
     }
 
     void Drop(GameObject ObjerctToDrop02, Transform PointForDrop02)
     {
         Rigidbody RigidbodyObjectToDrop = ObjerctToDrop02.GetComponent<Rigidbody>();        
-        PutObjects(ObjerctToDrop02, PointForDrop02);
-        
-        
+        PutObjects(ObjerctToDrop02.transform, PointForDrop02);
+
+        SettingsRigidbody(RigidbodyObjectToDrop);
         Debug.Log("Method 1 is work ");
 
         void SettingsRigidbody(Rigidbody ReferenceFroRigidbody)
         {                        
             ReferenceFroRigidbody.drag = 0.0f;
-            ReferenceFroRigidbody.AngularDrag = 0.5f;
+            ReferenceFroRigidbody.angularDrag= 0.5f;
         
-            ReferenceFroRigidbody.IsKinematic = false;
-            ReferenceFroRigidbody.UseGravity = true;
-            Debug.log("Method 2 is work");
+            ReferenceFroRigidbody.isKinematic = false;
+            ReferenceFroRigidbody.useGravity = true;
+            Debug.Log("Method 2 is work");
         }
     }
 

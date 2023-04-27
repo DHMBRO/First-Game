@@ -29,6 +29,7 @@ public class CamFirstFace : MonoBehaviour
             {
                 Player.Rotate(MouseX * new Vector3(0.0f, Sens, 0.0f));
             }
+            /*
             if (false)
             {
                 RaycastHit Hitesult;
@@ -42,6 +43,8 @@ public class CamFirstFace : MonoBehaviour
                 PlayerHand.rotation = Quaternion.Lerp(PlayerHand.rotation, RotateToTarget, 1.0f);
 
             }
+            */
+
         }
     }
     
