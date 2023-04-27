@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eca6baa367d47524bbb3cf2477c34551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ZombieHp: 100
 --- !u!1 &5428616973792416952
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,12 +238,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Agr: 0
   StelsScript: {fileID: 0}
-  PlayerTransform: {fileID: 7280841711503965072}
   Rigidbody: {fileID: 0}
   Player: {fileID: 0}
   SpeedForMove: 0.01
-  MaxHp: 100
-  CurrentHp: 100
 --- !u!135 &8380841528293721671
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -254,7 +252,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 8.48
+  m_Radius: 14.12
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8349985219191236876
 GameObject:
