@@ -48,7 +48,7 @@ public class AttackMethod : MonoBehaviour
     {
         if (CanAttack)
         {
-            DoCloseAttack(Damage,LocateScript.gameObject.transform.forward,LocateScript.Target.transform.position - LocateScript.gameObject.transform.position);
+            //DoCloseAttack(Damage,LocateScript.gameObject.transform.forward,LocateScript.Target.transform.position - LocateScript.gameObject.transform.position);
            
         }
     }
