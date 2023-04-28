@@ -7,7 +7,7 @@ public class LocateScript : MonoBehaviour
     RaycastHit HitRes;
     public bool Agr;
     [SerializeField] public StelsScript StelsScript;
-    [SerializeField] protected Rigidbody Rigidbody;
+    protected Rigidbody Rigidbody;
     public GameObject Player;
     [SerializeField] private float SpeedForMove = 0.01f;
     [SerializeField] private float MaxDistance = 10.0f;
@@ -29,7 +29,12 @@ public class LocateScript : MonoBehaviour
        
     }
 
-    
+    void MoveTo()
+    {
+        Rigidbody.isKinematic = false;
+        gameObject.transform.localPosition += gameObject.transform.forward * SpeedForMove;
+
+    }
     void Update()
     {        
         if (Player) 
@@ -49,7 +54,7 @@ public class LocateScript : MonoBehaviour
                     if (Agr && HitResult.collider.gameObject.CompareTag("Player01") && Rigidbody && !StelsScript.StelsOn)
                     {
                         Rigidbody.isKinematic = false;
-                        transform.localPosition += transform.forward * SpeedForMove;                        
+                        gameObject.transform.localPosition += gameObject.transform.forward * SpeedForMove;                        
                     }
                 
                 }            
