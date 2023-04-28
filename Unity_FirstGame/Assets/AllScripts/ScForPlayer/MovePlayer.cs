@@ -12,7 +12,7 @@ public class MovePlayer : MonoBehaviour
     [SerializeField] protected Transform CameraTransform;
 
     bool DontJumping = true;
-    bool chengebutton = false;
+    //bool chengebutton = false;
 
     int JumpCount;
     public int Speed;

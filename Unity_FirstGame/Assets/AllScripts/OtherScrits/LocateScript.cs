@@ -23,7 +23,7 @@ public class LocateScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {              
-        if (other.gameObject.CompareTag("Player01") && !StelsScript.StelsOn)
+        if (!Player && other.gameObject.CompareTag("Player01") && !StelsScript.StelsOn)
         {
             Agr = true;
             Player = other.gameObject;
@@ -40,8 +40,7 @@ public class LocateScript : MonoBehaviour
     }
     
     void Update()
-    {
-        
+    {        
         if (Player) 
         {
             Vector3 target = Player.transform.position - gameObject.transform.position;
