@@ -57,46 +57,33 @@ public class LocateScript : MonoBehaviour
     
     void Update()
     {
-        Ray ForwardToZombie = new Ray(transform.position, Target.transform.position);
-        if (Target && Physics.Raycast(ForwardToZombie, out RaycastHit HitResult))
+        Vector3 target = Target.transform.position - gameObject.transform.position;
+        Ray ForwardZombie = new Ray(Head.position, Head.forward);
+
+        if (Physics.Raycast(transform.position, Target.transform.position * MaxDistance))
         {
-            
-            if (HitResult.collider.gameObject.tag == "Player01")
+            Debug.DrawLine(transform.position, Target.transform.position, Color.yellow);
+            transform.rotation = Quaternion.LookRotation(target);
+
+
+        }
+        if (Physics.Raycast(ForwardZombie, out RaycastHit HitResult01, MaxDistance))
+        {
+            Debug.DrawLine(Head.position, Head.forward * MaxDistance + Head.position, Color.green);
+
+            if (Agr && HitResult01.collider.gameObject.tag == "Player01" && !StelsScript.StelsOn)
             {
-
-                Vector3 target = Target.transform.position - gameObject.transform.position;
-                Ray ForwardZombie = new Ray(Head.position, Head.forward);
-
-                if (Physics.Raycast(transform.position, Target.transform.position * MaxDistance))
-                {
-                    Debug.DrawLine(transform.position, Target.transform.position, Color.yellow);
-                    transform.rotation = Quaternion.LookRotation(target);
-
-
-                }
-                if (Physics.Raycast(ForwardZombie, out RaycastHit HitResult01, MaxDistance))
-                {
-                    Debug.DrawLine(Head.position, Head.forward * MaxDistance + Head.position, Color.green);
-
-                    if (Agr && HitResult01.collider.gameObject.tag == "Player01" && !StelsScript.StelsOn)
-                    {
-                        gameObject.transform.localPosition += gameObject.transform.forward * SpeedForMove;
-                        Debug.Log("1");
-
-                    }
-                    else if (HitResult01.collider.gameObject.tag != "Player01")
-                    {
-                        StelsScript = null;
-                        Agr = false;
-                    }
-                    Debug.Log(HitResult01.collider.gameObject.tag);
-                }
+                gameObject.transform.localPosition += gameObject.transform.forward * SpeedForMove;
+                Debug.Log("1");
 
             }
+            else if (HitResult01.collider.gameObject.tag != "Player01")
+            {
+                StelsScript = null;
+                Agr = false;
+            }
+            Debug.Log(HitResult01.collider.gameObject.tag);
         }
-
-                                
-
-
     }
 }
+
