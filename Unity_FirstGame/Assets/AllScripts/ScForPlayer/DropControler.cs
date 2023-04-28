@@ -5,7 +5,7 @@ using UnityEngine;
 public class DropControler : MethodsFromDevelopers
 {
     [SerializeField] Transform PointForDrop;
-    [SerializeField] GameObject DropObjerct;
+    [SerializeField] GameObject DropObject;
     
     [SerializeField] SlotControler ControlerForSlots;  
 
@@ -15,7 +15,7 @@ public class DropControler : MethodsFromDevelopers
 
         if (ControlerForSlots)
         {
-            DropObjerct = ControlerForSlots.ObjectInHand.gameObject;
+            DropObject = ControlerForSlots.ObjectInHand.gameObject;
         }
         
     }
@@ -31,15 +31,15 @@ public class DropControler : MethodsFromDevelopers
             {
                 if(!RigidbodyObject01)
                 {
-                    Rigidbody RigidbodyObject02 = DropObjerct.GetComponent<Rigidbody>();
+                    Rigidbody RigidbodyObject02 = DropObject.GetComponent<Rigidbody>();
                 
                     RigidbodySettinbgs(RigidbodyObject02);       
-                    DropObjects(DropObjerct.transform PointForDrop);  
+                    DropObjects(DropObject.transform, PointForDrop);  
                 } 
                 else if(RigidbodyObject01)
                 {                
                     RigidbodySettinbgs(RigidbodyObject01);       
-                    DropObjects(DropObjerct.transform PointForDrop);                  
+                    DropObjects(DropObject.transform, PointForDrop);                  
                 }
             }
 
@@ -49,11 +49,11 @@ public class DropControler : MethodsFromDevelopers
 
     void RigidbodySettinbgs(Rigidbody RigidbodyObject)
     {
-        RigidbodyObject.isKinematic = false;
-        RigidbodyObject.useGrsvity = true;
+        RigidbodyObject.isKinematic= false;
+        RigidbodyObject.useGravity = true;
 
         RigidbodyObject.angularDrag = 0.05f;
-        RigidbodyObject.Drag = 0.0f;
+        RigidbodyObject.drag = 0.0f;
 
     }
 
