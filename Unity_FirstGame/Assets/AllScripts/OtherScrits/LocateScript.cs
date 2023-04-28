@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LocateScript : MonoBehaviour
-{
-    RaycastHit HitRes;
-    public bool Agr;
+{    
+    [SerializeField] public bool Agr;
+    [SerializeField] public Transform Head; 
+
+    [SerializeField] public GameObject Player;
+    [SerializeField] protected Rigidbody Rigidbody;
     [SerializeField] public StelsScript StelsScript;
-    protected Rigidbody Rigidbody;
-    public GameObject Player;
+
     [SerializeField] private float SpeedForMove = 0.01f;
     [SerializeField] private float MaxDistance = 10.0f;
 
+    
     void Start()
     {
         Rigidbody = gameObject.GetComponent<Rigidbody>();   
@@ -24,7 +27,7 @@ public class LocateScript : MonoBehaviour
         {
             Agr = true;
             Player = other.gameObject;
-            StelsScript = other.gameObject.GetComponent<StelsScript>();            
+            StelsScript = other.gameObject.GetComponent<StelsScript>();                    
         }
        
     }
@@ -36,11 +39,12 @@ public class LocateScript : MonoBehaviour
 
     }
     void Update()
-    {        
+    {
+        
         if (Player) 
         {
             Vector3 target = Player.transform.position - gameObject.transform.position;
-            Ray ForwardZombie = new Ray(transform.position, transform.forward * MaxDistance);
+            Ray ForwardZombie = new Ray(Head.position, Head.forward);
 
             if (Physics.Raycast(transform.position, Player.transform.position))            
             {               
@@ -49,7 +53,7 @@ public class LocateScript : MonoBehaviour
 
                 if(Physics.Raycast(ForwardZombie, out RaycastHit HitResult, MaxDistance))
                 {                    
-                    Debug.DrawLine(transform.position, transform.forward * MaxDistance, Color.yellow);
+                    Debug.DrawLine(Head.position, Head.forward * MaxDistance + Head.position, Color.green);
 
                     if (Agr && HitResult.collider.gameObject.CompareTag("Player01") && Rigidbody && !StelsScript.StelsOn)
                     {
