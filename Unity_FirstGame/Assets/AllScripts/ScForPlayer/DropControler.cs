@@ -22,16 +22,28 @@ public class DropControler : MethodsFromDevelopers
 
     void Update()
     {
-        if (DropObjerct)
-        {            
+        Rigidbody RigidbodyObject01 = DropObject.GetComponent<Rigidbody>();
+        
+
+        if (DropObject)
+        {                        
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                Rigidbody RigidbodyObject = DropObjerct.GetComponent<Rigidbody>();
-                RigidbodySettinbgs(RigidbodyObject);       
-                DropObjects(DropObjerct.transform PointForDrop);   
+                if(!RigidbodyObject01)
+                {
+                    Rigidbody RigidbodyObject02 = DropObjerct.GetComponent<Rigidbody>();
+                
+                    RigidbodySettinbgs(RigidbodyObject02);       
+                    DropObjects(DropObjerct.transform PointForDrop);  
+                } 
+                else if(RigidbodyObject01)
+                {                
+                    RigidbodySettinbgs(RigidbodyObject01);       
+                    DropObjects(DropObjerct.transform PointForDrop);                  
+                }
             }
 
-        }
+        }   
         
     }
 
