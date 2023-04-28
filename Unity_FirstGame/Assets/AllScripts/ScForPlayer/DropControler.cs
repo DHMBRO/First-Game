@@ -5,37 +5,40 @@ using UnityEngine;
 public class DropControler : MethodsFromDevelopers
 {
     [SerializeField] Transform PointForDrop;
-    [SerializeField] GameObject ObjerctToDrop;
+    [SerializeField] GameObject DropObjerct;
     
-    [SerializeField] SlotControler ControlerForSklots;  
+    [SerializeField] SlotControler ControlerForSlots;  
 
     void Start()
     {
-        ControlerForSklots = gameObject.GetComponent<SlotControler>();
+        ControlerForSlots = gameObject.GetComponent<SlotControler>();
 
-        if (ControlerForSklots)
+        if (ControlerForSlots)
         {
-            ObjerctToDrop = ControlerForSklots.ObjectInHand.gameObject;
+            DropObjerct = ControlerForSlots.ObjectInHand.gameObject;
         }
         
     }
 
     void Update()
     {
-        if (ObjerctToDrop)
-        {
-            
+        if (DropObjerct)
+        {            
             if (Input.GetKeyDown(KeyCode.Q))
             {
+                Rigidbody RigidbodyObject = DropObjerct.GetComponent<Rigidbody>();
+
+                DropObjects(DropObjerct.transform PointForDrop);   
 
             }
+
         }
         
     }
 
-    void Drop(GameObject ObjerctToDrop02, Transform PointForDrop02)
+    void RigidbodySettinbgs(Rigidbody RigidbodyObject)
     {
-       
+
     }
 
 }
