@@ -200,7 +200,8 @@ public class SlotControler : MethodsFromDevelopers
                     {
                         ShopControler02 = MyShope02.gameObject.GetComponent<ShopControler>();
                         
-                        if (ShopControler02 && !ShopControler02.IsUsing && MyShope02.gameObject.tag == MyShopTag && CounetrForCharge == 0)
+                        if (ShopControler02 && ShopControler02 .CurrentAmmo > 0 && !ShopControler02.IsUsing && 
+                        MyShope02.gameObject.tag == MyShopTag && CounetrForCharge == 0)
                         {
                             PutObjects(MyShope01, SlotShpo01);
                             PutObjects(MyShope02, PointForCharge);
@@ -213,7 +214,7 @@ public class SlotControler : MethodsFromDevelopers
                     {
                         ShopControler03 = MyShope03.gameObject.GetComponent<ShopControler>();
                         
-                        if (!ShopControler03.IsUsing && MyShope03.gameObject.tag == MyShopTag && CounetrForCharge == 0)
+                        if (!ShopControler03.IsUsing &&  ShopControler03.CurrentAmmo > 0  &&MyShope03.gameObject.tag == MyShopTag && CounetrForCharge == 0)
                         {
                             PutObjects(MyShope02, SlotShpo02);
                             PutObjects(MyShope03, PointForCharge);
@@ -231,7 +232,7 @@ public class SlotControler : MethodsFromDevelopers
                     if (MyShope01)
                     {
                         ShopControler01 = MyShope01.gameObject.GetComponent<ShopControler>();
-                        if (!ShopControler01.IsUsing && MyShope01.gameObject.tag == MyShopTag && CounetrForCharge == 0)
+                        if (!ShopControler01.IsUsing && ShopControler01.CurrentAmmo > 0 && MyShope01.gameObject.tag == MyShopTag && CounetrForCharge == 0)
                         {
                             PutObjects(MyShope02, SlotShpo02);
                             PutObjects(MyShope01, PointForCharge);
@@ -243,7 +244,7 @@ public class SlotControler : MethodsFromDevelopers
                     else if (MyShope03)
                     {
                         ShopControler03 = MyShope03.gameObject.GetComponent<ShopControler>();
-                        if (!ShopControler03.IsUsing && MyShope03.gameObject.tag == MyShopTag && CounetrForCharge == 0)
+                        if (!ShopControler03.IsUsing && ShopControler03.CurrentAmmo > 0 && MyShope03.gameObject.tag == MyShopTag && CounetrForCharge == 0)
                         {
                             PutObjects(MyShope02, SlotShpo02);
                             PutObjects(MyShope03, PointForCharge);
@@ -260,7 +261,7 @@ public class SlotControler : MethodsFromDevelopers
                     if (MyShope01)
                     {
                         ShopControler01 = MyShope01.gameObject.GetComponent<ShopControler>();
-                        if (!ShopControler01.IsUsing && MyShope01.gameObject.tag == MyShopTag && CounetrForCharge == 0)
+                        if (!ShopControler01.IsUsing && ShopControler01.CurrentAmmo > 0 && MyShope01.gameObject.tag == MyShopTag && CounetrForCharge == 0)
                         {
                             PutObjects(MyShope02, SlotShpo02);
                             PutObjects(MyShope01, PointForCharge);
@@ -272,7 +273,7 @@ public class SlotControler : MethodsFromDevelopers
                     else if (MyShope02)
                     {
                         ShopControler02 = MyShope02.gameObject.GetComponent<ShopControler>();
-                        if (!ShopControler02.IsUsing && MyShope02.gameObject.tag == MyShopTag && CounetrForCharge == 0)
+                        if (!ShopControler02.IsUsing && ShopControler02.CurrentAmmo > 0 &&MyShope02.gameObject.tag == MyShopTag && CounetrForCharge == 0)
                         {
                             PutObjects(MyShope01, SlotShpo01);
                             PutObjects(MyShope02, PointForCharge);
