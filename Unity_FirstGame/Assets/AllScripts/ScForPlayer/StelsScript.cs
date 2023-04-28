@@ -16,16 +16,12 @@ public class StelsScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bach") && Input.GetKey(KeyCode.X))
         {
-
-
-            StelsOn = true;
-            Debug.Log(StelsOn+"789");
+            StelsOn = true;            
         }
         else if(other.gameObject.CompareTag("Bach") && !Input.GetKey(KeyCode.X))
         {
 
-            StelsOn = false;
-            Debug.Log(StelsOn+"456");
+            StelsOn = false;            
         }
     }
     private void OnTriggerExit(Collider other)

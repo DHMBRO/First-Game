@@ -563,11 +563,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 758934435905196194, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
   m_PrefabInstance: {fileID: 1452546880}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &277940202 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 7220017703158707578, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
-  m_PrefabInstance: {fileID: 1452546880}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &277940206 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 780860326346338877, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
@@ -2088,7 +2083,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 780860326346338877, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -58.526115
+      value: -63.72
       objectReference: {fileID: 0}
     - target: {fileID: 780860326346338877, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2096,7 +2091,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 780860326346338877, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 18.915844
+      value: -8.58
       objectReference: {fileID: 0}
     - target: {fileID: 780860326346338877, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2953,7 +2948,11 @@ PrefabInstance:
     - target: {fileID: 5342706582384582949, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
       propertyPath: Rigidbody
       value: 
-      objectReference: {fileID: 277940202}
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342706582384582949, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+      propertyPath: MaxDistance
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 5342706582384582949, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
       propertyPath: StelsScript
       value: 
