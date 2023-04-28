@@ -7,7 +7,7 @@ public class LocateScript : MonoBehaviour
     [SerializeField] public bool Agr;
     [SerializeField] public Transform Head; 
 
-    [SerializeField] public GameObject Player;
+    [SerializeField] public GameObject Target;
     [SerializeField] protected Rigidbody Rigidbody;
     [SerializeField] public StelsScript StelsScript;
 
@@ -17,16 +17,19 @@ public class LocateScript : MonoBehaviour
     
     void Start()
     {
-        Rigidbody = gameObject.GetComponent<Rigidbody>();   
-        
+        Rigidbody = gameObject.GetComponent<Rigidbody>();
+        if (Target)
+        {
+            StelsScript = Target.GetComponent<StelsScript>();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {              
-        if (!Player && other.gameObject.CompareTag("Player01") && !StelsScript.StelsOn)
+        if (!Target && other.gameObject.CompareTag("Player01") && !StelsScript.StelsOn)
         {
             Agr = true;
-            Player = other.gameObject;
+            Target = other.gameObject;
             StelsScript = other.gameObject.GetComponent<StelsScript>();                    
         }
        
@@ -40,15 +43,18 @@ public class LocateScript : MonoBehaviour
     }
     
     void Update()
-    {        
-        if (Player) 
+    {
+        
+        if (Target) 
         {
-            Vector3 target = Player.transform.position - gameObject.transform.position;
+            Vector3 target = Target.transform.position - gameObject.transform.position;
             Ray ForwardZombie = new Ray(Head.position, Head.forward);
 
-            if (Physics.Raycast(transform.position, Player.transform.position))            
+            StelsScript = Target.GetComponent<StelsScript>();
+
+            if (Physics.Raycast(transform.position, Target.transform.position))            
             {               
-                Debug.DrawLine(transform.position, Player.transform.position, Color.yellow);                    
+                Debug.DrawLine(transform.position, Target.transform.position, Color.yellow);                    
                 transform.rotation = Quaternion.LookRotation(target);
 
                 if(Physics.Raycast(ForwardZombie, out RaycastHit HitResult, MaxDistance))
