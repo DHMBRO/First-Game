@@ -20,8 +20,8 @@ public class MethodsFromDevelopers : MonoBehaviour
 
     protected void DropObjects(Transform ObjectToDrop, Transform ObecjtForCopy)
     {
-        ObjectToDrop.position = ObjectForCopy.position;
-        ObjectToDrop.rotation = ObjectForCopy.rotation;
+        ObjectToDrop.position = ObecjtForCopy.position;
+        ObjectToDrop.rotation = ObecjtForCopy.rotation;
         
         ObjectToDrop.transform.SetParent(null);        
     }
