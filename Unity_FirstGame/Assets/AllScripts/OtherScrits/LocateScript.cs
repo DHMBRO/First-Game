@@ -7,8 +7,7 @@ public class LocateScript : MonoBehaviour
     [SerializeField] public bool Agr;
     [SerializeField] public Transform Head;    
 
-    [SerializeField] public GameObject Target;
-    [SerializeField] protected Rigidbody Rigidbody;
+    [SerializeField] public GameObject Target;    
     [SerializeField] public StelsScript StelsScript;
 
     [SerializeField] private float SpeedForMove = 0.01f;
@@ -16,8 +15,7 @@ public class LocateScript : MonoBehaviour
 
     
     void Start()
-    {
-        Rigidbody = gameObject.GetComponent<Rigidbody>();
+    {        
         if (Target)
         {
             StelsScript = Target.GetComponent<StelsScript>();
@@ -43,8 +41,7 @@ public class LocateScript : MonoBehaviour
     }
 
     void MoveTo()
-    {
-        Rigidbody.isKinematic = false;
+    {           
         gameObject.transform.localPosition += gameObject.transform.forward * SpeedForMove;
 
     }
@@ -54,11 +51,11 @@ public class LocateScript : MonoBehaviour
         
         if (Target) 
         {
-            
+               
             Vector3 target = Target.transform.position - gameObject.transform.position;
             Ray ForwardZombie = new Ray(Head.position, Head.forward);            
 
-            if (Physics.Raycast(transform.position, Target.transform.position))            
+            if (Physics.Raycast(transform.position, Target.transform.position * MaxDistance))            
             {               
                 Debug.DrawLine(transform.position, Target.transform.position, Color.yellow);                    
                 transform.rotation = Quaternion.LookRotation(target);
@@ -69,17 +66,15 @@ public class LocateScript : MonoBehaviour
             {
                 Debug.DrawLine(Head.position, Head.forward * MaxDistance + Head.position, Color.green);
 
-                if (Agr && HitResult01.collider.gameObject.tag == "Player01" && Rigidbody && !StelsScript.StelsOn)
-                {
-                    Rigidbody.isKinematic = false;
+                if (Agr && HitResult01.collider.gameObject.tag == "Player01" && !StelsScript.StelsOn)
+                {                    
                     gameObject.transform.localPosition += gameObject.transform.forward * SpeedForMove;
-
+                    Debug.Log("1");
                     
                 }
                 else if (HitResult01.collider.gameObject.tag != "Player01")
                 {
                     Target = null;
-                    Rigidbody = null;
                     StelsScript = null;
                     Agr = false;
 
