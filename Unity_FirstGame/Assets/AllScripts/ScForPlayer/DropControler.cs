@@ -13,7 +13,7 @@ public class DropControler : MethodsFromDevelopers
     {
         ControlerForSlots = gameObject.GetComponent<SlotControler>();
 
-        if (ControlerForSlots)
+        if (ControlerForSlots && ControlerForSlots.ObjectInHand)
         {
             DropObject = ControlerForSlots.ObjectInHand.gameObject;
         }
@@ -24,6 +24,10 @@ public class DropControler : MethodsFromDevelopers
     {
         Rigidbody RigidbodyObject01 = DropObject.GetComponent<Rigidbody>();
         
+        if (ControlerForSlots && ControlerForSlots.ObjectInHand)
+        {
+            DropObject = ControlerForSlots.ObjectInHand.gameObject;
+        }
 
         if (DropObject)
         {                        
