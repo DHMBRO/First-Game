@@ -64,22 +64,22 @@ public class ShootControler : MonoBehaviour
     
     public void ShootForM4()
     {
-        bool Audit01 = MyWeapon && GameObjectForRay && Muzzle && Bullet && Collet && ColectPoint;  
+        bool Audit01 = MyWeapon && GameObjectForRay && Muzzle && Bullet && Collet && ColletPoint;  
         if(gameObject.tag == "M4" && Audit01)
         {
-            Shoot(Muzzle, GameObjectForRay, ColectPoint, Collet, Bullet);
+            Shoot(Muzzle, GameObjectForRay, ColletPoint, Collet, Bullet);
         }
         else if(gameObject.tag == "AK47" && Audit01)
         {
-            Shoot(Muzzle, GameObjectForRay, ColectPoint, Collet, Bullet);
+            Shoot(Muzzle, GameObjectForRay, ColletPoint, Collet, Bullet);
         }
         else if(gameObject.tag == "Glok" && Audit01)
         {
-            Shoot(Muzzle, GameObjectForRay, ColectPoint, Collet, Bullet);
+            Shoot(Muzzle, GameObjectForRay, ColletPoint, Collet, Bullet);
         }
         else if(gameObject.tag == "M1911" && Audit01)
         {
-            Shoot(Muzzle, GameObjectForRay, ColectPoint, Collet, Bullet);
+            Shoot(Muzzle, GameObjectForRay, ColletPoint, Collet, Bullet);
         }        
     }
 
