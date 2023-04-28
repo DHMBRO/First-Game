@@ -36,10 +36,24 @@ public class DropControler : MethodsFromDevelopers
                 {
                     if (!RigidbodyObject01)
                     {
-                        Rigidbody RigidbodyObject02 = DropObject.GetComponent<Rigidbody>();
+                        Rigidbody RigidbodyObject02 = DropObject.AddComponent<Rigidbody>();
 
                         RigidbodySettinbgs(RigidbodyObject02);
                         DropObjects(DropObject.transform, PointForDrop);
+                        if (ControlerForSlots.ObjectInHand.gameObject == ControlerForSlots.MyPistol01.gameObject)
+                        {
+                            ControlerForSlots.MyPistol01 = null;
+                        }
+                        else if (ControlerForSlots.ObjectInHand.gameObject == ControlerForSlots.MyWeapon01.gameObject)
+                        {
+                            ControlerForSlots.MyWeapon01= null;
+                        }
+                        else if (ControlerForSlots.ObjectInHand.gameObject == ControlerForSlots.MyWeapon02.gameObject)
+                        {
+                            ControlerForSlots.MyWeapon02 = null;
+                        }
+
+
                     }
                     else if (RigidbodyObject01)
                     {

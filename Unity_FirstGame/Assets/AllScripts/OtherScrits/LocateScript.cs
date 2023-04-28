@@ -38,6 +38,7 @@ public class LocateScript : MonoBehaviour
         gameObject.transform.localPosition += gameObject.transform.forward * SpeedForMove;
 
     }
+    
     void Update()
     {
         
