@@ -35,11 +35,14 @@ public class LocateScript : MonoBehaviour
     {
         Vector3 target = Player.transform.position - gameObject.transform.position;
         Ray ForwardZombie = new Ray(transform.position, transform.forward * MaxDistance);
+        
         if (Player) 
         {
             if (Physics.Raycast(transform.position, Player.transform.position))            
             {               
                 Debug.DrawLine(transform.position, Player.transform.position, Color.yellow);                    
+                transform.rotation = Quaternion.LookRotation(target);
+
                 if(Physics.Raycast(ForwardZombie, out RaycastHit HitResult, MaxDistance))
                 {                    
                     Debug.DrawLine(transform.position, transform.forward * MaxDistance, Color.yellow);
@@ -47,19 +50,13 @@ public class LocateScript : MonoBehaviour
                     if (Agr && HitResult.collider.gameObject.CompareTag("Player01") && Rigidbody && !StelsScript.StelsOn)
                     {
                         Rigidbody.isKinematic = false;
-
-                        transform.localPosition += transform.forward * SpeedForMove;
-                        transform.rotation = Quaternion.LookRotation(target);
+                        transform.localPosition += transform.forward * SpeedForMove;                        
                     }
                 
-                }
-                
+                }            
+            }            
 
-            }
-            
-        }
-        
-        
-        
+        }                        
+
     }
 }
