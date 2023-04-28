@@ -10,7 +10,7 @@ public class LocateScript : MonoBehaviour
     [SerializeField] protected Rigidbody Rigidbody;
     public GameObject Player;
     [SerializeField] private float SpeedForMove = 0.01f;
-    
+    [SerializeField] private float MaxDistance = 10.0f;
 
     void Start()
     {
@@ -19,10 +19,8 @@ public class LocateScript : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other)
-    {
-        
-      
-        if (other.gameObject.CompareTag("Player01") && !StelsScript.StelsOn )
+    {              
+        if (other.gameObject.CompareTag("Player01") && !StelsScript.StelsOn)
         {
             Agr = true;
             Player = other.gameObject;
@@ -32,34 +30,33 @@ public class LocateScript : MonoBehaviour
        
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player01"))
-        {
-
-
-
-        }
-    }
+    
     void Update()
     {
+        Vector3 target = Player.transform.position - gameObject.transform.position;
+        Ray ForwardZombie = new Ray(transform.position, transform.forward * MaxDistance);
         if (Player) 
         {
-            if (Physics.Raycast(gameObject.transform.position, Player.transform.position))
-            {
-               
-                Debug.DrawLine(gameObject.transform.position, Player.transform.position, Color.yellow);
-            }
-            Debug.DrawLine(gameObject.transform.position, Player.transform.position, Color.yellow);
-            Vector3 target = Player.transform.position - gameObject.transform.position;
-            if (Agr && Player.transform && Rigidbody && StelsScript.StelsOn == false)
-            {
+            if (Physics.Raycast(transform.position, Player.transform.position))            
+            {               
+                Debug.DrawLine(transform.position, Player.transform.position, Color.yellow);                    
+                if(Physics.Raycast(ForwardZombie, out RaycastHit HitResult, MaxDistance))
+                {                    
+                    Debug.DrawLine(transform.position, transform.forward * MaxDistance, Color.yellow);
 
-                Rigidbody.isKinematic = false;
+                    if (Agr && HitResult.collider.gameObject.CompareTag("Player01") && Rigidbody && !StelsScript.StelsOn)
+                    {
+                        Rigidbody.isKinematic = false;
 
-                transform.localPosition += transform.forward * SpeedForMove;
-                transform.rotation = Quaternion.LookRotation(target);
+                        transform.localPosition += transform.forward * SpeedForMove;
+                        transform.rotation = Quaternion.LookRotation(target);
+                    }
+                
+                }
+                
+
             }
+            
         }
         
         

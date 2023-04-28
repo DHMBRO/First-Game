@@ -24,7 +24,8 @@ public class DropControler : MethodsFromDevelopers
     {
         if (ObjerctToDrop)
         {
-            //if (Input.GetKeyDown(KeyCode.Q))
+            
+            if (Input.GetKeyDown(KeyCode.Q))
             {
 
             }
