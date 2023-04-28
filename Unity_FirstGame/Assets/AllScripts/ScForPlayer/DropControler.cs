@@ -27,9 +27,8 @@ public class DropControler : MethodsFromDevelopers
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 Rigidbody RigidbodyObject = DropObjerct.GetComponent<Rigidbody>();
-
+                RigidbodySettinbgs(RigidbodyObject);       
                 DropObjects(DropObjerct.transform PointForDrop);   
-
             }
 
         }
@@ -38,6 +37,11 @@ public class DropControler : MethodsFromDevelopers
 
     void RigidbodySettinbgs(Rigidbody RigidbodyObject)
     {
+        RigidbodyObject.isKinematic = false;
+        RigidbodyObject.useGrsvity = true;
+
+        RigidbodyObject.angularDrag = 0.05f;
+        RigidbodyObject.Drag = 0.0f;
 
     }
 
