@@ -305,7 +305,7 @@ public class PickUp : MethodsFromDevelopers
 
     public void PickUpWeapons(GameObject ObjectForPickUp)
     {                
-        if (MainCounter == 1 && Counter == 0)
+        if (!SlotControler.MyPistol01 && MainCounter == 1 && Counter == 0)
         {                                    
             SlotControler.MyPistol01 = ObjectToBeLifted.transform;
             PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01);            
