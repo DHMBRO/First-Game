@@ -24,20 +24,19 @@ public class LocateScript : MonoBehaviour
         {
             Agr = true;
             Player = other.gameObject;
-            StelsScript = other.gameObject.GetComponent<StelsScript>();
-            
+            StelsScript = other.gameObject.GetComponent<StelsScript>();            
         }
        
     }
 
     
     void Update()
-    {
-        Vector3 target = Player.transform.position - gameObject.transform.position;
-        Ray ForwardZombie = new Ray(transform.position, transform.forward * MaxDistance);
-        
+    {        
         if (Player) 
         {
+            Vector3 target = Player.transform.position - gameObject.transform.position;
+            Ray ForwardZombie = new Ray(transform.position, transform.forward * MaxDistance);
+
             if (Physics.Raycast(transform.position, Player.transform.position))            
             {               
                 Debug.DrawLine(transform.position, Player.transform.position, Color.yellow);                    
