@@ -7,7 +7,10 @@ public class DropControler : MethodsFromDevelopers
     [SerializeField] Transform PointForDrop;
     [SerializeField] GameObject DropObject;
     
-    [SerializeField] SlotControler ControlerForSlots;  
+    [SerializeField] SlotControler ControlerForSlots;
+
+    [SerializeField] private float DeleyForDestory;
+    [SerializeField] private float Deley;
 
     void Start()
     {
@@ -40,19 +43,19 @@ public class DropControler : MethodsFromDevelopers
 
                         RigidbodySettinbgs(RigidbodyObject02);
                         DropObjects(DropObject.transform, PointForDrop);
-                        if (ControlerForSlots.ObjectInHand.gameObject == ControlerForSlots.MyPistol01.gameObject)
+                        if (ControlerForSlots.ObjectInHand.gameObject.tag == "Glok")
                         {
                             ControlerForSlots.MyPistol01 = null;
                         }
-                        else if (ControlerForSlots.ObjectInHand.gameObject == ControlerForSlots.MyWeapon01.gameObject)
+                        else if (ControlerForSlots.ObjectInHand.gameObject.tag == "M4")
                         {
                             ControlerForSlots.MyWeapon01= null;
                         }
-                        else if (ControlerForSlots.ObjectInHand.gameObject == ControlerForSlots.MyWeapon02.gameObject)
+                        else if (ControlerForSlots.ObjectInHand.gameObject.tag == "M4")
                         {
                             ControlerForSlots.MyWeapon02 = null;
                         }
-
+                        
 
                     }
                     else if (RigidbodyObject01)
@@ -64,7 +67,7 @@ public class DropControler : MethodsFromDevelopers
 
             }
         }
-           
+
         
     }
 

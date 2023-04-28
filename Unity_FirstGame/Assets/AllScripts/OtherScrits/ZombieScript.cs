@@ -20,7 +20,7 @@ public class ZombieScript : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log("HP ===" + ZombieHp);
+        
         if (ZombieHp <= 0) 
         {
             Destroy(gameObject);
