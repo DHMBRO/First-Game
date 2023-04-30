@@ -3,23 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LocateScript : MonoBehaviour
-{    
-    [SerializeField] public bool Agr;
-    [SerializeField] public Transform Head;    
+{
+    [SerializeField] private Transform Head;
+    [SerializeField] private GameObject Target;    
 
-    [SerializeField] private GameObject Target;
-    [SerializeField] private GameObject PosTargetForRotate;
-    [SerializeField] public StelsScript StelsScript;
-
-    [SerializeField] private float SpeedForMove = 0.01f;
-    [SerializeField] private float MaxDistance = 14.0f;
+    [SerializeField] private string WhatImLooking;
+    [SerializeField] private RaycastHit HitResult; 
+    
+    [SerializeField] private float SpeedForMove;
+    [SerializeField] private float MaxDistatzeForAgr;
 
     
     void Start()
     {        
         if (Target)
         {
-            StelsScript = Target.GetComponent<StelsScript>();
+            
         }
     }
 
@@ -27,63 +26,50 @@ public class LocateScript : MonoBehaviour
     {              
         if (other.gameObject.CompareTag("Player01"))
         {
-            Target = other.gameObject;
-            PosTargetForRotate = Target;
-            StelsScript = Target.gameObject.GetComponent<StelsScript>();
-
-            if (StelsScript && !StelsScript.StelsOn)
-            {
-                Agr = true;                
-            }                                    
+            Target = other.gameObject;            
         }       
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Player01"))
-        {
-            Target = null;
-            StelsScript = null;
-
-            Agr = false;
+        {            
+            Target = null; 
         }
     }
 
     void MoveTo()
     {               
-        gameObject.transform.localPosition += gameObject.transform.forward * SpeedForMove;
+        //gameObject.transform.localPosition += gameObject.transform.forward * SpeedForMove;
 
     }
     
     void Update()
     {
-        Vector3 target = Target.transform.position - gameObject.transform.position;
-        Ray ForwardZombie = new Ray(Head.position, Head.forward);
+        
+        
+        
+        if (Target)
+        {            
+            Vector3 Rotate = Target.transform.position - transform.position;
+            Ray Detection = new Ray(Head.transform.position, Target.transform.position);
 
-        if (Physics.Raycast(transform.position, Target.transform.position * MaxDistance))
-        {
-            Debug.DrawLine(transform.position, Target.transform.position, Color.yellow);
-            transform.rotation = Quaternion.LookRotation(target);
+            
 
-
-        }
-        if (Physics.Raycast(ForwardZombie, out RaycastHit HitResult01, MaxDistance))
-        {
-            Debug.DrawLine(Head.position, Head.forward * MaxDistance + Head.position, Color.green);
-
-            if (Agr && HitResult01.collider.gameObject.tag == "Player01" && !StelsScript.StelsOn)
+            if (Physics.Raycast(Detection, out HitResult))
             {
-                gameObject.transform.localPosition += gameObject.transform.forward * SpeedForMove;
-                Debug.Log("1");
+                Debug.DrawLine(Head.transform.position, Target.transform.position, Color.yellow);
+                WhatImLooking = HitResult.collider.gameObject.tag;
 
+                if (HitResult.collider.gameObject.tag == "Player01" && Physics.Raycast(transform.position, transform.forward * MaxDistatzeForAgr))
+                {
+                    Debug.DrawLine(Head.position, Head.forward * MaxDistatzeForAgr + Head.position, Color.red);
+                    transform.rotation = Quaternion.LookRotation(Rotate);
+                }
             }
-            else if (HitResult01.collider.gameObject.tag != "Player01")
-            {
-                StelsScript = null;
-                Agr = false;
-            }
-            Debug.Log(HitResult01.collider.gameObject.tag);
+            
         }
     }
+              
 }
 
