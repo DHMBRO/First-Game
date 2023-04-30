@@ -5,6 +5,7 @@ using UnityEngine;
 public class LocateScript : MonoBehaviour
 {
     [SerializeField] private Transform Head;
+    [SerializeField] private Transform HeadPoint;
     [SerializeField] private GameObject Target;    
 
     [SerializeField] private string WhatImLooking;
@@ -53,9 +54,7 @@ public class LocateScript : MonoBehaviour
         {            
             Vector3 Rotate = Target.transform.position - transform.position;
             Ray Detection = new Ray(Head.transform.position, Target.transform.position);
-
             
-
             if (Physics.Raycast(Detection, out HitResult))
             {
                 Debug.DrawLine(Head.transform.position, Target.transform.position, Color.yellow);

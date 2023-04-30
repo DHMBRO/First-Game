@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DropControler : MethodsFromDevelopers
@@ -54,20 +52,12 @@ public class DropControler : MethodsFromDevelopers
                     else if (ControlerForSlots.ObjectInHand.gameObject.tag == "M4")
                     {
                         ControlerForSlots.MyWeapon02 = null;
-                    }
-                    while (DeleyForDestory >= Time.time)
-                    {
-                        Destroy(RigidbodyObject02);
-                    }
+                    }                    
                 }
                 else if (RigidbodyObject01)
                 {
                     RigidbodySettinbgs(RigidbodyObject01);
-                    DropObjects(DropObject.transform, PointForDrop);
-                    while (DeleyForDestory >= Time.time)
-                    {
-                        Destroy(RigidbodyObject01);
-                    }
+                    DropObjects(DropObject.transform, PointForDrop);                    
                 }
             }
         }
