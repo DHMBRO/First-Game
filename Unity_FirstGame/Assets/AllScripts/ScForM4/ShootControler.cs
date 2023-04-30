@@ -12,11 +12,11 @@ public class ShootControler : MonoBehaviour
     [SerializeField] private GameObject Bullet;
     [SerializeField] private GameObject Collet;
     [SerializeField] private GameObject ColletPoint;
-    
+
     [SerializeField] public float ShotDeley = 1.0f;
     [SerializeField] public float ShotTime = 0.0f;
     [SerializeField] public float Mass = 0.0f;
-    [SerializeField] public float SpeedForBullet = 0.0f;    
+    [SerializeField] public float SpeedForBullet = 0.0f;
 
     [SerializeField] private Rigidbody WeaonRigidbody;
     [SerializeField] public Transform CameraTransform;
@@ -26,8 +26,7 @@ public class ShootControler : MonoBehaviour
     [SerializeField] private float ColletSpeed = 0.0f;
     private Transform ShootPoint;
     private float BulletSpeed = 90;
-    private string NameForWeapon;
-    private bool CanFire = false;
+    private string NameForWeapon;    
         
     void Start()
     {
@@ -90,7 +89,7 @@ public class ShootControler : MonoBehaviour
         if (WeaponShoop)
         {
             ShopControler Shop = WeaponShoop.gameObject.GetComponent<ShopControler>();
-            if (CanFire && Shop.CurrentAmmo > 0)
+            if (Shop.CurrentAmmo > 0)
             {
                 Vector3 TargetPoint = GameObjectForRay.transform.position + GameObjectForRay.transform.forward * 100.0f;
                 RaycastHit Hitresult;
