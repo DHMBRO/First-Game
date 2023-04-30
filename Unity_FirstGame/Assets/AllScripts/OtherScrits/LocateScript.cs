@@ -61,9 +61,9 @@ public class LocateScript : MonoBehaviour
                 Debug.DrawLine(Head.transform.position, Target.transform.position, Color.yellow);
                 WhatImLooking = HitResult.collider.gameObject.tag;
 
-                if (HitResult.collider.gameObject.tag == "Player01" && Physics.Raycast(transform.position, transform.forward * MaxDistatzeForAgr))
+                if (Physics.Raycast(transform.position, transform.forward * MaxDistatzeForAgr + transform.position))
                 {
-                    Debug.DrawLine(Head.position, Head.forward * MaxDistatzeForAgr + Head.position, Color.red);
+                    Debug.DrawLine(transform.position, transform.forward * MaxDistatzeForAgr + transform.position, Color.red);
                     transform.rotation = Quaternion.LookRotation(Rotate);
                 }
             }

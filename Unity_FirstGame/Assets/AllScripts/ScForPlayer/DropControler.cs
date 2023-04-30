@@ -10,7 +10,7 @@ public class DropControler : MethodsFromDevelopers
     [SerializeField] SlotControler ControlerForSlots;
 
     [SerializeField] private float DeleyForDestory;
-    [SerializeField] private float Deley;
+    [SerializeField] private float Deley = 2.5f;
 
     void Start()
     {
@@ -31,45 +31,49 @@ public class DropControler : MethodsFromDevelopers
         }
         if (DropObject)
         {
-            Rigidbody RigidbodyObject01 = DropObject.GetComponent<Rigidbody>();            
+            Rigidbody RigidbodyObject01 = DropObject.GetComponent<Rigidbody>();
 
-            if (DropObject)
+            if (Input.GetKeyDown(KeyCode.Q))
             {
-                if (Input.GetKeyDown(KeyCode.Q))
+                DeleyForDestory = Time.time + Deley;
+                if (!RigidbodyObject01)
                 {
-                    if (!RigidbodyObject01)
+                    Rigidbody RigidbodyObject02 = DropObject.AddComponent<Rigidbody>();
+
+                    RigidbodySettinbgs(RigidbodyObject02);
+                    DropObjects(DropObject.transform, PointForDrop);
+                    if (ControlerForSlots.ObjectInHand.gameObject.tag == "Glok")
                     {
-                        Rigidbody RigidbodyObject02 = DropObject.AddComponent<Rigidbody>();
-
-                        RigidbodySettinbgs(RigidbodyObject02);
-                        DropObjects(DropObject.transform, PointForDrop);
-                        if (ControlerForSlots.ObjectInHand.gameObject.tag == "Glok")
-                        {
-                            ControlerForSlots.MyPistol01 = null;
-                            Debug.Log("Yes");
-                        }
-                        else if (ControlerForSlots.ObjectInHand.gameObject.tag == "M4")
-                        {
-                            ControlerForSlots.MyWeapon01= null;
-                        }
-                        else if (ControlerForSlots.ObjectInHand.gameObject.tag == "M4")
-                        {
-                            ControlerForSlots.MyWeapon02 = null;
-                        }
-                        
-
+                        ControlerForSlots.MyPistol01 = null;
+                        Debug.Log("Yes");
                     }
-                    else if (RigidbodyObject01)
+                    else if (ControlerForSlots.ObjectInHand.gameObject.tag == "M4")
                     {
-                        RigidbodySettinbgs(RigidbodyObject01);
-                        DropObjects(DropObject.transform, PointForDrop);
+                        ControlerForSlots.MyWeapon01 = null;
+                    }
+                    else if (ControlerForSlots.ObjectInHand.gameObject.tag == "M4")
+                    {
+                        ControlerForSlots.MyWeapon02 = null;
+                    }
+                    while (DeleyForDestory >= Time.time)
+                    {
+                        Destroy(RigidbodyObject02);
                     }
                 }
-
+                else if (RigidbodyObject01)
+                {
+                    RigidbodySettinbgs(RigidbodyObject01);
+                    DropObjects(DropObject.transform, PointForDrop);
+                    while (DeleyForDestory >= Time.time)
+                    {
+                        Destroy(RigidbodyObject01);
+                    }
+                }
             }
         }
 
         
+                        
     }
 
     void RigidbodySettinbgs(Rigidbody RigidbodyObject)
