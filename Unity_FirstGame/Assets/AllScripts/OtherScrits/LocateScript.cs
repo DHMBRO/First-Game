@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class LocateScript : MonoBehaviour
 {
-    [SerializeField] private Transform Head;
-    [SerializeField] private Transform HeadPoint;
+    [SerializeField] private Transform Head;    
     [SerializeField] private GameObject Target;    
 
     [SerializeField] private string WhatImLooking;
@@ -53,20 +52,27 @@ public class LocateScript : MonoBehaviour
         if (Target)
         {            
             Vector3 Rotate = Target.transform.position - transform.position;
-            Ray Detection = new Ray(Head.transform.position, Target.transform.position);
-            
-            if (Physics.Raycast(Detection, out HitResult))
+            Vector3 RotateHead = Target.transform.position - Head.position;
+
+            Ray HeadForward = new Ray(Head.transform.position, Head.forward * MaxDistatzeForAgr);
+
+            Head.transform.rotation = Quaternion.LookRotation(RotateHead);
+
+            if (Physics.Raycast(HeadForward, out HitResult))
             {
-                Debug.DrawLine(Head.transform.position, Target.transform.position, Color.yellow);
+                Debug.DrawLine(Head.transform.position, Head.forward * MaxDistatzeForAgr + Head.position, Color.red);
                 WhatImLooking = HitResult.collider.gameObject.tag;
 
-                if (Physics.Raycast(transform.position, transform.forward * MaxDistatzeForAgr + transform.position))
+                if (WhatImLooking == "Player01")
                 {
-                    Debug.DrawLine(transform.position, transform.forward * MaxDistatzeForAgr + transform.position, Color.red);
+                    Debug.Log("Yes");
                     transform.rotation = Quaternion.LookRotation(Rotate);
+                    transform.localPosition += transform.forward * SpeedForMove;
                 }
             }
             
+            
+
         }
     }
               
