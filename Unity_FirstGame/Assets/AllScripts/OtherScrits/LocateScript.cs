@@ -56,10 +56,7 @@ public class LocateScript : MonoBehaviour
     }
     
     void Update()
-    {
-        
-        
-        
+    {                        
         if (Target)
         {            
             Vector3 Rotate = Target.transform.position - transform.position;
@@ -80,12 +77,11 @@ public class LocateScript : MonoBehaviour
                     transform.rotation = Quaternion.LookRotation(Rotate);
                     transform.localPosition += transform.forward * SpeedForMove;
                 }
-            }
-            
-            
-
+            }                        
         }
-    }
-              
+    }              
+    
+    
+
 }
 
