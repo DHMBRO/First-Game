@@ -24,29 +24,23 @@ public class LocateScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
-        CapsuleCollider capsuleCollider = other.gameObject.GetComponent<CapsuleCollider>();
-
-        if (capsuleCollider && !capsuleCollider.isTrigger)
+        if (other.gameObject.CompareTag("Player01"))
         {
-            if (other.gameObject.CompareTag("Player01"))
-            {
-                Target = other.gameObject;
-            }
-        }       
+            Target = other.gameObject;
+        }
+        Debug.Log(other.gameObject.CompareTag("Player01"));
+
+
+
     }
 
     private void OnTriggerExit(Collider other)
     {
-        CapsuleCollider capsuleCollider = other.gameObject.GetComponent<CapsuleCollider>();
-
-        if (capsuleCollider && !capsuleCollider.isTrigger)
+        if (other.gameObject.CompareTag("Player01"))
         {
-            if (other.gameObject.CompareTag("Player01"))
-            {
-                Target = null;
-            }
+            Target = null;
         }
+        Debug.Log(other.gameObject.CompareTag("Player01"));
     }
 
     void MoveTo()
@@ -69,14 +63,16 @@ public class LocateScript : MonoBehaviour
             if (Physics.Raycast(HeadForward, out HitResult))
             {
                 Debug.DrawLine(Head.transform.position, Head.forward * MaxDistatzeForAgr + Head.position, Color.red);
+                
                 WhatImLooking = HitResult.collider.gameObject.tag;
 
                 if (WhatImLooking == "Player01")
-                {
-                    Debug.Log("Yes");
+                {                   
                     transform.rotation = Quaternion.LookRotation(Rotate);
                     transform.localPosition += transform.forward * SpeedForMove;
+                    
                 }
+                
             }                        
         }
     }              

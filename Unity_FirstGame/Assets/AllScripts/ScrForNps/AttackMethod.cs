@@ -8,9 +8,10 @@ public class AttackMethod : MonoBehaviour
     float AttackTime = 3.5f;
     bool CanAttack;
     private float TargetHp = 100;
-    private float ZombieDamage;
+    //private float ZombieDamage;
     [SerializeField] LocateScript LocateScript;
-    float Damage = 10.0f;
+    //float Damage = 10.0f;
+    
     void Start()
     {
           

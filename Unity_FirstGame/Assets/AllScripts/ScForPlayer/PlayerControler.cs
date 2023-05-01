@@ -10,6 +10,9 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private SlotControler SlotControler;    
     [SerializeField] private ShootControler ShootControler;
 
+    [SerializeField] Transform gameobject;
+    [SerializeField] Transform Anchor;
+
     void Start()
     {
         Move = gameObject.GetComponent<Move1F>();
@@ -22,10 +25,15 @@ public class PlayerControler : MonoBehaviour
     }
     
     void Update()
-    {
+    {        
         Moving();
         PickUpAll();
         SlotControlerForAll();
+        if (gameobject && Anchor)
+        {
+            gameobject.transform.position = Anchor.transform.position;
+
+        }
     }
     
     void Moving()

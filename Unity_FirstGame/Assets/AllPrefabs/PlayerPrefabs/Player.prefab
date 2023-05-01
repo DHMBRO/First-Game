@@ -61,8 +61,8 @@ GameObject:
   - component: {fileID: 8740764673410187273}
   - component: {fileID: 7785237847769309149}
   - component: {fileID: 1427766268900275734}
-  - component: {fileID: 8823763917516572830}
   - component: {fileID: 7446413381223648327}
+  - component: {fileID: 8823763917516572830}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player01
@@ -85,6 +85,7 @@ Transform:
   - {fileID: 5139832070331744782}
   - {fileID: 6676864599705618737}
   - {fileID: 7446192428810660782}
+  - {fileID: 6767048737513204152}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -270,6 +271,23 @@ MonoBehaviour:
   TransformPos: {fileID: 0}
   PlayerInventory: {fileID: 0}
   ReferencesForLoots: {fileID: 0}
+--- !u!114 &7446413381223648327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758934435905196194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbc3d5cc9bcf76c40a42460809249f8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PointForDrop: {fileID: 7434336520898069995}
+  DropObject: {fileID: 0}
+  ControlerForSlots: {fileID: 0}
+  DeleyForDestory: 0
+  Deley: 0
 --- !u!114 &8823763917516572830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,23 +306,8 @@ MonoBehaviour:
   PickUp: {fileID: 1427766268900275734}
   SlotControler: {fileID: 7785237847769309149}
   ShootControler: {fileID: 0}
---- !u!114 &7446413381223648327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 758934435905196194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbc3d5cc9bcf76c40a42460809249f8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PointForDrop: {fileID: 7434336520898069995}
-  DropObject: {fileID: 0}
-  ControlerForSlots: {fileID: 0}
-  DeleyForDestory: 0
-  Deley: 0
+  gameobject: {fileID: 0}
+  Anchor: {fileID: 6767048737513204152}
 --- !u!1 &1059009059662341174
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,6 +370,37 @@ Transform:
   m_Father: {fileID: 7446192428810660782}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 180, y: -90, z: -90}
+--- !u!1 &2076743773727002782
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6767048737513204152}
+  m_Layer: 0
+  m_Name: HeadObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6767048737513204152
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076743773727002782}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.14, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 780860326346338877}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2270591972509960892
 GameObject:
   m_ObjectHideFlags: 0
