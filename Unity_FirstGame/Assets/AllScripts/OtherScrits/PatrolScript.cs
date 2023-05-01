@@ -19,12 +19,12 @@ public class PatrolScript : MonoBehaviour
 
     void Update()
     {
-        if (gameObject.transform.position == Points[0].transform.position)
+        if (gameObject.transform.position == Point[0].transform.position)
         {
             MovingTime = Time.time + Delay;
             
         }
-        else if (gameObject.transform.position == Points[1].transform.position)
+        else if (gameObject.transform.position == Point[1].transform.position)
         {
             MovingTime = Time.time + Delay;
             
