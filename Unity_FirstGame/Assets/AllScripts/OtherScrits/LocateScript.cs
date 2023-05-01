@@ -23,18 +23,29 @@ public class LocateScript : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other)
-    {              
-        if (other.gameObject.CompareTag("Player01"))
+    {
+
+        CapsuleCollider capsuleCollider = other.gameObject.GetComponent<CapsuleCollider>();
+
+        if (capsuleCollider && !capsuleCollider.isTrigger)
         {
-            Target = other.gameObject;            
+            if (other.gameObject.CompareTag("Player01"))
+            {
+                Target = other.gameObject;
+            }
         }       
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Player01"))
-        {            
-            Target = null; 
+        CapsuleCollider capsuleCollider = other.gameObject.GetComponent<CapsuleCollider>();
+
+        if (capsuleCollider && !capsuleCollider.isTrigger)
+        {
+            if (other.gameObject.CompareTag("Player01"))
+            {
+                Target = null;
+            }
         }
     }
 
