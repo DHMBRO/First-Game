@@ -42,8 +42,7 @@ public class DropControler : MethodsFromDevelopers
                     DropObjects(DropObject.transform, PointForDrop);
                     if (ControlerForSlots.ObjectInHand.gameObject.tag == "Glok")
                     {
-                        ControlerForSlots.MyPistol01 = null;
-                        Debug.Log("Yes");
+                        ControlerForSlots.MyPistol01 = null;                        
                     }
                     else if (ControlerForSlots.ObjectInHand.gameObject.tag == "M4")
                     {

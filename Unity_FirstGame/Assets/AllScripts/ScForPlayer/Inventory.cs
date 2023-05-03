@@ -12,7 +12,9 @@ public class Inventory : MonoBehaviour
     [SerializeField] public float MaxMass = 5.0f;
     [SerializeField] public float CurrentMass = 0.0f;
 
+
     private void Start()
+    
     {
         ChargingValueMaxMass();
 
