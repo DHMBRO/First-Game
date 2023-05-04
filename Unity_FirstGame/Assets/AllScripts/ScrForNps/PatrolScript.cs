@@ -10,9 +10,7 @@ public class PatrolScript : MonoBehaviour
     [SerializeField] private float Delay = 15.0f;
     [SerializeField] private float MovingTime;    
     [SerializeField] private float SpeedForMove = 10.0f;
-    
-    private byte Counter = 0;
-    
+        
     
     void Start()
     {
@@ -32,31 +30,31 @@ public class PatrolScript : MonoBehaviour
         bool MoveToPoint01 = false;
         bool MoveToPoint02 = false;
 
-        if (Input.GetKeyUp(KeyCode.G) && Counter == 1)
+        if (Time.time >= MovingTime && InPoint02)
         {
-            Counter = 0;
+            transform.rotation = Quaternion.LookRotation(RotateToPint02);
+            MoveToPoint02 = true;
         }
-        //
-        if (Input.GetKeyDown(KeyCode.G) && Point.Count > 1)
+        else if(Time.time >= MovingTime && InPoint01)
+        {                
+            transform.rotation = Quaternion.LookRotation(RotateToPint01);
+            MoveToPoint01 = true;
+        }
+        
+        if(InPoint02 == true && MoveToPoint02 == true)
         {
-            if (InPoint01 && Counter == 0)
-            {
-                transform.rotation = Quaternion.LookRotation(RotateToPint02);
-                MoveToPoint02 = true;
-                Counter = 1;
-            }
-            else if (InPoint02 && Counter == 0)
-            {
-                transform.rotation = Quaternion.LookRotation(RotateToPint01);
-                MoveToPoint01 = true;
-                Counter = 1;
-            }
-            
+            MovingTime = Time.time + Deley;            
+            MoveToPoint02 = false;            
+        }
+        else if(InPoint01 == true && MoveToPoint01 == true)
+        {
+            MovingTime = Time.time + Deley;
+            MoveToPoint01 = false;            
         }
 
         if (MoveToPoint02 && MoveToPoint01)
         {
-            transform.localPosition += transform.forward * SpeedForMove;
+            transform.localPosition += transform.forward * SpeedForMove; // SetD
         }
         
     }
