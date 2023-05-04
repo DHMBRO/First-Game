@@ -31,10 +31,10 @@ public class DropControler : MethodsFromDevelopers
         {
             Rigidbody RigidbodyObject01 = DropObject.GetComponent<Rigidbody>();
 
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q) && Time.time >= DeleyForDestory)
             {
                 DeleyForDestory = Time.time + Deley;
-                if (!RigidbodyObject01)
+                if (!RigidbodyObject01 && Time.time >= DeleyForDestory)
                 {
                     Rigidbody RigidbodyObject02 = DropObject.AddComponent<Rigidbody>();
 
@@ -52,11 +52,21 @@ public class DropControler : MethodsFromDevelopers
                     {
                         ControlerForSlots.MyWeapon02 = null;
                     }                    
+
+                    if(Time.time >= DeleyForDestory)
+                    {
+                        Destroy(RigidbodyObject02);
+                    }
                 }
-                else if (RigidbodyObject01)
+                else if (RigidbodyObject01 && Time.time >= DeleyForDestory)
                 {
                     RigidbodySettinbgs(RigidbodyObject01);
                     DropObjects(DropObject.transform, PointForDrop);                    
+                    if(Time.time >= DeleyForDestory)
+                    {
+                        Destroy(RigidbodyObject01);
+                    }
+
                 }
             }
         }
