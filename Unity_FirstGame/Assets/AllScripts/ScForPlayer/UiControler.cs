@@ -4,7 +4,36 @@ using UnityEngine.UI;
 
 public class UiControler : MonoBehaviour
 {
+    [SerializeField] Image Scope;
+    
+    [SerializeField] List<Image> AllLoot = new List<Image>();
+    [SerializeField] List<Transform> AllSlots = new List<Transform>();
 
+    [SerializeField] bool InventoryIsOpen = false;
+    
+    void Start()
+    {
+        if()
+        {
+
+        }
+    }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            inventoryIsOpen = !InventoryIsOpen;
+            Debug.Log(inventoryIsOpen);
+
+            
+        }
+    }
+    
+    void PrintLoot()
+    {
+
+    }
     /*[SerializeField] Image scopeUi;
     [SerializeField] public List<Image> inventorySlot1x1 = new List<Image>();
     [SerializeField] public List<Image> inventorySlot1x2 = new List<Image>();
