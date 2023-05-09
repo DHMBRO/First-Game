@@ -440,7 +440,24 @@ public class SlotControler : MethodsFromDevelopers
     void OffKinematic()
     {
         Rigidbody ReferenceRig;
-
+        //Equipment
+        if(MyHelmet)
+        {
+            ReferenceRig = MyHelmet.GetComponent<Rigidbody>();
+            ReferenceRig.isKinematic = false;
+        }
+        else if(MyArmor)
+        {
+            ReferenceRig = MyArmor.GetComponent<Rigidbody>();
+            ReferenceRig.isKinematic = false;
+        }
+        else if(MyBackPack)
+        {
+            ReferenceRig = MyBackPack.GetComponent<Rigidbody>();
+            ReferenceRig.isKinematic = false;
+        
+        }
+        //Weapons
         if(MyKnife01)
         {
             ReferenceRig = MyKnife01.GetComponent<Rigidbody>();
@@ -461,8 +478,23 @@ public class SlotControler : MethodsFromDevelopers
             ReferenceRig = MyWeapon02.GetComponent<Rigidbody>();
             ReferenceRig.isKinematic = false;
         }        
-
-
+        //Shops        
+        if(MyShope01)
+        {
+            ReferenceRig = MyShope01.GetComponent<Rigidbody>();
+            ReferenceRig.isKinematic = false;
+        
+        }
+        else if(MyShope02)
+        {
+            ReferenceRig = MyShope02.GetComponent<Rigidbody>();
+            ReferenceRig.isKinematic = false;        
+        }
+        else if(MyShope03)
+        {
+            ReferenceRig = MyShope03.GetComponent<Rigidbody>();
+            ReferenceRig.isKinematic = false;        
+        }
     }    
 }
 
