@@ -31,10 +31,10 @@ public class DropControler : MethodsFromDevelopers
         {
             Rigidbody RigidbodyObject01 = DropObject.GetComponent<Rigidbody>();
 
-            if (Input.GetKeyDown(KeyCode.Q) && Time.time >= DeleyForDestory)
+            if (Input.GetKeyDown(KeyCode.Q))
             {
-                DeleyForDestory = Time.time + Deley;
-                if (!RigidbodyObject01 && Time.time >= DeleyForDestory)
+                
+                if (!RigidbodyObject01)
                 {
                     Rigidbody RigidbodyObject02 = DropObject.AddComponent<Rigidbody>();
 
@@ -54,7 +54,7 @@ public class DropControler : MethodsFromDevelopers
                     }                    
 
                 }
-                else if (RigidbodyObject01 && Time.time >= DeleyForDestory)
+                else if (RigidbodyObject01)
                 {
                     RigidbodySettinbgs(RigidbodyObject01);
                     DropObjects(DropObject.transform, PointForDrop);                                        
