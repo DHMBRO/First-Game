@@ -301,6 +301,7 @@ public class PickUp : MethodsFromDevelopers
             if (SlotControler.MyPistol01) PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01);
             PutObjects(SlotControler.MyKnife01, SlotControler.SlotKnife01);
         }
+        SlotControler.ChangeRigidbody();   
     }
 
     public void PickUpWeapons(GameObject ObjectForPickUp)
@@ -327,7 +328,7 @@ public class PickUp : MethodsFromDevelopers
         {
             Debug.Log("Cant take !");
         }        
-        
+        SlotControler.ChangeRigidbody();
     }
 
     public void PickUpShops(GameObject ShopForPickUp)
@@ -364,5 +365,6 @@ public class PickUp : MethodsFromDevelopers
         {
             Debug.Log("Cant do this !");
         }        
+        SlotControler.ChangeRigidbody();
     }
 }
