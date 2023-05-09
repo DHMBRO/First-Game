@@ -55,7 +55,7 @@ public class DropControler : MethodsFromDevelopers
 
                 }
                 else if (RigidbodyObject01)
-                {
+                    {
                     RigidbodySettinbgs(RigidbodyObject01);
                     DropObjects(DropObject.transform, PointForDrop);                                        
                 }
