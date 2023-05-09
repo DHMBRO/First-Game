@@ -437,64 +437,69 @@ public class SlotControler : MethodsFromDevelopers
 
     }
 
-    void OffKinematic()
+    void ChangeRigidbody()
     {
         Rigidbody ReferenceRig;
         //Equipment
         if(MyHelmet)
         {
             ReferenceRig = MyHelmet.GetComponent<Rigidbody>();
-            ReferenceRig.isKinematic = false;
+            OffKinematic(ReferenceRig);
         }
         else if(MyArmor)
         {
             ReferenceRig = MyArmor.GetComponent<Rigidbody>();
-            ReferenceRig.isKinematic = false;
+            OffKinematic(ReferenceRig);
         }
         else if(MyBackPack)
         {
             ReferenceRig = MyBackPack.GetComponent<Rigidbody>();
-            ReferenceRig.isKinematic = false;
+            OffKinematic(ReferenceRig);
         
         }
         //Weapons
         if(MyKnife01)
         {
             ReferenceRig = MyKnife01.GetComponent<Rigidbody>();
-            ReferenceRig.isKinematic = false;
+            OffKinematic(ReferenceRig);
         }
         else if(MyPistol01)
         {
             ReferenceRig = MyPistol01.GetComponent<Rigidbody>();
-            ReferenceRig.isKinematic = false;
+            OffKinematic(ReferenceRig);
         }
         else if(MyWeapon01)
         {
             ReferenceRig = MyWeapon01.GetComponent<Rigidbody>();
-            ReferenceRig.isKinematic = false;
+            OffKinematic(ReferenceRig);
         }
         else if(MyWeapon02)
         {
             ReferenceRig = MyWeapon02.GetComponent<Rigidbody>();
-            ReferenceRig.isKinematic = false;
+            OffKinematic(ReferenceRig);
         }        
         //Shops        
         if(MyShope01)
         {
             ReferenceRig = MyShope01.GetComponent<Rigidbody>();
-            ReferenceRig.isKinematic = false;
-        
+            OffKinematic(ReferenceRig);        
         }
         else if(MyShope02)
         {
-            ReferenceRig = MyShope02.GetComponent<Rigidbody>();
-            ReferenceRig.isKinematic = false;        
+            ReferenceRig = MyShope02.GetComponent<Rigidbody>();            
+            OffKinematic(ReferenceRig);
         }
         else if(MyShope03)
         {
             ReferenceRig = MyShope03.GetComponent<Rigidbody>();
-            ReferenceRig.isKinematic = false;        
+            OffKinematic(ReferenceRig);
         }
+
+        void OffKinematic(Rigidbody Rig01)
+        {
+            Rig01.isKinematic = false;
+        }
+
     }    
 }
 
