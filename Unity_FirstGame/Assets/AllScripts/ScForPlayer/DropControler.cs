@@ -53,20 +53,11 @@ public class DropControler : MethodsFromDevelopers
                         ControlerForSlots.MyWeapon02 = null;
                     }                    
 
-                    if(Time.time >= DeleyForDestory)
-                    {
-                        Destroy(RigidbodyObject02);
-                    }
                 }
                 else if (RigidbodyObject01 && Time.time >= DeleyForDestory)
                 {
                     RigidbodySettinbgs(RigidbodyObject01);
-                    DropObjects(DropObject.transform, PointForDrop);                    
-                    if(Time.time >= DeleyForDestory)
-                    {
-                        Destroy(RigidbodyObject01);
-                    }
-
+                    DropObjects(DropObject.transform, PointForDrop);                                        
                 }
             }
         }
