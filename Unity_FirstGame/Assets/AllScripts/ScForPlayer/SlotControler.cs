@@ -75,6 +75,7 @@ public class SlotControler : MethodsFromDevelopers
     void Update()
     {
         
+        
     }
 
     public void MovingGunForSlots()
@@ -435,5 +436,33 @@ public class SlotControler : MethodsFromDevelopers
         }
 
     }
+
+    void OffKinematic()
+    {
+        Rigidbody ReferenceRig;
+
+        if(MyKnife01)
+        {
+            ReferenceRig = MyKnife01.GetComponent<Rigidbody>();
+            ReferenceRig.isKinematic = false;
+        }
+        else if(MyPistol01)
+        {
+            ReferenceRig = MyPistol01.GetComponent<Rigidbody>();
+            ReferenceRig.isKinematic = false;
+        }
+        else if(MyWeapon01)
+        {
+            ReferenceRig = MyWeapon01.GetComponent<Rigidbody>();
+            ReferenceRig.isKinematic = false;
+        }
+        else if(MyWeapon02)
+        {
+            ReferenceRig = MyWeapon02.GetComponent<Rigidbody>();
+            ReferenceRig.isKinematic = false;
+        }        
+
+
+    }    
 }
 
