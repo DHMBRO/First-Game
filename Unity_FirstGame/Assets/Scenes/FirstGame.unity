@@ -192,14 +192,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 27825784}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84321c486174e4f49b8d7ce88c83ff52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MyPointControllScript: {fileID: 538099524}
   StartPosIndex: 0
-  NeedToChangeTarget: 0
+  ZombieNavMesh: {fileID: 0}
 --- !u!195 &27825790
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -913,6 +913,7 @@ GameObject:
   - component: {fileID: 409133910}
   - component: {fileID: 409133909}
   - component: {fileID: 409133908}
+  - component: {fileID: 409133912}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -998,6 +999,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 39
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!208 &409133912
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409133907}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &485555697
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1217,7 +1234,11 @@ MonoBehaviour:
   - {fileID: 538099523}
   - {fileID: 538099522}
   - {fileID: 538099521}
-  NextPosition: 0
+--- !u!4 &553763571 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6744087348165964983, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+  m_PrefabInstance: {fileID: 6330133320467176740}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &615657241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1294,6 +1315,90 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!1 &784783316 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5428616973792416952, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+  m_PrefabInstance: {fileID: 6330133320467176740}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &784783317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784783316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6ec6bf59b8b9a749b9f2c83dc3208de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Head: {fileID: 553763571}
+  Target: {fileID: 0}
+  WhatImLooking: 
+  SpeedForMove: 3.5
+  MaxDistatzeForAgr: 7
+--- !u!114 &784783318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784783316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d368a4577eca46842a56c91845b7e6f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &784783319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784783316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84321c486174e4f49b8d7ce88c83ff52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyPointControllScript: {fileID: 538099524}
+  StartPosIndex: 0
+  ZombieNavMesh: {fileID: 0}
+--- !u!195 &784783320
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784783316}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.62
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &784783324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784783316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10890008021e04849a44c63995d5b5f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackDistance: 0
 --- !u!1 &952146115
 GameObject:
   m_ObjectHideFlags: 0
@@ -2907,7 +3012,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4060592975244096101, guid: cc428a503aaaafd439f03eb4cc8b7d38, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -76.39
+      value: -57.9
       objectReference: {fileID: 0}
     - target: {fileID: 4060592975244096101, guid: cc428a503aaaafd439f03eb4cc8b7d38, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3297,7 +3402,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5342706582384582949, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5342706582384582949, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
       propertyPath: MaxDistance

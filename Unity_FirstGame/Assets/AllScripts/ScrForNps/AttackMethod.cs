@@ -4,53 +4,32 @@ using UnityEngine;
 
 public class AttackMethod : MonoBehaviour
 {
-    float AttackDelay = 3.0f;
-    float AttackTime = 3.5f;
-    bool CanAttack;
-    private float TargetHp = 100;
-    //private float ZombieDamage;
-    [SerializeField] LocateScript LocateScript;
-    //float Damage = 10.0f;
-    
+    protected float AttackDelay = 3.0f;
+    protected float AttackTime = 3.5f;
+    protected bool  CanAttack;
+    [SerializeField] protected float AttackDistance;
+
+    protected LocateScript ZombieLocateScript;
+    protected PatrolScriptNavMesh ZombiePatrolScript;
+
     void Start()
     {
-          
+        ZombiePatrolScript = gameObject.GetComponent<PatrolScriptNavMesh>();
+        ZombieLocateScript = gameObject.GetComponent<LocateScript>();
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player01"))
-        {
-
-            CanAttack = true;
-           
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player01"))
-        {
-
-            CanAttack = false;
-
-        }
-    }
-    public void DoCloseAttack(float Damage,Vector3 NpcForvard,Vector3 PlayerTransform)
-    {
-        
-        if(Time.time >= AttackTime)
-        {
-            AttackTime = AttackDelay + Time.time;
-            TargetHp -= Damage;
-            
-        }
-    }
-    
     void Update()
     {
-        if (CanAttack)
+        
+    }
+        
+    public void DoCloseAttack(/*Damage*/)
+    {
+        if (Time.time >= AttackTime && ZombiePatrolScript.ZombieNavMesh.remainingDistance < AttackDistance)
         {
-            //DoCloseAttack(Damage,LocateScript.gameObject.transform.forward,LocateScript.Target.transform.position - LocateScript.gameObject.transform.position);
-           
+            //TargetHp -= Damage
+            AttackTime = AttackDelay + Time.time;
+            Debug.Log("Attack");
         }
+       
     }
 }

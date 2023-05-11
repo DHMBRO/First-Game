@@ -10,7 +10,7 @@ public class PatrolScriptNavMesh : MonoBehaviour
     public int StartPosIndex = 0;
     
 
-    NavMeshAgent ZombieNavMesh;
+    public NavMeshAgent ZombieNavMesh;
     enum State
     {
        

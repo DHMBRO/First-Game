@@ -24,7 +24,9 @@ public class ZombieController : MonoBehaviour
         else if (ZombieLocateScript.Target)
         {
             ZombieLocateScript.LocateTarget();
+            ZombieAttackScript.DoCloseAttack();
         }
+
 
     }
 }

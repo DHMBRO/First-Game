@@ -5,7 +5,7 @@ using UnityEngine;
 public class LocateScript : MonoBehaviour
 {
     [SerializeField] private Transform Head;    
-    [SerializeField] public GameObject Target;    
+     public GameObject Target;    
 
     [SerializeField] private string WhatImLooking;
     [SerializeField] private RaycastHit HitResult; 
@@ -35,12 +35,12 @@ public class LocateScript : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Player01") || WhatImLooking != "Player01")
+        if (other.gameObject.CompareTag("Player01"))
         {
             Target = null;
 
         }
-       
+        
     }
 
    
@@ -48,7 +48,7 @@ public class LocateScript : MonoBehaviour
     void Update()
     {
         if (Target) { }
-
+        
     }              
     public void LocateTarget()
     {
