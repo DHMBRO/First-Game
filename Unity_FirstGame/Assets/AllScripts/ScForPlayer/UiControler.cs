@@ -13,14 +13,17 @@ public class UiControler : MonoBehaviour
     
     void Start()
     {
-        if()
+       /*
+        * if()
         {
 
         }
+       */
     }
 
     void Update()
     {
+        /*
         if(Input.GetKeyDown(KeyCode.F))
         {
             inventoryIsOpen = !InventoryIsOpen;
@@ -28,8 +31,9 @@ public class UiControler : MonoBehaviour
 
             
         }
+        */
     }
-    
+
     void PrintLoot()
     {
 

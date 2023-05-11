@@ -1,19 +1,21 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PatrolScript : MonoBehaviour
 {
-    [SerializeField] private List<Transform> Point = new List<Transform>();    
+    [SerializeField] private List<Transform> Point = new List<Transform>();
     [SerializeField] public Dictionary<string, Transform> Route = new Dictionary<string, Transform>();
 
-    
+
     [SerializeField] private float Delay = 15.0f;
-    [SerializeField] private float MovingTime;    
+    [SerializeField] private float MovingTime;
     [SerializeField] private float SpeedForMove = 10.0f;
-        
-    
+   
     void Start()
     {
+        
         Route.Add("Point1", Point[0]);
         Route.Add("Point2", Point[1]);
     }
@@ -43,18 +45,19 @@ public class PatrolScript : MonoBehaviour
         
         if(InPoint02 == true && MoveToPoint02 == true)
         {
-            MovingTime = Time.time + Deley;            
+            MovingTime = Time.time + Delay;            
             MoveToPoint02 = false;            
         }
         else if(InPoint01 == true && MoveToPoint01 == true)
         {
-            MovingTime = Time.time + Deley;
+            MovingTime = Time.time + Delay;
             MoveToPoint01 = false;            
         }
 
         if (MoveToPoint02 && MoveToPoint01)
         {
-            transform.localPosition += transform.forward * SpeedForMove; // SetD
+            transform.localPosition += transform.forward * SpeedForMove;
+           
         }
         
     }

@@ -5,21 +5,20 @@ using UnityEngine;
 public class LocateScript : MonoBehaviour
 {
     [SerializeField] private Transform Head;    
-    [SerializeField] private GameObject Target;    
+    [SerializeField] public GameObject Target;    
 
     [SerializeField] private string WhatImLooking;
     [SerializeField] private RaycastHit HitResult; 
     
     [SerializeField] private float SpeedForMove;
     [SerializeField] private float MaxDistatzeForAgr;
+    PatrolScriptNavMesh ZombiePatrolScript;
 
     
     void Start()
-    {        
-        if (Target)
-        {
-            
-        }
+    {
+        ZombiePatrolScript = gameObject.GetComponent<PatrolScriptNavMesh>();
+      
     }
 
     private void OnTriggerEnter(Collider other)
@@ -28,7 +27,7 @@ public class LocateScript : MonoBehaviour
         {
             Target = other.gameObject;
         }
-        Debug.Log(other.gameObject.CompareTag("Player01"));
+        
 
 
 
@@ -36,47 +35,44 @@ public class LocateScript : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Player01"))
+        if (other.gameObject.CompareTag("Player01") || WhatImLooking != "Player01")
         {
             Target = null;
+
         }
-        Debug.Log(other.gameObject.CompareTag("Player01"));
+       
     }
 
-    void MoveTo()
-    {               
-        //gameObject.transform.localPosition += gameObject.transform.forward * SpeedForMove;
-
-    }
+   
     
     void Update()
-    {                        
-        if (Target)
-        {            
-            Vector3 Rotate = Target.transform.position - transform.position;
-            Vector3 RotateHead = Target.transform.position - Head.position;
+    {
+        if (Target) { }
 
-            Ray HeadForward = new Ray(Head.transform.position, Head.forward * MaxDistatzeForAgr);
-
-            Head.transform.rotation = Quaternion.LookRotation(RotateHead);
-
-            if (Physics.Raycast(HeadForward, out HitResult))
-            {
-                Debug.DrawLine(Head.transform.position, Head.forward * MaxDistatzeForAgr + Head.position, Color.red);
-                
-                WhatImLooking = HitResult.collider.gameObject.tag;
-
-                if (WhatImLooking == "Player01")
-                {                   
-                    transform.rotation = Quaternion.LookRotation(Rotate);
-                    transform.localPosition += transform.forward * SpeedForMove;
-                    
-                }
-                
-            }                        
-        }
     }              
-    
+    public void LocateTarget()
+    {
+        Vector3 Rotate = Target.transform.position - transform.position;
+        Vector3 RotateHead = Target.transform.position - Head.position;
+
+        Ray HeadForward = new Ray(Head.transform.position, Head.forward * MaxDistatzeForAgr);
+
+        Head.transform.rotation = Quaternion.LookRotation(RotateHead);
+
+        if (Physics.Raycast(HeadForward, out HitResult))
+        {
+            Debug.DrawLine(Head.transform.position, Head.forward * MaxDistatzeForAgr + Head.position, Color.red);
+
+            WhatImLooking = HitResult.collider.gameObject.tag;
+
+            if (WhatImLooking == "Player01")
+            {
+                ZombiePatrolScript.MoveTo(Target);
+
+            }
+
+        }
+    }
     
 
 }
