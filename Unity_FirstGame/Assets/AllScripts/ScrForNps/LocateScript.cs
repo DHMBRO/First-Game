@@ -43,17 +43,11 @@ public class LocateScript : MonoBehaviour
         
     }
 
-   
-    
-    void Update()
-    {
-        if (Target) { }
-        
-    }              
     public void LocateTarget()
     {
         Vector3 Rotate = Target.transform.position - transform.position;
         Vector3 RotateHead = Target.transform.position - Head.position;
+            
 
         Ray HeadForward = new Ray(Head.transform.position, Head.forward * MaxDistatzeForAgr);
 
