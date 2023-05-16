@@ -63,6 +63,10 @@ GameObject:
   - component: {fileID: 1427766268900275734}
   - component: {fileID: 7446413381223648327}
   - component: {fileID: 8823763917516572830}
+  - component: {fileID: 3213455639597307656}
+  - component: {fileID: 3264914945279453979}
+  - component: {fileID: 3817395806022250202}
+  - component: {fileID: 8739924668644983072}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player01
@@ -195,6 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpeedForMove: 0.03
+  SpeedForRun: 0
   PowerForJump: 5
   CanJump: 0
   PlayerTransform: {fileID: 780860326346338877}
@@ -308,6 +313,61 @@ MonoBehaviour:
   ShootControler: {fileID: 0}
   gameobject: {fileID: 0}
   Anchor: {fileID: 6767048737513204152}
+--- !u!114 &3213455639597307656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758934435905196194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49d2503a3b54bdb4da8afb594aaec6e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ReferencePrefabs: []
+--- !u!114 &3264914945279453979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758934435905196194}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec419c55fa32f034badda87b255f3193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Scope: {fileID: 0}
+  AllLoot: []
+  AllSlots: []
+  InventoryIsOpen: 0
+--- !u!114 &3817395806022250202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758934435905196194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6ce1222acc9e3446ad496466bb2a4b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8739924668644983072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758934435905196194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5de6a5a91ce79a4ea04d6f930f9a507, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyLive: 0
+  HealthPoint: 100
 --- !u!1 &1059009059662341174
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,6 +601,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SlotsForBackPack: []
   BackPack: {fileID: 0}
+  a: {fileID: 0}
   MaxMass: 0
   CurrentMass: 0
 --- !u!114 &1091941196938390544
