@@ -3,6 +3,7 @@ using UnityEngine;
 public class Move1F : MonoBehaviour
 {
     [SerializeField] private float SpeedForMove;
+    [SerializeField] private float SpeedForRun;
     [SerializeField] private float PowerForJump;
     [SerializeField] private bool CanJump;    
 
@@ -26,6 +27,10 @@ public class Move1F : MonoBehaviour
             if (Input.GetKey(KeyCode.W))
             {
                 PlayerTransform.transform.localPosition += transform.forward * SpeedForMove;
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    PlayerTransform.transform.localPosition += transform.forward * SpeedForRun;
+                }
             }            
             else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
             {
@@ -72,6 +77,7 @@ public class Move1F : MonoBehaviour
                 RigidbodyForPlayer.AddRelativeForce(new Vector3(0f, 1f * PowerForJump,0f), ForceMode.Force);
                 JumpCount--;
             }
+            
         }
 
     }
