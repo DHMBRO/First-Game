@@ -17,15 +17,19 @@ public class ZombieController : MonoBehaviour
     
     void Update()
     {
-        if (!ZombieLocateScript.Target)
+        if (ZombieLocateScript &&   ZombieAttackScript && ZombiePatrolScript)
         {
-            ZombiePatrolScript.Patroling();
+            if (!ZombieLocateScript.Target)
+            {
+                ZombiePatrolScript.Patroling();
+            }
+            else if (ZombieLocateScript.Target)
+            {
+                ZombieLocateScript.LocateTarget();
+                ZombieAttackScript.DoCloseAttack();
+            }
         }
-        else if (ZombieLocateScript.Target)
-        {
-            ZombieLocateScript.LocateTarget();
-            ZombieAttackScript.DoCloseAttack();
-        }
+        
 
 
     }

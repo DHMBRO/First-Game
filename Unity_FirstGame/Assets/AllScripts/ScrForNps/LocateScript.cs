@@ -5,7 +5,7 @@ using UnityEngine;
 public class LocateScript : MonoBehaviour
 {
     [SerializeField] private Transform Head;    
-     public GameObject Target;    
+     [SerializeField]public GameObject Target;    
 
     [SerializeField] private string WhatImLooking;
     [SerializeField] private RaycastHit HitResult; 
@@ -43,11 +43,17 @@ public class LocateScript : MonoBehaviour
         
     }
 
+   
+    
+    void Update()
+    {
+        
+        
+    }              
     public void LocateTarget()
     {
         Vector3 Rotate = Target.transform.position - transform.position;
         Vector3 RotateHead = Target.transform.position - Head.position;
-            
 
         Ray HeadForward = new Ray(Head.transform.position, Head.forward * MaxDistatzeForAgr);
 
