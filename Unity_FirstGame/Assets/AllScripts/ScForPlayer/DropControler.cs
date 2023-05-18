@@ -20,12 +20,13 @@ public class DropControler : MethodsFromDevelopers
 
     void Update()
     {
-        if (ControlerForSlots.ObjectInHand && ControlerForSlots.ObjectInHand.gameObject.tag != "Knife" && Input.GetKeyDown(KeyCode.Q))
+        if (ControlerForSlots.ObjectInHand && Input.GetKeyDown(KeyCode.Q))
         {
-            DropObjects(ControlerForSlots.ObjectInHand.transform, DropObject.transform);
+            if(ControlerForSlots.ObjectInHand.CompairTag("Knife"))
+            {
+                DropObjects(ControlerForSlots.ObjectInHand.transform, DropObject.transform);
+            }
         }
-        
-        
     }
 
     
