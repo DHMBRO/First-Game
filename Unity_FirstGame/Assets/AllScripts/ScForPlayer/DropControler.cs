@@ -22,7 +22,7 @@ public class DropControler : MethodsFromDevelopers
     {
         if (ControlerForSlots.ObjectInHand && Input.GetKeyDown(KeyCode.Q))
         {
-            if(ControlerForSlots.ObjectInHand.CompairTag("Knife"))
+            if(ControlerForSlots.ObjectInHand.CompareTag("Knife"))
             {
                 DropObjects(ControlerForSlots.ObjectInHand.transform, DropObject.transform);
             }
