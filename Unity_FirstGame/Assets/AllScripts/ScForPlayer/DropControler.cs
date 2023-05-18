@@ -14,66 +14,20 @@ public class DropControler : MethodsFromDevelopers
     {
         ControlerForSlots = gameObject.GetComponent<SlotControler>();
 
-        if (ControlerForSlots && ControlerForSlots.ObjectInHand)
-        {
-            DropObject = ControlerForSlots.ObjectInHand.gameObject;
-        }
+      
         
     }
 
     void Update()
     {
-        if (ControlerForSlots && ControlerForSlots.ObjectInHand)
+        if (ControlerForSlots.ObjectInHand && ControlerForSlots.ObjectInHand.gameObject.tag != "Knife" && Input.GetKeyDown(KeyCode.Q))
         {
-            DropObject = ControlerForSlots.ObjectInHand.gameObject;
+            DropObjects(ControlerForSlots.ObjectInHand.transform, DropObject.transform);
         }
-        if (DropObject)
-        {
-            Rigidbody RigidbodyObject01 = DropObject.GetComponent<Rigidbody>();
-
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                
-                if (!RigidbodyObject01)
-                {
-                    Rigidbody RigidbodyObject02 = DropObject.AddComponent<Rigidbody>();
-
-                    RigidbodySettinbgs(RigidbodyObject02);
-                    DropObjects(DropObject.transform, PointForDrop);
-                    if (ControlerForSlots.ObjectInHand.gameObject.tag == "Glok")
-                    {
-                        ControlerForSlots.MyPistol01 = null;                        
-                    }
-                    else if (ControlerForSlots.ObjectInHand.gameObject.tag == "M4")
-                    {
-                        ControlerForSlots.MyWeapon01 = null;
-                    }
-                    else if (ControlerForSlots.ObjectInHand.gameObject.tag == "M4")
-                    {
-                        ControlerForSlots.MyWeapon02 = null;
-                    }                    
-
-                }
-                else if (RigidbodyObject01)
-                    {
-                    RigidbodySettinbgs(RigidbodyObject01);
-                    DropObjects(DropObject.transform, PointForDrop);                                        
-                }
-            }
-        }
-
         
-                        
+        
     }
 
-    void RigidbodySettinbgs(Rigidbody RigidbodyObject)
-    {
-        RigidbodyObject.isKinematic= false;
-        RigidbodyObject.useGravity = true;
-
-        RigidbodyObject.angularDrag = 0.05f;
-        RigidbodyObject.drag = 0.0f;
-
-    }
+    
 
 }
