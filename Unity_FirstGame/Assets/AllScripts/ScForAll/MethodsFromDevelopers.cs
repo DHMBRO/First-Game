@@ -23,9 +23,7 @@ public class MethodsFromDevelopers : MonoBehaviour
         
         void Puting(Rigidbody RigObject)
         {
-            RigObject.isKinematic = true;
-            //RigObject.useGravity = false;
-
+            RigObject.enabled = false;
             ObjectForPut.transform.SetParent(PosForPut);
 
             ObjectForPut.position = PosForPut.transform.position;
@@ -49,8 +47,7 @@ public class MethodsFromDevelopers : MonoBehaviour
         
         void Droping(Rigidbody RigObject)
         {
-            RigObject.isKinematic = false;
-            //RigObject.useGravity = true;
+            RigObject.enabled = true;
 
             ObjectToDrop.position = ObecjtForCopy.position;
             ObjectToDrop.rotation = ObecjtForCopy.rotation;
