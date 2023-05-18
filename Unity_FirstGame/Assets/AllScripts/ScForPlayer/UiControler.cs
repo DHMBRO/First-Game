@@ -5,33 +5,34 @@ using UnityEngine.UI;
 public class UiControler : MonoBehaviour
 {
     [SerializeField] Image Scope;
-    
-    [SerializeField] List<Image> AllLoot = new List<Image>();
-    [SerializeField] List<Transform> AllSlots = new List<Transform>();
+
+    [SerializeField] GameObject Inventory;
 
     [SerializeField] bool InventoryIsOpen = false;
     
     void Start()
     {
-       /*
-        * if()
-        {
-
-        }
-       */
+        InventoryIsOpen = false;
+        Inventory.SetActive(false);
+        Scope.enabled = true;
     }
 
     void Update()
     {
-        /*
-        if(Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.I))
         {
-            inventoryIsOpen = !InventoryIsOpen;
-            Debug.Log(inventoryIsOpen);
-
-            
+            InventoryIsOpen = !InventoryIsOpen;
+            Scope.enabled = !InventoryIsOpen;
+            Inventory.SetActive(InventoryIsOpen);
+            if (InventoryIsOpen)
+            {
+                Cursor.lockState = CursorLockMode.Confined;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
         }
-        */
     }
 
     void PrintLoot()
