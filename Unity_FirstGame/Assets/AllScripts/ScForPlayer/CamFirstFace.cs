@@ -11,9 +11,7 @@ public class CamFirstFace : MonoBehaviour
 
     private void Start()
     {
-        
-        Cursor.lockState = CursorLockMode.Locked;
-           
+        Cursor.lockState = CursorLockMode.Locked;      
     }
 
     void Update()
