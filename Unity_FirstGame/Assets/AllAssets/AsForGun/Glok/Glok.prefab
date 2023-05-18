@@ -92,6 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5738456080911321149}
+  - component: {fileID: 8941228174693700985}
   - component: {fileID: 4847926056169815492}
   - component: {fileID: 5752078726147703554}
   - component: {fileID: 4272853772287642738}
@@ -123,6 +124,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &8941228174693700985
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4965438261709640327}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &4847926056169815492
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -164,6 +181,7 @@ MonoBehaviour:
   MyWeapon: {fileID: 4965438261709640327}
   SlotForUseShop: {fileID: 7749285495643769842}
   WeaponShoop: {fileID: 0}
+  GameObjectForRay: {fileID: 0}
   Muzzle: {fileID: 8918663486306701883}
   Bullet: {fileID: 6134681609783580483, guid: 05538b2b752e7e345bcb59dba9fa8e2f, type: 3}
   Collet: {fileID: 4900720745357472234, guid: 2485882dcbb795244bdd424f30296fd4, type: 3}
@@ -171,7 +189,7 @@ MonoBehaviour:
   ShotDeley: 1
   ShotTime: 0
   Mass: 0
-  AtemptForFire: 0
+  SpeedForBullet: 0
   WeaonRigidbody: {fileID: 0}
   CameraTransform: {fileID: 0}
   MySlotControler: {fileID: 0}
