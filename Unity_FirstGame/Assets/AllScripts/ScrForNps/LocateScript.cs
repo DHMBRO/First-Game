@@ -5,7 +5,7 @@ using UnityEngine;
 public class LocateScript : MonoBehaviour
 {
     [SerializeField] private Transform Head;    
-     [SerializeField]public GameObject Target;    
+    public GameObject Target = null;    
 
     [SerializeField] private string WhatImLooking;
     [SerializeField] private RaycastHit HitResult; 
@@ -18,7 +18,7 @@ public class LocateScript : MonoBehaviour
     void Start()
     {
         ZombiePatrolScript = gameObject.GetComponent<PatrolScriptNavMesh>();
-      
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -26,6 +26,7 @@ public class LocateScript : MonoBehaviour
         if (other.gameObject.CompareTag("Player01"))
         {
             Target = other.gameObject;
+          
         }
         
 
@@ -38,7 +39,7 @@ public class LocateScript : MonoBehaviour
         if (other.gameObject.CompareTag("Player01"))
         {
             Target = null;
-
+           
         }
         
     }
@@ -53,11 +54,17 @@ public class LocateScript : MonoBehaviour
     }              
 
  
-    public void LocateTarget()
+    public bool CanISeeTarget()
     {
+        
+        if (!Target)
+        {
+            return false;
+           
+        }
         Vector3 Rotate = Target.transform.position - transform.position;
         Vector3 RotateHead = Target.transform.position - Head.position;
-            
+      
 
         Ray HeadForward = new Ray(Head.transform.position, Head.forward * MaxDistatzeForAgr);
 
@@ -68,14 +75,16 @@ public class LocateScript : MonoBehaviour
             Debug.DrawLine(Head.transform.position, Head.forward * MaxDistatzeForAgr + Head.position, Color.red);
 
             WhatImLooking = HitResult.collider.gameObject.tag;
-
+            
             if (WhatImLooking == "Player01")
             {
-                ZombiePatrolScript.MoveTo(Target);
-
+                return true;
+                
             }
 
         }
+        return false;
+        
     }
     
 

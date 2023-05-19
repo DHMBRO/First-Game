@@ -17,16 +17,24 @@ public class ZombieController : MonoBehaviour
     
     void Update()
     {
-        if (ZombieLocateScript &&   ZombieAttackScript && ZombiePatrolScript)
+        if (ZombieLocateScript && ZombieAttackScript && ZombiePatrolScript)
         {
-            if (!ZombieLocateScript.Target)
+           
+            if (ZombieLocateScript.CanISeeTarget())
             {
-                ZombiePatrolScript.Patroling();
+                
+                if (ZombiePatrolScript.ZombieNavMesh.remainingDistance < ZombieAttackScript.AttackDistance)
+                {
+                    ZombieAttackScript.DoCloseAttack(ZombieLocateScript.Target); Debug.Log("Attack");
+                }
+                else 
+                {
+                    ZombiePatrolScript.MoveTo(ZombieLocateScript.Target); Debug.Log("Move To");
+                }
             }
-            else if (ZombieLocateScript.Target)
+            else  
             {
-                ZombieLocateScript.LocateTarget();
-                ZombieAttackScript.DoCloseAttack();
+                ZombiePatrolScript.Patroling(); Debug.Log("Patrol");
             }
         }
         

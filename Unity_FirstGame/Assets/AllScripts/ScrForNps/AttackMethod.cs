@@ -8,8 +8,8 @@ public class AttackMethod : MonoBehaviour
     protected float AttackTime = 3.5f;
     protected bool  CanAttack;
     protected float ZombieDamage = 5;
-    [SerializeField] protected float AttackDistance;
-    protected DamageTakerScript DamageTakerScript;
+    [SerializeField] public float AttackDistance;
+    
     protected HpScript TargetHpScript;
     protected LocateScript ZombieLocateScript;
     protected PatrolScriptNavMesh ZombiePatrolScript;
@@ -26,11 +26,13 @@ public class AttackMethod : MonoBehaviour
         
     }
         
-    public void DoCloseAttack()
+    public void DoCloseAttack(GameObject Target)
     {
-        if (Time.time >= AttackTime && ZombiePatrolScript.ZombieNavMesh.remainingDistance < AttackDistance && TargetHpScript)
+
+        if (Time.time >= AttackTime )
         {
-            DamageTakerScript.TakeDamage(TargetHpScript.HealthPoint,ZombieDamage);
+
+            Target.GetComponent<HpScript>()?.TakeDamage(ZombieDamage);
             AttackTime = AttackDelay + Time.time;
             
         }

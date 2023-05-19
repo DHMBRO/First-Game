@@ -40,7 +40,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4539916429060384199}
-  - component: {fileID: 8266815164227736283}
   m_Layer: 0
   m_Name: AttackTrigger
   m_TagString: Untagged
@@ -63,19 +62,6 @@ Transform:
   m_Father: {fileID: 9108063297374437374}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &8266815164227736283
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2416864410575259587}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 2.13
-  m_Center: {x: 0, y: 0.018973202, z: -0.026537776}
 --- !u!1 &5781139615977132246
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,14 +72,11 @@ GameObject:
   m_Component:
   - component: {fileID: 9108063297374437374}
   - component: {fileID: 8008054684491629097}
-  - component: {fileID: 5343853370981461047}
-  - component: {fileID: 4749026294738820461}
-  - component: {fileID: 7452826291620363957}
-  - component: {fileID: 8775687195036317416}
-  - component: {fileID: 6876787345309840236}
-  - component: {fileID: 4143486294458113332}
-  - component: {fileID: 4689598793800090392}
   - component: {fileID: 5527551779828747922}
+  - component: {fileID: 8336620856454597418}
+  - component: {fileID: 3855234871449922233}
+  - component: {fileID: 2677489156488804276}
+  - component: {fileID: 5529055869280300667}
   m_Layer: 0
   m_Name: Zombie1A 1
   m_TagString: Untagged
@@ -133,100 +116,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 14
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5343853370981461047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5781139615977132246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10890008021e04849a44c63995d5b5f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AttackDistance: 3
---- !u!114 &4749026294738820461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5781139615977132246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d368a4577eca46842a56c91845b7e6f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7452826291620363957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5781139615977132246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6ec6bf59b8b9a749b9f2c83dc3208de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Head: {fileID: 5114723651407556825}
-  Target: {fileID: 0}
-  WhatImLooking: 
-  SpeedForMove: 3.5
-  MaxDistatzeForAgr: 7
---- !u!114 &8775687195036317416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5781139615977132246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6ce1222acc9e3446ad496466bb2a4b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6876787345309840236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5781139615977132246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d368a4577eca46842a56c91845b7e6f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4143486294458113332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5781139615977132246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84321c486174e4f49b8d7ce88c83ff52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MyPointControllScript: {fileID: 0}
-  StartPosIndex: 0
-  ZombieNavMesh: {fileID: 0}
---- !u!114 &4689598793800090392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5781139615977132246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10890008021e04849a44c63995d5b5f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AttackDistance: 0
 --- !u!195 &5527551779828747922
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -249,6 +138,63 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8336620856454597418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5781139615977132246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10890008021e04849a44c63995d5b5f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackDistance: 0
+--- !u!114 &3855234871449922233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5781139615977132246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6ec6bf59b8b9a749b9f2c83dc3208de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Head: {fileID: 5114723651407556825}
+  Target: {fileID: 0}
+  WhatImLooking: 
+  SpeedForMove: 0
+  MaxDistatzeForAgr: 0
+--- !u!114 &2677489156488804276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5781139615977132246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84321c486174e4f49b8d7ce88c83ff52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyPointControllScript: {fileID: 0}
+  StartPosIndex: 0
+  ZombieNavMesh: {fileID: 5527551779828747922}
+--- !u!114 &5529055869280300667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5781139615977132246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d368a4577eca46842a56c91845b7e6f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6844233101298997876
 GameObject:
   m_ObjectHideFlags: 0
