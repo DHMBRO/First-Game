@@ -2,61 +2,46 @@ using UnityEngine;
 
 public class MethodsFromDevelopers : MonoBehaviour
 {
-        
-    private void Update()
-    {
-                
-    }    
+    [SerializeField] SlotControler PlayerSlotControler;
+
+
+    
 
     protected void PutObjects(Transform ObjectForPut, Transform PosForPut)
     {
-        Rigidbody RigObject = ObjectForPut.gameObject.GetComponent<Rigidbody>();
-        if (RigObject)
-        {
-            Puting(RigObject);
-        }
-        else
-        {
-            RigObject = ObjectForPut.gameObject.AddComponent<Rigidbody>();
-            Puting(RigObject);
-        }
-        
-        void Puting(Rigidbody RigObject)
-        {
-            RigObject.isKinematic = true;
-            //RigObject.useGravity = false;
+        Puting();
+        ChangeHierarchy(ObjectForPut, PosForPut);
+        CopyTransform(ObjectForPut, PosForPut);
 
-            ObjectForPut.transform.SetParent(PosForPut);
-
-            ObjectForPut.position = PosForPut.transform.position;
-            ObjectForPut.rotation = PosForPut.transform.rotation;
+        void Puting()
+        {
+            Rigidbody ObgRig = ObjectForPut.gameObject.GetComponent<Rigidbody>();
+            if (ObgRig) Destroy(ObgRig);
         }
 
     }
 
     protected void DropObjects(Transform ObjectToDrop, Transform ObecjtForCopy)
     {
-        Rigidbody RigObject = ObjectToDrop.gameObject.GetComponent<Rigidbody>();
-        if (RigObject)
-        {
-            Droping(RigObject);
-        }
-        else 
-        {
-            RigObject = ObjectToDrop.gameObject.AddComponent<Rigidbody>();
-            Droping(RigObject);
-        }
-        
-        void Droping(Rigidbody RigObject)
-        {
-            RigObject.isKinematic = false;
-            //RigObject.useGravity = true;
+        Droping();
+        ChangeHierarchy(ObjectToDrop, null);
+        CopyTransform(ObjectToDrop, ObjectToDrop);
 
-            ObjectToDrop.position = ObecjtForCopy.position;
-            ObjectToDrop.rotation = ObecjtForCopy.rotation;
+        void Droping()
+        {
+            Rigidbody ObgRig = ObjectToDrop.gameObject.GetComponent<Rigidbody>();
+            if (!ObgRig)
+            {
+                ObgRig = ObjectToDrop.gameObject.AddComponent<Rigidbody>();
+            }
 
-            ObjectToDrop.transform.SetParent(null);
         }
+
+    }
+
+    protected void ChangeHierarchy(Transform ObjectToCopy, Transform ObjectForCopy)
+    {
+        ObjectToCopy.transform.SetParent(ObjectForCopy);
 
     }
 
