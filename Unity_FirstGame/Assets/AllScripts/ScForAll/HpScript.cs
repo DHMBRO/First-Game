@@ -6,7 +6,7 @@ public class HpScript : MonoBehaviour
 {
     public Live MyLive;
     [SerializeField] public float HealthPoint = 100;
-    
+    public float MaxHp = 100;
     public enum Live 
     {
         Alive,
@@ -19,27 +19,40 @@ public class HpScript : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log(HealthPoint);
-        
-    
 
     }
-   
-    void HealHp(float Hp,float Heal,float MaxHp) 
+    void SetHp(float NewHp)
+    {
+        HealthPoint = NewHp;
+        Debug.Log(this.name = "HalthPoint ==== " + HealthPoint);
+    }
+    public void HealHp(float Heal) 
     {
         if (MyLive == Live.Alive)
         {
-            if ((Hp + Heal) >= MaxHp)
+            if ((HealthPoint + Heal) >= MaxHp)
             {
-                Hp = MaxHp;
+                SetHp(MaxHp);
             }
-            else if ((Hp + Heal) < MaxHp)
+            else if ((HealthPoint + Heal) < MaxHp)
             {
-                Hp += Heal;
+                SetHp(HealthPoint + Heal);
             }
 
         }
       
     }
-    
+
+    public void TakeDamage(float Damage)
+    {
+        if (Damage >= HealthPoint)
+        {
+            MyLive = HpScript.Live.NotAlive;
+        }
+        else if (Damage < HealthPoint)
+        {
+            SetHp(HealthPoint - Damage);
+            
+        }
+    }
 }

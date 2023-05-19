@@ -24,8 +24,9 @@ public class Move1F : MonoBehaviour
     {
         if (PlayerTransform)
         {
-            if (Input.GetKey(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.W))
             {
+                Debug.Log("1");
                 PlayerTransform.transform.localPosition += transform.forward * SpeedForMove;
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
