@@ -25,17 +25,6 @@ public class MovePlayer : MonoBehaviour
         MyRigidbody = GetComponent<Rigidbody>();
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Plane"))
-        {
-            if (!DontJumping)
-            {
-                DontJumping = true;                
-            }
-        }
-    }
-
     void Update()
     {
         Move();
@@ -44,8 +33,8 @@ public class MovePlayer : MonoBehaviour
     void Move()
     {
         //transform.rotation = Quaternion.Euler(0f, CameraTransform.rotation.y, 0f);
-        MoveVertical = Input.GetAxisRaw("Vertical");
-        MoveHorizontal = Input.GetAxisRaw("Horizontal");
+        MoveVertical = Input.GetAxisRaw("Vertical")* 100000;
+        MoveHorizontal = Input.GetAxisRaw("Horizontal")*100000;
         //Vector3 ForceBack = transform.forward * MoveVertical * Speed;
         Vector3 ForceBack = new Vector3(MoveHorizontal, 0.0f, MoveVertical).normalized;
         Vector3 RBVel;
@@ -58,16 +47,27 @@ public class MovePlayer : MonoBehaviour
     }
     void Jump()
     {
-        if (Input.GetKey(KeyCode.Space) && DontJumping)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            MyRigidbody.isKinematic = false;
-            JumpCount = 100;
-            DontJumping = false;
+            RaycastHit Result = new RaycastHit();
+            Ray RayForJump = new Ray(transform.position, -transform.up);
+            Debug.DrawRay(transform.position, -transform.up * 1.01f, Color.blue);
+            if (Physics.Raycast(RayForJump, out RaycastHit HitResult, 1.01f))
+            {
+                Result = HitResult;
+                if (Result.collider)
+                {
+                    if (Result.collider.tag != "")
+                    {
+                        JumpCount = 7;
+                    }
+                }
+            }
+
         }
-        if (JumpCount > 0.0f)
+        if (JumpCount > 0)
         {
-            Vector3 addForce = new Vector3(0.00f, 2f * JumpForce, 0f);
-            MyRigidbody.AddRelativeForce(addForce, MyForceMode);
+            MyRigidbody.AddRelativeForce(new Vector3(0f, 1f * JumpForce, 0f), ForceMode.Force);
             JumpCount--;
         }
     } 

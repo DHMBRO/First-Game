@@ -26,7 +26,6 @@ public class PlayerControler : MonoBehaviour
     
     void Update()
     {        
-        Moving();
         PickUpAll();
         SlotControlerForAll();
         if (gameobject && Anchor)
@@ -34,11 +33,6 @@ public class PlayerControler : MonoBehaviour
             gameobject.transform.position = Anchor.transform.position;
 
         }
-    }
-    
-    void Moving()
-    {
-        Move.Move();
     }
 
     void ShootControlerForAllWeapon()
