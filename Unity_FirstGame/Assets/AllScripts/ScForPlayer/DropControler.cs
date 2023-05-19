@@ -25,7 +25,7 @@ public class DropControler : MethodsFromDevelopers
         if (PlSlotControler.ObjectInHand && PlSlotControler.ObjectInHand.gameObject.tag != "Knife" && Input.GetKeyDown(KeyCode.Q))
         {
             DropObjects(PlSlotControler.ObjectInHand.transform, DropObject.transform);
-
+        
             if (PlSlotControler.MyWeapon01) ChangeReferences(DropObject, PlSlotControler.MyWeapon01.gameObject);
             if (PlSlotControler.MyWeapon02) ChangeReferences(DropObject, PlSlotControler.MyWeapon02.gameObject);
             if (PlSlotControler.MyPistol01) ChangeReferences(DropObject, PlSlotControler.MyPistol01.gameObject);
@@ -43,8 +43,12 @@ public class DropControler : MethodsFromDevelopers
 
         void ChangeReferences(GameObject ObjectToChange, GameObject ObjectToComparison)
         {
-            if (ObjectToChange == ObjectToComparison) ObjectToComparison = null;
-
+            if (ObjectToChange == ObjectToComparison)
+            {
+                ObjectToComparison = null;
+                Debug.Log("1");
+            }
+            
 
 
         }
