@@ -500,7 +500,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1452546880}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec419c55fa32f034badda87b255f3193, type: 3}
   m_Name: 
@@ -1300,6 +1300,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1118509501 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6457168041355473268, guid: 264be72c65775c340aa49890d31d0630, type: 3}
+  m_PrefabInstance: {fileID: 6457168042384451785}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1176057889
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2289,6 +2300,18 @@ PrefabInstance:
       propertyPath: SpeedForMove
       value: 0.03
       objectReference: {fileID: 0}
+    - target: {fileID: 3264914945279453979, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
+      propertyPath: Scope
+      value: 
+      objectReference: {fileID: 1118509501}
+    - target: {fileID: 3264914945279453979, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
+      propertyPath: Inventory
+      value: 
+      objectReference: {fileID: 1658223598}
+    - target: {fileID: 3264914945279453979, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7589032840163134755, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
       propertyPath: m_Size.x
       value: 20
@@ -2615,6 +2638,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18049ecaf6e2117498afd1a53778e65b, type: 3}
+--- !u!1 &1658223598 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6457168040810386215, guid: 264be72c65775c340aa49890d31d0630, type: 3}
+  m_PrefabInstance: {fileID: 6457168042384451785}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1706891992 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1018996094966413981, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
@@ -3257,6 +3285,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6457168040810386214, guid: 264be72c65775c340aa49890d31d0630, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457168040810386214, guid: 264be72c65775c340aa49890d31d0630, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6457168040810386215, guid: 264be72c65775c340aa49890d31d0630, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6457168042201491238, guid: 264be72c65775c340aa49890d31d0630, type: 3}
       propertyPath: m_Name
       value: Canvas

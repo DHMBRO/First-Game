@@ -23,7 +23,7 @@ public class MethodsFromDevelopers : MonoBehaviour
         
         void Puting(Rigidbody RigObject)
         {
-            RigObject.WakeUp();
+            RigObject.IsSleeping();
             ObjectForPut.transform.SetParent(PosForPut);
 
             ObjectForPut.position = PosForPut.transform.position;
@@ -47,7 +47,7 @@ public class MethodsFromDevelopers : MonoBehaviour
         
         void Droping(Rigidbody RigObject)
         {
-            RigObject.IsSleeping();
+            RigObject.WakeUp();
 
             ObjectToDrop.position = ObecjtForCopy.position;
             ObjectToDrop.rotation = ObecjtForCopy.rotation;
