@@ -27,7 +27,7 @@ public class PickUp : MethodsFromDevelopers
 
     private void Update()
     {        
-        if (Counter == 1 && Input.GetKeyUp(KeyCode.E))
+        if (Counter == 1 && Input.GetKeyUp(KeyCode.F))
         {
             Counter = 0;
         }        
@@ -60,7 +60,7 @@ public class PickUp : MethodsFromDevelopers
         if (ObjectToBeLifted)
         {
             Debug.Log("Is work");
-            if (Input.GetKeyDown(KeyCode.E) && ObjectToBeLifted)
+            if (Input.GetKeyDown(KeyCode.F) && ObjectToBeLifted)
             {
                 Debug.Log("Input F");
                 //Pick up weapons 
