@@ -2,46 +2,58 @@ using UnityEngine;
 
 public class MethodsFromDevelopers : MonoBehaviour
 {
-    [SerializeField] SlotControler PlayerSlotControler;
-
-
-    
+        
+    private void Update()
+    {
+                
+    }    
 
     protected void PutObjects(Transform ObjectForPut, Transform PosForPut)
     {
-        Puting();
-        ChangeHierarchy(ObjectForPut, PosForPut);
-        CopyTransform(ObjectForPut, PosForPut);
-
-        void Puting()
+        Rigidbody RigObject = ObjectForPut.gameObject.GetComponent<Rigidbody>();
+        if (RigObject)
         {
-            Rigidbody ObgRig = ObjectForPut.gameObject.GetComponent<Rigidbody>();
-            if (ObgRig) Destroy(ObgRig);
+            Puting(RigObject);
+        }
+        else
+        {
+            RigObject = ObjectForPut.gameObject.AddComponent<Rigidbody>();
+            Puting(RigObject);
+        }
+        
+        void Puting(Rigidbody RigObject)
+        {
+            RigObject.IsSleeping();
+            ObjectForPut.transform.SetParent(PosForPut);
+
+            ObjectForPut.position = PosForPut.transform.position;
+            ObjectForPut.rotation = PosForPut.transform.rotation;
         }
 
     }
 
     protected void DropObjects(Transform ObjectToDrop, Transform ObecjtForCopy)
     {
-        Droping();
-        ChangeHierarchy(ObjectToDrop, null);
-        CopyTransform(ObjectToDrop, ObjectToDrop);
-
-        void Droping()
+        Rigidbody RigObject = ObjectToDrop.gameObject.GetComponent<Rigidbody>();
+        if (RigObject)
         {
-            Rigidbody ObgRig = ObjectToDrop.gameObject.GetComponent<Rigidbody>();
-            if (!ObgRig)
-            {
-                ObgRig = ObjectToDrop.gameObject.AddComponent<Rigidbody>();
-            }
-
+            Droping(RigObject);
         }
+        else 
+        {
+            RigObject = ObjectToDrop.gameObject.AddComponent<Rigidbody>();
+            Droping(RigObject);
+        }
+        
+        void Droping(Rigidbody RigObject)
+        {
+            RigObject.WakeUp();
 
-    }
+            ObjectToDrop.position = ObecjtForCopy.position;
+            ObjectToDrop.rotation = ObecjtForCopy.rotation;
 
-    protected void ChangeHierarchy(Transform ObjectToCopy, Transform ObjectForCopy)
-    {
-        ObjectToCopy.transform.SetParent(ObjectForCopy);
+            ObjectToDrop.transform.SetParent(null);
+        }
 
     }
 
