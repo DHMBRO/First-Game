@@ -32,7 +32,7 @@ public class AttackMethod : MonoBehaviour
         if (Time.time >= AttackTime )
         {
 
-            Target.GetComponent<HpScript>()?.TakeDamage(ZombieDamage);
+            //Target.GetComponent<HpScript>()?.TakeDamage(ZombieDamage);
             AttackTime = AttackDelay + Time.time;
             
         }
