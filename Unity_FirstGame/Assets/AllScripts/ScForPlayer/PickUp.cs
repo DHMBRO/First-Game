@@ -27,7 +27,7 @@ public class PickUp : MethodsFromDevelopers
 
     private void Update()
     {        
-        if (Counter == 1 && Input.GetKeyUp(KeyCode.F))
+        if (Counter == 1 && Input.GetKeyUp(KeyCode.E))
         {
             Counter = 0;
         }        
@@ -59,10 +59,8 @@ public class PickUp : MethodsFromDevelopers
     {
         if (ObjectToBeLifted)
         {
-            Debug.Log("Is work");
-            if (Input.GetKeyDown(KeyCode.F) && ObjectToBeLifted)
+            if (Input.GetKeyDown(KeyCode.E) && ObjectToBeLifted)
             {
-                Debug.Log("Input F");
                 //Pick up weapons 
                 if (ObjectToBeLifted.CompareTag("Glok") && Counter == 0)
                 {
@@ -335,19 +333,28 @@ public class PickUp : MethodsFromDevelopers
     {
         
         if (!SlotControler.MyShope01 && SlotControler.SlotShpo01 && Counter == 0)
-        {                        
+        {            
+            ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
+            ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
+
             SlotControler.MyShope01 = ShopForPickUp.transform;
             PutObjects(SlotControler.MyShope01, SlotControler.SlotShpo01);            
             Counter++;            
         }
         else if (!SlotControler.MyShope02 && SlotControler.SlotShpo02 && Counter == 0)
-        {           
+        {
+            ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
+            ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
+
             SlotControler.MyShope02 = ShopForPickUp.transform;
             PutObjects(SlotControler.MyShope02, SlotControler.SlotShpo02);            
             Counter++;        
         }
         else if (!SlotControler.MyShope03 && SlotControler.SlotShpo03 && Counter == 0)
         {
+            ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
+            ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
+
             SlotControler.MyShope03 = ShopForPickUp.transform;
             PutObjects(SlotControler.MyShope03, SlotControler.SlotShpo03);            
             Counter++;           
@@ -357,4 +364,4 @@ public class PickUp : MethodsFromDevelopers
             Debug.Log("Cant do this !");
         }              
     }
-} 
+}
