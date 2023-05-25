@@ -3,7 +3,7 @@ using UnityEngine;
 public class DropControler : MethodsFromDevelopers
 {
     [SerializeField] Transform PointForDrop;
-    [SerializeField] GameObject DropObject;
+    [SerializeField] GameObject ObjectToDrop;
     
     [SerializeField] SlotControler ControlerForSlots;
 
@@ -22,9 +22,9 @@ public class DropControler : MethodsFromDevelopers
     {
         if (ControlerForSlots.ObjectInHand && Input.GetKeyDown(KeyCode.Q))
         {
-            if(ControlerForSlots.ObjectInHand.CompareTag("Knife"))
+            if (!ControlerForSlots.ObjectInHand.CompareTag("Knife"))
             {
-                DropObjects(ControlerForSlots.ObjectInHand.transform, DropObject.transform);
+                DropObjects(ControlerForSlots.ObjectInHand.transform, ObjectToDrop.transform);
             }
         }
     }

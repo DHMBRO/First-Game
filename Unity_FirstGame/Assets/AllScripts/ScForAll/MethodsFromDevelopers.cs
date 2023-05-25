@@ -15,19 +15,14 @@ public class MethodsFromDevelopers : MonoBehaviour
         {
             Puting(RigObject);
         }
-        else
-        {
-            RigObject = ObjectForPut.gameObject.AddComponent<Rigidbody>();
-            Puting(RigObject);
-        }
+        else Puting(RigObject);
         
         void Puting(Rigidbody RigObject)
         {
-            RigObject.IsSleeping();
-            ObjectForPut.transform.SetParent(PosForPut);
+            Destroy(RigObject);
 
-            ObjectForPut.position = PosForPut.transform.position;
-            ObjectForPut.rotation = PosForPut.transform.rotation;
+            ObjectForPut.transform.SetParent(PosForPut);
+            CopyTransform(ObjectForPut, PosForPut);
         }
 
     }
@@ -47,10 +42,10 @@ public class MethodsFromDevelopers : MonoBehaviour
         
         void Droping(Rigidbody RigObject)
         {
-            RigObject.WakeUp();
+            RigObject.isKinematic = false;
+            RigObject.useGravity = true;
 
-            ObjectToDrop.position = ObecjtForCopy.position;
-            ObjectToDrop.rotation = ObecjtForCopy.rotation;
+            CopyTransform(ObjectToDrop, ObecjtForCopy);
 
             ObjectToDrop.transform.SetParent(null);
         }

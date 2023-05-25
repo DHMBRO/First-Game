@@ -57,16 +57,16 @@ GameObject:
   - component: {fileID: 6685183969156581734}
   - component: {fileID: 7220017703158707578}
   - component: {fileID: 7589032840163134755}
-  - component: {fileID: 8740764673410187273}
-  - component: {fileID: 7785237847769309149}
-  - component: {fileID: 1427766268900275734}
-  - component: {fileID: 7446413381223648327}
   - component: {fileID: 8823763917516572830}
+  - component: {fileID: 999774021884447914}
+  - component: {fileID: 6820276684423255678}
+  - component: {fileID: 1427766268900275734}
+  - component: {fileID: 7785237847769309149}
+  - component: {fileID: 7446413381223648327}
+  - component: {fileID: 8740764673410187273}
   - component: {fileID: 3213455639597307656}
   - component: {fileID: 3264914945279453979}
   - component: {fileID: 8739924668644983072}
-  - component: {fileID: 6820276684423255678}
-  - component: {fileID: 999774021884447914}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player01
@@ -186,7 +186,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5, y: 5, z: 5}
   m_Center: {x: 0, y: 0.05154252, z: 0.9866562}
---- !u!114 &8740764673410187273
+--- !u!114 &8823763917516572830
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,10 +195,71 @@ MonoBehaviour:
   m_GameObject: {fileID: 758934435905196194}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc25977b344794640ba2c6a96042d896, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d2e13c0bdd472048a4ce7b554c40e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StelsOn: 0
+  Move: {fileID: 999774021884447914}
+  PlayerCamera: {fileID: 0}
+  StelsScript: {fileID: 8740764673410187273}
+  PickUp: {fileID: 1427766268900275734}
+  SlotControler: {fileID: 7785237847769309149}
+  ShootControler: {fileID: 0}
+  gameobject: {fileID: 0}
+  Anchor: {fileID: 6767048737513204152}
+--- !u!114 &999774021884447914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758934435905196194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83e44ebe7bfed1f4fbb96f32da31a04e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpeedForMove: 0.05
+  SpeedForRun: 0.08
+  PowerForJump: 20
+  CanJump: 0
+  PlayerTransform: {fileID: 780860326346338877}
+  RigidbodyForPlayer: {fileID: 7220017703158707578}
+--- !u!114 &6820276684423255678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758934435905196194}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e16453a710a00549bbd19cb19b8c4dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  JumpForce: 5
+  Sens: 1
+  MyForceMode: 0
+  MyRigidbody: {fileID: 7220017703158707578}
+  CameraTransform: {fileID: 6676864599705618737}
+  Speed: 5
+--- !u!114 &1427766268900275734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758934435905196194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0524826c35c685458f39789c6806837, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectToBeLifted: {fileID: 0}
+  TransformForCamera: {fileID: 6676864599705618737}
+  ReferenceForCamera: {fileID: 0}
+  TransformPos: {fileID: 0}
+  PlayerInventory: {fileID: 0}
+  ReferencesForLoots: {fileID: 0}
 --- !u!114 &7785237847769309149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,24 +301,6 @@ MonoBehaviour:
   ObjectInHand: {fileID: 0}
   PickUp: {fileID: 0}
   Inventory: {fileID: 0}
---- !u!114 &1427766268900275734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 758934435905196194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0524826c35c685458f39789c6806837, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObjectToBeLifted: {fileID: 0}
-  TransformForCamera: {fileID: 6676864599705618737}
-  ReferenceForCamera: {fileID: 0}
-  TransformPos: {fileID: 0}
-  PlayerInventory: {fileID: 0}
-  ReferencesForLoots: {fileID: 0}
 --- !u!114 &7446413381223648327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,11 +314,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PointForDrop: {fileID: 7434336520898069995}
-  DropObject: {fileID: 0}
+  ObjectToDrop: {fileID: 5446968579688712550}
   ControlerForSlots: {fileID: 0}
   DeleyForDestory: 0
   Deley: 0
---- !u!114 &8823763917516572830
+--- !u!114 &8740764673410187273
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -284,17 +327,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 758934435905196194}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d2e13c0bdd472048a4ce7b554c40e32, type: 3}
+  m_Script: {fileID: 11500000, guid: bc25977b344794640ba2c6a96042d896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Move: {fileID: 0}
-  PlayerCamera: {fileID: 0}
-  StelsScript: {fileID: 8740764673410187273}
-  PickUp: {fileID: 1427766268900275734}
-  SlotControler: {fileID: 7785237847769309149}
-  ShootControler: {fileID: 0}
-  gameobject: {fileID: 0}
-  Anchor: {fileID: 6767048737513204152}
+  StelsOn: 0
 --- !u!114 &3213455639597307656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,42 +373,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MyLive: 0
   HealthPoint: 100
---- !u!114 &6820276684423255678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 758934435905196194}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e16453a710a00549bbd19cb19b8c4dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  JumpForce: 5
-  Sens: 1
-  MyForceMode: 0
-  MyRigidbody: {fileID: 7220017703158707578}
-  CameraTransform: {fileID: 6676864599705618737}
-  Speed: 5
---- !u!114 &999774021884447914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 758934435905196194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83e44ebe7bfed1f4fbb96f32da31a04e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SpeedForMove: 0.05
-  SpeedForRun: 0.08
-  PowerForJump: 20
-  CanJump: 0
-  PlayerTransform: {fileID: 780860326346338877}
-  RigidbodyForPlayer: {fileID: 7220017703158707578}
 --- !u!1 &1059009059662341174
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,14 +681,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4275303751493587096}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 887236312477455917}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &5041169986317159292
 GameObject:
   m_ObjectHideFlags: 0
