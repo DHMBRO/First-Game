@@ -64,9 +64,9 @@ GameObject:
   - component: {fileID: 8823763917516572830}
   - component: {fileID: 3213455639597307656}
   - component: {fileID: 3264914945279453979}
-  - component: {fileID: 3817395806022250202}
   - component: {fileID: 8739924668644983072}
   - component: {fileID: 6820276684423255678}
+  - component: {fileID: 999774021884447914}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player01
@@ -323,18 +323,6 @@ MonoBehaviour:
   Scope: {fileID: 0}
   Inventory: {fileID: 0}
   InventoryIsOpen: 0
---- !u!114 &3817395806022250202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 758934435905196194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6ce1222acc9e3446ad496466bb2a4b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8739924668644983072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,7 +344,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 758934435905196194}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e16453a710a00549bbd19cb19b8c4dd, type: 3}
   m_Name: 
@@ -367,6 +355,24 @@ MonoBehaviour:
   MyRigidbody: {fileID: 7220017703158707578}
   CameraTransform: {fileID: 6676864599705618737}
   Speed: 5
+--- !u!114 &999774021884447914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758934435905196194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83e44ebe7bfed1f4fbb96f32da31a04e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpeedForMove: 0.05
+  SpeedForRun: 0.08
+  PowerForJump: 20
+  CanJump: 0
+  PlayerTransform: {fileID: 780860326346338877}
+  RigidbodyForPlayer: {fileID: 7220017703158707578}
 --- !u!1 &1059009059662341174
 GameObject:
   m_ObjectHideFlags: 0

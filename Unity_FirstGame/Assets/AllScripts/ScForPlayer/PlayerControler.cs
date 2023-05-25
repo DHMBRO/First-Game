@@ -27,7 +27,9 @@ public class PlayerControler : MonoBehaviour
     void Update()
     {        
         PickUpAll();
+        Move.Move();
         SlotControlerForAll();
+        
         if (gameobject && Anchor)
         {
             gameobject.transform.position = Anchor.transform.position;
