@@ -11,7 +11,7 @@ public class MovePlayer : MonoBehaviour
 
     [SerializeField] protected Transform CameraTransform;
 
-    bool DontJumping = true;
+    //bool DontJumping = true;
     //bool chengebutton = false;
 
     int JumpCount;

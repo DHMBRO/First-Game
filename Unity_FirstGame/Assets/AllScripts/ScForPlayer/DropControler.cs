@@ -7,9 +7,6 @@ public class DropControler : MethodsFromDevelopers
     
     [SerializeField] SlotControler ControlerForSlots;
 
-    [SerializeField] private float DeleyForDestory;
-    [SerializeField] private float Deley = 2.5f;
-
     void Start()
     {
         ControlerForSlots = gameObject.GetComponent<SlotControler>();

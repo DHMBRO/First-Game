@@ -27,7 +27,7 @@ public class PickUp : MethodsFromDevelopers
 
     private void Update()
     {        
-        if (Counter == 1 && Input.GetKeyUp(KeyCode.E))
+        if (Counter == 1 && Input.GetKeyUp(KeyCode.F))
         {
             Counter = 0;
         }        
@@ -59,7 +59,7 @@ public class PickUp : MethodsFromDevelopers
     {
         if (ObjectToBeLifted)
         {
-            if (Input.GetKeyDown(KeyCode.E) && ObjectToBeLifted)
+            if (Input.GetKeyDown(KeyCode.F) && ObjectToBeLifted)
             {
                 //Pick up weapons 
                 if (ObjectToBeLifted.CompareTag("Glok") && Counter == 0)
@@ -304,12 +304,14 @@ public class PickUp : MethodsFromDevelopers
     }
 
     public void PickUpWeapons(GameObject ObjectForPickUp)
-    {                
+    {
+        Debug.Log("1");
         if (!SlotControler.MyPistol01 && MainCounter == 1 && Counter == 0)
         {                                    
             SlotControler.MyPistol01 = ObjectToBeLifted.transform;
             PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01);            
             Counter++;
+            Debug.Log("2");
         }
         else if (!SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 && MainCounter == 2 && Counter == 0)
         {                        
