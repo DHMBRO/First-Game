@@ -2,12 +2,7 @@ using UnityEngine;
 
 public class MethodsFromDevelopers : MonoBehaviour
 {
-        
-    private void Update()
-    {
-                
-    }    
-
+    
     protected void PutObjects(Transform ObjectForPut, Transform PosForPut)
     {
         Rigidbody RigObject = ObjectForPut.gameObject.GetComponent<Rigidbody>();
@@ -30,6 +25,10 @@ public class MethodsFromDevelopers : MonoBehaviour
     protected void DropObjects(Transform ObjectToDrop, Transform ObecjtForCopy)
     {
         Rigidbody RigObject = ObjectToDrop.gameObject.GetComponent<Rigidbody>();
+        
+        //Vector3 DropPower = new Vector3(0.0f - 1.0f * 5.0f, 0.0f + 1.0f * 3.0f, 0.0f);
+       // Vector3 RoateInDrop = new Vector3(0.0f + 1.0f * 5.0f, 0.0f, 0.0f);
+
         if (RigObject)
         {
             Droping(RigObject);
@@ -48,6 +47,9 @@ public class MethodsFromDevelopers : MonoBehaviour
             CopyTransform(ObjectToDrop, ObecjtForCopy);
 
             ObjectToDrop.transform.SetParent(null);
+
+           // RigObject.AddRelativeForce(DropPower, ForceMode.Impulse);
+           // RigObject.AddRelativeTorque(DropPower, ForceMode.Impulse);
         }
 
     }

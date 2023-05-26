@@ -7,27 +7,15 @@ public class Inventory : MonoBehaviour
     [SerializeField] public List<GameObject> SlotsForBackPack = new List<GameObject>();
     [SerializeField] public GameObject BackPack;
 
-    [SerializeField] public GameObject a;
-
     [SerializeField] public float MaxMass = 5.0f;
     [SerializeField] public float CurrentMass = 0.0f;
 
 
     private void Start()
-    
     {
         ChargingValueMaxMass();
-
-
     }
 
-    void Update()
-    {
-        
-
-
-    }
-    
     public void ChargingValueMaxMass()
     {
         if (BackPack)
@@ -39,4 +27,15 @@ public class Inventory : MonoBehaviour
             else if (BackPackContr.LevelBackPack == 3) MaxMass = 25.0f;
         }
     }
+    
+    public void UseByIndex(int Index)
+    {
+        if (Index >= SlotsForBackPack.Count || Index < 0) return;
+
+        SlotsForBackPack[Index].GetComponent<IUsebleInterFace>();
+
+
+
+    }
+
 }
