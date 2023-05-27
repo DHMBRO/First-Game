@@ -1,12 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class HpScript : MonoBehaviour
 {
     public Live MyLive;
     [SerializeField] public float HealthPoint = 100;
-    
+    [SerializeField] private Image HpUi; 
+
+
+
     public enum Live 
     {
         Alive,
@@ -21,8 +22,6 @@ public class HpScript : MonoBehaviour
     {
         Debug.Log(HealthPoint);
         
-    
-
     }
    
     void HealHp(float Hp,float Heal,float MaxHp) 
@@ -37,9 +36,15 @@ public class HpScript : MonoBehaviour
             {
                 Hp += Heal;
             }
-
+            OutPutHp(Hp);
         }
       
     }
     
+    void OutPutHp(float HpNow)
+    {
+        HpUi.fillAmount = HpNow;
+    } 
+
+
 }
