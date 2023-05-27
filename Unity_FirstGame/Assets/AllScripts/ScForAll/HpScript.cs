@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class HpScript : MonoBehaviour
 {
-    
     [SerializeField] public float HealthPoint = 100;
     [SerializeField] private Image UiHp;
 
@@ -15,10 +14,6 @@ public class HpScript : MonoBehaviour
         NotAlive
     }
 
-    void Start()
-    {
-       
-    }
     void Update()
     {
         Debug.Log(HealthPoint);

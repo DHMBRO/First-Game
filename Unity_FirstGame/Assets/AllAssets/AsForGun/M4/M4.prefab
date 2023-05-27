@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 9071493728336264004}
   - component: {fileID: 5340629801406763826}
   - component: {fileID: 1357051501843773120}
+  - component: {fileID: 1709201843468269818}
   m_Layer: 0
   m_Name: M4
   m_TagString: M4
@@ -214,6 +215,19 @@ MonoBehaviour:
   CameraTransform: {fileID: 0}
   MySlotControler: {fileID: 0}
   ColletSpeed: 1000
+--- !u!114 &1709201843468269818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5786097810451525583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d484dbe3d0271be4f9022d03f65aba1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  M4Image: {fileID: 21300000, guid: 308dbe82aff9325459e2458344bb10d6, type: 3}
 --- !u!1 &5873469072906034301
 GameObject:
   m_ObjectHideFlags: 0

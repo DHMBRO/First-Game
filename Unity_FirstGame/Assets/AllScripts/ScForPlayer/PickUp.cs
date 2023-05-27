@@ -228,7 +228,7 @@ public class PickUp : MethodsFromDevelopers
     {
         if (PlayerInventory)
         {
-            AllAmmo LootMass = ObjectToBeLifted.gameObject.GetComponent<AllAmmo>();
+            ScrMass LootMass = ObjectToBeLifted.gameObject.GetComponent<ScrMass>();
             if (PlayerInventory.CurrentMass + LootMass.Mass <= PlayerInventory.MaxMass)
             {
                 PickUpBullets(ObjectToPickUp);

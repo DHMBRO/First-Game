@@ -25,35 +25,19 @@ public class LocateScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player01"))
         {
-            Target = other.gameObject;
-          
+            Target = other.gameObject; 
         }
-        
-
-
-
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Player01"))
         {
-            Target = null;
-           
+            Target = null;  
         }
-        
     }
 
-
-   
     
-    void Update()
-    {
-        
-        
-    }              
-
- 
     public bool CanISeeTarget()
     {
         
@@ -64,8 +48,7 @@ public class LocateScript : MonoBehaviour
         }
         Vector3 Rotate = Target.transform.position - transform.position;
         Vector3 RotateHead = Target.transform.position - Head.position;
-      
-
+        
         Ray HeadForward = new Ray(Head.transform.position, Head.forward * MaxDistatzeForAgr);
 
         Head.transform.rotation = Quaternion.LookRotation(RotateHead);
@@ -79,12 +62,9 @@ public class LocateScript : MonoBehaviour
             if (WhatImLooking == "Player01")
             {
                 return true;
-                
             }
-
         }
         return false;
-        
     }
     
 

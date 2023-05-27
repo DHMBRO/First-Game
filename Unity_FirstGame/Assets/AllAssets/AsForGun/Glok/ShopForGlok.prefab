@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1991016611763347114}
   - component: {fileID: 7042012713582904745}
   - component: {fileID: 6679083313953220752}
+  - component: {fileID: 54301173106650972}
   m_Layer: 0
   m_Name: ShopForGlok
   m_TagString: ShopGlok
@@ -112,3 +113,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentAmmo: 0
+  Mass: 0
+  IsUsing: 0
+  InInventory: 0
+--- !u!114 &54301173106650972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7933510159314380724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0817b499e0b9ec24ea148c6065c1a7c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShopGlokImage: {fileID: 21300000, guid: f2d7057db5ec07c479d04f02eee5bdce, type: 3}
