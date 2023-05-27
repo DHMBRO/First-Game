@@ -22,9 +22,6 @@ public class HpScript : MonoBehaviour
     void Update()
     {
         Debug.Log(HealthPoint);
-        
-    
-
     }
    
     void HealHp(float Hp,float Heal,float MaxHp) 
@@ -43,6 +40,22 @@ public class HpScript : MonoBehaviour
         if (Hp > 0.0f && UiHp) OutPutHp(Hp, UiHp);
     }
     
+    void InflictingDamage(float Hp, float Damage, float MinHp)
+    {
+        if (MyLive == Live.Alive)
+        {
+            if ((Hp - Damage) <= MinHp)
+            {
+                Hp = MinHp;
+            }
+            else if ((Hp - Damage) > MinHp)
+            {
+                Hp -= Damage;
+            }
+        }
+        if (Hp >= 0.0f && UiHp) OutPutHp(Hp, UiHp);
+    }
+
     void OutPutHp(float HpNow, Image HpByUi)
     {
         HpByUi.fillAmount = HpNow;
