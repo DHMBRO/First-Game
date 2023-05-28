@@ -1,18 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class ImageScript : MonoBehaviour
+public class ImageScript : MonoBehaviour, IImage
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] Sprite SpriteForSlot;
+
+    public void GetImage()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
