@@ -23,9 +23,10 @@ public class ZombieController : MonoBehaviour
             if (ZombieLocateScript.CanISeeTarget())
             {
                 
-                if (ZombiePatrolScript.ZombieNavMesh.remainingDistance < ZombieAttackScript.AttackDistance)
+                if (ZombiePatrolScript.ZombieNavMesh.remainingDistance < ZombieAttackScript.AttackDistance && 
+                    (ZombieLocateScript.Target.transform.position - ZombiePatrolScript.ZombieNavMesh.destination).magnitude <= ZombieAttackScript.GoingDistance)
                 {
-                    ZombieAttackScript.DoCloseAttack(ZombieLocateScript.Target); Debug.Log("Attack");
+                    ZombieAttackScript.DoCloseAttack(ZombieLocateScript.Target);
                 }
                 else 
                 {

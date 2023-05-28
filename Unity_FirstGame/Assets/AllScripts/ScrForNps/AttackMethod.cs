@@ -6,10 +6,10 @@ public class AttackMethod : MonoBehaviour
 {
     protected float AttackDelay = 3.0f;
     protected float AttackTime = 3.5f;
-    protected bool  CanAttack;
+    protected bool CanAttack;
     protected float ZombieDamage = 5;
     [SerializeField] public float AttackDistance;
-    
+    [SerializeField] public float GoingDistance;
     protected HpScript TargetHpScript;
     protected LocateScript ZombieLocateScript;
     protected PatrolScriptNavMesh ZombiePatrolScript;
@@ -32,7 +32,7 @@ public class AttackMethod : MonoBehaviour
         if (Time.time >= AttackTime )
         {
 
-            //Target.GetComponent<HpScript>()?.TakeDamage(ZombieDamage);
+            Target.GetComponent<HpScript>()?.InflictingDamage(ZombieDamage);
             AttackTime = AttackDelay + Time.time;
             
         }

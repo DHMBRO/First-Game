@@ -4,8 +4,8 @@ using UnityEngine.UI;
 public class HpScript : MonoBehaviour
 {
     [SerializeField] public float HealthPoint = 100;
-    [SerializeField] private Image UiHp;
-
+    //[SerializeField] private Image UiHp;
+    [SerializeField] public float MaxHp;
     public Live MyLive;
 
     public enum Live 
@@ -18,37 +18,44 @@ public class HpScript : MonoBehaviour
     {
         Debug.Log(HealthPoint);
     }
-   
-    void HealHp(float Hp,float Heal,float MaxHp) 
+    void MinusHp(float Damage)
+    {
+        if ((HealthPoint - Damage) <= 0)
+        {
+            HealthPoint = 0;
+        }
+        else if ((HealthPoint - Damage) > 0)
+        {
+            HealthPoint -= Damage;
+        }
+    }
+    void PlusHp(float Heal)
+    {
+        if ((HealthPoint + Heal) >= MaxHp)
+        {
+            HealthPoint = MaxHp;
+        }
+        else if ((HealthPoint + Heal) < MaxHp)
+        {
+            HealthPoint += Heal;
+        }
+    }
+    public void HealHp(float Heal) 
     {
         if (MyLive == Live.Alive)
         {
-            if ((Hp + Heal) >= MaxHp)
-            {
-                Hp = MaxHp;
-            }
-            else if ((Hp + Heal) < MaxHp)
-            {
-                Hp += Heal;
-            }
+            PlusHp(Heal);
         }
-        if (Hp > 0.0f && UiHp) OutPutHp(Hp, UiHp);
+       // if (HealthPoint > 0.0f && UiHp) OutPutHp(HealthPoint, UiHp);
     }
     
-    void InflictingDamage(float Hp, float Damage, float MinHp)
+    public void InflictingDamage(float Damage)
     {
         if (MyLive == Live.Alive)
         {
-            if ((Hp - Damage) <= MinHp)
-            {
-                Hp = MinHp;
-            }
-            else if ((Hp - Damage) > MinHp)
-            {
-                Hp -= Damage;
-            }
+            MinusHp(Damage);
         }
-        if (Hp >= 0.0f && UiHp) OutPutHp(Hp, UiHp);
+        //if (HealthPoint >= 0.0f && UiHp) OutPutHp(HealthPoint, UiHp);
     }
 
     void OutPutHp(float HpNow, Image HpByUi)
