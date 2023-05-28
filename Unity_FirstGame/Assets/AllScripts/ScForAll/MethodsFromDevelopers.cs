@@ -26,9 +26,6 @@ public class MethodsFromDevelopers : MonoBehaviour
     {
         Rigidbody RigObject = ObjectToDrop.gameObject.GetComponent<Rigidbody>();
         
-        //Vector3 DropPower = new Vector3(0.0f - 1.0f * 5.0f, 0.0f + 1.0f * 3.0f, 0.0f);
-       // Vector3 RoateInDrop = new Vector3(0.0f + 1.0f * 5.0f, 0.0f, 0.0f);
-
         if (RigObject)
         {
             Droping(RigObject);
@@ -48,8 +45,12 @@ public class MethodsFromDevelopers : MonoBehaviour
 
             ObjectToDrop.transform.SetParent(null);
 
-           // RigObject.AddRelativeForce(DropPower, ForceMode.Impulse);
-           // RigObject.AddRelativeTorque(DropPower, ForceMode.Impulse);
+           RigObject.AddRelativeForce(new Vector3(0.0f - 1.0f * 1.5f, 0.0f + 1.0f * 2.5f, 0.0f), ForceMode.Impulse);
+           RigObject.AddRelativeTorque(new Vector3(0.0f, 0.0f - 1.0f * 20.0f, 0.0f));
+
+
+
+
         }
 
     }
