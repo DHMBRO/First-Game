@@ -55,7 +55,14 @@ public class SlotControler : MethodsFromDevelopers
     [SerializeField] private PickUp PickUp;
     [SerializeField] private Inventory Inventory;
     //
-    
+    [SerializeField] Sprite Sakr47;
+    [SerializeField] Sprite Sm4;
+    [SerializeField] Sprite Sglock;
+    [SerializeField] Sprite Sknife;
+    [SerializeField] GameObject weapon01;
+    [SerializeField] GameObject weapon02;
+    [SerializeField] GameObject pistol;
+    [SerializeField] GameObject knife;
 
     void Start()
     {
@@ -88,21 +95,25 @@ public class SlotControler : MethodsFromDevelopers
         {
             if (MyPistol01 && ObjectInHand == MyPistol01.gameObject && MyPistol01.gameObject.tag == "Glok")
             {
+                pistol.GetComponent<IImage>().GetImage(Sglock);
                 Charge(MyPistol01.gameObject, PointForShopPistol01, "Glok", "ShopGlok");
                 if (CounetrForCharge == 0) ChangingShops(MyPistol01.gameObject, PointForShopPistol01, "Glok", "ShopGlok");
             }
             else if (MyWeapon01 && ObjectInHand == MyWeapon01.gameObject && MyWeapon01.gameObject.tag == "M4")
             {
+                weapon01.GetComponent<IImage>().GetImage(Sm4);
                 Charge(MyWeapon01.gameObject, PointForShopWeapon01, "M4", "ShopM4");                
                 if(CounetrForCharge == 0) ChangingShops(MyWeapon01.gameObject, PointForShopWeapon01, "M4", "ShopM4" );            
             }
             else if (MyWeapon01 && ObjectInHand == MyWeapon01.gameObject && MyWeapon01.gameObject.tag == "AK47")
             {
+                weapon01.GetComponent<IImage>().GetImage(Sakr47);
                 Charge(MyWeapon01.gameObject, PointForShopWeapon01, "AK47", "ShopAK47");
                 if(CounetrForCharge == 0) ChangingShops(MyWeapon01.gameObject, PointForShopWeapon01, "M4", "ShopM4" );
             }            
             else if (MyWeapon02 && ObjectInHand == MyWeapon02.gameObject && MyWeapon02.gameObject.tag == "M4")
             {
+                weapon02.GetComponent<IImage>().GetImage(Sm4);
                 Charge(MyWeapon02.gameObject, PointForShopWeapon02, "M4", "ShopM4");                            
                 if(CounetrForCharge == 0) ChangingShops(MyWeapon02.gameObject, PointForShopWeapon02, "M4", "ShopM4" );
             }

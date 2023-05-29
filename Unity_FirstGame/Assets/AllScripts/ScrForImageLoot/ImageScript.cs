@@ -3,11 +3,13 @@ using UnityEngine.UI;
 
 public class ImageScript : MonoBehaviour, IImage
 {
-    [SerializeField] Sprite SpriteForSlot;
-
-    public void GetImage()
+    Image m_image;
+    void Start() 
     {
-
+        m_image = GetComponent<Image>();
     }
-
+    public void GetImage(Sprite SpriteForLoot)
+    {
+        m_image.sprite = SpriteForLoot;
+    }
 }

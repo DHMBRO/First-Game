@@ -1,3 +1,6 @@
+using UnityEngine;
+using UnityEngine.UI;
+
 public interface IUsebleInterFace 
 {
     public void Use();         
@@ -5,7 +8,7 @@ public interface IUsebleInterFace
 
 public interface IImage
 {
-    public void GetImage();
+    public void GetImage(Sprite SpriteForLoot);
 }
 
 

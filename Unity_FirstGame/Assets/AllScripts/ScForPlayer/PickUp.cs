@@ -10,6 +10,16 @@ public class PickUp : MethodsFromDevelopers
     [SerializeField] private Inventory PlayerInventory;
     [SerializeField] private ReferenseForAllLoot ReferencesForLoots;
 
+    [SerializeField] Sprite Sakr47;
+    [SerializeField] Sprite Sm4;
+    [SerializeField] Sprite Sglock;
+    [SerializeField] Sprite Sknife;
+    [SerializeField] GameObject weapon01;
+    [SerializeField] GameObject weapon02;
+    [SerializeField] GameObject pistol;
+    [SerializeField] GameObject knife;
+
+
     private float DistanceForRay = 2.0f;
     private int MainCounter = 0;
     private int Counter = 0;
@@ -307,20 +317,37 @@ public class PickUp : MethodsFromDevelopers
     {
         Debug.Log("1");
         if (!SlotControler.MyPistol01 && MainCounter == 1 && Counter == 0)
-        {                                    
+        {
+            pistol.GetComponent<IImage>().GetImage(Sglock);
             SlotControler.MyPistol01 = ObjectToBeLifted.transform;
             PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01);            
             Counter++;
             Debug.Log("2");
         }
         else if (!SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 && MainCounter == 2 && Counter == 0)
-        {                        
+        {
+            if (ObjectForPickUp.tag == "M4")
+            {
+                weapon01.GetComponent<IImage>().GetImage(Sm4);
+            }
+            else if(ObjectForPickUp.tag == "AK47")
+            {
+                weapon01.GetComponent<IImage>().GetImage(Sakr47);
+            }
             SlotControler.MyWeapon01 = ObjectForPickUp.transform;
             PutObjects(SlotControler.MyWeapon01, SlotControler.SlotBack01);            
             Counter++;
         }
         else if (SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 && MainCounter == 2 && Counter == 0)
-        {                        
+        {
+            if (ObjectForPickUp.tag == "M4")
+            {
+                weapon02.GetComponent<IImage>().GetImage(Sm4);
+            }
+            else if (ObjectForPickUp.tag == "AK47")
+            {
+                weapon02.GetComponent<IImage>().GetImage(Sakr47);
+            }
             SlotControler.MyWeapon02 = ObjectForPickUp.transform;
             PutObjects(SlotControler.MyWeapon02, SlotControler.SlotBack02);           
             Counter++;
