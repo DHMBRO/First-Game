@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PickUp : MethodsFromDevelopers
+public class PickUp : MethodsFromDevelopers 
 {
     [SerializeField] public GameObject ObjectToBeLifted;
     [SerializeField] private Transform TransformForCamera;
@@ -19,13 +19,13 @@ public class PickUp : MethodsFromDevelopers
     [SerializeField] GameObject pistol;
     [SerializeField] GameObject knife;
 
-
     private float DistanceForRay = 2.0f;
     private int MainCounter = 0;
     private int Counter = 0;
 
     private SlotControler SlotControler;
         
+
     void Start()
     {
         if (TransformForCamera)
