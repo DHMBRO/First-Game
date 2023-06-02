@@ -19,7 +19,7 @@ public class ZombieController : MonoBehaviour
     {
         if (ZombieLocateScript && ZombieAttackScript && ZombiePatrolScript)
         {
-           
+
             if (ZombieLocateScript.CanISeeTarget())
             {
                 
@@ -30,12 +30,12 @@ public class ZombieController : MonoBehaviour
                 }
                 else 
                 {
-                    ZombiePatrolScript.MoveTo(ZombieLocateScript.Target); Debug.Log("Move To");
+                    ZombiePatrolScript.MoveTo(ZombieLocateScript.Target);
                 }
             }
             else  
             {
-                ZombiePatrolScript.Patroling(); Debug.Log("Patrol");
+                ZombiePatrolScript.Patroling(); 
             }
         }
         

@@ -12,20 +12,25 @@ public class LocateScript : MonoBehaviour
     
     [SerializeField] private float SpeedForMove;
     [SerializeField] private float MaxDistatzeForAgr;
-    PatrolScriptNavMesh ZombiePatrolScript;
-
+    public PatrolScriptNavMesh ZombiePatrolScript;
+    private StelsScript TargetStelsScript;
     
     void Start()
     {
         ZombiePatrolScript = gameObject.GetComponent<PatrolScriptNavMesh>();
         
     }
-
+    private void Update()
+    {
+       
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player01"))
         {
-            Target = other.gameObject; 
+            
+            Target = other.gameObject;
+            TargetStelsScript = Target.GetComponent<StelsScript>();
         }
     }
 
@@ -33,7 +38,9 @@ public class LocateScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player01"))
         {
-            Target = null;  
+            
+            Target = null;
+            TargetStelsScript = null;
         }
     }
 
@@ -46,13 +53,22 @@ public class LocateScript : MonoBehaviour
             return false;
            
         }
+        if (TargetStelsScript)
+        {
+            if (TargetStelsScript.Stels)
+            {
+                return false;
+            }
+
+
+        }
         Vector3 Rotate = Target.transform.position - transform.position;
         Vector3 RotateHead = Target.transform.position - Head.position;
         
         Ray HeadForward = new Ray(Head.transform.position, Head.forward * MaxDistatzeForAgr);
 
         Head.transform.rotation = Quaternion.LookRotation(RotateHead);
-
+      
         if (Physics.Raycast(HeadForward, out HitResult))
         {
             Debug.DrawLine(Head.transform.position, Head.forward * MaxDistatzeForAgr + Head.position, Color.red);

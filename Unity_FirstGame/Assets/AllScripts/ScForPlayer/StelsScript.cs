@@ -4,33 +4,30 @@ using UnityEngine;
 
 public class StelsScript : MonoBehaviour
 {
-    public bool StelsOn;
-    
-    
+    public bool Stels;
     void Start()
     {
         
     }
-
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Bach") && Input.GetKey(KeyCode.X))
         {
-            StelsOn = true;            
+            Stels = true;            
         }
         else if(other.gameObject.CompareTag("Bach") && !Input.GetKey(KeyCode.X))
         {
-
-            StelsOn = false;            
+            Stels = false;            
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        StelsOn = false;
-        //Debug.Log(StelsOn+"123");
+        Stels = false;
+       
     }
     void Update()
-    {        
+    {
+        Debug.Log(Stels + "Стелс");
     }
 
 }
