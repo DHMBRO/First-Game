@@ -55,7 +55,14 @@ public class SlotControler : MethodsFromDevelopers
     [SerializeField] private PickUp PickUp;
     [SerializeField] private Inventory Inventory;
     //
-    
+    [SerializeField] Sprite Sakr47;
+    [SerializeField] Sprite Sm4;
+    [SerializeField] Sprite Sglock;
+    [SerializeField] Sprite Sknife;
+    [SerializeField] GameObject weapon01;
+    [SerializeField] GameObject weapon02;
+    [SerializeField] GameObject pistol;
+    [SerializeField] GameObject knife;
 
     void Start()
     {

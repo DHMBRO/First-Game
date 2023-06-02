@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class MovePlayer : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class MovePlayer : MonoBehaviour
     //bool chengebutton = false;
 
     int JumpCount;
-    public int Speed;
+    [SerializeField] public float Speed;
 
     float MoveHorizontal;
     float MoveVertical;
@@ -23,6 +24,7 @@ public class MovePlayer : MonoBehaviour
     void Start()
     {
         MyRigidbody = GetComponent<Rigidbody>();
+        float maxSpeed = Speed;
     }
 
     void Update()
@@ -32,18 +34,18 @@ public class MovePlayer : MonoBehaviour
     }
     void Move()
     {
+        MyRigidbody.velocity = new Vector3(0, 0, 0);
         //transform.rotation = Quaternion.Euler(0f, CameraTransform.rotation.y, 0f);
-        MoveVertical = Input.GetAxisRaw("Vertical")* 100000;
-        MoveHorizontal = Input.GetAxisRaw("Horizontal")*100000;
+        MoveVertical = Input.GetAxisRaw("Vertical") * 100000;
+        MoveHorizontal = Input.GetAxisRaw("Horizontal") * 100000;
         //Vector3 ForceBack = transform.forward * MoveVertical * Speed;
         Vector3 ForceBack = new Vector3(MoveHorizontal, 0.0f, MoveVertical).normalized;
-        Vector3 RBVel;
 
         MyRigidbody.AddRelativeForce(ForceBack * Speed, MyForceMode);
-        float maxSpeed = Speed * ForceBack.magnitude;
-        RBVel = MyRigidbody.velocity;
-        Vector3 Dir =  RBVel.normalized;
-        MyRigidbody.velocity = Dir* maxSpeed;
+        if (MyRigidbody.velocity.magnitude != 0f)
+        {
+            MyRigidbody.velocity = MyRigidbody.velocity.normalized * Speed;
+        }
     }
     void Jump()
     {

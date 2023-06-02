@@ -213,7 +213,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 758934435905196194}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83e44ebe7bfed1f4fbb96f32da31a04e, type: 3}
   m_Name: 
@@ -231,7 +231,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 758934435905196194}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e16453a710a00549bbd19cb19b8c4dd, type: 3}
   m_Name: 
@@ -260,6 +260,14 @@ MonoBehaviour:
   TransformPos: {fileID: 0}
   PlayerInventory: {fileID: 0}
   ReferencesForLoots: {fileID: 0}
+  Sakr47: {fileID: 0}
+  Sm4: {fileID: 0}
+  Sglock: {fileID: 0}
+  Sknife: {fileID: 0}
+  weapon01: {fileID: 0}
+  weapon02: {fileID: 0}
+  pistol: {fileID: 0}
+  knife: {fileID: 0}
 --- !u!114 &7785237847769309149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,6 +309,14 @@ MonoBehaviour:
   ObjectInHand: {fileID: 0}
   PickUp: {fileID: 0}
   Inventory: {fileID: 0}
+  Sakr47: {fileID: 0}
+  Sm4: {fileID: 0}
+  Sglock: {fileID: 0}
+  Sknife: {fileID: 0}
+  weapon01: {fileID: 0}
+  weapon02: {fileID: 0}
+  pistol: {fileID: 0}
+  knife: {fileID: 0}
 --- !u!114 &7446413381223648327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,6 +331,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PointForDrop: {fileID: 7434336520898069995}
   ObjectToDrop: {fileID: 5446968579688712550}
+  weapon01: {fileID: 0}
+  weapon02: {fileID: 0}
+  pistol: {fileID: 0}
+  knife: {fileID: 0}
+  none: {fileID: 0}
   ControlerForSlots: {fileID: 0}
 --- !u!114 &8740764673410187273
 MonoBehaviour:
@@ -369,8 +390,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5de6a5a91ce79a4ea04d6f930f9a507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MyLive: 0
   HealthPoint: 100
+  UiHp: {fileID: 0}
+  MyLive: 0
 --- !u!1 &1059009059662341174
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,7 +626,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SlotsForBackPack: []
   BackPack: {fileID: 0}
-  a: {fileID: 0}
   MaxMass: 0
   CurrentMass: 0
 --- !u!114 &1091941196938390544
