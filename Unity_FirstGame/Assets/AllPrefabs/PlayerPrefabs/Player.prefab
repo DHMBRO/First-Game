@@ -260,10 +260,10 @@ MonoBehaviour:
   TransformPos: {fileID: 0}
   PlayerInventory: {fileID: 0}
   ReferencesForLoots: {fileID: 0}
-  Sakr47: {fileID: 0}
-  Sm4: {fileID: 0}
-  Sglock: {fileID: 0}
-  Sknife: {fileID: 0}
+  Sakr47: {fileID: 21300000, guid: f0f9ba90973eb2a448b68efebb464d4d, type: 3}
+  Sm4: {fileID: 21300000, guid: 308dbe82aff9325459e2458344bb10d6, type: 3}
+  Sglock: {fileID: 21300000, guid: 5bf1bf23c3394f64d9f63958632c2dbd, type: 3}
+  Sknife: {fileID: 21300000, guid: 1862f57e77abedb43ae92593ca1a616c, type: 3}
   weapon01: {fileID: 0}
   weapon02: {fileID: 0}
   pistol: {fileID: 0}
@@ -349,7 +349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc25977b344794640ba2c6a96042d896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StelsOn: 0
+  Stels: 0
 --- !u!114 &3213455639597307656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -391,7 +391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthPoint: 100
-  UiHp: {fileID: 0}
+  MaxHp: 0
   MyLive: 0
 --- !u!1 &1059009059662341174
 GameObject:
