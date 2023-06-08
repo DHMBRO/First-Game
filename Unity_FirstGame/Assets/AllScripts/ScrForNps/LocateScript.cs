@@ -20,10 +20,12 @@ public class LocateScript : MonoBehaviour
         ZombiePatrolScript = gameObject.GetComponent<PatrolScriptNavMesh>();
         
     }
+
     private void Update()
     {
        
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player01"))

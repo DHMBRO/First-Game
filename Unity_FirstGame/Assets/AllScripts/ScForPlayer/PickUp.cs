@@ -318,7 +318,8 @@ public class PickUp : MethodsFromDevelopers
         Debug.Log("1");
         if (!SlotControler.MyPistol01 && MainCounter == 1 && Counter == 0)
         {
-            pistol.GetComponent<IImage>().GetImage(Sglock);
+            //pistol.GetComponent<IImage>().GetImage(Sglock);
+            
             SlotControler.MyPistol01 = ObjectToBeLifted.transform;
             PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01);            
             Counter++;
@@ -326,6 +327,7 @@ public class PickUp : MethodsFromDevelopers
         }
         else if (!SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 && MainCounter == 2 && Counter == 0)
         {
+            /*
             if (ObjectForPickUp.tag == "M4")
             {
                 weapon01.GetComponent<IImage>().GetImage(Sm4);
@@ -334,12 +336,15 @@ public class PickUp : MethodsFromDevelopers
             {
                 weapon01.GetComponent<IImage>().GetImage(Sakr47);
             }
+            */
             SlotControler.MyWeapon01 = ObjectForPickUp.transform;
             PutObjects(SlotControler.MyWeapon01, SlotControler.SlotBack01);            
             Counter++;
+            
         }
         else if (SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 && MainCounter == 2 && Counter == 0)
         {
+            /*
             if (ObjectForPickUp.tag == "M4")
             {
                 weapon02.GetComponent<IImage>().GetImage(Sm4);
@@ -348,6 +353,7 @@ public class PickUp : MethodsFromDevelopers
             {
                 weapon02.GetComponent<IImage>().GetImage(Sakr47);
             }
+            */
             SlotControler.MyWeapon02 = ObjectForPickUp.transform;
             PutObjects(SlotControler.MyWeapon02, SlotControler.SlotBack02);           
             Counter++;

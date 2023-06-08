@@ -11,6 +11,7 @@ public class Move1F : MonoBehaviour
     [SerializeField] private Rigidbody RigidbodyForPlayer;
 
     int JumpCount = 0;
+    [SerializeField] private float DistanceForRayJump;
 
     void Start()
     {
@@ -58,8 +59,8 @@ public class Move1F : MonoBehaviour
             {
                 RaycastHit Result = new RaycastHit();
                 Ray RayForJump = new Ray(transform.position, -transform.up);
-                Debug.DrawRay(transform.position, -transform.up * 1.01f, Color.blue);
-                if (Physics.Raycast(RayForJump, out RaycastHit HitResult, 1.01f))
+                Debug.DrawRay(transform.position, -transform.up * DistanceForRayJump, Color.blue);
+                if (Physics.Raycast(RayForJump, out RaycastHit HitResult, DistanceForRayJump))
                 {
                     Result = HitResult;
                     if (Result.collider)
