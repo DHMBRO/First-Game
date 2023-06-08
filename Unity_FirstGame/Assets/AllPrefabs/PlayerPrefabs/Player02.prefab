@@ -208,7 +208,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 3998742673875602231}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
@@ -224,7 +224,6 @@ GameObject:
   - component: {fileID: 1122844065396841752}
   - component: {fileID: 6165676466150506908}
   - component: {fileID: 789608017188685461}
-  - component: {fileID: 3641117183806587108}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -297,19 +296,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3641117183806587108
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4153048551922875209}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6044004021805367426
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,3 +580,4 @@ MonoBehaviour:
   CanJump: 0
   PlayerTransform: {fileID: 935961475211729313}
   RigidbodyForPlayer: {fileID: 0}
+  DistanceForRayJump: 0
