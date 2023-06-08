@@ -50,12 +50,15 @@ public class ShootControler : MonoBehaviour
     }
         
     private void Update()
-    {                
+    {
+        Debug.Log("W1");
         if (gameObject.transform.parent && gameObject.transform.parent.tag == "SlotForUse")
         {
-            
+            Debug.Log("W2");
+
             if (Input.GetKey(KeyCode.Mouse0)) 
-            {                                
+            {
+                Debug.Log("W3");
                 ShootForM4();                
             }
         }        

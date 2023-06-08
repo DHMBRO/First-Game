@@ -3,7 +3,6 @@ using UnityEngine;
 public class PickUp : MethodsFromDevelopers 
 {
     [SerializeField] public GameObject ObjectToBeLifted;
-    [SerializeField] private Transform TransformForCamera;
     [SerializeField] private CamFirstFace ReferenceForCamera;
     [SerializeField] private Transform TransformPos;    
 
@@ -28,10 +27,6 @@ public class PickUp : MethodsFromDevelopers
 
     void Start()
     {
-        if (TransformForCamera)
-        {
-            ReferenceForCamera = TransformForCamera.gameObject.GetComponent<CamFirstFace>();
-        }        
         SlotControler = gameObject.GetComponent<SlotControler>();        
     }
 
@@ -45,7 +40,7 @@ public class PickUp : MethodsFromDevelopers
 
     public void RayForLoot()
     {                
-        if (TransformForCamera && ReferenceForCamera)
+        if (ReferenceForCamera)
         {
             Ray RayForPickUp = new Ray(ReferenceForCamera.ObjectRay.transform.position, ReferenceForCamera.ObjectRay.transform.forward);
 
