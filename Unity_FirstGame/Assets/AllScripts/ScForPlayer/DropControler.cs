@@ -4,6 +4,7 @@ public class DropControler : MethodsFromDevelopers
 {
     [SerializeField] Transform PointForDrop;
     [SerializeField] GameObject ObjectToDrop;
+    
     [SerializeField] GameObject weapon01;
     [SerializeField] GameObject weapon02;
     [SerializeField] GameObject pistol;
@@ -22,7 +23,7 @@ public class DropControler : MethodsFromDevelopers
 
     void Update()
     {
-        if (ControlerForSlots.ObjectInHand && Input.GetKeyDown(KeyCode.Q))
+        if (PointForDrop && ControlerForSlots.ObjectInHand && Input.GetKeyDown(KeyCode.Q))
         {
             if (!ControlerForSlots.ObjectInHand.CompareTag("Knife"))
             {
@@ -50,6 +51,9 @@ public class DropControler : MethodsFromDevelopers
         }
     }
 
-   
+    void Drop(Transform PointForDrop, GameObject ObjectToDrop)
+    {
+        
+    }
 
 }
