@@ -239,8 +239,6 @@ public class PickUp : MethodsFromDevelopers
             if (PlayerInventory.CurrentMass + LootMass.Mass <= PlayerInventory.MaxMass)
             {
                 PickUpBullets(ObjectToPickUp);
-                //PlayerInventory.Loot01 = ObjectToPickUp;
-
                 PlayerInventory.CurrentMass += LootMass.Mass;
                 Destroy(ObjectToPickUp);
                 Counter++;
@@ -289,7 +287,7 @@ public class PickUp : MethodsFromDevelopers
             PutOn();
             Counter++;
         }
-        else if (ObjectToPickUp.CompareTag("BackPack") && Counter == 0)
+        else if (PlayerInventory && ObjectToPickUp.CompareTag("BackPack") && Counter == 0)
         {
             SlotControler.MyBackPack = ObjectToBeLifted.transform;
             PutObjects(SlotControler.MyBackPack, SlotControler.SlotBackPack);            

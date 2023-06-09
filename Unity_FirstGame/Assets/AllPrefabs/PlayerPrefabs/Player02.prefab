@@ -854,7 +854,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!65 &6762333649877684918
 BoxCollider:
@@ -903,7 +903,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpeedForMove: 0.18
   SpeedForRun: 0.1
-  PowerForJump: 50
+  PowerForJump: 35
   CanJump: 0
   PlayerTransform: {fileID: 935961475211729313}
   RigidbodyForPlayer: {fileID: 0}
@@ -922,8 +922,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObjectToBeLifted: {fileID: 0}
   ReferenceForCamera: {fileID: 7046473276122976908}
-  PlayerInventory: {fileID: 0}
-  ReferencesForLoots: {fileID: 0}
+  PlayerInventory: {fileID: 655437941069588223}
+  ReferencesForLoots: {fileID: 1759847437404537064}
   Sakr47: {fileID: 21300000, guid: f0f9ba90973eb2a448b68efebb464d4d, type: 3}
   Sm4: {fileID: 21300000, guid: 308dbe82aff9325459e2458344bb10d6, type: 3}
   Sglock: {fileID: 21300000, guid: 5bf1bf23c3394f64d9f63958632c2dbd, type: 3}
