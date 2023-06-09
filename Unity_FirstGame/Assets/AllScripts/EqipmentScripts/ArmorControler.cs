@@ -14,6 +14,8 @@ public class ArmorControler : MonoBehaviour
     [SerializeField] public Transform SlotPistol01;
     [SerializeField] public Transform SlotKnife01;
 
+    public bool Use;
+
     private void Start()
     {
         if (LevelArmor == 1)

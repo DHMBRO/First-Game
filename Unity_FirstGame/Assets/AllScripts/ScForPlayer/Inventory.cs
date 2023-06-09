@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] public GameObject Loot01;
-
     [SerializeField] public List<GameObject> SlotsForBackPack = new List<GameObject>();
     [SerializeField] public GameObject BackPack;
 
