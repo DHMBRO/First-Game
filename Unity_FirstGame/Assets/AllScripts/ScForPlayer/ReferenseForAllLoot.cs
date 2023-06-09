@@ -9,6 +9,7 @@ public class ReferenseForAllLoot : MonoBehaviour
     [SerializeField] public Dictionary<string, GameObject> ValueLoots = new Dictionary<string, GameObject>();
     [SerializeField] public List<GameObject> ReferencePrefabs = new List<GameObject>();
     
+
     void Start()
     {
         for (int i = 0; i < ReferencePrefabs.Count; i++)

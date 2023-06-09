@@ -4,7 +4,7 @@ public class PickUp : MethodsFromDevelopers
 {
     [SerializeField] public GameObject ObjectToBeLifted;
     [SerializeField] private CamFirstFace ReferenceForCamera;
-    [SerializeField] private Transform TransformPos;    
+    //[SerializeField] private Transform TransformPos;    
 
     [SerializeField] private Inventory PlayerInventory;
     [SerializeField] private ReferenseForAllLoot ReferencesForLoots;
@@ -28,6 +28,7 @@ public class PickUp : MethodsFromDevelopers
     void Start()
     {
         SlotControler = gameObject.GetComponent<SlotControler>();        
+    
     }
 
     private void Update()
@@ -234,9 +235,12 @@ public class PickUp : MethodsFromDevelopers
         if (PlayerInventory)
         {
             ScrMass LootMass = ObjectToBeLifted.gameObject.GetComponent<ScrMass>();
+            
             if (PlayerInventory.CurrentMass + LootMass.Mass <= PlayerInventory.MaxMass)
             {
                 PickUpBullets(ObjectToPickUp);
+                //PlayerInventory.Loot01 = ObjectToPickUp;
+
                 PlayerInventory.CurrentMass += LootMass.Mass;
                 Destroy(ObjectToPickUp);
                 Counter++;
@@ -245,21 +249,27 @@ public class PickUp : MethodsFromDevelopers
         
         void PickUpBullets(GameObject ObjectToPickUp)
         {
+           
+
             if (ObjectToPickUp.gameObject.tag == "Ammo9MM")
             {
-                PlayerInventory.SlotsForBackPack.Add(ReferencesForLoots.ValueLoots["9MM"]);                
+                PlayerInventory.SlotsForBackPack.Add(ReferencesForLoots.ValueLoots["9MM"]);
+                
             }
             else if (ObjectToPickUp.gameObject.tag == "Ammo45_APC")
             {
                 PlayerInventory.SlotsForBackPack.Add(ReferencesForLoots.ValueLoots["45ACP"]);
+                
             }
             else if (ObjectToPickUp.gameObject.tag == "Ammo5_56MM")
             {
                 PlayerInventory.SlotsForBackPack.Add(ReferencesForLoots.ValueLoots["5,56MM"]);
+                
             }
             else if (ObjectToPickUp.gameObject.tag == "Ammo7_62MM")
             {
                 PlayerInventory.SlotsForBackPack.Add(ReferencesForLoots.ValueLoots["7,62MM"]);
+                
             }
         }
     }
@@ -283,8 +293,10 @@ public class PickUp : MethodsFromDevelopers
         {
             SlotControler.MyBackPack = ObjectToBeLifted.transform;
             PutObjects(SlotControler.MyBackPack, SlotControler.SlotBackPack);            
+            
             PlayerInventory.BackPack = SlotControler.MyBackPack.gameObject;
             PlayerInventory.ChargingValueMaxMass();                        
+            
             Counter++;
         }
         
@@ -307,6 +319,7 @@ public class PickUp : MethodsFromDevelopers
             PutObjects(SlotControler.MyKnife01, SlotControler.SlotKnife01);
         }
     }
+
 
     public void PickUpWeapons(GameObject ObjectForPickUp)
     {
