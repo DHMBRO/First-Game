@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class HpScript : MonoBehaviour
 {
     [SerializeField] public float HealthPoint = 100;
-    //[SerializeField] private Image UiHp;
+    [SerializeField] private Image UiHp;
     [SerializeField] public float MaxHp;
     public Live MyLive;
 
@@ -49,7 +49,7 @@ public class HpScript : MonoBehaviour
         {
             PlusHp(Heal);
         }
-       // if (HealthPoint > 0.0f && UiHp) OutPutHp(HealthPoint, UiHp);
+        if (HealthPoint > 0.0f && UiHp) OutPutHp(HealthPoint, UiHp);
     }
     
     public void InflictingDamage(float Damage)
@@ -58,7 +58,7 @@ public class HpScript : MonoBehaviour
         {
             MinusHp(Damage);
         }
-        //if (HealthPoint >= 0.0f && UiHp) OutPutHp(HealthPoint, UiHp);
+        if (HealthPoint >= 0.0f && UiHp) OutPutHp(HealthPoint, UiHp);
     }
 
     void OutPutHp(float HpNow, Image HpByUi)
