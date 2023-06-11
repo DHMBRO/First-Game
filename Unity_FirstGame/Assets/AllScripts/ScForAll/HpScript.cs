@@ -17,6 +17,9 @@ public class HpScript : MonoBehaviour
     void Update()
     {
         Debug.Log(HealthPoint);
+
+      
+
     }
     void MinusHp(float Damage)
     {
