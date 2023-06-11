@@ -11,4 +11,12 @@ public interface IImage
     public void GetImage(Sprite SpriteForLoot);
 }
 
+public interface Use
+{
+    public void UseLoot();
+}
 
+public interface Drop
+{
+    public void DropLoot();
+} 
