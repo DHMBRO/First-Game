@@ -3,9 +3,12 @@ using UnityEngine.UI;
 
 public class HpScript : MonoBehaviour
 {
-    [SerializeField] public float HealthPoint = 100;
+    [SerializeField] private float HealthPoint = 100;
+    [SerializeField] private float MaxHp;
+
     [SerializeField] private Image UiHp;
-    [SerializeField] public float MaxHp;
+    [SerializeField] private Text ProzentHealPoint;
+
     public Live MyLive;
 
     public enum Live 
@@ -49,7 +52,7 @@ public class HpScript : MonoBehaviour
         {
             PlusHp(Heal);
         }
-        if (HealthPoint > 0.0f && UiHp) OutPutHp(HealthPoint, UiHp);
+        if (HealthPoint > 0.0f && UiHp && ProzentHealPoint) OutPutHp(HealthPoint, UiHp, ProzentHealPoint);
     }
     
     public void InflictingDamage(float Damage)
@@ -58,12 +61,13 @@ public class HpScript : MonoBehaviour
         {
             MinusHp(Damage);
         }
-        if (HealthPoint >= 0.0f && UiHp) OutPutHp(HealthPoint, UiHp);
+        if (HealthPoint >= 0.0f && UiHp && ProzentHealPoint) OutPutHp(HealthPoint, UiHp, ProzentHealPoint);
     }
 
-    void OutPutHp(float HpNow, Image HpByUi)
+    void OutPutHp(float HpNow, Image HpByUi, Text HpByText)
     {
         HpByUi.fillAmount = HpNow;
+        
     }
 
 }
