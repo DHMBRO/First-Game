@@ -64,9 +64,12 @@ public class HpScript : MonoBehaviour
         if (HealthPoint >= 0.0f && UiHp && ProzentHealPoint) OutPutHp(HealthPoint, UiHp, ProzentHealPoint);
     }
 
-    void OutPutHp(float HpNow, Image HpByUi, Text HpByText)
+    private void OutPutHp(float HpNow, Image HpByUi, Text HpByText)
     {
         HpByUi.fillAmount = HpNow;
+        string a = HpNow.ToString();
+        HpByText.text = a;
+        Debug.Log(a);
         
     }
 

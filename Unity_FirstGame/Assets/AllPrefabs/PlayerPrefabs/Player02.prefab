@@ -816,6 +816,7 @@ GameObject:
   - component: {fileID: 655437941069588223}
   - component: {fileID: 1759847437404537064}
   - component: {fileID: 8382459316900287711}
+  - component: {fileID: 69640512586517176}
   m_Layer: 0
   m_Name: Player02
   m_TagString: Untagged
@@ -1049,7 +1050,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthPoint: 100
   MaxHp: 100
+  UiHp: {fileID: 0}
+  ProzentHealPoint: {fileID: 0}
   MyLive: 0
+--- !u!65 &69640512586517176
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9027246094432369652}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.95089173, z: 1.2184016}
+  m_Center: {x: 0, y: 1.384158, z: 0.109200835}
 --- !u!1 &9125961473927298832
 GameObject:
   m_ObjectHideFlags: 0
