@@ -6,6 +6,7 @@ public class ShopControler : MonoBehaviour
     [SerializeField] public float Mass = 0.0f;
     [SerializeField] public bool IsUsing = false;
     [SerializeField] public bool InInventory = false;
+    GameObject ParentShop;
 
     private void Start()
     {
@@ -41,22 +42,27 @@ public class ShopControler : MonoBehaviour
 
     private void Update()
     {
-        if (transform.parent && transform.parent.tag == "SlotForShopInWeapon")
+        if (ParentShop && transform.parent && ParentShop != transform.parent || !ParentShop && transform.parent)
         {
-            IsUsing = true;
-            InInventory = true;
-        }
-        else IsUsing = false;
-        
-        if (transform.parent && transform.parent.tag == "UnloadingSlot")
-        {
-            InInventory = true;
-            IsUsing = false;            
-        }
-        else  
-        {
-            InInventory = false;            
-        }
+            if (transform.parent && transform.parent.tag == "SlotForShopInWeapon")
+            {
+                IsUsing = true;
+                InInventory = true;
+                ParentShop = transform.parent.gameObject;
+            }
+            else if(transform.parent && transform.parent.tag == "UnloadingSlot") IsUsing = false;
 
+            if (transform.parent && transform.parent.tag == "UnloadingSlot")
+            {
+                InInventory = true;
+                IsUsing = false;
+                ParentShop = transform.parent.gameObject;
+            }
+            else if(!transform.parent )
+            {
+                InInventory = false;
+                IsUsing = false;
+            }
+        }
     }
 }

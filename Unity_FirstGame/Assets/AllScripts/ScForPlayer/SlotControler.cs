@@ -64,6 +64,8 @@ public class SlotControler : MethodsFromDevelopers
     [SerializeField] GameObject pistol;
     [SerializeField] GameObject knife;
 
+    [SerializeField] List<Transform> Slots = new List<Transform>();
+
     void Start()
     {
         PickUp = gameObject.GetComponent<PickUp>();
@@ -90,7 +92,9 @@ public class SlotControler : MethodsFromDevelopers
         AppropriationReferenceForUseShop();
         
         ChangingSlots();
-        
+        ChangingSlots02();
+
+
         if (Input.GetKeyDown(KeyCode.R))
         {
             if (MyPistol01 && ObjectInHand == MyPistol01.gameObject && MyPistol01.gameObject.tag == "Glok")
@@ -317,30 +321,29 @@ public class SlotControler : MethodsFromDevelopers
 
         bool InputSlots = Input.GetKeyDown("1");
 
+
         if (SlotHand && InputSlots)
-        {
+        {    
             if (MyKnife01 && ObjectInHand == null && Counter == 0)
             {                
                 PutObjects(MyKnife01, SlotHand);
-
+                
                 ObjectInHand = MyKnife01.gameObject;               
-                Counter = 1;                
-                   
+                Counter = 1;                          
             }
             else if (MyKnife01 && SlotKnife01 && ObjectInHand01 && Counter == 0)
             {
-                
                 if (MyKnife01)
                 {
                     PutObjects(MyKnife01, SlotKnife01);
-                    ObjectInHand = null;                    
+                    ObjectInHand = null;
                 }   
-
                 if (MyPistol01)
                 {
                     PutObjects(MyPistol01, SlotHand);
                     ObjectInHand = MyPistol01.gameObject;                    
-                    Counter = 1;                    
+                    Counter = 1;
+                    
                 }
                 else if (!ObjectInHand02 && MyWeapon01)
                 {
@@ -425,6 +428,24 @@ public class SlotControler : MethodsFromDevelopers
 
         }        
         
+    }
+
+    void ChangingSlots02()
+    {
+        if(!Slots[0]) Slots.Add(MyKnife01);
+        if(MyPistol01 && !Slots[1]) Slots.Add(MyPistol01);
+        if (MyWeapon01 && !Slots[2]) Slots.Add(MyWeapon01);
+        if (MyWeapon02 && !Slots[3]) Slots.Add(MyWeapon02);
+
+        if (Input.GetKey(KeyCode.E))
+        {
+            //if ()
+            {
+
+            }
+            
+
+        }
     }
 
     void AppropriationReferenceForUseShop()

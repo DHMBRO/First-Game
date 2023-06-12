@@ -18,14 +18,14 @@ public class ShootControler : MonoBehaviour
     [SerializeField] public float Mass = 0.0f;
     [SerializeField] public float SpeedForBullet = 0.0f;
 
-    [SerializeField] private Rigidbody WeaonRigidbody;
+    //[SerializeField] private Rigidbody WeaponRigidbody;
     [SerializeField] public Transform CameraTransform;
     [SerializeField] private SlotControler MySlotControler;
 
 
     [SerializeField] private float ColletSpeed = 0.0f;
     private Transform ShootPoint;
-    private float BulletSpeed = 90;
+    [SerializeField] private float BulletSpeed = 90;
     private string NameForWeapon;    
         
     void Start()
@@ -51,14 +51,11 @@ public class ShootControler : MonoBehaviour
         
     private void Update()
     {
-        Debug.Log("W1");
+        
         if (gameObject.transform.parent && gameObject.transform.parent.tag == "SlotForUse")
         {
-            Debug.Log("W2");
-
             if (Input.GetKey(KeyCode.Mouse0)) 
             {
-                Debug.Log("W3");
                 ShootForM4();                
             }
         }        

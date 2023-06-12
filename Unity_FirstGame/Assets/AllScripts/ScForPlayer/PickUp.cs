@@ -375,37 +375,43 @@ public class PickUp : MethodsFromDevelopers
 
     public void PickUpShops(GameObject ShopForPickUp)
     {
+        ShopControler ControlerShop = ShopForPickUp.GetComponent<ShopControler>();
         
-        if (!SlotControler.MyShope01 && SlotControler.SlotShpo01 && Counter == 0)
-        {            
-            ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
-            ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
 
-            SlotControler.MyShope01 = ShopForPickUp.transform;
-            PutObjects(SlotControler.MyShope01, SlotControler.SlotShpo01);            
-            Counter++;            
-        }
-        else if (!SlotControler.MyShope02 && SlotControler.SlotShpo02 && Counter == 0)
+        if (ControlerShop && !ControlerShop.InInventory && !ControlerShop.IsUsing)
         {
-            ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
-            ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
+            
+            if (!SlotControler.MyShope01 && SlotControler.SlotShpo01 && Counter == 0)
+            {
+                ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
+                ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
 
-            SlotControler.MyShope02 = ShopForPickUp.transform;
-            PutObjects(SlotControler.MyShope02, SlotControler.SlotShpo02);            
-            Counter++;        
-        }
-        else if (!SlotControler.MyShope03 && SlotControler.SlotShpo03 && Counter == 0)
-        {
-            ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
-            ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
+                SlotControler.MyShope01 = ShopForPickUp.transform;
+                PutObjects(SlotControler.MyShope01, SlotControler.SlotShpo01);
+                Counter++;
+            }
+            else if (!SlotControler.MyShope02 && SlotControler.SlotShpo02 && Counter == 0)
+            {
+                ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
+                ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
 
-            SlotControler.MyShope03 = ShopForPickUp.transform;
-            PutObjects(SlotControler.MyShope03, SlotControler.SlotShpo03);            
-            Counter++;           
+                SlotControler.MyShope02 = ShopForPickUp.transform;
+                PutObjects(SlotControler.MyShope02, SlotControler.SlotShpo02);
+                Counter++;
+            }
+            else if (!SlotControler.MyShope03 && SlotControler.SlotShpo03 && Counter == 0)
+            {
+                ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
+                ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
+                
+                SlotControler.MyShope03 = ShopForPickUp.transform;
+                PutObjects(SlotControler.MyShope03, SlotControler.SlotShpo03);
+                Counter++;
+            }
+            else if (true)
+            {
+                Debug.Log("Cant do this !");
+            }
         }
-        else if (true)
-        {
-            Debug.Log("Cant do this !");
-        }              
     }
 }
