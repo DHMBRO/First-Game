@@ -25,61 +25,106 @@ public class Move1F : MonoBehaviour
     {
         if (PlayerTransform)
         {
-            if (Input.GetKey(KeyCode.W))
-            {
-                PlayerTransform.transform.localPosition += transform.forward * SpeedForMove;
-                if (Input.GetKey(KeyCode.LeftShift))
-                {
-                    PlayerTransform.transform.localPosition += transform.forward * SpeedForRun;
-                }
-            }            
-            else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
-            {
-                PlayerTransform.transform.localPosition += transform.forward * SpeedForMove;
-                PlayerTransform.transform.localPosition += transform.right * SpeedForMove;
-            }
-            else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
-            {
-                PlayerTransform.transform.localPosition += transform.forward * SpeedForMove;
-                PlayerTransform.transform.localPosition += -transform.right * SpeedForMove;
-            }                                    
-            else if (Input.GetKey(KeyCode.S))            
-            {
-                PlayerTransform.transform.localPosition -= transform.forward * SpeedForMove;
-            }                                                            
-            else if (Input.GetKey(KeyCode.D))
-            {
-                PlayerTransform.transform.localPosition += transform.right * SpeedForMove;
-            }                                                
-            else if (Input.GetKey(KeyCode.A))
-            {
-                PlayerTransform.transform.localPosition += -transform.right * SpeedForMove;
-            }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                RaycastHit Result = new RaycastHit();
-                Ray RayForJump = new Ray(transform.position, -transform.up);
-                Debug.DrawRay(transform.position, -transform.up * DistanceForRayJump, Color.blue);
-                if (Physics.Raycast(RayForJump, out RaycastHit HitResult, DistanceForRayJump))
-                {
-                    Result = HitResult;
-                    if (Result.collider)
-                    {
-                        if (Result.collider.tag != "")
-                        {
-                            JumpCount = 7;
-                        }
-                    }
-                }
-
-            }
-            if(JumpCount > 0)
-            {
-                RigidbodyForPlayer.AddRelativeForce(new Vector3(0f, 1f * PowerForJump,0f), ForceMode.Force);
-                JumpCount--;
-            }
-            
+            MoveForwardAndBack(PlayerTransform);
+            MoveLeftAndForward(PlayerTransform);
+            MoveRightAndForward(PlayerTransform);
+            if(RigidbodyForPlayer) Jump();
         }
 
     }
+
+    void MoveForwardAndBack(Transform PlayerTransform)
+    {
+        if (Input.GetKey(KeyCode.W))
+        {
+            PlayerTransform.localPosition += transform.forward * SpeedForMove;
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                PlayerTransform.localPosition += transform.forward * SpeedForRun;
+            }
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            PlayerTransform.localPosition += -transform.forward * SpeedForMove;
+        }
+    }
+    
+    void MoveLeftAndForward(Transform PlayerTransform)
+    {
+        if (Input.GetKey(KeyCode.A))
+        {
+            PlayerTransform.localPosition += -transform.right * SpeedForMove;
+        }
+        
+        if (Input.GetKey(KeyCode.W))
+        {
+            PlayerTransform.localPosition += transform.forward * SpeedForMove;
+            if (Input.GetKey(KeyCode.A))
+            {
+                PlayerTransform.localPosition += -transform.right * SpeedForMove;
+            }
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            PlayerTransform.localPosition += -transform.right* SpeedForMove;
+            if (Input.GetKey(KeyCode.W))
+            {
+                PlayerTransform.localPosition += transform.forward * SpeedForMove;
+            }
+        }
+
+    }
+
+    void MoveRightAndForward(Transform PlayerTransform)
+    {
+        if (Input.GetKey(KeyCode.D))
+        {
+            PlayerTransform.localPosition += transform.right * SpeedForMove;
+        }
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            PlayerTransform.localPosition += transform.forward * SpeedForMove;
+            if (Input.GetKey(KeyCode.D))
+            {
+                PlayerTransform.localPosition += transform.right * SpeedForMove;
+            }
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            PlayerTransform.localPosition += transform.right * SpeedForMove;
+            if (Input.GetKey(KeyCode.W))
+            {
+                PlayerTransform.localPosition += transform.forward * SpeedForMove;
+            }
+        }
+    }
+    
+    void Jump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            RaycastHit Result = new RaycastHit();
+            Ray RayForJump = new Ray(transform.position, -transform.up);
+            Debug.DrawRay(transform.position, -transform.up * DistanceForRayJump, Color.blue);
+            if (Physics.Raycast(RayForJump, out RaycastHit HitResult, DistanceForRayJump))
+            {
+                Result = HitResult;
+                if (Result.collider)
+                {
+                    if (Result.collider.tag != "")
+                    {
+                        JumpCount = 7;
+                    }
+                }
+            }
+
+        }
+        if (JumpCount > 0)
+        {
+            RigidbodyForPlayer.AddRelativeForce(new Vector3(0f, 1f * PowerForJump, 0f), ForceMode.Force);
+            JumpCount--;
+        }
+    }
+
 }

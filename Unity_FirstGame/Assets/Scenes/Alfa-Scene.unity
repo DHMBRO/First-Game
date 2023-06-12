@@ -349,6 +349,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 935961475211729313, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
   m_PrefabInstance: {fileID: 1023957148}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &804748409 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 5669462573118057115, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+  m_PrefabInstance: {fileID: 1023957148}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &874204324
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,6 +520,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 969267927484315164, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: SpeedForMove
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 969267927484315164, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: RigidbodyForPlayer
+      value: 
+      objectReference: {fileID: 804748409}
     - target: {fileID: 8382459316900287711, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: UiHp
       value: 
@@ -653,7 +666,7 @@ Transform:
   m_GameObject: {fileID: 1222355838}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -199.67822, y: 1, z: 0}
-  m_LocalScale: {x: 2, y: 1, z: 2}
+  m_LocalScale: {x: 4, y: 1, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
