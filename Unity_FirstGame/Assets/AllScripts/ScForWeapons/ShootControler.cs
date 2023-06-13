@@ -33,8 +33,8 @@ public class ShootControler : MonoBehaviour
 
     void Start()
     {
-        MyWeapon = gameObject;
-        NameForWeapon = gameObject.tag;
+        //MyWeapon = gameObject;
+        //NameForWeapon = gameObject.tag;
 
         //
         if (!MyWeapon)
