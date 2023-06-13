@@ -26,8 +26,11 @@ public class ShootControler : MonoBehaviour
     [SerializeField] private float ColletSpeed = 0.0f;
     private Transform ShootPoint;
     [SerializeField] private float BulletSpeed = 90;
-    private string NameForWeapon;    
-        
+    private string NameForWeapon;
+
+    [SerializeField] private bool InInvetory;
+    [SerializeField] private bool IsUsing;
+
     void Start()
     {
         MyWeapon = gameObject;
@@ -54,11 +57,21 @@ public class ShootControler : MonoBehaviour
         
         if (gameObject.transform.parent && gameObject.transform.parent.tag == "SlotForUse")
         {
+            IsUsing = true;
+            InInvetory = true;
+
             if (Input.GetKey(KeyCode.Mouse0)) 
             {
                 ShootForM4();                
             }
-        }        
+        }
+        
+        if (transform.parent && transform.parent.tag == "UnloadingSlot")
+        {
+            InInvetory = true;
+            IsUsing = false;
+        }
+
     }
     
     public void ShootForM4()

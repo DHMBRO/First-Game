@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 3265514209495405674}
   m_Layer: 0
   m_Name: SlorForPistol
-  m_TagString: Untagged
+  m_TagString: UnloadingSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -505,7 +505,7 @@ GameObject:
   - component: {fileID: 8309072860443193568}
   m_Layer: 0
   m_Name: SlotWeapon02
-  m_TagString: Untagged
+  m_TagString: UnloadingSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -982,6 +982,7 @@ MonoBehaviour:
   weapon02: {fileID: 0}
   pistol: {fileID: 0}
   knife: {fileID: 0}
+  Slots: []
 --- !u!114 &2663352457323175868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1063,7 +1064,7 @@ GameObject:
   - component: {fileID: 6130160416243130551}
   m_Layer: 0
   m_Name: SlotWeapon01
-  m_TagString: Untagged
+  m_TagString: UnloadingSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
