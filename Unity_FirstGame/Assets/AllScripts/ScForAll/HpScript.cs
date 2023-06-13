@@ -24,7 +24,7 @@ public class HpScript : MonoBehaviour
       
 
     }
-    void MinusHp(float Damage)
+    public void MinusHp(float Damage)
     {
         if ((HealthPoint - Damage) <= 0)
         {
@@ -35,7 +35,7 @@ public class HpScript : MonoBehaviour
             HealthPoint -= Damage;
         }
     }
-    void PlusHp(float Heal)
+    public  void PlusHp(float Heal)
     {
         if ((HealthPoint + Heal) >= MaxHp)
         {
@@ -67,9 +67,9 @@ public class HpScript : MonoBehaviour
     private void OutPutHp(float HpNow, Image HpByUi, Text HpByText)
     {
         HpByUi.fillAmount = HpNow;
-        string a = HpNow.ToString();
-        HpByText.text = a;
-        Debug.Log(a);
+        string HpinString = HpNow.ToString();
+        HpByText.text = HpinString;
+        Debug.Log("Hp for this object" + HpinString);
         
     }
 

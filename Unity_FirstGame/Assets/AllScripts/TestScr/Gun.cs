@@ -4,48 +4,41 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+    [SerializeField] GameObject Target;
     
-    [SerializeField] private Transform Target;
+    [SerializeField] float Heal;
+    [SerializeField] float Damage;
+    [SerializeField] bool HealPlayer = false;
 
-    [SerializeField] private Transform Weapon;
-    [SerializeField] private Transform Muzzle;
-    [SerializeField] private Transform Bullet;
-
-    [SerializeField] private float SpeedForBullet;
-
-
-    private void Update()
+    private void OnTriggerStay(Collider other)
     {
-        if (Input.GetKey(KeyCode.Mouse1))
+        if (other.gameObject.name == "Player02")
         {
-            RotateWeapon(Target, Weapon, Muzzle);
+            Debug.Log("Player02 Enter in atak triger !");
+            Target = other.gameObject;
+            AtakAndHeal_Player(Target);
+        }    
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name == "Player02")
+        {
+            Debug.Log("Player02 Exit from atak triger !");
+            Target = null;
         }
     }
 
-    void RotateWeapon(Transform TTarget,Transform TWeapon, Transform Tmuzzle)
+    void AtakAndHeal_Player(GameObject Target01)
     {
-        //while (true)
+        HpScript HitPointPlayer = Target01.GetComponent<HpScript>();
+        if (HitPointPlayer && !HealPlayer)
         {
-            TWeapon.LookAt(TTarget);
-            Shot(Tmuzzle);
+            if(Damage > 0.0f) HitPointPlayer.MinusHp(Damage);
         }
-        
-        
+        else if (HitPointPlayer && HealPlayer)
+        {
+            if(Heal > 0.0f) HitPointPlayer.PlusHp(Heal);
+        }
     }
-
-    void Shot(Transform TMuzzle)
-    {
-        GameObject Bullet01 = Instantiate(Bullet.gameObject);
-        
-        Bullet01.transform.position = TMuzzle.transform.position;
-        Bullet01.transform.rotation = TMuzzle.transform.rotation;
-
-        Vector3 MoveToTarget = new Vector3(0.0f, 0.0f, 0.0f + 1.0f * SpeedForBullet);
-        
-        Rigidbody RigBulet = Bullet01.GetComponent<Rigidbody>();
-
-        RigBulet.AddRelativeForce(MoveToTarget, ForceMode.Impulse);
-
-    }
-    
 }
