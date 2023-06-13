@@ -18,7 +18,6 @@ public class Gun : MonoBehaviour
             Target = other.gameObject;
             AtakAndHeal_Player(Target);
         }
-        Debug.Log("1");
     }
 
     private void OnTriggerExit(Collider other)
@@ -29,13 +28,12 @@ public class Gun : MonoBehaviour
             Target = null;
             
         }
-        Debug.Log("2");
     }
 
     void AtakAndHeal_Player(GameObject Target01)
     {
         HpScript HitPointPlayer = Target01.GetComponent<HpScript>();
-        Debug.Log("3");
+        
         if (HitPointPlayer && !HealPlayer)
         {
             if(Damage > 0.0f) HitPointPlayer.MinusHp(Damage);
