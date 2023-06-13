@@ -3,11 +3,13 @@ using UnityEngine.UI;
 
 public class HpScript : MonoBehaviour
 {
-    [SerializeField] private float HealthPoint = 100;
-    [SerializeField] private float MaxHp;
+    
 
     [SerializeField] private Image UiHp;
     [SerializeField] private Text ProzentHealPoint;
+
+    [SerializeField] private float HealthPoint = 100;
+    [SerializeField] private float MaxHp;
 
     public Live MyLive;
 
@@ -17,11 +19,6 @@ public class HpScript : MonoBehaviour
         NotAlive
     }
 
-    void Update()
-    {
-        //Debug.Log(HealthPoint);
-        
-    }
     public void MinusHp(float Damage)
     {
         if ((HealthPoint - Damage) <= 0)
@@ -54,7 +51,6 @@ public class HpScript : MonoBehaviour
         {
             PlusHp(Heal);
         }
-        
     }
     
     public void InflictingDamage(float Damage)
@@ -63,22 +59,15 @@ public class HpScript : MonoBehaviour
         {
             MinusHp(Damage);
         }
-        
     }
 
     private void OutPutHp(float HpNow, Image HpByUi, Text HpByText)
     {
-        
         HpNow /= 100.0f;
         HpByUi.fillAmount = HpNow;
-        
         HpNow *= 100;
-        string HpinString = HpNow.ToString();
-        
+        string HpinString = HpNow.ToString();   
         HpByText.text = HpinString + "%";
-        
-        Debug.Log("Hp for this object" + HpinString);
-        
     }
 
 }

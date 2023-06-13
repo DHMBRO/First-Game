@@ -20,7 +20,9 @@ public class AttackMethod : MonoBehaviour
         ZombiePatrolScript = gameObject.GetComponent<PatrolScriptNavMesh>();
         ZombieLocateScript = gameObject.GetComponent<LocateScript>();
         if(ZombieLocateScript.Target) TargetHpScript = ZombieLocateScript.Target.GetComponent<HpScript>();
+    
     }
+    
     void Update()
     {
         if (ZombieLocateScript.Target) TargetHpScript = ZombieLocateScript.Target.GetComponent<HpScript>();

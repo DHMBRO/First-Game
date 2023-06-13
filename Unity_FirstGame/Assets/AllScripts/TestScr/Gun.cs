@@ -26,7 +26,7 @@ public class Gun : MonoBehaviour
         {
             Debug.Log("Player02 Exit from atak triger !");
             Target = null;
-            
+               
         }
     }
 
