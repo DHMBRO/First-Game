@@ -12,26 +12,30 @@ public class Gun : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.name == "Player02")
+        if (other.gameObject.tag == "Player01")
         {
             Debug.Log("Player02 Enter in atak triger !");
             Target = other.gameObject;
             AtakAndHeal_Player(Target);
-        }    
+        }
+        Debug.Log("1");
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.name == "Player02")
+        if (other.gameObject.tag == "Player01")
         {
             Debug.Log("Player02 Exit from atak triger !");
             Target = null;
+            
         }
+        Debug.Log("2");
     }
 
     void AtakAndHeal_Player(GameObject Target01)
     {
         HpScript HitPointPlayer = Target01.GetComponent<HpScript>();
+        Debug.Log("3");
         if (HitPointPlayer && !HealPlayer)
         {
             if(Damage > 0.0f) HitPointPlayer.MinusHp(Damage);

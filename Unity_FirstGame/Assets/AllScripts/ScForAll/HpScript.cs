@@ -19,10 +19,8 @@ public class HpScript : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(HealthPoint);
-
-      
-
+        //Debug.Log(HealthPoint);
+        
     }
     public void MinusHp(float Damage)
     {
@@ -34,7 +32,9 @@ public class HpScript : MonoBehaviour
         {
             HealthPoint -= Damage;
         }
+        if (HealthPoint >= 0.0f && UiHp && ProzentHealPoint) OutPutHp(HealthPoint, UiHp, ProzentHealPoint);
     }
+
     public  void PlusHp(float Heal)
     {
         if ((HealthPoint + Heal) >= MaxHp)
@@ -45,14 +45,16 @@ public class HpScript : MonoBehaviour
         {
             HealthPoint += Heal;
         }
+        if (HealthPoint > 0.0f && UiHp && ProzentHealPoint) OutPutHp(HealthPoint, UiHp, ProzentHealPoint);
     }
+
     public void HealHp(float Heal) 
     {
         if (MyLive == Live.Alive)
         {
             PlusHp(Heal);
         }
-        if (HealthPoint > 0.0f && UiHp && ProzentHealPoint) OutPutHp(HealthPoint, UiHp, ProzentHealPoint);
+        
     }
     
     public void InflictingDamage(float Damage)
@@ -61,14 +63,20 @@ public class HpScript : MonoBehaviour
         {
             MinusHp(Damage);
         }
-        if (HealthPoint >= 0.0f && UiHp && ProzentHealPoint) OutPutHp(HealthPoint, UiHp, ProzentHealPoint);
+        
     }
 
     private void OutPutHp(float HpNow, Image HpByUi, Text HpByText)
     {
+        
+        HpNow /= 100.0f;
         HpByUi.fillAmount = HpNow;
+        
+        HpNow *= 100;
         string HpinString = HpNow.ToString();
-        HpByText.text = HpinString;
+        
+        HpByText.text = HpinString + "%";
+        
         Debug.Log("Hp for this object" + HpinString);
         
     }

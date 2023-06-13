@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AttackDistance: 0
+  GoingDistance: 0
 --- !u!114 &3855234871449922233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,8 +167,9 @@ MonoBehaviour:
   Head: {fileID: 5114723651407556825}
   Target: {fileID: 0}
   WhatImLooking: 
-  SpeedForMove: 0
-  MaxDistatzeForAgr: 0
+  SpeedForMove: 3
+  MaxDistatzeForAgr: 3
+  ZombiePatrolScript: {fileID: 2677489156488804276}
 --- !u!114 &2677489156488804276
 MonoBehaviour:
   m_ObjectHideFlags: 0
