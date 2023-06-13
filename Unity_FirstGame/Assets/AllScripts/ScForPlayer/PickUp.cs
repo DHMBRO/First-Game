@@ -238,36 +238,17 @@ public class PickUp : MethodsFromDevelopers
             
             if (PlayerInventory.CurrentMass + LootMass.Mass <= PlayerInventory.MaxMass)
             {
-                PickUpBullets(ObjectToPickUp);
-                PlayerInventory.CurrentMass += LootMass.Mass;
+                //PickUpBullets(ObjectToPickUp);
+                for (int i = 0; i < ReferencesForLoots.ValueLoots.Count; i++)
+                {
+                    if (ObjectToPickUp.gameObject.tag == ReferencesForLoots.ValueLoots[i].gameObject.tag)
+                    {
+                        PlayerInventory.SlotsForBackPack.Add(ReferencesForLoots.ValueLoots[i]);
+                        PlayerInventory.CurrentMass += LootMass.Mass;
+                    }
+                }
                 Destroy(ObjectToPickUp);
                 Counter++;
-            }
-        }
-        
-        void PickUpBullets(GameObject ObjectToPickUp)
-        {
-           
-
-            if (ObjectToPickUp.gameObject.tag == "Ammo9MM")
-            {
-                PlayerInventory.SlotsForBackPack.Add(ReferencesForLoots.ValueLoots["9MM"]);
-                
-            }
-            else if (ObjectToPickUp.gameObject.tag == "Ammo45_APC")
-            {
-                PlayerInventory.SlotsForBackPack.Add(ReferencesForLoots.ValueLoots["45ACP"]);
-                
-            }
-            else if (ObjectToPickUp.gameObject.tag == "Ammo5_56MM")
-            {
-                PlayerInventory.SlotsForBackPack.Add(ReferencesForLoots.ValueLoots["5,56MM"]);
-                
-            }
-            else if (ObjectToPickUp.gameObject.tag == "Ammo7_62MM")
-            {
-                PlayerInventory.SlotsForBackPack.Add(ReferencesForLoots.ValueLoots["7,62MM"]);
-                
             }
         }
     }

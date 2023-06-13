@@ -28,8 +28,8 @@ public class ShootControler : MonoBehaviour
     [SerializeField] private float BulletSpeed = 90;
     private string NameForWeapon;
 
-    [SerializeField] private bool InInvetory;
-    [SerializeField] private bool IsUsing;
+    [SerializeField] private bool InInvetory = false;
+    [SerializeField] private bool IsUsing = false;
 
     void Start()
     {
@@ -64,14 +64,12 @@ public class ShootControler : MonoBehaviour
             {
                 ShootForM4();                
             }
-        }
-        
+        }        
         if (transform.parent && transform.parent.tag == "UnloadingSlot")
         {
             InInvetory = true;
             IsUsing = false;
         }
-
     }
     
     public void ShootForM4()
