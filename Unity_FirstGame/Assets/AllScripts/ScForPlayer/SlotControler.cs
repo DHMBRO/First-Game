@@ -359,7 +359,7 @@ public class SlotControler : MethodsFromDevelopers
                     Counter = 1;                    
                 }
                 
-            }            
+            }
             else if (MyWeapon01 && MyPistol01 && SlotBack01 && ObjectInHand02 && Counter == 0)
             {
                 
@@ -390,8 +390,6 @@ public class SlotControler : MethodsFromDevelopers
                 }                
                 
             }
-            
-
             if (MyPistol01 && !MyWeapon01 && !MyWeapon02 && Counter == 0)
             {
                 PutObjects(MyPistol01, SlotPistol01);
@@ -414,38 +412,17 @@ public class SlotControler : MethodsFromDevelopers
             }            
             else if (MyWeapon02 && ObjectInHand04 && Counter == 0)
             {
-            
                 PutObjects(MyWeapon02, SlotBack02);
-                ObjectInHand = null;
-                
-                if (MyKnife01)
-                {
-                    PutObjects(MyKnife01, SlotHand);
-                    Counter = 1;
-                }               
+                ObjectInHand = null;   
             }
-            
-
         }        
         
     }
 
     void ChangingSlots02()
     {
-        if(!Slots[0]) Slots.Add(MyKnife01);
-        if(MyPistol01 && !Slots[1]) Slots.Add(MyPistol01);
-        if (MyWeapon01 && !Slots[2]) Slots.Add(MyWeapon01);
-        if (MyWeapon02 && !Slots[3]) Slots.Add(MyWeapon02);
-
-        if (Input.GetKey(KeyCode.E))
-        {
-            //if ()
-            {
-
-            }
-            
-
-        }
+        
+        
     }
 
     void AppropriationReferenceForUseShop()
