@@ -25,7 +25,7 @@ public class ShootControler : MonoBehaviour
 
     [SerializeField] private float ColletSpeed = 0.0f;
     private Transform ShootPoint;
-    [SerializeField] private float BulletSpeed = 90;
+    [SerializeField] private float BulletSpeed = 0.0f;
     private string NameForWeapon;
 
     [SerializeField] private bool InInvetory = false;
@@ -117,7 +117,8 @@ public class ShootControler : MonoBehaviour
                     newBullet.transform.rotation = Muzzle.transform.rotation;
 
                     Rigidbody newBulletRB = newBullet.GetComponent<Rigidbody>();
-                    newBulletRB.AddForce(GameObjectForRay.transform.forward * BulletSpeed, ForceMode.Impulse); // Dont touch this !!!
+                    if (!newBulletRB) newBulletRB.gameObject.AddComponent<Rigidbody>();
+                    if(newBulletRB) newBulletRB.AddForce(GameObjectForRay.transform.forward * BulletSpeed, ForceMode.Impulse); // Dont touch this !!!
 
                     GameObject newCollet = Instantiate(Collet, ColletPoint.transform.position, Quaternion.LookRotation(TargetPoint - Muzzle.transform.position));
                     newCollet.transform.rotation = ColletPoint.transform.rotation;
