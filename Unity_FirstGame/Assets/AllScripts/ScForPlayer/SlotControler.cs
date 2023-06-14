@@ -394,21 +394,13 @@ public class SlotControler : MethodsFromDevelopers
             {
                 PutObjects(MyPistol01, SlotPistol01);
                 ObjectInHand = null;
-                if (MyKnife01)
-                {
-                    PutObjects(MyKnife01, SlotHand);
-                    Counter = 1;
-                }                            
+                                       
             }
             else if (MyWeapon01 && !MyWeapon02 && Counter == 0)
             {
                 PutObjects(MyWeapon01, SlotBack01);
                 ObjectInHand = null;
-                if (MyKnife01)
-                {
-                    PutObjects(MyKnife01, SlotHand);
-                    Counter = 1;
-                }                
+                          
             }            
             else if (MyWeapon02 && ObjectInHand04 && Counter == 0)
             {

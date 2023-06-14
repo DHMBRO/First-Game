@@ -36,11 +36,11 @@ public class Gun : MonoBehaviour
         
         if (HitPointPlayer && !HealPlayer)
         {
-            if(Damage > 0.0f) HitPointPlayer.MinusHp(Damage);
+            if(Damage > 0.0f) HitPointPlayer.InflictingDamage(Damage);
         }
         else if (HitPointPlayer && HealPlayer)
         {
-            if(Heal > 0.0f) HitPointPlayer.PlusHp(Heal);
+            if(Heal > 0.0f) HitPointPlayer.HealHp(Heal);
         }
     }
 }

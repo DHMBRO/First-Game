@@ -19,14 +19,7 @@ public class HpScript : MonoBehaviour
         NotAlive
     }
 
-    public void HealHp(float Heal)
-    {
-        if (MyLive == Live.Alive)
-        {
-            PlusHp(Heal);
-        }
-    }
-
+    
     public void InflictingDamage(float Damage)
     {
         if (MyLive == Live.Alive)
@@ -35,7 +28,7 @@ public class HpScript : MonoBehaviour
         }
     }
 
-    public void MinusHp(float Damage)
+    void MinusHp(float Damage)
     {
         if ((HealthPoint - Damage) <= 0)
         {
@@ -48,7 +41,15 @@ public class HpScript : MonoBehaviour
         if (HealthPoint >= 0.0f && UiHp && ProzentHealPoint) OutPutHp(HealthPoint, UiHp, ProzentHealPoint);
     }
 
-    public  void PlusHp(float Heal)
+    public void HealHp(float Heal)
+    {
+        if (MyLive == Live.Alive)
+        {
+            PlusHp(Heal);
+        }
+    }
+
+    void PlusHp(float Heal)
     {
         if ((HealthPoint + Heal) >= MaxHp)
         {

@@ -33,9 +33,9 @@ public class AttackMethod : MonoBehaviour
         if (Time.time >= AttackTime)
         {
             Target.GetComponent<HpScript>()?.InflictingDamage(ZombieDamage);
-            AttackTime = AttackDelay + Time.time;
-            
+            AttackTime = AttackDelay + Time.time; 
         }  
+        
     }
     
 }
