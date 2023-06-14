@@ -92,7 +92,6 @@ public class SlotControler : MethodsFromDevelopers
         AppropriationReferenceForUseShop();
         
         ChangingSlots();
-        ChangingSlots02();
 
 
         if (Input.GetKeyDown(KeyCode.R))
@@ -102,11 +101,20 @@ public class SlotControler : MethodsFromDevelopers
                 Charge(MyPistol01.gameObject, PointForShopPistol01, "Glok", "ShopGlok");
                 if (CounetrForCharge == 0) ChangingShops(MyPistol01.gameObject, PointForShopPistol01, "Glok", "ShopGlok");
             }
+            else if (MyPistol01 && ObjectInHand == MyPistol01.gameObject && MyPistol01.gameObject.tag == "M1911")
+            {
+                Charge(MyPistol01.gameObject, PointForShopPistol01, "M1911", "ShopM1911");
+                if (CounetrForCharge == 0) ChangingShops(MyPistol01.gameObject, PointForShopPistol01, "M1911", "ShopM1911");
+            }
+
+
             else if (MyWeapon01 && ObjectInHand == MyWeapon01.gameObject && MyWeapon01.gameObject.tag == "M4")
             {
                 Charge(MyWeapon01.gameObject, PointForShopWeapon01, "M4", "ShopM4");                
                 if(CounetrForCharge == 0) ChangingShops(MyWeapon01.gameObject, PointForShopWeapon01, "M4", "ShopM4" );            
             }
+            //////////
+            
             else if (MyWeapon01 && ObjectInHand == MyWeapon01.gameObject && MyWeapon01.gameObject.tag == "AK47")
             {
                 Charge(MyWeapon01.gameObject, PointForShopWeapon01, "AK47", "ShopAK47");
@@ -150,10 +158,14 @@ public class SlotControler : MethodsFromDevelopers
 
         ShootControler ReferenseForWeapon = Weapon.gameObject.GetComponent<ShootControler>();
         
+        Debug.Log("Step 1");
+        
         if (Weapon.tag == MyWeapon)
-        {                                               
+        {
+            Debug.Log("Step 2");
             if (Input.GetKeyDown(KeyCode.R) && ReferenseForWeapon)
-            {                        
+            {
+                Debug.Log("Step 3");
                 if (MyShope01)
                 {
                     ShopControler01 = MyShope01.GetComponent<ShopControler>();
@@ -162,19 +174,19 @@ public class SlotControler : MethodsFromDevelopers
                     {                                                
                         PutObjects(MyShope01, PointForRecharge);                        
                         ReferenseForWeapon.WeaponShoop = MyShope01.gameObject;
-                        
+                                
                         Debug.Log(!ShopControler01.IsUsing);
-                        CounetrForCharge = 1;                        
+                        CounetrForCharge = 1;
+                        
                     }                    
                 }
-                if(MyShope02)
+                if (MyShope02)
                 {
                     ShopControler02 = MyShope02.GetComponent<ShopControler>();
                     if (!ShopControler02.IsUsing && !ReferenseForWeapon.WeaponShoop && MyShope02 && MyShope02.gameObject.tag == MyShops && CounetrForCharge == 0)
                     {
                         PutObjects(MyShope02, PointForRecharge);
                         ReferenseForWeapon.WeaponShoop = MyShope02.gameObject;
-                        
                         CounetrForCharge = 1;        
                     }
                     
@@ -191,8 +203,7 @@ public class SlotControler : MethodsFromDevelopers
                     }
 
                 }
-                
-             
+
             }
         }
         
@@ -408,12 +419,6 @@ public class SlotControler : MethodsFromDevelopers
                 ObjectInHand = null;   
             }
         }        
-        
-    }
-
-    void ChangingSlots02()
-    {
-        
         
     }
 

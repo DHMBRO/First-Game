@@ -18,25 +18,16 @@ public class ShootControler : MonoBehaviour
     [SerializeField] public float Mass = 0.0f;
     [SerializeField] public float SpeedForBullet = 0.0f;
 
-    //[SerializeField] private Rigidbody WeaponRigidbody;
+    [SerializeField] private Rigidbody WeaponRigidbody;
     [SerializeField] public Transform CameraTransform;
     [SerializeField] private SlotControler MySlotControler;
 
-
     [SerializeField] private float ColletSpeed = 0.0f;
-    private Transform ShootPoint;
     [SerializeField] private float BulletSpeed = 0.0f;
-    private string NameForWeapon;
-
-    [SerializeField] private bool InInvetory = false;
-    [SerializeField] private bool IsUsing = false;
+    
 
     void Start()
     {
-        //MyWeapon = gameObject;
-        //NameForWeapon = gameObject.tag;
-
-        //
         if (!MyWeapon)
         {
             Debug.Log("You dont have Weapon");
@@ -54,43 +45,21 @@ public class ShootControler : MonoBehaviour
         
     private void Update()
     {
-        
-        if (gameObject.transform.parent && gameObject.transform.parent.tag == "SlotForUse")
+        if (Input.GetKey(KeyCode.Mouse0))
         {
-            IsUsing = true;
-            InInvetory = true;
-
-            if (Input.GetKey(KeyCode.Mouse0)) 
-            {
-                ShootForM4();                
-            }
-        }        
-        if (transform.parent && transform.parent.tag == "UnloadingSlot")
-        {
-            InInvetory = true;
-            IsUsing = false;
+            Shoot();
         }
+
     }
     
-    public void ShootForM4()
+    public void Shoot()
     {
-        bool Audit01 = MyWeapon && GameObjectForRay && Muzzle && Bullet && Collet && ColletPoint;  
-        if(gameObject.tag == "M4" && Audit01)
+        bool Audit01 = MyWeapon && GameObjectForRay && Muzzle && Bullet && Collet && ColletPoint;
+        if (Audit01)
         {
             Shoot(Muzzle, GameObjectForRay, ColletPoint, Collet, Bullet);
-        }
-        else if(gameObject.tag == "AK47" && Audit01)
-        {
-            Shoot(Muzzle, GameObjectForRay, ColletPoint, Collet, Bullet);
-        }
-        else if(gameObject.tag == "Glok" && Audit01)
-        {
-            Shoot(Muzzle, GameObjectForRay, ColletPoint, Collet, Bullet);
-        }
-        else if(gameObject.tag == "M1911" && Audit01)
-        {
-            Shoot(Muzzle, GameObjectForRay, ColletPoint, Collet, Bullet);
-        }        
+        }  
+        
     }
 
     
