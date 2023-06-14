@@ -43,15 +43,12 @@ public class SlotControler : MethodsFromDevelopers
     [SerializeField] public Transform PointForShopWeapon01;
     [SerializeField] public Transform PointForShopWeapon02;
     
-    //All counet for work Script        
+    //All counetrs for work Script        
     protected int Counter;
     protected int CounetrForCharge;
     [SerializeField] private int SlotCounter;    
     //
-    [SerializeField] public GameObject ObjectInHand = null;    
-    
-
-    //Fiset for other Scripts 
+    //References for other Component
     [SerializeField] private PickUp PickUp;
     [SerializeField] private Inventory Inventory;
     //
@@ -63,8 +60,13 @@ public class SlotControler : MethodsFromDevelopers
     [SerializeField] GameObject weapon02;
     [SerializeField] GameObject pistol;
     [SerializeField] GameObject knife;
-
+    //
     [SerializeField] List<Transform> Slots = new List<Transform>();
+    //
+    [SerializeField] private List<string> ListForAllWeapon = new List<string>();
+    [SerializeField] private List<string> ListForAllShop = new List<string>();
+    //
+    [SerializeField] public GameObject ObjectInHand = null;
 
     void Start()
     {
@@ -94,8 +96,32 @@ public class SlotControler : MethodsFromDevelopers
         ChangingSlots();
 
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (ObjectInHand &&  Input.GetKeyDown(KeyCode.R))
         {
+            for (int i = 0;i < ListForAllWeapon.Count;i++)
+            {
+                for (int j = 0;j < ListForAllShop.Count; j++)
+                {
+                    if (ObjectInHand.gameObject.tag == ListForAllWeapon[i])
+                    {
+                        if (MyShope01 && MyShope01.gameObject.tag == ListForAllShop[j])
+                        {
+                            if (MyShope02 && MyShope02.gameObject.tag == ListForAllShop[j])
+                            {
+
+                            }
+                            else if (MyShope03 && MyShope03.gameObject.tag == ListForAllShop[j])
+                            {
+
+                            }
+                        }
+                    }
+                    
+
+                }
+            }
+            
+            /*
             if (MyPistol01 && ObjectInHand == MyPistol01.gameObject && MyPistol01.gameObject.tag == "Glok")
             {
                 Charge(MyPistol01.gameObject, PointForShopPistol01, "Glok", "ShopGlok");
@@ -125,7 +151,7 @@ public class SlotControler : MethodsFromDevelopers
                 Charge(MyWeapon02.gameObject, PointForShopWeapon02, "M4", "ShopM4");                            
                 if(CounetrForCharge == 0) ChangingShops(MyWeapon02.gameObject, PointForShopWeapon02, "M4", "ShopM4" );
             }
-            
+            */
         }
                 
         if (!MyWeapon01 && MyWeapon02)
