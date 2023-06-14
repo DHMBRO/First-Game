@@ -175,8 +175,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4952727429218122}
-  - component: {fileID: 2671595439289782217}
-  - component: {fileID: 8428440069412953132}
   m_Layer: 0
   m_Name: M1911
   m_TagString: M1911
@@ -200,47 +198,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &2671595439289782217
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1694449805434718}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.056284677, y: 0.16848338, z: 0.26326543}
-  m_Center: {x: 0.0020843688, y: -0.030946344, z: -0.0366033}
---- !u!114 &8428440069412953132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1694449805434718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30bbbf443eeb6cf47ab83dd338f2c45e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MyWeapon: {fileID: 1694449805434718}
-  SlotForUseShop: {fileID: 1964996492686328140}
-  WeaponShoop: {fileID: 0}
-  GameObjectForRay: {fileID: 7251724375105457176}
-  Muzzle: {fileID: 9002254017054851467}
-  Bullet: {fileID: 6134681609783580483, guid: 05538b2b752e7e345bcb59dba9fa8e2f, type: 3}
-  Collet: {fileID: 4900720745357472234, guid: 2485882dcbb795244bdd424f30296fd4, type: 3}
-  ColletPoint: {fileID: 5848713286768044941}
-  ShotDeley: 1
-  ShotTime: 0
-  Mass: 0
-  SpeedForBullet: 0
-  WeaonRigidbody: {fileID: 0}
-  CameraTransform: {fileID: 0}
-  MySlotControler: {fileID: 0}
-  ColletSpeed: 0
 --- !u!1 &1748277932983872
 GameObject:
   m_ObjectHideFlags: 0
