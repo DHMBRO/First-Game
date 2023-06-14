@@ -57,6 +57,7 @@ public class MethodsFromDevelopers : MonoBehaviour
 
     protected void CopyTransform(Transform ObjectToCopy, Transform ObjectForCopy)
     {
+        //ObjectToCopy.SetParent(null);
         ObjectToCopy.position = ObjectForCopy.position;
         ObjectToCopy.rotation = ObjectForCopy.rotation;
         

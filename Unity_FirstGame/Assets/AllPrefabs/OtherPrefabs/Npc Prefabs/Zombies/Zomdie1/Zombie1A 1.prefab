@@ -77,6 +77,8 @@ GameObject:
   - component: {fileID: 3855234871449922233}
   - component: {fileID: 2677489156488804276}
   - component: {fileID: 5529055869280300667}
+  - component: {fileID: 8624678698938470792}
+  - component: {fileID: 6786767565740091199}
   m_Layer: 0
   m_Name: Zombie1A 1
   m_TagString: Untagged
@@ -151,6 +153,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackDistance: 0
   GoingDistance: 0
+  AttackDelay: 3
+  AttackTime: 3.5
 --- !u!114 &3855234871449922233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,6 +200,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d368a4577eca46842a56c91845b7e6f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8624678698938470792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5781139615977132246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5de6a5a91ce79a4ea04d6f930f9a507, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UiHp: {fileID: 0}
+  ProzentHealPoint: {fileID: 0}
+  HealthPoint: 100
+  MaxHp: 0
+  MyLive: 0
+--- !u!65 &6786767565740091199
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5781139615977132246}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &6660769805436442294
 GameObject:
   m_ObjectHideFlags: 0

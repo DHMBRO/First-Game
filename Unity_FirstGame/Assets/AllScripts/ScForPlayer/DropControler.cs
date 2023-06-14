@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DropControler : MethodsFromDevelopers
 {
-    [SerializeField] Transform PointForDrop;
+    [SerializeField] public Transform PointForDrop;
     [SerializeField] GameObject ObjectToDrop;
     
     [SerializeField] GameObject weapon01;
@@ -56,5 +56,46 @@ public class DropControler : MethodsFromDevelopers
     {
         
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public void Drop01(Transform ObejctToDrop)
+    {
+        CopyTransform(ObejctToDrop.transform, PointForDrop);
+
+        Rigidbody RigidbodyObjectToDrop = ObejctToDrop.gameObject.GetComponent<Rigidbody>();
+        if (RigidbodyObjectToDrop) RigidbodyObjectToDrop.gameObject.AddComponent<Rigidbody>();
+    }
+
+
 
 }

@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 9065843369186379431}
   - component: {fileID: 630622072905715713}
   - component: {fileID: 1412097818158700365}
-  - component: {fileID: 1583963776614197316}
-  - component: {fileID: 6766293367901357730}
   m_Layer: 0
   m_Name: Bullet #01
   m_TagString: BulletM4
@@ -85,30 +83,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1583963776614197316
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6671005759312339746}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.009145131
-  m_Height: 0.0064444966
-  m_Direction: 1
-  m_Center: {x: -0.0057623014, y: 4.656613e-10, z: 0}
---- !u!114 &6766293367901357730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6671005759312339746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a44bba1536389644843157fecb6d3d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioToMetalic: {fileID: 0}

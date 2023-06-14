@@ -204,17 +204,19 @@ MonoBehaviour:
   WeaponShoop: {fileID: 0}
   GameObjectForRay: {fileID: 7578455642217627832}
   Muzzle: {fileID: 9048335327361831941}
-  Bullet: {fileID: 6671005759312339746, guid: d1e5869b3a5207f4aa3d12870e530bfd, type: 3}
-  Collet: {fileID: 5341742223406746680, guid: 9c3cddd6060b7cc4eadfb9cefcf6e7db, type: 3}
+  Bullet: {fileID: 4797105551472130353, guid: 9beae3c03257c1943bb0f2947f464346, type: 3}
+  Collet: {fileID: 1049788153312626777, guid: 07671d050b95a524b8b8db0bf34811a6, type: 3}
   ColletPoint: {fileID: 8173781438690351918}
   ShotDeley: 0.3
   ShotTime: 0
   Mass: 0
   SpeedForBullet: 0
-  WeaonRigidbody: {fileID: 2730850875192762559}
   CameraTransform: {fileID: 0}
   MySlotControler: {fileID: 0}
   ColletSpeed: 1000
+  BulletSpeed: 90
+  InInvetory: 0
+  IsUsing: 0
 --- !u!114 &3646525990506179422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,7 +229,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe4793ea110d92e489a2ac3d316c457d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpriteForSlot: {fileID: 21300000, guid: 308dbe82aff9325459e2458344bb10d6, type: 3}
 --- !u!1 &5873469072906034301
 GameObject:
   m_ObjectHideFlags: 0

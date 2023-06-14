@@ -23,7 +23,7 @@ public class PickUp : MethodsFromDevelopers
     private int Counter = 0;
 
     private SlotControler SlotControler;
-        
+    private DropControler ControlerToDrop;
 
     void Start()
     {
@@ -253,6 +253,7 @@ public class PickUp : MethodsFromDevelopers
         }
     }
 
+
     void PickUpEqipment(GameObject ObjectToPickUp)
     {
         if (ObjectToPickUp.CompareTag("Helmet") && Counter == 0)
@@ -270,13 +271,34 @@ public class PickUp : MethodsFromDevelopers
         }
         else if (PlayerInventory && ObjectToPickUp.CompareTag("BackPack") && Counter == 0)
         {
-            SlotControler.MyBackPack = ObjectToBeLifted.transform;
-            PutObjects(SlotControler.MyBackPack, SlotControler.SlotBackPack);            
+            if (PlayerInventory.BackPack)
+            {
+                BackPackContorler BackPackControlerInInventory = SlotControler.MyBackPack.GetComponent<BackPackContorler>();
+                BackPackContorler BackPackControlerToPickUp = ObjectToPickUp.gameObject.GetComponent<BackPackContorler>();
+                if (BackPackControlerToPickUp.LevelBackPack > BackPackControlerInInventory.LevelBackPack)
+                {
+                    //ControlerToDrop.Drop01(SlotControler.MyBackPack.transform);
+                    
+                    SlotControler.MyBackPack = ObjectToBeLifted.transform;
+                    PutObjects(SlotControler.MyBackPack, SlotControler.SlotBackPack);
+
+                    PlayerInventory.BackPack = SlotControler.MyBackPack.gameObject;
+                    PlayerInventory.ChargingValueMaxMass();
+                    Counter++;
+                }
+            }
+            else
+            {
+                SlotControler.MyBackPack = ObjectToBeLifted.transform;
+                PutObjects(SlotControler.MyBackPack, SlotControler.SlotBackPack);
+
+                PlayerInventory.BackPack = SlotControler.MyBackPack.gameObject;
+                PlayerInventory.ChargingValueMaxMass();
+                
+                Counter++;
+            }
+
             
-            PlayerInventory.BackPack = SlotControler.MyBackPack.gameObject;
-            PlayerInventory.ChargingValueMaxMass();                        
-            
-            Counter++;
         }
         
         void PutOn()

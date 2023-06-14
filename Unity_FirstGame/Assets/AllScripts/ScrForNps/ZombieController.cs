@@ -7,6 +7,8 @@ public class ZombieController : MonoBehaviour
     protected LocateScript ZombieLocateScript;
     protected AttackMethod ZombieAttackScript;
     protected PatrolScriptNavMesh ZombiePatrolScript;
+    public bool IsLive = true;
+
     void Start()
     {
         ZombieLocateScript = gameObject.GetComponent<LocateScript>();
@@ -17,29 +19,30 @@ public class ZombieController : MonoBehaviour
     
     void Update()
     {
-        if (ZombieLocateScript && ZombieAttackScript && ZombiePatrolScript)
+        if (IsLive)
         {
+            if (IsLive && ZombieLocateScript && ZombieAttackScript && ZombiePatrolScript)
+            {
 
-            if (ZombieLocateScript.CanISeeTarget())
-            {
-                
-                if (ZombiePatrolScript.ZombieNavMesh.remainingDistance <= ZombieAttackScript.AttackDistance && 
-                    (ZombieLocateScript.Target.transform.position - ZombiePatrolScript.ZombieNavMesh.destination).magnitude <= ZombieAttackScript.GoingDistance)
+                if (ZombieLocateScript.CanISeeTarget() && IsLive)
                 {
-                    ZombieAttackScript.DoCloseAttack(ZombieLocateScript.Target);
+
+                    if (IsLive && ZombiePatrolScript.ZombieNavMesh.remainingDistance <= ZombieAttackScript.AttackDistance &&
+                        (ZombieLocateScript.Target.transform.position - ZombiePatrolScript.ZombieNavMesh.destination).magnitude <= ZombieAttackScript.GoingDistance)
+                    {
+                        ZombieAttackScript.DoCloseAttack(ZombieLocateScript.Target);
+                    }
+                    else
+                    {
+                        ZombiePatrolScript.MoveTo(ZombieLocateScript.Target);
+                    }
                 }
-                else 
+                else
                 {
-                    ZombiePatrolScript.MoveTo(ZombieLocateScript.Target);
+                    ZombiePatrolScript.Patroling();
                 }
-            }
-            else  
-            {
-                ZombiePatrolScript.Patroling(); 
             }
         }
         
-
-
     }
 }
