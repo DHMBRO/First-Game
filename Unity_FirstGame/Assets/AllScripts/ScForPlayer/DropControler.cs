@@ -88,14 +88,4 @@ public class DropControler : MethodsFromDevelopers
 
 
 
-    public void Drop01(Transform ObejctToDrop)
-    {
-        CopyTransform(ObejctToDrop.transform, PointForDrop);
-
-        Rigidbody RigidbodyObjectToDrop = ObejctToDrop.gameObject.GetComponent<Rigidbody>();
-        if (RigidbodyObjectToDrop) RigidbodyObjectToDrop.gameObject.AddComponent<Rigidbody>();
-    }
-
-
-
 }
