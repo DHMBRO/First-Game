@@ -19,7 +19,7 @@ public class HpScript : MonoBehaviour
         Alive,
         NotAlive
     }
-
+    
     private void Update()
     {
         Debug.Log("Heal Point: " + HealthPoint);

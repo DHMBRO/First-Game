@@ -32,12 +32,12 @@ public class ZombieController : MonoBehaviour
                     {
                         ZombieAttackScript.DoCloseAttack(ZombieLocateScript.Target);
                     }
-                    else
+                    else if(IsLive)
                     {
                         ZombiePatrolScript.MoveTo(ZombieLocateScript.Target);
                     }
                 }
-                else
+                else if(IsLive)
                 {
                     ZombiePatrolScript.Patroling();
                 }
