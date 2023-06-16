@@ -34,7 +34,7 @@ public class MovePlayer : MonoBehaviour
     }
     void Move()
     {
-        MyRigidbody.velocity = new Vector3(0, 0, 0);
+        MyRigidbody.velocity = new Vector3(0, MyRigidbody.velocity.y, 0);
         //transform.rotation = Quaternion.Euler(0f, CameraTransform.rotation.y, 0f);
         MoveVertical = Input.GetAxisRaw("Vertical") * 100000;
         MoveHorizontal = Input.GetAxisRaw("Horizontal") * 100000;
@@ -42,7 +42,7 @@ public class MovePlayer : MonoBehaviour
         Vector3 ForceBack = new Vector3(MoveHorizontal, 0.0f, MoveVertical).normalized;
 
         MyRigidbody.AddRelativeForce(ForceBack * Speed, MyForceMode);
-        if (MyRigidbody.velocity.magnitude != 0f)
+        if (MyRigidbody.velocity.magnitude - MyRigidbody.velocity.y != 0f)
         {
             MyRigidbody.velocity = MyRigidbody.velocity.normalized * Speed;
         }

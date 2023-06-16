@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public interface IUsebleInterFace 
+public interface IUsebleInterFace
 {
-    public void Use();         
+    public void Use();
 }
 
 public interface IImage
@@ -11,12 +11,7 @@ public interface IImage
     public void GetImage(Sprite SpriteForLoot);
 }
 
-public interface Use
+public interface IDrop
 {
-    public void UseLoot();
+    public void Drop(string WhatDrop);
 }
-
-public interface Drop
-{
-    public void DropLoot();
-} 
