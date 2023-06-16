@@ -46,6 +46,10 @@ public class UiControler : MonoBehaviour
             }
         }
     }
+    public void UpdateLoot(string slot, string loot)
+    {
+
+    }
 
     void PrintLoot()
     {
