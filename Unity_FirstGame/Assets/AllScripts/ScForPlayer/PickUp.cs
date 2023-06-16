@@ -24,6 +24,7 @@ public class PickUp : MethodsFromDevelopers
 
     private SlotControler SlotControler;
     private DropControler ControlerToDrop;
+    [SerializeField] private UiControler ControlerForInventory;
 
     void Start()
     {

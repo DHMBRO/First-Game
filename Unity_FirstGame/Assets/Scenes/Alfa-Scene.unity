@@ -2015,6 +2015,10 @@ PrefabInstance:
       propertyPath: ListForNameLoot.Array.data[3]
       value: AK47
       objectReference: {fileID: 0}
+    - target: {fileID: 7778607237951541594, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: ControlerForInventory
+      value: 
+      objectReference: {fileID: 1564887143}
     - target: {fileID: 8382459316900287711, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: UiHp
       value: 
@@ -2029,6 +2033,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+--- !u!114 &1564887143 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6294364781100366135, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+  m_PrefabInstance: {fileID: 1564887142}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec419c55fa32f034badda87b255f3193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1606850491
 GameObject:
   m_ObjectHideFlags: 0
