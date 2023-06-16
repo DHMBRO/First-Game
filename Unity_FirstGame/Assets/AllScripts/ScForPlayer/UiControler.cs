@@ -9,6 +9,7 @@ public class UiControler : MonoBehaviour
     
     [SerializeField] private List<string> ListForNameLoot = new List<string>();
     [SerializeField] private List<Sprite> ListForSpriteLoot = new List<Sprite>();
+    [SerializeField] private List<GameObject> ListForSlots = new List<GameObject>();
     [SerializeField] private Dictionary<string, Sprite> DictionaryForSprite = new Dictionary<string, Sprite>(); 
     
 
@@ -22,7 +23,7 @@ public class UiControler : MonoBehaviour
         Inventory.SetActive(false);
         Scope.enabled = true;
 
-        for (int i = 0;i < 4;i++)
+        for (int i = 0;i < ListForNameLoot.Count;i++)
         {
             DictionaryForSprite.Add(ListForNameLoot[i], ListForSpriteLoot[i]);
         }
@@ -31,6 +32,7 @@ public class UiControler : MonoBehaviour
 
     void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.I))
         {
             InventoryIsOpen = !InventoryIsOpen;
@@ -46,14 +48,9 @@ public class UiControler : MonoBehaviour
             }
         }
     }
-    public void UpdateLoot(string slot, string loot)
+    public void UpdateLoot(int slot, string loot)
     {
-
-    }
-
-    void PrintLoot()
-    {
-
+        ListForSlots[slot].GetComponent<IImage>().GetImage(DictionaryForSprite[loot]);
     }
 
     /*[SerializeField] Image scopeUi;

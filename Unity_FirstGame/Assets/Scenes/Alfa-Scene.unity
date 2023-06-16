@@ -1003,6 +1003,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &628093126 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6457168041355473268, guid: 264be72c65775c340aa49890d31d0630, type: 3}
+  m_PrefabInstance: {fileID: 289470012}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &703958783
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1144,6 +1155,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7dadfb4863d496a429409176e8b05b9e, type: 3}
+--- !u!1 &803253595 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6457168040452105264, guid: 264be72c65775c340aa49890d31d0630, type: 3}
+  m_PrefabInstance: {fileID: 289470012}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &815391495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1217,6 +1233,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7dadfb4863d496a429409176e8b05b9e, type: 3}
+--- !u!1 &837749949 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6457168040810386215, guid: 264be72c65775c340aa49890d31d0630, type: 3}
+  m_PrefabInstance: {fileID: 289470012}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &854305474
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1541,6 +1562,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7dadfb4863d496a429409176e8b05b9e, type: 3}
+--- !u!1 &1252597111 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6457168041802754793, guid: 264be72c65775c340aa49890d31d0630, type: 3}
+  m_PrefabInstance: {fileID: 289470012}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1339755976
 GameObject:
   m_ObjectHideFlags: 0
@@ -1735,6 +1761,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1386915456}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1418864747 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6457168041143973247, guid: 264be72c65775c340aa49890d31d0630, type: 3}
+  m_PrefabInstance: {fileID: 289470012}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1451999517
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1947,6 +1978,42 @@ PrefabInstance:
     - target: {fileID: 935961475211729313, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6294364781100366135, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: Scope
+      value: 
+      objectReference: {fileID: 628093126}
+    - target: {fileID: 6294364781100366135, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: Inventory
+      value: 
+      objectReference: {fileID: 837749949}
+    - target: {fileID: 6294364781100366135, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: ListForSlots.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6294364781100366135, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: ListForNameLoot.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6294364781100366135, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: ListForSlots.Array.data[0]
+      value: 
+      objectReference: {fileID: 1252597111}
+    - target: {fileID: 6294364781100366135, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: ListForSlots.Array.data[1]
+      value: 
+      objectReference: {fileID: 803253595}
+    - target: {fileID: 6294364781100366135, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: ListForSlots.Array.data[2]
+      value: 
+      objectReference: {fileID: 1418864747}
+    - target: {fileID: 6294364781100366135, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: ListForSpriteLoot.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6294364781100366135, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: ListForNameLoot.Array.data[3]
+      value: AK47
       objectReference: {fileID: 0}
     - target: {fileID: 8382459316900287711, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: UiHp
