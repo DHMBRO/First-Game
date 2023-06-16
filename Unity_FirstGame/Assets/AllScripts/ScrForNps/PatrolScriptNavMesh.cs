@@ -8,7 +8,7 @@ public class PatrolScriptNavMesh : MonoBehaviour
     [SerializeField] public PointControllScript MyPointControllScript;
     protected int CurrentPoint ;
     public int StartPosIndex = 0;
-    
+    LocateScript ZombieLocateScript; 
     public NavMeshAgent ZombieNavMesh;
 
     enum State
@@ -19,8 +19,9 @@ public class PatrolScriptNavMesh : MonoBehaviour
     State MyState = State.Idle;
 
     void Start()
-    {        
-       ZombieNavMesh = gameObject.GetComponent<NavMeshAgent>();
+    {
+        ZombieLocateScript = gameObject.GetComponent<LocateScript>();
+        ZombieNavMesh = gameObject.GetComponent<NavMeshAgent>();
     }
 
 
@@ -55,7 +56,7 @@ public class PatrolScriptNavMesh : MonoBehaviour
 
     void StateMoving()
     {
-        if (ZombieNavMesh.remainingDistance < 1.0f)
+        if (ZombieNavMesh.remainingDistance < 1.0f&& ZombieLocateScript.Target == CompareTag("Player01"))
         {
             CurrentPoint = MyPointControllScript.SearchNextPosition(CurrentPoint);
             MyState = State.Idle;
