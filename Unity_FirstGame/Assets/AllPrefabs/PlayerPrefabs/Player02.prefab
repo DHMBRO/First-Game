@@ -815,8 +815,8 @@ GameObject:
   - component: {fileID: 655437941069588223}
   - component: {fileID: 1759847437404537064}
   - component: {fileID: 8382459316900287711}
-  - component: {fileID: 6294364781100366135}
   - component: {fileID: 6328347359453867729}
+  - component: {fileID: 6294364781100366135}
   m_Layer: 0
   m_Name: Player02
   m_TagString: Player01
@@ -1048,21 +1048,6 @@ MonoBehaviour:
   HealthPoint: 100
   MaxHp: 100
   MyLive: 0
---- !u!114 &6294364781100366135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9027246094432369652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec419c55fa32f034badda87b255f3193, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Scope: {fileID: 0}
-  Inventory: {fileID: 0}
-  InventoryIsOpen: 0
 --- !u!114 &6328347359453867729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1081,6 +1066,31 @@ MonoBehaviour:
   MyRigidbody: {fileID: 5669462573118057115}
   CameraTransform: {fileID: 1396831719933550846}
   Speed: 50
+--- !u!114 &6294364781100366135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9027246094432369652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec419c55fa32f034badda87b255f3193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Scope: {fileID: 0}
+  ListForNameLoot:
+  - Glok
+  - M4
+  - AK47
+  - Knife
+  ListForSpriteLoot:
+  - {fileID: 21300000, guid: 5bf1bf23c3394f64d9f63958632c2dbd, type: 3}
+  - {fileID: 21300000, guid: 308dbe82aff9325459e2458344bb10d6, type: 3}
+  - {fileID: 21300000, guid: f0f9ba90973eb2a448b68efebb464d4d, type: 3}
+  - {fileID: 21300000, guid: 1862f57e77abedb43ae92593ca1a616c, type: 3}
+  Inventory: {fileID: 0}
+  InventoryIsOpen: 0
 --- !u!1 &9125961473927298832
 GameObject:
   m_ObjectHideFlags: 0

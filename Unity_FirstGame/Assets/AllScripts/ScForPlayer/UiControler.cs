@@ -6,8 +6,11 @@ public class UiControler : MonoBehaviour
 {
     [SerializeField] Image Scope;
 
+    
     [SerializeField] private List<string> ListForNameLoot = new List<string>();
     [SerializeField] private List<Sprite> ListForSpriteLoot = new List<Sprite>();
+    [SerializeField] private Dictionary<string, Sprite> DictionaryForSprite = new Dictionary<string, Sprite>(); 
+    
 
     [SerializeField] GameObject Inventory;
 
@@ -18,6 +21,12 @@ public class UiControler : MonoBehaviour
         InventoryIsOpen = false;
         Inventory.SetActive(false);
         Scope.enabled = true;
+
+        for (int i = 0;i < 4;i++)
+        {
+            DictionaryForSprite.Add(ListForNameLoot[i], ListForSpriteLoot[i]);
+        }
+        
     }
 
     void Update()
