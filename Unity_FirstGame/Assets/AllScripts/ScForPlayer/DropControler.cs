@@ -5,12 +5,6 @@ public class DropControler : MethodsFromDevelopers, IDrop
     [SerializeField] Transform PointForDrop;
     [SerializeField] GameObject ObjectToDrop;
 
-    [SerializeField] GameObject weapon01;
-    [SerializeField] GameObject weapon02;
-    [SerializeField] GameObject pistol;
-    [SerializeField] GameObject knife;
-    [SerializeField] Sprite none;
-
     [SerializeField] SlotControler ControlerForSlots;
 
     void Start()
@@ -33,19 +27,19 @@ public class DropControler : MethodsFromDevelopers, IDrop
                 if (ControlerForSlots.MyWeapon01 && ControlerForSlots.ObjectInHand.gameObject == ControlerForSlots.MyWeapon01.gameObject)
                 {
                     ControlerForSlots.MyWeapon01 = null;
-                    weapon01.GetComponent<IImage>().GetImage(none);
+                    
                 }
 
                 if (ControlerForSlots.MyWeapon02 && ControlerForSlots.ObjectInHand.gameObject == ControlerForSlots.MyWeapon02.gameObject)
                 {
                     ControlerForSlots.MyWeapon02 = null;
-                    weapon02.GetComponent<IImage>().GetImage(none);
+                    
                 }
 
                 if (ControlerForSlots.MyPistol01 && ControlerForSlots.ObjectInHand.gameObject == ControlerForSlots.MyPistol01.gameObject)
                 {
                     ControlerForSlots.MyPistol01 = null;
-                    pistol.GetComponent<IImage>().GetImage(none);
+                    
                 }
 
             }
@@ -57,19 +51,19 @@ public class DropControler : MethodsFromDevelopers, IDrop
         if (WhatWeaponDrop == "weapon01")
         {
             ControlerForSlots.MyWeapon01 = null;
-            weapon01.GetComponent<IImage>().GetImage(none);
+            
         }
 
         if (WhatWeaponDrop == "weapon02")
         {
             ControlerForSlots.MyWeapon02 = null;
-            weapon02.GetComponent<IImage>().GetImage(none);
+            
         }
 
         if (WhatWeaponDrop == "pistol")
         {
             ControlerForSlots.MyPistol01 = null;
-            pistol.GetComponent<IImage>().GetImage(none);
+            
         }
     }
 
