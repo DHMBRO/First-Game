@@ -887,6 +887,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6457168041802754795, guid: 264be72c65775c340aa49890d31d0630, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3e0d4bab2bf89544ea5d2db81eb3764d, type: 3}
     - target: {fileID: 6457168042201491238, guid: 264be72c65775c340aa49890d31d0630, type: 3}
       propertyPath: m_Name
       value: Canvas 1
@@ -1160,6 +1164,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6457168040452105264, guid: 264be72c65775c340aa49890d31d0630, type: 3}
   m_PrefabInstance: {fileID: 289470012}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &803253597 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6457168040452105266, guid: 264be72c65775c340aa49890d31d0630, type: 3}
+  m_PrefabInstance: {fileID: 289470012}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803253595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &815391495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1567,6 +1582,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6457168041802754793, guid: 264be72c65775c340aa49890d31d0630, type: 3}
   m_PrefabInstance: {fileID: 289470012}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1252597113 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6457168041802754795, guid: 264be72c65775c340aa49890d31d0630, type: 3}
+  m_PrefabInstance: {fileID: 289470012}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252597111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1339755976
 GameObject:
   m_ObjectHideFlags: 0
@@ -1766,6 +1792,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6457168041143973247, guid: 264be72c65775c340aa49890d31d0630, type: 3}
   m_PrefabInstance: {fileID: 289470012}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1418864749 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6457168041143973233, guid: 264be72c65775c340aa49890d31d0630, type: 3}
+  m_PrefabInstance: {fileID: 289470012}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1418864747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1451999517
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2008,12 +2045,32 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1418864747}
     - target: {fileID: 6294364781100366135, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: ListForSlotWeapon.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6294364781100366135, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: ListForSpriteLoot.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6294364781100366135, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: ListForNameLoot.Array.data[3]
       value: AK47
+      objectReference: {fileID: 0}
+    - target: {fileID: 6294364781100366135, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: ListForSlotWeapon.Array.data[0]
+      value: 
+      objectReference: {fileID: 1418864749}
+    - target: {fileID: 6294364781100366135, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: ListForSlotWeapon.Array.data[1]
+      value: 
+      objectReference: {fileID: 1252597113}
+    - target: {fileID: 6294364781100366135, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: ListForSlotWeapon.Array.data[2]
+      value: 
+      objectReference: {fileID: 803253597}
+    - target: {fileID: 6328347359453867729, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: Speed
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 7778607237951541594, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: ControlerForInventory
