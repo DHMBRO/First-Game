@@ -809,13 +809,14 @@ GameObject:
   - component: {fileID: 5669462573118057115}
   - component: {fileID: 6762333649877684918}
   - component: {fileID: 9222820105927190343}
-  - component: {fileID: 969267927484315164}
   - component: {fileID: 7778607237951541594}
   - component: {fileID: 7874716152253843916}
   - component: {fileID: 2663352457323175868}
   - component: {fileID: 655437941069588223}
   - component: {fileID: 1759847437404537064}
   - component: {fileID: 8382459316900287711}
+  - component: {fileID: 6294364781100366135}
+  - component: {fileID: 6328347359453867729}
   m_Layer: 0
   m_Name: Player02
   m_TagString: Player01
@@ -882,7 +883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d2e13c0bdd472048a4ce7b554c40e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Move: {fileID: 969267927484315164}
+  Move: {fileID: 0}
   PlayerCamera: {fileID: 7231277361793828127}
   StelsScript: {fileID: 0}
   PickUp: {fileID: 0}
@@ -890,25 +891,6 @@ MonoBehaviour:
   ShootControler: {fileID: 0}
   gameobject: {fileID: 0}
   Anchor: {fileID: 0}
---- !u!114 &969267927484315164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9027246094432369652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83e44ebe7bfed1f4fbb96f32da31a04e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SpeedForMove: 0.01
-  SpeedForRun: 0.1
-  PowerForJump: 35
-  CanJump: 0
-  PlayerTransform: {fileID: 935961475211729313}
-  RigidbodyForPlayer: {fileID: 5669462573118057115}
-  DistanceForRayJump: 0.1
 --- !u!114 &7778607237951541594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -994,6 +976,7 @@ MonoBehaviour:
   - ShopM249
   - ShopGlok
   - ShopM1911
+  ListForAllContrShop: []
   ObjectInHand: {fileID: 0}
 --- !u!114 &2663352457323175868
 MonoBehaviour:
@@ -1065,6 +1048,39 @@ MonoBehaviour:
   HealthPoint: 100
   MaxHp: 100
   MyLive: 0
+--- !u!114 &6294364781100366135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9027246094432369652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec419c55fa32f034badda87b255f3193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Scope: {fileID: 0}
+  Inventory: {fileID: 0}
+  InventoryIsOpen: 0
+--- !u!114 &6328347359453867729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9027246094432369652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e16453a710a00549bbd19cb19b8c4dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  JumpForce: 50
+  Sens: 1
+  MyForceMode: 0
+  MyRigidbody: {fileID: 5669462573118057115}
+  CameraTransform: {fileID: 1396831719933550846}
+  Speed: 50
 --- !u!1 &9125961473927298832
 GameObject:
   m_ObjectHideFlags: 0
