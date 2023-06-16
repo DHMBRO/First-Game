@@ -129,38 +129,68 @@ public class SlotControler : MethodsFromDevelopers
                         if (ObjectInHand.gameObject.tag == ListForAllWeapon[i])
                         {
                             
-                            if (MyShope01.gameObject.tag == DictionaryForAllShop[ListForAllWeapon[i]] && !ListForAllContrShop[0].IsUsing)
+                            if (MyShope01 && !ListForAllContrShop[0].IsUsing && MyShope01.gameObject.tag == DictionaryForAllShop[ListForAllWeapon[i]])
                             {
-                                if (ControlerForShoot.SlotForUseShop == MyShope02 && ListForAllContrShop[2])
+                                if (ControlerForShoot.WeaponShoop)
                                 {
-                                    DisChargingShops(MyShope02, SlotShpo02);
-                                    Charge(MyShope01, ControlerForShoot.SlotForUseShop, ControlerForShoot);
-                                }
-                                else if (ControlerForShoot.SlotForUseShop == MyShope03 && ListForAllContrShop[3])
-                                {
-                                    DisChargingShops(MyShope02, SlotShpo02);
-                                    Charge(MyShope01, ControlerForShoot.SlotForUseShop, ControlerForShoot);
+                                    if (MyShope02 && ControlerForShoot.WeaponShoop.tag == MyShope02.tag)
+                                    {
+                                        DisChargingShops(MyShope02, SlotShpo02);
+                                        Charge(MyShope01, ControlerForShoot.SlotForUseShop, ControlerForShoot);
+                                    }
+                                    else if (MyShope03 && ControlerForShoot.WeaponShoop.tag == MyShope03.tag)
+                                    {
+                                        DisChargingShops(MyShope03, SlotShpo03);
+                                        Charge(MyShope01, ControlerForShoot.SlotForUseShop, ControlerForShoot);
+                                    }
                                 }
                                 else
                                 {
                                     Charge(MyShope01, ControlerForShoot.SlotForUseShop, ControlerForShoot);
                                 }
                             }
-                            else if (MyShope02.gameObject.tag == DictionaryForAllShop[ListForAllWeapon[i]] && !ListForAllContrShop[1].IsUsing)
+                            else if (MyShope02 && !ListForAllContrShop[1].IsUsing && MyShope02.gameObject.tag == DictionaryForAllShop[ListForAllWeapon[i]])
                             {
-                                if (ControlerForShoot.SlotForUseShop == MyShope03 && ListForAllContrShop[3])
+                                
+                                if (ControlerForShoot.WeaponShoop)
                                 {
-                                    DisChargingShops(MyShope02, SlotShpo02);
-                                    Charge(MyShope01, ControlerForShoot.SlotForUseShop, ControlerForShoot);
+                                    if (MyShope01 && ControlerForShoot.WeaponShoop.tag == MyShope01.tag)
+                                    {
+                                        DisChargingShops(MyShope01, SlotShpo01);
+                                        Charge(MyShope02, ControlerForShoot.SlotForUseShop, ControlerForShoot);
+                                    }
+                                    if (MyShope03 && ControlerForShoot.WeaponShoop.tag == MyShope03.tag)
+                                    {
+                                        DisChargingShops(MyShope03, SlotShpo03);
+                                        Charge(MyShope02, ControlerForShoot.SlotForUseShop, ControlerForShoot);
+                                    }
                                 }
                                 else
                                 {
                                     Charge(MyShope02, ControlerForShoot.SlotForUseShop, ControlerForShoot);
                                 }
+                                
                             }
-                            else if (MyShope03.gameObject.tag == DictionaryForAllShop[ListForAllWeapon[i]] && !ListForAllContrShop[2].IsUsing)
+                            else if (MyShope03 && !ListForAllContrShop[2].IsUsing && MyShope03.gameObject.tag == DictionaryForAllShop[ListForAllWeapon[i]])
                             {
-                                Charge(MyShope02, ControlerForShoot.SlotForUseShop, ControlerForShoot);
+                                if (ControlerForShoot.WeaponShoop)
+                                {
+                                    if (MyShope01 && ControlerForShoot.WeaponShoop.tag == MyShope01.tag)
+                                    {
+                                        DisChargingShops(MyShope01, SlotShpo01);
+                                        Charge(MyShope03, ControlerForShoot.SlotForUseShop, ControlerForShoot);
+                                    }
+                                    else if (MyShope02 && ControlerForShoot.WeaponShoop.tag == MyShope02.tag)
+                                    {
+                                        DisChargingShops(MyShope02, SlotShpo02);
+                                        Charge(MyShope03, ControlerForShoot.SlotForUseShop, ControlerForShoot);
+                                    }
+                                }
+                                else
+                                {
+                                    Charge(MyShope03, ControlerForShoot.SlotForUseShop, ControlerForShoot);
+                                }
+
                             }
                             
                             
@@ -171,37 +201,8 @@ public class SlotControler : MethodsFromDevelopers
                 }
             }
             
-            /*
-            if (MyPistol01 && ObjectInHand == MyPistol01.gameObject && MyPistol01.gameObject.tag == "Glok")
-            {
-                Charge(MyPistol01.gameObject, PointForShopPistol01, "Glok", "ShopGlok");
-                if (CounetrForCharge == 0) ChangingShops(MyPistol01.gameObject, PointForShopPistol01, "Glok", "ShopGlok");
-            }
-            else if (MyPistol01 && ObjectInHand == MyPistol01.gameObject && MyPistol01.gameObject.tag == "M1911")
-            {
-                Charge(MyPistol01.gameObject, PointForShopPistol01, "M1911", "ShopM1911");
-                if (CounetrForCharge == 0) ChangingShops(MyPistol01.gameObject, PointForShopPistol01, "M1911", "ShopM1911");
-            }
-
-
-            else if (MyWeapon01 && ObjectInHand == MyWeapon01.gameObject && MyWeapon01.gameObject.tag == "M4")
-            {
-                Charge(MyWeapon01.gameObject, PointForShopWeapon01, "M4", "ShopM4");                
-                if(CounetrForCharge == 0) ChangingShops(MyWeapon01.gameObject, PointForShopWeapon01, "M4", "ShopM4" );            
-            }
-            //////////
             
-            else if (MyWeapon01 && ObjectInHand == MyWeapon01.gameObject && MyWeapon01.gameObject.tag == "AK47")
-            {
-                Charge(MyWeapon01.gameObject, PointForShopWeapon01, "AK47", "ShopAK47");
-                if(CounetrForCharge == 0) ChangingShops(MyWeapon01.gameObject, PointForShopWeapon01, "M4", "ShopM4" );
-            }            
-            else if (MyWeapon02 && ObjectInHand == MyWeapon02.gameObject && MyWeapon02.gameObject.tag == "M4")
-            {
-                Charge(MyWeapon02.gameObject, PointForShopWeapon02, "M4", "ShopM4");                            
-                if(CounetrForCharge == 0) ChangingShops(MyWeapon02.gameObject, PointForShopWeapon02, "M4", "ShopM4" );
-            }
-            */
+
         }
                 
         if (!MyWeapon01 && MyWeapon02)
@@ -228,13 +229,9 @@ public class SlotControler : MethodsFromDevelopers
 
     void Charge(Transform ShopForCharge, Transform PointForRecharge, ShootControler ReferenseForWeapon)
     {
-        if (!ReferenseForWeapon.WeaponShoop && CounetrForCharge == 0)
-        {
-            PutObjects(ShopForCharge, PointForRecharge);
-            ReferenseForWeapon.WeaponShoop = MyShope01.gameObject;
-
-            CounetrForCharge = 1;
-        }
+        PutObjects(ShopForCharge, PointForRecharge);
+        ReferenseForWeapon.WeaponShoop = ShopForCharge.gameObject;
+        CounetrForCharge = 1;
     }
 
     void DisChargingShops(Transform ShopForDisCharge, Transform SlotForChopDisCharge)

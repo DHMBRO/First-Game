@@ -26,7 +26,7 @@ public class HpScript : MonoBehaviour
         if (HealthPoint <= 0.0f)
         {
             ControlerForZombie = gameObject.GetComponent<ZombieController>();
-            ControlerForZombie.IsLive = false;
+            if(ControlerForZombie) ControlerForZombie.IsLive = false;
 
             Debug.Log("Your or your target is dead !");
         }

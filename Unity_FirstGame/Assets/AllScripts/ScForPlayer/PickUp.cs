@@ -339,7 +339,7 @@ public class PickUp : MethodsFromDevelopers
         }
         else if (!SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 && MainCounter == 2 && Counter == 0)
         {
-            /*
+            /*s
             if (ObjectForPickUp.tag == "M4")
             {
                 weapon01.GetComponent<IImage>().GetImage(Sm4);
