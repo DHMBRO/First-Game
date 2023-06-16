@@ -6,6 +6,9 @@ public class UiControler : MonoBehaviour
 {
     [SerializeField] Image Scope;
 
+    [SerializeField] private List<string> ListForNameLoot = new List<string>();
+    [SerializeField] private List<Sprite> ListForSpriteLoot = new List<Sprite>();
+
     [SerializeField] GameObject Inventory;
 
     [SerializeField] bool InventoryIsOpen = false;
@@ -39,6 +42,7 @@ public class UiControler : MonoBehaviour
     {
 
     }
+
     /*[SerializeField] Image scopeUi;
     [SerializeField] public List<Image> inventorySlot1x1 = new List<Image>();
     [SerializeField] public List<Image> inventorySlot1x2 = new List<Image>();
@@ -79,4 +83,6 @@ public class UiControler : MonoBehaviour
             inventoryIsOpen = !inventoryIsOpen;
         }
     }*/
+
+    
 }
