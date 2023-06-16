@@ -32,17 +32,22 @@ public class ZombieController : MonoBehaviour
                     {
                         ZombieAttackScript.DoCloseAttack(ZombieLocateScript.Target);
                     }
-                    else if(IsLive)
+                    else if (IsLive)
                     {
                         ZombiePatrolScript.MoveTo(ZombieLocateScript.Target);
                     }
                 }
-                else if(IsLive)
+                else if (IsLive)
                 {
                     ZombiePatrolScript.Patroling();
                 }
             }
         }
+        else
         
+        {
+
+            ZombiePatrolScript.ZombieNavMesh.isStopped = true;
+        }
     }
 }
