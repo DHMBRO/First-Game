@@ -30,6 +30,7 @@ public class AttackMethod : MonoBehaviour
         
     public void DoCloseAttack(GameObject Target)
     {
+        Debug.Log("Target Name   " + Target.name);
         if (Time.time >= AttackTime)
         {
             Target.GetComponent<HpScript>()?.InflictingDamage(ZombieDamage);

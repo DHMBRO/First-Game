@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 7573944836760920160}
   m_Layer: 0
   m_Name: BodyPlayer
-  m_TagString: Untagged
+  m_TagString: Player01
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -392,7 +392,7 @@ GameObject:
   - component: {fileID: 789608017188685461}
   m_Layer: 0
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: Player01
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -915,6 +915,7 @@ MonoBehaviour:
   weapon02: {fileID: 0}
   pistol: {fileID: 0}
   knife: {fileID: 0}
+  ControlerUI: {fileID: 0}
 --- !u!114 &7874716152253843916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -992,11 +993,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PointForDrop: {fileID: 5028615846564861412}
   ObjectToDrop: {fileID: 0}
-  weapon01: {fileID: 0}
-  weapon02: {fileID: 0}
-  pistol: {fileID: 0}
-  knife: {fileID: 0}
-  none: {fileID: 0}
   ControlerForSlots: {fileID: 0}
 --- !u!114 &655437941069588223
 MonoBehaviour:
@@ -1089,6 +1085,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 308dbe82aff9325459e2458344bb10d6, type: 3}
   - {fileID: 21300000, guid: f0f9ba90973eb2a448b68efebb464d4d, type: 3}
   - {fileID: 21300000, guid: 1862f57e77abedb43ae92593ca1a616c, type: 3}
+  ListForSlotWeapon: []
+  ListForSlotsShops: []
   Inventory: {fileID: 0}
   InventoryIsOpen: 0
 --- !u!1 &9125961473927298832

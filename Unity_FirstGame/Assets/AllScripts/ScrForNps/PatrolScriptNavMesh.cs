@@ -56,7 +56,7 @@ public class PatrolScriptNavMesh : MonoBehaviour
 
     void StateMoving()
     {
-        if (ZombieNavMesh.remainingDistance < 1.0f&& ZombieLocateScript.Target == CompareTag("Player01"))
+        if (ZombieNavMesh.remainingDistance < 1.0f && ZombieLocateScript.Target == CompareTag("Player01"))
         {
             CurrentPoint = MyPointControllScript.SearchNextPosition(CurrentPoint);
             MyState = State.Idle;

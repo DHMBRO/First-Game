@@ -16,31 +16,45 @@ public class ZombieController : MonoBehaviour
         ZombiePatrolScript = gameObject.GetComponent<PatrolScriptNavMesh>();
     }
 
-    
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(ZombiePatrolScript.ZombieNavMesh.destination + Vector3.up * 2, 0.5f);
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(ZombieLocateScript.Target.transform.position + Vector3.up * 2, 0.5f);
+    }
     void Update()
     {
+        
         if (IsLive)
         {
             if (IsLive && ZombieLocateScript && ZombieAttackScript && ZombiePatrolScript)
             {
 
-                if (ZombieLocateScript.CanISeeTarget() && IsLive)
+                //перевірка чи я не відійшов від дестенейшена!
+                if (ZombieLocateScript.CanISeeTarget() && IsLive) 
                 {
-
+                    Debug.Log("I SEE Target");
                     if (IsLive && ZombiePatrolScript.ZombieNavMesh.remainingDistance <= ZombieAttackScript.AttackDistance &&
-                        (ZombieLocateScript.Target.transform.position - ZombiePatrolScript.ZombieNavMesh.destination).magnitude <= ZombieAttackScript.GoingDistance)
+                            (ZombieLocateScript.Target.transform.position - ZombiePatrolScript.ZombieNavMesh.destination).magnitude <= ZombieAttackScript.GoingDistance)
                     {
+                        Debug.Log("WORK");
+
                         ZombieAttackScript.DoCloseAttack(ZombieLocateScript.Target);
                     }
-                    else if (IsLive)
+                    else
                     {
+                        
                         ZombiePatrolScript.MoveTo(ZombieLocateScript.Target);
                     }
                 }
+
                 else if (IsLive)
                 {
+                    
                     ZombiePatrolScript.Patroling();
                 }
+
             }
         }
         else
