@@ -22,13 +22,13 @@ public class HpScript : MonoBehaviour
     
     private void Update()
     {
-        Debug.Log("Heal Point: " + HealthPoint);
+        //Debug.Log("Heal Point: " + HealthPoint);
         if (HealthPoint <= 0.0f)
         {
             ControlerForZombie = gameObject.GetComponent<ZombieController>();
             if(ControlerForZombie) ControlerForZombie.IsLive = false;
 
-            Debug.Log("Your or your target is dead !");
+            //Debug.Log("Your or your target is dead !");
         }
     }
 

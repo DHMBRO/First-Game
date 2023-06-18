@@ -329,14 +329,17 @@ public class PickUp : MethodsFromDevelopers
 
     public void PickUpWeapons(GameObject ObjectForPickUp)
     {
-        Image ImageToObject = ObjectForPickUp.gameObject.GetComponent<Image>();
+        
         if (!SlotControler.MyPistol01 && MainCounter == 1 && Counter == 0)
         {
             SlotControler.MyPistol01 = ObjectToBeLifted.transform;
-            ControlerUI.UpdateLoot(0, 0, ObjectForPickUp.gameObject.tag);
+
+            //ControlerUI.UpdateLoot(0, 0, ObjectForPickUp.gameObject.tag);
+            
+
             PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01);            
             Counter++;
-            Debug.Log("2");
+            
         }
         else if (!SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 && MainCounter == 2 && Counter == 0)
         {
@@ -344,7 +347,7 @@ public class PickUp : MethodsFromDevelopers
             
             SlotControler.MyWeapon01 = ObjectForPickUp.transform;
             
-            ControlerUI.UpdateLoot(1, 0, ObjectForPickUp.gameObject.tag);
+            //ControlerUI.UpdateLoot(1, 0, ObjectForPickUp.gameObject.tag);
 
             PutObjects(SlotControler.MyWeapon01, SlotControler.SlotBack01);            
             Counter++;
@@ -354,7 +357,7 @@ public class PickUp : MethodsFromDevelopers
         {
             
             SlotControler.MyWeapon02 = ObjectForPickUp.transform;
-            ControlerUI.UpdateLoot(2, 0, ObjectForPickUp.gameObject.tag);
+            //ControlerUI.UpdateLoot(2, 0, ObjectForPickUp.gameObject.tag);
 
             PutObjects(SlotControler.MyWeapon02, SlotControler.SlotBack02);           
             Counter++;
@@ -379,7 +382,7 @@ public class PickUp : MethodsFromDevelopers
                 ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
 
                 SlotControler.MyShope01 = ShopForPickUp.transform;
-                ControlerUI.UpdateLoot(0,1, ShopForPickUp.gameObject.tag);
+                //ControlerUI.UpdateLoot(0,1, ShopForPickUp.gameObject.tag);
 
                 PutObjects(SlotControler.MyShope01, SlotControler.SlotShpo01);
                 Counter++;
@@ -390,7 +393,7 @@ public class PickUp : MethodsFromDevelopers
                 ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
 
                 SlotControler.MyShope02 = ShopForPickUp.transform;
-                ControlerUI.UpdateLoot(1, 1, ShopForPickUp.gameObject.tag);
+                //ControlerUI.UpdateLoot(1, 1, ShopForPickUp.gameObject.tag);
 
                 PutObjects(SlotControler.MyShope02, SlotControler.SlotShpo02);
                 Counter++;
@@ -401,7 +404,7 @@ public class PickUp : MethodsFromDevelopers
                 ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
                 
                 SlotControler.MyShope03 = ShopForPickUp.transform;
-                ControlerUI.UpdateLoot(2, 1, ShopForPickUp.gameObject.tag);
+                //ControlerUI.UpdateLoot(2, 1, ShopForPickUp.gameObject.tag);
 
                 PutObjects(SlotControler.MyShope03, SlotControler.SlotShpo03);
                 Counter++;

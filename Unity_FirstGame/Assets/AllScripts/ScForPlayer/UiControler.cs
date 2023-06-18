@@ -10,8 +10,8 @@ public class UiControler : MonoBehaviour
     [SerializeField] private List<string> ListForNameLoot = new List<string>();
     [SerializeField] private List<Sprite> ListForSpriteLoot = new List<Sprite>();
     
-    [SerializeField] private List<Image> ListForSlotWeapon = new List<Image>();
-    [SerializeField] private List<Image> ListForSlotsShops = new List<Image>();
+    [SerializeField] public List<Image> ListForSlotsWeapon = new List<Image>();
+    [SerializeField] public List<Image> ListForSlotsShops = new List<Image>();
 
     [SerializeField] private Dictionary<string, Sprite> DictionaryForSprite = new Dictionary<string, Sprite>(); 
     
@@ -23,8 +23,8 @@ public class UiControler : MonoBehaviour
     void Start()
     {
         InventoryIsOpen = false;
-        Inventory.SetActive(false);
-        Scope.enabled = true;
+        if(Inventory) Inventory.SetActive(false);
+        //Scope.enabled = true;
 
         for (int i = 0;i < ListForNameLoot.Count;i++)
         {
@@ -56,7 +56,7 @@ public class UiControler : MonoBehaviour
     {
         if (mode == 0)
         {
-            ListForSlotWeapon[slot].GetComponent<IImage>().GetImage(DictionaryForSprite[loot]);
+            ListForSlotsWeapon[slot].GetComponent<IImage>().GetImage(DictionaryForSprite[loot]);
         }
         else if (mode == 1)
         {

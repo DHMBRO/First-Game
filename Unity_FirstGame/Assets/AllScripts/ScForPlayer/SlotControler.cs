@@ -46,29 +46,23 @@ public class SlotControler : MethodsFromDevelopers
     //All counetrs for work Script        
     protected int Counter;
     protected int CounetrForCharge;
-    [SerializeField] private int SlotCounter;    
+    [SerializeField] protected int ShopCounter;    
     //
     //References for other Component
     [SerializeField] private PickUp PickUp;
     [SerializeField] private Inventory Inventory;
     //
-    [SerializeField] Sprite Sakr47;
-    [SerializeField] Sprite Sm4;
-    [SerializeField] Sprite Sglock;
-    [SerializeField] Sprite Sknife;
-    [SerializeField] GameObject weapon01;
-    [SerializeField] GameObject weapon02;
-    [SerializeField] GameObject pistol;
-    [SerializeField] GameObject knife;
+    
     //
     [SerializeField] List<Transform> Slots = new List<Transform>();
     //
     [SerializeField] private List<string> ListForAllWeapon = new List<string>();
-    
     [SerializeField] private List<string> ListForAllShop = new List<string>();
-    [SerializeField] private Dictionary<string, string> DictionaryForAllShop = new Dictionary<string, string>(); 
-
-    [SerializeField] private List<ShopControler> ListForAllContrShop = new List<ShopControler>();
+    [SerializeField] private Dictionary<string, string> DictionaryForAllShop = new Dictionary<string, string>();
+    //
+    [SerializeField] private ShopControler ShopControlerToMyShop01;
+    [SerializeField] private ShopControler ShopControlerToMyShop02;
+    [SerializeField] private ShopControler ShopControlerToMyShop03;
     //
     [SerializeField] public GameObject ObjectInHand = null;
 
@@ -86,12 +80,11 @@ public class SlotControler : MethodsFromDevelopers
         AllSlots.Add("SlotPistol01", SlotPistol01);
         AllSlots.Add("SlotKnife01", SlotKnife01);
         //
-        //
-        //
+       
         for (int i = 0;i < 5;i++)
         {
             DictionaryForAllShop.Add(ListForAllWeapon[i], ListForAllShop[i]);
-            Debug.Log("ListForAllWeapon[i]: " + ListForAllWeapon[i] + " Dictionary: " + DictionaryForAllShop[ListForAllWeapon[i]]);
+            //Debug.Log("ListForAllWeapon[i]: " + ListForAllWeapon[i] + " Dictionary: " + DictionaryForAllShop[ListForAllWeapon[i]]);
         }
 
     }
@@ -107,102 +100,152 @@ public class SlotControler : MethodsFromDevelopers
         AppropriationReferenceForUseShop();
         
         ChangingSlots();
+        
 
+        
 
-        if (ObjectInHand && Input.GetKeyDown(KeyCode.R))
+        ShootControler ControlerForShoot;
+
+        
+        if (ObjectInHand && ObjectInHand.tag != "Knife" && Input.GetKeyDown(KeyCode.R))
         {
-
-            if (MyShope01) ListForAllContrShop.Add(MyShope01.GetComponent<ShopControler>());
-            if (MyShope02) ListForAllContrShop.Add(MyShope02.GetComponent<ShopControler>());
-            if (MyShope03) ListForAllContrShop.Add(MyShope03.GetComponent<ShopControler>());
-            
-            ShootControler ControlerForShoot;
-            
             ControlerForShoot = ObjectInHand.gameObject.GetComponent<ShootControler>();
 
-            if (ControlerForShoot)
+            for (int i = 0;i < ListForAllWeapon.Count; i++)
             {
-                for (int i = 0; i < ListForAllWeapon.Count; i++)
+                if (ObjectInHand.tag == ListForAllWeapon[i])
                 {
-                    for (int j = 0; j < ListForAllShop.Count; j++)
-                    {
-                        if (ObjectInHand.gameObject.tag == ListForAllWeapon[i])
-                        {
-                            
-                            if (MyShope01 && !ListForAllContrShop[0].IsUsing && MyShope01.gameObject.tag == DictionaryForAllShop[ListForAllWeapon[i]])
-                            {
-                                if (ControlerForShoot.WeaponShoop)
-                                {
-                                    if (MyShope02 && ControlerForShoot.WeaponShoop.tag == MyShope02.tag)
-                                    {
-                                        DisChargingShops(MyShope02, SlotShpo02);
-                                        Charge(MyShope01, ControlerForShoot.SlotForUseShop, ControlerForShoot);
-                                    }
-                                    else if (MyShope03 && ControlerForShoot.WeaponShoop.tag == MyShope03.tag)
-                                    {
-                                        DisChargingShops(MyShope03, SlotShpo03);
-                                        Charge(MyShope01, ControlerForShoot.SlotForUseShop, ControlerForShoot);
-                                    }
-                                }
-                                else
-                                {
-                                    Charge(MyShope01, ControlerForShoot.SlotForUseShop, ControlerForShoot);
-                                }
-                            }
-                            else if (MyShope02 && !ListForAllContrShop[1].IsUsing && MyShope02.gameObject.tag == DictionaryForAllShop[ListForAllWeapon[i]])
-                            {
-                                
-                                if (ControlerForShoot.WeaponShoop)
-                                {
-                                    if (MyShope01 && ControlerForShoot.WeaponShoop.tag == MyShope01.tag)
-                                    {
-                                        DisChargingShops(MyShope01, SlotShpo01);
-                                        Charge(MyShope02, ControlerForShoot.SlotForUseShop, ControlerForShoot);
-                                    }
-                                    if (MyShope03 && ControlerForShoot.WeaponShoop.tag == MyShope03.tag)
-                                    {
-                                        DisChargingShops(MyShope03, SlotShpo03);
-                                        Charge(MyShope02, ControlerForShoot.SlotForUseShop, ControlerForShoot);
-                                    }
-                                }
-                                else
-                                {
-                                    Charge(MyShope02, ControlerForShoot.SlotForUseShop, ControlerForShoot);
-                                }
-                                
-                            }
-                            else if (MyShope03 && !ListForAllContrShop[2].IsUsing && MyShope03.gameObject.tag == DictionaryForAllShop[ListForAllWeapon[i]])
-                            {
-                                if (ControlerForShoot.WeaponShoop)
-                                {
-                                    if (MyShope01 && ControlerForShoot.WeaponShoop.tag == MyShope01.tag)
-                                    {
-                                        DisChargingShops(MyShope01, SlotShpo01);
-                                        Charge(MyShope03, ControlerForShoot.SlotForUseShop, ControlerForShoot);
-                                    }
-                                    else if (MyShope02 && ControlerForShoot.WeaponShoop.tag == MyShope02.tag)
-                                    {
-                                        DisChargingShops(MyShope02, SlotShpo02);
-                                        Charge(MyShope03, ControlerForShoot.SlotForUseShop, ControlerForShoot);
-                                    }
-                                }
-                                else
-                                {
-                                    Charge(MyShope03, ControlerForShoot.SlotForUseShop, ControlerForShoot);
-                                }
 
-                            }
-                            
-                            
-                            
-                            
+                    if (MyShope01 && DictionaryForAllShop[ListForAllWeapon[i]] == MyShope01.tag) ShopControlerToMyShop01 = MyShope01.gameObject.GetComponent<ShopControler>();
+                    if (MyShope02 && DictionaryForAllShop[ListForAllWeapon[i]] == MyShope02.tag) ShopControlerToMyShop02 = MyShope02.gameObject.GetComponent<ShopControler>();
+                    if (MyShope03 && DictionaryForAllShop[ListForAllWeapon[i]] == MyShope03.tag) ShopControlerToMyShop03 = MyShope03.gameObject.GetComponent<ShopControler>();
+
+                    if (MyShope01 && DictionaryForAllShop[ListForAllWeapon[i]] != MyShope01.tag) ShopControlerToMyShop01 = null;
+                    if (MyShope02 && DictionaryForAllShop[ListForAllWeapon[i]] != MyShope02.tag) ShopControlerToMyShop02 = null;
+                    if (MyShope03 && DictionaryForAllShop[ListForAllWeapon[i]] != MyShope03.tag) ShopControlerToMyShop03 = null;
+
+
+                    //
+                    if (ShopControlerToMyShop01 && !ShopControlerToMyShop02 && !ShopControlerToMyShop03)
+                    {
+                        if (CounetrForCharge == 0) LoadShop01();
+                    }//+
+                    else if (!ShopControlerToMyShop01 && ShopControlerToMyShop02 && !ShopControlerToMyShop03)
+                    {                        
+                        if (CounetrForCharge == 0) LoadShop02();
+                    }//+
+                    else if (!ShopControlerToMyShop01 && !ShopControlerToMyShop02 && ShopControlerToMyShop03)
+                    {
+                        if (CounetrForCharge == 0) LoadShop03();
+                    }//+
+
+                    //
+                    else if (ShopControlerToMyShop01 && ShopControlerToMyShop02 && !ShopControlerToMyShop03)
+                    {
+                        
+                        if (CounetrForCharge == 0 && !ShopControlerToMyShop01.IsUsing) LoadShop01();
+                        else if (ShopCounter == 1 && CounetrForCharge == 0) LoadShop02();
+                        else if (ShopCounter == 2 && CounetrForCharge == 0) LoadShop01();
+                    }//+ 
+                    else if (!ShopControlerToMyShop01 && ShopControlerToMyShop02 && ShopControlerToMyShop03)
+                    {
+                        if (CounetrForCharge == 0 && !ShopControlerToMyShop02.IsUsing) LoadShop02();
+                        else if (ShopCounter == 2 && CounetrForCharge == 0) LoadShop03();
+                        else if (ShopCounter == 3 && CounetrForCharge == 0) LoadShop02();
+                    }///+
+                    else if (ShopControlerToMyShop01 && !ShopControlerToMyShop02 && ShopControlerToMyShop03)
+                    {
+                        if (CounetrForCharge == 0 && !ShopControlerToMyShop01.IsUsing) LoadShop01();
+                        else if (ShopCounter == 1 && CounetrForCharge == 0) LoadShop03();
+                        else if (ShopCounter == 3 && CounetrForCharge == 0) LoadShop01();
+                        Debug.Log("1");
+                    }///+
+                    //
+                    else if (ShopControlerToMyShop01 && ShopControlerToMyShop02 && ShopControlerToMyShop03)
+                    {
+                        if (ShopCounter == 0 && CounetrForCharge == 0) LoadShop01();
+                        else if (ShopCounter == 1 && CounetrForCharge == 0) LoadShop02();
+                        else if (ShopCounter == 2 && CounetrForCharge == 0) LoadShop03();
+                        else if (ShopCounter == 3 && CounetrForCharge == 0) LoadShop01();
+
+                    }//+
+
+                    void LoadShop01()
+                    {
+
+                        if (!ShopControlerToMyShop01.IsUsing && !ControlerForShoot.WeaponShoop)
+                        {
+                            Charge(MyShope01, ControlerForShoot.SlotForUseShop, ControlerForShoot);
+                            ShopCounter = 1;
+                        }
+                        else if (ShopControlerToMyShop02 && ShopControlerToMyShop02.IsUsing && ControlerForShoot.WeaponShoop && ControlerForShoot.WeaponShoop.transform.localPosition == MyShope02.localPosition)
+                        {
+                            DisChargingShops(MyShope02, SlotShpo02);
+                            Charge(MyShope01, ControlerForShoot.SlotForUseShop, ControlerForShoot);
+                            ShopCounter = 1;
+                        }
+                        else if (ShopControlerToMyShop03 && ShopControlerToMyShop03.IsUsing && ControlerForShoot.WeaponShoop && ControlerForShoot.WeaponShoop.transform.localPosition == MyShope03.localPosition)
+                        {
+                            DisChargingShops(MyShope03, SlotShpo03);
+                            Charge(MyShope01, ControlerForShoot.SlotForUseShop, ControlerForShoot);
+                            ShopCounter = 1;
                         }
                     }
+
+                    void LoadShop02()
+                    {
+                        if (!ShopControlerToMyShop02.IsUsing && !ControlerForShoot.WeaponShoop)
+                        {
+                            Charge(MyShope02, ControlerForShoot.SlotForUseShop, ControlerForShoot);
+                            ShopCounter = 2;
+                        }
+                        else if (ShopControlerToMyShop01 && ShopControlerToMyShop01.IsUsing && ControlerForShoot.WeaponShoop && ControlerForShoot.WeaponShoop.transform.localPosition == MyShope01.localPosition)
+                        {
+                            DisChargingShops(MyShope01, SlotShpo01);
+                            Charge(MyShope02, ControlerForShoot.SlotForUseShop, ControlerForShoot);
+                            ShopCounter = 2;
+                        }
+                        else if (ShopControlerToMyShop03 && ShopControlerToMyShop03.IsUsing && ControlerForShoot.WeaponShoop && ControlerForShoot.WeaponShoop.transform.localPosition == MyShope03.localPosition)
+                        {
+                            DisChargingShops(MyShope03, SlotShpo03);
+                            Charge(MyShope02, ControlerForShoot.SlotForUseShop, ControlerForShoot);
+                            ShopCounter = 2;
+                        }
+                    }
+
+                    void LoadShop03()
+                    {
+                        if (!ShopControlerToMyShop03.IsUsing && !ControlerForShoot.WeaponShoop)
+                        {
+                            Charge(MyShope03, ControlerForShoot.SlotForUseShop, ControlerForShoot);
+                            ShopCounter = 3;
+                        }
+                        else if (ShopControlerToMyShop02 && ShopControlerToMyShop02.IsUsing && ControlerForShoot.WeaponShoop && ControlerForShoot.WeaponShoop.transform.localPosition == MyShope02.localPosition)
+                        {
+                            DisChargingShops(MyShope02, SlotShpo02);
+                            Charge(MyShope03, ControlerForShoot.SlotForUseShop, ControlerForShoot);
+                            ShopCounter = 3;
+                        }
+                        else if (ShopControlerToMyShop01 && ShopControlerToMyShop01.IsUsing && ControlerForShoot.WeaponShoop && ControlerForShoot.WeaponShoop.transform.localPosition == MyShope01.localPosition)
+                        {
+                            DisChargingShops(MyShope01, SlotShpo01);
+                            Charge(MyShope03, ControlerForShoot.SlotForUseShop, ControlerForShoot);
+                            ShopCounter = 3;
+                        }
+                    }
+
+                    /*
+                    Debug.Log("1");
+                    Debug.Log(MyShope01 && DictionaryForAllShop[ListForAllWeapon[i]] == MyShope01.tag);
+
+                    Debug.Log("2");
+                    Debug.Log(MyShope02 && DictionaryForAllShop[ListForAllWeapon[i]] == MyShope02.tag);
+
+                    Debug.Log("3");
+                    Debug.Log(MyShope03 && DictionaryForAllShop[ListForAllWeapon[i]] == MyShope03.tag);
+                    */
                 }
             }
-            
-            
-
         }
                 
         if (!MyWeapon01 && MyWeapon02)
