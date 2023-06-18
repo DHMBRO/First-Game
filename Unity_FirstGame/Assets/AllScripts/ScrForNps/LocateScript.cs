@@ -30,7 +30,7 @@ public class LocateScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player01"))
         {
-            Debug.Log("New Target     "+other.gameObject.name);
+            
             Target = other.gameObject;
             TargetStelsScript = Target.GetComponent<StelsScript>();
         }
@@ -70,23 +70,21 @@ public class LocateScript : MonoBehaviour
         Ray HeadForward = new Ray(Head.transform.position, Head.forward * MaxDistatzeForAgr);
 
         Head.transform.rotation = Quaternion.LookRotation(RotateHead);
-
+      
         if (Physics.Raycast(HeadForward, out HitResult))
         {
             Debug.DrawLine(Head.transform.position, Head.forward * MaxDistatzeForAgr + Head.position, Color.red);
 
-
-            Debug.Log("I SEE     " +  HitResult.collider.gameObject.name);
-            if (HitResult.collider.gameObject == Target || HitResult.collider.gameObject.transform.root == Target)
+            WhatImLooking = HitResult.collider.gameObject.tag;
+            
+            if (WhatImLooking == "Player01")
             {
-                Debug.Log("TRUE");
                 return true;
             }
-
         }
         return false;
     }
-   
+    
 
 }
 
