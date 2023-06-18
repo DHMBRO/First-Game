@@ -9,7 +9,6 @@ public class CamFirstFace : MonoBehaviour
     [SerializeField] SlotControler SlotControlerScript;
 
     [SerializeField] private float Sens = 1.5f;
-    [SerializeField] public bool InventoryIsOpen = false; 
 
     private void Start()
     {
@@ -18,13 +17,21 @@ public class CamFirstFace : MonoBehaviour
 
     void Update()
     {
-        if (!InventoryIsOpen)
+        if (true)
         {
             float MouseX = Input.GetAxis("Mouse X");
             float MouseY = Input.GetAxis("Mouse Y");
 
             gameObject.transform.Rotate(-MouseY * new Vector3(Sens, 0.0f, 0.0f));
-            if (Player) Player.Rotate(MouseX * new Vector3(0.0f, Sens, 0.0f));
+            
+                        
+
+            if (Player)
+            {
+                Player.Rotate(MouseX * new Vector3(0.0f, Sens, 0.0f));
+            }
+           
+
         }
     }
     
