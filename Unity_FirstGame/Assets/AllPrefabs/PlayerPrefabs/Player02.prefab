@@ -219,7 +219,6 @@ MonoBehaviour:
   uiControler: {fileID: 0}
   SlotControlerScript: {fileID: 0}
   Sens: 1.5
-  InventoryIsOpen: 0
 --- !u!1 &3364406016775957423
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,7 +915,6 @@ MonoBehaviour:
   weapon02: {fileID: 0}
   pistol: {fileID: 0}
   knife: {fileID: 0}
-  ControlerUI: {fileID: 0}
 --- !u!114 &7874716152253843916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -954,9 +952,17 @@ MonoBehaviour:
   PointForShopPistol01: {fileID: 0}
   PointForShopWeapon01: {fileID: 0}
   PointForShopWeapon02: {fileID: 0}
-  ShopCounter: 0
+  SlotCounter: 0
   PickUp: {fileID: 7778607237951541594}
   Inventory: {fileID: 0}
+  Sakr47: {fileID: 0}
+  Sm4: {fileID: 0}
+  Sglock: {fileID: 0}
+  Sknife: {fileID: 0}
+  weapon01: {fileID: 0}
+  weapon02: {fileID: 0}
+  pistol: {fileID: 0}
+  knife: {fileID: 0}
   Slots: []
   ListForAllWeapon:
   - M4
@@ -970,9 +976,7 @@ MonoBehaviour:
   - ShopM249
   - ShopGlok
   - ShopM1911
-  ShopControlerToMyShop01: {fileID: 0}
-  ShopControlerToMyShop02: {fileID: 0}
-  ShopControlerToMyShop03: {fileID: 0}
+  ListForAllContrShop: []
   ObjectInHand: {fileID: 0}
 --- !u!114 &2663352457323175868
 MonoBehaviour:
@@ -988,6 +992,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PointForDrop: {fileID: 5028615846564861412}
   ObjectToDrop: {fileID: 0}
+  weapon01: {fileID: 0}
+  weapon02: {fileID: 0}
+  pistol: {fileID: 0}
+  knife: {fileID: 0}
+  none: {fileID: 0}
   ControlerForSlots: {fileID: 0}
 --- !u!114 &655437941069588223
 MonoBehaviour:
@@ -1069,10 +1078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec419c55fa32f034badda87b255f3193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CameraPlayer: {fileID: 7046473276122976908}
   Scope: {fileID: 0}
-  Inventory: {fileID: 0}
-  InventoryIsOpen: 0
   ListForNameLoot:
   - Glok
   - M4
@@ -1083,8 +1089,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 308dbe82aff9325459e2458344bb10d6, type: 3}
   - {fileID: 21300000, guid: f0f9ba90973eb2a448b68efebb464d4d, type: 3}
   - {fileID: 21300000, guid: 1862f57e77abedb43ae92593ca1a616c, type: 3}
-  ListForSlotsWeapon: []
-  ListForSlotsShops: []
+  Inventory: {fileID: 0}
+  InventoryIsOpen: 0
 --- !u!1 &9125961473927298832
 GameObject:
   m_ObjectHideFlags: 0
