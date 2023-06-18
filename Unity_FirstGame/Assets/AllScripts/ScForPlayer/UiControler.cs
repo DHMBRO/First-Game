@@ -4,68 +4,53 @@ using UnityEngine.UI;
 
 public class UiControler : MonoBehaviour
 {
+    [SerializeField] private CamFirstFace CameraPlayer; 
+
     [SerializeField] Image Scope;
-
-    
-    [SerializeField] private List<string> ListForNameLoot = new List<string>();
-    [SerializeField] private List<Sprite> ListForSpriteLoot = new List<Sprite>();
-    
-    [SerializeField] public List<Image> ListForSlotsWeapon = new List<Image>();
-    [SerializeField] public List<Image> ListForSlotsShops = new List<Image>();
-
-    [SerializeField] private Dictionary<string, Sprite> DictionaryForSprite = new Dictionary<string, Sprite>(); 
-    
-
     [SerializeField] GameObject Inventory;
-
     [SerializeField] bool InventoryIsOpen = false;
+
+    [SerializeField] public Image SlotWeapon01;
+    [SerializeField] public Image SlotWeapon02;
+    [SerializeField] public Image SlotPistol01;
+
+    [SerializeField] public Image SlotShop01;
+    [SerializeField] public Image SlotShop02;
+    [SerializeField] public Image SlotShop03;
+
+    [SerializeField] public Image Loot01;
+
+
     
     void Start()
     {
         InventoryIsOpen = false;
         if(Inventory) Inventory.SetActive(false);
-        //Scope.enabled = true;
+        
 
-        for (int i = 0;i < ListForNameLoot.Count;i++)
-        {
-            DictionaryForSprite.Add(ListForNameLoot[i], ListForSpriteLoot[i]);
-        }
+        
         
     }
 
     void Update()
     {
-        
-
-        if (Input.GetKeyDown(KeyCode.I))
+        if (CameraPlayer && Input.GetKeyDown(KeyCode.I))
         {
+            CameraPlayer.InventoryIsOpen = !CameraPlayer.InventoryIsOpen;
             InventoryIsOpen = !InventoryIsOpen;
             Scope.enabled = !InventoryIsOpen;
             Inventory.SetActive(InventoryIsOpen);
-            if (InventoryIsOpen)
-            {
-                Cursor.lockState = CursorLockMode.Confined;
-            }
-            else
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-            }
-        }
-    }
-    public void UpdateLoot(int slot,int mode ,string loot)
-    {
-        if (mode == 0)
-        {
-            ListForSlotsWeapon[slot].GetComponent<IImage>().GetImage(DictionaryForSprite[loot]);
-        }
-        else if (mode == 1)
-        {
-            ListForSlotsShops[slot].GetComponent<IImage>().GetImage(DictionaryForSprite[loot]);
-        }
-        else if (mode == 2)
-        {
+            
+            if (InventoryIsOpen) Cursor.lockState = CursorLockMode.Confined;
+            else Cursor.lockState = CursorLockMode.Locked;
 
         }
+
+    }
+    
+    public void UpdateLoot(int slot, string loot)
+    {
+        
     }
 
     /*[SerializeField] Image scopeUi;
