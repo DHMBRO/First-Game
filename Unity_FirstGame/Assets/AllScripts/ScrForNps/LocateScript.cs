@@ -76,10 +76,10 @@ public class LocateScript : MonoBehaviour
             Debug.DrawLine(Head.transform.position, Head.forward * MaxDistatzeForAgr + Head.position, Color.red);
 
 
-            Debug.Log("I SEE     " + HitResult.collider.gameObject.name);
+           
             if (HitResult.collider.gameObject == Target || HitResult.collider.gameObject.transform.root == Target)
             {
-                Debug.Log("TRUE");
+                Debug.Log("Work100");
                 return true;
             }
 

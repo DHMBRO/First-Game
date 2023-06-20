@@ -27,7 +27,7 @@ public class PatrolScriptNavMesh : MonoBehaviour
 
     void Update()
     {
-
+        Debug.Log(ZombieNavMesh.isStopped);
     }
 
     public void Patroling()
