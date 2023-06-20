@@ -14,26 +14,14 @@ public class ReferenseForAllLoot : MonoBehaviour
     {
         for (int i = 0; i < ReferencePrefabs.Count; i++)
         {
-            if (ReferencePrefabs[i].gameObject/*.tag == "Ammo9MM"*/)
+            if (ReferencePrefabs[i].gameObject)
             {
                 ValueLoots.Add(i,ReferencePrefabs[i]);
+                Debug.Log(ValueLoots[i]);
             }
-            /*
-            else if (ReferencePrefabs[i].gameObject.tag == "Ammo45_APC")
-            {
-                ValueLoots.Add(1, ReferencePrefabs[i]);
-            }
-            else if (ReferencePrefabs[i].gameObject.tag == "Ammo5_56MM")
-            {
-                ValueLoots.Add(2, ReferencePrefabs[i]);
-            }
-            else if (ReferencePrefabs[i].gameObject.tag == "Ammo7_62MM")
-            {
-                ValueLoots.Add(3, ReferencePrefabs[i]);
-            } 
-            */
         }
         
+
     }
 
     void Update()

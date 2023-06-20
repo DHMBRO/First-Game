@@ -6,13 +6,13 @@ using UnityEngine.AI;
 public class PatrolScriptNavMesh : MonoBehaviour
 {
     [SerializeField] public PointControllScript MyPointControllScript;
-    protected int CurrentPoint ;
+    protected int CurrentPoint;
     public int StartPosIndex = 0;
-    LocateScript ZombieLocateScript; 
+    LocateScript ZombieLocateScript;
     public NavMeshAgent ZombieNavMesh;
 
     enum State
-    {       
+    {
         Moving,
         Idle
     }
@@ -25,9 +25,9 @@ public class PatrolScriptNavMesh : MonoBehaviour
     }
 
 
-    void Update()                       
+    void Update()
     {
-        
+
     }
 
     public void Patroling()
@@ -56,7 +56,7 @@ public class PatrolScriptNavMesh : MonoBehaviour
 
     void StateMoving()
     {
-        if (ZombieNavMesh.remainingDistance < 1.0f&& ZombieLocateScript.Target == CompareTag("Player01"))
+        if (ZombieNavMesh.remainingDistance < 1.0f && ZombieLocateScript.Target == CompareTag("Player01"))
         {
             CurrentPoint = MyPointControllScript.SearchNextPosition(CurrentPoint);
             MyState = State.Idle;
@@ -69,5 +69,5 @@ public class PatrolScriptNavMesh : MonoBehaviour
             }
         }
     }
-    
+
 }

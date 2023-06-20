@@ -19,8 +19,6 @@ public class UiControler : MonoBehaviour
     [SerializeField] public Image SlotShop03;
 
     [SerializeField] public Image Loot01;
-
-
     
     void Start()
     {
@@ -48,11 +46,7 @@ public class UiControler : MonoBehaviour
 
     }
     
-    public void UpdateLoot(int slot, string loot)
-    {
-        
-    }
-
+    
     /*[SerializeField] Image scopeUi;
     [SerializeField] public List<Image> inventorySlot1x1 = new List<Image>();
     [SerializeField] public List<Image> inventorySlot1x2 = new List<Image>();

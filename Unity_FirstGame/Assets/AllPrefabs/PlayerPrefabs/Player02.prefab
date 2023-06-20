@@ -870,7 +870,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.08850281, z: 1}
+  m_Size: {x: 0.2, y: 0.08850281, z: 0.2}
   m_Center: {x: 0, y: 0.016438521, z: 0}
 --- !u!114 &9222820105927190343
 MonoBehaviour:
@@ -908,14 +908,8 @@ MonoBehaviour:
   ReferenceForCamera: {fileID: 7046473276122976908}
   PlayerInventory: {fileID: 655437941069588223}
   ReferencesForLoots: {fileID: 1759847437404537064}
-  Sakr47: {fileID: 21300000, guid: f0f9ba90973eb2a448b68efebb464d4d, type: 3}
-  Sm4: {fileID: 21300000, guid: 308dbe82aff9325459e2458344bb10d6, type: 3}
-  Sglock: {fileID: 21300000, guid: 5bf1bf23c3394f64d9f63958632c2dbd, type: 3}
-  Sknife: {fileID: 21300000, guid: 1862f57e77abedb43ae92593ca1a616c, type: 3}
-  weapon01: {fileID: 0}
-  weapon02: {fileID: 0}
-  pistol: {fileID: 0}
-  knife: {fileID: 0}
+  NameForEquipment: []
+  Equipment: []
   ControlerUI: {fileID: 0}
 --- !u!114 &7874716152253843916
 MonoBehaviour:
@@ -1073,18 +1067,13 @@ MonoBehaviour:
   Scope: {fileID: 0}
   Inventory: {fileID: 0}
   InventoryIsOpen: 0
-  ListForNameLoot:
-  - Glok
-  - M4
-  - AK47
-  - Knife
-  ListForSpriteLoot:
-  - {fileID: 21300000, guid: 5bf1bf23c3394f64d9f63958632c2dbd, type: 3}
-  - {fileID: 21300000, guid: 308dbe82aff9325459e2458344bb10d6, type: 3}
-  - {fileID: 21300000, guid: f0f9ba90973eb2a448b68efebb464d4d, type: 3}
-  - {fileID: 21300000, guid: 1862f57e77abedb43ae92593ca1a616c, type: 3}
-  ListForSlotsWeapon: []
-  ListForSlotsShops: []
+  SlotWeapon01: {fileID: 0}
+  SlotWeapon02: {fileID: 0}
+  SlotPistol01: {fileID: 0}
+  SlotShop01: {fileID: 0}
+  SlotShop02: {fileID: 0}
+  SlotShop03: {fileID: 0}
+  Loot01: {fileID: 0}
 --- !u!1 &9125961473927298832
 GameObject:
   m_ObjectHideFlags: 0

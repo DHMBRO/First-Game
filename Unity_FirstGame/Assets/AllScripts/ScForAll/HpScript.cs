@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class HpScript : MonoBehaviour
 {
-    
+
 
     [SerializeField] private Image UiHp;
     [SerializeField] private Text ProzentHealPoint;
@@ -14,19 +14,19 @@ public class HpScript : MonoBehaviour
 
     public Live MyLive;
 
-    public enum Live 
+    public enum Live
     {
         Alive,
         NotAlive
     }
-    
+
     private void Update()
     {
         //Debug.Log("Heal Point: " + HealthPoint);
         if (HealthPoint <= 0.0f)
         {
             ControlerForZombie = gameObject.GetComponent<ZombieController>();
-            if(ControlerForZombie) ControlerForZombie.IsLive = false;
+            if (ControlerForZombie) ControlerForZombie.IsLive = false;
 
             //Debug.Log("Your or your target is dead !");
         }
@@ -80,7 +80,7 @@ public class HpScript : MonoBehaviour
         HpNow /= 100.0f;
         HpByUi.fillAmount = HpNow;
         HpNow *= 100;
-        string HpinString = HpNow.ToString();   
+        string HpinString = HpNow.ToString();
         HpByText.text = HpinString + "%";
     }
 

@@ -11,13 +11,11 @@ public class PickUp : MethodsFromDevelopers
     [SerializeField] private Inventory PlayerInventory;
     [SerializeField] private ReferenseForAllLoot ReferencesForLoots;
 
-    [SerializeField] private Sprite S_M4;
-    [SerializeField] private Sprite None;
-
     [SerializeField] private List<string> NameForEquipment = new List<string>();
     [SerializeField] private List<Sprite> Equipment = new List<Sprite>();
 
     [SerializeField] private Dictionary<string, Sprite> DictionaryForEquipment = new Dictionary<string, Sprite>();
+    
 
     private float DistanceForRay = 2.0f;
     private int MainCounter = 0;
@@ -254,16 +252,29 @@ public class PickUp : MethodsFromDevelopers
         if (PlayerInventory)
         {
             ScrMass LootMass = ObjectToBeLifted.gameObject.GetComponent<ScrMass>();
-            
-            if (PlayerInventory.CurrentMass + LootMass.Mass <= PlayerInventory.MaxMass)
+            Debug.Log("1");
+
+            if (LootMass && PlayerInventory.CurrentMass + LootMass.Mass <= PlayerInventory.MaxMass)
             {
-                //PickUpBullets(ObjectToPickUp);
+                Debug.Log("2");
+
                 for (int i = 0; i < ReferencesForLoots.ValueLoots.Count; i++)
                 {
+                    Debug.Log("3");
+
                     if (ObjectToPickUp.gameObject.tag == ReferencesForLoots.ValueLoots[i].gameObject.tag)
                     {
+                        Debug.Log("4");
+
                         PlayerInventory.SlotsForBackPack.Add(ReferencesForLoots.ValueLoots[i]);
                         PlayerInventory.CurrentMass += LootMass.Mass;
+
+                        if (ControlerUI.Loot01)
+                        {
+                            ControlerUI.Loot01.sprite = DictionaryForEquipment[ObjectToPickUp.tag];
+                            Debug.Log("5");
+                        }
+                        
                     }
                 }
                 Destroy(ObjectToPickUp);
