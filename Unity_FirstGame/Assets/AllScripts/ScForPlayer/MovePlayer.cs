@@ -47,6 +47,7 @@ public class MovePlayer : MonoBehaviour
             MyRigidbody.velocity = MyRigidbody.velocity.normalized * Speed;
         }
     }
+
     void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space))
