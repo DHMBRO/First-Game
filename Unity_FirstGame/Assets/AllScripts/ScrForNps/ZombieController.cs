@@ -29,12 +29,12 @@ public class ZombieController : MonoBehaviour
             {
                 if (ZombieLocateScript.CanISeeTarget() && IsLive)
                 {
-
+                   
                     if (IsLive && ZombiePatrolScript.ZombieNavMesh.remainingDistance <= ZombieAttackScript.AttackDistance &&
                             (ZombieLocateScript.Target.transform.position - ZombiePatrolScript.ZombieNavMesh.destination).magnitude <= ZombieAttackScript.GoingDistance)
                     {
 
-
+                        Debug.Log("Work");
                         ZombieAttackScript.DoCloseAttack(ZombieLocateScript.Target);
                     }
                     else
