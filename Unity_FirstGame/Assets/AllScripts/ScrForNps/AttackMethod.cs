@@ -35,7 +35,7 @@ public class AttackMethod : MonoBehaviour
             if (Target.GetComponentInParent<HpScript>())
             {
                 Target.GetComponentInParent<HpScript>()?.InflictingDamage(ZombieDamage);
-                Debug.Log("Work in original");
+                
                 AttackTime = AttackDelay + Time.time;
             }
         }

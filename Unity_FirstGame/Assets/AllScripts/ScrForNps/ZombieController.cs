@@ -7,6 +7,7 @@ public class ZombieController : MonoBehaviour
     protected LocateScript ZombieLocateScript;
     protected AttackMethod ZombieAttackScript;
     protected PatrolScriptNavMesh ZombiePatrolScript;
+    protected HpScript ZombieHpScript;
     public bool IsLive = true;
 
     void Start()
@@ -14,6 +15,7 @@ public class ZombieController : MonoBehaviour
         ZombieLocateScript = gameObject.GetComponent<LocateScript>();
         ZombieAttackScript = gameObject.GetComponent<AttackMethod>();
         ZombiePatrolScript = gameObject.GetComponent<PatrolScriptNavMesh>();
+        ZombieHpScript = gameObject.GetComponent<HpScript>();
     }
 
     private void OnDrawGizmos()
@@ -29,17 +31,19 @@ public class ZombieController : MonoBehaviour
             {
                 if (ZombieLocateScript.CanISeeTarget() && IsLive)
                 {
+                    
+
 
                     if (IsLive && ZombiePatrolScript.ZombieNavMesh.remainingDistance <= ZombieAttackScript.AttackDistance &&
                             (ZombieLocateScript.Target.transform.position - ZombiePatrolScript.ZombieNavMesh.destination).magnitude <= ZombieAttackScript.GoingDistance)
                     {
 
-
+                        ZombieHpScript.InflictingDamage(5.0f);
                         ZombieAttackScript.DoCloseAttack(ZombieLocateScript.Target);
                     }
                     else
                     {
-
+                        
                         ZombiePatrolScript.MoveTo(ZombieLocateScript.Target);
                     }
                 }
