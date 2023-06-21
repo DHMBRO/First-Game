@@ -895,6 +895,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 217
       objectReference: {fileID: 0}
+    - target: {fileID: 2963963579132174909, guid: 264be72c65775c340aa49890d31d0630, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1564887145}
+    - target: {fileID: 2963963579132174909, guid: 264be72c65775c340aa49890d31d0630, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Drop
+      objectReference: {fileID: 0}
     - target: {fileID: 6457168041802754795, guid: 264be72c65775c340aa49890d31d0630, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -1006,7 +1014,7 @@ PrefabInstance:
     - target: {fileID: 7622300343047138490, guid: 264be72c65775c340aa49890d31d0630, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 11500000, guid: fe88dfafafc6e854f847b131cabded0d, type: 3}
+      objectReference: {fileID: 1564887143}
     - target: {fileID: 7622300343047138490, guid: 264be72c65775c340aa49890d31d0630, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1017,11 +1025,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7622300343047138490, guid: 264be72c65775c340aa49890d31d0630, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: set_name
+      value: SendMessage
       objectReference: {fileID: 0}
     - target: {fileID: 7622300343047138490, guid: 264be72c65775c340aa49890d31d0630, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: UnityEngine.Component, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7622300343047138490, guid: 264be72c65775c340aa49890d31d0630, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -2420,12 +2428,30 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6294364781100366135, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
   m_PrefabInstance: {fileID: 1564887142}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1564887144}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec419c55fa32f034badda87b255f3193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1564887144 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9027246094432369652, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+  m_PrefabInstance: {fileID: 1564887142}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1564887145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564887144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ce98a511bf3bf94f9c78cb76ad54266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropControler: {fileID: 0}
 --- !u!1 &1606850491
 GameObject:
   m_ObjectHideFlags: 0
