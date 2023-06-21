@@ -15,6 +15,7 @@ public class AttackMethod : MonoBehaviour
     protected HpScript TargetHpScript;
     protected LocateScript ZombieLocateScript;
     protected PatrolScriptNavMesh ZombiePatrolScript;
+    
 
     void Start()
     {
@@ -33,7 +34,12 @@ public class AttackMethod : MonoBehaviour
         
         if (Time.time >= AttackTime)
         {
-            Target.GetComponent<HpScript>()?.InflictingDamage(ZombieDamage);
+            HpScript TargetHpScript = Target.GetComponentInParent<HpScript>(); 
+            if (TargetHpScript)
+            {
+                TargetHpScript.InflictingDamage(ZombieDamage);
+            }
+            
             AttackTime = AttackDelay + Time.time; 
         }  
         
