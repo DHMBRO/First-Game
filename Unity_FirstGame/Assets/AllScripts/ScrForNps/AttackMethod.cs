@@ -15,7 +15,6 @@ public class AttackMethod : MonoBehaviour
     protected HpScript TargetHpScript;
     protected LocateScript ZombieLocateScript;
     protected PatrolScriptNavMesh ZombiePatrolScript;
-    
 
     void Start()
     {
@@ -31,28 +30,16 @@ public class AttackMethod : MonoBehaviour
 
     public void DoCloseAttack(GameObject Target)
     {
-
         if (Time.time >= AttackTime)
         {
-            HpScript TargetHpScript = Target.GetComponentInParent<HpScript>(); 
-            if (TargetHpScript)
+            if (Target.GetComponentInParent<HpScript>())
             {
-<<<<<<< Updated upstream
-                TargetHpScript.InflictingDamage(ZombieDamage);
-            }
-            
-            AttackTime = AttackDelay + Time.time; 
-        }  
-        
-=======
                 Target.GetComponentInParent<HpScript>()?.InflictingDamage(ZombieDamage);
+                Debug.Log("Work in original");
                 AttackTime = AttackDelay + Time.time;
             }
-
-
         }
 
->>>>>>> Stashed changes
     }
 
 }
