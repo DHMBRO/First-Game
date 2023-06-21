@@ -17,7 +17,7 @@ public class ReferenseForAllLoot : MonoBehaviour
             if (ReferencePrefabs[i].gameObject)
             {
                 ValueLoots.Add(i,ReferencePrefabs[i]);
-                Debug.Log(ValueLoots[i]);
+                //Debug.Log(ValueLoots[i]);
             }
         }
         
