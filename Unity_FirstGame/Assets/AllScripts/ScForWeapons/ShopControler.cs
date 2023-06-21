@@ -4,40 +4,18 @@ public class ShopControler : MonoBehaviour
 {
     [SerializeField] public byte CurrentAmmo;
     [SerializeField] public float Mass = 0.0f;
-    [SerializeField] public bool IsUsing = false;
+    [SerializeField] private BoxCollider ColiderToShop;
+    [SerializeField] private Rigidbody RigidbodyToShop;
+
     [SerializeField] public bool InInventory = false;
+    [SerializeField] public bool IsUsing = false;
+
     GameObject ParentShop;
 
     private void Start()
     {
-        /*
-        if (gameObject.CompareTag("ShopM249"))
-        {
-            CurrentAmmo = 100;
-        }
-        else if (gameObject.CompareTag("ShopM4"))
-        {
-            CurrentAmmo = 30;
-        }
-        else if (gameObject.CompareTag("ShopAK47"))
-        {
-            CurrentAmmo = 35;
-        }
-        else if (gameObject.CompareTag("ShopGlok"))
-        {
-            CurrentAmmo = 20;
-        }
-        else if (gameObject.CompareTag("ShopM1911"))
-        {
-            CurrentAmmo = 10;
-        }
-
-        if (transform.parent && transform.parent.tag == "SlotForShopInWeapon")
-        {
-            IsUsing = true;
-        }
-        else IsUsing = false;
-        */   
+        ColiderToShop = gameObject.GetComponent<BoxCollider>();
+        RigidbodyToShop = gameObject.GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -47,8 +25,10 @@ public class ShopControler : MonoBehaviour
             if (transform.parent && transform.parent.tag == "SlotForShopInWeapon")
             {
                 IsUsing = true;
-                InInventory = true;
+                InInventory = false;
                 ParentShop = transform.parent.gameObject;
+                if (ColiderToShop) ColiderToShop.enabled = false;
+                if (RigidbodyToShop) Destroy(RigidbodyToShop);
             }
             else if(transform.parent && transform.parent.tag == "UnloadingSlot") IsUsing = false;
 
@@ -57,11 +37,15 @@ public class ShopControler : MonoBehaviour
                 InInventory = true;
                 IsUsing = false;
                 ParentShop = transform.parent.gameObject;
+                if (ColiderToShop) ColiderToShop.enabled = false;
+                if (RigidbodyToShop) Destroy(RigidbodyToShop);
             }
             else if(!transform.parent )
             {
                 InInventory = false;
                 IsUsing = false;
+                
+                if (ColiderToShop) ColiderToShop.enabled = true;
             }
         }
     }

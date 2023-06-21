@@ -1,4 +1,4 @@
-using System.Collections;
+п»їusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,18 +18,16 @@ public class ZombieController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        
+
     }
     void Update()
     {
-        
+
         if (IsLive)
         {
             if (IsLive && ZombieLocateScript && ZombieAttackScript && ZombiePatrolScript)
             {
-
-                //перевірка чи я не відійшов від дестенейшена!
-                if (ZombieLocateScript.CanISeeTarget() && IsLive) 
+                if (ZombieLocateScript.CanISeeTarget() && IsLive)
                 {
                    
                     if (IsLive && ZombiePatrolScript.ZombieNavMesh.remainingDistance <= ZombieAttackScript.AttackDistance &&
@@ -41,21 +39,21 @@ public class ZombieController : MonoBehaviour
                     }
                     else
                     {
-                        
+
                         ZombiePatrolScript.MoveTo(ZombieLocateScript.Target);
                     }
                 }
 
                 else if (IsLive)
                 {
-                    
+
                     ZombiePatrolScript.Patroling();
                 }
 
             }
         }
         else
-        
+
         {
 
             ZombiePatrolScript.ZombieNavMesh.isStopped = true;

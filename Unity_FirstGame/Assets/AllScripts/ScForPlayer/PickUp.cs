@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class PickUp : MethodsFromDevelopers 
@@ -10,14 +11,11 @@ public class PickUp : MethodsFromDevelopers
     [SerializeField] private Inventory PlayerInventory;
     [SerializeField] private ReferenseForAllLoot ReferencesForLoots;
 
-    [SerializeField] Sprite Sakr47;
-    [SerializeField] Sprite Sm4;
-    [SerializeField] Sprite Sglock;
-    [SerializeField] Sprite Sknife;
-    [SerializeField] GameObject weapon01;
-    [SerializeField] GameObject weapon02;
-    [SerializeField] GameObject pistol;
-    [SerializeField] GameObject knife;
+    [SerializeField] private List<string> NameForEquipment = new List<string>();
+    [SerializeField] private List<Sprite> Equipment = new List<Sprite>();
+
+    [SerializeField] private Dictionary<string, Sprite> DictionaryForEquipment = new Dictionary<string, Sprite>();
+    
 
     private float DistanceForRay = 2.0f;
     private int MainCounter = 0;
@@ -29,8 +27,16 @@ public class PickUp : MethodsFromDevelopers
 
     void Start()
     {
-        SlotControler = gameObject.GetComponent<SlotControler>();        
-    
+        SlotControler = gameObject.GetComponent<SlotControler>();
+        for (int i = 0;i < NameForEquipment.Count;i++)
+        {
+            DictionaryForEquipment.Add(NameForEquipment[i], Equipment[i]);
+            //Debug.Log(DictionaryForEquipment[NameForEquipment[i]]);
+            
+
+
+        }
+        
     }
 
     private void Update()
@@ -130,7 +136,12 @@ public class PickUp : MethodsFromDevelopers
                     PickUpEqipment(ObjectToBeLifted);
                 }
                 //
-                if (ObjectToBeLifted.CompareTag("Ammo9MM") && Counter == 0)
+                if (ObjectToBeLifted.CompareTag("FirstAidKits") && Counter == 0)
+                {
+                    PickUpOther(ObjectToBeLifted);
+                }
+                //
+                else if (ObjectToBeLifted.CompareTag("Ammo9MM") && Counter == 0)
                 {
                     PickUpOther(ObjectToBeLifted);
                 }
@@ -153,7 +164,11 @@ public class PickUp : MethodsFromDevelopers
 
     private void LinkOther(RaycastHit RayResult)
     {                 
-        if (RayResult.collider.gameObject.tag == "Ammo9MM")
+        if(RayResult.collider.gameObject.tag == "FirstAidKits")
+        {
+            ObjectToBeLifted = RayResult.collider.gameObject;
+        }
+        else if (RayResult.collider.gameObject.tag == "Ammo9MM")
         {
             ObjectToBeLifted = RayResult.collider.gameObject;
         }
@@ -237,16 +252,29 @@ public class PickUp : MethodsFromDevelopers
         if (PlayerInventory)
         {
             ScrMass LootMass = ObjectToBeLifted.gameObject.GetComponent<ScrMass>();
-            
-            if (PlayerInventory.CurrentMass + LootMass.Mass <= PlayerInventory.MaxMass)
+            Debug.Log("1");
+
+            if (LootMass && PlayerInventory.CurrentMass + LootMass.Mass <= PlayerInventory.MaxMass)
             {
-                //PickUpBullets(ObjectToPickUp);
+                Debug.Log("2");
+
                 for (int i = 0; i < ReferencesForLoots.ValueLoots.Count; i++)
                 {
+                    Debug.Log("3");
+
                     if (ObjectToPickUp.gameObject.tag == ReferencesForLoots.ValueLoots[i].gameObject.tag)
                     {
+                        Debug.Log("4");
+
                         PlayerInventory.SlotsForBackPack.Add(ReferencesForLoots.ValueLoots[i]);
                         PlayerInventory.CurrentMass += LootMass.Mass;
+
+                        if (ControlerUI.Loot01 && ObjectToPickUp.tag == "FirstAidKits")
+                        {
+                            ControlerUI.Loot01.sprite = DictionaryForEquipment[ObjectToPickUp.tag];
+                            Debug.Log("5");
+                        }
+                        
                     }
                 }
                 Destroy(ObjectToPickUp);
@@ -329,90 +357,97 @@ public class PickUp : MethodsFromDevelopers
 
     public void PickUpWeapons(GameObject ObjectForPickUp)
     {
+        ShootControler ControlerShoot = ObjectForPickUp.GetComponent<ShootControler>();
         
-        if (!SlotControler.MyPistol01 && MainCounter == 1 && Counter == 0)
+        if (ControlerShoot)
         {
-            SlotControler.MyPistol01 = ObjectToBeLifted.transform;
+            if (!SlotControler.MyPistol01 && MainCounter == 1 && Counter == 0)
+            {
+                SlotControler.MyPistol01 = ObjectForPickUp.transform;
+                ControlerUI.SlotPistol01.sprite = DictionaryForEquipment[ObjectForPickUp.tag];
+                
+                PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01);
+                Counter++;
 
-            //ControlerUI.UpdateLoot(0, 0, ObjectForPickUp.gameObject.tag);
-            
+            }
+            else if (!SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 && MainCounter == 2 && Counter == 0)
+            {
+                SlotControler.MyWeapon01 = ObjectForPickUp.transform;
+                ControlerUI.SlotWeapon01.sprite = DictionaryForEquipment[ObjectForPickUp.tag];
+                
+                PutObjects(SlotControler.MyWeapon01, SlotControler.SlotBack01);
+                Counter++;
 
-            PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01);            
-            Counter++;
-            
-        }
-        else if (!SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 && MainCounter == 2 && Counter == 0)
-        {
+            }
+            else if (SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 && MainCounter == 2 && Counter == 0)
+            {
+                SlotControler.MyWeapon02 = ObjectForPickUp.transform;
+                ControlerUI.SlotWeapon02.sprite = DictionaryForEquipment[ObjectForPickUp.tag];
+                
 
-            
-            SlotControler.MyWeapon01 = ObjectForPickUp.transform;
-            
-            //ControlerUI.UpdateLoot(1, 0, ObjectForPickUp.gameObject.tag);
+                PutObjects(SlotControler.MyWeapon02, SlotControler.SlotBack02);
+                Counter++;
+            }
+            else if (Counter == 0)
+            {
+                Debug.Log("Cant take !");
+            }
+            if (ControlerShoot.WeaponShoop) PickUpShops(ControlerShoot.WeaponShoop);
+        }          
 
-            PutObjects(SlotControler.MyWeapon01, SlotControler.SlotBack01);            
-            Counter++;
-            
-        }
-        else if (SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 && MainCounter == 2 && Counter == 0)
-        {
-            
-            SlotControler.MyWeapon02 = ObjectForPickUp.transform;
-            //ControlerUI.UpdateLoot(2, 0, ObjectForPickUp.gameObject.tag);
-
-            PutObjects(SlotControler.MyWeapon02, SlotControler.SlotBack02);           
-            Counter++;
-        }                
-        else if (Counter == 0)
-        {
-            Debug.Log("Cant take !");
-        }
     }
 
     public void PickUpShops(GameObject ShopForPickUp)
     {
         ShopControler ControlerShop = ShopForPickUp.GetComponent<ShopControler>();
-        
+        Debug.Log("1");
 
-        if (ControlerShop && !ControlerShop.InInventory && !ControlerShop.IsUsing)
+        if (ControlerShop && !ControlerShop.InInventory)
         {
-            
-            if (!SlotControler.MyShope01 && SlotControler.SlotShpo01 && Counter == 0)
+            Debug.Log("2");
+            if (!SlotControler.MyShope01 && SlotControler.SlotShpo01 /*&& Counter == 0*/)
             {
+                Debug.Log("3");
+
                 ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
                 ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
-
+                
                 SlotControler.MyShope01 = ShopForPickUp.transform;
-                //ControlerUI.UpdateLoot(0,1, ShopForPickUp.gameObject.tag);
+                ControlerUI.SlotShop01.sprite = DictionaryForEquipment[ShopForPickUp.tag];
 
-                PutObjects(SlotControler.MyShope01, SlotControler.SlotShpo01);
-                Counter++;
+                if(!ControlerShop.IsUsing) PutObjects(SlotControler.MyShope01, SlotControler.SlotShpo01);
+                //Counter++;
             }
-            else if (!SlotControler.MyShope02 && SlotControler.SlotShpo02 && Counter == 0)
+            else if (!SlotControler.MyShope02 && SlotControler.SlotShpo02 /*&& Counter == 0*/)
             {
                 ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
                 ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
 
                 SlotControler.MyShope02 = ShopForPickUp.transform;
-                //ControlerUI.UpdateLoot(1, 1, ShopForPickUp.gameObject.tag);
+                ControlerUI.SlotShop02.sprite = DictionaryForEquipment[ShopForPickUp.tag];
 
-                PutObjects(SlotControler.MyShope02, SlotControler.SlotShpo02);
-                Counter++;
+                if (!ControlerShop.IsUsing) PutObjects(SlotControler.MyShope02, SlotControler.SlotShpo02);
+                //Counter++;
             }
-            else if (!SlotControler.MyShope03 && SlotControler.SlotShpo03 && Counter == 0)
+            else if (!SlotControler.MyShope03 && SlotControler.SlotShpo03 /*&& Counter == 0*/)
             {
                 ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
                 ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
                 
                 SlotControler.MyShope03 = ShopForPickUp.transform;
-                //ControlerUI.UpdateLoot(2, 1, ShopForPickUp.gameObject.tag);
+                ControlerUI.SlotShop03.sprite = DictionaryForEquipment[ShopForPickUp.tag];
 
-                PutObjects(SlotControler.MyShope03, SlotControler.SlotShpo03);
-                Counter++;
+                if (!ControlerShop.IsUsing) PutObjects(SlotControler.MyShope03, SlotControler.SlotShpo03);
+                //Counter++;
             }
             else if (true)
             {
                 Debug.Log("Cant do this !");
             }
+
+            Debug.Log(!SlotControler.MyShope01);
+            Debug.Log(SlotControler.SlotShpo01);
+            Debug.Log(Counter == 0);
         }
     }
 }
