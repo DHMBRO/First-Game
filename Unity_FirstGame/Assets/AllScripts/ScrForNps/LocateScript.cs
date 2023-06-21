@@ -79,7 +79,7 @@ public class LocateScript : MonoBehaviour
            
             if (HitResult.collider.gameObject == Target || HitResult.collider.gameObject.transform.root == Target)
             {
-                
+                Debug.Log("Work100");
                 return true;
             }
 
