@@ -62,6 +62,7 @@ public class LocateScript : MonoBehaviour
 
         if (!Target)
         {
+            
             return false;
 
         }
@@ -81,19 +82,17 @@ public class LocateScript : MonoBehaviour
 
         Head.transform.rotation = Quaternion.LookRotation(RotateHead);
 
-        if (Physics.Raycast(HeadForward, out HitResult))
-        {
-            Debug.DrawLine(Head.transform.position, Head.forward * MaxDistatzeForAgr + Head.position, Color.red);
-
-
-           
+       RaycastHit[] HitResults = Physics.RaycastAll(HeadForward, MaxDistatzeForAgr);
+        foreach(RaycastHit HitResult in HitResults)
+        { 
             if (HitResult.collider.gameObject == Target || HitResult.collider.gameObject.transform.root == Target)
             {
-               
+                Debug.Log("3");
                 return true;
             }
 
         }
+        
         return false;
     }
     public void RelocateTarget()
