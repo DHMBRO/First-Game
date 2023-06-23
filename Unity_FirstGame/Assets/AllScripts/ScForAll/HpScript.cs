@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class HpScript : MonoBehaviour
 {
 
 
     [SerializeField] private Image UiHp;
-    [SerializeField] private Text ProzentHealPoint;
+    [SerializeField] private TextMeshProUGUI ProzentHealPoint;
 
     [SerializeField] private float HealthPoint = 100;
     [SerializeField] private float MaxHp;
@@ -75,7 +75,7 @@ public class HpScript : MonoBehaviour
     }
 
 
-    private void OutPutHp(float HpNow, Image HpByUi, Text HpByText)
+    private void OutPutHp(float HpNow, Image HpByUi, TextMeshProUGUI HpByText)
     {
         HpNow /= 100.0f;
         HpByUi.fillAmount = HpNow;

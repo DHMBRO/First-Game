@@ -20,6 +20,10 @@ public class UiControler : MonoBehaviour
 
     [SerializeField] public Image Loot01;
     
+    [SerializeField] public Button Loot01Use;
+    [SerializeField] public Button Loot01Drop;
+
+
     void Start()
     {
         InventoryIsOpen = false;
