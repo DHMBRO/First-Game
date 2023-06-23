@@ -30,12 +30,21 @@ public class LocateScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player01"))
         {
-            Debug.Log("New Target     " + other.gameObject.name);
+            
             Target = other.gameObject;
+           
+            
             TargetStelsScript = Target.GetComponent<StelsScript>();
         }
     }
-
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player01"))
+        {
+            RelocateTarget();
+        }
+        
+    }
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Player01"))
@@ -43,6 +52,7 @@ public class LocateScript : MonoBehaviour
 
             Target = null;
             TargetStelsScript = null;
+            CanISeeTarget();
         }
     }
 
@@ -79,13 +89,23 @@ public class LocateScript : MonoBehaviour
            
             if (HitResult.collider.gameObject == Target || HitResult.collider.gameObject.transform.root == Target)
             {
-                Debug.Log("Work100");
+               
                 return true;
             }
 
         }
         return false;
     }
+    public void RelocateTarget()
+    {
+        if ((ZombiePatrolScript.ZombieNavMesh.destination - Target.transform.position).magnitude >= 3.0f)
+        {
 
+            ZombiePatrolScript.ZombieNavMesh.SetDestination(Target.transform.position);
+
+        }
+
+
+    }
 
 }

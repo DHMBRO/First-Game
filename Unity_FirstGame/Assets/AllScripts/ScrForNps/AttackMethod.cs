@@ -37,22 +37,20 @@ public class AttackMethod : MonoBehaviour
             HpScript TargetHpScript = Target.GetComponentInParent<HpScript>(); 
             if (TargetHpScript)
             {
-<<<<<<< Updated upstream
+
                 TargetHpScript.InflictingDamage(ZombieDamage);
             }
             
             AttackTime = AttackDelay + Time.time; 
         }  
         
-=======
-                Target.GetComponentInParent<HpScript>()?.InflictingDamage(ZombieDamage);
-                AttackTime = AttackDelay + Time.time;
-            }
 
-
-        }
-
->>>>>>> Stashed changes
+                
     }
 
+
 }
+
+
+    
+
