@@ -28,6 +28,8 @@ public class PickUp : MethodsFromDevelopers
     void Start()
     {
         SlotControler = gameObject.GetComponent<SlotControler>();
+        ControlerToDrop = gameObject.GetComponent<DropControler>();
+
         for (int i = 0;i < NameForEquipment.Count;i++)
         {
             DictionaryForEquipment.Add(NameForEquipment[i], Equipment[i]);
@@ -305,16 +307,24 @@ public class PickUp : MethodsFromDevelopers
             {
                 BackPackContorler BackPackControlerInInventory = SlotControler.MyBackPack.GetComponent<BackPackContorler>();
                 BackPackContorler BackPackControlerToPickUp = ObjectToPickUp.gameObject.GetComponent<BackPackContorler>();
-                if (BackPackControlerToPickUp.LevelBackPack > BackPackControlerInInventory.LevelBackPack)
+                
+                if (BackPackControlerInInventory && BackPackControlerToPickUp)
                 {
-                    //ControlerToDrop.Drop01(SlotControler.MyBackPack.transform);
-                    
-                    SlotControler.MyBackPack = ObjectToBeLifted.transform;
-                    PutObjects(SlotControler.MyBackPack, SlotControler.SlotBackPack);
+                    if (ControlerToDrop && BackPackControlerToPickUp.LevelBackPack > BackPackControlerInInventory.LevelBackPack)
+                    {
+                        DropObjects(SlotControler.MyBackPack.transform, ControlerToDrop.PointForDrop);
 
-                    PlayerInventory.BackPack = SlotControler.MyBackPack.gameObject;
-                    PlayerInventory.ChargingValueMaxMass();
-                    Counter++;
+                        SlotControler.MyBackPack = ObjectToBeLifted.transform;
+                        PutObjects(SlotControler.MyBackPack, SlotControler.SlotBackPack);
+
+                        PlayerInventory.BackPack = SlotControler.MyBackPack.gameObject;
+                        PlayerInventory.ChargingValueMaxMass();
+                        Counter++;
+                    }
+                }
+                //else if()
+                {
+
                 }
             }
             else
@@ -326,6 +336,7 @@ public class PickUp : MethodsFromDevelopers
                 PlayerInventory.ChargingValueMaxMass();
                 
                 Counter++;
+                Debug.Log("6");
             }
 
             
