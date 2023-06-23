@@ -305,16 +305,26 @@ public class PickUp : MethodsFromDevelopers
             {
                 BackPackContorler BackPackControlerInInventory = SlotControler.MyBackPack.GetComponent<BackPackContorler>();
                 BackPackContorler BackPackControlerToPickUp = ObjectToPickUp.gameObject.GetComponent<BackPackContorler>();
-                if (BackPackControlerToPickUp.LevelBackPack > BackPackControlerInInventory.LevelBackPack)
+                if (BackPackControlerInInventory && BackPackControlerToPickUp)
                 {
-                    //ControlerToDrop.Drop01(SlotControler.MyBackPack.transform);
-                    
-                    SlotControler.MyBackPack = ObjectToBeLifted.transform;
-                    PutObjects(SlotControler.MyBackPack, SlotControler.SlotBackPack);
+                    if (BackPackControlerToPickUp.LevelBackPack > BackPackControlerInInventory.LevelBackPack)
+                    {
+                        
+                        SlotControler.MyBackPack = ObjectToBeLifted.transform;
+                        PutObjects(SlotControler.MyBackPack, SlotControler.SlotBackPack);
 
-                    PlayerInventory.BackPack = SlotControler.MyBackPack.gameObject;
-                    PlayerInventory.ChargingValueMaxMass();
-                    Counter++;
+                        PlayerInventory.BackPack = SlotControler.MyBackPack.gameObject;
+                        PlayerInventory.ChargingValueMaxMass();
+                        Counter++;
+                    }
+                    else if (BackPackControlerToPickUp.LevelBackPack == BackPackControlerInInventory.LevelBackPack)
+                    {
+
+                    }
+                }
+                //else if()
+                {
+
                 }
             }
             else
