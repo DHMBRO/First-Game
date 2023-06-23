@@ -38,6 +38,7 @@ public class MethodsFromDevelopers : MonoBehaviour
         
         void Droping(Rigidbody RigObject)
         {
+            Debug.Log("2-0");
             RigObject.isKinematic = false;
             RigObject.useGravity = true;
 

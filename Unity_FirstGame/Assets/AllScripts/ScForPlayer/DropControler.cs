@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class DropControler : MethodsFromDevelopers, IDrop
 {
-    [SerializeField] Transform PointForDrop;
+    [SerializeField] public Transform PointForDrop;
     [SerializeField] GameObject ObjectToDrop;
 
     [SerializeField] SlotControler ControlerForSlots;
@@ -80,6 +80,8 @@ public class DropControler : MethodsFromDevelopers, IDrop
             }
         }
     }
+
+    
 
     public void Drop(string WhatWeaponDrop)
     {
