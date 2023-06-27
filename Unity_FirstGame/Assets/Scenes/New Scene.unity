@@ -1417,7 +1417,7 @@ MonoBehaviour:
   Target: {fileID: 0}
   Heal: 1
   Damage: 1
-  HealPlayer: 1
+  HealPlayer: 0
 --- !u!65 &638917446
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2063,6 +2063,10 @@ PrefabInstance:
       propertyPath: NameWeapon.Array.data[2]
       value: AK47
       objectReference: {fileID: 0}
+    - target: {fileID: 3998742673875602231, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5669462573118057115, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: m_Drag
       value: 0
@@ -2118,6 +2122,10 @@ PrefabInstance:
     - target: {fileID: 6328347359453867729, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: Speed
       value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573944836760920160, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7778607237951541594, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: a
@@ -2274,7 +2282,7 @@ PrefabInstance:
     - target: {fileID: 8382459316900287711, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: ProzentHealPoint
       value: 
-      objectReference: {fileID: 2000711432}
+      objectReference: {fileID: 1692198835}
     - target: {fileID: 9027246094432369652, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: m_Name
       value: Player02
@@ -2721,6 +2729,14 @@ PrefabInstance:
     - target: {fileID: 7465557237893802142, guid: 264be72c65775c340aa49890d31d0630, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7622300343047138490, guid: 264be72c65775c340aa49890d31d0630, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6243246549130421124, guid: 530eb89170fd93f4abf71e3ab868f661, type: 3}
+    - target: {fileID: 7622300343047138490, guid: 264be72c65775c340aa49890d31d0630, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 264be72c65775c340aa49890d31d0630, type: 3}
@@ -3223,6 +3239,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1692198835 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1951176120635906615, guid: 264be72c65775c340aa49890d31d0630, type: 3}
+  m_PrefabInstance: {fileID: 1279830117}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1787238258
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3620,17 +3647,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 47
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2000711432 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 299632697501538210, guid: 264be72c65775c340aa49890d31d0630, type: 3}
-  m_PrefabInstance: {fileID: 1279830117}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2001751796
 GameObject:
   m_ObjectHideFlags: 0
