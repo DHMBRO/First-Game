@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScrForUseHeal : MonoBehaviour
+public class ScrForUseHeal : MonoBehaviour, IUsebleInterFace
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GameObject ObjectToHeal;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] float HealHp;
+    public void Use()
     {
-        
+        HpScript HealPointToTarget = ObjectToHeal.GetComponent<HpScript>();
+        if (HealPointToTarget) HealPointToTarget.HealHp(HealHp);
     }
+    
 }
