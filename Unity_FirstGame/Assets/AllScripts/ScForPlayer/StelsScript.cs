@@ -27,7 +27,7 @@ public class StelsScript : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log(Stels + "Стелс");
+        //Debug.Log(Stels + "Стелс");
     }
 
 }
