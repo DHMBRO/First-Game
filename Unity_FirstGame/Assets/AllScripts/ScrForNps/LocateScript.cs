@@ -34,7 +34,7 @@ public class LocateScript : MonoBehaviour
             Target = other.gameObject;
            
             
-            TargetStelsScript = Target.GetComponent<StelsScript>();
+            TargetStelsScript = Target.GetComponentInParent<StelsScript>();
         }
     }
     private void OnTriggerStay(Collider other)
@@ -70,6 +70,7 @@ public class LocateScript : MonoBehaviour
         {
             if (TargetStelsScript.Stels)
             {
+                
                 return false;
             }
 

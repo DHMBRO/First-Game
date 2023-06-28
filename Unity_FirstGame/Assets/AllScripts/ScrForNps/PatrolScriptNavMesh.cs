@@ -32,14 +32,19 @@ public class PatrolScriptNavMesh : MonoBehaviour
 
     public void Patroling()
     {
-        if (MyState == State.Idle)
-        {
-            StateIdle();
-        }
-        else if (MyState == State.Moving)
-        {
-            StateMoving();
-        }
+        
+
+            if (MyState == State.Idle)
+            {
+                StateIdle();
+            }
+            else if (MyState == State.Moving)
+            {
+                StateMoving();
+            }
+
+            
+        
     }
 
     public void MoveTo(GameObject Target)
