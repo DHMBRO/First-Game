@@ -18,4 +18,10 @@ public class GameManager : MonoBehaviour
         if (SlotsPanel) SlotsPanel.SetActive(false);
         if (BackPackPanel) BackPackPanel.SetActive(true);
     }
+
+    public void A()
+    {
+        Debug.Log("Is work");
+    }
+
 }
