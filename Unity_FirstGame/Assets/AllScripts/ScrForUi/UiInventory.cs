@@ -1,25 +1,40 @@
 using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class UiInventory : MonoBehaviour
 {
-    public GameObject SlotsPanel;
-    public GameObject BackPackPanel;
+    [SerializeField] Image[] Slots = new Image[4];
+    [SerializeField] List<Sprite> ListToBackpack = new List<Sprite>();
+
+    [SerializeField] Sprite None;
+    [SerializeField] int Count = 0;
 
 
-    [SerializeField] UiControler ControlerUi;
-    
-    public void OpenSlots()
+
+    public void Up()
     {
-        if (BackPackPanel) BackPackPanel.SetActive(false);
-        if (SlotsPanel) SlotsPanel.SetActive(true);
+        if (Count - 1 >= 0) Count = Count - 1;
+        Debug.Log("Count: " + Count);
+        WriteBackPack();
     }
 
-    public void OpenBackpack()
+    public void Down()
     {
-        if (SlotsPanel) SlotsPanel.SetActive(false);
-        if (BackPackPanel) BackPackPanel.SetActive(true);
-        Debug.Log("BackPack is Open");
+        Count++;
+        Debug.Log("Count: " + Count);
+        WriteBackPack();
     }
-    
+
+    private void WriteBackPack()
+    {
+        for (int i = 0; i < ListToBackpack.Count + 3; i++)
+        {
+            
+
+        }
+
+
+    }
+
 }

@@ -197,7 +197,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7097556067788592937}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7513443084050196402}
+        m_TargetAssemblyTypeName: UiInventory, Assembly-CSharp
+        m_MethodName: Up
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1718170003549414528
 GameObject:
   m_ObjectHideFlags: 0
@@ -838,7 +850,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4766870604434011206}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7513443084050196402}
+        m_TargetAssemblyTypeName: UiInventory, Assembly-CSharp
+        m_MethodName: Down
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5094890959527405680
 GameObject:
   m_ObjectHideFlags: 0
@@ -1954,7 +1978,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6457168041355473269
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2482,6 +2506,7 @@ GameObject:
   - component: {fileID: 6457168042201491259}
   - component: {fileID: 6457168042201491256}
   - component: {fileID: 6457168042201491257}
+  - component: {fileID: 7513443084050196402}
   m_Layer: 5
   m_Name: Canvas 1
   m_TagString: Untagged
@@ -2581,6 +2606,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6457168042201491238}
   m_CullTransparentMesh: 1
+--- !u!114 &7513443084050196402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6457168042201491238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a614bda6c9fb3c44a7f40d54de8000c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Slots:
+  - {fileID: 2345266643503333875}
+  - {fileID: 5460520544623258427}
+  - {fileID: 2172608618932260042}
+  - {fileID: 7026966058449185663}
+  ListToBackpack: []
+  None: {fileID: 21300000, guid: 3e0d4bab2bf89544ea5d2db81eb3764d, type: 3}
+  Count: 0
 --- !u!1 &6543760779491381596
 GameObject:
   m_ObjectHideFlags: 0
