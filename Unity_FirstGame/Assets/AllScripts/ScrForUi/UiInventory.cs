@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class UiInventory : MonoBehaviour
 {
     [SerializeField] Image[] Slots = new Image[4];
-    [SerializeField] List<Sprite> ListToBackpack = new List<Sprite>();
+    [SerializeField] List<IImage> ListToBackpack = new List<IImage>();
 
     [SerializeField] Sprite None;
     [SerializeField] int Count = 0;
@@ -30,7 +30,7 @@ public class UiInventory : MonoBehaviour
     {
         for (int i = 0; i < ListToBackpack.Count + 3; i++)
         {
-            
+            //ListToBackpack.Add();
         }
 
 
