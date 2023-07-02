@@ -10,7 +10,7 @@ public class UiInventory : MonoBehaviour
     [SerializeField] Sprite None;
     [SerializeField] int Count = 0;
 
-
+    [SerializeField] private ReferenseForAllLoot ReferenseForLoot;
 
     public void Up()
     {
@@ -31,7 +31,6 @@ public class UiInventory : MonoBehaviour
         for (int i = 0; i < ListToBackpack.Count + 3; i++)
         {
             
-
         }
 
 
