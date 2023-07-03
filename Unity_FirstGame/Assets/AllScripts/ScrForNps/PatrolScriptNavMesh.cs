@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -27,24 +25,20 @@ public class PatrolScriptNavMesh : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(ZombieNavMesh.isStopped);
+        //Debug.Log(ZombieNavMesh.isStopped);
     }
 
     public void Patroling()
     {
-        
+        if (MyState == State.Idle)
+        {
+            StateIdle();
+        }
+        else if (MyState == State.Moving)
+        {
+            StateMoving();
+        }
 
-            if (MyState == State.Idle)
-            {
-                StateIdle();
-            }
-            else if (MyState == State.Moving)
-            {
-                StateMoving();
-            }
-
-            
-        
     }
 
     public void MoveTo(GameObject Target)
