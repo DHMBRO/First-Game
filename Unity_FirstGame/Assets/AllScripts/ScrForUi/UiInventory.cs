@@ -7,43 +7,48 @@ public class UiInventory : MonoBehaviour
     [SerializeField] Image[] Slots = new Image[4];
     
     [SerializeField] Sprite None;
-    [SerializeField] int Count = 0;
+    [SerializeField] private int Count = 0;
 
     [SerializeField] private Inventory PlayerInventory;
-
-    private void Start()
-    {
-        
-    }
 
     private void WriteBackPack()
     {
         if (PlayerInventory)
         {
-            if (PlayerInventory.SpritesForBackPack[Count] != null) Slots[Count].sprite = PlayerInventory.SpritesForBackPack[Count];
-            else Slots[Count].sprite = None;
+            for (int i = 0;i < 4;i++)
+            {
+                Slots[i].sprite = None;
+            }
 
-            if (PlayerInventory.SpritesForBackPack[Count += 1] != null) Slots[Count += 1].sprite = PlayerInventory.SpritesForBackPack[Count += 1];
-            else Slots[Count += 1].sprite = None;
+            for (int i = Count, j = 0;i < Count + 4 && j < Count + 4;i++,j++)
+            {
+                Slots[j].sprite = PlayerInventory.SpritesForBackPack[i];
+                
+                //Debug.Log("Count: " + Count);
+                Debug.Log("J: " + j);
+                Debug.Log("I: " + i);
+            }
 
-            if (PlayerInventory.SpritesForBackPack[Count += 2] != null) Slots[Count += 2].sprite = PlayerInventory.SpritesForBackPack[Count += 2];
-            else Slots[Count += 2].sprite = None;
-
-        }
+        }   
         else Debug.Log("Reference to Inventory not set");
+    }
+
+    public void WriteSprite()
+    {
+        WriteBackPack();
     }
 
     public void Up()
     {
         if (Count - 1 >= 0) Count = Count - 1;
-        Debug.Log("Count: " + Count);
+        //Debug.Log("Count: " + Count);
         WriteBackPack();
     }
 
     public void Down()
     {
         Count++;
-        Debug.Log("Count: " + Count);
+        //Debug.Log("Count: " + Count);
         WriteBackPack();
     }
 

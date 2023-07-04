@@ -16,6 +16,11 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         ChargingValueMaxMass();
+
+        for (int i = 0;i < 100;i++)
+        {
+            SpritesForBackPack.Add(None);
+        }
     }
 
     public void ChargingValueMaxMass()

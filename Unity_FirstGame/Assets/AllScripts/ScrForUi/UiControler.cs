@@ -4,7 +4,8 @@ using UnityEngine.UI;
 
 public class UiControler : MonoBehaviour
 {
-    [SerializeField] private CamFirstFace CameraPlayer; 
+    [SerializeField] private CamFirstFace CameraPlayer;
+    [SerializeField] private UiInventory InventoryUi;
 
     [SerializeField] Image Scope;
     [SerializeField] GameObject Inventory;
@@ -43,6 +44,8 @@ public class UiControler : MonoBehaviour
             Scope.enabled = !InventoryIsOpen;
             Inventory.SetActive(InventoryIsOpen);
             
+            if (InventoryUi) InventoryUi.WriteSprite();
+
             if (InventoryIsOpen) Cursor.lockState = CursorLockMode.Confined;
             else Cursor.lockState = CursorLockMode.Locked;
 
