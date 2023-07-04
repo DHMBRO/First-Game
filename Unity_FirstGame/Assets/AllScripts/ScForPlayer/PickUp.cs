@@ -253,10 +253,10 @@ public class PickUp : MethodsFromDevelopers
     {
         if (PlayerInventory)
         {
-            ScrMass LootMass = ObjectToBeLifted.gameObject.GetComponent<ScrMass>();
+            ScrForAllLoot Loot = ObjectToBeLifted.gameObject.GetComponent<ScrForAllLoot>();
             Debug.Log("1");
 
-            if (LootMass && PlayerInventory.CurrentMass + LootMass.Mass <= PlayerInventory.MaxMass)
+            if (Loot && PlayerInventory.CurrentMass + Loot.Mass <= PlayerInventory.MaxMass && Loot.SpriteForLoot)
             {
                 Debug.Log("2");
 
@@ -269,14 +269,17 @@ public class PickUp : MethodsFromDevelopers
                         Debug.Log("4");
 
                         PlayerInventory.SlotsForBackPack.Add(ReferencesForLoots.ValueLoots[i]);
-                        PlayerInventory.CurrentMass += LootMass.Mass;
+                        PlayerInventory.CurrentMass += Loot.Mass;
 
-                        if (ControlerUI.Loot01 && ObjectToPickUp.tag == "FirstAidKits")
+                        for (int j = 0;j < PlayerInventory.SpritesForBackPack.Count;j++)
                         {
-                            ControlerUI.Loot01.sprite = DictionaryForEquipment[ObjectToPickUp.tag];
-                            Debug.Log("5");
+                            if (PlayerInventory.SpritesForBackPack[j] == PlayerInventory.None)
+                            {
+                                PlayerInventory.SpritesForBackPack[j] = Loot.SpriteForLoot;
+                                break;
+                            }
                         }
-                        
+                            
                     }
                 }
                 Destroy(ObjectToPickUp);

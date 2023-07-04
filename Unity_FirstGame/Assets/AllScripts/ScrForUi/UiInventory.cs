@@ -5,12 +5,33 @@ using UnityEngine.UI;
 public class UiInventory : MonoBehaviour
 {
     [SerializeField] Image[] Slots = new Image[4];
-    [SerializeField] List<IImage> ListToBackpack = new List<IImage>();
-
+    
     [SerializeField] Sprite None;
     [SerializeField] int Count = 0;
 
-    [SerializeField] private ReferenseForAllLoot ReferenseForLoot;
+    [SerializeField] private Inventory PlayerInventory;
+
+    private void Start()
+    {
+        
+    }
+
+    private void WriteBackPack()
+    {
+        if (PlayerInventory)
+        {
+            if (PlayerInventory.SpritesForBackPack[Count] != null) Slots[Count].sprite = PlayerInventory.SpritesForBackPack[Count];
+            else Slots[Count].sprite = None;
+
+            if (PlayerInventory.SpritesForBackPack[Count += 1] != null) Slots[Count += 1].sprite = PlayerInventory.SpritesForBackPack[Count += 1];
+            else Slots[Count += 1].sprite = None;
+
+            if (PlayerInventory.SpritesForBackPack[Count += 2] != null) Slots[Count += 2].sprite = PlayerInventory.SpritesForBackPack[Count += 2];
+            else Slots[Count += 2].sprite = None;
+
+        }
+        else Debug.Log("Reference to Inventory not set");
+    }
 
     public void Up()
     {
@@ -26,14 +47,12 @@ public class UiInventory : MonoBehaviour
         WriteBackPack();
     }
 
-    private void WriteBackPack()
+    public void AddSpriteInInventory(GameObject ObjectToPickUp)
     {
-        for (int i = 0; i < ListToBackpack.Count + 3; i++)
-        {
-            //ListToBackpack.Add();
-        }
+        ObjectToPickUp.GetComponent<IImage>();
 
 
-    }
+
+    } 
 
 }

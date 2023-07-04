@@ -4,6 +4,9 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     [SerializeField] public List<GameObject> SlotsForBackPack = new List<GameObject>();
+    [SerializeField] public List<Sprite> SpritesForBackPack = new List<Sprite>();
+    [SerializeField] public Sprite None;
+
     [SerializeField] public GameObject BackPack;
 
     [SerializeField] public float MaxMass = 5.0f;
