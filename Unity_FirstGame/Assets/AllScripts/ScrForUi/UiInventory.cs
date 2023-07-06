@@ -33,6 +33,8 @@ public class UiInventory : MonoBehaviour
         else Debug.Log("Reference to Inventory not set");
     }
 
+    
+
     public void WriteSprite()
     {
         WriteBackPack();
