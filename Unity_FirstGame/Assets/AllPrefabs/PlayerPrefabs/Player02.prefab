@@ -886,12 +886,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Move: {fileID: 0}
+  MovePlayer: {fileID: 0}
   PlayerCamera: {fileID: 7231277361793828127}
   StelsScript: {fileID: 0}
   PickUp: {fileID: 0}
   SlotControler: {fileID: 0}
   ShootControler: {fileID: 0}
-  gameobject: {fileID: 0}
+  ControlerUi: {fileID: 6294364781100366135}
+  gameobject: {fileID: 935961475211729313}
   Anchor: {fileID: 0}
 --- !u!114 &7778607237951541594
 MonoBehaviour:
@@ -907,6 +909,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObjectToBeLifted: {fileID: 0}
   ReferenceForCamera: {fileID: 7046473276122976908}
+  ControlerUi: {fileID: 6294364781100366135}
   PlayerInventory: {fileID: 655437941069588223}
   ReferencesForLoots: {fileID: 1759847437404537064}
   NameForEquipment: []
@@ -1000,6 +1003,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SlotsForBackPack: []
+  SpritesForBackPack: []
+  None: {fileID: 0}
   BackPack: {fileID: 0}
   MaxMass: 5
   CurrentMass: 0
@@ -1068,6 +1073,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CameraPlayer: {fileID: 7046473276122976908}
+  InventoryUi: {fileID: 0}
+  ManagerToGame: {fileID: 0}
   Scope: {fileID: 0}
   Inventory: {fileID: 0}
   InventoryIsOpen: 0

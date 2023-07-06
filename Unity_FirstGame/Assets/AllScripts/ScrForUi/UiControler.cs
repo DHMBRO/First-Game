@@ -10,7 +10,7 @@ public class UiControler : MonoBehaviour
 
     [SerializeField] Image Scope;
     [SerializeField] GameObject Inventory;
-    [SerializeField] bool InventoryIsOpen = false;
+    [SerializeField] public bool InventoryIsOpen = false;
 
     [SerializeField] public Image SlotWeapon01;
     [SerializeField] public Image SlotWeapon02;

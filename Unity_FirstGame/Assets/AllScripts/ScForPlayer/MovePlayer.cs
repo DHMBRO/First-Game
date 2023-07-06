@@ -27,12 +27,8 @@ public class MovePlayer : MonoBehaviour
         float maxSpeed = Speed;
     }
 
-    void Update()
-    {
-        Move();
-        Jump();
-    }
-    void Move()
+    
+    public void Move()
     {
         MyRigidbody.velocity = new Vector3(0, MyRigidbody.velocity.y, 0);
         //transform.rotation = Quaternion.Euler(0f, CameraTransform.rotation.y, 0f);
@@ -48,7 +44,7 @@ public class MovePlayer : MonoBehaviour
         }
     }
 
-    void Jump()
+    public void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {

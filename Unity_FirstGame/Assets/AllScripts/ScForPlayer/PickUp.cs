@@ -6,7 +6,7 @@ public class PickUp : MethodsFromDevelopers
 {
     [SerializeField] public GameObject ObjectToBeLifted;
     [SerializeField] private CamFirstFace ReferenceForCamera;
-    //[SerializeField] private Transform TransformPos;    
+    [SerializeField] private UiControler ControlerUi;
 
     [SerializeField] private Inventory PlayerInventory;
     [SerializeField] private ReferenseForAllLoot ReferencesForLoots;
@@ -407,6 +407,7 @@ public class PickUp : MethodsFromDevelopers
                 Debug.Log("Cant take !");
             }
             if (ControlerShoot.WeaponShoop) PickUpShops(ControlerShoot.WeaponShoop);
+            ControlerShoot.ControlerUi = ControlerUi;
         }          
 
     }
