@@ -6,6 +6,7 @@ public class UiControler : MonoBehaviour
 {
     [SerializeField] private CamFirstFace CameraPlayer;
     [SerializeField] private UiInventory InventoryUi;
+    [SerializeField] private GameManager ManagerToGame;
 
     [SerializeField] Image Scope;
     [SerializeField] GameObject Inventory;
@@ -45,6 +46,7 @@ public class UiControler : MonoBehaviour
             Inventory.SetActive(InventoryIsOpen);
             
             if (InventoryUi) InventoryUi.WriteSprite();
+            if (ManagerToGame) ManagerToGame.DisActiveUD();
 
             if (InventoryIsOpen) Cursor.lockState = CursorLockMode.Confined;
             else Cursor.lockState = CursorLockMode.Locked;

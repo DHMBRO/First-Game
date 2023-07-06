@@ -1599,7 +1599,7 @@ PrefabInstance:
       objectReference: {fileID: 1226521077}
     - target: {fileID: 9207096596787763230, guid: 264be72c65775c340aa49890d31d0630, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 264be72c65775c340aa49890d31d0630, type: 3}
@@ -1774,6 +1774,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &651560006 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7181901581452094902, guid: 264be72c65775c340aa49890d31d0630, type: 3}
+  m_PrefabInstance: {fileID: 603685513}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f8caceb1b2360647b771990b4cb43e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &671293873 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6457168041143973233, guid: 264be72c65775c340aa49890d31d0630, type: 3}
@@ -2484,6 +2495,10 @@ PrefabInstance:
       propertyPath: SlotWeapon02
       value: 
       objectReference: {fileID: 2098486076}
+    - target: {fileID: 6294364781100366135, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: ManagerToGame
+      value: 
+      objectReference: {fileID: 651560006}
     - target: {fileID: 6328347359453867729, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: Speed
       value: 300
@@ -4562,6 +4577,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SlotsPanel: {fileID: 0}
   BackPackPanel: {fileID: 0}
+  WatchedSlot: {fileID: 0}
+  AllSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  ButtonUse: {fileID: 0}
+  ButtonDrop: {fileID: 0}
 --- !u!1001 &2126657838
 PrefabInstance:
   m_ObjectHideFlags: 0
