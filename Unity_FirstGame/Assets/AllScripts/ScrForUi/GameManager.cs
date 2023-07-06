@@ -19,9 +19,6 @@ public class GameManager : MonoBehaviour
         if (BackPackPanel) BackPackPanel.SetActive(true);
     }
 
-    public void A()
-    {
-        Debug.Log("Is work");
-    }
+    
 
 }

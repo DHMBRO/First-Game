@@ -59,17 +59,17 @@ public class DropControler : MethodsFromDevelopers, IDrop
                 {
                     if (ControlerForShoot.WeaponShoop)
                     {
-                        if (ControlerForShoot.WeaponShoop.transform == ControlerForSlots.MyShope01.transform)
+                        if (ControlerForSlots.MyShope01 && ControlerForShoot.WeaponShoop.transform == ControlerForSlots.MyShope01.transform)
                         {
                             ControlerForSlots.MyShope01 = null;
                             ControlerToUi.SlotShop01.sprite = None;
                         }
-                        else if (ControlerForShoot.WeaponShoop.transform == ControlerForSlots.MyShope02.transform)
+                        else if (ControlerForSlots.MyShope02 && ControlerForShoot.WeaponShoop.transform == ControlerForSlots.MyShope02.transform)
                         {
                             ControlerForSlots.MyShope02 = null;
                             ControlerToUi.SlotShop02.sprite = None;
                         }
-                        else if (ControlerForShoot.WeaponShoop.transform == ControlerForSlots.MyShope03.transform)
+                        else if (ControlerForSlots.MyShope03 && ControlerForShoot.WeaponShoop.transform == ControlerForSlots.MyShope03.transform)
                         {
                             ControlerForSlots.MyShope03 = null;
                             ControlerToUi.SlotShop03.sprite = None;
