@@ -4,10 +4,9 @@ using System.Collections.Generic;
 
 public class ReferenseForAllLoot : MonoBehaviour
 {
-
-
-    [SerializeField] public Dictionary<int, GameObject> ValueLoots = new Dictionary<int, GameObject>();
     [SerializeField] public List<GameObject> ReferencePrefabs = new List<GameObject>();
+    
+    [SerializeField] public Dictionary<int, GameObject> ValueLoots = new Dictionary<int, GameObject>();
     
 
     void Start()
@@ -23,11 +22,5 @@ public class ReferenseForAllLoot : MonoBehaviour
         
 
     }
-
-    void Update()
-    {
-        
-    }
-    
 
 }

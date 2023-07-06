@@ -126,12 +126,17 @@ public class LocateScript : MonoBehaviour
     }
     public void RelocateTarget()
     {
-        if ((ZombiePatrolScript.ZombieNavMesh.destination - Target.transform.position).magnitude >= 3.0f)
+        if (ZombiePatrolScript.ZombieNavMesh && Target)             // The new 
         {
+            if ((ZombiePatrolScript.ZombieNavMesh.destination - Target.transform.position).magnitude >= 3.0f)
+            {
 
-            ZombiePatrolScript.ZombieNavMesh.SetDestination(Target.transform.position);
+                ZombiePatrolScript.ZombieNavMesh.SetDestination(Target.transform.position);
+
+            }
 
         }
+
 
 
     }

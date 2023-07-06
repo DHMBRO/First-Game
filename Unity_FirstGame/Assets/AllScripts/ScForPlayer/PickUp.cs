@@ -253,30 +253,33 @@ public class PickUp : MethodsFromDevelopers
     {
         if (PlayerInventory)
         {
-            ScrMass LootMass = ObjectToBeLifted.gameObject.GetComponent<ScrMass>();
-            Debug.Log("1");
+            ScrForAllLoot Loot = ObjectToBeLifted.gameObject.GetComponent<ScrForAllLoot>();
+            //Debug.Log("1");
 
-            if (LootMass && PlayerInventory.CurrentMass + LootMass.Mass <= PlayerInventory.MaxMass)
+            if (Loot && PlayerInventory.CurrentMass + Loot.Mass <= PlayerInventory.MaxMass && Loot.SpriteForLoot)
             {
-                Debug.Log("2");
+                //Debug.Log("2");
 
                 for (int i = 0; i < ReferencesForLoots.ValueLoots.Count; i++)
                 {
-                    Debug.Log("3");
+                    //Debug.Log("3");
 
                     if (ObjectToPickUp.gameObject.tag == ReferencesForLoots.ValueLoots[i].gameObject.tag)
                     {
-                        Debug.Log("4");
+                        //Debug.Log("4");
 
                         PlayerInventory.SlotsForBackPack.Add(ReferencesForLoots.ValueLoots[i]);
-                        PlayerInventory.CurrentMass += LootMass.Mass;
+                        PlayerInventory.CurrentMass += Loot.Mass;
 
-                        if (ControlerUI.Loot01 && ObjectToPickUp.tag == "FirstAidKits")
+                        for (int j = 0;j < PlayerInventory.SpritesForBackPack.Count;j++)
                         {
-                            ControlerUI.Loot01.sprite = DictionaryForEquipment[ObjectToPickUp.tag];
-                            Debug.Log("5");
+                            if (PlayerInventory.SpritesForBackPack[j] == PlayerInventory.None)
+                            {
+                                PlayerInventory.SpritesForBackPack[j] = Loot.SpriteForLoot;
+                                break;
+                            }
                         }
-                        
+                            
                     }
                 }
                 Destroy(ObjectToPickUp);
