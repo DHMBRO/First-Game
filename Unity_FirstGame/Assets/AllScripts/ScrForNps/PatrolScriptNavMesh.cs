@@ -73,6 +73,7 @@ public class PatrolScriptNavMesh : MonoBehaviour
                 MyState = State.Idle;
             }
         }
+       
     }
 
 }

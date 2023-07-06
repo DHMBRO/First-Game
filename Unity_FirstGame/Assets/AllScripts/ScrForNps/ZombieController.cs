@@ -34,8 +34,9 @@ public class ZombieController : MonoBehaviour
             Debug.Log("-------------------------------------");*/
             if (IsLive && ZombieLocateScript && ZombieAttackScript && ZombiePatrolScript)
             {
-                if (ZombieLocateScript.CanISeeTarget() && IsLive)
+                if (ZombieLocateScript.CanISeeTarget() && IsLive )
                 {
+                    
                     /*Debug.Log("canISeeTarget"); */
 
                     if (IsLive && ZombiePatrolScript.ZombieNavMesh.remainingDistance <= ZombieAttackScript.AttackDistance &&
@@ -51,6 +52,7 @@ public class ZombieController : MonoBehaviour
 
                         ZombiePatrolScript.MoveTo(ZombieLocateScript.Target);
                     }
+
                 }
 
                 else if (IsLive)
