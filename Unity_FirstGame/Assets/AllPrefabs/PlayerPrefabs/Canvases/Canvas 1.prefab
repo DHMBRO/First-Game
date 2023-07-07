@@ -134,10 +134,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 339897525747620939}
+        m_TargetAssemblyTypeName: SelectAnObject, Assembly-CSharp
+        m_MethodName: SelectObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7181901581452094902}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: DisActiveUD
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 339897525747620939}
+        m_TargetAssemblyTypeName: SelectAnObject, Assembly-CSharp
+        m_MethodName: Drop
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1659,6 +1683,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 339897525747620939}
+        m_TargetAssemblyTypeName: SelectAnObject, Assembly-CSharp
+        m_MethodName: PrintIndexToList
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4418848470719636567
 GameObject:
   m_ObjectHideFlags: 0
@@ -2081,6 +2117,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 339897525747620939}
+        m_TargetAssemblyTypeName: SelectAnObject, Assembly-CSharp
+        m_MethodName: PrintIndexToList
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5094890959527405680
 GameObject:
   m_ObjectHideFlags: 0
@@ -2474,6 +2522,18 @@ MonoBehaviour:
       - m_Target: {fileID: 7181901581452094902}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: ActiveUD
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 339897525747620939}
+        m_TargetAssemblyTypeName: SelectAnObject, Assembly-CSharp
+        m_MethodName: PrintIndexToList
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4559,10 +4619,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 339897525747620939}
+        m_TargetAssemblyTypeName: SelectAnObject, Assembly-CSharp
+        m_MethodName: SelectObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7181901581452094902}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: DisActiveUD
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 339897525747620939}
+        m_TargetAssemblyTypeName: SelectAnObject, Assembly-CSharp
+        m_MethodName: Use
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5128,6 +5212,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 339897525747620939}
+        m_TargetAssemblyTypeName: SelectAnObject, Assembly-CSharp
+        m_MethodName: PrintIndexToList
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9207096596787763230
 GameObject:
   m_ObjectHideFlags: 0
@@ -5140,6 +5236,7 @@ GameObject:
   - component: {fileID: 3062864584099461306}
   - component: {fileID: 977022662010236265}
   - component: {fileID: 7181901581452094902}
+  - component: {fileID: 339897525747620939}
   m_Layer: 5
   m_Name: BackPack
   m_TagString: Untagged
@@ -5233,3 +5330,18 @@ MonoBehaviour:
   - {fileID: 7453578325710857381}
   ButtonUse: {fileID: 6846928349605004562}
   ButtonDrop: {fileID: 463267168404880958}
+--- !u!114 &339897525747620939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9207096596787763230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2618b79019b2e7b488f4535279ead78e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UiInventory: {fileID: 7513443084050196402}
+  Inventory: {fileID: 655437941069588223, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+  IndexToList: 0

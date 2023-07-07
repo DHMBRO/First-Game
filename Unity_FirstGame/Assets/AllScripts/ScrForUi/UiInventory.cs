@@ -6,8 +6,8 @@ public class UiInventory : MonoBehaviour
 {
     [SerializeField] Image[] Slots = new Image[4];
     
-    [SerializeField] Sprite None;
-    [SerializeField] private int Count = 0;
+    [SerializeField] public Sprite None;
+    [SerializeField] public int Count = 0;
 
     [SerializeField] private Inventory PlayerInventory;
 
@@ -25,8 +25,8 @@ public class UiInventory : MonoBehaviour
                 Slots[j].sprite = PlayerInventory.SpritesForBackPack[i];
                 
                 //Debug.Log("Count: " + Count);
-                Debug.Log("J: " + j);
-                Debug.Log("I: " + i);
+                //Debug.Log("J: " + j);
+                //Debug.Log("I: " + i);
             }
 
         }   

@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class DropControler : MethodsFromDevelopers, IDrop
+public class DropControler : MethodsFromDevelopers
 {
     [SerializeField] public Transform PointForDrop;
     [SerializeField] GameObject ObjectToDrop;

@@ -1,15 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DropInterface : MonoBehaviour
 {
-    string DropingSlot = null;
-    [SerializeField] DropControler dropControler;
-
+    //string DropingSlot = null;
+    //[SerializeField] DropControler dropControler;
+    /*
     public void Drop()
     {
-        dropControler.GetComponent<IDrop>().Drop(DropingSlot);
+        dropControler.GetComponent<IDrop>().Drop();
     }
 
     public void DropWeapon01()
@@ -25,4 +23,5 @@ public class DropInterface : MonoBehaviour
     {
         DropingSlot = "pistol";
     }
+    */
 }

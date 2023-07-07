@@ -12,5 +12,5 @@ public interface IImage
 
 public interface IDrop
 {
-    public void Drop(string WhatDrop);
+    public void Drop();
 }
