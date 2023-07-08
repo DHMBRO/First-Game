@@ -17,17 +17,10 @@ public class SelectAnObject : MonoBehaviour
     {
         if (UiInventory && Inventory && IndexToList >= 0 || IndexToList <= 3)
         {
-        
             Inventory.SpritesForBackPack.RemoveAt(UiInventory.Count + IndexToList);
             Inventory.SpritesForBackPack.Add(UiInventory.None);
-
             Inventory.SlotsForBackPack.RemoveAt(UiInventory.Count + IndexToList);
-
             UiInventory.WriteSprite();
-
-            //Inventory.SpritesForBackPack[Index];
-
-
         }
         else if (!UiInventory) Debug.Log("Not set UiInventory");
         else if(!Inventory) Debug.Log("Not set Inventory");
@@ -36,6 +29,7 @@ public class SelectAnObject : MonoBehaviour
 
     public void Use()
     {
+        Debug.Log("2");
         IUsebleInterFace UseLoot = Inventory.SlotsForBackPack[UiInventory.Count + IndexToList].GetComponent<IUsebleInterFace>();
         if(UseLoot != null) UseLoot.Use();
         SelectObject();
@@ -43,6 +37,7 @@ public class SelectAnObject : MonoBehaviour
 
     public void Drop()
     {
+        Debug.Log("3");
         IDrop DropLoot = Inventory.SlotsForBackPack[UiInventory.Count + IndexToList].GetComponent<IDrop>();
         if (DropLoot != null) DropLoot.Drop();
         SelectObject();

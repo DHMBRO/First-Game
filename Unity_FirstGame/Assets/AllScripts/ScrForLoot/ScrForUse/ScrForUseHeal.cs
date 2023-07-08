@@ -2,15 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScrForUseHeal : MonoBehaviour, IUsebleInterFace
+public class ScrForUseHeal : MethodsFromDevelopers, IUsebleInterFace, IDrop
 {
-    [SerializeField] private GameObject ObjectToHeal;
+    [SerializeField] public GameObject ObjectToHeal;
+    [SerializeField] public Transform PointToDrop;
 
     [SerializeField] float HealHp;
     public void Use()
     {
-        HpScript HealPointToTarget = ObjectToHeal.GetComponent<HpScript>();
-        if (HealPointToTarget) HealPointToTarget.HealHp(HealHp);
+        Debug.Log("1");
+        if (ObjectToHeal)
+        {
+            HpScript HealPointToTarget = ObjectToHeal.GetComponent<HpScript>();
+            if (HealPointToTarget) HealPointToTarget.HealHp(HealHp);
+
+        }
     }
     
+    public void Drop()
+    {
+        if (PointToDrop)
+        {
+            DropObjects(gameObject.transform, PointToDrop.transform);
+        }
+    }
 }

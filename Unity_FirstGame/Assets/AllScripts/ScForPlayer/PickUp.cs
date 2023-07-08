@@ -251,6 +251,8 @@ public class PickUp : MethodsFromDevelopers
 
     public void PickUpOther(GameObject ObjectToPickUp)
     {
+        ScrForUseHeal HealScript = ObjectToPickUp.GetComponent<ScrForUseHeal>();
+
         if (PlayerInventory)
         {
             ScrForAllLoot Loot = ObjectToBeLifted.gameObject.GetComponent<ScrForAllLoot>();
@@ -273,9 +275,13 @@ public class PickUp : MethodsFromDevelopers
 
                         for (int j = 0;j < PlayerInventory.SpritesForBackPack.Count;j++)
                         {
+                            //ControlerToDrop.PointForDrop
+                
                             if (PlayerInventory.SpritesForBackPack[j] == PlayerInventory.None)
                             {
                                 PlayerInventory.SpritesForBackPack[j] = Loot.SpriteForLoot;
+                                
+                                
                                 break;
                             }
                         }
@@ -283,6 +289,8 @@ public class PickUp : MethodsFromDevelopers
                     }
                 }
                 Destroy(ObjectToPickUp);
+                if (HealScript) PlayerInventory.A(gameObject, ControlerToDrop.PointForDrop);
+
                 Counter++;
             }
         }

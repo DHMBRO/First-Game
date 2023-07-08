@@ -35,9 +35,18 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void UseByIndex(int Index)
+    public void A(GameObject ObjectToHeal, Transform PointToDrop)
     {
-        
+        int i = SlotsForBackPack.Count;
+        i--;
+        ScrForUseHeal HealScript = SlotsForBackPack[i].GetComponent<ScrForUseHeal>();
+        if (HealScript)
+        {
+            HealScript.ObjectToHeal = ObjectToHeal;
+            HealScript.PointToDrop = PointToDrop;
+
+        }
+
     }
 }
 

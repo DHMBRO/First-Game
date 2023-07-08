@@ -774,6 +774,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce06d31975ad26243855ba15ee625c29, type: 3}
+--- !u!1 &289637583 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9027246094432369652, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+  m_PrefabInstance: {fileID: 944569804}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &361936262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1053,6 +1058,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22ee9513432a6fd46af5b303715289f9, type: 3}
+--- !u!1 &441245400 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8106042476341884347, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+  m_PrefabInstance: {fileID: 944569804}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &453337135
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1515,7 +1525,7 @@ PrefabInstance:
       objectReference: {fileID: 651560006}
     - target: {fileID: 5523917542852069068, guid: 264be72c65775c340aa49890d31d0630, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SelectObject
+      value: Drop
       objectReference: {fileID: 0}
     - target: {fileID: 5523917542852069068, guid: 264be72c65775c340aa49890d31d0630, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -1643,7 +1653,7 @@ PrefabInstance:
       objectReference: {fileID: 651560006}
     - target: {fileID: 8659390445638941481, guid: 264be72c65775c340aa49890d31d0630, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SelectObject
+      value: Use
       objectReference: {fileID: 0}
     - target: {fileID: 8659390445638941481, guid: 264be72c65775c340aa49890d31d0630, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -2561,7 +2571,7 @@ PrefabInstance:
       objectReference: {fileID: 651560006}
     - target: {fileID: 6328347359453867729, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: Speed
-      value: 100
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 7573944836760920160, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: m_Enabled
@@ -2784,6 +2794,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1783367692488011101, guid: 530eb89170fd93f4abf71e3ab868f661, type: 3}
+      propertyPath: PointToDrop
+      value: 
+      objectReference: {fileID: 441245400}
+    - target: {fileID: 1783367692488011101, guid: 530eb89170fd93f4abf71e3ab868f661, type: 3}
+      propertyPath: ObjectToHeal
+      value: 
+      objectReference: {fileID: 289637583}
     - target: {fileID: 6243246549130421124, guid: 530eb89170fd93f4abf71e3ab868f661, type: 3}
       propertyPath: m_Name
       value: FirstAidKits01
@@ -3158,7 +3176,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1759847437404537064, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
   m_PrefabInstance: {fileID: 944569804}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 289637583}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49d2503a3b54bdb4da8afb594aaec6e3, type: 3}
@@ -3169,7 +3187,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 655437941069588223, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
   m_PrefabInstance: {fileID: 944569804}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 289637583}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 859b6b88854eaea4390fb612cd34b227, type: 3}
@@ -3180,7 +3198,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6294364781100366135, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
   m_PrefabInstance: {fileID: 944569804}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 289637583}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec419c55fa32f034badda87b255f3193, type: 3}
