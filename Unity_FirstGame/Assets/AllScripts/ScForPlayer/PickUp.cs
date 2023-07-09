@@ -270,7 +270,7 @@ public class PickUp : MethodsFromDevelopers
                     {
                         //Debug.Log("4");
 
-                        PlayerInventory.SlotsForBackPack.Add(ReferencesForLoots.ValueLoots[i]);
+                        PlayerInventory.SlotsForBackPack.Add(ReferencesForLoots.ValueLoots[i]);                        
                         PlayerInventory.CurrentMass += Loot.Mass;
 
                         for (int j = 0;j < PlayerInventory.SpritesForBackPack.Count;j++)

@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] public List<GameObject> SlotsForBackPack = new List<GameObject>();
+    [SerializeField] public List<GameObject> SlotsForBackPack = new List<GameObject>();    
     [SerializeField] public List<Sprite> SpritesForBackPack = new List<Sprite>();
+    
     [SerializeField] public Sprite None;
+    [SerializeField] public InfoForLoot ScrInfoForLoot;
 
     [SerializeField] public GameObject BackPack;
 
@@ -15,6 +17,8 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
+        if (!ScrInfoForLoot) ScrInfoForLoot = GetComponent<InfoForLoot>();
+
         ChargingValueMaxMass();
 
         for (int i = 0;i < 100;i++)
