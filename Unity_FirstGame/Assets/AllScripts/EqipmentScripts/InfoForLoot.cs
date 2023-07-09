@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class InfoForLoot : MonoBehaviour
 {
-    [SerializeField] GameObject ObjectToHeal;
+    [SerializeField] public GameObject ObjectToHeal;
 
-    [SerializeField] Transform PointToDrop;
+    [SerializeField] public Transform PointToDrop;
 
 }

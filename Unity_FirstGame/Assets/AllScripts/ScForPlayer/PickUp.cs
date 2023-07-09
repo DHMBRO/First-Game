@@ -289,8 +289,7 @@ public class PickUp : MethodsFromDevelopers
                     }
                 }
                 Destroy(ObjectToPickUp);
-                if (HealScript) PlayerInventory.A(gameObject, ControlerToDrop.PointForDrop);
-
+                
                 Counter++;
             }
         }

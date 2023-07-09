@@ -388,6 +388,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8aeeb098a908ef4696af9b98eee3aa9, type: 3}
+--- !u!4 &136035515 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 355652097750092183, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+  m_PrefabInstance: {fileID: 944569804}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &140622888
 GameObject:
   m_ObjectHideFlags: 0
@@ -1511,6 +1516,10 @@ PrefabInstance:
       propertyPath: Inventory
       value: 
       objectReference: {fileID: 1226521077}
+    - target: {fileID: 339897525747620939, guid: 264be72c65775c340aa49890d31d0630, type: 3}
+      propertyPath: SlotToUseLoot
+      value: 
+      objectReference: {fileID: 136035515}
     - target: {fileID: 5523917542852069068, guid: 264be72c65775c340aa49890d31d0630, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -2362,6 +2371,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 655437941069588223, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: ScrInfoForLoot
+      value: 
+      objectReference: {fileID: 1226521089}
+    - target: {fileID: 655437941069588223, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: SpritesForBackPack.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -3202,6 +3215,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec419c55fa32f034badda87b255f3193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1226521089 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3144481261597647123, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+  m_PrefabInstance: {fileID: 944569804}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289637583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15852deffd855d94e9b6f43e0168d147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1294210771 stripped

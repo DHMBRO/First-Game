@@ -1,11 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class SelectAnObject : MonoBehaviour
+public class SelectAnObject : MethodsFromDevelopers
 {
+    [SerializeField] private Transform SlotToUseLoot;
     [SerializeField] private UiInventory UiInventory;
     [SerializeField] private Inventory Inventory;
-     
+    
+
     [SerializeField] int IndexToList;
     
     public void PrintIndexToList(int Index)
@@ -30,16 +32,27 @@ public class SelectAnObject : MonoBehaviour
     public void Use()
     {
         Debug.Log("2");
-        IUsebleInterFace UseLoot = Inventory.SlotsForBackPack[UiInventory.Count + IndexToList].GetComponent<IUsebleInterFace>();
-        if(UseLoot != null) UseLoot.Use();
+
+        GameObject ObjectToUse = Instantiate(Inventory.SlotsForBackPack[UiInventory.Count + IndexToList]);
+        IUsebleInterFace UseLoot = ObjectToUse.GetComponent<IUsebleInterFace>();
+
+        if (SlotToUseLoot) PutObjects(ObjectToUse.transform, SlotToUseLoot);
+        else if (!SlotToUseLoot) Debug.Log("Not set SlotToUseLoot");
+
+        ScrForUseHeal ScrUseHeal  = ObjectToUse.GetComponent<ScrForUseHeal>();
+        ScrUseHeal.ObjectToHeal = Inventory.ScrInfoForLoot.ObjectToHeal;
+
+        if (UseLoot != null) UseLoot.Use();
         SelectObject();
     }
 
     public void Drop()
     {
         Debug.Log("3");
-        IDrop DropLoot = Inventory.SlotsForBackPack[UiInventory.Count + IndexToList].GetComponent<IDrop>();
-        if (DropLoot != null) DropLoot.Drop();
+
+        GameObject ObjectToDrop = Instantiate(Inventory.SlotsForBackPack[UiInventory.Count + IndexToList]);
+        DropObjects(ObjectToDrop.transform, Inventory.ScrInfoForLoot.PointToDrop);
+
         SelectObject();
     }
 
