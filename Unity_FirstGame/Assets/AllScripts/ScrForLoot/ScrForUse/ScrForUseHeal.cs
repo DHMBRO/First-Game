@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class ScrForUseHeal : MethodsFromDevelopers, IUsebleInterFace
 {
+    
+
     [SerializeField] public GameObject ObjectToHeal;
 
     [SerializeField] float HealHp;
+
+    public void GetReferences(GameObject ObjectToCopy, GameObject ObjectForCopy)
+    {
+        ObjectToCopy = ObjectForCopy;
+        
+    }
+
     public void Use()
     {
         Debug.Log("1");
