@@ -20,11 +20,6 @@ public class UiControler : MonoBehaviour
     [SerializeField] public Image SlotShop02;
     [SerializeField] public Image SlotShop03;
 
-    [SerializeField] public Image Loot01;
-    
-    [SerializeField] public Button Loot01Use;
-    [SerializeField] public Button Loot01Drop;
-
 
     void Start()
     {

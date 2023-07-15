@@ -540,7 +540,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1107749409098769705
 RectTransform:
   m_ObjectHideFlags: 0
@@ -616,14 +616,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SlotsPanel: {fileID: 1718170003549414528}
   BackPackPanel: {fileID: 9207096596787763230}
-  WatchedSlot: {fileID: 0}
+  WatchedSlot: {fileID: 3524572655936553499}
   AllSlots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  ButtonUse: {fileID: 0}
-  ButtonDrop: {fileID: 0}
+  - {fileID: 565423616692980727}
+  - {fileID: 6120210016044540143}
+  - {fileID: 3260976701403829403}
+  - {fileID: 7453578325710857381}
+  ButtonUse: {fileID: 6846928349605004562}
+  ButtonDrop: {fileID: 463267168404880958}
 --- !u!1 &2022874855424494873
 GameObject:
   m_ObjectHideFlags: 0
@@ -2731,7 +2731,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7181901581452094902}
+      - m_Target: {fileID: 3857031502052278995}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: OpenBackpack
         m_Mode: 1
@@ -5195,7 +5195,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1693928181886972095
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5294,6 +5294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2618b79019b2e7b488f4535279ead78e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SlotToUseLoot: {fileID: 0}
   UiInventory: {fileID: 7513443084050196402}
   Inventory: {fileID: 655437941069588223, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
   IndexToList: 0

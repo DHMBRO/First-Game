@@ -98,12 +98,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae0c6187986862c44a3f7fbb40d1acf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentAmmo: 0
+  CurrentAmmo: 30
+  MaxAmmo: 30
   Mass: 0
-  ColiderToShop: {fileID: 0}
-  RigidbodyToShop: {fileID: 0}
+  KeyShop: 5,56MM
   InInventory: 0
   IsUsing: 0
+  ColiderToShop: {fileID: 0}
+  RigidbodyToShop: {fileID: 0}
 --- !u!114 &274370549938990221
 MonoBehaviour:
   m_ObjectHideFlags: 0

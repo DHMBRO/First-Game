@@ -251,8 +251,6 @@ public class PickUp : MethodsFromDevelopers
 
     public void PickUpOther(GameObject ObjectToPickUp)
     {
-        ScrForUseHeal HealScript = ObjectToPickUp.GetComponent<ScrForUseHeal>();
-
         if (PlayerInventory)
         {
             ScrForAllLoot Loot = ObjectToBeLifted.gameObject.GetComponent<ScrForAllLoot>();
@@ -270,18 +268,17 @@ public class PickUp : MethodsFromDevelopers
                     {
                         //Debug.Log("4");
 
-                        PlayerInventory.SlotsForBackPack.Add(ReferencesForLoots.ValueLoots[i]);                        
+                        InfoForLoot ObjectToUp = new InfoForLoot();
+                        ObjectToUp.ObjectToInstantiate = ReferencesForLoots.ValueLoots[i];
+
+                        PlayerInventory.SlotsForBackPack.Add(ObjectToUp);                        
                         PlayerInventory.CurrentMass += Loot.Mass;
 
                         for (int j = 0;j < PlayerInventory.SpritesForBackPack.Count;j++)
                         {
-                            //ControlerToDrop.PointForDrop
-                
                             if (PlayerInventory.SpritesForBackPack[j] == PlayerInventory.None)
                             {
                                 PlayerInventory.SpritesForBackPack[j] = Loot.SpriteForLoot;
-                                
-                                
                                 break;
                             }
                         }

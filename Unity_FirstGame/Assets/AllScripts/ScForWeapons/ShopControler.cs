@@ -2,15 +2,18 @@ using UnityEngine;
 
 public class ShopControler : MonoBehaviour
 {
-    [SerializeField] public byte CurrentAmmo;
+    [SerializeField] public int CurrentAmmo;
+    [SerializeField] public int MaxAmmo;
     [SerializeField] public float Mass = 0.0f;
-    [SerializeField] private BoxCollider ColiderToShop;
-    [SerializeField] private Rigidbody RigidbodyToShop;
+    [SerializeField] public string KeyShop = ""; 
 
     [SerializeField] public bool InInventory = false;
     [SerializeField] public bool IsUsing = false;
 
-    GameObject ParentShop;
+    [SerializeField] private BoxCollider ColiderToShop;
+    [SerializeField] private Rigidbody RigidbodyToShop;
+
+    [SerializeField] public GameObject ParentShop;
 
     private void Start()
     {

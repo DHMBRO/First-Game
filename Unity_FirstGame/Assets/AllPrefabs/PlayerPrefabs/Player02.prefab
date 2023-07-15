@@ -819,7 +819,6 @@ GameObject:
   - component: {fileID: 6328347359453867729}
   - component: {fileID: 6294364781100366135}
   - component: {fileID: 7577484477006445214}
-  - component: {fileID: 3144481261597647123}
   m_Layer: 0
   m_Name: Player02
   m_TagString: Player01
@@ -1004,10 +1003,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SlotsForBackPack: []
-  InfoToLoot: []
   SpritesForBackPack: []
   None: {fileID: 0}
-  ScrInfoForLoot: {fileID: 0}
   BackPack: {fileID: 0}
   MaxMass: 5
   CurrentMass: 0
@@ -1087,9 +1084,6 @@ MonoBehaviour:
   SlotShop01: {fileID: 0}
   SlotShop02: {fileID: 0}
   SlotShop03: {fileID: 0}
-  Loot01: {fileID: 0}
-  Loot01Use: {fileID: 0}
-  Loot01Drop: {fileID: 0}
 --- !u!114 &7577484477006445214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1103,20 +1097,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Stels: 0
---- !u!114 &3144481261597647123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9027246094432369652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15852deffd855d94e9b6f43e0168d147, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObjectToHeal: {fileID: 9027246094432369652}
-  PointToDrop: {fileID: 5028615846564861412}
 --- !u!1 &9125961473927298832
 GameObject:
   m_ObjectHideFlags: 0

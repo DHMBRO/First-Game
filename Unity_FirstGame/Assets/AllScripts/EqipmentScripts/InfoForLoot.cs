@@ -1,9 +1,10 @@
 using UnityEngine;
 
-public class InfoForLoot : MonoBehaviour
+public class InfoForLoot 
 {
-    [SerializeField] public GameObject ObjectToHeal;
+    public GameObject ObjectToInstantiate;
 
-    [SerializeField] public Transform PointToDrop;
+    public int Ammo;
+
 
 }

@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ScrForUseHeal : MethodsFromDevelopers, IUsebleInterFace
-{
-    
-
-    [SerializeField] public GameObject ObjectToHeal;
-
+{ 
     [SerializeField] float HealHp;
 
     public void GetReferences(GameObject ObjectToCopy, GameObject ObjectForCopy)
@@ -16,15 +12,17 @@ public class ScrForUseHeal : MethodsFromDevelopers, IUsebleInterFace
         
     }
 
-    public void Use()
+    public void Use(GameObject Target, SelectAnObject SelectObj)
     {
         Debug.Log("1");
-        if (ObjectToHeal)
+        if (Target)
         {
-            HpScript HealPointToTarget = ObjectToHeal.GetComponent<HpScript>();
+            HpScript HealPointToTarget = Target.GetComponent<HpScript>();
             if (HealPointToTarget) HealPointToTarget.HealHp(HealHp);
-            
+
+            SelectObj.SelectObject();
             Destroy(gameObject, 2.5f);
+        
         }
     }
     

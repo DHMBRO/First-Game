@@ -2,14 +2,12 @@ using UnityEngine;
 
 public interface IUsebleInterFace
 {
-    public void Use();
+    public void Use(GameObject Target, SelectAnObject SelectObj);
 }
 
 public interface IReferencesInterface
 {
     public void GetReferences(GameObject ObjectToCopy, GameObject ObjectForCopy);
-    
-
 }
 
 public interface IImage

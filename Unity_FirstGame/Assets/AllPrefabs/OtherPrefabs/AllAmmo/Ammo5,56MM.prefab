@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2985781222150062632}
   - component: {fileID: 734206658062402400}
   - component: {fileID: 8696934755685015745}
+  - component: {fileID: 2495431474470962367}
   m_Layer: 0
   m_Name: Ammo5,56MM
   m_TagString: Ammo5_56MM
@@ -112,3 +113,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Mass: 0.5
   SpriteForLoot: {fileID: 21300000, guid: 9f2612f7906946342b9e56d8d99e6a86, type: 3}
+--- !u!114 &2495431474470962367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7075932931500231764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6005df0d44f346c4a8f7f692f36f39d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentAmmo: 20
+  MaxAmmo: 20
+  KeyToShops: 5,56MM

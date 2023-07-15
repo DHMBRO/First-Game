@@ -60,9 +60,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentAmmo: 30
+  MaxAmmo: 30
   Mass: 0
-  IsUsing: 0
+  KeyShop: 7,62MM
   InInventory: 0
+  IsUsing: 0
+  ColiderToShop: {fileID: 0}
+  RigidbodyToShop: {fileID: 0}
 --- !u!1001 &3608594276779781619
 PrefabInstance:
   m_ObjectHideFlags: 0

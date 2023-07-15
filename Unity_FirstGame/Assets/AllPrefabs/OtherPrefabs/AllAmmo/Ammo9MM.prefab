@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3122561669574483194}
   - component: {fileID: 1002319242382240236}
   - component: {fileID: 5363839685261226790}
+  - component: {fileID: 4629113592695263105}
   m_Layer: 0
   m_Name: Ammo9MM
   m_TagString: Ammo9MM
@@ -112,3 +113,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Mass: 0.3
   SpriteForLoot: {fileID: 21300000, guid: e661636fedd045d419ea4d75dc9b5980, type: 3}
+--- !u!114 &4629113592695263105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3536394116540115441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6005df0d44f346c4a8f7f692f36f39d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentAmmo: 20
+  MaxAmmo: 20
+  KeyToShops: 9MM
