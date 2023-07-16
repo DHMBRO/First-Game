@@ -25,7 +25,7 @@ public class GameManager : MethodsFromDevelopers
         if (SlotsPanel) SlotsPanel.SetActive(true);
     }
 
-    public void OpenBackpack()
+    public void OpenInventory()
     {
         Debug.Log("BackPack is Open");
         if (SlotsPanel) SlotsPanel.SetActive(false);

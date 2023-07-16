@@ -26,12 +26,11 @@ public class PlayerControler : MonoBehaviour
         PickUp = gameObject.GetComponent<PickUp>();
         SlotControler = gameObject.GetComponent<SlotControler>();
         ShootControler = gameObject.GetComponent<ShootControler>();
-        ControlerUi = gameobject.GetComponent<UiControler>();
     }
     
     void Update()
-    {        
-        if(ControlerUi && !ControlerUi.InventoryIsOpen)
+    {   
+        if(ControlerUi && ControlerUi.InventoryIsOpen == false)
         {
             if (PickUp) PickUpAll();
             if (Move) Move.Move();
@@ -49,6 +48,7 @@ public class PlayerControler : MonoBehaviour
 
             }
         }
+
         
     }
 

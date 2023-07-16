@@ -3,8 +3,6 @@ using UnityEngine.UI;
 using TMPro;
 public class HpScript : MonoBehaviour
 {
-
-
     [SerializeField] private Image UiHp;
     [SerializeField] private TextMeshProUGUI ProzentHealPoint;
 

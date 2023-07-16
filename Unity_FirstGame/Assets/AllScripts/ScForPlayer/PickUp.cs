@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.UI;
+
 
 public class PickUp : MethodsFromDevelopers 
 {
@@ -29,7 +29,8 @@ public class PickUp : MethodsFromDevelopers
     {
         SlotControler = gameObject.GetComponent<SlotControler>();
         ControlerToDrop = gameObject.GetComponent<DropControler>();
-
+        ReferenceForCamera = gameObject.GetComponent<CamFirstFace>();
+        
         for (int i = 0;i < NameForEquipment.Count;i++)
         {
             DictionaryForEquipment.Add(NameForEquipment[i], Equipment[i]);

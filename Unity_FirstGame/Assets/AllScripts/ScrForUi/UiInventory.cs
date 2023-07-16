@@ -1,15 +1,30 @@
 using UnityEngine;
-using System.Collections.Generic;
 using UnityEngine.UI;
+using TMPro;
 
 public class UiInventory : MonoBehaviour
 {
-    [SerializeField] Image[] Slots = new Image[4];
+    [SerializeField] Image[] SlotsToInventory = new Image[4];
     
     [SerializeField] public Sprite None;
     [SerializeField] public int Count = 0;
 
     [SerializeField] private Inventory PlayerInventory;
+
+    [SerializeField] private HpScript ScriptHp;
+    [SerializeField] private Image HpInUi;
+    [SerializeField] private TextMeshProUGUI HealPointInProzent;
+
+    private void Start()
+    {
+        if (ScriptHp)
+        {
+            //ScriptHp.UiHp = HpInUi;
+            //ScriptHp.ProzentHealPoint = HealPointInProzent;
+            
+        }
+        else Debug.Log("Not set ScriptHp");
+    }
 
     private void WriteBackPack()
     {
@@ -17,12 +32,12 @@ public class UiInventory : MonoBehaviour
         {
             for (int i = 0;i < 4;i++)
             {
-                Slots[i].sprite = None;
+                //if(i < SlotsToInventory.Length) SlotsToInventory[i].sprite = None;
             }
 
             for (int i = Count, j = 0;i < Count + 4 && j < Count + 4;i++,j++)
             {
-                Slots[j].sprite = PlayerInventory.SpritesForBackPack[i];
+                //if(i < SlotsToInventory.Length) SlotsToInventory[j].sprite = PlayerInventory.SpritesForBackPack[i];
                 
                 //Debug.Log("Count: " + Count);
                 //Debug.Log("J: " + j);
@@ -57,9 +72,6 @@ public class UiInventory : MonoBehaviour
     public void AddSpriteInInventory(GameObject ObjectToPickUp)
     {
         ObjectToPickUp.GetComponent<IImage>();
-
-
-
     } 
 
 }

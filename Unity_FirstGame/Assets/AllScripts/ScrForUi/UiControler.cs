@@ -1,10 +1,8 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UiControler : MonoBehaviour
 {
-    [SerializeField] private CamFirstFace CameraPlayer;
     [SerializeField] private UiInventory InventoryUi;
     [SerializeField] private GameManager ManagerToGame;
 
@@ -24,18 +22,13 @@ public class UiControler : MonoBehaviour
     void Start()
     {
         InventoryIsOpen = false;
-        if(Inventory) Inventory.SetActive(false);
-        
-
-        
-        
+        if (Inventory) Inventory.SetActive(false);   
     }
 
     void Update()
     {
-        if (CameraPlayer && Input.GetKeyDown(KeyCode.I))
-        {
-            CameraPlayer.InventoryIsOpen = !CameraPlayer.InventoryIsOpen;
+        if (Input.GetKeyDown(KeyCode.I))
+        {   
             InventoryIsOpen = !InventoryIsOpen;
             Scope.enabled = !InventoryIsOpen;
             Inventory.SetActive(InventoryIsOpen);
