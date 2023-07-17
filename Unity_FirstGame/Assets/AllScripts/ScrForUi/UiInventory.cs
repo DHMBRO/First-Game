@@ -32,12 +32,12 @@ public class UiInventory : MonoBehaviour
         {
             for (int i = 0;i < 4;i++)
             {
-                //if(i < SlotsToInventory.Length) SlotsToInventory[i].sprite = None;
+                SlotsToInventory[i].sprite = None;
             }
 
             for (int i = Count, j = 0;i < Count + 4 && j < Count + 4;i++,j++)
             {
-                //if(i < SlotsToInventory.Length) SlotsToInventory[j].sprite = PlayerInventory.SpritesForBackPack[i];
+                if(i < PlayerInventory.SpritesForBackPack.Count) SlotsToInventory[j].sprite = PlayerInventory.SpritesForBackPack[i];
                 
                 //Debug.Log("Count: " + Count);
                 //Debug.Log("J: " + j);

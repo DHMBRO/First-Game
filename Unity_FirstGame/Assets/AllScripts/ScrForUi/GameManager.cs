@@ -34,7 +34,7 @@ public class GameManager : MethodsFromDevelopers
 
     public void ActiveUD(int IndexToSlots)
     {
-        if (WatchedSlot && ButtonUse && ButtonDrop && IndexToSlots >= 0 || IndexToSlots  <= 3)
+        if (WatchedSlot && ButtonUse && ButtonDrop && IndexToSlots >= 0 || IndexToSlots  <= 3 && ButtonUse && ButtonDrop)
         {
             PutObjects(WatchedSlot.transform, AllSlots[IndexToSlots].transform);
             WatchedSlot.SetActive(true);

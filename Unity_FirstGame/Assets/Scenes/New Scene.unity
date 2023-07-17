@@ -700,6 +700,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2472821505095850326, guid: e17cf8c04a5bc94448773012c9e76214, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3e0d4bab2bf89544ea5d2db81eb3764d, type: 3}
+    - target: {fileID: 4915807067601749401, guid: e17cf8c04a5bc94448773012c9e76214, type: 3}
+      propertyPath: SlotToUseLoot
+      value: 
+      objectReference: {fileID: 1859011652}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e17cf8c04a5bc94448773012c9e76214, type: 3}
 --- !u!1 &386649259
@@ -2023,6 +2031,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 3e0d4bab2bf89544ea5d2db81eb3764d, type: 3}
     - target: {fileID: 2663352457323175868, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2663352457323175868, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: ObjectToDrop
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2663352457323175868, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: ControlerToUi
+      value: 
+      objectReference: {fileID: 2093564201}
+    - target: {fileID: 2663352457323175868, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: NameShops.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -2131,6 +2151,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7778607237951541594, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: M4
+      value: 
+      objectReference: {fileID: 21300000, guid: 308dbe82aff9325459e2458344bb10d6, type: 3}
+    - target: {fileID: 7778607237951541594, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: None
       value: 
       objectReference: {fileID: 21300000, guid: 3e0d4bab2bf89544ea5d2db81eb3764d, type: 3}
@@ -2139,9 +2163,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 308dbe82aff9325459e2458344bb10d6, type: 3}
     - target: {fileID: 7778607237951541594, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
-      propertyPath: ControlerUI
+      propertyPath: Slot
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7778607237951541594, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: ControlerUI
+      value: 
+      objectReference: {fileID: 2093564201}
     - target: {fileID: 7778607237951541594, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: FirstAidKits
       value: 
@@ -3397,6 +3425,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce06d31975ad26243855ba15ee625c29, type: 3}
+--- !u!4 &1859011652 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 355652097750092183, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+  m_PrefabInstance: {fileID: 944569804}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1889286046
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3859,6 +3892,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2093564201 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1241725871821509503, guid: e17cf8c04a5bc94448773012c9e76214, type: 3}
+  m_PrefabInstance: {fileID: 368716290}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec419c55fa32f034badda87b255f3193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2094150594
 GameObject:
   m_ObjectHideFlags: 0

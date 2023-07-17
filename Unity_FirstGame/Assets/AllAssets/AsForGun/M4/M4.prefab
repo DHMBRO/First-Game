@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 4474379368645694567}
   - component: {fileID: 9071493728336264004}
   - component: {fileID: 1357051501843773120}
-  - component: {fileID: 3646525990506179422}
+  - component: {fileID: 3048635772085614078}
   m_Layer: 0
   m_Name: M4
   m_TagString: M4
@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyWeapon: {fileID: 5786097810451525583}
+  ControlerUi: {fileID: 0}
   SlotForUseShop: {fileID: 4369082377327981036}
   WeaponShoop: {fileID: 0}
   GameObjectForRay: {fileID: 7578455642217627832}
@@ -202,7 +203,7 @@ MonoBehaviour:
   MySlotControler: {fileID: 0}
   ColletSpeed: 1000
   BulletSpeed: 50
---- !u!114 &3646525990506179422
+--- !u!114 &3048635772085614078
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -211,9 +212,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5786097810451525583}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe4793ea110d92e489a2ac3d316c457d, type: 3}
+  m_Script: {fileID: 11500000, guid: d0ef3b5b486fd1d43b53d47da52f3fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Mass: 0
+  SpriteForLoot: {fileID: 21300000, guid: 308dbe82aff9325459e2458344bb10d6, type: 3}
 --- !u!1 &5873469072906034301
 GameObject:
   m_ObjectHideFlags: 0

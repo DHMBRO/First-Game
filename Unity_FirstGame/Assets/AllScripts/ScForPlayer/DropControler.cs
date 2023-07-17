@@ -11,7 +11,7 @@ public class DropControler : MethodsFromDevelopers
     [SerializeField] ShootControler ControlerForShoot;
 
 
-    [SerializeField] UiControler ControlerToUi;
+    [SerializeField] public UiControler ControlerToUi;
     [SerializeField] Sprite None;
 
     void Start()
@@ -37,7 +37,7 @@ public class DropControler : MethodsFromDevelopers
                     ControlerForSlots.MyWeapon01 = null;
                     ControlerToUi.SlotWeapon01.sprite = None;
                     DeleyReferenceShops();
-                    
+                    Debug.Log("2");
                 }
 
                 if (ControlerForSlots.MyWeapon02 && ControlerForSlots.ObjectInHand.gameObject == ControlerForSlots.MyWeapon02.gameObject)

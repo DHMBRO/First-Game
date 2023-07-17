@@ -128,6 +128,7 @@ GameObject:
   - component: {fileID: 5752078726147703554}
   - component: {fileID: 4272853772287642738}
   - component: {fileID: 8039379798050291736}
+  - component: {fileID: 8980927656229120753}
   m_Layer: 0
   m_Name: Glok
   m_TagString: Glok
@@ -198,6 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyWeapon: {fileID: 4965438261709640327}
+  ControlerUi: {fileID: 0}
   SlotForUseShop: {fileID: 7749285495643769842}
   WeaponShoop: {fileID: 0}
   GameObjectForRay: {fileID: 4423625220979593759}
@@ -226,6 +228,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe4793ea110d92e489a2ac3d316c457d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8980927656229120753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4965438261709640327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ef3b5b486fd1d43b53d47da52f3fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mass: 0
+  SpriteForLoot: {fileID: 21300000, guid: 5bf1bf23c3394f64d9f63958632c2dbd, type: 3}
 --- !u!1 &5362117552002414686
 GameObject:
   m_ObjectHideFlags: 0

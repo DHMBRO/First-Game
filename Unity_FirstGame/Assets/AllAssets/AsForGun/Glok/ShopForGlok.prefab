@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4823402153163805784}
   - component: {fileID: 1858561144992952984}
   - component: {fileID: 1991016611763347114}
-  - component: {fileID: 6679083313953220752}
-  - component: {fileID: 8917625738476868234}
   - component: {fileID: 530639275952481356}
+  - component: {fileID: 6679083313953220752}
+  - component: {fileID: 952033131363869767}
   m_Layer: 0
   m_Name: ShopForGlok
   m_TagString: ShopGlok
@@ -86,6 +86,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &530639275952481356
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7933510159314380724}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.07950312, y: 0.10956582, z: 0.024186436}
+  m_Center: {x: 0.0025236867, y: -0.0071477555, z: -0.000000009778887}
 --- !u!114 &6679083313953220752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,7 +119,8 @@ MonoBehaviour:
   IsUsing: 0
   ColiderToShop: {fileID: 0}
   RigidbodyToShop: {fileID: 0}
---- !u!114 &8917625738476868234
+  ParentShop: {fileID: 0}
+--- !u!114 &952033131363869767
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,19 +129,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7933510159314380724}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe4793ea110d92e489a2ac3d316c457d, type: 3}
+  m_Script: {fileID: 11500000, guid: d0ef3b5b486fd1d43b53d47da52f3fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &530639275952481356
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7933510159314380724}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.07950312, y: 0.10956582, z: 0.024186436}
-  m_Center: {x: 0.0025236867, y: -0.0071477555, z: -0.000000009778887}
+  Mass: 0
+  SpriteForLoot: {fileID: 21300000, guid: f2d7057db5ec07c479d04f02eee5bdce, type: 3}

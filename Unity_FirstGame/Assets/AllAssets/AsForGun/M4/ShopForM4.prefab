@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3148033673655153288}
   - component: {fileID: 3626209618775102241}
   - component: {fileID: 8879509237013042564}
-  - component: {fileID: 274370549938990221}
+  - component: {fileID: 8157074875183568281}
   - component: {fileID: 7097739503286328191}
   m_Layer: 0
   m_Name: ShopForM4
@@ -106,7 +106,8 @@ MonoBehaviour:
   IsUsing: 0
   ColiderToShop: {fileID: 0}
   RigidbodyToShop: {fileID: 0}
---- !u!114 &274370549938990221
+  ParentShop: {fileID: 0}
+--- !u!114 &8157074875183568281
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,9 +116,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7945646813490313421}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe4793ea110d92e489a2ac3d316c457d, type: 3}
+  m_Script: {fileID: 11500000, guid: d0ef3b5b486fd1d43b53d47da52f3fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Mass: 0
+  SpriteForLoot: {fileID: 21300000, guid: 30fea81ca843bb449ba347eb317670e1, type: 3}
 --- !u!65 &7097739503286328191
 BoxCollider:
   m_ObjectHideFlags: 0

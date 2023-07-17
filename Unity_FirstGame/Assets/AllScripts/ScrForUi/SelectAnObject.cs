@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class SelectAnObject : MethodsFromDevelopers
 {
@@ -9,7 +8,22 @@ public class SelectAnObject : MethodsFromDevelopers
     [SerializeField] private DropControler ControlerToDrop;
  
     [SerializeField] int IndexToList;
-    
+
+    private void Start()
+    {
+        if(Inventory)
+        {
+            SlotControler ControlerSlots = Inventory.GetComponent<SlotControler>();
+            if (ControlerSlots)
+            {
+                SlotToUseLoot = ControlerSlots.SlotHand;
+                Debug.Log(SlotToUseLoot);
+            }
+            
+        }
+
+    }
+
     public void PrintIndexToList(int Index)
     {
         IndexToList = Index;

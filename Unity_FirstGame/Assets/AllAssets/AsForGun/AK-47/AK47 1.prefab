@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1958750228766295673}
   - component: {fileID: 4484112678998972955}
   - component: {fileID: 5146653872132676561}
+  - component: {fileID: 7609020896303292185}
   m_Layer: 0
   m_Name: AK47 1
   m_TagString: AK47
@@ -60,6 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyWeapon: {fileID: 4635018908518573900}
+  ControlerUi: {fileID: 0}
   SlotForUseShop: {fileID: 7445928937725500335}
   WeaponShoop: {fileID: 0}
   GameObjectForRay: {fileID: 6575837772592608427}
@@ -76,6 +78,20 @@ MonoBehaviour:
   MySlotControler: {fileID: 0}
   ColletSpeed: 0
   BulletSpeed: 50
+--- !u!114 &7609020896303292185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4635018908518573900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ef3b5b486fd1d43b53d47da52f3fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mass: 0
+  SpriteForLoot: {fileID: 21300000, guid: f0f9ba90973eb2a448b68efebb464d4d, type: 3}
 --- !u!1001 &1558786798344431986
 PrefabInstance:
   m_ObjectHideFlags: 0
