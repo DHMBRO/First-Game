@@ -5,7 +5,9 @@ public class PickUp : MethodsFromDevelopers
 {
     [SerializeField] public GameObject ObjectToBeLifted;
     [SerializeField] private CamFirstFace ReferenceForCamera;
-    [SerializeField] public UiControler ControlerUI;
+    
+    [SerializeField] private UiControler ControlerUi;
+    [SerializeField] private UiInventory InventoryUi;
 
     [SerializeField] private Inventory PlayerInventory;
     [SerializeField] private ReferenseForAllLoot ReferencesForLoots;
@@ -32,7 +34,9 @@ public class PickUp : MethodsFromDevelopers
         if (Counter == 1 && Input.GetKeyUp(KeyCode.F))
         {
             Counter = 0;
-        }        
+        }
+
+        //Debug.Log("SpritesForBackPack.Count: " + InventoryUi.SpritesForBackPack.Count);
     }
 
     public void RayForLoot()
@@ -254,21 +258,24 @@ public class PickUp : MethodsFromDevelopers
                     {
                         //Debug.Log("4");
 
-                        InfoForLoot ObjectToUp = new InfoForLoot();
-                        ObjectToUp.ObjectToInstantiate = ReferencesForLoots.ValueLoots[i];
+                        InfoForLoot ObjectToGet = new InfoForLoot();
+                        ObjectToGet.ObjectToInstantiate = ReferencesForLoots.ValueLoots[i];
 
-                        PlayerInventory.SlotsForBackPack.Add(ObjectToUp);                        
+                        
+                        PlayerInventory.InfoForSlots.Add(ObjectToGet);
                         PlayerInventory.CurrentMass += Loot.Mass;
+                        //Debug.Log("ObjectToGet.ObjectToInstantiate: " + ObjectToGet.ObjectToInstantiate);
 
-                        for (int j = 0;j < PlayerInventory.SpritesForBackPack.Count;j++)
+                        for (int j = 0;j < InventoryUi.SpritesForBackPack.Count;j++)
                         {
-                            if (PlayerInventory.SpritesForBackPack[j] == PlayerInventory.None)
-                            {
-                                PlayerInventory.SpritesForBackPack[j] = Loot.SpriteForLoot;
+                            if (InventoryUi.SpritesForBackPack[j] == PlayerInventory.None)
+                            { 
+                                InventoryUi.SpritesForBackPack[j] = Loot.SpriteForLoot;
                                 break;
                             }
                         }
-                            
+
+                        
                     }
                 }
                 Destroy(ObjectToPickUp);
@@ -370,7 +377,7 @@ public class PickUp : MethodsFromDevelopers
             if (!SlotControler.MyPistol01 && MainCounter == 1 && Counter == 0)
             {
                 SlotControler.MyPistol01 = ObjectForPickUp.transform;
-                ControlerUI.SlotPistol01.sprite = ScrForLoot.SpriteForLoot;
+                ControlerUi.SlotPistol01.sprite = ScrForLoot.SpriteForLoot;
 
 
                 PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01);
@@ -380,7 +387,7 @@ public class PickUp : MethodsFromDevelopers
             else if (!SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 && MainCounter == 2 && Counter == 0)
             {
                 SlotControler.MyWeapon01 = ObjectForPickUp.transform;
-                ControlerUI.SlotWeapon01.sprite = ScrForLoot.SpriteForLoot;
+                ControlerUi.SlotWeapon01.sprite = ScrForLoot.SpriteForLoot;
 
 
                 Debug.Log("1");
@@ -394,7 +401,7 @@ public class PickUp : MethodsFromDevelopers
             else if (SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 && MainCounter == 2 && Counter == 0)
             {
                 SlotControler.MyWeapon02 = ObjectForPickUp.transform;
-                ControlerUI.SlotWeapon02.sprite = ScrForLoot.SpriteForLoot;
+                ControlerUi.SlotWeapon02.sprite = ScrForLoot.SpriteForLoot;
 
 
                 PutObjects(SlotControler.MyWeapon02, SlotControler.SlotBack02);
@@ -405,7 +412,7 @@ public class PickUp : MethodsFromDevelopers
                 Debug.Log("Cant take !");
             }
             if (ControlerShoot.WeaponShoop) PickUpShops(ControlerShoot.WeaponShoop);
-            ControlerShoot.ControlerUi = ControlerUI;
+            ControlerShoot.ControlerUi = ControlerUi;
         }          
 
     }
@@ -428,7 +435,7 @@ public class PickUp : MethodsFromDevelopers
                 ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
                 
                 SlotControler.MyShope01 = ShopForPickUp.transform;
-                ControlerUI.SlotShop01.sprite = ScrForLoot.SpriteForLoot;
+                ControlerUi.SlotShop01.sprite = ScrForLoot.SpriteForLoot;
 
                 if (!ControlerShop.IsUsing) PutObjects(SlotControler.MyShope01, SlotControler.SlotShpo01);
                 //Counter++;
@@ -439,7 +446,7 @@ public class PickUp : MethodsFromDevelopers
                 ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
 
                 SlotControler.MyShope02 = ShopForPickUp.transform;
-                ControlerUI.SlotShop02.sprite = ScrForLoot.SpriteForLoot;
+                ControlerUi.SlotShop02.sprite = ScrForLoot.SpriteForLoot;
 
                 if (!ControlerShop.IsUsing) PutObjects(SlotControler.MyShope02, SlotControler.SlotShpo02);
                 //Counter++;
@@ -450,7 +457,7 @@ public class PickUp : MethodsFromDevelopers
                 ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
                 
                 SlotControler.MyShope03 = ShopForPickUp.transform;
-                ControlerUI.SlotShop03.sprite = ScrForLoot.SpriteForLoot;
+                ControlerUi.SlotShop03.sprite = ScrForLoot.SpriteForLoot;
 
                 if (!ControlerShop.IsUsing) PutObjects(SlotControler.MyShope03, SlotControler.SlotShpo03);
                 //Counter++;

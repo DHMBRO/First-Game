@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 public class UiInventory : MonoBehaviour
 {
     [SerializeField] Image[] SlotsToInventory = new Image[4];
-    
+    [SerializeField] public List<Sprite> SpritesForBackPack = new List<Sprite>();
+
     [SerializeField] public Sprite None;
     [SerializeField] public int Count = 0;
 
@@ -17,14 +19,19 @@ public class UiInventory : MonoBehaviour
 
     private void Start()
     {
-        if (ScriptHp)
+        if (None)
         {
-            //ScriptHp.UiHp = HpInUi;
-            //ScriptHp.ProzentHealPoint = HealPointInProzent;
-            
+            for (int i = 0; i < 100; i++)
+            {
+                SpritesForBackPack.Add(None);
+                //Debug.Log("SpritesForBackPack.Count" + SpritesForBackPack.Count);
+            }
         }
-        else Debug.Log("Not set ScriptHp");
+        else Debug.Log("Not set None");
+
     }
+
+   
 
     private void WriteBackPack()
     {
@@ -37,11 +44,16 @@ public class UiInventory : MonoBehaviour
 
             for (int i = Count, j = 0;i < Count + 4 && j < Count + 4;i++,j++)
             {
-                if(i < PlayerInventory.SpritesForBackPack.Count) SlotsToInventory[j].sprite = PlayerInventory.SpritesForBackPack[i];
-                
                 //Debug.Log("Count: " + Count);
                 //Debug.Log("J: " + j);
                 //Debug.Log("I: " + i);
+                
+                //Debug.Log("SlotsToInventory.Length: " + SlotsToInventory.Length);
+                //Debug.Log("PlayerInventory.SpritesForBackPack.Count:" + SpritesForBackPack.Count);
+
+                SlotsToInventory[j].sprite = SpritesForBackPack[i];
+                
+                
             }
 
         }   

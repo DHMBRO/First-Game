@@ -20,14 +20,14 @@ public class GameManager : MethodsFromDevelopers
 
     public void OpenSlots()
     {
-        Debug.Log("Slots is Open");
+        //Debug.Log("Slots is Open");
         if (BackPackPanel) BackPackPanel.SetActive(false);
         if (SlotsPanel) SlotsPanel.SetActive(true);
     }
 
     public void OpenInventory()
     {
-        Debug.Log("BackPack is Open");
+        //Debug.Log("BackPack is Open");
         if (SlotsPanel) SlotsPanel.SetActive(false);
         if (BackPackPanel) BackPackPanel.SetActive(true);
     }
@@ -46,7 +46,7 @@ public class GameManager : MethodsFromDevelopers
             ButtonD.interactable = true;
 
 
-            Debug.Log("ActiveUD is work");
+            //Debug.Log("ActiveUD is work");
         }
     }
 

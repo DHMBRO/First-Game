@@ -33,10 +33,13 @@ public class SelectAnObject : MethodsFromDevelopers
     {
         if (UiInventory && Inventory && IndexToList >= 0 || IndexToList <= 3)
         {
-            Inventory.SpritesForBackPack.RemoveAt(UiInventory.Count + IndexToList);
-            Inventory.SlotsForBackPack.RemoveAt(UiInventory.Count + IndexToList);
-            Inventory.SpritesForBackPack.Add(UiInventory.None);
+            if (UiInventory.Count + IndexToList < UiInventory.SpritesForBackPack.Count) UiInventory.SpritesForBackPack.RemoveAt(UiInventory.Count + IndexToList);
+            else Debug.Log("Index was out of range");
             
+            if(UiInventory.Count + IndexToList < Inventory.InfoForSlots.Count) Inventory.InfoForSlots.RemoveAt(UiInventory.Count + IndexToList);
+            else Debug.Log("Index was out of range");
+
+            UiInventory.SpritesForBackPack.Add(UiInventory.None);
             UiInventory.WriteSprite();
         }
         else if (!UiInventory) Debug.Log("Not set UiInventory");
@@ -46,9 +49,9 @@ public class SelectAnObject : MethodsFromDevelopers
 
     public void Use()
     {
-        Debug.Log("2");
+        //Debug.Log("2");
         
-        GameObject ObjectToUse = Instantiate(Inventory.SlotsForBackPack[UiInventory.Count + IndexToList].ObjectToInstantiate);
+        GameObject ObjectToUse = Instantiate(Inventory.InfoForSlots[UiInventory.Count + IndexToList].ObjectToInstantiate);
         IUsebleInterFace UseLoot = ObjectToUse.GetComponent<IUsebleInterFace>();
 
         if (SlotToUseLoot && UseLoot != null) PutObjects(ObjectToUse.transform, SlotToUseLoot);
@@ -68,9 +71,9 @@ public class SelectAnObject : MethodsFromDevelopers
 
     public void Drop()
     {
-        Debug.Log("3");
+        //Debug.Log("3");
 
-        GameObject ObjectToDrop = Instantiate(Inventory.SlotsForBackPack[UiInventory.Count + IndexToList].ObjectToInstantiate);
+        GameObject ObjectToDrop = Instantiate(Inventory.InfoForSlots[UiInventory.Count + IndexToList].ObjectToInstantiate);
         
         if (ControlerToDrop) DropObjects(ObjectToDrop.transform, ControlerToDrop.PointForDrop);
         else Debug.Log("Not set ControlerToDrop");
