@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections.Generic;
 
 public class PickUp : MethodsFromDevelopers 
 {
@@ -11,6 +11,8 @@ public class PickUp : MethodsFromDevelopers
 
     [SerializeField] private Inventory PlayerInventory;
     [SerializeField] private ReferenseForAllLoot ReferencesForLoots;
+
+    [SerializeField] List<string> TagsToPickup = new List<string>();
 
     private float DistanceForRay = 2.0f;
     private int MainCounter = 0;
@@ -29,16 +31,6 @@ public class PickUp : MethodsFromDevelopers
         
     }
 
-    private void Update()
-    {        
-        if (Counter == 1 && Input.GetKeyUp(KeyCode.F))
-        {
-            Counter = 0;
-        }
-
-        //Debug.Log("SpritesForBackPack.Count: " + InventoryUi.SpritesForBackPack.Count);
-    }
-
     public void RayForLoot()
     {                
         if (ReferenceForCamera)
@@ -49,10 +41,7 @@ public class PickUp : MethodsFromDevelopers
             
             if (Physics.Raycast(RayForPickUp, out RaycastHit HitResult, DistanceForRay))
             {
-                LinkOther(HitResult);
-                LinkEquipment(HitResult);
-                LinkWeapons(HitResult);                
-                LinkShops(HitResult);                                
+                ComplertingTheLink();              
             }
             else
             {
@@ -67,6 +56,50 @@ public class PickUp : MethodsFromDevelopers
         {
             if (Input.GetKeyDown(KeyCode.F) && ObjectToBeLifted)
             {
+                ShootControler ControlerWeapon = ObjectToBeLifted.GetComponent<ShootControler>();
+                ShopControler ControlerShop = ObjectToBeLifted.GetComponent<ShopControler>();
+
+                HelmetControler ControlerHelmet = ObjectToBeLifted.GetComponent<HelmetControler>();
+                ArmorControler ControlerArmor = ObjectToBeLifted.GetComponent<ArmorControler>();
+                BackPackContorler ControlerBackPack = ObjectToBeLifted.GetComponent<BackPackContorler>();
+
+                ScrForAllLoot ScrLoot = ObjectToBeLifted.GetComponent<ScrForAllLoot>();
+
+                for (int i = 0; i < TagsToPickup.Count; i++)
+                {
+                    if (ObjectToBeLifted.tag == TagsToPickup[i])
+                    {
+                        if (ControlerWeapon)
+                        {
+
+
+                        }
+                        else if (ControlerShop)
+                        {
+
+                        }
+                        else if (ControlerHelmet)
+                        {
+
+                        }
+                        else if (ControlerArmor)
+                        {
+
+                        }
+                        else if (ControlerBackPack)
+                        {
+
+                        }
+                        else if (ScrLoot)
+                        {
+
+                        }
+
+
+                    }
+                }
+
+
                 //Pick up weapons 
                 if (ObjectToBeLifted.CompareTag("Glok") && Counter == 0)
                 {
@@ -154,109 +187,22 @@ public class PickUp : MethodsFromDevelopers
         }
     }
 
-    private void LinkOther(RaycastHit RayResult)
-    {                 
-        if(RayResult.collider.gameObject.tag == "FirstAidKits")
-        {
-            ObjectToBeLifted = RayResult.collider.gameObject;
-        }
-        else if (RayResult.collider.gameObject.tag == "Ammo9MM")
-        {
-            ObjectToBeLifted = RayResult.collider.gameObject;
-        }
-        else if (RayResult.collider.gameObject.tag == "Ammo45_APC")
-        {
-            ObjectToBeLifted = RayResult.collider.gameObject;
-        }
-        else if (RayResult.collider.gameObject.tag == "Ammo5_56MM")
-        {
-            ObjectToBeLifted = RayResult.collider.gameObject;
-        }
-        else if (RayResult.collider.gameObject.tag == "Ammo7_62MM")
-        {
-            ObjectToBeLifted = RayResult.collider.gameObject;
-        }        
-    }
     
-    private void LinkEquipment(RaycastHit RayResult)
-    {
-        if (RayResult.collider.gameObject.tag == "Helmet")
-        {
-            ObjectToBeLifted = RayResult.collider.gameObject;
-        }
-        else if (RayResult.collider.gameObject.tag == "Armor")
-        {
-            ObjectToBeLifted = RayResult.collider.gameObject;
-        }
-        else if (RayResult.collider.gameObject.tag == "BackPack")
-        {
-            ObjectToBeLifted = RayResult.collider.gameObject;
-        }
-    }
-
-    private void LinkWeapons(RaycastHit RayResult)
-    {
-        if (RayResult.collider.gameObject.tag == "M1911")
-        {
-            ObjectToBeLifted = RayResult.collider.gameObject;
-        }
-        else if (RayResult.collider.gameObject.tag == "Glok")
-        {
-            ObjectToBeLifted = RayResult.collider.gameObject;
-        }
-        else if (RayResult.collider.gameObject.tag == "M4")
-        {
-            ObjectToBeLifted = RayResult.collider.gameObject;
-        }
-        else if (RayResult.collider.gameObject.tag == "AK47")
-        {
-            ObjectToBeLifted = RayResult.collider.gameObject;
-        }
-        else if (RayResult.collider.gameObject.tag == "M249")
-        {
-            ObjectToBeLifted = RayResult.collider.gameObject;
-        }        
-    }
-
-    private void LinkShops(RaycastHit RayResult)
-    {
-        if (RayResult.collider.gameObject.GetComponent<ShopControler>())
-        {
-            ShopControler ShopControler = RayResult.collider.gameObject.GetComponent<ShopControler>();
-         
-            if (!ShopControler.InInventory && RayResult.collider.gameObject.tag == "ShopM4")
-            {
-                ObjectToBeLifted = RayResult.collider.gameObject;
-            }
-            else if (!ShopControler.InInventory && RayResult.collider.gameObject.tag == "ShopGlok")
-            {
-                ObjectToBeLifted = RayResult.collider.gameObject;
-            }
-            else if (!ShopControler.InInventory && RayResult.collider.gameObject.tag == "ShopAK47")
-            {
-                ObjectToBeLifted = RayResult.collider.gameObject;
-            }
-        }                      
-    }
 
     public void PickUpOther(GameObject ObjectToPickUp)
     {
         if (PlayerInventory)
         {
             ScrForAllLoot Loot = ObjectToBeLifted.gameObject.GetComponent<ScrForAllLoot>();
-            //Debug.Log("1");
-
+            
             if (Loot && PlayerInventory.CurrentMass + Loot.Mass <= PlayerInventory.MaxMass && Loot.SpriteForLoot)
             {
-                //Debug.Log("2");
-
+                
                 for (int i = 0; i < ReferencesForLoots.ValueLoots.Count; i++)
                 {
-                    //Debug.Log("3");
-
+                    
                     if (ObjectToPickUp.gameObject.tag == ReferencesForLoots.ValueLoots[i].gameObject.tag)
                     {
-                        //Debug.Log("4");
 
                         InfoForLoot ObjectToGet = new InfoForLoot();
                         ObjectToGet.ObjectToInstantiate = ReferencesForLoots.ValueLoots[i];
@@ -264,8 +210,7 @@ public class PickUp : MethodsFromDevelopers
                         
                         PlayerInventory.InfoForSlots.Add(ObjectToGet);
                         PlayerInventory.CurrentMass += Loot.Mass;
-                        //Debug.Log("ObjectToGet.ObjectToInstantiate: " + ObjectToGet.ObjectToInstantiate);
-
+                        
                         for (int j = 0;j < InventoryUi.SpritesForBackPack.Count;j++)
                         {
                             if (InventoryUi.SpritesForBackPack[j] == PlayerInventory.None)
@@ -322,10 +267,7 @@ public class PickUp : MethodsFromDevelopers
                         Counter++;
                     }
                 }
-                //else if()
-                {
-
-                }
+               
             }
             else
             {
@@ -390,10 +332,6 @@ public class PickUp : MethodsFromDevelopers
                 ControlerUi.SlotWeapon01.sprite = ScrForLoot.SpriteForLoot;
 
 
-                //Debug.Log("1");
-                //Debug.Log(ScrForLoot.SpriteForLoot);
-
-
                 PutObjects(SlotControler.MyWeapon01, SlotControler.SlotBack01);
                 Counter++;
 
@@ -422,15 +360,12 @@ public class PickUp : MethodsFromDevelopers
         ShopControler ControlerShop = ShopForPickUp.GetComponent<ShopControler>();
         ScrForAllLoot ScrForLoot = ShopForPickUp.GetComponent<ScrForAllLoot>();
 
-        //Debug.Log("1");
         
         if (ControlerShop && !ControlerShop.InInventory)
         {
-            //Debug.Log("2");
-            if (!SlotControler.MyShope01 && SlotControler.SlotShpo01 /*&& Counter == 0*/)
+            if (!SlotControler.MyShope01 && SlotControler.SlotShpo01)
             {
-                //Debug.Log("3");
-
+        
                 ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
                 ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
                 
@@ -440,7 +375,7 @@ public class PickUp : MethodsFromDevelopers
                 if (!ControlerShop.IsUsing) PutObjects(SlotControler.MyShope01, SlotControler.SlotShpo01);
                 //Counter++;
             }
-            else if (!SlotControler.MyShope02 && SlotControler.SlotShpo02 /*&& Counter == 0*/)
+            else if (!SlotControler.MyShope02 && SlotControler.SlotShpo02)
             {
                 ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
                 ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
@@ -451,7 +386,7 @@ public class PickUp : MethodsFromDevelopers
                 if (!ControlerShop.IsUsing) PutObjects(SlotControler.MyShope02, SlotControler.SlotShpo02);
                 //Counter++;
             }
-            else if (!SlotControler.MyShope03 && SlotControler.SlotShpo03 /*&& Counter == 0*/)
+            else if (!SlotControler.MyShope03 && SlotControler.SlotShpo03)
             {
                 ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
                 ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
