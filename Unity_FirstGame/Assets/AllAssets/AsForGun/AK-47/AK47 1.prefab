@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7609020896303292185}
   m_Layer: 0
   m_Name: AK47 1
-  m_TagString: AK47
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,22 +60,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30bbbf443eeb6cf47ab83dd338f2c45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MyWeapon: {fileID: 4635018908518573900}
   ControlerUi: {fileID: 0}
-  SlotForUseShop: {fileID: 7445928937725500335}
+  SlotForUseShop: {fileID: 0}
   WeaponShoop: {fileID: 0}
-  GameObjectForRay: {fileID: 6575837772592608427}
-  Muzzle: {fileID: 5637554116084458726}
+  GameObjectForRay: {fileID: 0}
+  Muzzle: {fileID: 0}
   Bullet: {fileID: 2817725760091043437, guid: 01b8095742158ab4eb096d42902e255e, type: 3}
   Collet: {fileID: 6940625727822617254, guid: afdce013e28dce848a00d57fdcb33833, type: 3}
-  ColletPoint: {fileID: 1276344858975568682}
+  ColletPoint: {fileID: 0}
+  KeyTupeToWeapon: 
   ShotDeley: 0.1
   ShotTime: 0
   Mass: 0
   SpeedForBullet: 0
-  WeaponRigidbody: {fileID: 0}
-  CameraTransform: {fileID: 0}
-  MySlotControler: {fileID: 0}
   ColletSpeed: 0
   BulletSpeed: 50
 --- !u!114 &7609020896303292185
@@ -161,6 +158,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4519716788627816, guid: ee329c3cd08e58645834d20702d7f6c6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4628190596468080, guid: ee329c3cd08e58645834d20702d7f6c6, type: 3}
+      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4871155855958596, guid: ee329c3cd08e58645834d20702d7f6c6, type: 3}
@@ -273,28 +274,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee329c3cd08e58645834d20702d7f6c6, type: 3}
---- !u!1 &1276344858975568682 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 294863414554126936, guid: ee329c3cd08e58645834d20702d7f6c6, type: 3}
-  m_PrefabInstance: {fileID: 1558786798344431986}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1563280121967181850 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4519716788627816, guid: ee329c3cd08e58645834d20702d7f6c6, type: 3}
-  m_PrefabInstance: {fileID: 1558786798344431986}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5637554116084458726 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6601557753685216660, guid: ee329c3cd08e58645834d20702d7f6c6, type: 3}
-  m_PrefabInstance: {fileID: 1558786798344431986}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6575837772592608427 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5684666193128529369, guid: ee329c3cd08e58645834d20702d7f6c6, type: 3}
-  m_PrefabInstance: {fileID: 1558786798344431986}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &7445928937725500335 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8283435549772837597, guid: ee329c3cd08e58645834d20702d7f6c6, type: 3}
   m_PrefabInstance: {fileID: 1558786798344431986}
   m_PrefabAsset: {fileID: 0}

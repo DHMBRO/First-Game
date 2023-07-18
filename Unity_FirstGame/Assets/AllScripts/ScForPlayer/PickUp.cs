@@ -15,7 +15,6 @@ public class PickUp : MethodsFromDevelopers
     [SerializeField] List<string> TagsToPickup = new List<string>();
 
     private float DistanceForRay = 2.0f;
-    private int MainCounter = 0;
     private int Counter = 0;
 
     private SlotControler SlotControler;
@@ -41,6 +40,7 @@ public class PickUp : MethodsFromDevelopers
             
             if (Physics.Raycast(RayForPickUp, out RaycastHit HitResult, DistanceForRay))
             {
+                ObjectToBeLifted = HitResult.collider.gameObject;
                 ComplertingTheLink();              
             }
             else
@@ -54,7 +54,7 @@ public class PickUp : MethodsFromDevelopers
     {
         if (ObjectToBeLifted)
         {
-            if (Input.GetKeyDown(KeyCode.F) && ObjectToBeLifted)
+            if (Input.GetKeyDown(KeyCode.F) && ObjectToBeLifted && Counter == 0)
             {
                 ShootControler ControlerWeapon = ObjectToBeLifted.GetComponent<ShootControler>();
                 ShopControler ControlerShop = ObjectToBeLifted.GetComponent<ShopControler>();
@@ -71,11 +71,18 @@ public class PickUp : MethodsFromDevelopers
                     {
                         if (ControlerWeapon)
                         {
-                            
+                            if (ControlerWeapon.KeyTupeToWeapon == "Weapon")
+                            {
+                                PickUpWeapons(ObjectToBeLifted);
+                            }
+                            else if (ControlerWeapon.KeyTupeToWeapon == "Pistol")
+                            {
+                                PickUpPistols(ObjectToBeLifted);
+                            }
                         }
                         else if (ControlerShop)
                         {
-
+                            PickUpShops(ObjectToBeLifted);
                         }
                         else if (ControlerHelmet)
                         {
@@ -96,93 +103,19 @@ public class PickUp : MethodsFromDevelopers
 
 
                     }
+                    
                 }
 
 
-                //Pick up weapons 
-                if (ObjectToBeLifted.CompareTag("Glok") && Counter == 0)
-                {
-                    MainCounter = 1;
-                    PickUpWeapons(ObjectToBeLifted);
-                }
-                else if (ObjectToBeLifted.CompareTag("M1911") && Counter == 0)
-                {
-                    MainCounter = 1;
-                    PickUpWeapons(ObjectToBeLifted);
-                }
-                else if (ObjectToBeLifted.CompareTag("M4") && Counter == 0)
-                {
-                    MainCounter = 2;
-                    PickUpWeapons(ObjectToBeLifted);
-                }
-                else if (ObjectToBeLifted.CompareTag("AK47") && Counter == 0)
-                {
-                    MainCounter = 2;
-                    PickUpWeapons(ObjectToBeLifted);
-                }
-                else if (ObjectToBeLifted.CompareTag("M249") && Counter == 0)
-                {
-                    MainCounter = 2;
-                    PickUpWeapons(ObjectToBeLifted);
-                }
-                //Pick up shops 
-                if (ObjectToBeLifted.CompareTag("ShopM4") && Counter == 0)
-                {
-                    PickUpShops(ObjectToBeLifted);
-                }
-                else if (ObjectToBeLifted.CompareTag("ShopAK47") && Counter == 0)
-                {
-                    PickUpShops(ObjectToBeLifted);
-                }
-                else if (ObjectToBeLifted.CompareTag("ShopM249") && Counter == 0)
-                {
-                    PickUpShops(ObjectToBeLifted);
-                }
-                else if (ObjectToBeLifted.CompareTag("ShopM1911") && Counter == 0)
-                {
-                    PickUpShops(ObjectToBeLifted);
-                }
-                else if (ObjectToBeLifted.CompareTag("ShopGlok") && Counter == 0)
-                {
-                    PickUpShops(ObjectToBeLifted);
-                }
-                //
-                if (ObjectToBeLifted.CompareTag("Helmet") && Counter == 0)
-                {
-                    PickUpEqipment(ObjectToBeLifted);
-                }
-                else if (ObjectToBeLifted.CompareTag("Armor") && Counter == 0)
-                {
-                    PickUpEqipment(ObjectToBeLifted);
-                }
-                else if (ObjectToBeLifted.CompareTag("BackPack") && Counter == 0)
-                {
-                    PickUpEqipment(ObjectToBeLifted);
-                }
-                //
-                if (ObjectToBeLifted.CompareTag("FirstAidKits") && Counter == 0)
-                {
-                    PickUpOther(ObjectToBeLifted);
-                }
-                //
-                else if (ObjectToBeLifted.CompareTag("Ammo9MM") && Counter == 0)
-                {
-                    PickUpOther(ObjectToBeLifted);
-                }
-                else if (ObjectToBeLifted.CompareTag("Ammo45_APC") && Counter == 0)
-                {
-                    PickUpOther(ObjectToBeLifted);
-                }
-                else if (ObjectToBeLifted.CompareTag("Ammo5_56MM") && Counter == 0)
-                {
-                    PickUpOther(ObjectToBeLifted);
-                }
-                else if (ObjectToBeLifted.CompareTag("Ammo7_62MM") && Counter == 0)
-                {
-                    PickUpOther(ObjectToBeLifted);
-                }
+
 
             }
+            if (Input.GetKeyUp(KeyCode.F) && Counter == 1)
+            {
+                Counter = 0;
+            }
+            
+
         }
     }
 
@@ -190,7 +123,7 @@ public class PickUp : MethodsFromDevelopers
 
     public void PickUpOther(GameObject ObjectToPickUp)
     {
-        if (PlayerInventory)
+        if (PlayerInventory && Counter == 0)
         {
             ScrForAllLoot Loot = ObjectToBeLifted.gameObject.GetComponent<ScrForAllLoot>();
             
@@ -224,7 +157,7 @@ public class PickUp : MethodsFromDevelopers
                 }
                 Destroy(ObjectToPickUp);
                 
-                Counter++;
+               
             }
         }
     }
@@ -236,14 +169,14 @@ public class PickUp : MethodsFromDevelopers
         {
             SlotControler.MyHelmet = ObjectToBeLifted.transform;
             PutObjects(SlotControler.MyHelmet, SlotControler.SlotHelmet);
-            Counter++;
+            Counter = 1;
         }
         else if (ObjectToPickUp.CompareTag("Armor") && Counter == 0)
         {
             SlotControler.MyArmor = ObjectToBeLifted.transform;
             PutObjects(SlotControler.MyArmor, SlotControler.SlotArmor);
             PutOn();
-            Counter++;
+            Counter = 1;
         }
         else if (PlayerInventory && ObjectToPickUp.CompareTag("BackPack") && Counter == 0)
         {
@@ -263,10 +196,9 @@ public class PickUp : MethodsFromDevelopers
 
                         PlayerInventory.BackPack = SlotControler.MyBackPack.gameObject;
                         PlayerInventory.ChargingValueMaxMass();
-                        Counter++;
                     }
                 }
-               
+                
             }
             else
             {
@@ -275,12 +207,9 @@ public class PickUp : MethodsFromDevelopers
 
                 PlayerInventory.BackPack = SlotControler.MyBackPack.gameObject;
                 PlayerInventory.ChargingValueMaxMass();
-                
-                Counter++;
-                Debug.Log("6");
             }
 
-            
+            Counter = 1;
         }
         
         void PutOn()
@@ -312,45 +241,61 @@ public class PickUp : MethodsFromDevelopers
         ShootControler ControlerShoot = ObjectForPickUp.GetComponent<ShootControler>();
         ScrForAllLoot ScrForLoot = ObjectForPickUp.GetComponent<ScrForAllLoot>();
 
-
-        if (ControlerShoot)
+        
+        if (ControlerShoot && ScrForLoot)
         {
-            if (!SlotControler.MyPistol01 && MainCounter == 1 && Counter == 0)
-            {
-                SlotControler.MyPistol01 = ObjectForPickUp.transform;
-                ControlerUi.SlotPistol01.sprite = ScrForLoot.SpriteForLoot;
-                
-                PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01);
-                Counter++;
-
-            }
-            else if (!SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 && MainCounter == 2 && Counter == 0)
+            if (!SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 && Counter == 0)
             {
                 SlotControler.MyWeapon01 = ObjectForPickUp.transform;
                 ControlerUi.SlotWeapon01.sprite = ScrForLoot.SpriteForLoot;
-
+                
                 PutObjects(SlotControler.MyWeapon01, SlotControler.SlotBack01);
-                Counter++;
+                Counter = 1;
+                Debug.Log("1");
 
             }
-            else if (SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 && MainCounter == 2 && Counter == 0)
+            else if (SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 && Counter == 0)
             {
                 SlotControler.MyWeapon02 = ObjectForPickUp.transform;
                 ControlerUi.SlotWeapon02.sprite = ScrForLoot.SpriteForLoot;
-
-
+                
                 PutObjects(SlotControler.MyWeapon02, SlotControler.SlotBack02);
-                Counter++;
+                Counter = 1;
+                Debug.Log("2");
+
             }
-            else if (Counter == 0)
+            else 
             {
                 Debug.Log("Cant take !");
             }
             if (ControlerShoot.WeaponShoop) PickUpShops(ControlerShoot.WeaponShoop);
             ControlerShoot.ControlerUi = ControlerUi;
-            
         }          
+    }
 
+    public void PickUpPistols(GameObject ObjectForPickUp)
+    {
+        ShootControler ControlerShoot = ObjectForPickUp.GetComponent<ShootControler>();
+        ScrForAllLoot ScrForLoot = ObjectForPickUp.GetComponent<ScrForAllLoot>();
+
+        if (ControlerShoot && ScrForLoot)
+        {
+            if (!SlotControler.MyPistol01 && Counter == 0)
+            {
+                SlotControler.MyPistol01 = ObjectForPickUp.transform;
+                ControlerUi.SlotPistol01.sprite = ScrForLoot.SpriteForLoot;
+
+                PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01);
+                Counter = 1;
+                Debug.Log("3");
+            }
+        }
+        else 
+        {
+            Debug.Log("Cant take !");
+        }
+        if (ControlerShoot.WeaponShoop) PickUpShops(ControlerShoot.WeaponShoop);
+        ControlerShoot.ControlerUi = ControlerUi;
     }
 
     public void PickUpShops(GameObject ShopForPickUp)
@@ -361,9 +306,8 @@ public class PickUp : MethodsFromDevelopers
         
         if (ControlerShop && !ControlerShop.InInventory)
         {
-            if (!SlotControler.MyShope01 && SlotControler.SlotShpo01)
+            if (!SlotControler.MyShope01 && SlotControler.SlotShpo01 && Counter == 0)
             {
-        
                 ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
                 ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
                 
@@ -371,9 +315,9 @@ public class PickUp : MethodsFromDevelopers
                 ControlerUi.SlotShop01.sprite = ScrForLoot.SpriteForLoot;
 
                 if (!ControlerShop.IsUsing) PutObjects(SlotControler.MyShope01, SlotControler.SlotShpo01);
-                //Counter++;
+                Counter = 1;
             }
-            else if (!SlotControler.MyShope02 && SlotControler.SlotShpo02)
+            else if (!SlotControler.MyShope02 && SlotControler.SlotShpo02 && Counter == 0)
             {
                 ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
                 ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
@@ -382,9 +326,9 @@ public class PickUp : MethodsFromDevelopers
                 ControlerUi.SlotShop02.sprite = ScrForLoot.SpriteForLoot;
 
                 if (!ControlerShop.IsUsing) PutObjects(SlotControler.MyShope02, SlotControler.SlotShpo02);
-                //Counter++;
+                Counter = 1;
             }
-            else if (!SlotControler.MyShope03 && SlotControler.SlotShpo03)
+            else if (!SlotControler.MyShope03 && SlotControler.SlotShpo03 && Counter == 0)
             {
                 ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
                 ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
@@ -393,16 +337,15 @@ public class PickUp : MethodsFromDevelopers
                 ControlerUi.SlotShop03.sprite = ScrForLoot.SpriteForLoot;
 
                 if (!ControlerShop.IsUsing) PutObjects(SlotControler.MyShope03, SlotControler.SlotShpo03);
-                //Counter++;
+                Counter = 1;
             }
-            else if (true)
+            else 
             {
                 Debug.Log("Cant do this !");
             }
 
             Debug.Log(!SlotControler.MyShope01);
             Debug.Log(SlotControler.SlotShpo01);
-            Debug.Log(Counter == 0);
         }
     }
 }

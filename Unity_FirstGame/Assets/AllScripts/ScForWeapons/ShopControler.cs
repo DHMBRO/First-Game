@@ -5,7 +5,7 @@ public class ShopControler : MonoBehaviour
     [SerializeField] public int CurrentAmmo;
     [SerializeField] public int MaxAmmo;
     [SerializeField] public float Mass = 0.0f;
-    [SerializeField] public string KeyShop = ""; 
+    [SerializeField] public string KeyTupeCaliber = ""; 
 
     [SerializeField] public bool InInventory = false;
     [SerializeField] public bool IsUsing = false;

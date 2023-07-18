@@ -13,13 +13,15 @@ public class ShootControler : MonoBehaviour
     [SerializeField] private GameObject Collet;
     [SerializeField] private GameObject ColletPoint;
 
+    [SerializeField] public string KeyTupeToWeapon;
+    [SerializeField] public string KeyTupeCaliber;
+
     [SerializeField] public float ShotDeley = 1.0f;
     [SerializeField] public float ShotTime = 0.0f;
     [SerializeField] public float Mass = 0.0f;
-    [SerializeField] public float SpeedForBullet = 0.0f;
-
-    [SerializeField] private float ColletSpeed = 0.0f;
     [SerializeField] private float BulletSpeed = 0.0f;
+
+    //[SerializeField] private float ColletSpeed = 0.0f;
     
     void Start()
     {
@@ -76,9 +78,9 @@ public class ShootControler : MonoBehaviour
                     GameObject newCollet = Instantiate(Collet, ColletPoint.transform.position, Quaternion.LookRotation(TargetPoint - Muzzle.transform.position));
                     newCollet.transform.rotation = ColletPoint.transform.rotation;
                     
-                    Rigidbody newColletRB = newCollet.GetComponent<Rigidbody>();                    
+                    //Rigidbody newColletRB = newCollet.GetComponent<Rigidbody>();                    
                     
-                    newColletRB.AddRelativeForce(ColletPoint.transform.forward * ColletSpeed, ForceMode.Impulse);
+                    //newColletRB.AddRelativeForce(ColletPoint.transform.forward * ColletSpeed, ForceMode.Impulse);
                     Destroy(newCollet, 2.5f);
                     
                     Shop.CurrentAmmo--;

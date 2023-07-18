@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 636830789876600585}
   - component: {fileID: 5104025842943061041}
   - component: {fileID: 2090051774395049428}
-  - component: {fileID: 8160595969626816622}
   - component: {fileID: 6395257536678441091}
   - component: {fileID: 2441729088439391868}
   m_Layer: 0
@@ -98,19 +97,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.9928412, y: 0.49899596, z: 0.16465396}
   m_Center: {x: -0.32312897, y: -0.123940796, z: 0.0050771534}
---- !u!65 &8160595969626816622
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2025701887585895473}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.09826, y: 0.7, z: 0.5}
-  m_Center: {x: -0.3, y: -0.1, z: 0}
 --- !u!114 &6395257536678441091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,11 +131,11 @@ MonoBehaviour:
   Bullet: {fileID: 4797105551472130353, guid: 9beae3c03257c1943bb0f2947f464346, type: 3}
   Collet: {fileID: 1049788153312626777, guid: 07671d050b95a524b8b8db0bf34811a6, type: 3}
   ColletPoint: {fileID: 665726274810567144}
+  KeyTupeToWeapon: Weapon
+  KeyTupeCaliber: 5,56MM
   ShotDeley: 0.1
   ShotTime: 0
   Mass: 0
-  SpeedForBullet: 0
-  ColletSpeed: 0
   BulletSpeed: 0
 --- !u!1 &2135052165428356616
 GameObject:
