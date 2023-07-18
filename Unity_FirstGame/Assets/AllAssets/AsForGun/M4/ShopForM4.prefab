@@ -11,9 +11,6 @@ GameObject:
   - component: {fileID: 7285420758307870777}
   - component: {fileID: 3148033673655153288}
   - component: {fileID: 3626209618775102241}
-  - component: {fileID: 8879509237013042564}
-  - component: {fileID: 8157074875183568281}
-  - component: {fileID: 7097739503286328191}
   m_Layer: 0
   m_Name: ShopForM4
   m_TagString: ShopM4
@@ -86,51 +83,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8879509237013042564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7945646813490313421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae0c6187986862c44a3f7fbb40d1acf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CurrentAmmo: 30
-  MaxAmmo: 30
-  Mass: 0
-  KeyShop: 5,56MM
-  InInventory: 0
-  IsUsing: 0
-  ColiderToShop: {fileID: 0}
-  RigidbodyToShop: {fileID: 0}
-  ParentShop: {fileID: 0}
---- !u!114 &8157074875183568281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7945646813490313421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0ef3b5b486fd1d43b53d47da52f3fe2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Mass: 0
-  SpriteForLoot: {fileID: 21300000, guid: 30fea81ca843bb449ba347eb317670e1, type: 3}
---- !u!65 &7097739503286328191
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7945646813490313421}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.09929013, y: 0.17667845, z: 0.03045108}
-  m_Center: {x: -0.006993439, y: -0.012902141, z: -9.313226e-10}

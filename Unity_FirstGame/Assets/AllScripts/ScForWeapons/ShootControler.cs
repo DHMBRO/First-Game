@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class ShootControler : MonoBehaviour
 {
-    [SerializeField] private GameObject MyWeapon;
     [SerializeField] public UiControler ControlerUi;
     //[SerializeField] private BoxCollider ColiderForWeapon;
 
@@ -19,21 +18,13 @@ public class ShootControler : MonoBehaviour
     [SerializeField] public float Mass = 0.0f;
     [SerializeField] public float SpeedForBullet = 0.0f;
 
-    [SerializeField] private Rigidbody WeaponRigidbody;
-    [SerializeField] public Transform CameraTransform;
-    [SerializeField] private SlotControler MySlotControler;
-
     [SerializeField] private float ColletSpeed = 0.0f;
     [SerializeField] private float BulletSpeed = 0.0f;
     
-
     void Start()
     {
-        if (!MyWeapon) Debug.Log("Not set Weapon");
         if (!Muzzle) Debug.Log("Not set Muzzle");
         if (!Bullet) Debug.Log("Not set Bullet");
-
-
     }
 
     private void Update()
@@ -47,7 +38,7 @@ public class ShootControler : MonoBehaviour
     
     public void Shoot()
     {
-        bool Audit01 = MyWeapon && GameObjectForRay && Muzzle && Bullet && Collet && ColletPoint;
+        bool Audit01 = GameObjectForRay && Muzzle && Bullet && Collet && ColletPoint;
         if (Audit01)
         {
             Shoot(Muzzle, GameObjectForRay, ColletPoint, Collet, Bullet);

@@ -71,8 +71,7 @@ public class PickUp : MethodsFromDevelopers
                     {
                         if (ControlerWeapon)
                         {
-
-
+                            
                         }
                         else if (ControlerShop)
                         {
@@ -320,8 +319,7 @@ public class PickUp : MethodsFromDevelopers
             {
                 SlotControler.MyPistol01 = ObjectForPickUp.transform;
                 ControlerUi.SlotPistol01.sprite = ScrForLoot.SpriteForLoot;
-
-
+                
                 PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01);
                 Counter++;
 
@@ -330,7 +328,6 @@ public class PickUp : MethodsFromDevelopers
             {
                 SlotControler.MyWeapon01 = ObjectForPickUp.transform;
                 ControlerUi.SlotWeapon01.sprite = ScrForLoot.SpriteForLoot;
-
 
                 PutObjects(SlotControler.MyWeapon01, SlotControler.SlotBack01);
                 Counter++;
@@ -351,6 +348,7 @@ public class PickUp : MethodsFromDevelopers
             }
             if (ControlerShoot.WeaponShoop) PickUpShops(ControlerShoot.WeaponShoop);
             ControlerShoot.ControlerUi = ControlerUi;
+            
         }          
 
     }
