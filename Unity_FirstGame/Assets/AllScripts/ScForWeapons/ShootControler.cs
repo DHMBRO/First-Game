@@ -29,21 +29,13 @@ public class ShootControler : MonoBehaviour
 
     void Start()
     {
-        if (!MyWeapon)
-        {
-            Debug.Log("You dont have Weapon");
-        }
-        else if (!Muzzle)
-        {
-            Debug.Log("You dont have Muzzle");
-        }
-        else if (!Bullet)
-        {
-            Debug.Log("You dont have Bullet");
-        }
+        if (!MyWeapon) Debug.Log("Not set Weapon");
+        if (!Muzzle) Debug.Log("Not set Muzzle");
+        if (!Bullet) Debug.Log("Not set Bullet");
+
 
     }
-        
+
     private void Update()
     {
         if (Input.GetKey(KeyCode.Mouse0) && ControlerUi)

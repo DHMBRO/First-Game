@@ -1,5 +1,7 @@
 using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.UI;
+
 
 public class UiControler : MonoBehaviour
 {
@@ -18,9 +20,25 @@ public class UiControler : MonoBehaviour
     [SerializeField] public Image SlotShop02;
     [SerializeField] public Image SlotShop03;
 
+    [SerializeField] private List <Image> ImagesToSlots = new List<Image>();
+    [SerializeField] private List<string> NameToObjects = new List<string>();
+
+    [SerializeField] private List <float> ScaleSlotsToX = new List<float>();
+    [SerializeField] private List <float> ScaleSlotsToY = new List<float>();
+    
+    [SerializeField] private Dictionary<string,int> KeyToScale = new Dictionary<string,int>();
+
 
     void Start()
     {
+        for (int i = 0;i < NameToObjects.Count; i++)
+        {
+            KeyToScale.Add(NameToObjects[i],i);
+            
+            //Debug.Log("i:" + i);
+            //Debug.Log("KeyToScale[NameToObjects[i]]:" + KeyToScale[NameToObjects[i]]);
+        }
+
         InventoryIsOpen = false;
         if (Inventory) Inventory.SetActive(false);   
     }
@@ -38,52 +56,10 @@ public class UiControler : MonoBehaviour
 
             if (InventoryIsOpen) Cursor.lockState = CursorLockMode.Confined;
             else Cursor.lockState = CursorLockMode.Locked;
-
         }
-
     }
     
     
-    /*[SerializeField] Image scopeUi;
-    [SerializeField] public List<Image> inventorySlot1x1 = new List<Image>();
-    [SerializeField] public List<Image> inventorySlot1x2 = new List<Image>();
-    [SerializeField] public Dictionary<string, Image> inventorySlot = new Dictionary<string, Image>();
-
-    public bool inventoryIsOpen;
-    void Start()
-    {
-        inventoryIsOpen = false;
-        scopeUi.enabled = true;
-        for (int count = 0,i = 0; i < inventorySlot.Count; i++)
-        {
-
-            inventorySlot[];
-        }
     
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            scopeUi.enabled = !scopeUi.enabled;
-            for (int i = 0; i < inventorySlot1x1.Count; i++)
-            {
-                inventorySlot1x1[i].enabled = !inventorySlot1x1[i].enabled;
-            }
-            for (int i = 0; i < inventorySlot1x2.Count; i++)
-            {
-                inventorySlot1x2[i].enabled = !inventorySlot1x2[i].enabled;
-            }
-            if (Cursor.lockState == CursorLockMode.Confined)
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-            }
-            else
-            {
-                Cursor.lockState = CursorLockMode.Confined;
-            }
-            inventoryIsOpen = !inventoryIsOpen;
-        }
-    }*/
-
     
 }

@@ -44,9 +44,9 @@ public class PickUp : MethodsFromDevelopers
         if (ReferenceForCamera)
         {
             Ray RayForPickUp = new Ray(ReferenceForCamera.ObjectRay.transform.position, ReferenceForCamera.ObjectRay.transform.forward);
-
+            
             Debug.DrawRay(ReferenceForCamera.ObjectRay.position, ReferenceForCamera.ObjectRay.forward * DistanceForRay, Color.red);
-
+            
             if (Physics.Raycast(RayForPickUp, out RaycastHit HitResult, DistanceForRay))
             {
                 LinkOther(HitResult);
@@ -390,8 +390,8 @@ public class PickUp : MethodsFromDevelopers
                 ControlerUi.SlotWeapon01.sprite = ScrForLoot.SpriteForLoot;
 
 
-                Debug.Log("1");
-                Debug.Log(ScrForLoot.SpriteForLoot);
+                //Debug.Log("1");
+                //Debug.Log(ScrForLoot.SpriteForLoot);
 
 
                 PutObjects(SlotControler.MyWeapon01, SlotControler.SlotBack01);
@@ -422,14 +422,14 @@ public class PickUp : MethodsFromDevelopers
         ShopControler ControlerShop = ShopForPickUp.GetComponent<ShopControler>();
         ScrForAllLoot ScrForLoot = ShopForPickUp.GetComponent<ScrForAllLoot>();
 
-        Debug.Log("1");
+        //Debug.Log("1");
         
         if (ControlerShop && !ControlerShop.InInventory)
         {
-            Debug.Log("2");
+            //Debug.Log("2");
             if (!SlotControler.MyShope01 && SlotControler.SlotShpo01 /*&& Counter == 0*/)
             {
-                Debug.Log("3");
+                //Debug.Log("3");
 
                 ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
                 ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;

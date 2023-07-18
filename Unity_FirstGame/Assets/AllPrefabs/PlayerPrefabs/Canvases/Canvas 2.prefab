@@ -314,7 +314,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7940624418599337575
 RectTransform:
   m_ObjectHideFlags: 0
@@ -734,6 +734,8 @@ MonoBehaviour:
   - {fileID: 9198852737725442067}
   ButtonUse: {fileID: 6139628863803692415}
   ButtonDrop: {fileID: 3209964587965296801}
+  None: {fileID: 21300000, guid: 3e0d4bab2bf89544ea5d2db81eb3764d, type: 3}
+  InventoryUi: {fileID: 3821547029511633812}
 --- !u!114 &3821547029511633812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -751,6 +753,7 @@ MonoBehaviour:
   - {fileID: 4808110852168870486}
   - {fileID: 1303914488747363659}
   - {fileID: 2221019237362242356}
+  SpritesForBackPack: []
   None: {fileID: 21300000, guid: 3e0d4bab2bf89544ea5d2db81eb3764d, type: 3}
   Count: 0
   PlayerInventory: {fileID: 655437941069588223, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
@@ -780,6 +783,25 @@ MonoBehaviour:
   SlotShop01: {fileID: 7341675550847561911}
   SlotShop02: {fileID: 118297984848625603}
   SlotShop03: {fileID: 7401862678830880364}
+  ImagesToSlots:
+  - {fileID: 2472821505095850326}
+  - {fileID: 8283938876062725092}
+  - {fileID: 4555144406820017972}
+  - {fileID: 7341675550847561911}
+  - {fileID: 118297984848625603}
+  - {fileID: 7401862678830880364}
+  NameToObjects:
+  - Glok
+  - M4
+  - AK47
+  ScaleSlotsToX:
+  - 0.6
+  - 0.7
+  - 1.52
+  ScaleSlotsToY:
+  - 0.5
+  - 0.5
+  - 0.5
 --- !u!114 &4915807067601749401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -794,8 +816,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SlotToUseLoot: {fileID: 0}
   UiInventory: {fileID: 3821547029511633812}
-  Inventory: {fileID: 655437941069588223, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
-  ControlerToDrop: {fileID: 2663352457323175868, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+  Inventory: {fileID: 0}
+  ControlerToDrop: {fileID: 0}
   IndexToList: 0
 --- !u!1 &1482463738801323435
 GameObject:
@@ -4866,7 +4888,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4348380559599560857
 RectTransform:
   m_ObjectHideFlags: 0

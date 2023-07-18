@@ -11,11 +11,19 @@ public class GameManager : MethodsFromDevelopers
     
     public GameObject ButtonUse;
     public GameObject ButtonDrop;
+    public Sprite None;
+
+    [SerializeField] private UiInventory InventoryUi;
 
 
     private void Start()
     {
+        InventoryUi = gameObject.GetComponent<UiInventory>();
+        
+        if (!InventoryUi) Debug.Log("Not set InventoryUi");
+
         if (WatchedSlot) WatchedSlot.SetActive(false);
+        else Debug.Log("Not set WatchedSlot");
     }
 
     public void OpenSlots()
@@ -34,7 +42,16 @@ public class GameManager : MethodsFromDevelopers
 
     public void ActiveUD(int IndexToSlots)
     {
-        if (WatchedSlot && ButtonUse && ButtonDrop && IndexToSlots >= 0 || IndexToSlots  <= 3 && ButtonUse && ButtonDrop)
+        if (InventoryUi.SpritesForBackPack[InventoryUi.Count + IndexToSlots] == None)
+        {
+            Debug.Log("InventoryUi.Count :" + InventoryUi.Count);
+            Debug.Log("PlayerInventory.InfoForSlots.Count :" + InventoryUi.SpritesForBackPack.Count);
+
+            Debug.Log("Index was out of range !");
+            return;
+        }
+
+        if (WatchedSlot && ButtonUse && ButtonDrop && IndexToSlots >= 0 || IndexToSlots  <= 3)
         {
             PutObjects(WatchedSlot.transform, AllSlots[IndexToSlots].transform);
             WatchedSlot.SetActive(true);

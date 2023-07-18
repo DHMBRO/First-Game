@@ -11,14 +11,16 @@ public class UiInventory : MonoBehaviour
     [SerializeField] public Sprite None;
     [SerializeField] public int Count = 0;
 
-    [SerializeField] private Inventory PlayerInventory;
-
+    [SerializeField] public Inventory PlayerInventory;
+    
     [SerializeField] private HpScript ScriptHp;
     [SerializeField] private Image HpInUi;
     [SerializeField] private TextMeshProUGUI HealPointInProzent;
 
     private void Start()
     {
+        if (!PlayerInventory) Debug.Log("Not set PlayerInventory");
+
         if (None)
         {
             for (int i = 0; i < 100; i++)

@@ -21,7 +21,7 @@ public class ScrForUseHeal : MethodsFromDevelopers, IUsebleInterFace
             if (HealPointToTarget) HealPointToTarget.HealHp(HealHp);
 
             SelectObj.SelectObject();
-            Destroy(gameObject, 2.5f);
+            Destroy(gameObject, 3.0f);
         
         }
     }
