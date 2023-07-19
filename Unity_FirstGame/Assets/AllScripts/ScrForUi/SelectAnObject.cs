@@ -17,7 +17,7 @@ public class SelectAnObject : MethodsFromDevelopers
             if (ControlerSlots)
             {
                 SlotToUseLoot = ControlerSlots.SlotHand;
-                Debug.Log(SlotToUseLoot);
+                //Debug.Log(SlotToUseLoot);
             }
             
         }

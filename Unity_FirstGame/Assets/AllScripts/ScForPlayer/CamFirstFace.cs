@@ -18,7 +18,14 @@ public class CamFirstFace : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I)) InventoryIsOpen = !InventoryIsOpen;
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            InventoryIsOpen = !InventoryIsOpen;
+            //Cursor.lockState = CursorLockMode.None;
+            
+        }
+
+        
 
         if (!InventoryIsOpen)
         {

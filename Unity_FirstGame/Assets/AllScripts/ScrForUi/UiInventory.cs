@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using System.Collections.Generic;
 
 public class UiInventory : MonoBehaviour
@@ -13,10 +12,6 @@ public class UiInventory : MonoBehaviour
 
     [SerializeField] public Inventory PlayerInventory;
     
-    [SerializeField] private HpScript ScriptHp;
-    [SerializeField] private Image HpInUi;
-    [SerializeField] private TextMeshProUGUI HealPointInProzent;
-
     private void Start()
     {
         if (!PlayerInventory) Debug.Log("Not set PlayerInventory");

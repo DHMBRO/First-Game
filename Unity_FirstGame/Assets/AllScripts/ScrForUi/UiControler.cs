@@ -20,25 +20,9 @@ public class UiControler : MonoBehaviour
     [SerializeField] public Image SlotShop02;
     [SerializeField] public Image SlotShop03;
 
-    [SerializeField] private List <Image> ImagesToSlots = new List<Image>();
-    [SerializeField] private List<string> NameToObjects = new List<string>();
-
-    [SerializeField] private List <float> ScaleSlotsToX = new List<float>();
-    [SerializeField] private List <float> ScaleSlotsToY = new List<float>();
     
-    [SerializeField] private Dictionary<string,int> KeyToScale = new Dictionary<string,int>();
-
-
     void Start()
     {
-        for (int i = 0;i < NameToObjects.Count; i++)
-        {
-            KeyToScale.Add(NameToObjects[i],i);
-            
-            //Debug.Log("i:" + i);
-            //Debug.Log("KeyToScale[NameToObjects[i]]:" + KeyToScale[NameToObjects[i]]);
-        }
-
         InventoryIsOpen = false;
         if (Inventory) Inventory.SetActive(false);   
     }
