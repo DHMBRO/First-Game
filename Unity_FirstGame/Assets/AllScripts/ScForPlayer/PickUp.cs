@@ -71,11 +71,11 @@ public class PickUp : MethodsFromDevelopers
                     {
                         if (ControlerWeapon)
                         {
-                            if (ControlerWeapon.KeyTupeToWeapon == "Weapon")
+                            if (ControlerWeapon.TheGun == TypeGun.Weapon)
                             {
                                 PickUpWeapons(ObjectToBeLifted);
                             }
-                            else if (ControlerWeapon.KeyTupeToWeapon == "Pistol")
+                            else if (ControlerWeapon.TheGun == TypeGun.Pistol)
                             {
                                 PickUpPistols(ObjectToBeLifted);
                             }

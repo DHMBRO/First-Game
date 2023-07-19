@@ -10,8 +10,8 @@ public class HpScript : MonoBehaviour
     [SerializeField] private float MaxHp;
     ZombieController ControlerForZombie;
 
-    public Live MyLive;
-
+    public Live MyLive = Live.Alive;
+    
     public enum Live
     {
         Alive,

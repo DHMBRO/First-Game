@@ -1,5 +1,11 @@
 using UnityEngine;
 
+public enum TypeGun
+{
+    Weapon,
+    Pistol
+}
+
 public class ShootControler : MonoBehaviour
 {
     [SerializeField] public UiControler ControlerUi;
@@ -22,7 +28,11 @@ public class ShootControler : MonoBehaviour
     [SerializeField] private float BulletSpeed = 0.0f;
 
     //[SerializeField] private float ColletSpeed = 0.0f;
-    
+
+    public TypeGun TheGun;
+
+   
+
     void Start()
     {
         if (!Muzzle) Debug.Log("Not set Muzzle");
