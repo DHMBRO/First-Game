@@ -68,6 +68,7 @@ public class PlayerControler : MonoBehaviour
     {
         SlotControler.MovingGunForSlots();
         
+
     }
 
 }

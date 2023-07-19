@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4257754090790083836}
   - component: {fileID: 4535495125380767225}
+  - component: {fileID: 3203277041731218302}
   m_Layer: 0
   m_Name: CartriCase4,45
   m_TagString: Untagged
@@ -47,8 +48,22 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!136 &3203277041731218302
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3538164085667687546}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.05
+  m_Height: 0.1
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &3265577381295572814
 PrefabInstance:
   m_ObjectHideFlags: 0

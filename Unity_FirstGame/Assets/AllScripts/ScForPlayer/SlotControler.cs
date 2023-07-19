@@ -74,27 +74,12 @@ public class SlotControler : MethodsFromDevelopers
         AllSlots.Add("SlotBack01", SlotBack01);
         AllSlots.Add("SlotBack02", SlotBack02);
         AllSlots.Add("SlotPistol01", SlotPistol01);
-        AllSlots.Add("SlotKnife01", SlotKnife01);
-        //
-       
-        for (int i = 0;i < 5;i++)
-        {
-            //DictionaryForAllShop.Add(ListForAllWeapon[i], ListForAllShop[i]);
-            //Debug.Log("ListForAllWeapon[i]: " + ListForAllWeapon[i] + " Dictionary: " + DictionaryForAllShop[ListForAllWeapon[i]]);
-        }
-
-    }
-
-    void Update()
-    {
-        
-        
+        AllSlots.Add("SlotKnife01", SlotKnife01); 
     }
 
     public void MovingGunForSlots()
     {
-        AppropriationReferenceForUseShop();
-        
+       
         ChangingSlots();
 
         ShootControler ControlerForShoot;
@@ -115,6 +100,8 @@ public class SlotControler : MethodsFromDevelopers
                 if (ShopControlerToMyShop01 && ShopControlerToMyShop01.KeyTupeCaliber != ControlerForShoot.KeyTupeCaliber) ShopControlerToMyShop01 = null;
                 if (ShopControlerToMyShop02 && ShopControlerToMyShop02.KeyTupeCaliber != ControlerForShoot.KeyTupeCaliber) ShopControlerToMyShop02 = null;
                 if (ShopControlerToMyShop03 && ShopControlerToMyShop03.KeyTupeCaliber != ControlerForShoot.KeyTupeCaliber) ShopControlerToMyShop03 = null;
+
+                //Debug.Log("1");
 
                 //
                 if (ShopControlerToMyShop01 && !ShopControlerToMyShop02 && !ShopControlerToMyShop03)
@@ -225,20 +212,14 @@ public class SlotControler : MethodsFromDevelopers
                     }
                 }
 
-                /*
-                Debug.Log("1");
-                Debug.Log(MyShope01 && DictionaryForAllShop[ListForAllWeapon[i]] == MyShope01.tag);
-
-                Debug.Log("2");
-                Debug.Log(MyShope02 && DictionaryForAllShop[ListForAllWeapon[i]] == MyShope02.tag);
-
-                Debug.Log("3");
-                Debug.Log(MyShope03 && DictionaryForAllShop[ListForAllWeapon[i]] == MyShope03.tag);
-                */
             }
 
         }
-                
+        else if (CounetrForCharge == 1 && Input.GetKeyUp(KeyCode.R))
+        {
+            CounetrForCharge = 0;
+        }
+        
         if (!MyWeapon01 && MyWeapon02)
         {
             MyWeapon01 = MyWeapon02;
@@ -246,14 +227,8 @@ public class SlotControler : MethodsFromDevelopers
 
             MyWeapon02 = null;
         }
-        else if (CounetrForCharge == 1 && Input.GetKeyUp(KeyCode.R))
-        {
-           CounetrForCharge = 0;
-        }
-        else if (Counter == 1 && Input.GetKeyUp("1"))
-        {
-            Counter = 0;
-        }
+       
+        
     }
 
     
@@ -284,7 +259,8 @@ public class SlotControler : MethodsFromDevelopers
 
         bool InputSlots = Input.GetKeyDown("1");
 
-
+        if (Counter == 1 && Input.GetKeyUp("1")) Counter = 0;
+        
         if (SlotHand && InputSlots)
         {    
             if (MyKnife01 && ObjectInHand == null && Counter == 0)
@@ -370,31 +346,12 @@ public class SlotControler : MethodsFromDevelopers
                 PutObjects(MyWeapon02, SlotBack02);
                 ObjectInHand = null;   
             }
+            
         }        
         
     }
 
-    void AppropriationReferenceForUseShop()
-    {
-        ShootControler ShootControler;
-
-        if (MyPistol01)
-        {
-            ShootControler = MyPistol01.GetComponent<ShootControler>();
-            PointForShopPistol01 = ShootControler.SlotForUseShop;
-        }
-        if (MyWeapon01)
-        {
-            ShootControler = MyWeapon01.GetComponent<ShootControler>();
-            PointForShopWeapon01 = ShootControler.SlotForUseShop;
-        }
-        if (MyWeapon02)
-        {
-            ShootControler = MyWeapon02.GetComponent<ShootControler>();
-            PointForShopWeapon02 = ShootControler.SlotForUseShop;
-        }
-
-    }
+   
 
         
 }

@@ -899,6 +899,11 @@ MonoBehaviour:
   - Weapon
   - Pistol
   - Shop
+  - Helmet
+  - Armor
+  - Backpack
+  - FirstAidKits
+  - BoxAmmo
 --- !u!114 &7874716152253843916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -940,18 +945,6 @@ MonoBehaviour:
   PickUp: {fileID: 7778607237951541594}
   Inventory: {fileID: 0}
   Slots: []
-  ListForAllWeapon:
-  - M4
-  - AK47
-  - M249
-  - Glok
-  - M1911
-  ListForAllShop:
-  - ShopM4
-  - ShopAK47
-  - ShopM249
-  - ShopGlok
-  - ShopM1911
   ShopControlerToMyShop01: {fileID: 0}
   ShopControlerToMyShop02: {fileID: 0}
   ShopControlerToMyShop03: {fileID: 0}
