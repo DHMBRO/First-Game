@@ -108,40 +108,53 @@ public class PickUp : MethodsFromDevelopers
 
     public void PickUpOther(GameObject ObjectToPickUp)
     {
+        Debug.Log("1");
+        
         if (PlayerInventory && Counter == 0)
         {
             ScrForAllLoot Loot = ObjectToBeLifted.gameObject.GetComponent<ScrForAllLoot>();
-            
+            Debug.Log("2");
+
             if (Loot && PlayerInventory.CurrentMass + Loot.Mass <= PlayerInventory.MaxMass && Loot.SpriteForLoot)
             {
-                
-                for (int i = 0; i < ReferencesForLoots.ValueLoots.Count; i++)
+                Debug.Log("3");
+                for (int i = 0; i < ReferencesForLoots.ReferencePrefabs.Count; i++)
                 {
-                    
-                    if (ObjectToPickUp.gameObject.tag == ReferencesForLoots.ValueLoots[i].gameObject.tag)
+                    Debug.Log("4");
+                    ScrForAllLoot LootFromList = ReferencesForLoots.ReferencePrefabs[i].GetComponent<ScrForAllLoot>();
+
+                    if (Loot.TupeTheObject == LootFromList.TupeTheObject)
                     {
+                        Debug.Log("5");
 
                         InfoForLoot ObjectToGet = new InfoForLoot();
-                        ObjectToGet.ObjectToInstantiate = ReferencesForLoots.ValueLoots[i];
 
+                        ObjectToGet.ObjectToInstantiate = ReferencesForLoots.ReferencePrefabs[i];
                         
+                        Debug.Log(ObjectToGet.ObjectToInstantiate);
+
                         PlayerInventory.InfoForSlots.Add(ObjectToGet);
                         PlayerInventory.CurrentMass += Loot.Mass;
-                        
-                        for (int j = 0;j < InventoryUi.SpritesForBackPack.Count;j++)
+
+                        for (int j = 0; j < InventoryUi.SpritesForBackPack.Count; j++)
                         {
-                            if (InventoryUi.SpritesForBackPack[j] == PlayerInventory.None)
-                            { 
+                            if (InventoryUi.SpritesForBackPack[j] == PlayerInventory.None && Counter == 0)
+                            {
+                                Debug.Log("6");
                                 InventoryUi.SpritesForBackPack[j] = Loot.SpriteForLoot;
                                 Counter = 1;
                                 break;
                             }
+
+
                         }
 
-                        
+                        Destroy(ObjectToPickUp);
                     }
+
                 }
-                Destroy(ObjectToPickUp);
+
+               
                 
                
             }

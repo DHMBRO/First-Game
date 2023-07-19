@@ -97,8 +97,8 @@ GameObject:
   - component: {fileID: 1783367692488011101}
   - component: {fileID: -8433090079101772428}
   m_Layer: 0
-  m_Name: FirstAidKits01
-  m_TagString: FirstAidKits
+  m_Name: +15HP
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Mass: 0.4
+  TupeTheObject: +15HP
   SpriteForLoot: {fileID: 21300000, guid: 7998f7a317df5834498b0823e0683c8d, type: 3}
 --- !u!114 &1783367692488011101
 MonoBehaviour:
@@ -158,8 +159,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9574646e7479cf44e80ea9a5b342ccd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectToHeal: {fileID: 0}
-  PointToDrop: {fileID: 0}
   HealHp: 15
 --- !u!54 &-8433090079101772428
 Rigidbody:

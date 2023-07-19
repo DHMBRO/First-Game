@@ -74,7 +74,12 @@ public class SelectAnObject : MethodsFromDevelopers
         //Debug.Log("3");
 
         GameObject ObjectToDrop = Instantiate(Inventory.InfoForSlots[UiInventory.Count + IndexToList].ObjectToInstantiate);
-        
+        ScrForAllLoot ScrLootObjectToDrop = ObjectToDrop.GetComponent<ScrForAllLoot>();
+
+        if (!ScrLootObjectToDrop) return;
+        Inventory.CurrentMass -= ScrLootObjectToDrop.Mass;
+
+
         if (ControlerToDrop) DropObjects(ObjectToDrop.transform, ControlerToDrop.PointForDrop);
         else Debug.Log("Not set ControlerToDrop");
         
