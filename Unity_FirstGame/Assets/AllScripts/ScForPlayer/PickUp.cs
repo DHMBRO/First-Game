@@ -52,10 +52,14 @@ public class PickUp : MethodsFromDevelopers
 
     public void ComplertingTheLink()
     {
+        Debug.Log("1-0");
         if (ObjectToBeLifted)
         {
+            Debug.Log("1-1");
             if (Input.GetKeyDown(KeyCode.F) && ObjectToBeLifted && Counter == 0)
             {
+                Debug.Log("1-2");
+
                 ShootControler ControlerWeapon = ObjectToBeLifted.GetComponent<ShootControler>();
                 ShopControler ControlerShop = ObjectToBeLifted.GetComponent<ShopControler>();
 
@@ -64,6 +68,8 @@ public class PickUp : MethodsFromDevelopers
                 BackPackContorler ControlerBackPack = ObjectToBeLifted.GetComponent<BackPackContorler>();
 
                 ScrForAllLoot ScrLoot = ObjectToBeLifted.GetComponent<ScrForAllLoot>();
+
+                Debug.Log("ScrLoot: " + ScrLoot);
 
                 for (int i = 0; i < TagsToPickup.Count; i++)
                 {
@@ -108,24 +114,24 @@ public class PickUp : MethodsFromDevelopers
 
     public void PickUpOther(GameObject ObjectToPickUp)
     {
-        Debug.Log("1");
+        //Debug.Log("1");
         
         if (PlayerInventory && Counter == 0)
         {
             ScrForAllLoot Loot = ObjectToBeLifted.gameObject.GetComponent<ScrForAllLoot>();
-            Debug.Log("2");
+            //Debug.Log("2");
 
             if (Loot && PlayerInventory.CurrentMass + Loot.Mass <= PlayerInventory.MaxMass && Loot.SpriteForLoot)
             {
-                Debug.Log("3");
+                //Debug.Log("3");
                 for (int i = 0; i < ReferencesForLoots.ReferencePrefabs.Count; i++)
                 {
-                    Debug.Log("4");
+                    //Debug.Log("4");
                     ScrForAllLoot LootFromList = ReferencesForLoots.ReferencePrefabs[i].GetComponent<ScrForAllLoot>();
 
                     if (Loot.TupeTheObject == LootFromList.TupeTheObject)
                     {
-                        Debug.Log("5");
+                        //Debug.Log("5");
 
                         InfoForLoot ObjectToGet = new InfoForLoot();
 
@@ -140,7 +146,7 @@ public class PickUp : MethodsFromDevelopers
                         {
                             if (InventoryUi.SpritesForBackPack[j] == PlayerInventory.None && Counter == 0)
                             {
-                                Debug.Log("6");
+                                //Debug.Log("6");
                                 InventoryUi.SpritesForBackPack[j] = Loot.SpriteForLoot;
                                 Counter = 1;
                                 break;
@@ -270,7 +276,7 @@ public class PickUp : MethodsFromDevelopers
             if (ControlerShoot.WeaponShoop)
             {
                 PickUpShops(ControlerShoot.WeaponShoop);
-                Debug.Log(ControlerShoot.WeaponShoop);
+                //Debug.Log(ControlerShoot.WeaponShoop);
 
                 //Debug.Log("1");
                 
@@ -349,9 +355,9 @@ public class PickUp : MethodsFromDevelopers
             }
 
             
-            Debug.Log(!SlotControler.MyShope01);
-            Debug.Log(SlotControler.SlotShpo01);
-            Debug.Log(Counter == 0);
+            //Debug.Log(!SlotControler.MyShope01);
+            //Debug.Log(SlotControler.SlotShpo01);
+            //Debug.Log(Counter == 0);
 
         }
     }
