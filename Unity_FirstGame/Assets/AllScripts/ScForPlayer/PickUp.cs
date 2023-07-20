@@ -131,7 +131,7 @@ public class PickUp : MethodsFromDevelopers
                     //Debug.Log("4");
                     ScrForAllLoot LootFromList = ReferencesForLoots.ReferencePrefabs[i].GetComponent<ScrForAllLoot>();
 
-                    if (Loot.TupeTheObject == LootFromList.TupeTheObject)
+                    if (Loot.The == LootFromList.The)
                     {
                         //Debug.Log("5");
 

@@ -7,7 +7,7 @@ public class ScrForUseAmmo : MonoBehaviour, IUsebleInterFace
     [SerializeField] private int MaxAmmo;
     //[SerializeField] private string KeyToShops;
 
-    public TypeCaliber CaliberToBoxAmmo;
+    public TypeCaliber CaliberToBox;
 
     public void Use(GameObject Target, SelectAnObject SelectObj)
     {

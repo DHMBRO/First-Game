@@ -13,4 +13,10 @@ public enum TypeCaliber
     C4_45ACP
 }
 
+public enum TypeLoot
+{
+    FirstAidKit,
+    ArmorPlate,
+    BoxAmmo
 
+}
