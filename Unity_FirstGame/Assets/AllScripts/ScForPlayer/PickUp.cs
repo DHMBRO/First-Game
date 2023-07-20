@@ -131,12 +131,12 @@ public class PickUp : MethodsFromDevelopers
                     //Debug.Log("4");
                     ScrForAllLoot LootFromList = ReferencesForLoots.ReferencePrefabs[i].GetComponent<ScrForAllLoot>();
 
-                    if (Loot.The == LootFromList.The)
+                    if (Loot == LootFromList)
                     {
-                        //Debug.Log("5");
+                        Debug.Log("5");
 
                         InfoForLoot ObjectToGet = new InfoForLoot();
-
+                        
                         ObjectToGet.ObjectToInstantiate = ReferencesForLoots.ReferencePrefabs[i];
                         
                         Debug.Log(ObjectToGet.ObjectToInstantiate);
