@@ -5,7 +5,9 @@ public class ScrForUseAmmo : MonoBehaviour, IUsebleInterFace
 {
     [SerializeField] public int CurrentAmmo;
     [SerializeField] private int MaxAmmo;
-    [SerializeField] private string KeyToShops;
+    //[SerializeField] private string KeyToShops;
+
+    public TypeCaliber CaliberToBoxAmmo;
 
     public void Use(GameObject Target, SelectAnObject SelectObj)
     {
@@ -18,17 +20,17 @@ public class ScrForUseAmmo : MonoBehaviour, IUsebleInterFace
             if(ControlerSlots.MyShope01)
             {
                 ShopControler ControlerShop01 = ControlerSlots.MyShope01.GetComponent<ShopControler>();
-                if (ControlerShop01.KeyTupeCaliber == KeyToShops && ControlerShop01.ParentShop.tag == "UnloadingSlot") AllShops.Add(ControlerSlots.MyShope01.GetComponent<ShopControler>());
+                //if (ControlerShop01.KeyTupeCaliber == KeyToShops && ControlerShop01.ParentShop.tag == "UnloadingSlot") AllShops.Add(ControlerSlots.MyShope01.GetComponent<ShopControler>());
             }
             if (ControlerSlots.MyShope02)
             {
                 ShopControler ControlerShop02 = ControlerSlots.MyShope02.GetComponent<ShopControler>();
-                if (ControlerShop02.KeyTupeCaliber == KeyToShops && ControlerShop02.ParentShop.tag == "UnloadingSlot") AllShops.Add(ControlerSlots.MyShope02.GetComponent<ShopControler>());
+                //if (ControlerShop02.KeyTupeCaliber == KeyToShops && ControlerShop02.ParentShop.tag == "UnloadingSlot") AllShops.Add(ControlerSlots.MyShope02.GetComponent<ShopControler>());
             }
             if (ControlerSlots.MyShope03)
             {
                 ShopControler ControlerShop03 = ControlerSlots.MyShope03.GetComponent<ShopControler>();
-                if (ControlerShop03.KeyTupeCaliber == KeyToShops && ControlerShop03.ParentShop.tag == "UnloadingSlot") AllShops.Add(ControlerSlots.MyShope03.GetComponent<ShopControler>());
+                //if (ControlerShop03.KeyTupeCaliber == KeyToShops && ControlerShop03.ParentShop.tag == "UnloadingSlot") AllShops.Add(ControlerSlots.MyShope03.GetComponent<ShopControler>());
             }
             for (int i = 0;i < AllShops.Count; i++)
             {

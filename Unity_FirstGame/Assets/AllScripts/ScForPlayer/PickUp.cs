@@ -52,13 +52,13 @@ public class PickUp : MethodsFromDevelopers
 
     public void ComplertingTheLink()
     {
-        Debug.Log("1-0");
+        //Debug.Log("1-0");
         if (ObjectToBeLifted)
         {
-            Debug.Log("1-1");
+            //Debug.Log("1-1");
             if (Input.GetKeyDown(KeyCode.F) && ObjectToBeLifted && Counter == 0)
             {
-                Debug.Log("1-2");
+                //Debug.Log("1-2");
 
                 ShootControler ControlerWeapon = ObjectToBeLifted.GetComponent<ShootControler>();
                 ShopControler ControlerShop = ObjectToBeLifted.GetComponent<ShopControler>();
@@ -69,19 +69,20 @@ public class PickUp : MethodsFromDevelopers
 
                 ScrForAllLoot ScrLoot = ObjectToBeLifted.GetComponent<ScrForAllLoot>();
 
-                Debug.Log("ScrLoot: " + ScrLoot);
-
+                
                 for (int i = 0; i < TagsToPickup.Count; i++)
                 {
+                    //Debug.Log("For is work");
                     if (ObjectToBeLifted.tag == TagsToPickup[i])
                     {
+                        //Debug.Log("1-3");
                         if (ControlerWeapon)
                         {
-                            if (ControlerWeapon.TheGun == TypeGun.Weapon)
+                            if (ControlerWeapon.TheGun == TypeWeapon.Weapon)
                             {
                                 PickUpWeapons(ObjectToBeLifted);
                             }
-                            else if (ControlerWeapon.TheGun == TypeGun.Pistol)
+                            else if (ControlerWeapon.TheGun == TypeWeapon.Pistol)
                             {
                                 PickUpPistols(ObjectToBeLifted);
                             }
@@ -97,6 +98,7 @@ public class PickUp : MethodsFromDevelopers
                         else if (ScrLoot)
                         {
                             PickUpOther(ObjectToBeLifted);
+                            Debug.Log("PickUpOther is work");
                         }
                     }   
                 }

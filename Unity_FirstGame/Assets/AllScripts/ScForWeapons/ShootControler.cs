@@ -1,11 +1,5 @@
 using UnityEngine;
 
-public enum TypeGun
-{
-    Weapon,
-    Pistol
-}
-
 public class ShootControler : MonoBehaviour
 {
     [SerializeField] public UiControler ControlerUi;
@@ -29,9 +23,7 @@ public class ShootControler : MonoBehaviour
 
     //[SerializeField] private float ColletSpeed = 0.0f;
 
-    public TypeGun TheGun;
-
-   
+    public TypeWeapon TheGun;
 
     void Start()
     {
