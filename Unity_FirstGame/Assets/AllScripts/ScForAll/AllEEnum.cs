@@ -7,6 +7,7 @@ public enum TypeWeapon
 
 public enum TypeCaliber
 {
+    C12x99MM,
     C7_62MM,
     C5_56MM,
     C9MM,
