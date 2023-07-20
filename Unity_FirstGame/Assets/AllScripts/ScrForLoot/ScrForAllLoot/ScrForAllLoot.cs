@@ -11,7 +11,7 @@ public class ScrForAllLoot : MonoBehaviour, IImage
     {
         if (SpriteForLoot) GetImage(SpriteForLoot);
         else Debug.Log(gameObject.name + "Dont have reference to SpriteForLoot");
-
+        
     }
 
     public void GetImage(Sprite SpriteForLoot)

@@ -22,3 +22,19 @@ public enum TypeLoot
     BoxAmmo
 
 }
+
+public enum InfoToLoot
+{
+    Add15HP,
+    Add50HP,
+    Add100HP,
+
+    Add4_45ACP,
+    Add9MM,
+    Add5_56MM,
+    Add7_62MM,
+    Add12x99MM,
+
+
+
+}

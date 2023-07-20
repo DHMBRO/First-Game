@@ -120,7 +120,8 @@ public class PickUp : MethodsFromDevelopers
         
         if (PlayerInventory && Counter == 0)
         {
-            ScrForAllLoot Loot = ObjectToBeLifted.gameObject.GetComponent<ScrForAllLoot>();
+            ScrForAllLoot Loot = ObjectToPickUp.gameObject.GetComponent<ScrForAllLoot>();
+            ScrInfoToLoot InfoLoot = ObjectToPickUp.gameObject.GetComponent<ScrInfoToLoot>();
             //Debug.Log("2");
 
             if (Loot && PlayerInventory.CurrentMass + Loot.Mass <= PlayerInventory.MaxMass && Loot.SpriteForLoot)
@@ -129,9 +130,9 @@ public class PickUp : MethodsFromDevelopers
                 for (int i = 0; i < ReferencesForLoots.ReferencePrefabs.Count; i++)
                 {
                     //Debug.Log("4");
-                    ScrForAllLoot LootFromList = ReferencesForLoots.ReferencePrefabs[i].GetComponent<ScrForAllLoot>();
+                    ScrInfoToLoot LootFromList = ReferencesForLoots.ReferencePrefabs[i].GetComponent<ScrInfoToLoot>();
 
-                    if (Loot == LootFromList)
+                    if (InfoLoot.InfoTheObject == LootFromList.InfoTheObject)
                     {
                         Debug.Log("5");
 
