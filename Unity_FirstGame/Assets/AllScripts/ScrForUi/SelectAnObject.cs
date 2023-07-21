@@ -64,8 +64,13 @@ public class SelectAnObject : MethodsFromDevelopers
         if (UseLoot != null)
         {
             UseLoot.Use(Inventory.gameObject, gameObject.GetComponent<SelectAnObject>());
+
+            Inventory.ChangeMassInInventory();
             SelectObject();
+            Inventory.ChangeMassInInventory();
+            
         }
+
         
     }
 
@@ -82,8 +87,10 @@ public class SelectAnObject : MethodsFromDevelopers
 
         if (ControlerToDrop) DropObjects(ObjectToDrop.transform, ControlerToDrop.PointForDrop);
         else Debug.Log("Not set ControlerToDrop");
-        
+
+        Inventory.ChangeMassInInventory();
         SelectObject();
+        Inventory.ChangeMassInInventory();        
     }
 
 }

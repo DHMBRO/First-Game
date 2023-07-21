@@ -797,6 +797,7 @@ GameObject:
   - component: {fileID: 655437941069588223}
   - component: {fileID: 1759847437404537064}
   - component: {fileID: 8382459316900287711}
+  - component: {fileID: 2201739099891556895}
   - component: {fileID: 6328347359453867729}
   - component: {fileID: 7577484477006445214}
   - component: {fileID: 1045302744663474186}
@@ -867,7 +868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d2e13c0bdd472048a4ce7b554c40e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Move: {fileID: 0}
+  Move: {fileID: 2201739099891556895}
   MovePlayer: {fileID: 6328347359453867729}
   PlayerCamera: {fileID: 7231277361793828127}
   StelsScript: {fileID: 7577484477006445214}
@@ -1018,6 +1019,25 @@ MonoBehaviour:
   HealthPoint: 100
   MaxHp: 100
   MyLive: 0
+--- !u!114 &2201739099891556895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9027246094432369652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83e44ebe7bfed1f4fbb96f32da31a04e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpeedForMove: 0.4
+  SpeedForRun: 0.2
+  PowerForJump: 40
+  CanJump: 0
+  PlayerTransform: {fileID: 935961475211729313}
+  RigidbodyForPlayer: {fileID: 5669462573118057115}
+  DistanceForRayJump: 0.2
 --- !u!114 &6328347359453867729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1034,7 +1054,7 @@ MonoBehaviour:
   Sens: 1
   MyForceMode: 0
   MyRigidbody: {fileID: 5669462573118057115}
-  CameraTransform: {fileID: 0}
+  CameraTransform: {fileID: 5755626125737214850}
   Speed: 50
 --- !u!114 &7577484477006445214
 MonoBehaviour:
