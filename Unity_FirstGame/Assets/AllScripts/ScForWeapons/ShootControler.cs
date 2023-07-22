@@ -13,8 +13,8 @@ public class ShootControler : MonoBehaviour
     [SerializeField] private GameObject Collet;
     [SerializeField] private GameObject ColletPoint;
 
-    [SerializeField] public string KeyTupeToWeapon;
-    [SerializeField] public string KeyTupeCaliber;
+    public TypeWeapon TheGun;
+    public TypeCaliber CaliberToWeapon;
 
     [SerializeField] public float ShotDeley = 1.0f;
     [SerializeField] public float ShotTime = 0.0f;
@@ -22,6 +22,7 @@ public class ShootControler : MonoBehaviour
     [SerializeField] private float BulletSpeed = 0.0f;
 
     //[SerializeField] private float ColletSpeed = 0.0f;
+
     
     void Start()
     {

@@ -5,9 +5,17 @@ using UnityEngine;
 public class ZombieScript : MonoBehaviour
 {
     [SerializeField] protected float ZombieHp = 100;
+    public MeshRenderer ZombieMeshRenderer;
+    [SerializeField] public Material ZombieDeadMaterial;
+    ZombieController ZombieControllerScript;
+    HpScript ZomblieHpScript;
+    LocateScript ZombleLocateScript;
     void Start()
     {
-        
+        ZombleLocateScript = GetComponent<LocateScript>();
+        ZomblieHpScript = GetComponent<HpScript>();
+        ZombieControllerScript = GetComponentInParent<ZombieController>();
+        ZombieMeshRenderer = GetComponentInParent<MeshRenderer>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -20,11 +28,27 @@ public class ZombieScript : MonoBehaviour
     }
     void Update()
     {
-        
-        if (ZombieHp <= 0) 
+        if (ZombieHp < 100)
         {
-            Destroy(gameObject);
-            
+            ZombieControllerScript.IsLive = false;
         }
+        if (!ZombieControllerScript.IsLive)
+        {
+            ZombieMeshRenderer.material = ZombieDeadMaterial;
+        }
+
+       
     }
+    public void InstansteKillMe()
+    {
+       
+        ZomblieHpScript.InflictingDamage(ZombieHp);
+
+    }
+    public bool IsObjectFromBehinde(GameObject Object) 
+    {
+       return ZombleLocateScript.IsObjectFromBehinde(Object);
+    }
+
+
 }

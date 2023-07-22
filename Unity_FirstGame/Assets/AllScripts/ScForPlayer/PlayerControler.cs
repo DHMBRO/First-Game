@@ -39,7 +39,7 @@ public class PlayerControler : MonoBehaviour
             if (MovePlayer)
             {
                 MovePlayer.Move();
-                MovePlayer.Jump();
+                //MovePlayer.Jump();
             }
             
             if (gameobject && Anchor)

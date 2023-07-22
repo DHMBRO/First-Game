@@ -30,6 +30,33 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void ChangeMassInInventory()
+    {
+        float SumeMass = 0.0f;
+        int LastCount = InfoForSlots.Count;
+
+        if (InfoForSlots.Count > 0)
+        {
+            for (int i = 0; i < InfoForSlots.Count; i++)
+            {
+                GameObject Loot = InfoForSlots[i].ObjectToInstantiate;
+                ScrForAllLoot ScrLoot = Loot.GetComponent<ScrForAllLoot>();
+
+                SumeMass += ScrLoot.Mass;
+
+                if (i == LastCount)
+                {
+                    CurrentMass = SumeMass;
+                }
+            }
+        }
+        else CurrentMass = 0.0f;
+        
+
+
+    }
+
+
 }
 
 

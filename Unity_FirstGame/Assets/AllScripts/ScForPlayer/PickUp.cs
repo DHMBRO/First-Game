@@ -52,10 +52,14 @@ public class PickUp : MethodsFromDevelopers
 
     public void ComplertingTheLink()
     {
+        //Debug.Log("1-0");
         if (ObjectToBeLifted)
         {
+            //Debug.Log("1-1");
             if (Input.GetKeyDown(KeyCode.F) && ObjectToBeLifted && Counter == 0)
             {
+                //Debug.Log("1-2");
+
                 ShootControler ControlerWeapon = ObjectToBeLifted.GetComponent<ShootControler>();
                 ShopControler ControlerShop = ObjectToBeLifted.GetComponent<ShopControler>();
 
@@ -65,17 +69,20 @@ public class PickUp : MethodsFromDevelopers
 
                 ScrForAllLoot ScrLoot = ObjectToBeLifted.GetComponent<ScrForAllLoot>();
 
+                
                 for (int i = 0; i < TagsToPickup.Count; i++)
                 {
+                    //Debug.Log("For is work");
                     if (ObjectToBeLifted.tag == TagsToPickup[i])
                     {
+                        //Debug.Log("1-3");
                         if (ControlerWeapon)
                         {
-                            if (ControlerWeapon.KeyTupeToWeapon == "Weapon")
+                            if (ControlerWeapon.TheGun == TypeWeapon.Weapon)
                             {
                                 PickUpWeapons(ObjectToBeLifted);
                             }
-                            else if (ControlerWeapon.KeyTupeToWeapon == "Pistol")
+                            else if (ControlerWeapon.TheGun == TypeWeapon.Pistol)
                             {
                                 PickUpPistols(ObjectToBeLifted);
                             }
@@ -91,6 +98,7 @@ public class PickUp : MethodsFromDevelopers
                         else if (ScrLoot)
                         {
                             PickUpOther(ObjectToBeLifted);
+                            Debug.Log("PickUpOther is work");
                         }
                     }   
                 }
@@ -108,40 +116,54 @@ public class PickUp : MethodsFromDevelopers
 
     public void PickUpOther(GameObject ObjectToPickUp)
     {
+        //Debug.Log("1");
+        
         if (PlayerInventory && Counter == 0)
         {
-            ScrForAllLoot Loot = ObjectToBeLifted.gameObject.GetComponent<ScrForAllLoot>();
-            
+            ScrForAllLoot Loot = ObjectToPickUp.gameObject.GetComponent<ScrForAllLoot>();
+            ScrInfoToLoot InfoLoot = ObjectToPickUp.gameObject.GetComponent<ScrInfoToLoot>();
+            //Debug.Log("2");
+
             if (Loot && PlayerInventory.CurrentMass + Loot.Mass <= PlayerInventory.MaxMass && Loot.SpriteForLoot)
             {
-                
-                for (int i = 0; i < ReferencesForLoots.ValueLoots.Count; i++)
+                //Debug.Log("3");
+                for (int i = 0; i < ReferencesForLoots.ReferencePrefabs.Count; i++)
                 {
-                    
-                    if (ObjectToPickUp.gameObject.tag == ReferencesForLoots.ValueLoots[i].gameObject.tag)
+                    //Debug.Log("4");
+                    ScrInfoToLoot LootFromList = ReferencesForLoots.ReferencePrefabs[i].GetComponent<ScrInfoToLoot>();
+
+                    if (InfoLoot.InfoTheObject == LootFromList.InfoTheObject)
                     {
+                        Debug.Log("5");
 
                         InfoForLoot ObjectToGet = new InfoForLoot();
-                        ObjectToGet.ObjectToInstantiate = ReferencesForLoots.ValueLoots[i];
-
                         
+                        ObjectToGet.ObjectToInstantiate = ReferencesForLoots.ReferencePrefabs[i];
+                        
+                        Debug.Log(ObjectToGet.ObjectToInstantiate);
+
                         PlayerInventory.InfoForSlots.Add(ObjectToGet);
                         PlayerInventory.CurrentMass += Loot.Mass;
-                        
-                        for (int j = 0;j < InventoryUi.SpritesForBackPack.Count;j++)
+
+                        for (int j = 0; j < InventoryUi.SpritesForBackPack.Count; j++)
                         {
-                            if (InventoryUi.SpritesForBackPack[j] == PlayerInventory.None)
-                            { 
+                            if (InventoryUi.SpritesForBackPack[j] == PlayerInventory.None && Counter == 0)
+                            {
+                                //Debug.Log("6");
                                 InventoryUi.SpritesForBackPack[j] = Loot.SpriteForLoot;
                                 Counter = 1;
                                 break;
                             }
+
+
                         }
 
-                        
+                        Destroy(ObjectToPickUp);
                     }
+
                 }
-                Destroy(ObjectToPickUp);
+
+               
                 
                
             }
@@ -257,7 +279,7 @@ public class PickUp : MethodsFromDevelopers
             if (ControlerShoot.WeaponShoop)
             {
                 PickUpShops(ControlerShoot.WeaponShoop);
-                Debug.Log(ControlerShoot.WeaponShoop);
+                //Debug.Log(ControlerShoot.WeaponShoop);
 
                 //Debug.Log("1");
                 
@@ -336,9 +358,9 @@ public class PickUp : MethodsFromDevelopers
             }
 
             
-            Debug.Log(!SlotControler.MyShope01);
-            Debug.Log(SlotControler.SlotShpo01);
-            Debug.Log(Counter == 0);
+            //Debug.Log(!SlotControler.MyShope01);
+            //Debug.Log(SlotControler.SlotShpo01);
+            //Debug.Log(Counter == 0);
 
         }
     }

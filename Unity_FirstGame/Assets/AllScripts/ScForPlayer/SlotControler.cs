@@ -97,11 +97,9 @@ public class SlotControler : MethodsFromDevelopers
                 if (MyShope02) ShopControlerToMyShop02 = MyShope02.gameObject.GetComponent<ShopControler>();
                 if (MyShope03) ShopControlerToMyShop03 = MyShope03.gameObject.GetComponent<ShopControler>();
 
-                if (ShopControlerToMyShop01 && ShopControlerToMyShop01.KeyTupeCaliber != ControlerForShoot.KeyTupeCaliber) ShopControlerToMyShop01 = null;
-                if (ShopControlerToMyShop02 && ShopControlerToMyShop02.KeyTupeCaliber != ControlerForShoot.KeyTupeCaliber) ShopControlerToMyShop02 = null;
-                if (ShopControlerToMyShop03 && ShopControlerToMyShop03.KeyTupeCaliber != ControlerForShoot.KeyTupeCaliber) ShopControlerToMyShop03 = null;
-
-                //Debug.Log("1");
+                if (ShopControlerToMyShop01 && ShopControlerToMyShop01.CaliberToShop != ControlerForShoot.CaliberToWeapon) ShopControlerToMyShop01 = null;
+                if (ShopControlerToMyShop02 && ShopControlerToMyShop02.CaliberToShop != ControlerForShoot.CaliberToWeapon) ShopControlerToMyShop02 = null;
+                if (ShopControlerToMyShop03 && ShopControlerToMyShop03.CaliberToShop != ControlerForShoot.CaliberToWeapon) ShopControlerToMyShop03 = null;
 
                 //
                 if (ShopControlerToMyShop01 && !ShopControlerToMyShop02 && !ShopControlerToMyShop03)

@@ -45,12 +45,8 @@ public class MethodsFromDevelopers : MonoBehaviour
 
             ObjectToDrop.transform.SetParent(null);
 
-           RigObject.AddRelativeForce(new Vector3(0.0f - 1.0f * 1.5f, 0.0f + 1.0f * 2.5f, 0.0f), ForceMode.Impulse);
-           RigObject.AddRelativeTorque(new Vector3(0.0f, 0.0f - 1.0f * 20.0f, 0.0f));
-
-
-
-
+           RigObject.AddRelativeForce(new Vector3(0.0f - 1.0f * 1.5f, 0.0f + 1.0f * 3.5f, 0.0f), ForceMode.Impulse);
+           RigObject.AddRelativeTorque(new Vector3(0.0f + 1.0f, 0.0f - 1.0f * 32.0f, 0.0f));
         }
 
     }
