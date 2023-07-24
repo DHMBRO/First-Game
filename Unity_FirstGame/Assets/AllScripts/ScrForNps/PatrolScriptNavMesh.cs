@@ -8,7 +8,7 @@ public class PatrolScriptNavMesh : MonoBehaviour
     public int StartPosIndex = 0;
     LocateScript ZombieLocateScript;
     public NavMeshAgent ZombieNavMesh;
-
+    GameObject MoveTarget;
     enum State
     {
         Moving,
@@ -41,30 +41,52 @@ public class PatrolScriptNavMesh : MonoBehaviour
 
     }
 
-    public void MoveTo(GameObject Target)
+    public void MoveTo(GameObject Target, bool IsPatrol = false)
     {
+        if (!IsPatrol)
+        {
+            MoveTarget = Target;
+        }
+        
         ZombieNavMesh.SetDestination(Target.transform.position);
         MyState = State.Moving;
     }
 
     public void StateIdle()
     {
-        MoveTo(MyPointControllScript.Points[CurrentPoint]);
-        MyState = State.Moving;
+        if (!MoveTarget)
+        {
+            MoveTo(MyPointControllScript.Points[CurrentPoint], true);
+            MyState = State.Moving;
+        }
+        
     }
 
     void StateMoving()
     {
-        if (ZombieNavMesh.remainingDistance < 1.0f && ZombieLocateScript.Target == CompareTag("Player01"))
+        if (ZombieNavMesh.remainingDistance < 1.0f)
         {
-            CurrentPoint = MyPointControllScript.SearchNextPosition(CurrentPoint);
-            MyState = State.Idle;
+            if (MoveTarget)
+            {
+
+                MyState = State.Idle;
+                MoveTarget = null;  
+            }
+            else
+            { 
+                CurrentPoint = MyPointControllScript.SearchNextPosition(CurrentPoint);
+                MoveTo(MyPointControllScript.Points[CurrentPoint], true);
+
+            }
+
+            
+            
         }
         else
         {
             if (ZombieNavMesh.isStopped)
             {
-                MyState = State.Idle;
+                
             }
         }
        

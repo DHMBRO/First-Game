@@ -1036,6 +1036,10 @@ PrefabInstance:
       propertyPath: MyPointControllScript
       value: 
       objectReference: {fileID: 525739421}
+    - target: {fileID: 3855234871449922233, guid: 7dadfb4863d496a429409176e8b05b9e, type: 3}
+      propertyPath: PlayerAttackScript
+      value: 
+      objectReference: {fileID: 1564887170}
     - target: {fileID: 5527551779828747922, guid: 7dadfb4863d496a429409176e8b05b9e, type: 3}
       propertyPath: m_AgentTypeID
       value: 0
@@ -1120,6 +1124,10 @@ PrefabInstance:
     - target: {fileID: 5781139615977132246, guid: 7dadfb4863d496a429409176e8b05b9e, type: 3}
       propertyPath: m_Name
       value: Zombie1A 1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5781139615977132246, guid: 7dadfb4863d496a429409176e8b05b9e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8336620856454597418, guid: 7dadfb4863d496a429409176e8b05b9e, type: 3}
       propertyPath: GoingDistance
@@ -1466,6 +1474,10 @@ PrefabInstance:
     - target: {fileID: 5781139615977132246, guid: 7dadfb4863d496a429409176e8b05b9e, type: 3}
       propertyPath: m_Name
       value: Zombie1A 1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5781139615977132246, guid: 7dadfb4863d496a429409176e8b05b9e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8336620856454597418, guid: 7dadfb4863d496a429409176e8b05b9e, type: 3}
       propertyPath: GoingDistance
@@ -2198,6 +2210,66 @@ PrefabInstance:
       objectReference: {fileID: 1633568464}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+<<<<<<< Updated upstream
+=======
+--- !u!114 &1564887143 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6294364781100366135, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+  m_PrefabInstance: {fileID: 1564887142}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564887144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec419c55fa32f034badda87b255f3193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1564887144 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9027246094432369652, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+  m_PrefabInstance: {fileID: 1564887142}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1564887145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564887144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ce98a511bf3bf94f9c78cb76ad54266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropControler: {fileID: 0}
+--- !u!114 &1564887157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564887144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc25977b344794640ba2c6a96042d896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stels: 0
+--- !u!114 &1564887170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564887144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8259de7e900ffb444922db29c107e2bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanInstantKill: 0
+  MaxKillDistance: 3
+  MinKillDistance: 0.5
+>>>>>>> Stashed changes
 --- !u!1 &1606850491
 GameObject:
   m_ObjectHideFlags: 0
@@ -2455,6 +2527,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1685373369}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+<<<<<<< Updated upstream
+=======
+--- !u!23 &1763292852 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 981881034000313445, guid: 7dadfb4863d496a429409176e8b05b9e, type: 3}
+  m_PrefabInstance: {fileID: 781158110}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1837235298 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6457168041344417802, guid: 264be72c65775c340aa49890d31d0630, type: 3}
+  m_PrefabInstance: {fileID: 289470012}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1841698936 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1951176120635906615, guid: 264be72c65775c340aa49890d31d0630, type: 3}
+  m_PrefabInstance: {fileID: 289470012}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+>>>>>>> Stashed changes
 --- !u!1001 &1849273495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2666,6 +2768,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0108486abf8b8d74ca4e833f14c9c6a7, type: 3}
+<<<<<<< Updated upstream
 --- !u!1001 &2021943900
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2780,3 +2883,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8826d6ad7fa4d38448685951bd2bb332, type: 3}
+=======
+--- !u!1 &1993912622 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5781139615977132246, guid: 7dadfb4863d496a429409176e8b05b9e, type: 3}
+  m_PrefabInstance: {fileID: 781158110}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1993912632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993912622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca6baa367d47524bbb3cf2477c34551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ZombieHp: 100
+  ZombieMeshRenderer: {fileID: 1763292852}
+  ZombieDeadMaterial: {fileID: 2100000, guid: 99a3b1a9cd1a6f44f926654c243b8d08, type: 2}
+>>>>>>> Stashed changes

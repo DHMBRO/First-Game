@@ -14,33 +14,28 @@ public class LocateScript : MonoBehaviour
     [SerializeField] private float MaxDistatzeForAgr;
     public PatrolScriptNavMesh ZombiePatrolScript;
     private StelsScript TargetStelsScript;
+    [SerializeField] public PlayerAttackScript PlayerAttackScript;
 
     void Start()
     {
         ZombiePatrolScript = gameObject.GetComponent<PatrolScriptNavMesh>();
-
+        
     }
 
     private void Update()
     {
-
+       
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player01"))
+        if (other.gameObject.GetComponentInParent<PlayerAttackScript>())
         {
-
-            /*if (Vector3.Angle(gameObject.transform.forward, other.gameObject.transform.position- gameObject.transform.position) >= 150)
-            {
-                
-            }*/
-            Target = other.gameObject;
+            
+                 Target = other.gameObject;
 
 
                 TargetStelsScript = Target.GetComponentInParent<StelsScript>();
-
-                
             
 
         }
@@ -48,11 +43,18 @@ public class LocateScript : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (Target)
+        if (other.gameObject.CompareTag("Player01"))
         {
-            RelocateTarget();
+                
+           
+            
+                Target = other.gameObject;
+
+
+                TargetStelsScript = Target.GetComponentInParent<StelsScript>();
+            
         }
-        
+       
     }
     private void OnTriggerExit(Collider other)
     {
@@ -68,34 +70,41 @@ public class LocateScript : MonoBehaviour
 
     public bool CanISeeTarget()
     {
-        
         if (!Target)
         {
-            
+
             return false;
 
         }
-        float AngleToTarget = Vector3.Angle(gameObject.transform.forward, Target.transform.position - gameObject.transform.position);
-        Debug.Log("AngleTo Target "+AngleToTarget );
-        if (AngleToTarget <= 150/2)
+        if (TargetStelsScript)
         {
-            
-            if (TargetStelsScript)
+            if (TargetStelsScript.Stels)
             {
-                if (TargetStelsScript.Stels)
-                {
-                    Target = null;
-                    TargetStelsScript = null;
-                    return false;
-                }
-
-
+                Target = null;
+                TargetStelsScript = null;
+                return false;
             }
+
+
+        }
+        if (IsObjectFromBehinde(Target))
+        {
+
+            return false;
+        }
+       
+        
+        float AngleToTarget = Vector3.Angle(gameObject.transform.forward, Target.transform.position - gameObject.transform.position);
+            
+
+                
+        if(AngleToTarget <= 40)
+        {
             Vector3 Rotate = Target.transform.position - transform.position;
             Vector3 RotateHead = Target.transform.position - Head.position;
 
-            Ray HeadForward = new Ray(Head.transform.position, Head.forward * MaxDistatzeForAgr);
-
+            Ray HeadForward = new Ray(Head.transform.position, RotateHead);
+            
             Head.transform.rotation = Quaternion.LookRotation(RotateHead);
 
             RaycastHit[] HitResults = Physics.RaycastAll(HeadForward, MaxDistatzeForAgr);
@@ -109,36 +118,49 @@ public class LocateScript : MonoBehaviour
 
             }
 
+
+
+
+            if ((gameObject.transform.position - Target.transform.position).magnitude > 2.5f)
+
+            {
+                return true;
+            }
+
+
         }
-         
-       
-        else if ((gameObject.transform.position - Target.transform.position).magnitude > 2.5f)
-             
-        {
-            return true;
-        }
-        else 
-        {
-            return false;
-        }
-        
+
+
+
+
         return false;
+        
+        
     }
     public void RelocateTarget()
     {
-        if (ZombiePatrolScript.ZombieNavMesh && Target)             // The new 
+        
+        if ((ZombiePatrolScript.ZombieNavMesh.destination - Target.transform.position).magnitude >= 3.0f)
         {
-            if ((ZombiePatrolScript.ZombieNavMesh.destination - Target.transform.position).magnitude >= 3.0f)
-            {
 
-                ZombiePatrolScript.ZombieNavMesh.SetDestination(Target.transform.position);
-
-            }
+            ZombiePatrolScript.ZombieNavMesh.SetDestination(Target.transform.position);
 
         }
 
-
-
     }
-    
+    public bool IsObjectFromBehinde(GameObject Object)
+    {
+        if (!Object)
+        {
+            return false;
+
+        }
+        float AngleToBackTarget = Vector3.Angle(-gameObject.transform.forward, Object.transform.position - gameObject.transform.position);
+        if (AngleToBackTarget <= 30.0f)
+        {
+            PlayerAttackScript.CanInstantKill = true;
+            return true;
+        }
+        return false;
+    }
 }
