@@ -314,7 +314,7 @@ public class PickUp : MethodsFromDevelopers
         ControlerShoot.ControlerUi = ControlerUi;
     }
 
-    public void PickUpShops(GameObject ShopForPickUp)
+    public void PickUpShops(GameObject ShopForPickUp )
     {
         ShopControler ControlerShop = ShopForPickUp.GetComponent<ShopControler>();
         ScrForAllLoot ScrForLoot = ShopForPickUp.GetComponent<ScrForAllLoot>();
@@ -379,9 +379,8 @@ public class PickUp : MethodsFromDevelopers
         }
         else if (!ControlerShop.InInventory && ControlerShop.IsUsing)
         {
+            ControlerShop.PutShopInParent();
             Debug.Log("4");
         }
-
-
     }
 }
