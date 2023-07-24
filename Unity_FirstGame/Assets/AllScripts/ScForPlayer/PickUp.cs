@@ -279,13 +279,13 @@ public class PickUp : MethodsFromDevelopers
             if (ControlerShoot.WeaponShoop)
             {
                 PickUpShops(ControlerShoot.WeaponShoop);
-                //Debug.Log(ControlerShoot.WeaponShoop);
+                Debug.Log(ControlerShoot.WeaponShoop);
 
-                //Debug.Log("1");
                 
             }
             ControlerShoot.ControlerUi = ControlerUi;
-        }          
+        }
+        
     }
 
     public void PickUpPistols(GameObject ObjectForPickUp)
@@ -293,6 +293,7 @@ public class PickUp : MethodsFromDevelopers
         ShootControler ControlerShoot = ObjectForPickUp.GetComponent<ShootControler>();
         ScrForAllLoot ScrForLoot = ObjectForPickUp.GetComponent<ScrForAllLoot>();
 
+        
         if (ControlerShoot && ScrForLoot)
         {
             if (!SlotControler.MyPistol01 && Counter == 0)
@@ -318,10 +319,19 @@ public class PickUp : MethodsFromDevelopers
         ShopControler ControlerShop = ShopForPickUp.GetComponent<ShopControler>();
         ScrForAllLoot ScrForLoot = ShopForPickUp.GetComponent<ScrForAllLoot>();
 
-        if (ControlerShop && !ControlerShop.InInventory)
+        Debug.Log("PickUpShops is work");
+
+
+        if (!ControlerShop && !ScrForLoot) return;
+
+        Debug.Log("0");
+
+        if (!ControlerShop.InInventory && !ControlerShop.IsUsing)
         {    
             if (!SlotControler.MyShope01 && SlotControler.SlotShpo01)
             {
+                Debug.Log("1");
+
                 ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
                 ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
                 
@@ -332,6 +342,8 @@ public class PickUp : MethodsFromDevelopers
             }
             else if (!SlotControler.MyShope02 && SlotControler.SlotShpo02)
             {
+                Debug.Log("2");
+
                 ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
                 ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
 
@@ -343,6 +355,8 @@ public class PickUp : MethodsFromDevelopers
             }
             else if (!SlotControler.MyShope03 && SlotControler.SlotShpo03)
             {
+                Debug.Log("3");
+
                 ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
                 ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
                 
@@ -363,5 +377,11 @@ public class PickUp : MethodsFromDevelopers
             //Debug.Log(Counter == 0);
 
         }
+        else if (!ControlerShop.InInventory && ControlerShop.IsUsing)
+        {
+            Debug.Log("4");
+        }
+
+
     }
 }
