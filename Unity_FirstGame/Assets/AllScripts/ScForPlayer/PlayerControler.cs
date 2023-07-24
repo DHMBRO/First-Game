@@ -33,13 +33,13 @@ public class PlayerControler : MonoBehaviour
         if(ControlerUi && ControlerUi.InventoryIsOpen == false)
         {
             if (PickUp) PickUpAll();
-            if (Move) Move.Move();
+            //if (Move) Move.Move();
             if (SlotControler) SlotControlerForAll();
 
             if (MovePlayer)
             {
                 MovePlayer.Move();
-                //MovePlayer.Jump();
+                MovePlayer.Jump();
             }
             
             if (gameobject && Anchor)

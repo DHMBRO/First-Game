@@ -17,6 +17,7 @@ public class MovePlayer : MonoBehaviour
 
     int JumpCount;
     [SerializeField] public float Speed;
+    [SerializeField] public float SpeedRun;
 
     float MoveHorizontal;
     float MoveVertical;
@@ -30,18 +31,28 @@ public class MovePlayer : MonoBehaviour
     
     public void Move()
     {
-        MyRigidbody.velocity = new Vector3(0, MyRigidbody.velocity.y, 0);
-        //transform.rotation = Quaternion.Euler(0f, CameraTransform.rotation.y, 0f);
         MoveVertical = Input.GetAxisRaw("Vertical") * 100000;
         MoveHorizontal = Input.GetAxisRaw("Horizontal") * 100000;
+        
+        //transform.rotation = Quaternion.Euler(0f, CameraTransform.rotation.y, 0f);
         //Vector3 ForceBack = transform.forward * MoveVertical * Speed;
+        
         Vector3 ForceBack = new Vector3(MoveHorizontal, 0.0f, MoveVertical).normalized;
+        Vector3 ForrceForward = new Vector3(MoveHorizontal, 0.0f, MoveVertical).normalized;
+        
+        MyRigidbody.velocity = new Vector3(0, MyRigidbody.velocity.y, 0);
+
 
         MyRigidbody.AddRelativeForce(ForceBack * Speed, MyForceMode);
+        if(Input.GetKey(KeyCode.LeftShift)) MyRigidbody.AddRelativeForce(ForrceForward * SpeedRun, MyForceMode);
+
+
+        /*
         if (MyRigidbody.velocity.magnitude - MyRigidbody.velocity.y != 0f)
         {
             MyRigidbody.velocity = MyRigidbody.velocity.normalized * Speed;
         }
+        */
     }
 
     public void Jump()
