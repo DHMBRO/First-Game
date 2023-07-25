@@ -15,6 +15,7 @@ public enum TypeCaliber
     None
 }
 
+/*
 public enum TypeLoot
 {
     FirstAidKit,
@@ -22,6 +23,7 @@ public enum TypeLoot
     BoxAmmo
 
 }
+*/
 
 public enum InfoToLoot
 {

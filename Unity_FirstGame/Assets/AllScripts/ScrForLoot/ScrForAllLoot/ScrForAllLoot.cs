@@ -3,7 +3,7 @@ using UnityEngine;
 public class ScrForAllLoot : MonoBehaviour, IImage
 {
     [SerializeField] public float Mass;
-    [SerializeField] public TypeLoot The;
+    //[SerializeField] public TypeLoot The;
     [SerializeField] public Sprite SpriteForLoot;
     
 

@@ -278,6 +278,8 @@ public class PickUp : MethodsFromDevelopers
             }
             if (ControlerShoot.WeaponShoop)
             {
+                PutObjects(ControlerShoot.WeaponShoop.transform, ControlerShoot.SlotForUseShop);
+
                 PickUpShops(ControlerShoot.WeaponShoop);
                 Debug.Log(ControlerShoot.WeaponShoop);
 
@@ -310,7 +312,12 @@ public class PickUp : MethodsFromDevelopers
         {
             Debug.Log("Cant take !");
         }
-        if (ControlerShoot.WeaponShoop) PickUpShops(ControlerShoot.WeaponShoop);
+        if (ControlerShoot.WeaponShoop) 
+        {
+            PutObjects(ControlerShoot.WeaponShoop.transform, ControlerShoot.SlotForUseShop);
+            PickUpShops(ControlerShoot.WeaponShoop);
+
+        }
         ControlerShoot.ControlerUi = ControlerUi;
     }
 
@@ -326,7 +333,7 @@ public class PickUp : MethodsFromDevelopers
 
         Debug.Log("0");
 
-        if (!ControlerShop.InInventory && !ControlerShop.IsUsing)
+        if (!ControlerShop.InInventory)
         {    
             if (!SlotControler.MyShope01 && SlotControler.SlotShpo01)
             {
@@ -336,8 +343,10 @@ public class PickUp : MethodsFromDevelopers
                 ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
                 
                 SlotControler.MyShope01 = ShopForPickUp.transform;
+                Debug.Log("SlotControler.MyShope01: " + SlotControler.MyShope01);
                 ControlerUi.SlotShop01.sprite = ScrForLoot.SpriteForLoot;
                 if (!ControlerShop.IsUsing) PutObjects(SlotControler.MyShope01, SlotControler.SlotShpo01);
+                ControlerShop.PutShopInParent();
                 Counter = 1;
             }
             else if (!SlotControler.MyShope02 && SlotControler.SlotShpo02)
@@ -351,6 +360,7 @@ public class PickUp : MethodsFromDevelopers
                 ControlerUi.SlotShop02.sprite = ScrForLoot.SpriteForLoot;
 
                 if (!ControlerShop.IsUsing) PutObjects(SlotControler.MyShope02, SlotControler.SlotShpo02);
+                ControlerShop.PutShopInParent();
                 Counter = 1;
             }
             else if (!SlotControler.MyShope03 && SlotControler.SlotShpo03)
@@ -364,6 +374,7 @@ public class PickUp : MethodsFromDevelopers
                 ControlerUi.SlotShop03.sprite = ScrForLoot.SpriteForLoot;
 
                 if (!ControlerShop.IsUsing) PutObjects(SlotControler.MyShope03, SlotControler.SlotShpo03);
+                ControlerShop.PutShopInParent();
                 Counter = 1;
             }
             else 
@@ -376,11 +387,6 @@ public class PickUp : MethodsFromDevelopers
             //Debug.Log(SlotControler.SlotShpo01);
             //Debug.Log(Counter == 0);
 
-        }
-        else if (!ControlerShop.InInventory && ControlerShop.IsUsing)
-        {
-            ControlerShop.PutShopInParent();
-            Debug.Log("4");
         }
     }
 }

@@ -28,9 +28,10 @@ public class DropControler : MethodsFromDevelopers
             ControlerForShoot = ControlerForSlots.ObjectInHand.GetComponent<ShootControler>();
             if (ControlerForShoot)
             {
+                ControlerForShoot.ControlerUi = null;
                 DropObjects(ControlerForSlots.ObjectInHand.transform, PointForDrop.transform);
-
                 
+
 
                 if (ControlerForSlots.MyWeapon01 && ControlerForSlots.ObjectInHand.gameObject == ControlerForSlots.MyWeapon01.gameObject)
                 {

@@ -31,6 +31,7 @@ public class ShopControler : MonoBehaviour
                 IsUsing = true;
                 InInventory = false;
                 ParentShop = transform.parent.gameObject;
+
                 if (ColiderToShop) ColiderToShop.enabled = false;
                 if (RigidbodyToShop) Destroy(RigidbodyToShop);
             }

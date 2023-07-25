@@ -9,7 +9,7 @@ public class PlayerControler : MonoBehaviour
 
     [SerializeField] private PickUp PickUp;
     [SerializeField] private SlotControler SlotControler;    
-    [SerializeField] private ShootControler ShootControler;
+    
 
     [SerializeField] private UiControler ControlerUi;
 
@@ -25,7 +25,6 @@ public class PlayerControler : MonoBehaviour
 
         PickUp = gameObject.GetComponent<PickUp>();
         SlotControler = gameObject.GetComponent<SlotControler>();
-        ShootControler = gameObject.GetComponent<ShootControler>();
     }
     
     void Update()
