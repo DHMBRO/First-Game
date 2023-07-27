@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class ShootControler : MonoBehaviour
 {
-    [SerializeField] public UiControler ControlerUi;
     //[SerializeField] private BoxCollider ColiderForWeapon;
 
     [SerializeField] public Transform SlotForUseShop;
@@ -32,10 +31,7 @@ public class ShootControler : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Mouse0) && ControlerUi)
-        {
-            if(!ControlerUi.InventoryIsOpen) Shoot();
-        }
+        
 
     }
     

@@ -7,9 +7,10 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private Transform PlayerCamera;
     [SerializeField] private StelsScript StelsScript;
 
-    [SerializeField] private PickUp PickUp;
-    [SerializeField] private SlotControler SlotControler;    
-    
+    [SerializeField] private PickUp PickUpPlayer;
+    [SerializeField] private DropControler ControlerDrop;
+    [SerializeField] private SlotControler SlotControler;
+    [SerializeField] public ShootControler ControlerShoot;
 
     [SerializeField] private UiControler ControlerUi;
 
@@ -23,16 +24,34 @@ public class PlayerControler : MonoBehaviour
 
         StelsScript = gameObject.GetComponent<StelsScript>();
 
-        PickUp = gameObject.GetComponent<PickUp>();
+        PickUpPlayer = gameObject.GetComponent<PickUp>();
+        ControlerDrop = gameobject.GetComponent<DropControler>();
         SlotControler = gameObject.GetComponent<SlotControler>();
+        
     }
     
     void Update()
     {   
         if(ControlerUi && ControlerUi.InventoryIsOpen == false)
         {
-            if (PickUp) PickUpAll();
-            //if (Move) Move.Move();
+            if (SlotControler.ObjectInHand) ControlerShoot = SlotControler.ObjectInHand.GetComponent<ShootControler>();
+            else ControlerShoot = null;
+
+            if (ControlerShoot && Input.GetKey(KeyCode.Mouse0))
+            {
+                if (!ControlerUi.InventoryIsOpen) ControlerShoot.Shoot();
+            }
+
+            if (PickUpPlayer) PickUpAll();
+            if (ControlerDrop && Input.GetKeyDown(KeyCode.Q))
+            {
+                ControlerDrop.Drop();
+                SlotControler.ObjectInHand = null;
+                ControlerShoot = null;
+                
+                Debug.Log("1");
+            }
+            
             if (SlotControler) SlotControlerForAll();
 
             if (MovePlayer)
@@ -58,8 +77,8 @@ public class PlayerControler : MonoBehaviour
 
     void PickUpAll()
     {
-        PickUp.RayForLoot();
-        PickUp.ComplertingTheLink();
+        PickUpPlayer.RayForLoot();
+        PickUpPlayer.ComplertingTheLink();
 
     }
 

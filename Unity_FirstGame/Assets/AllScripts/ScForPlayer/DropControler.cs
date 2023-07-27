@@ -9,7 +9,7 @@ public class DropControler : MethodsFromDevelopers
 
     [SerializeField] SlotControler ControlerForSlots;
     [SerializeField] ShootControler ControlerForShoot;
-
+    [SerializeField] PlayerControler ControlerPlayer;
 
     [SerializeField] public UiControler ControlerToUi;
     [SerializeField] Sprite None;
@@ -20,18 +20,20 @@ public class DropControler : MethodsFromDevelopers
 
     }
 
-    void Update()
+    
+    public void Drop()
     {
-
-        if (PointForDrop && ControlerForSlots.ObjectInHand && Input.GetKeyDown(KeyCode.Q))
+        //Debug.Log("1");
+        if (PointForDrop && ControlerForSlots.ObjectInHand)
         {
-            ControlerForShoot = ControlerForSlots.ObjectInHand.GetComponent<ShootControler>();
+            //Debug.Log("2");
+            if (ControlerForSlots.ObjectInHand) ControlerForShoot = ControlerForSlots.ObjectInHand.GetComponent<ShootControler>();
+            else ControlerForShoot = null;
+
             if (ControlerForShoot)
             {
-                ControlerForShoot.ControlerUi = null;
+                //Debug.Log("3");
                 DropObjects(ControlerForSlots.ObjectInHand.transform, PointForDrop.transform);
-                
-
 
                 if (ControlerForSlots.MyWeapon01 && ControlerForSlots.ObjectInHand.gameObject == ControlerForSlots.MyWeapon01.gameObject)
                 {
@@ -55,7 +57,7 @@ public class DropControler : MethodsFromDevelopers
                     DeleyReferenceShops();
                 }
 
-                
+
                 void DeleyReferenceShops()
                 {
                     if (ControlerForShoot.WeaponShoop)
@@ -79,29 +81,6 @@ public class DropControler : MethodsFromDevelopers
                 }
 
             }
-        }
-    }
-
-    
-
-    public void Drop(string WhatWeaponDrop)
-    {
-        if (WhatWeaponDrop == "weapon01")
-        {
-            ControlerForSlots.MyWeapon01 = null;
-            
-        }
-
-        if (WhatWeaponDrop == "weapon02")
-        {
-            ControlerForSlots.MyWeapon02 = null;
-            
-        }
-
-        if (WhatWeaponDrop == "pistol")
-        {
-            ControlerForSlots.MyPistol01 = null;
-            
         }
     }
 
