@@ -62,19 +62,19 @@ public class DropControler : MethodsFromDevelopers
                 {
                     if (ControlerForShoot.WeaponShoop)
                     {
-                        if (ControlerForSlots.MyShope01 && ControlerForShoot.WeaponShoop.transform == ControlerForSlots.MyShope01.transform)
+                        if (ControlerForSlots.Shop[0] && ControlerForShoot.WeaponShoop.transform == ControlerForSlots.Shop[0].transform)
                         {
-                            ControlerForSlots.MyShope01 = null;
+                            ControlerForSlots.Shop[0] = null;
                             ControlerToUi.SlotShop01.sprite = None;
                         }
-                        else if (ControlerForSlots.MyShope02 && ControlerForShoot.WeaponShoop.transform == ControlerForSlots.MyShope02.transform)
+                        else if (ControlerForSlots.Shop[1] && ControlerForShoot.WeaponShoop.transform == ControlerForSlots.Shop[1].transform)
                         {
-                            ControlerForSlots.MyShope02 = null;
+                            ControlerForSlots.Shop[1]  = null;
                             ControlerToUi.SlotShop02.sprite = None;
                         }
-                        else if (ControlerForSlots.MyShope03 && ControlerForShoot.WeaponShoop.transform == ControlerForSlots.MyShope03.transform)
+                        else if (ControlerForSlots.Shop[2]  && ControlerForShoot.WeaponShoop.transform == ControlerForSlots.Shop[2] .transform)
                         {
-                            ControlerForSlots.MyShope03 = null;
+                            ControlerForSlots.Shop[2]  = null;
                             ControlerToUi.SlotShop03.sprite = None;
                         }
                     }

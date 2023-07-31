@@ -871,9 +871,10 @@ MonoBehaviour:
   MovePlayer: {fileID: 6328347359453867729}
   PlayerCamera: {fileID: 7231277361793828127}
   StelsScript: {fileID: 7577484477006445214}
-  PickUp: {fileID: 7778607237951541594}
+  PickUpPlayer: {fileID: 0}
+  ControlerDrop: {fileID: 0}
   SlotControler: {fileID: 7874716152253843916}
-  ShootControler: {fileID: 0}
+  ControlerShoot: {fileID: 0}
   ControlerUi: {fileID: 0}
   gameobject: {fileID: 935961475211729313}
   Anchor: {fileID: 0}
@@ -932,12 +933,14 @@ MonoBehaviour:
   SlotHelmet: {fileID: 6669281415779696439}
   SlotArmor: {fileID: 58001793876995264}
   SlotBackPack: {fileID: 5285086223931369723}
-  MyShope01: {fileID: 0}
-  MyShope02: {fileID: 0}
-  MyShope03: {fileID: 0}
-  SlotShpo01: {fileID: 5153421162628138250}
-  SlotShpo02: {fileID: 6514131520663713175}
-  SlotShpo03: {fileID: 2795767220084459791}
+  Shop:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  SlotsShop:
+  - {fileID: 5153421162628138250}
+  - {fileID: 6514131520663713175}
+  - {fileID: 2795767220084459791}
   PointForShopPistol01: {fileID: 0}
   PointForShopWeapon01: {fileID: 0}
   PointForShopWeapon02: {fileID: 0}
@@ -945,9 +948,10 @@ MonoBehaviour:
   PickUp: {fileID: 7778607237951541594}
   Inventory: {fileID: 0}
   Slots: []
-  ShopControlerToMyShop01: {fileID: 0}
-  ShopControlerToMyShop02: {fileID: 0}
-  ShopControlerToMyShop03: {fileID: 0}
+  ShopControlerToMyShops:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   ObjectInHand: {fileID: 0}
 --- !u!114 &2663352457323175868
 MonoBehaviour:
@@ -965,6 +969,7 @@ MonoBehaviour:
   ObjectToDrop: {fileID: 0}
   ControlerForSlots: {fileID: 7874716152253843916}
   ControlerForShoot: {fileID: 0}
+  ControlerPlayer: {fileID: 0}
   ControlerToUi: {fileID: 1241725871821509503, guid: e17cf8c04a5bc94448773012c9e76214, type: 3}
   None: {fileID: 21300000, guid: 3e0d4bab2bf89544ea5d2db81eb3764d, type: 3}
 --- !u!114 &655437941069588223
@@ -1036,6 +1041,7 @@ MonoBehaviour:
   MyRigidbody: {fileID: 5669462573118057115}
   CameraTransform: {fileID: 5755626125737214850}
   Speed: 60
+  SpeedRun: 0
 --- !u!114 &7577484477006445214
 MonoBehaviour:
   m_ObjectHideFlags: 0

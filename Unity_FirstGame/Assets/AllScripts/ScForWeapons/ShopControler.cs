@@ -59,7 +59,7 @@ public class ShopControler : MonoBehaviour
     {
         if (!ParentShop)
         {
-            Debug.Log("Not set ParentShop");
+            //Debug.Log("Not set ParentShop");
             return;
         }
         else

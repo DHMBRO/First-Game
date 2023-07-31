@@ -225,16 +225,16 @@ public class PickUp : MethodsFromDevelopers
             ArmorControler Armor = SlotControler.MyArmor.GetComponent<ArmorControler>();
             if (Armor && Armor.Use)
             {
-                SlotControler.SlotShpo01 = Armor.SlotShop01;
-                SlotControler.SlotShpo02 = Armor.SlotShop02;
-                SlotControler.SlotShpo03 = Armor.SlotShop03;
+                SlotControler.SlotsShop[0] = Armor.SlotShop01;
+                SlotControler.SlotsShop[1] = Armor.SlotShop02;
+                SlotControler.SlotsShop[2] = Armor.SlotShop03;
 
                 SlotControler.SlotPistol01 = Armor.SlotPistol01;
                 SlotControler.SlotKnife01 = Armor.SlotKnife01;
 
-                if (SlotControler.MyShope01) PutObjects(SlotControler.MyShope01, SlotControler.SlotShpo01);
-                if (SlotControler.MyShope02) PutObjects(SlotControler.MyShope02, SlotControler.SlotShpo02);
-                if (SlotControler.MyShope03) PutObjects(SlotControler.MyShope03, SlotControler.SlotShpo03);
+                if (SlotControler.Shop[0]) PutObjects(SlotControler.Shop[0], SlotControler.SlotsShop[0]);
+                if (SlotControler.Shop[1]) PutObjects(SlotControler.Shop[1], SlotControler.SlotsShop[1]);
+                if (SlotControler.Shop[2]) PutObjects(SlotControler.Shop[2], SlotControler.SlotsShop[2]);
 
                 if (SlotControler.MyPistol01) PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01);
                 PutObjects(SlotControler.MyKnife01, SlotControler.SlotKnife01);
@@ -276,15 +276,7 @@ public class PickUp : MethodsFromDevelopers
             {
                 Debug.Log("Cant take !");
             }
-            if (ControlerShoot.WeaponShoop)
-            {
-                PutObjects(ControlerShoot.WeaponShoop.transform, ControlerShoot.SlotForUseShop);
-
-                PickUpShops(ControlerShoot.WeaponShoop);
-                Debug.Log(ControlerShoot.WeaponShoop);
-
-                
-            }
+            
         }
         
     }
@@ -311,12 +303,7 @@ public class PickUp : MethodsFromDevelopers
         {
             Debug.Log("Cant take !");
         }
-        if (ControlerShoot.WeaponShoop) 
-        {
-            PutObjects(ControlerShoot.WeaponShoop.transform, ControlerShoot.SlotForUseShop);
-            PickUpShops(ControlerShoot.WeaponShoop);
-
-        }
+        
     }
 
     public void PickUpShops(GameObject ShopForPickUp )
@@ -332,48 +319,48 @@ public class PickUp : MethodsFromDevelopers
         //Debug.Log("0");
 
         if (!ControlerShop.InInventory)
-        {    
-            if (!SlotControler.MyShope01 && SlotControler.SlotShpo01)
+        {
+            if (!SlotControler.Shop[0] && SlotControler.SlotsShop[0])
             {
                 //Debug.Log("1");
 
                 ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
                 ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
-                
-                SlotControler.MyShope01 = ShopForPickUp.transform;
-                
+
+                SlotControler.Shop[0] = ShopForPickUp.transform;
+
                 //Debug.Log("SlotControler.MyShope01: " + SlotControler.MyShope01);
-                
+
                 ControlerUi.SlotShop01.sprite = ScrForLoot.SpriteForLoot;
-                if (!ControlerShop.IsUsing) PutObjects(SlotControler.MyShope01, SlotControler.SlotShpo01);
+                if (!ControlerShop.IsUsing) PutObjects(SlotControler.Shop[0], SlotControler.SlotsShop[0]);
                 ControlerShop.PutShopInParent();
                 Counter = 1;
             }
-            else if (!SlotControler.MyShope02 && SlotControler.SlotShpo02)
+            else if (!SlotControler.Shop[1] && SlotControler.SlotsShop[1])
             {
                 //Debug.Log("2");
 
                 ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
                 ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
 
-                SlotControler.MyShope02 = ShopForPickUp.transform;
+                SlotControler.Shop[1] = ShopForPickUp.transform;
                 ControlerUi.SlotShop02.sprite = ScrForLoot.SpriteForLoot;
 
-                if (!ControlerShop.IsUsing) PutObjects(SlotControler.MyShope02, SlotControler.SlotShpo02);
+                if (!ControlerShop.IsUsing) PutObjects(SlotControler.Shop[1], SlotControler.SlotsShop[1]);
                 ControlerShop.PutShopInParent();
                 Counter = 1;
             }
-            else if (!SlotControler.MyShope03 && SlotControler.SlotShpo03)
+            else if (!SlotControler.Shop[2] && SlotControler.SlotsShop[2])
             {
                 //Debug.Log("3");
 
                 ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
                 ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
                 
-                SlotControler.MyShope03 = ShopForPickUp.transform;
+                SlotControler.Shop[2] = ShopForPickUp.transform;
                 ControlerUi.SlotShop03.sprite = ScrForLoot.SpriteForLoot;
 
-                if (!ControlerShop.IsUsing) PutObjects(SlotControler.MyShope03, SlotControler.SlotShpo03);
+                if (!ControlerShop.IsUsing) PutObjects(SlotControler.Shop[2], SlotControler.SlotsShop[2]);
                 ControlerShop.PutShopInParent();
                 Counter = 1;
             }
@@ -383,8 +370,8 @@ public class PickUp : MethodsFromDevelopers
             }
 
             
-            //Debug.Log(!SlotControler.MyShope01);
-            //Debug.Log(SlotControler.SlotShpo01);
+            //Debug.Log(!SlotControler.Shop[0]);
+            //Debug.Log(SlotControler.SlotsShop[0]);
             //Debug.Log(Counter == 0);
 
         }
