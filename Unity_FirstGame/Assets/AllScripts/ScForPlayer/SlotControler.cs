@@ -88,16 +88,20 @@ public class SlotControler : MethodsFromDevelopers
                     if (Shop[i] != null)
                     {
                         ShopControler.Add(Shop[i].GetComponent<ShopControler>());
-                        if (ShopControler[i].CaliberToShop == ControlerForShoot.CaliberToWeapon)
-                        {
-                            ShopToCanUse.Add(ShopControler[i]);
-                        }
+                        Debug.Log(Shop[i].name + " i: " + i);
+                        
                     }
-                    
-
                 }
-                Debug.Log(ShopToCanUse.Count);
-                
+
+                for (int i = 0;i < ShopControler.Count;i++)
+                {
+                    if (ShopControler[i] != null && ShopControler[i].CaliberToShop == ControlerForShoot.CaliberToWeapon)
+                    {
+                        ShopToCanUse.Add(ShopControler[i]);
+                        Debug.Log("ShopToCanUse.Count: " + ShopToCanUse.Count);
+                    }
+                }
+
                 if (ShopToCanUse.Count == 0)
                 {
 
@@ -105,81 +109,122 @@ public class SlotControler : MethodsFromDevelopers
                 }
                 else if (ShopToCanUse.Count == 1)
                 {
-                    Recharge(ShopToCanUse[0].gameObject);
-                    for (int i = 0; i < Shop.Length; i++)
-                    {
-                        if (Shop[i] != null)
-                        {
-                            for (int j = 0; j < ShopToCanUse.Count; j++)
-                            {
-                                if (Shop[i].transform.position == ShopToCanUse[j].transform.position)
-                                {
-                                    Shop[i] = null;
-                                    ShopToCanUse.RemoveAt(j);
-                                }
-                            }
-                        }
-                    }
+                    Recharge(ShopToCanUse[0].gameObject);                    
                 }
                 else if (ShopToCanUse.Count == 2)
                 {
+                    GameObject ShopToRecharge;
+
+                    for (int i = 0;i < ShopToCanUse.Count; i++)
+                    {
+                        for (int j = 1;j < ShopToCanUse.Count; j++)
+                        {
+                            Debug.Log("1");
+                            if (i < ShopToCanUse.Count && ShopToCanUse[i].CurrentAmmo > ShopToCanUse[j].CurrentAmmo || ShopToCanUse[i].CurrentAmmo == ShopToCanUse[j].CurrentAmmo)
+                            {
+                                Debug.Log("2");
+                                ShopToRecharge = ShopToCanUse[i].gameObject;
+                                Recharge(ShopToCanUse[i].gameObject);
+                                return;
+                            }
+                            else if (j < ShopToCanUse.Count && ShopToCanUse[j].CurrentAmmo > ShopToCanUse[i].CurrentAmmo)
+                            {
+                                //Debug.Log("3");
+                                ShopToRecharge = ShopToCanUse[j].gameObject;
+                                Recharge(ShopToCanUse[j].gameObject);
+                                return;
+                            }
+                            
+                            Debug.Log(ShopToCanUse[0].CurrentAmmo > ShopToCanUse[1].CurrentAmmo);
+                        }
+                    }
+                }
+                else if (ShopToCanUse.Count == 3)
+                {
+                    ShopControler ShopToUse;  
                     if (ShopToCanUse[0].CurrentAmmo > ShopToCanUse[1].CurrentAmmo || ShopToCanUse[0].CurrentAmmo == ShopToCanUse[1].CurrentAmmo)
                     {
-                        Recharge(ShopToCanUse[0].gameObject);
-                        DeleyReferences(0);
+                        Apropriation(ShopToCanUse[0]);
                     }
                     else if (ShopToCanUse[1].CurrentAmmo > ShopToCanUse[0].CurrentAmmo)
                     {
-                        Recharge(ShopToCanUse[1].gameObject);
-                        DeleyReferences(1);
+                        Apropriation(ShopToCanUse[1]);
                     }
-                    
-                    void DeleyReferences(int index)
+
+                    void Apropriation(ShopControler ShopToUse)
                     {
-                        for (int i = 0; i < Shop.Length; i++)
+                        if (ShopToCanUse[2].CurrentAmmo > ShopToUse.CurrentAmmo || ShopToCanUse[2].CurrentAmmo == ShopToUse.CurrentAmmo)
                         {
-                            Debug.Log(ShopToCanUse.Count);
-                            if (ShopToCanUse[index].transform.position == Shop[i].transform.position)
-                            {
-                                Shop[i] = null;
-                                ShopToCanUse.RemoveAt(index);
-                                break;
-                            }
+                            //Debug.Log("4");
+                            Recharge(ShopToCanUse[2].gameObject);
+                            return;
+                        }
+                        else if(ShopToCanUse[2].CurrentAmmo < ShopToUse.CurrentAmmo)
+                        {
+                            //Debug.Log("5");
+                            Recharge(ShopToUse.gameObject);
+                            return;
                         }
                     }
 
 
                 }
 
-
                 void Recharge(GameObject ShopToRecharge)
                 {
+                    Debug.Log("");
                     if (!ControlerForShoot.WeaponShoop)
                     {
                         RechargeShop(ShopToRecharge);
+                        DeleyReferences(ShopToRecharge);
                     }
-                    else
+                    else if(ControlerForShoot.WeaponShoop)
                     {
-                        GameObject ShopFromWeapon = ControlerForShoot.WeaponShoop;
-                    
+                        GameObject ShopFromWeapon;
+
+                        //Debug.Log("1");
                         for (int i = 0;i < Shop.Length;i++)
                         {
-                            if (Shop[i] != null && Shop[i].position == SlotsShop[i].position)
+                            if (Shop[i] != null && ShopToRecharge.transform.position == SlotsShop[i].position)
                             {
+                                //Debug.Log("2");
+                                
                                 DisRechargeShop(SlotsShop[i]);
-                                RechargeShop(ShopToRecharge);
+                                ShopFromWeapon = ControlerForShoot.WeaponShoop;
+                                Debug.Log(SlotsShop[i].name);
+                                Debug.Log(ShopFromWeapon.name);
+                                
+                                
                                 for (int j = 0;j < Shop.Length;j++)
                                 {
-                                    if (ShopToRecharge.transform.position == Shop[i].position)
+                                    if (Shop[j] != null && ShopToRecharge.transform.position == Shop[j].position)
                                     {
-                                        Shop[i] = ShopFromWeapon.transform;
+                                        Shop[j] = ShopFromWeapon.transform;
+                                        RechargeShop(ShopToRecharge);
+                                        Debug.Log(Shop[j]);
+                                        break;
                                     }
                                 }
+                                break;
+                            }
+                        }
+                        return;
+                    }
+                    
+                    void DeleyReferences(GameObject ShopToUse)
+                    {
+                        for (int i = 0;i < Shop.Length;i++)
+                        {
+                            if (Shop[i] != null && ShopToUse.transform.position == Shop[i].transform.position)
+                            {
+                                Shop[i] = null;
                             }
                         }
 
+
                     }
-                    
+
+
                     void RechargeShop(GameObject ShopToRecharge)
                     {
                         ControlerForShoot.WeaponShoop = ShopToRecharge;
@@ -190,8 +235,11 @@ public class SlotControler : MethodsFromDevelopers
                     void DisRechargeShop(Transform PointToShop)
                     {
                         PutObjects(ControlerForShoot.WeaponShoop.transform, PointToShop);
-
+                       
                     }
+
+                   
+
                 }
 
 
