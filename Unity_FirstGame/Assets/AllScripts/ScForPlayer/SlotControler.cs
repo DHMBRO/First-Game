@@ -5,6 +5,8 @@ public class SlotControler : MethodsFromDevelopers
 {    
     //All Slots
     [SerializeField] public Transform SlotHand;
+    [SerializeField] public Transform ThatTimeSlot;
+    [SerializeField] public Transform ObjectInThatTimeSlot;
     //
     [SerializeField] public Dictionary<string,Transform> AllSlots = new Dictionary<string,Transform>();
     //
@@ -52,7 +54,8 @@ public class SlotControler : MethodsFromDevelopers
     //
     [SerializeField] List<Transform> Slots = new List<Transform>();
     //
-    [SerializeField] public GameObject ObjectInHand = null;
+    [SerializeField] public GameObject ObjectInHand = null; 
+
 
     void Start()
     {
@@ -66,7 +69,11 @@ public class SlotControler : MethodsFromDevelopers
         AllSlots.Add("SlotBack01", SlotBack01);
         AllSlots.Add("SlotBack02", SlotBack02);
         AllSlots.Add("SlotPistol01", SlotPistol01);
-        AllSlots.Add("SlotKnife01", SlotKnife01); 
+        AllSlots.Add("SlotKnife01", SlotKnife01);
+
+        
+
+
     }
 
     public void MovingGunForSlots()
@@ -88,7 +95,7 @@ public class SlotControler : MethodsFromDevelopers
                     if (Shop[i] != null)
                     {
                         ShopControler.Add(Shop[i].GetComponent<ShopControler>());
-                        Debug.Log(Shop[i].name + " i: " + i);
+                        //Debug.Log(Shop[i].name + " i: " + i);
                         
                     }
                 }
@@ -98,7 +105,7 @@ public class SlotControler : MethodsFromDevelopers
                     if (ShopControler[i] != null && ShopControler[i].CaliberToShop == ControlerForShoot.CaliberToWeapon)
                     {
                         ShopToCanUse.Add(ShopControler[i]);
-                        Debug.Log("ShopToCanUse.Count: " + ShopToCanUse.Count);
+                        //Debug.Log("ShopToCanUse.Count: " + ShopToCanUse.Count);
                     }
                 }
 
@@ -119,10 +126,10 @@ public class SlotControler : MethodsFromDevelopers
                     {
                         for (int j = 1;j < ShopToCanUse.Count; j++)
                         {
-                            Debug.Log("1");
+                            //Debug.Log("1");
                             if (i < ShopToCanUse.Count && ShopToCanUse[i].CurrentAmmo > ShopToCanUse[j].CurrentAmmo || ShopToCanUse[i].CurrentAmmo == ShopToCanUse[j].CurrentAmmo)
                             {
-                                Debug.Log("2");
+                                //Debug.Log("2");
                                 ShopToRecharge = ShopToCanUse[i].gameObject;
                                 Recharge(ShopToCanUse[i].gameObject);
                                 return;
@@ -172,7 +179,7 @@ public class SlotControler : MethodsFromDevelopers
 
                 void Recharge(GameObject ShopToRecharge)
                 {
-                    Debug.Log("");
+                    //Debug.Log("");
                     if (!ControlerForShoot.WeaponShoop)
                     {
                         RechargeShop(ShopToRecharge);
@@ -235,7 +242,6 @@ public class SlotControler : MethodsFromDevelopers
                     void DisRechargeShop(Transform PointToShop)
                     {
                         PutObjects(ControlerForShoot.WeaponShoop.transform, PointToShop);
-                       
                     }
 
                    
@@ -261,27 +267,16 @@ public class SlotControler : MethodsFromDevelopers
         
     }
 
-    
-
-    
-
-
-    void Charge(Transform ShopForCharge, Transform PointForRecharge, ShootControler ReferenseForWeapon)
+    void ChangingSlotsToUseLoot(GameObject LootToUse)
     {
-        PutObjects(ShopForCharge, PointForRecharge);
-        ReferenseForWeapon.WeaponShoop = ShopForCharge.gameObject;
-        CounetrForCharge = 1;
+        
+
+
     }
 
-    void DisChargingShops(Transform ShopForDisCharge, Transform SlotForChopDisCharge)
-    {
-        PutObjects(ShopForDisCharge, SlotForChopDisCharge);
-        CounetrForCharge = 0;
-    }
 
     void ChangingSlots()
     {
-        
         bool ObjectInHand01 = MyKnife01 && ObjectInHand == MyKnife01.gameObject;
         bool ObjectInHand02 = MyPistol01 && ObjectInHand == MyPistol01.gameObject;
         bool ObjectInHand03 = MyWeapon01 && ObjectInHand == MyWeapon01.gameObject;
@@ -381,7 +376,7 @@ public class SlotControler : MethodsFromDevelopers
         
     }
 
-   
+    
 
         
 }
