@@ -148,7 +148,6 @@ public class SlotControler : MethodsFromDevelopers
                 }
                 else if (ShopToCanUse.Count == 3)
                 {
-                    ShopControler ShopToUse;  
                     if (ShopToCanUse[0].CurrentAmmo > ShopToCanUse[1].CurrentAmmo || ShopToCanUse[0].CurrentAmmo == ShopToCanUse[1].CurrentAmmo)
                     {
                         Apropriation(ShopToCanUse[0]);
@@ -267,10 +266,13 @@ public class SlotControler : MethodsFromDevelopers
         
     }
 
-    void ChangingSlotsToUseLoot(GameObject LootToUse)
+    public void PutToThatTimeSlot(GameObject LootToUse)
     {
-        
 
+    }
+
+    public void LayOutFromThatTimeSlot()
+    {
 
     }
 

@@ -6,16 +6,13 @@ public class MethodsFromDevelopers : MonoBehaviour
     protected void PutObjects(Transform ObjectForPut, Transform PosForPut)
     {
         Rigidbody RigObject = ObjectForPut.gameObject.GetComponent<Rigidbody>();
-        if (RigObject)
-        {
-            Puting(RigObject);
-        }
-        else Puting(RigObject);
         
-        void Puting(Rigidbody RigObject)
+        if (RigObject) Destroy(RigObject);
+        
+        Puting();
+        
+        void Puting()
         {
-            Destroy(RigObject);
-
             ObjectForPut.transform.SetParent(PosForPut);
             CopyTransform(ObjectForPut, PosForPut);
         }

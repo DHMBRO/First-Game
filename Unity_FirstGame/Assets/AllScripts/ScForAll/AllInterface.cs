@@ -2,7 +2,9 @@ using UnityEngine;
 
 public interface IUsebleInterFace
 {
-    public void Use(GameObject Target, SelectAnObject SelectObj);
+    //public void Use(GameObject Target, SelectAnObject SelectObj);
+    public void Use(GameObject Target, InfoForLoot InfoLoot, SelectAnObject SelectObj);
+
 }
 
 public interface IReferencesInterface
@@ -15,7 +17,7 @@ public interface IImage
     public void GetImage(Sprite SpriteForLoot);
 }
 
-public interface IDrop
+public interface IControlerToInfo
 {
-    public void Drop();
+    public void GetInfo(InfoForLoot ObjectForGetInfo, GameObject ObjetToGiveInfo);
 }

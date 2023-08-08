@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 public class PickUp : MethodsFromDevelopers 
@@ -116,31 +116,26 @@ public class PickUp : MethodsFromDevelopers
 
     public void PickUpOther(GameObject ObjectToPickUp)
     {
-        //Debug.Log("1");
         
         if (PlayerInventory && Counter == 0)
         {
             ScrForAllLoot Loot = ObjectToPickUp.gameObject.GetComponent<ScrForAllLoot>();
             ScrInfoToLoot InfoLoot = ObjectToPickUp.gameObject.GetComponent<ScrInfoToLoot>();
-            //Debug.Log("2");
 
             if (Loot && PlayerInventory.CurrentMass + Loot.Mass <= PlayerInventory.MaxMass && Loot.SpriteForLoot)
             {
-                //Debug.Log("3");
                 for (int i = 0; i < ReferencesForLoots.ReferencePrefabs.Count; i++)
                 {
-                    //Debug.Log("4");
+                   
                     ScrInfoToLoot LootFromList = ReferencesForLoots.ReferencePrefabs[i].GetComponent<ScrInfoToLoot>();
 
                     if (InfoLoot.InfoTheObject == LootFromList.InfoTheObject)
                     {
-                        Debug.Log("5");
-
+                        
                         InfoForLoot ObjectToGet = new InfoForLoot();
-                        
+
                         ObjectToGet.ObjectToInstantiate = ReferencesForLoots.ReferencePrefabs[i];
-                        
-                        Debug.Log(ObjectToGet.ObjectToInstantiate);
+                        ObjectToGet.SaveInfo(ObjectToPickUp);
 
                         PlayerInventory.InfoForSlots.Add(ObjectToGet);
                         PlayerInventory.CurrentMass += Loot.Mass;

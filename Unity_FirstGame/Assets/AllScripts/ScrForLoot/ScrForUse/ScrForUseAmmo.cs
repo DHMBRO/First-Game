@@ -4,16 +4,36 @@ using System.Collections.Generic;
 public class ScrForUseAmmo : MonoBehaviour, IUsebleInterFace
 {
     [SerializeField] public int CurrentAmmo;
-    [SerializeField] private int MaxAmmo;
+    [SerializeField] public int MaxAmmo;
     //[SerializeField] private string KeyToShops;
 
     public TypeCaliber CaliberToBox;
 
-    public void Use(GameObject Target, SelectAnObject SelectObj)
+    public void Use(GameObject Target, InfoForLoot InfoLoot, SelectAnObject SelectObj)
     {
         SlotControler ContrlerToSlots = Target.GetComponent<SlotControler>();
         List<ShopControler> ShopControler = new List<ShopControler>();
 
+        
+        if(CurrentAmmo == 0)
+        {
+            Debug.Log("Name Object:" + gameObject.name);
+            Debug.Log("Current Ammo: " + CurrentAmmo);
+
+            SelectObj.SelectObject();
+            return;
+        }
+        else 
+        {
+            InfoLoot.SaveInfo(gameObject);
+            Destroy(gameObject);
+        }
+    }
+
+}
+
+/*
+ 
         if (!ContrlerToSlots)
         {
             Debug.Log("Not set Slot Controler");
@@ -51,7 +71,7 @@ public class ScrForUseAmmo : MonoBehaviour, IUsebleInterFace
         }
         else if (ShopControler.Count == 1)
         {
-
+            
         }
         else if (ShopControler.Count == 2)
         {
@@ -62,11 +82,4 @@ public class ScrForUseAmmo : MonoBehaviour, IUsebleInterFace
 
         }
 
-
-
-
-
-        SelectObj.SelectObject();
-    }
-
-}
+ */ 
