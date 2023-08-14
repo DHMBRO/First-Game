@@ -49,8 +49,11 @@ public class SelectAnObject : MethodsFromDevelopers
 
     public void Use()
     {        
+
         GameObject ObjectToUse = Instantiate(Inventory.InfoForSlots[UiInventory.Count + IndexToList].ObjectToInstantiate);
-        Debug.Log("Cordinates: " + ObjectToUse.transform.position.x + " to x " + ObjectToUse.transform.position.y + " to y " + ObjectToUse.transform.position.z + " to z ");
+        Inventory.InfoForSlots[UiInventory.Count + IndexToList].GetInfo(ObjectToUse);
+
+        //Debug.Log("Cordinates: " + ObjectToUse.transform.position.x + " to x " + ObjectToUse.transform.position.y + " to y " + ObjectToUse.transform.position.z + " to z ");
 
         Rigidbody RigObjectToUse = ObjectToUse.GetComponent<Rigidbody>();
         if (RigObjectToUse) Destroy(RigObjectToUse);
@@ -62,11 +65,26 @@ public class SelectAnObject : MethodsFromDevelopers
         {
             UseLoot.Use(Inventory.gameObject, Inventory.InfoForSlots[UiInventory.Count + IndexToList] , gameObject.GetComponent<SelectAnObject>());
             
-            if (ScrForLoot.CanCombining) CombiningLoot(Inventory.InfoForSlots[UiInventory.Count + IndexToList]);
-            
+
+            if (ScrForLoot.CanCombining) 
+            {
+                CombiningLoot(Inventory.InfoForSlots[UiInventory.Count + IndexToList]);
+                
+                ScrForUseAmmo ScrAmmo = Inventory.InfoForSlots[UiInventory.Count + IndexToList].ObjectToInstantiate.GetComponent<ScrForUseAmmo>();
+
+                Debug.Log(Inventory.InfoForSlots[UiInventory.Count + IndexToList].CurrentAmmo);
+                Debug.Log(ScrAmmo.CurrentAmmo);
+
+
+            }
+
+
             Inventory.ChangeMassInInventory();
             UiInventory.WriteSprite();
-            
+
+            //Debug.Log("InfoForSlots.Count: " + Inventory.InfoForSlots.Count);
+            //Debug.Log("SpritesForBackPack.Count: " + UiInventory.SpritesForBackPack.Count);
+
         }
     }
 
@@ -81,19 +99,19 @@ public class SelectAnObject : MethodsFromDevelopers
         //Debug.Log("3");
 
         GameObject ObjectToDrop = Instantiate(Inventory.InfoForSlots[UiInventory.Count + IndexToList].ObjectToInstantiate);
-        Debug.Log("Cordinates: " + ObjectToDrop.transform.position.x + " to x " + ObjectToDrop.transform.position.y + " to y " + ObjectToDrop.transform.position.z + " to z ");
+        Inventory.InfoForSlots[UiInventory.Count + IndexToList].GetInfo(ObjectToDrop);
+
+        //Debug.Log("Cordinates: " + ObjectToDrop.transform.position.x + " to x " + ObjectToDrop.transform.position.y + " to y " + ObjectToDrop.transform.position.z + " to z ");
 
         if (ControlerToDrop) DropObjects(ObjectToDrop.transform, ControlerToDrop.PointForDrop);
         else Debug.Log("Not set ControlerToDrop");
 
-        ScrForUseAmmo a = ObjectToDrop.GetComponent<ScrForUseAmmo>();
-        if (a)
-        {
-            Debug.Log(a.CurrentAmmo);
-        }
-
+        
         SelectObject();
-        Inventory.ChangeMassInInventory();        
+        Inventory.ChangeMassInInventory();
+        
+        //Debug.Log("InfoForSlots.Count"  + Inventory.InfoForSlots.Count);
+        
     }
 
 
@@ -119,8 +137,11 @@ public class SelectAnObject : MethodsFromDevelopers
             ScrForAllLoot.Add(Inventory.InfoForSlots[i].ObjectToInstantiate.GetComponent<ScrForAllLoot>());
             ScrInfoToLoot.Add(Inventory.InfoForSlots[i].ObjectToInstantiate.GetComponent<ScrInfoToLoot>());
             ScrInfoForLoot.Add(Inventory.InfoForSlots[i]);
+
+            //Debug.Log(Inventory.InfoForSlots[i].CurrentAmmo);    
             
         }
+
 
         for (int i = 0;i < ScrForAllLoot.Count;i++)
         {
@@ -129,7 +150,7 @@ public class SelectAnObject : MethodsFromDevelopers
                 ScrForAllLoot.RemoveAt(i);
                 ScrInfoToLoot.RemoveAt(i);
                 ScrInfoForLoot.RemoveAt(i);
-                Debug.Log("ScrInfoToLoot[i].InfoTheObject != ScrInfoToObjectUse.InfoTheObject is true");
+                //Debug.Log("ScrInfoToLoot[i].InfoTheObject != ScrInfoToObjectUse.InfoTheObject is true");
             }
         }
         
@@ -141,7 +162,7 @@ public class SelectAnObject : MethodsFromDevelopers
                 ScrForAllLoot.RemoveAt(i);
                 ScrInfoToLoot.RemoveAt(i);
                 ScrInfoForLoot.RemoveAt(i);
-                Debug.Log(" ObjectToUse.CanCombining is false");
+                //Debug.Log(" ObjectToUse.CanCombining is false");
             }
         }
 
@@ -160,6 +181,7 @@ public class SelectAnObject : MethodsFromDevelopers
             else 
             {
                 SumeAmmo += ScrInfoForLoot[i].CurrentAmmo;
+                ScrInfoForLoot[i].CurrentAmmo = 0;
             }
         }
 
@@ -182,10 +204,18 @@ public class SelectAnObject : MethodsFromDevelopers
             }
             else
             {
-                Debug.Log(ScrForAllLoot[i]);
+                for (int j = 0;j < Inventory.InfoForSlots.Count; j++)
+                {
+                    ScrInfoToLoot ScrInfoLoot = Inventory.InfoForSlots[j].ObjectToInstantiate.GetComponent<ScrInfoToLoot>();
 
-                
-                Inventory.InfoForSlots.Remove(ScrInfoForLoot[i]);
+                    if (ScrInfoLoot.InfoTheObject == ScrInfoToObjectUse.InfoTheObject && Inventory.InfoForSlots[j].CurrentAmmo == 0)
+                    {
+                        //Debug.Log("J: " + j);
+                        //Debug.Log("CurrentAmmo: " + Inventory.InfoForSlots[j].CurrentAmmo);
+
+                        Inventory.InfoForSlots.RemoveAt(j);                        
+                    }
+                }
             }
         }
 

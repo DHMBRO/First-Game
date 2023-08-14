@@ -10,7 +10,6 @@ public class InfoForLoot
     public void SaveInfo(GameObject ObjectFormGetInfo)
     {
         ScrForUseAmmo ScrUseAmmo = ObjectFormGetInfo.GetComponent<ScrForUseAmmo>();
-        ScrForUseAmmo UseAmmoScr = ObjectToInstantiate.GetComponent<ScrForUseAmmo>();
         
         Debug.Log(ObjectFormGetInfo.name);
         
@@ -22,14 +21,26 @@ public class InfoForLoot
         }
 
         CurrentAmmo = ScrUseAmmo.CurrentAmmo;
-        UseAmmoScr.CurrentAmmo = CurrentAmmo;
-
-        Debug.Log("CurrentAmmo: " + UseAmmoScr.CurrentAmmo);
+        Debug.Log("CurrentAmmo: " + ScrUseAmmo.CurrentAmmo);
 
         
 
     }
     
+    public void GetInfo(GameObject ObjectToGiveInfo)
+    {
+        ScrForUseAmmo ScrUseAmmo = ObjectToGiveInfo.GetComponent<ScrForUseAmmo>();
 
+        if (!ScrUseAmmo)
+        {
+            Debug.Log("Not set ScrUseAmmo");
+            CurrentAmmo = 0;
+            return;
+        }
+
+        ScrUseAmmo.CurrentAmmo = CurrentAmmo;
+        Debug.Log("Method Name: GetInfo   CurrentAmmo: " + ScrUseAmmo.CurrentAmmo);
+       
+    }
 
 }

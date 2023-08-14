@@ -28,15 +28,43 @@ public class UiInventory : MonoBehaviour
 
     }
 
-   
+    private void DeleteImage()
+    {
+        if (None)
+        {
+            for (int i = 0; i < 100; i++)
+            {
+                SpritesForBackPack[i] = None;
+                
+            }
+        }
+        else Debug.Log("Not set None");
+
+    }
+
 
     private void WriteBackPack()
     {
+        List<ScrForAllLoot> ImageForLoot = new List<ScrForAllLoot>();
+        
+        for (int i = 0;i < PlayerInventory.InfoForSlots.Count;i++)
+        {
+            ImageForLoot.Add(PlayerInventory.InfoForSlots[i].ObjectToInstantiate.GetComponent<ScrForAllLoot>());
+        }
+        
+
+
         if (PlayerInventory)
         {
             for (int i = 0;i < 4;i++)
             {
                 SlotsToInventory[i].sprite = None;
+            }
+            DeleteImage();
+
+            for (int i = 0;i < ImageForLoot.Count; i++)
+            {
+                SpritesForBackPack[i] = ImageForLoot[i].SpriteForLoot;
             }
 
             for (int i = Count, j = 0;i < Count + 4 && j < Count + 4;i++,j++)
@@ -44,10 +72,10 @@ public class UiInventory : MonoBehaviour
                 //Debug.Log("Count: " + Count);
                 //Debug.Log("J: " + j);
                 //Debug.Log("I: " + i);
-                
+
                 //Debug.Log("SlotsToInventory.Length: " + SlotsToInventory.Length);
                 //Debug.Log("PlayerInventory.SpritesForBackPack.Count:" + SpritesForBackPack.Count);
-
+                
                 SlotsToInventory[j].sprite = SpritesForBackPack[i];
                 
                 
