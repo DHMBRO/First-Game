@@ -68,7 +68,7 @@ public class PickUp : MethodsFromDevelopers
                 BackPackContorler ControlerBackPack = ObjectToBeLifted.GetComponent<BackPackContorler>();
 
                 ScrForAllLoot ScrLoot = ObjectToBeLifted.GetComponent<ScrForAllLoot>();
-
+                Debug.Log(ScrLoot);
                 
                 for (int i = 0; i < TagsToPickup.Count; i++)
                 {

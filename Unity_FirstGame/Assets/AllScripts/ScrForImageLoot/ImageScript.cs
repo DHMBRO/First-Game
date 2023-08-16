@@ -1,17 +1,7 @@
 using UnityEngine;
-using UnityEngine.UI;
 
-public class ImageScript : MonoBehaviour, IImage
+public class ImageScript : MonoBehaviour
 {
-    Image m_image;
-    
-    void Start() 
-    {
-        m_image = GetComponent<Image>();
-    }
+    [SerializeField] Sprite ImageObject;
 
-    public void GetImage(Sprite SpriteForLoot)
-    {
-        m_image.sprite = SpriteForLoot;
-    }
 }

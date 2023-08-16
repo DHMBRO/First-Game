@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 530639275952481356}
   - component: {fileID: 6679083313953220752}
   - component: {fileID: 952033131363869767}
+  - component: {fileID: 4640684930307812567}
   m_Layer: 0
   m_Name: ShopForGlok
   m_TagString: Untagged
@@ -114,7 +115,7 @@ MonoBehaviour:
   CurrentAmmo: 15
   MaxAmmo: 15
   Mass: 0
-  KeyShop: 9MM
+  CaliberToShop: 0
   InInventory: 0
   IsUsing: 0
   ColiderToShop: {fileID: 0}
@@ -133,4 +134,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Mass: 0
+  CanCombining: 0
   SpriteForLoot: {fileID: 21300000, guid: f2d7057db5ec07c479d04f02eee5bdce, type: 3}
+--- !u!114 &4640684930307812567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7933510159314380724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe4793ea110d92e489a2ac3d316c457d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ImageObject: {fileID: 0}

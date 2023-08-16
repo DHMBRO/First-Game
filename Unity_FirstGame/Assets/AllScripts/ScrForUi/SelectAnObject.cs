@@ -150,6 +150,7 @@ public class SelectAnObject : MethodsFromDevelopers
                 ScrForAllLoot.RemoveAt(i);
                 ScrInfoToLoot.RemoveAt(i);
                 ScrInfoForLoot.RemoveAt(i);
+                i--;
                 //Debug.Log("ScrInfoToLoot[i].InfoTheObject != ScrInfoToObjectUse.InfoTheObject is true");
             }
         }
