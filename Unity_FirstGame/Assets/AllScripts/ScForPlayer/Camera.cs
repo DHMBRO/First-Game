@@ -15,18 +15,11 @@ public class Camera : MonoBehaviour
 
     private void Update()
     {
-        float MouseX = Input.GetAxis("Mouse X");
-        float MouseY = Input.GetAxis("Mouse Y");
-
-        //Vector3 RotateX = new Vector3(0.0f, 0.0f + MouseX * MouseSens, 0.0f);
-        //Vector3 RotateY = new Vector3(0.0f + MouseY * MouseSens, 0.0f, 0.0f);
-
-        TargetCamera.transform.Rotate(MouseSens * new Vector3(0.0f + -MouseY, 0.0f + MouseX, 0.0f));
-        
-
+        RotateCamera();
+        CammeraOffset();
     }
 
-
+        
 
     void RotateCamera()
     {
@@ -36,13 +29,13 @@ public class Camera : MonoBehaviour
         transform.localEulerAngles.y + Input.GetAxis("Mouse X") * MouseSens,
         0.0f);
         
-        TargetCamera.transform.localEulerAngles = new Vector3(0.0f, TargetCamera.transform.localEulerAngles.y + Input.GetAxis("Mouse X") * MouseSens, 0.0f);
+        //TargetCamera.transform.localEulerAngles = new Vector3(0.0f, TargetCamera.transform.localEulerAngles.y + Input.GetAxis("Mouse X") * MouseSens, 0.0f);
     }
     
     void CammeraOffset()
     {
         Vector3 TargetPosition = TargetCamera.transform.TransformPoint(Offset);
-        //transform.position = TargetPosition - transform.forward * MoveBack;
+        transform.position = TargetPosition - transform.forward * MoveBack;
     }
 
     
