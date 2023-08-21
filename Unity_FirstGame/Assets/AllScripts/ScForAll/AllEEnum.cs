@@ -1,4 +1,8 @@
-
+public enum MoodCamera
+{
+    FirstFace,
+    ThirdFace
+}
 public enum TypeWeapon
 {
     Weapon,

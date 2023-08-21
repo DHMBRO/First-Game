@@ -37,6 +37,9 @@ public class CamFirstFace : MonoBehaviour
             
             if (Player) Player.Rotate(MouseX * new Vector3(0.0f, Sens, 0.0f));
             else Debug.Log("Not set Player ");
+                
+
+
         }
     }
     

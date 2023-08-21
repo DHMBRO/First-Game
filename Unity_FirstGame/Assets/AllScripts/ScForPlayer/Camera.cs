@@ -5,7 +5,8 @@ public class Camera : MonoBehaviour
     [SerializeField] public GameObject TargetCamera;
     [SerializeField] Vector3 Offset;
     [SerializeField] float MouseSens = 1.0f;
-    [SerializeField] float MoveBack = 5.0f;    
+    [SerializeField] float MoveBack = 5.0f;
+    [SerializeField] MoodCamera CameraMood;
 
     private void Start()
     {
@@ -15,11 +16,20 @@ public class Camera : MonoBehaviour
 
     private void Update()
     {
-        RotateCamera();
-        CammeraOffset();
+        if(CameraMood == MoodCamera.ThirdFace)
+        {
+            RotateCamera();
+            CammeraOffset();
+        }
+        if (CameraMood == MoodCamera.FirstFace)
+        {
+            TargetCamera.transform.localEulerAngles = new Vector3(0.0f, TargetCamera.transform.localEulerAngles.y + Input.GetAxis("Mouse X") * MouseSens, 0.0f);
+
+        }
+
     }
 
-        
+
 
     void RotateCamera()
     {
@@ -29,7 +39,7 @@ public class Camera : MonoBehaviour
         transform.localEulerAngles.y + Input.GetAxis("Mouse X") * MouseSens,
         0.0f);
         
-        //TargetCamera.transform.localEulerAngles = new Vector3(0.0f, TargetCamera.transform.localEulerAngles.y + Input.GetAxis("Mouse X") * MouseSens, 0.0f);
+        
     }
     
     void CammeraOffset()
