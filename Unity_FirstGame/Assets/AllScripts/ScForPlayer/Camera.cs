@@ -126,12 +126,12 @@ public class Camera : MonoBehaviour
 
     void RotateCameraAiming()
     {
-        
+        /*
         TargetCamera.transform.localEulerAngles = new Vector3(
         0.0f,
         TargetCamera.transform.localEulerAngles.y + Input.GetAxis("Mouse X") * MouseSens,
         0.0f);
-        
+        */
         
         transform.localEulerAngles = new Vector3(
         0.0f,
