@@ -49,12 +49,13 @@ public class MovePlayer : MonoBehaviour
         //Vector3 ForceBack = transform.forward * MoveVertical * Speed;
 
         //Vector3 ForceBack = new Vector3(MoveHorizontal, 0.0f, MoveVertical).normalized;
-        if (Math.Abs(MoveVertical + MoveVertical) > 0.01f)
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Math.Abs(MoveVertical + MoveVertical) > 0.01f)
         {
             Vector3 ForceForward = new Vector3(MoveHorizontal, 0.0f, MoveVertical).normalized;
             Quaternion Forward = Quaternion.LookRotation(ForceForward);
 
             Quaternion TargetRotation = Forward * CameraScr.transform.rotation;
+            
             TargetRotation.x = 0;
             TargetRotation.z = 0;
 
