@@ -2098,8 +2098,12 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6328347359453867729, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: CameraScr
+      value: 
+      objectReference: {fileID: 2100636528}
+    - target: {fileID: 6328347359453867729, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7573944836760920160, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: m_Enabled
@@ -2140,7 +2144,7 @@ PrefabInstance:
     - target: {fileID: 7778607237951541594, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: ObjecttoRay
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1288985374}
     - target: {fileID: 7778607237951541594, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: FirstAidKits
       value: 
@@ -2849,7 +2853,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 944569804}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 289637583}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e16453a710a00549bbd19cb19b8c4dd, type: 3}
   m_Name: 
@@ -2989,6 +2993,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!4 &1288985374 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1777919018159703070, guid: 99b382a7a7090204b9bd10d055fa8870, type: 3}
+  m_PrefabInstance: {fileID: 752688836}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1321430671
 PrefabInstance:
   m_ObjectHideFlags: 0

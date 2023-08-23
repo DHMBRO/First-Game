@@ -9,6 +9,7 @@ public class MovePlayer : MonoBehaviour
     [SerializeField] ForceMode MyForceMode;
 
     [SerializeField] Rigidbody MyRigidbody;
+    [SerializeField] Camera CameraScr;
 
     [SerializeField] protected Transform CameraTransform;
 
@@ -22,29 +23,59 @@ public class MovePlayer : MonoBehaviour
     float MoveHorizontal;
     float MoveVertical;
 
+    float yVelocity = 0.0f;
+    [SerializeField] float smooth = 0.1f;
+    
+
     void Start()
     {
         MyRigidbody = GetComponent<Rigidbody>();
         float maxSpeed = Speed;
     }
 
-    
+    private void Update()
+    {
+        Move();
+        
+    }
+
+
     public void Move()
     {
-        MoveVertical = Input.GetAxisRaw("Vertical") * 100000;
-        MoveHorizontal = Input.GetAxisRaw("Horizontal") * 100000;
-        
+        MoveVertical = Input.GetAxisRaw("Vertical");
+        MoveHorizontal = Input.GetAxisRaw("Horizontal");
+
         //transform.rotation = Quaternion.Euler(0f, CameraTransform.rotation.y, 0f);
         //Vector3 ForceBack = transform.forward * MoveVertical * Speed;
-        
-        Vector3 ForceBack = new Vector3(MoveHorizontal, 0.0f, MoveVertical).normalized;
-        Vector3 ForrceForward = new Vector3(MoveHorizontal, 0.0f, MoveVertical).normalized;
-        
-        MyRigidbody.velocity = new Vector3(0, MyRigidbody.velocity.y, 0);
+
+        //Vector3 ForceBack = new Vector3(MoveHorizontal, 0.0f, MoveVertical).normalized;
+        if (Math.Abs(MoveVertical + MoveVertical) > 0.01f)
+        {
+            Vector3 ForceForward = new Vector3(MoveHorizontal, 0.0f, MoveVertical).normalized;
+            Quaternion Forward = Quaternion.LookRotation(ForceForward);
+
+            Quaternion TargetRotation = Forward * CameraScr.transform.rotation;
+            TargetRotation.x = 0;
+            TargetRotation.z = 0;
+
+            float yAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, TargetRotation.eulerAngles.y, ref yVelocity, smooth);
 
 
-        MyRigidbody.AddRelativeForce(ForceBack * Speed, MyForceMode);
-        if(Input.GetKey(KeyCode.LeftShift)) MyRigidbody.AddRelativeForce(ForrceForward * SpeedRun, MyForceMode);
+            transform.rotation = Quaternion.Euler(0, yAngle, 0);
+
+        }
+
+
+
+        //transform.rotation = TargetRotation;
+
+
+
+        //MyRigidbody.velocity = new Vector3(0, MyRigidbody.velocity.y, 0);
+
+
+        //MyRigidbody.AddRelativeForce(ForrceForward * Speed, MyForceMode);
+        //if(Input.GetKey(KeyCode.LeftShift)) MyRigidbody.AddRelativeForce(ForrceForward * SpeedRun, MyForceMode);
 
 
         /*

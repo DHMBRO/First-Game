@@ -43,7 +43,7 @@ public class Camera : MonoBehaviour
     {
         ControlerUi.Scope.gameObject.SetActive(Aiming);
         
-        if (!ControlerUi.InventoryIsOpen)
+        if (ControlerUi && !ControlerUi.InventoryIsOpen || true)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -72,10 +72,11 @@ public class Camera : MonoBehaviour
                 {
                     if (!Aiming)
                     {
-                        MoveBackCammera();
                         RotateCameraSimple();
+                        MoveBackCammera();
 
-                        RotateTargetCamera();
+
+                        //RotateTargetCamera();
                     }
                     else
                     {
@@ -146,6 +147,8 @@ public class Camera : MonoBehaviour
 
     void RotateTargetCamera()
     {
+        
+        return;
         //Quaternion CurentRotation = TargetCamera.transform.rotation;
         RigTarget = TargetCamera.GetComponent<Rigidbody>();
 
