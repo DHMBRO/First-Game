@@ -54,12 +54,14 @@ public class PlayerControler : MonoBehaviour
             
             if (SlotControler) SlotControlerForAll();
 
+            /*
             if (MovePlayer)
             {
                 MovePlayer.Move();
                 MovePlayer.Jump();
             }
-            
+            */
+
             if (gameobject && Anchor)
             {
                 gameobject.transform.position = Anchor.transform.position;

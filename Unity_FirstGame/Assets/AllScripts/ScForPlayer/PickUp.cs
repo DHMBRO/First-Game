@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class PickUp : MethodsFromDevelopers 
 {
     [SerializeField] public GameObject ObjectToBeLifted;
-    [SerializeField] private CamFirstFace ReferenceForCamera;
+    [SerializeField] private Transform ObjecttoRay;
     
     [SerializeField] private UiControler ControlerUi;
     [SerializeField] private UiInventory InventoryUi;
@@ -24,19 +24,15 @@ public class PickUp : MethodsFromDevelopers
     {
         SlotControler = gameObject.GetComponent<SlotControler>();
         ControlerToDrop = gameObject.GetComponent<DropControler>();
-        ReferenceForCamera = gameObject.GetComponent<CamFirstFace>();
-        
-       
-        
     }
 
     public void RayForLoot()
     {                
-        if (ReferenceForCamera)
+        if (ObjecttoRay)
         {
-            Ray RayForPickUp = new Ray(ReferenceForCamera.ObjectRay.transform.position, ReferenceForCamera.ObjectRay.transform.forward);
+            Ray RayForPickUp = new Ray(ObjecttoRay.position, ObjecttoRay.forward);
             
-            Debug.DrawRay(ReferenceForCamera.ObjectRay.position, ReferenceForCamera.ObjectRay.forward * DistanceForRay, Color.red);
+            Debug.DrawRay(ObjecttoRay.position, ObjecttoRay.forward * DistanceForRay, Color.red);
             
             if (Physics.Raycast(RayForPickUp, out RaycastHit HitResult, DistanceForRay))
             {

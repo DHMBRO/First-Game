@@ -8,8 +8,9 @@ public class UiControler : MonoBehaviour
     [SerializeField] private UiInventory InventoryUi;
     [SerializeField] private GameManager ManagerToGame;
 
-    [SerializeField] Image Scope;
+    [SerializeField] public Image Scope;
     [SerializeField] GameObject Inventory;
+    [SerializeField] Camera CameraScr;
     [SerializeField] public bool InventoryIsOpen = false;
 
     [SerializeField] public Image SlotWeapon01;
@@ -24,7 +25,8 @@ public class UiControler : MonoBehaviour
     void Start()
     {
         InventoryIsOpen = false;
-        if (Inventory) Inventory.SetActive(false);   
+        if (Inventory) Inventory.SetActive(false);
+        if (!CameraScr) Debug.Log("Not set CameraScr");
     }
 
     void Update()
@@ -41,6 +43,8 @@ public class UiControler : MonoBehaviour
             if (InventoryIsOpen) Cursor.lockState = CursorLockMode.Confined;
             else Cursor.lockState = CursorLockMode.Locked;
         }
+        
+
     }
     
     

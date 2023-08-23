@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6170949435863983263
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3090477012136679869}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3090477012136679869
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6170949435863983263}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.44, z: 0.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3811309240065978825}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6761677284600033288
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,15 +26,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6761677284600033288}
-  m_LocalRotation: {x: -0.22639626, y: 0, z: 0, w: 0.9740353}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3090477012136679869}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -26.17, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &7502794220233642860
 Camera:
   m_ObjectHideFlags: 0
@@ -129,7 +97,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c17c392016f26174f85883697f209549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ControlerUi: {fileID: 0}
   TargetCamera: {fileID: 758934435905196194, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
-  Offset: {x: 1, y: 2, z: 1}
+  HandTarget: {fileID: 0}
+  RigTarget: {fileID: 0}
+  OffsetCamera: {x: 0, y: 0, z: 0}
+  OffsetCameraToAiming: {x: 0, y: 0, z: 0}
+  OffsetHandForAimingTra: {x: 0, y: 0, z: 0}
+  OffsetHandForAimingRot: {x: 0, y: 0, z: 0}
+  OffsetHandPos: {x: 0, y: 0, z: 0}
+  OffsetHandRot: {x: 0, y: 0, z: 0}
   MouseSens: 1
   MoveBack: 5
+  SpeedMove: 0
+  SpeedInAiming: 0
+  SpeedRun: 0
+  CameraMood: 0
+  Aiming: 0
+  CameraIsUsig: 0
