@@ -85,7 +85,7 @@ public class MovePlayer : MonoBehaviour
             }
             else
             {
-                MyRigidbody.AddRelativeForce(ForceAxis * SpeedMove, MyForceMode);
+                MyRigidbody.AddRelativeForce(ForceAxis * SpeedAiming, MyForceMode);
                 if (Input.GetKey(KeyCode.LeftShift)) MyRigidbody.AddRelativeForce(ForceAxis * SpeedRun, MyForceMode);
                 
             }
