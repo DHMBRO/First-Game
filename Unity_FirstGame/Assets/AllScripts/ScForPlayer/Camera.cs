@@ -41,7 +41,7 @@ public class Camera : MonoBehaviour
 
     private void Update()
     {
-        ControlerUi.Scope.gameObject.SetActive(Aiming);
+        if(ControlerUi) ControlerUi.Scope.gameObject.SetActive(Aiming);
         
         if (ControlerUi && !ControlerUi.InventoryIsOpen || true)
         {

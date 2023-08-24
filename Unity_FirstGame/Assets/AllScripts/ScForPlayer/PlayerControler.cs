@@ -32,7 +32,7 @@ public class PlayerControler : MonoBehaviour
     
     void Update()
     {   
-        if(ControlerUi && ControlerUi.InventoryIsOpen == false)
+        if(ControlerUi && ControlerUi.InventoryIsOpen == false || !ControlerUi)
         {
             if (SlotControler.ObjectInHand) ControlerShoot = SlotControler.ObjectInHand.GetComponent<ShootControler>();
             else ControlerShoot = null;
@@ -49,7 +49,6 @@ public class PlayerControler : MonoBehaviour
                 SlotControler.ObjectInHand = null;
                 ControlerShoot = null;
                 
-                Debug.Log("1");
             }
             
             if (SlotControler) SlotControlerForAll();
