@@ -43,7 +43,7 @@ public class Camera : MonoBehaviour
     {
         if(ControlerUi) ControlerUi.Scope.gameObject.SetActive(Aiming);
         
-        if (ControlerUi && !ControlerUi.InventoryIsOpen || true)
+        if (ControlerUi && !ControlerUi.InventoryIsOpen || !ControlerUi)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -135,7 +135,7 @@ public class Camera : MonoBehaviour
         */
         
         transform.localEulerAngles = new Vector3(
-        0.0f,
+        transform.localEulerAngles.x - Input.GetAxis("Mouse Y") * MouseSens,
         transform.localEulerAngles.y + Input.GetAxis("Mouse X") * MouseSens,
         0.0f);
         

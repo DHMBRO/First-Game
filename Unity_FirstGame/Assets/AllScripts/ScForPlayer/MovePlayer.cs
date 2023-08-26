@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class MovePlayer : MonoBehaviour
 {
+    [SerializeField] public PlayerControler ControlerPlayer;
+
     [SerializeField] float JumpForce = 1.0f;
     [SerializeField] protected float Sens = 1.0f;
 
@@ -19,8 +21,7 @@ public class MovePlayer : MonoBehaviour
     [SerializeField] private float SpeedMove;    
     [SerializeField] private float SpeedRun;
 
-    [SerializeField] private bool IsAiming;
-
+    
     float MoveHorizontal;
     float MoveVertical;
     float yVelocity = 0.0f;
@@ -31,20 +32,11 @@ public class MovePlayer : MonoBehaviour
     void Start()
     {
         MyRigidbody = GetComponent<Rigidbody>();
-        IsAiming = false;
+        
     }
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Mouse1))
-        {
-            IsAiming = true;
-        }
-        if (Input.GetKeyUp(KeyCode.Mouse1))
-        {
-            IsAiming = false;
-        }
-
         Move();
     }
 
@@ -63,7 +55,7 @@ public class MovePlayer : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Math.Abs(MoveVertical + MoveVertical) > 0.01f)
         {
-            if (!IsAiming)
+            if (!ControlerPlayer.Aiming)
             {
                 Quaternion Forward = Quaternion.LookRotation(ForceAxis);
 

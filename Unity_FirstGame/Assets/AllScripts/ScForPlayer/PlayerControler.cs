@@ -17,10 +17,14 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] Transform gameobject;
     [SerializeField] Transform Anchor;
 
+    [SerializeField] public bool Aiming = false;
+
     void Start()
     {
         Move = gameObject.GetComponent<Move1F>();
+        
         MovePlayer = gameobject.GetComponent<MovePlayer>();
+        MovePlayer.ControlerPlayer = GetComponent<PlayerControler>();
 
         StelsScript = gameObject.GetComponent<StelsScript>();
 
@@ -41,6 +45,13 @@ public class PlayerControler : MonoBehaviour
             {
                 if (!ControlerUi.InventoryIsOpen) ControlerShoot.Shoot();
             }
+
+            
+            if (Input.GetKey(KeyCode.Mouse1)) Aiming = true;
+            if (Input.GetKeyUp(KeyCode.Mouse1)) Aiming = false;
+            if (MovePlayer) MovePlayer.Move();
+
+
 
             if (PickUpPlayer) PickUpAll();
             if (ControlerDrop && Input.GetKeyDown(KeyCode.Q))
