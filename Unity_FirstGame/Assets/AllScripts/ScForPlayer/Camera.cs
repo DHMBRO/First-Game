@@ -169,6 +169,7 @@ public class Camera : MonoBehaviour
             }
             else TargetCamera.transform.eulerAngles = new Vector3(0.0f, transform.eulerAngles.y, 0.0f);
             MoveForward();// !!!
+            
         }
         else if (Input.GetKey(KeyCode.S))
         {
