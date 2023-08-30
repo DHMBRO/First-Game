@@ -19,6 +19,13 @@ public enum TypeCaliber
     None
 }
 
+public enum SatetsCamera
+{
+    Simple,
+    Aiming
+
+}
+
 /*
 public enum TypeLoot
 {

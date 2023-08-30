@@ -21,7 +21,9 @@ public class Camera : MonoBehaviour
 
     [SerializeField] float MouseSens = 1.0f;
     [SerializeField] float MoveBack = 5.0f;
-    
+
+    [SerializeField] float t;
+    [SerializeField] float LenghtToOneStep = 3.0f;
 
     [SerializeField] float SpeedMove;
     [SerializeField] float SpeedInAiming; 
@@ -31,16 +33,38 @@ public class Camera : MonoBehaviour
     [SerializeField] public bool Aiming = false;
     [SerializeField] bool CameraIsUsig = false;
 
+    [SerializeField] SatetsCamera CurrentState;
+
+    Vector3 TargetPosition01;
+    Vector3 TargetPosition02;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         if(HandTarget) RotateHandToSimple();
-    
+
+
+        
     }
 
     private void Update()
     {
+        
+        /*
+        if (CurrentState == SatetsCamera.Simple)
+        {
+            //Task01();
+            Debug.Log("1");
+        }
+        else if(CurrentState == SatetsCamera.Aiming)
+        {
+            //Task02();
+            Debug.Log("2");
+
+        }
+        */
+        
         if(ControlerUi) ControlerUi.Scope.gameObject.SetActive(Aiming);
         
         if (ControlerUi && !ControlerUi.InventoryIsOpen || !ControlerUi)
@@ -57,34 +81,42 @@ public class Camera : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Mouse1) && CameraIsUsig)
             {
                 Aiming = true;
-                RoateHandToAiming();
+                   
             }
+
             if (Input.GetKeyUp(KeyCode.Mouse1) && CameraIsUsig)
             {
                 Aiming = false;
-                RotateHandToSimple();
+                
             }
-
-
+            
+            
             if (CameraIsUsig)
             {
                 if (CameraMood == MoodCamera.ThirdFace)
                 {
                     if (!Aiming)
                     {
+                        TargetPosition01 = TargetCamera.transform.TransformPoint(OffsetCamera);
+                        RotateHandToSimple();
+
+                        if (transform.position != TargetPosition01) RotateCameraToStateSimple();
+
                         RotateCameraSimple();
                         MoveBackCammera();
-
-
-                        //RotateTargetCamera();
+                        
                     }
                     else
                     {
-                        StateCameraAiming();
+                        
+                        TargetPosition02 = TargetCamera.transform.TransformPoint(OffsetCameraToAiming);
+                        RoateHandToAiming();
 
+                        if (transform.position != TargetPosition02) RotateCameraToStateAiming();
+                        StateCameraAiming();
                         RotateCameraAiming();
 
-                        MoveInAiming();
+                        //MoveInAiming();
                     }
 
                 }
@@ -95,13 +127,44 @@ public class Camera : MonoBehaviour
                 }
             }
 
-
+            
         }
+        
 
 
 
 
     }
+    
+    /*
+    void Task01()
+    {
+        Vector3 CameraSimple = TargetCamera.transform.TransformPoint(OffsetCamera);
+        t = (LenghtToOneStep/(CameraSimple - transform.position).magnitude*Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position,CameraSimple,t);
+    }
+
+    void Task02()
+    {
+        Vector3 CameraAiming = TargetCamera.transform.TransformPoint(OffsetCameraToAiming);
+        t = (LenghtToOneStep/(CameraAiming - transform.position).magnitude*Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position,CameraAiming,t);
+    }
+    */
+    
+    void RotateCameraToStateSimple()
+    {
+        t = ((LenghtToOneStep / (TargetPosition01 - transform.position).magnitude * Time.deltaTime));
+        transform.position = Vector3.Lerp(transform.position, TargetPosition01, t);
+    }
+
+    void RotateCameraToStateAiming()
+    {
+        t = ((LenghtToOneStep / (TargetPosition02 - transform.position).magnitude) * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, TargetPosition02, t);
+        Debug.Log("Camera is lerping");
+    }
+    
 
     void RoateHandToAiming()
     {
@@ -127,21 +190,22 @@ public class Camera : MonoBehaviour
 
     void RotateCameraAiming()
     {
-        /*
+        
         TargetCamera.transform.localEulerAngles = new Vector3(
         0.0f,
         TargetCamera.transform.localEulerAngles.y + Input.GetAxis("Mouse X") * MouseSens,
         0.0f);
-        */
         
+        /*
         transform.localEulerAngles = new Vector3(
         transform.localEulerAngles.x - Input.GetAxis("Mouse Y") * MouseSens,
         transform.localEulerAngles.y + Input.GetAxis("Mouse X") * MouseSens,
         0.0f);
+        */
         
         
+        transform.eulerAngles = new Vector3(0.0f, TargetCamera.transform.eulerAngles.y, 0.0f);
         
-        TargetCamera.transform.eulerAngles = new Vector3(0.0f, transform.eulerAngles.y, 0.0f);
 
     }
 
@@ -233,7 +297,10 @@ public class Camera : MonoBehaviour
     void StateCameraAiming()
     {
         Vector3 TargetPosition01 = TargetCamera.transform.TransformPoint(OffsetCameraToAiming);
-        transform.position = TargetPosition01 - transform.forward;
+        //transform.position = TargetPosition01 - transform.forward;
+            
+        Debug.Log("Camera is Aiming");
+        
     }
 
 
