@@ -1,17 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class ZombieController : MonoBehaviour
 {
+    [SerializeField] public TextMeshProUGUI BackUpWidget;
     protected LocateScript ZombieLocateScript;
     protected AttackMethod ZombieAttackScript;
     protected PatrolScriptNavMesh ZombiePatrolScript;
     public bool IsLive = true;
-    
+
     void Start()
     {
-       
+
         ZombieLocateScript = gameObject.GetComponent<LocateScript>();
         ZombieAttackScript = gameObject.GetComponent<AttackMethod>();
         ZombiePatrolScript = gameObject.GetComponent<PatrolScriptNavMesh>();
@@ -23,7 +26,7 @@ public class ZombieController : MonoBehaviour
     }
     void Update()
     {
-     
+
         if (IsLive)
         {
             /*Debug.Log("Reaming  " + ZombiePatrolScript.ZombieNavMesh.remainingDistance);
@@ -33,24 +36,26 @@ public class ZombieController : MonoBehaviour
             Debug.Log("If attack " + ((ZombiePatrolScript.ZombieNavMesh.remainingDistance <= ZombieAttackScript.AttackDistance)));
             Debug.Log("If going " + ((ZombieLocateScript.Target.transform.position - ZombiePatrolScript.ZombieNavMesh.destination).magnitude <= ZombieAttackScript.GoingDistance));
             Debug.Log("-------------------------------------");*/
-            if  (ZombieLocateScript && ZombieAttackScript && ZombiePatrolScript)
+            if (ZombieLocateScript && ZombieAttackScript && ZombiePatrolScript)
             {
+
                 if (ZombieLocateScript.CanISeeTarget())
                 {
                     ZombieLocateScript.RelocateTarget();
-                    /*Debug.Log("canISeeTarget"); */
+                    Debug.Log("canISeeTarget");
 
                     if (IsLive && ZombiePatrolScript.ZombieNavMesh.remainingDistance <= ZombieAttackScript.AttackDistance &&
                             (ZombieLocateScript.Target.transform.position - ZombiePatrolScript.ZombieNavMesh.destination).magnitude <= ZombieAttackScript.GoingDistance)
                     {
-                       /*Debug.Log("Attack!!!"); */
+                        Debug.Log("Attack!!!");
 
-
+                        ZombiePatrolScript.ZombieNavMesh.isStopped = true;
                         ZombieAttackScript.DoCloseAttack(ZombieLocateScript.Target);
+
                     }
                     else
                     {
-
+                        ZombiePatrolScript.ZombieNavMesh.isStopped = false;
                         ZombiePatrolScript.MoveTo(ZombieLocateScript.Target);
                     }
 
@@ -58,7 +63,7 @@ public class ZombieController : MonoBehaviour
 
                 else if (IsLive)
                 {
-
+                    ZombiePatrolScript.ZombieNavMesh.isStopped = false;
                     ZombiePatrolScript.Patroling();
                 }
 
@@ -69,6 +74,10 @@ public class ZombieController : MonoBehaviour
         {
 
             ZombiePatrolScript.ZombieNavMesh.isStopped = true;
+            
         }
+        
+        BackUpWidget.text = ZombieLocateScript.CanISeeTarget().ToString();
     }
+    
 }
