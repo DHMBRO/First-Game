@@ -102,7 +102,7 @@ MonoBehaviour:
   TargetCamera: {fileID: 758934435905196194, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
   HandTarget: {fileID: 0}
   RigTarget: {fileID: 0}
-  OffsetCamera: {x: 0, y: 2, z: 0}
+  OffsetCamera: {x: 0, y: 2.5, z: 0}
   OffsetCameraToAiming: {x: 1.072998, y: 1.848, z: -1.093}
   OffsetHandForAimingTra: {x: 0.45, y: -0.293, z: 0.461}
   OffsetHandForAimingRot: {x: 0, y: 90, z: 0}
@@ -110,12 +110,17 @@ MonoBehaviour:
   OffsetHandRot: {x: 0, y: 33.79, z: 27.9}
   MouseSens: 1
   MoveBack: 5
+  t: 0
+  LenghtToOneStep: 3
   SpeedMove: 0
   SpeedInAiming: 0
   SpeedRun: 0
   CameraMood: 0
   Aiming: 0
   CameraIsUsig: 0
+  CurrentState: 0
+  IsAiming: 0
+  IsNotAiming: 0
 --- !u!1001 &6299334075684510675
 PrefabInstance:
   m_ObjectHideFlags: 0
