@@ -9,12 +9,12 @@ public class PatrolScriptNavMesh : MonoBehaviour
     LocateScript ZombieLocateScript;
     public NavMeshAgent ZombieNavMesh;
     GameObject MoveTarget;
-    enum State
+    public enum State
     {
         Moving,
         Idle
     }
-    State MyState = State.Idle;
+    public State MyState = State.Idle;
 
     void Start()
     {

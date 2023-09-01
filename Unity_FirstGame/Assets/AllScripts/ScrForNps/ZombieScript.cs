@@ -5,7 +5,7 @@ using UnityEngine;
 public class ZombieScript : MonoBehaviour
 {
     [SerializeField] protected float ZombieHp = 100;
-    public MeshRenderer ZombieMeshRenderer;
+    [SerializeField] public MeshRenderer ZombieMeshRenderer;
     [SerializeField] public Material ZombieDeadMaterial;
     ZombieController ZombieControllerScript;
     HpScript ZomblieHpScript;
@@ -13,9 +13,9 @@ public class ZombieScript : MonoBehaviour
     void Start()
     {
         ZombleLocateScript = GetComponent<LocateScript>();
-        ZomblieHpScript = GetComponent<HpScript>();
+        ZomblieHpScript = gameObject.GetComponent<HpScript>();
         ZombieControllerScript = GetComponentInParent<ZombieController>();
-        ZombieMeshRenderer = GetComponentInParent<MeshRenderer>();
+        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -42,7 +42,7 @@ public class ZombieScript : MonoBehaviour
     public void InstansteKillMe()
     {
        
-        ZomblieHpScript.InflictingDamage(ZombieHp);
+       ZomblieHpScript.InflictingDamage(ZombieHp);                                                                     
 
     }
     public bool IsObjectFromBehinde(GameObject Object) 

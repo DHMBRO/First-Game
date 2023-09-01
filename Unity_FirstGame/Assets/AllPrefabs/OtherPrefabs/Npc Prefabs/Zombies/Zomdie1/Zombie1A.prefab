@@ -88,7 +88,6 @@ GameObject:
   - component: {fileID: 3123989395963441458}
   - component: {fileID: 1642897012431317003}
   - component: {fileID: 2467546659898846345}
-  - component: {fileID: 8164743729278568640}
   m_Layer: 0
   m_Name: BodyZombie
   m_TagString: Untagged
@@ -175,21 +174,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8164743729278568640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5014599888506805786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eca6baa367d47524bbb3cf2477c34551, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ZombieHp: 100
-  ZombieMeshRenderer: {fileID: 0}
-  ZombieDeadMaterial: {fileID: 0}
 --- !u!1 &5428616973792416952
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,7 +268,6 @@ MonoBehaviour:
   SpeedForMove: 3.5
   MaxDistatzeForAgr: 7
   ZombiePatrolScript: {fileID: 0}
-  PlayerAttackScript: {fileID: 0}
 --- !u!114 &4900945666828990210
 MonoBehaviour:
   m_ObjectHideFlags: 0

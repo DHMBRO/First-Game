@@ -14,7 +14,7 @@ public class LocateScript : MonoBehaviour
     [SerializeField] private float MaxDistatzeForAgr;
     public PatrolScriptNavMesh ZombiePatrolScript;
     private StelsScript TargetStelsScript;
-    [SerializeField] public PlayerAttackScript PlayerAttackScript;
+    
 
     void Start()
     {
@@ -29,7 +29,7 @@ public class LocateScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponentInParent<PlayerAttackScript>())
+        if (other.gameObject.GetComponentInParent<PlayerControler>())
         {
             
                  Target = other.gameObject;
@@ -43,12 +43,13 @@ public class LocateScript : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
+        //getcomponent<EnumScript> { }
         if (other.gameObject.CompareTag("Player01"))
         {
-                
-           
-            
-                Target = other.gameObject;
+            // MyEnum != enemyEnum   
+
+
+            Target = other.gameObject;
 
 
                 TargetStelsScript = Target.GetComponentInParent<StelsScript>();
@@ -95,9 +96,9 @@ public class LocateScript : MonoBehaviour
        
         
         float AngleToTarget = Vector3.Angle(gameObject.transform.forward, Target.transform.position - gameObject.transform.position);
-            
 
-                
+
+        Debug.Log("Angel To Target = " + AngleToTarget);    
         if(AngleToTarget <= 40)
         {
             Vector3 Rotate = Target.transform.position - transform.position;
@@ -158,9 +159,28 @@ public class LocateScript : MonoBehaviour
         float AngleToBackTarget = Vector3.Angle(-gameObject.transform.forward, Object.transform.position - gameObject.transform.position);
         if (AngleToBackTarget <= 30.0f)
         {
-            PlayerAttackScript.CanInstantKill = true;
+            
+
+
+
+
             return true;
         }
         return false;
     }
+    public GameObject WhatForvardToMe(GameObject Object)
+    {
+        RaycastHit Hitres;
+        if (Physics.Raycast(Object.transform.position, Object.transform.forward, out Hitres))
+        {
+            return Hitres.collider.gameObject;
+
+
+        }
+        else 
+        {
+            return null;
+        }
+    }
+
 }
