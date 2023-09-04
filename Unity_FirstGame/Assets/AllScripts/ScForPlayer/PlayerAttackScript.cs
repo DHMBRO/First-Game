@@ -30,9 +30,10 @@ public class PlayerAttackScript : MonoBehaviour
                 {
                     if (ZombieScript.IsObjectFromBehinde(gameObject)) 
                     {
-                        if (ZombieLocateScript.WhatForvardToMe(gameObject))
+                        if (ZombieLocateScript.WhatForvardToMe(gameObject) == Collider.gameObject)
                         {
-                            ZombieScript.InstansteKillMe(); 
+                            ZombieScript.InstansteKillMe();
+                            break;
                         } 
                     }
                 }

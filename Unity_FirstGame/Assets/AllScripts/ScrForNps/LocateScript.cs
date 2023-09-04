@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LocateScript : MonoBehaviour
+public class LocateScript : EnemyControlScript
 {
     [SerializeField] private Transform Head;
     public GameObject Target = null;
@@ -14,12 +14,11 @@ public class LocateScript : MonoBehaviour
     [SerializeField] private float MaxDistatzeForAgr;
     public PatrolScriptNavMesh ZombiePatrolScript;
     private StelsScript TargetStelsScript;
-    
+    [SerializeField] float VisionAngle = 40.0f;
 
     void Start()
     {
         ZombiePatrolScript = gameObject.GetComponent<PatrolScriptNavMesh>();
-        
     }
 
     private void Update()
@@ -29,15 +28,10 @@ public class LocateScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponentInParent<PlayerControler>())
+        if (other.gameObject.GetComponentInParent<EnemyControlScript>())
         {
-            
-                 Target = other.gameObject;
-
-
-                TargetStelsScript = Target.GetComponentInParent<StelsScript>();
-            
-
+            Target = other.gameObject;
+            TargetStelsScript = Target.GetComponentInParent<StelsScript>();
         }
     
     }
@@ -73,10 +67,9 @@ public class LocateScript : MonoBehaviour
     {
         if (!Target)
         {
-
             return false;
-
         }
+
         if (TargetStelsScript)
         {
             if (TargetStelsScript.Stels)
@@ -85,12 +78,10 @@ public class LocateScript : MonoBehaviour
                 TargetStelsScript = null;
                 return false;
             }
-
-
         }
+
         if (IsObjectFromBehinde(Target))
         {
-
             return false;
         }
        
@@ -99,44 +90,33 @@ public class LocateScript : MonoBehaviour
 
 
         Debug.Log("Angel To Target = " + AngleToTarget);    
-        if(AngleToTarget <= 40)
+        if(AngleToTarget <= VisionAngle)
         {
             Vector3 Rotate = Target.transform.position - transform.position;
+
             Vector3 RotateHead = Target.transform.position - Head.position;
 
             Ray HeadForward = new Ray(Head.transform.position, RotateHead);
             
             Head.transform.rotation = Quaternion.LookRotation(RotateHead);
 
-            RaycastHit[] HitResults = Physics.RaycastAll(HeadForward, MaxDistatzeForAgr);
-            foreach (RaycastHit HitResult in HitResults)
+            // RaycastHit[] HitResults = Physics.RaycastAll(HeadForward, MaxDistatzeForAgr);
+            //  foreach (RaycastHit HitResult in HitResults)
+            RaycastHit Hitres;
+            if(Physics.Raycast(HeadForward, out Hitres, MaxDistatzeForAgr))
             {
-                if (HitResult.collider.gameObject == Target || HitResult.collider.gameObject.transform.root == Target)
+                if (Hitres.collider.gameObject == Target || Hitres.collider.gameObject.transform.root.gameObject == Target)
                 {
-                    Debug.Log("3");
                     return true;
                 }
-
             }
 
-
-
-
-            if ((gameObject.transform.position - Target.transform.position).magnitude > 2.5f)
-
+            if ((gameObject.transform.position - Target.transform.position).magnitude <= 2.5f)
             {
                 return true;
             }
-
-
         }
-
-
-
-
         return false;
-        
-        
     }
     public void RelocateTarget()
     {
@@ -170,17 +150,21 @@ public class LocateScript : MonoBehaviour
     }
     public GameObject WhatForvardToMe(GameObject Object)
     {
-        RaycastHit Hitres;
-        if (Physics.Raycast(Object.transform.position, Object.transform.forward, out Hitres))
-        {
-            return Hitres.collider.gameObject;
-
-
-        }
-        else 
-        {
-            return null;
-        }
+         RaycastHit Hitres;
+         if (Physics.Raycast(Object.transform.position, Object.transform.forward, out Hitres))
+         {
+            RaycastHit Hitresult;
+            if (Physics.Raycast(Object.transform.position, Object.transform.forward - Hitres.collider.gameObject.transform.position , out Hitresult))
+            {
+                if (Hitresult.collider.gameObject == Hitres.collider.gameObject)
+                {
+                    return Hitres.collider.gameObject;
+                }
+                
+            }
+               
+         }
+        return null;
     }
-
+    // рейкаст між 2(від мене до об,єкта) обєктами перевірка чи нема між ними нічого
 }
