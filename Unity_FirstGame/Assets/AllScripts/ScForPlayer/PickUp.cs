@@ -31,7 +31,7 @@ public class PickUp : MethodsFromDevelopers
     {                
         if (ObjecttoRay)
         {
-            Debug.Log("RayForLoot is work");
+            //Debug.Log("RayForLoot is work");
             Ray RayForPickUp = new Ray(ObjecttoRay.position, ObjecttoRay.forward);
             
             Debug.DrawRay(ObjecttoRay.position, ObjecttoRay.forward * DistanceForRay, Color.red);

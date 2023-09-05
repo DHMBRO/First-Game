@@ -6,7 +6,10 @@ public class Camera : MonoBehaviour
 
     [SerializeField] public GameObject TargetCamera;
     [SerializeField] Transform HandTarget;
-    [SerializeField] private Rigidbody RigTarget; 
+    [SerializeField] private Rigidbody RigTarget;
+
+    [SerializeField] private Transform MoveBackObject;
+
 
     [SerializeField] Vector3 OffsetCamera;
 
@@ -22,23 +25,29 @@ public class Camera : MonoBehaviour
     [SerializeField] float MoveBack = 5.0f;
 
     [SerializeField] float t;
-    [SerializeField] float LenghtToOneStep = 3.0f;
+    [SerializeField] float CurrentLenghtOfOneStep;
+    [SerializeField] float LenghtToOneStep = 100.0f;
+    [SerializeField] float LenghtOfOneStepToChangeState = 3.0f;
 
     [SerializeField] float SpeedMove;
     [SerializeField] float SpeedInAiming; 
     [SerializeField] float SpeedRun;
 
     [SerializeField] MoodCamera CameraMood;
-    [SerializeField] public bool Aiming = false;
-    [SerializeField] bool CameraIsUsig = false;
+    [SerializeField] CameraIs CurrentState;
 
-    [SerializeField] SatetsCamera CurrentState;
+    [SerializeField] public bool Aiming = false;
+    [SerializeField] private bool CameraIsUsig = false;
 
     Vector3 TargetPosition01;
     Vector3 TargetPosition02;
 
-    [SerializeField] bool IsAiming = false;
-    [SerializeField] bool IsNotAiming = false;
+    bool CameraState01 = false;
+    bool CameraState02 = false;
+
+    [SerializeField] bool FraimSimple = false;
+    [SerializeField] bool FraimAiming = false;
+
 
     private void Start()
     {
@@ -46,19 +55,42 @@ public class Camera : MonoBehaviour
         Cursor.visible = false;
         if(HandTarget) RotateHandToSimple();
 
+        CurrentLenghtOfOneStep = LenghtOfOneStepToChangeState;
 
-        
+
     }
 
     private void Update()
     {
         
-       
         
-        if(ControlerUi) ControlerUi.Scope.gameObject.SetActive(Aiming);
+        if (ControlerUi) ControlerUi.Scope.gameObject.SetActive(Aiming);
         
         if (ControlerUi && !ControlerUi.InventoryIsOpen || !ControlerUi)
         {
+
+
+            if (Physics.Raycast(MoveBackObject.position, -MoveBackObject.forward, out RaycastHit ResultHit01, (MoveBack)))
+            {
+                TargetPosition01 = (MoveBackObject.transform.TransformPoint(MoveBackObject.forward) - MoveBackObject.transform.forward * ResultHit01.distance);
+                //Debug.Log(TargetPosition);
+            }
+
+            if (Physics.Raycast(MoveBackObject.position, -MoveBackObject.forward, out RaycastHit ResultHit02, (MoveBack - 1.5f)))
+            {
+                TargetPosition02 = MoveBackObject.transform.TransformPoint(MoveBackObject.forward) - MoveBackObject.forward * ResultHit02.distance;
+                //Debug.Log(TargetPosition);
+            }
+
+            Vector3 a = TargetPosition01;
+            a.y += 0.01f;
+            a.z -= 0.01f;
+
+            Vector3 a1 = TargetPosition02;
+            a1.y -= 0.01f;
+            a1.z += 0.01f;
+
+
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 CameraIsUsig = false;
@@ -68,40 +100,91 @@ public class Camera : MonoBehaviour
                 CameraIsUsig = true;
 
             }
-            if (Input.GetKey(KeyCode.Mouse1) && CameraIsUsig)
+            if (Input.GetKeyDown(KeyCode.Mouse1) && CameraIsUsig)
             {
                 Aiming = true;
-                //Vector3 TargetVector = transform.TransformPoint(OffsetCameraToAiming);
-                //LerpCamera(TargetVector);
+                FraimAiming = true;
+
+                TargetCamera.transform.localEulerAngles = new Vector3(0.0f, transform.eulerAngles.y, 0.0f);
+                CurrentLenghtOfOneStep = LenghtOfOneStepToChangeState;
+
+                transform.position = new Vector3(transform.position.x, transform.position.y - 0.03f, transform.position.z - 0.03f);
+
             }
             if (Input.GetKeyUp(KeyCode.Mouse1) && CameraIsUsig)
             {
                 Aiming = false;
-                   
+                FraimSimple = true;
+
+                CurrentLenghtOfOneStep = LenghtOfOneStepToChangeState;
+                transform.position = new Vector3(transform.position.x, transform.position.y + 0.03f, transform.position.z + 0.03f);
+                
             }
+
+
             
-            
+            if (Aiming && !FraimAiming)
+            {
+                if (transform.position.y <= a.y || transform.position.z <= a.z )
+                {
+                    //Debug.Log("transform.position.y <= a.y || transform.position.z >= a.z");
+                    CurrentState = CameraIs.Aiming;
+                    CameraState01 = true;
+                    CurrentLenghtOfOneStep = LenghtToOneStep;
+                    Debug.Log("1");
+                }
+                else CameraState01 = false;
+            }
+
+            if (!Aiming && !FraimSimple)
+            {
+                if (transform.position.y >= a1.y || transform.position.z >= a1.z)
+                {
+                    //Debug.Log("transform.position.y >= a.y || transform.position.z <= a.z");
+                    CurrentState = CameraIs.Simple;
+                    CameraState02 = true;
+                    CurrentLenghtOfOneStep = LenghtToOneStep;
+                    Debug.Log("2");
+                }
+                else CameraState02= false;
+
+            }
+
+            if (!CameraState01 && !CameraState02)
+            {
+                CurrentLenghtOfOneStep = LenghtOfOneStepToChangeState;
+                CurrentState = CameraIs.Null;
+                Debug.Log("!!!!!!!!!!!");
+            }
+
+
+
+
+
             if (CameraIsUsig)
             {
                 if (CameraMood == MoodCamera.ThirdFace)
                 {
                     if (!Aiming)
                     {
-                        
-
                         RotateHandToSimple();
                         RotateCameraSimple();
-                        MoveBackCammera();
                         
+                        MoveBackCammera();
+                        MoveBackObjectToRay();
+
                     }
                     else
                     {
 
                         RoateHandToAiming();
                         StateCameraAiming();
-                        RotateCameraAiming();
-
                         
+                        RotateCameraAiming();
+                        MoveBackObjectToRay();
+
+
+
                     }
 
                 }
@@ -114,34 +197,21 @@ public class Camera : MonoBehaviour
 
             
         }
-        
 
 
-
+        FraimSimple = false;
+        FraimAiming = false;
 
     }
     
     
     
-    void RotateCameraToStateSimple()
-    {
-        t = ((LenghtToOneStep / (TargetPosition01 - transform.position).magnitude * Time.deltaTime));
-        transform.position = Vector3.Lerp(transform.position, TargetPosition01, t);
-    }
-
-    void RotateCameraToStateAiming()
-    {
-        t = ((LenghtToOneStep / (TargetPosition02 - transform.position).magnitude) * Time.deltaTime);
-        transform.position = Vector3.Lerp(transform.position, TargetPosition02, t);
-        Debug.Log("Camera is lerping");
-    }
     
     void LerpCamera(Vector3 TargetVector)
     {
-        t = ((LenghtToOneStep / (TargetVector - transform.position).magnitude) * Time.deltaTime);
+        t = ((CurrentLenghtOfOneStep / (TargetVector - transform.position).magnitude) * Time.deltaTime);
         transform.position = Vector3.Lerp(transform.position, TargetVector, t);
     }
-
 
     void RoateHandToAiming()
     {
@@ -163,43 +233,84 @@ public class Camera : MonoBehaviour
         transform.localEulerAngles.y + Input.GetAxis("Mouse X") * MouseSens,
         0.0f);
 
+        MoveBackObject.transform.localEulerAngles = new Vector3(
+        MoveBackObject.transform.localEulerAngles.x - Input.GetAxis("Mouse Y"),
+        MoveBackObject.transform.localEulerAngles.y + Input.GetAxis("Mouse X"),
+        0.0f);
     }
 
     void RotateCameraAiming()
     {
+        MoveBackObject.eulerAngles = new Vector3(0.0f, transform.eulerAngles.y * MouseSens, 0.0f);
 
-        transform.eulerAngles = new Vector3(0.0f, TargetCamera.transform.eulerAngles.y * MouseSens, 0.0f);
-        
+
+        transform.eulerAngles = new Vector3(transform.localEulerAngles.x - Input.GetAxis("Mouse Y") * MouseSens,
+        TargetCamera.transform.eulerAngles.y * MouseSens, 0.0f);
+
+
         TargetCamera.transform.localEulerAngles = new Vector3(
         0.0f,
         TargetCamera.transform.localEulerAngles.y + Input.GetAxis("Mouse X") * MouseSens,
         0.0f);
-        
-
-        /*
-        transform.localEulerAngles = new Vector3(
-        transform.localEulerAngles.x - Input.GetAxis("Mouse X") * MouseSens, 0.0f, 0.0f);
-        */
 
     }
 
     void StateCameraAiming()
     {
-        Vector3 TargetPosition01 = TargetCamera.transform.TransformPoint(OffsetCameraToAiming);
-        transform.position = TargetPosition01 - transform.forward;
-        //LerpCamera(TargetPosition01);
+        TargetPosition01 = TargetCamera.transform.TransformPoint(OffsetCameraToAiming);
         
-        Debug.Log("Camera is Aiming");
+        Debug.DrawRay(MoveBackObject.position, -MoveBackObject.forward * (MoveBack), Color.blue);
+        if (Physics.Raycast(MoveBackObject.position, -MoveBackObject.forward, out RaycastHit ResultHit01, (MoveBack)))
+        {
+            TargetPosition01 = (MoveBackObject.transform.TransformPoint(MoveBackObject.forward) - MoveBackObject.transform.forward * ResultHit01.distance);
+            //Debug.Log(TargetPosition);
+        }
+
+
+
+
+        LerpCamera(TargetPosition01);
+        //Debug.Log(a);
+
+        //Debug.Log("Camera is Aiming");
         
     }
 
 
     void MoveBackCammera()
     {
-        Vector3 TargetPosition = TargetCamera.transform.TransformPoint(OffsetCamera);
-        transform.position = TargetPosition - transform.forward * MoveBack;
-        //LerpCamera(TargetPosition);
+        TargetPosition02 = (TargetCamera.transform.TransformPoint(OffsetCamera)) - transform.forward * MoveBack;
+
+        //transform.position = TargetPosition - transform.forward * MoveBack;
+        //Vector3 a = TargetPosition - transform.forward * MoveBack;
+        Debug.DrawRay(MoveBackObject.position, -MoveBackObject.forward * (MoveBack - 1.0f),Color.blue);
+        if (Physics.Raycast(MoveBackObject.position, -MoveBackObject.forward, out RaycastHit ResultHit02, (MoveBack - 1.5f)))
+        {
+            TargetPosition02 = MoveBackObject.transform.TransformPoint(MoveBackObject.forward) - MoveBackObject.forward * ResultHit02.distance;
+            //Debug.Log(TargetPosition);
+        }
+
+        //Debug.Log(a);
+
+        LerpCamera(TargetPosition02);
+        
     }
 
-    
+    void MoveBackObjectToRay()
+    {
+        
+        Vector3 TargetPosition = TargetCamera.transform.TransformPoint(OffsetCamera);
+        if (!Aiming)
+        {
+            MoveBackObject.position = TargetPosition - MoveBackObject.forward;
+        }
+        else
+        {
+            TargetPosition = (TargetCamera.transform.TransformPoint(OffsetCameraToAiming)) + MoveBackObject.forward * (MoveBack + 1.0f);
+            MoveBackObject.position = TargetPosition - MoveBackObject.forward;
+        }
+
+
+    }
+
 }
