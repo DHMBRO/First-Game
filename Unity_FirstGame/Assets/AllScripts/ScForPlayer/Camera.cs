@@ -5,7 +5,10 @@ public class Camera : MonoBehaviour
     [SerializeField] UiControler ControlerUi;
 
     [SerializeField] public GameObject TargetCamera;
+    
     [SerializeField] Transform HandTarget;
+    [SerializeField] Transform Cube; 
+
     [SerializeField] private Rigidbody RigTarget;
 
     [SerializeField] private Transform MoveBackObject;
@@ -125,25 +128,30 @@ public class Camera : MonoBehaviour
             
             if (Aiming && !FraimAiming)
             {
-                if (transform.position.y <= a.y || transform.position.z <= a.z )
+                if ((transform.position - a).magnitude <= 0.2f)
                 {
                     //Debug.Log("transform.position.y <= a.y || transform.position.z >= a.z");
-                    CurrentState = CameraIs.Aiming;
+                    
                     CameraState01 = true;
+                    CurrentState = CameraIs.Aiming;
                     CurrentLenghtOfOneStep = LenghtToOneStep;
+                    
                     Debug.Log("1");
+                    
                 }
                 else CameraState01 = false;
             }
 
             if (!Aiming && !FraimSimple)
             {
-                if (transform.position.y >= a1.y || transform.position.z >= a1.z)
+                if ((transform.position - a1).magnitude <= 0.2f)
                 {
                     //Debug.Log("transform.position.y >= a.y || transform.position.z <= a.z");
-                    CurrentState = CameraIs.Simple;
+                    
                     CameraState02 = true;
+                    CurrentState = CameraIs.Simple;
                     CurrentLenghtOfOneStep = LenghtToOneStep;
+                    
                     Debug.Log("2");
                 }
                 else CameraState02= false;
@@ -215,14 +223,40 @@ public class Camera : MonoBehaviour
 
     void RoateHandToAiming()
     {
-        HandTarget.localPosition = OffsetHandForAimingTra;
-        HandTarget.localEulerAngles = OffsetHandForAimingRot;  
+        Vector3 TargetPoint;
+
+        if (FraimAiming)
+        {
+            
+            HandTarget.localPosition = OffsetHandForAimingTra;
+            //HandTarget.localEulerAngles = OffsetHandForAimingRot;
+
+        }
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit HitResult))
+        {
+            TargetPoint = transform.TransformPoint(transform.forward) + transform.forward * (HitResult.distance);
+
+            Debug.Log(TargetPoint);
+            //Cube.position = TargetPoint; 
+            //TargetPoint.z = 0.0f;
+
+            //HandTarget.LookAt(TargetPoint);
+            //HandTarget.localPosition = OffsetHandForAimingTra;
+
+        }
+
+
+
+
     }
 
     void RotateHandToSimple()
     {
-        HandTarget.localPosition = OffsetHandPos;
-        HandTarget.localEulerAngles = OffsetHandRot;
+        if (!FraimSimple)
+        {
+            HandTarget.localPosition = OffsetHandPos;
+            HandTarget.localEulerAngles = OffsetHandRot;
+        }
     }
 
 

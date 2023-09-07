@@ -42,11 +42,13 @@ public class ZombieScript : MonoBehaviour
     public void InstansteKillMe()
     {
        
-       ZomblieHpScript.InflictingDamage(ZombieHp);                                                                     
+      ZomblieHpScript.InflictingDamage(ZombieHp);                                                                     
 
     }
     public bool IsObjectFromBehinde(GameObject Object) 
     {
+
+
        return ZombleLocateScript.IsObjectFromBehinde(Object);
     }
 
