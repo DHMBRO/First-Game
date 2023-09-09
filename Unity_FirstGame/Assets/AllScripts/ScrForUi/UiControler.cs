@@ -21,7 +21,10 @@ public class UiControler : MonoBehaviour
     [SerializeField] public Image SlotShop02;
     [SerializeField] public Image SlotShop03;
 
-    
+    [SerializeField] public Image SlotHelmet;
+    [SerializeField] public Image SlotArmor;
+    [SerializeField] public Image SlotBackPack;
+
     void Start()
     {
         InventoryIsOpen = false;
