@@ -279,7 +279,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1380303204886864797}
-  - {fileID: 355652097750092183}
+  - {fileID: 7950882967492422871}
   - {fileID: 5755626125737214850}
   - {fileID: 1122844065396841752}
   m_Father: {fileID: 7834168469638226636}
@@ -645,14 +645,46 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6044004021805367426}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.45, y: -0.293, z: 0.743}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
+  m_Father: {fileID: 7950882967492422871}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &6777861884062346435
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7950882967492422871}
+  m_Layer: 0
+  m_Name: Pivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7950882967492422871
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6777861884062346435}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.45, y: -0.29299998, z: 0.743}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 355652097750092183}
   m_Father: {fileID: 7231277361793828127}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7421657788145803081
 GameObject:
   m_ObjectHideFlags: 0
@@ -877,6 +909,7 @@ MonoBehaviour:
   ControlerUi: {fileID: 0}
   gameobject: {fileID: 935961475211729313}
   Anchor: {fileID: 0}
+  Aiming: 0
 --- !u!114 &7778607237951541594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -890,7 +923,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectToBeLifted: {fileID: 0}
-  ReferenceForCamera: {fileID: 1045302744663474186}
+  ObjecttoRay: {fileID: 0}
   ControlerUi: {fileID: 0}
   InventoryUi: {fileID: 0}
   PlayerInventory: {fileID: 655437941069588223}
@@ -1032,13 +1065,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e16453a710a00549bbd19cb19b8c4dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ControlerPlayer: {fileID: 0}
   JumpForce: 50
   Sens: 1
   MyForceMode: 0
   MyRigidbody: {fileID: 5669462573118057115}
+  CameraScr: {fileID: 0}
   CameraTransform: {fileID: 5755626125737214850}
-  Speed: 60
+  JumpCount: 0
+  SpeedAiming: 0
+  SpeedMove: 0
   SpeedRun: 0
+  smooth: 0.1
 --- !u!114 &7577484477006445214
 MonoBehaviour:
   m_ObjectHideFlags: 0

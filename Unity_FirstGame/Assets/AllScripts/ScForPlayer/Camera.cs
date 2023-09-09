@@ -85,14 +85,7 @@ public class Camera : MonoBehaviour
                 //Debug.Log(TargetPosition);
             }
 
-            Vector3 a = TargetPosition01;
-            a.y += 0.01f;
-            a.z -= 0.01f;
-
-            Vector3 a1 = TargetPosition02;
-            a1.y -= 0.01f;
-            a1.z += 0.01f;
-
+            
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -128,7 +121,7 @@ public class Camera : MonoBehaviour
             
             if (Aiming && !FraimAiming)
             {
-                if ((transform.position - a).magnitude <= 0.2f)
+                if ((transform.position - TargetPosition01).magnitude <= 0.5f)
                 {
                     //Debug.Log("transform.position.y <= a.y || transform.position.z >= a.z");
                     
@@ -136,23 +129,27 @@ public class Camera : MonoBehaviour
                     CurrentState = CameraIs.Aiming;
                     CurrentLenghtOfOneStep = LenghtToOneStep;
                     
-                    Debug.Log("1");
-                    
+                    //Debug.Log("1");
+                    //Debug.Log((transform.position - TargetPosition01).magnitude);
+
                 }
                 else CameraState01 = false;
             }
 
+            
             if (!Aiming && !FraimSimple)
             {
-                if ((transform.position - a1).magnitude <= 0.2f)
+                if ((transform.position - TargetPosition02).magnitude <= 0.5f)
                 {
                     //Debug.Log("transform.position.y >= a.y || transform.position.z <= a.z");
                     
                     CameraState02 = true;
                     CurrentState = CameraIs.Simple;
                     CurrentLenghtOfOneStep = LenghtToOneStep;
-                    
-                    Debug.Log("2");
+
+                    //Debug.Log("2");
+                    //Debug.Log((transform.position - TargetPosition02).magnitude);
+
                 }
                 else CameraState02= false;
 
@@ -225,26 +222,28 @@ public class Camera : MonoBehaviour
     {
         Vector3 TargetPoint;
 
-        if (FraimAiming)
-        {
-            
-            HandTarget.localPosition = OffsetHandForAimingTra;
-            //HandTarget.localEulerAngles = OffsetHandForAimingRot;
-
-        }
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit HitResult))
         {
             TargetPoint = transform.TransformPoint(transform.forward) + transform.forward * (HitResult.distance);
 
-            Debug.Log(TargetPoint);
-            //Cube.position = TargetPoint; 
-            //TargetPoint.z = 0.0f;
+            //Debug.Log(TargetPoint);
+            
 
-            //HandTarget.LookAt(TargetPoint);
-            //HandTarget.localPosition = OffsetHandForAimingTra;
+            Cube.position = TargetPoint;
+            
+            HandTarget.localPosition = OffsetHandForAimingTra;
+            HandTarget.LookAt(TargetPoint);
 
+            //HandTarget.eulerAngles = new Vector3(HandTarget.eulerAngles.x, 0.0f, 0.0f);
+            HandTarget.localEulerAngles = new Vector3(HandTarget.localEulerAngles.x, 0.0f,0.0f);
+            Debug.Log(HandTarget.localEulerAngles);
+            
         }
-
+        else if(FraimAiming)
+        {
+            HandTarget.localPosition = OffsetHandForAimingTra;
+            HandTarget.localEulerAngles = OffsetHandForAimingRot;
+        }
 
 
 
@@ -275,12 +274,12 @@ public class Camera : MonoBehaviour
 
     void RotateCameraAiming()
     {
-        MoveBackObject.eulerAngles = new Vector3(0.0f, transform.eulerAngles.y * MouseSens, 0.0f);
-
+       
 
         transform.eulerAngles = new Vector3(transform.localEulerAngles.x - Input.GetAxis("Mouse Y") * MouseSens,
         TargetCamera.transform.eulerAngles.y * MouseSens, 0.0f);
 
+        MoveBackObject.eulerAngles = new Vector3(0.0f, transform.eulerAngles.y * MouseSens, 0.0f);
 
         TargetCamera.transform.localEulerAngles = new Vector3(
         0.0f,
