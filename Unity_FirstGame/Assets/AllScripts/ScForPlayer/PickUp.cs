@@ -166,14 +166,22 @@ public class PickUp : MethodsFromDevelopers
 
     void PickUpEqipment(GameObject ObjectToPickUp)
     {
+        ScrForAllLoot ScrForLoot = ObjectToPickUp.GetComponent<ScrForAllLoot>();
+
         if (ObjectToPickUp.CompareTag("Helmet"))
         {
+            if (ControlerUi) ControlerUi.SlotHelmet.sprite = ScrForLoot.SpriteForLoot;
+            
             SlotControler.MyHelmet = ObjectToBeLifted.transform;
             PutObjects(SlotControler.MyHelmet, SlotControler.SlotHelmet);
+            
             Counter = 1;
         }
         else if (ObjectToPickUp.CompareTag("Armor"))
         {
+            if (ControlerUi) ControlerUi.SlotArmor.sprite = ScrForLoot.SpriteForLoot;
+
+
             SlotControler.MyArmor = ObjectToBeLifted.transform;
             PutObjects(SlotControler.MyArmor, SlotControler.SlotArmor);
             PutOn();
@@ -191,6 +199,8 @@ public class PickUp : MethodsFromDevelopers
                     if (ControlerToDrop && BackPackControlerToPickUp.LevelBackPack > BackPackControlerInInventory.LevelBackPack)
                     {
                         DropObjects(SlotControler.MyBackPack.transform, ControlerToDrop.PointForDrop);
+
+                        if (ControlerUi) ControlerUi.SlotBackPack.sprite = ScrForLoot.SpriteForLoot;
 
                         SlotControler.MyBackPack = ObjectToBeLifted.transform;
                         PutObjects(SlotControler.MyBackPack, SlotControler.SlotBackPack);
