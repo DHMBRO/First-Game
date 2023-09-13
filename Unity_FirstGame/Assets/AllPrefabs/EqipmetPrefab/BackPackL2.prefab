@@ -177,6 +177,7 @@ GameObject:
   - component: {fileID: 1702039646897219612}
   - component: {fileID: 7464037430755562497}
   - component: {fileID: 6112950249343297044}
+  - component: {fileID: -5977317386536954996}
   m_Layer: 0
   m_Name: BackPackL2
   m_TagString: BackPack
@@ -227,3 +228,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LevelBackPack: 2
+--- !u!114 &-5977317386536954996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9218297522440953893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ef3b5b486fd1d43b53d47da52f3fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mass: 0
+  CanCombining: 0
+  SpriteForLoot: {fileID: 21300000, guid: c104b7e023908bc4090ac7d990015ce5, type: 3}
