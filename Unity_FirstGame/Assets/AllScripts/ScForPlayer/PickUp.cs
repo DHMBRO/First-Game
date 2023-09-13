@@ -66,7 +66,7 @@ public class PickUp : MethodsFromDevelopers
                 BackPackContorler ControlerBackPack = ObjectToBeLifted.GetComponent<BackPackContorler>();
 
                 ScrForAllLoot ScrLoot = ObjectToBeLifted.GetComponent<ScrForAllLoot>();
-                Debug.Log(ScrLoot);
+                //Debug.Log(ScrLoot);
                 
                 for (int i = 0; i < TagsToPickup.Count; i++)
                 {
@@ -179,9 +179,14 @@ public class PickUp : MethodsFromDevelopers
                     {
                         DropObjects(SlotControler.MyHelmet.transform, ControlerToDrop.PointForDrop);
 
+                        
+                        
                         if (ControlerUi) ControlerUi.SlotHelmet.sprite = ScrForLoot.SpriteForLoot;
 
-                        SlotControler.MyHelmet = ObjectToBeLifted.transform;
+                        SlotControler.MyHelmet.GetComponent<HelmetControler>().Use = false;
+                        SlotControler.MyHelmet = ObjectToPickUp.transform;
+                        SlotControler.MyHelmet.GetComponent<HelmetControler>().Use = true;
+
                         PutObjects(SlotControler.MyHelmet, SlotControler.SlotHelmet);
                     }
 
@@ -190,9 +195,12 @@ public class PickUp : MethodsFromDevelopers
             }
             else
             {
+                SlotControler.MyHelmet.GetComponent<HelmetControler>().Use = false;
                 if (ControlerUi) ControlerUi.SlotHelmet.sprite = ScrForLoot.SpriteForLoot;
+                SlotControler.MyHelmet.GetComponent<HelmetControler>().Use = true;
 
-                SlotControler.MyHelmet = ObjectToBeLifted.transform;
+                SlotControler.MyHelmet = ObjectToPickUp.transform;
+                
                 PutObjects(SlotControler.MyHelmet, SlotControler.SlotHelmet);
 
             }
@@ -213,9 +221,15 @@ public class PickUp : MethodsFromDevelopers
                         if (ControlerUi) ControlerUi.SlotArmor.sprite = ScrForLoot.SpriteForLoot;
 
                         DropObjects(SlotControler.MyArmor.transform, ControlerToDrop.PointForDrop);
-                        SlotControler.MyArmor = ObjectToBeLifted.transform;
-                        PutObjects(SlotControler.MyArmor, SlotControler.SlotArmor);
+                        
+                        SlotControler.MyArmor.GetComponent<ArmorControler>().Use = false;
+                        SlotControler.MyArmor = ObjectToPickUp.transform;
+                        SlotControler.MyArmor.GetComponent<ArmorControler>().Use = true;
 
+
+                        PutObjects(SlotControler.MyArmor, SlotControler.SlotArmor);
+                        ArmorControlerToPickUp.Use = true;
+                        
                     }
                 }
                 else Debug.Log("Not set ArmorControlerToPickUp ");
@@ -224,8 +238,11 @@ public class PickUp : MethodsFromDevelopers
             else
             {
                 if (ControlerUi) ControlerUi.SlotArmor.sprite = ScrForLoot.SpriteForLoot;
+                
+                SlotControler.MyArmor.GetComponent<ArmorControler>().Use = false;
+                SlotControler.MyArmor = ObjectToPickUp.transform;
+                SlotControler.MyArmor.GetComponent<ArmorControler>().Use = true;
 
-                SlotControler.MyArmor = ObjectToBeLifted.transform;
                 PutObjects(SlotControler.MyArmor, SlotControler.SlotArmor);
                 PutOn();
                 
@@ -247,7 +264,7 @@ public class PickUp : MethodsFromDevelopers
 
                         if (ControlerUi) ControlerUi.SlotBackPack.sprite = ScrForLoot.SpriteForLoot;
 
-                        SlotControler.MyBackPack = ObjectToBeLifted.transform;
+                        SlotControler.MyBackPack = ObjectToPickUp.transform;
                         PutObjects(SlotControler.MyBackPack, SlotControler.SlotBackPack);
 
                         PlayerInventory.BackPack = SlotControler.MyBackPack.gameObject;
@@ -258,7 +275,7 @@ public class PickUp : MethodsFromDevelopers
             }
             else
             {
-                SlotControler.MyBackPack = ObjectToBeLifted.transform;
+                SlotControler.MyBackPack = ObjectToPickUp.transform;
                 PutObjects(SlotControler.MyBackPack, SlotControler.SlotBackPack);
 
                 PlayerInventory.BackPack = SlotControler.MyBackPack.gameObject;
@@ -271,6 +288,8 @@ public class PickUp : MethodsFromDevelopers
         void PutOn()
         {
             ArmorControler Armor = SlotControler.MyArmor.GetComponent<ArmorControler>();
+            Debug.Log(Armor);
+            
             if (Armor && Armor.Use)
             {
                 SlotControler.SlotsShop[0] = Armor.SlotShop01;
