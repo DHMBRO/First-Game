@@ -170,33 +170,78 @@ public class PickUp : MethodsFromDevelopers
 
         if (ObjectToPickUp.CompareTag("Helmet"))
         {
-            if (ControlerUi) ControlerUi.SlotHelmet.sprite = ScrForLoot.SpriteForLoot;
-            
-            SlotControler.MyHelmet = ObjectToBeLifted.transform;
-            PutObjects(SlotControler.MyHelmet, SlotControler.SlotHelmet);
-            
+            if (SlotControler.MyHelmet)
+            {
+                HelmetControler HelmetControlerToPickUp = ObjectToPickUp.GetComponent<HelmetControler>();
+                if (HelmetControlerToPickUp)
+                {
+                    if (ControlerToDrop && HelmetControlerToPickUp.LevelHelmet > SlotControler.MyArmor.GetComponent<ArmorControler>().LevelArmor)
+                    {
+                        DropObjects(SlotControler.MyHelmet.transform, ControlerToDrop.PointForDrop);
+
+                        if (ControlerUi) ControlerUi.SlotHelmet.sprite = ScrForLoot.SpriteForLoot;
+
+                        SlotControler.MyHelmet = ObjectToBeLifted.transform;
+                        PutObjects(SlotControler.MyHelmet, SlotControler.SlotHelmet);
+                    }
+
+                }
+                else Debug.Log("Not set HelmetControlerToPickUp");
+            }
+            else
+            {
+                if (ControlerUi) ControlerUi.SlotHelmet.sprite = ScrForLoot.SpriteForLoot;
+
+                SlotControler.MyHelmet = ObjectToBeLifted.transform;
+                PutObjects(SlotControler.MyHelmet, SlotControler.SlotHelmet);
+
+            }
+
+
             Counter = 1;
         }
         else if (ObjectToPickUp.CompareTag("Armor"))
         {
-            if (ControlerUi) ControlerUi.SlotArmor.sprite = ScrForLoot.SpriteForLoot;
+            
+            if (SlotControler.MyArmor)
+            {
+                ArmorControler ArmorControlerToPickUp = ObjectToPickUp.GetComponent<ArmorControler>();
+                if (ArmorControlerToPickUp)
+                {
+                    if (ControlerToDrop && ArmorControlerToPickUp.LevelArmor > SlotControler.MyArmor.GetComponent<ArmorControler>().LevelArmor)
+                    {
+                        if (ControlerUi) ControlerUi.SlotArmor.sprite = ScrForLoot.SpriteForLoot;
 
+                        DropObjects(SlotControler.MyArmor.transform, ControlerToDrop.PointForDrop);
+                        SlotControler.MyArmor = ObjectToBeLifted.transform;
+                        PutObjects(SlotControler.MyArmor, SlotControler.SlotArmor);
 
-            SlotControler.MyArmor = ObjectToBeLifted.transform;
-            PutObjects(SlotControler.MyArmor, SlotControler.SlotArmor);
-            PutOn();
+                    }
+                }
+                else Debug.Log("Not set ArmorControlerToPickUp ");
+
+            }
+            else
+            {
+                if (ControlerUi) ControlerUi.SlotArmor.sprite = ScrForLoot.SpriteForLoot;
+
+                SlotControler.MyArmor = ObjectToBeLifted.transform;
+                PutObjects(SlotControler.MyArmor, SlotControler.SlotArmor);
+                PutOn();
+                
+            }
             Counter = 1;
+
         }
         else if (PlayerInventory && ObjectToPickUp.CompareTag("BackPack"))
         {
             if (PlayerInventory.BackPack)
             {
-                BackPackContorler BackPackControlerInInventory = SlotControler.MyBackPack.GetComponent<BackPackContorler>();
                 BackPackContorler BackPackControlerToPickUp = ObjectToPickUp.gameObject.GetComponent<BackPackContorler>();
                 
-                if (BackPackControlerInInventory && BackPackControlerToPickUp)
+                if (BackPackControlerToPickUp)
                 {
-                    if (ControlerToDrop && BackPackControlerToPickUp.LevelBackPack > BackPackControlerInInventory.LevelBackPack)
+                    if (ControlerToDrop && BackPackControlerToPickUp.LevelBackPack > PlayerInventory.BackPack.GetComponent<BackPackContorler>().LevelBackPack)
                     {
                         DropObjects(SlotControler.MyBackPack.transform, ControlerToDrop.PointForDrop);
 
@@ -208,7 +253,7 @@ public class PickUp : MethodsFromDevelopers
                         PlayerInventory.BackPack = SlotControler.MyBackPack.gameObject;
                         PlayerInventory.ChargingValueMaxMass();
                     }
-                }
+                } Debug.Log("Not set BackPackControlerToPickUp");
                 
             }
             else
@@ -242,7 +287,7 @@ public class PickUp : MethodsFromDevelopers
                 if (SlotControler.MyPistol01) PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01);
                 PutObjects(SlotControler.MyKnife01, SlotControler.SlotKnife01);
             }
-            
+            else Debug.Log("Not set Armor");
         }
     }
 

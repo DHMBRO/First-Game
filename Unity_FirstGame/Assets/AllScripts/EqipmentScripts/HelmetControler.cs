@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HelmetControler : MonoBehaviour
 {
-    [SerializeField] int LevelHelmet;
+    [SerializeField] public int LevelHelmet;
 
 
     private void Start()
