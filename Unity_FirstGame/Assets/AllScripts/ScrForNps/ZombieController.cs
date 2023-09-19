@@ -10,11 +10,12 @@ public class ZombieController : MonoBehaviour
     protected LocateScript ZombieLocateScript;
     protected AttackMethod ZombieAttackScript;
     protected PatrolScriptNavMesh ZombiePatrolScript;
+    protected HpScript ZombieHpScript;
     public bool IsLive = true;
 
     void Start()
     {
-
+        ZombieHpScript = gameObject.GetComponent<HpScript>();
         ZombieLocateScript = gameObject.GetComponent<LocateScript>();
         ZombieAttackScript = gameObject.GetComponent<AttackMethod>();
         ZombiePatrolScript = gameObject.GetComponent<PatrolScriptNavMesh>();
@@ -27,7 +28,7 @@ public class ZombieController : MonoBehaviour
     void Update()
     {
 
-        if (IsLive)
+        if (ZombieHpScript.IsAlive())
         {
             /*Debug.Log("Reaming  " + ZombiePatrolScript.ZombieNavMesh.remainingDistance);
             Debug.Log("Attack Dist" + ZombieAttackScript.AttackDistance);
@@ -38,16 +39,16 @@ public class ZombieController : MonoBehaviour
             Debug.Log("-------------------------------------");*/
             if (ZombieLocateScript && ZombieAttackScript && ZombiePatrolScript)
             {
-
+                ZombieLocateScript.ValidateTarget();
                 if (ZombieLocateScript.CanISeeTarget())
                 {
                     ZombieLocateScript.RelocateTarget();
-                    Debug.Log("canISeeTarget");
+                    //Debug.Log("canISeeTarget");
 
-                    if (IsLive && ZombiePatrolScript.ZombieNavMesh.remainingDistance <= ZombieAttackScript.AttackDistance &&
+                    if (ZombieHpScript.IsAlive() && ZombiePatrolScript.ZombieNavMesh.remainingDistance <= ZombieAttackScript.AttackDistance &&
                             (ZombieLocateScript.Target.transform.position - ZombiePatrolScript.ZombieNavMesh.destination).magnitude <= ZombieAttackScript.GoingDistance)
                     {
-                        Debug.Log("Attack!!!");
+                        //Debug.Log("Attack!!!");
 
                         ZombiePatrolScript.ZombieNavMesh.isStopped = true;
                         ZombieAttackScript.DoCloseAttack(ZombieLocateScript.Target);
@@ -61,8 +62,9 @@ public class ZombieController : MonoBehaviour
 
                 }
 
-                else if (IsLive)
+                else if (ZombieHpScript.IsAlive())
                 {
+                    
                     ZombiePatrolScript.ZombieNavMesh.isStopped = false;
                     ZombiePatrolScript.Patroling();
                 }
@@ -77,7 +79,7 @@ public class ZombieController : MonoBehaviour
             
         }
         
-        BackUpWidget.text = ZombieLocateScript.CanISeeTarget().ToString();
+      //  BackUpWidget.text = ZombieLocateScript.CanISeeTarget().ToString();
     }
     
 }

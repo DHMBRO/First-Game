@@ -18,6 +18,7 @@ public class PatrolScriptNavMesh : MonoBehaviour
 
     void Start()
     {
+
         ZombieLocateScript = gameObject.GetComponent<LocateScript>();
         ZombieNavMesh = gameObject.GetComponent<NavMeshAgent>();
     }
@@ -47,7 +48,6 @@ public class PatrolScriptNavMesh : MonoBehaviour
         {
             MoveTarget = Target;
         }
-        
         ZombieNavMesh.SetDestination(Target.transform.position);
         MyState = State.Moving;
     }
@@ -59,7 +59,6 @@ public class PatrolScriptNavMesh : MonoBehaviour
             MoveTo(MyPointControllScript.Points[CurrentPoint], true);
             MyState = State.Moving;
         }
-        
     }
 
     void StateMoving()
@@ -68,7 +67,6 @@ public class PatrolScriptNavMesh : MonoBehaviour
         {
             if (MoveTarget)
             {
-
                 MyState = State.Idle;
                 MoveTarget = null;  
             }
@@ -76,11 +74,7 @@ public class PatrolScriptNavMesh : MonoBehaviour
             { 
                 CurrentPoint = MyPointControllScript.SearchNextPosition(CurrentPoint);
                 MoveTo(MyPointControllScript.Points[CurrentPoint], true);
-
             }
-
-            
-            
         }
         else
         {
@@ -91,5 +85,14 @@ public class PatrolScriptNavMesh : MonoBehaviour
         }
        
     }
+    void ReturnToPatrol()
+    {
+        if (!ZombieLocateScript.Target)
+        {
 
+            CurrentPoint = MyPointControllScript.SearchNextPosition(CurrentPoint);
+            MoveTo(MyPointControllScript.Points[CurrentPoint], true);
+        }
+
+    }
 }

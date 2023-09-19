@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ZombieScript : MonoBehaviour
 {
+    
     [SerializeField] protected float ZombieHp = 100;
     [SerializeField] public MeshRenderer ZombieMeshRenderer;
     [SerializeField] public Material ZombieDeadMaterial;
@@ -23,11 +24,11 @@ public class ZombieScript : MonoBehaviour
         if (collision.collider.gameObject.CompareTag("BulletM4"))
         {
             ZombieHp -= 10;
-            
         }
     }
     void Update()
     {
+        Debug.Log("Zombie Hp = " + ZombieHp);
         if (ZombieHp < 100)
         {
             ZombieControllerScript.IsLive = false;
@@ -51,6 +52,6 @@ public class ZombieScript : MonoBehaviour
 
        return ZombleLocateScript.IsObjectFromBehinde(Object);
     }
-
+    
 
 }

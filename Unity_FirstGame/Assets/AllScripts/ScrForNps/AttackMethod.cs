@@ -31,7 +31,6 @@ public class AttackMethod : MonoBehaviour
 
     public void DoCloseAttack(GameObject Target)
     {
-
         if (Time.time >= AttackTime)
         {
             HpScript TargetHpScript = Target.GetComponentInParent<HpScript>(); 
@@ -39,15 +38,13 @@ public class AttackMethod : MonoBehaviour
             {
 
                 TargetHpScript.InflictingDamage(ZombieDamage);
+                ZombieLocateScript.DefineMyTarget();
             }
             
             AttackTime = AttackDelay + Time.time; 
-        }  
-        
-
-                
+        }        
     }
-
+   
 
 }
 

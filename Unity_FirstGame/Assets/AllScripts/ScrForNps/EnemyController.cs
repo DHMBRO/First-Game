@@ -2,16 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyControlScript : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
-    
-    public enum EnemyState 
+    public enum EnemyState
     {
+        Zombie,
         Player,
-        Zombie, 
         Terrorist
     }
-    EnemyState MyEnemyState; 
     void Start()
     {
         

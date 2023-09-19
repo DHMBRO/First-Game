@@ -6,7 +6,7 @@ public class HpScript : MonoBehaviour
     [SerializeField] private Image UiHp;
     [SerializeField] private TextMeshProUGUI ProzentHealPoint;
 
-    [SerializeField] private float HealthPoint = 100;
+    [SerializeField] public float HealthPoint = 10;
     [SerializeField] private float MaxHp;
     ZombieController ControlerForZombie;
 
@@ -81,5 +81,17 @@ public class HpScript : MonoBehaviour
         string HpinString = HpNow.ToString();
         HpByText.text = HpinString + "%";
     }
-
+    public bool IsAlive() 
+    {
+        
+        if (HealthPoint <= 0)
+        {
+            return false;
+        }
+        if (HealthPoint > 0)
+        {
+            return true;
+        }
+        return false;
+    }
 }
