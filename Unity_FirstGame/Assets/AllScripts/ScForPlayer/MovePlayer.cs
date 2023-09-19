@@ -65,8 +65,7 @@ public class MovePlayer : MonoBehaviour
                 TargetRotation.z = 0;
 
                 float yAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, TargetRotation.eulerAngles.y, ref yVelocity, smooth);
-
-
+                
                 transform.rotation = Quaternion.Euler(0, yAngle, 0);
 
                 //Vector3 MoveForward = new Vector3(0.0f, 0.0f, SpeedMove);
@@ -84,7 +83,7 @@ public class MovePlayer : MonoBehaviour
         }
 
         MyRigidbody.velocity = new Vector3(0, MyRigidbody.velocity.y, 0);
-
+        
 
 
         //transform.rotation = TargetRotation;

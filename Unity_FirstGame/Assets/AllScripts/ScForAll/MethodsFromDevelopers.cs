@@ -6,15 +6,22 @@ public class MethodsFromDevelopers : MonoBehaviour
     protected void PutObjects(Transform ObjectForPut, Transform PosForPut)
     {
         Rigidbody RigObject = ObjectForPut.gameObject.GetComponent<Rigidbody>();
-        
+        BoxCollider BCObject = ObjectForPut.gameObject.GetComponent<BoxCollider>();
+
         if (RigObject) Destroy(RigObject);
-        
+        if (BCObject) BCObject.enabled = false;
+        else
+        {
+            BCObject = ObjectForPut.gameObject.AddComponent<BoxCollider>();
+            BCObject.enabled = false;
+        }
+
         Puting();
         
         void Puting()
         {
             ObjectForPut.transform.SetParent(PosForPut);
-            CopyTransform(ObjectForPut, PosForPut);
+            CopyTransform(ObjectForPut, PosForPut);   
         }
 
     }
@@ -22,21 +29,26 @@ public class MethodsFromDevelopers : MonoBehaviour
     protected void DropObjects(Transform ObjectToDrop, Transform ObecjtForCopy)
     {
         Rigidbody RigObject = ObjectToDrop.gameObject.GetComponent<Rigidbody>();
-        
+        BoxCollider BCObject = ObjectToDrop.gameObject.GetComponent<BoxCollider>();
+
         if (RigObject)
         {
-            Droping(RigObject);
+            Droping(RigObject, BCObject);
         }
         else 
         {
             RigObject = ObjectToDrop.gameObject.AddComponent<Rigidbody>();
-            Droping(RigObject);
+            if (!BCObject) BCObject = ObjectToDrop.gameObject.AddComponent<BoxCollider>();
+
+            Droping(RigObject, BCObject);
         }
         
-        void Droping(Rigidbody RigObject)
+        void Droping(Rigidbody RigObject, BoxCollider BCObject)
         {
             RigObject.isKinematic = false;
             RigObject.useGravity = true;
+
+            BCObject.enabled = true;
 
             CopyTransform(ObjectToDrop, ObecjtForCopy);
 

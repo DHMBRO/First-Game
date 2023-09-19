@@ -775,6 +775,7 @@ MonoBehaviour:
   ManagerToGame: {fileID: 7097426793311847532}
   Scope: {fileID: 1428453968472665848}
   Inventory: {fileID: 712525104704355343}
+  CameraScr: {fileID: 0}
   InventoryIsOpen: 0
   SlotWeapon01: {fileID: 2472821505095850326}
   SlotWeapon02: {fileID: 8283938876062725092}
@@ -782,6 +783,9 @@ MonoBehaviour:
   SlotShop01: {fileID: 7341675550847561911}
   SlotShop02: {fileID: 118297984848625603}
   SlotShop03: {fileID: 7401862678830880364}
+  SlotHelmet: {fileID: 5642494458489128299}
+  SlotArmor: {fileID: 403900600469844864}
+  SlotBackPack: {fileID: 6167211177662696008}
 --- !u!114 &4915807067601749401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2700,7 +2704,7 @@ RectTransform:
   m_GameObject: {fileID: 5261971025553468714}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5840108737045234658}
@@ -2709,7 +2713,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3389730447679106903
 CanvasRenderer:
@@ -4532,7 +4536,7 @@ RectTransform:
   m_GameObject: {fileID: 8624105600550494603}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2450591973113001748}
@@ -4541,7 +4545,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 111, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &758510744143869410
 CanvasRenderer:

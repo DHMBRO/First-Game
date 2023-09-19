@@ -19,11 +19,11 @@ public enum TypeCaliber
     None
 }
 
-public enum SatetsCamera
+public enum CameraIs
 {
+    Null,
     Simple,
     Aiming
-
 }
 
 /*

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ArmorControler : MonoBehaviour
 {
-    [SerializeField] int LevelArmor;
+    [SerializeField] public int LevelArmor;
 
     [SerializeField] public Transform SlotShop01;
     [SerializeField] public Transform SlotShop02;
@@ -13,6 +13,8 @@ public class ArmorControler : MonoBehaviour
 
     [SerializeField] public Transform SlotPistol01;
     [SerializeField] public Transform SlotKnife01;
+
+    
 
     public bool Use;
 
