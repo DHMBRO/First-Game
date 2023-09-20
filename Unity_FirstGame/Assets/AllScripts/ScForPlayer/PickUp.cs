@@ -175,7 +175,7 @@ public class PickUp : MethodsFromDevelopers
                 HelmetControler HelmetControlerToPickUp = ObjectToPickUp.GetComponent<HelmetControler>();
                 if (HelmetControlerToPickUp)
                 {
-                    if (ControlerToDrop && HelmetControlerToPickUp.LevelHelmet > SlotControler.MyArmor.GetComponent<ArmorControler>().LevelArmor)
+                    if (ControlerToDrop && HelmetControlerToPickUp.LevelHelmet > SlotControler.MyArmor.GetComponent<HelmetControler>().LevelHelmet)
                     {
                         DropObjects(SlotControler.MyHelmet.transform, ControlerToDrop.PointForDrop);
 
@@ -187,7 +187,9 @@ public class PickUp : MethodsFromDevelopers
                         SlotControler.MyHelmet = ObjectToPickUp.transform;
                         SlotControler.MyHelmet.GetComponent<HelmetControler>().Use = true;
 
+
                         PutObjects(SlotControler.MyHelmet, SlotControler.SlotHelmet);
+                        
                     }
 
                 }

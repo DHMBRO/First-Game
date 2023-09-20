@@ -21,3 +21,8 @@ public interface IControlerToInfo
 {
     public void GetInfo(InfoForLoot ObjectForGetInfo, GameObject ObjetToGiveInfo);
 }
+
+public interface IEquipment
+{
+    public void ChangePosition(bool Use);
+}

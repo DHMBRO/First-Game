@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArmorControler : MonoBehaviour
+public class ArmorControler : MonoBehaviour, IEquipment
 {
     [SerializeField] public int LevelArmor;
-
+    
     [SerializeField] public Transform SlotShop01;
     [SerializeField] public Transform SlotShop02;
     [SerializeField] public Transform SlotShop03;
@@ -14,12 +14,17 @@ public class ArmorControler : MonoBehaviour
     [SerializeField] public Transform SlotPistol01;
     [SerializeField] public Transform SlotKnife01;
 
-    
-
     public bool Use;
+
+    [SerializeField] Transform Armor; 
+    [SerializeField] Vector3 OffSetDontUse;
+    [SerializeField] Vector3 OffSetUse;
+    
 
     private void Start()
     {
+        ChangePosition(Use);
+
         if (LevelArmor == 1)
         {
 
@@ -36,8 +41,17 @@ public class ArmorControler : MonoBehaviour
     }
 
 
-    void Update()
+    public void ChangePosition(bool Use)
     {
-            
+        if (Use)
+        {
+            Armor.transform.position = OffSetUse;
+        }
+        else
+        {
+            Armor.transform.position = OffSetDontUse;
+        }
     }
+
+
 }
