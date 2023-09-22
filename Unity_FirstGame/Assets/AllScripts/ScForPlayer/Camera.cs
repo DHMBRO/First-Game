@@ -72,20 +72,23 @@ public class Camera : MonoBehaviour
         if (ControlerUi && !ControlerUi.InventoryIsOpen || !ControlerUi)
         {
 
-
-            if (Physics.Raycast(MoveBackObject.position, -MoveBackObject.forward, out RaycastHit ResultHit01, (MoveBack)))
+            if (MoveBackObject)
             {
-                TargetPosition01 = (MoveBackObject.transform.TransformPoint(MoveBackObject.forward) - MoveBackObject.transform.forward * ResultHit01.distance);
-                //Debug.Log(TargetPosition);
+                if (Physics.Raycast(MoveBackObject.position, -MoveBackObject.forward, out RaycastHit ResultHit01, (MoveBack)))
+                {
+                    TargetPosition01 = (MoveBackObject.transform.TransformPoint(MoveBackObject.forward) - MoveBackObject.transform.forward * ResultHit01.distance);
+                    //Debug.Log(TargetPosition);
+                }
+
+                if (Physics.Raycast(MoveBackObject.position, -MoveBackObject.forward, out RaycastHit ResultHit02, (MoveBack - 1.5f)))
+                {
+                    TargetPosition02 = MoveBackObject.transform.TransformPoint(MoveBackObject.forward) - MoveBackObject.forward * ResultHit02.distance;
+                    //Debug.Log(TargetPosition);
+                }
+
             }
 
-            if (Physics.Raycast(MoveBackObject.position, -MoveBackObject.forward, out RaycastHit ResultHit02, (MoveBack - 1.5f)))
-            {
-                TargetPosition02 = MoveBackObject.transform.TransformPoint(MoveBackObject.forward) - MoveBackObject.forward * ResultHit02.distance;
-                //Debug.Log(TargetPosition);
-            }
 
-            
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {

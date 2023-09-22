@@ -29,18 +29,18 @@ public enum CameraIs
 /*
 public enum TypeLoot
 {
+    Null,
     FirstAidKit,
     ArmorPlate,
-    BoxAmmo
+    BoxAmmo,
+    
 
 }
 */
 
 public enum InfoToLoot
 {
-    Add15HP,
-    Add50HP,
-    Add100HP,
+    Null,
 
     Add4_45ACP,
     Add9MM,
@@ -48,6 +48,10 @@ public enum InfoToLoot
     Add7_62MM,
     Add12x99MM,
 
-
+    Add15HP,
+    Add50HP,
+    Add100HP,
+    
+    
 
 }

@@ -51,6 +51,8 @@ public class ArmorControler : MonoBehaviour, IEquipment
         {
             Armor.transform.position = OffSetDontUse;
         }
+
+        this.Use = Use;
     }
 
 

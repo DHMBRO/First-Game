@@ -35,11 +35,7 @@ public class MovePlayer : MonoBehaviour
         
     }
 
-    private void Update()
-    {
-        Move();
-    }
-
+    
 
     public void Move()
     {

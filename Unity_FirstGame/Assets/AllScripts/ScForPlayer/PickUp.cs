@@ -168,6 +168,133 @@ public class PickUp : MethodsFromDevelopers
     {
         ScrForAllLoot ScrForLoot = ObjectToPickUp.GetComponent<ScrForAllLoot>();
 
+        HelmetControler HelmetIsPickUped = ObjectToPickUp.GetComponent<HelmetControler>();
+        HelmetControler HelmetIsUsing;
+
+        ArmorControler ArmorIsPickUped = ObjectToPickUp.GetComponent<ArmorControler>();
+        ArmorControler ArmorIsUsing;
+
+        BackPackContorler BackPackIsPickUped = ObjectToPickUp.GetComponent<BackPackContorler>();
+        BackPackContorler BackpackIsUsing;
+
+
+        if (ObjectToPickUp.CompareTag("Helmet"))
+        {
+            if (SlotControler.MyHelmet)
+            {
+                HelmetIsUsing = SlotControler.MyHelmet.GetComponent<HelmetControler>();
+                ChangeHelmet();
+            }
+            else PickUpHelmet();
+        }
+        else if (ObjectToPickUp.CompareTag("Armor"))
+        {
+            if (SlotControler.MyArmor)
+            {
+                ArmorIsUsing = SlotControler.MyArmor.GetComponent<ArmorControler>();
+                ChangeArmor();
+            }
+            else PickUpArmor();
+        }
+        else if (BackPackIsPickUped.CompareTag("BackPack"))
+        {
+            if (SlotControler.MyBackPack)
+            {
+                BackpackIsUsing = SlotControler.MyBackPack.GetComponent<BackPackContorler>();
+                ChangeBackPack();
+            }
+            else PickUpBackPack();
+        }   
+
+        void PickUpHelmet()
+        {
+            if (ControlerUi) ControlerUi.SlotHelmet.sprite = ScrForLoot.SpriteForLoot;
+            else Debug.Log("Not set ControlerUi");
+
+            HelmetIsPickUped.Use = true;
+            SlotControler.MyHelmet = ObjectToPickUp.transform;
+
+            PutObjects(SlotControler.MyHelmet, SlotControler.SlotHelmet);
+            
+        }
+        void ChangeHelmet()
+        {
+            if (ControlerToDrop && HelmetIsPickUped.LevelHelmet > HelmetIsUsing.LevelHelmet)
+            {
+                DropObjects(SlotControler.MyHelmet.transform, ControlerToDrop.PointForDrop);
+
+                if (ControlerUi) ControlerUi.SlotHelmet.sprite = ScrForLoot.SpriteForLoot;
+                else Debug.Log("Not set ControelrUi");
+
+                HelmetIsUsing.Use = false;
+                HelmetIsPickUped.Use = true;
+
+                SlotControler.MyHelmet = ObjectToPickUp.transform;
+
+                PutObjects(SlotControler.MyHelmet, SlotControler.SlotHelmet);
+
+            }
+        }
+
+        void PickUpArmor()
+        {
+            if (ControlerUi) ControlerUi.SlotArmor.sprite = ScrForLoot.SpriteForLoot;
+            else Debug.Log("Not set ControlerUi");
+
+            ArmorIsPickUped.ChangePosition(true);
+
+            SlotControler.MyArmor = ObjectToPickUp.transform;
+            
+            PutObjects(SlotControler.MyArmor, SlotControler.SlotArmor);
+            PutOn();
+
+        }
+        void ChangeArmor()
+        {
+            if (ControlerToDrop && ArmorIsPickUped.LevelArmor > ArmorIsUsing.LevelArmor)
+            {
+                DropObjects(SlotControler.MyArmor.transform, ControlerToDrop.PointForDrop);
+
+                if (ControlerUi) ControlerUi.SlotArmor.sprite = ScrForLoot.SpriteForLoot;
+                else Debug.Log("Not set ControlerUi");
+
+                ArmorIsUsing.ChangePosition(false);
+                ArmorIsPickUped.ChangePosition(true);
+
+                SlotControler.MyArmor = ObjectToPickUp.transform;
+                
+                PutObjects(SlotControler.MyArmor, SlotControler.SlotArmor);
+            }
+        }
+
+        void PickUpBackPack()
+        {
+            if (ControlerUi) ControlerUi.SlotBackPack.sprite = ScrForLoot.SpriteForLoot;
+            else Debug.Log("Not set ControlerUi");
+
+            SlotControler.MyBackPack = ObjectToPickUp.transform;
+            PutObjects(SlotControler.MyBackPack, SlotControler.SlotBackPack);
+
+            PlayerInventory.BackPack = SlotControler.MyBackPack.gameObject;
+            PlayerInventory.ChargingValueMaxMass();
+        }
+        void ChangeBackPack()
+        {
+            if (ControlerToDrop && BackPackIsPickUped.LevelBackPack > BackpackIsUsing.LevelBackPack)
+            {
+                DropObjects(SlotControler.MyBackPack.transform, ControlerToDrop.PointForDrop);
+
+                if (ControlerUi) ControlerUi.SlotBackPack.sprite = ScrForLoot.SpriteForLoot;
+                else Debug.Log("Not set ControlerUi");
+
+                SlotControler.MyBackPack = ObjectToPickUp.transform;
+                PutObjects(SlotControler.MyBackPack, SlotControler.SlotBackPack);
+
+                PlayerInventory.BackPack = SlotControler.MyBackPack.gameObject;
+                PlayerInventory.ChargingValueMaxMass();
+            }
+        }
+
         if (ObjectToPickUp.CompareTag("Helmet"))
         {
             if (SlotControler.MyHelmet)
@@ -179,8 +306,6 @@ public class PickUp : MethodsFromDevelopers
                     {
                         DropObjects(SlotControler.MyHelmet.transform, ControlerToDrop.PointForDrop);
 
-                        
-                        
                         if (ControlerUi) ControlerUi.SlotHelmet.sprite = ScrForLoot.SpriteForLoot;
 
                         SlotControler.MyHelmet.GetComponent<HelmetControler>().Use = false;
@@ -197,12 +322,12 @@ public class PickUp : MethodsFromDevelopers
             }
             else
             {
-                SlotControler.MyHelmet.GetComponent<HelmetControler>().Use = false;
+                
                 if (ControlerUi) ControlerUi.SlotHelmet.sprite = ScrForLoot.SpriteForLoot;
+                SlotControler.MyHelmet = ObjectToPickUp.transform;
                 SlotControler.MyHelmet.GetComponent<HelmetControler>().Use = true;
 
-                SlotControler.MyHelmet = ObjectToPickUp.transform;
-                
+
                 PutObjects(SlotControler.MyHelmet, SlotControler.SlotHelmet);
 
             }
@@ -241,7 +366,6 @@ public class PickUp : MethodsFromDevelopers
             {
                 if (ControlerUi) ControlerUi.SlotArmor.sprite = ScrForLoot.SpriteForLoot;
                 
-                SlotControler.MyArmor.GetComponent<ArmorControler>().Use = false;
                 SlotControler.MyArmor = ObjectToPickUp.transform;
                 SlotControler.MyArmor.GetComponent<ArmorControler>().Use = true;
 

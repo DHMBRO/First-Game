@@ -23,10 +23,7 @@ public class Inventory : MonoBehaviour
         if (BackPack)
         {
             BackPackContorler BackPackContr = BackPack.GetComponent<BackPackContorler>();
-
-            if (BackPackContr.LevelBackPack == 1) MaxMass = 12.0f;
-            else if (BackPackContr.LevelBackPack == 2) MaxMass = 17.0f;
-            else if (BackPackContr.LevelBackPack == 3) MaxMass = 25.0f;
+            MaxMass = BackPackContr.CurrentMaxMass;
         }
     }
 
