@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class SlotControler : MethodsFromDevelopers
 {    
+
     //All Slots
     [SerializeField] public Transform SlotHand;
     [SerializeField] public Transform ThatTimeSlot;

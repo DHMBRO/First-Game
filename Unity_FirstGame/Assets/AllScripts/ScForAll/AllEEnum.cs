@@ -9,6 +9,14 @@ public enum TypeWeapon
     Pistol
 }
 
+public enum WhatIsInHand
+{
+    Null,
+    Weapon,
+    Loot,
+
+}
+
 public enum TypeCaliber
 { 
     C7_62MM,

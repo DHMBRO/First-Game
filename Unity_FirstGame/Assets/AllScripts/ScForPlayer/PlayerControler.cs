@@ -19,6 +19,8 @@ public class PlayerControler : MonoBehaviour
 
     [SerializeField] public bool Aiming = false;
 
+    [SerializeField] WhatIsInHand Using;
+
     void Start()
     {
         Move = gameObject.GetComponent<Move1F>();
