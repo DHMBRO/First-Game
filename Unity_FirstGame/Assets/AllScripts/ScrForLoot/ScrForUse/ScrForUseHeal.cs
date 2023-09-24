@@ -16,17 +16,11 @@ public class ScrForUseHeal : MethodsFromDevelopers, IUsebleInterFace
 
         SelectObj.PutLoot(transform);
         SelectObj.SelectObject();
-        Destroy(gameObject, 3.0f);
 
+        Destroy(gameObject, 3.0f);
+        
 
     }
 
 
 }
-
-
-/*
-        
-
-
- */ 

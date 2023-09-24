@@ -60,6 +60,8 @@ public enum InfoToLoot
     Add50HP,
     Add100HP,
     
-    
+    Add80Arm,
+    Add120Arm,
+    Add160Arm
 
 }
