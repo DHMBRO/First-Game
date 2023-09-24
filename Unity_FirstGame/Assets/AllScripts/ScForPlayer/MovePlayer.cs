@@ -92,7 +92,7 @@ public class MovePlayer : MonoBehaviour
     }
 
 
-
+    /*
     public void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -119,4 +119,5 @@ public class MovePlayer : MonoBehaviour
             JumpCount--;
         }
     } 
+    */
 }

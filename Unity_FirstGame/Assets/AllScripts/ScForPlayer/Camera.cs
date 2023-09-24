@@ -9,8 +9,6 @@ public class Camera : MonoBehaviour
     [SerializeField] Transform HandTarget;
     [SerializeField] Transform Cube; 
 
-    [SerializeField] private Rigidbody RigTarget;
-
     [SerializeField] private Transform MoveBackObject;
 
 
@@ -31,10 +29,6 @@ public class Camera : MonoBehaviour
     [SerializeField] float CurrentLenghtOfOneStep;
     [SerializeField] float LenghtToOneStep = 100.0f;
     [SerializeField] float LenghtOfOneStepToChangeState = 3.0f;
-
-    [SerializeField] float SpeedMove;
-    [SerializeField] float SpeedInAiming; 
-    [SerializeField] float SpeedRun;
 
     [SerializeField] MoodCamera CameraMood;
     [SerializeField] CameraIs CurrentState;
@@ -230,10 +224,10 @@ public class Camera : MonoBehaviour
             TargetPoint = transform.TransformPoint(transform.forward) + transform.forward * (HitResult.distance);
 
             //Debug.Log(TargetPoint);
-            
 
-            Cube.position = TargetPoint;
-            
+            if (Cube) Cube.position = TargetPoint;
+            else Debug.Log("Not set cube");
+
             HandTarget.localPosition = OffsetHandForAimingTra;
             HandTarget.LookAt(TargetPoint);
 
