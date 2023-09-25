@@ -43,7 +43,7 @@ public class UiControler : MonoBehaviour
             if (InventoryUi) InventoryUi.WriteSprite();
             if (ManagerToGame) ManagerToGame.DisActiveUD();
 
-            if (InventoryIsOpen) Cursor.lockState = CursorLockMode.Confined;
+            if (InventoryIsOpen) Cursor.lockState = CursorLockMode.None;
             else Cursor.lockState = CursorLockMode.Locked;
         }
         

@@ -42,14 +42,15 @@ public class Camera : MonoBehaviour
     bool CameraState01 = false;
     bool CameraState02 = false;
 
-    [SerializeField] bool FraimSimple = false;
-    [SerializeField] bool FraimAiming = false;
+    bool FraimSimple = false;
+    bool FraimAiming = false;
 
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        
         if(HandTarget) RotateHandToSimple();
 
         CurrentLenghtOfOneStep = LenghtOfOneStepToChangeState;
@@ -59,7 +60,6 @@ public class Camera : MonoBehaviour
 
     private void Update()
     {
-        
         
         if (ControlerUi) ControlerUi.Scope.gameObject.SetActive(Aiming);
         
@@ -93,6 +93,7 @@ public class Camera : MonoBehaviour
                 CameraIsUsig = true;
 
             }
+
             if (Input.GetKeyDown(KeyCode.Mouse1) && CameraIsUsig)
             {
                 Aiming = true;

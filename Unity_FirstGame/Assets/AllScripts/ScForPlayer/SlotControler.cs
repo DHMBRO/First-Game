@@ -72,8 +72,9 @@ public class SlotControler : MethodsFromDevelopers
         AllSlots.Add("SlotPistol01", SlotPistol01);
         AllSlots.Add("SlotKnife01", SlotKnife01);
 
-        
-
+        if (MyWeapon01) PointForShopWeapon01 = MyWeapon01.GetComponent<ShootControler>().SlotForUseShop;
+        if (MyWeapon02) PointForShopWeapon02 = MyWeapon02.GetComponent<ShootControler>().SlotForUseShop;
+        if (MyPistol01) PointForShopPistol01 = MyPistol01.GetComponent<ShootControler>().SlotForUseShop;
 
     }
 
