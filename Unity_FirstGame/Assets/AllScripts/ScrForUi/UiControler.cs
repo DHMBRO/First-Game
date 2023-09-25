@@ -34,6 +34,7 @@ public class UiControler : MonoBehaviour
 
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.I))
         {   
             InventoryIsOpen = !InventoryIsOpen;

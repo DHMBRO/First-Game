@@ -6,8 +6,9 @@ public class SelectAnObject : MethodsFromDevelopers
     [SerializeField] private UiInventory UiInventory;
     [SerializeField] private Inventory Inventory;
     [SerializeField] private DropControler ControlerToDrop;
- 
+        
     [SerializeField] int IndexToList;
+    [SerializeField] GameObject ObjectToUse;
 
     private void Start()
     {
@@ -22,6 +23,12 @@ public class SelectAnObject : MethodsFromDevelopers
             
         }
 
+    }
+
+    private void Update()
+    {
+        if (ObjectToUse) Debug.Log(ObjectToUse.name);
+        else Debug.Log("Not set ObjectToUse");
     }
 
     public void PrintIndexToList(int Index)
@@ -64,6 +71,8 @@ public class SelectAnObject : MethodsFromDevelopers
         if (UseLoot != null)
         {
             UseLoot.Use(Inventory.gameObject, Inventory.InfoForSlots[UiInventory.Count + IndexToList] , gameObject.GetComponent<SelectAnObject>());
+            this.ObjectToUse = ObjectToUse;
+
             
 
             if (ScrForLoot.CanCombining) 

@@ -1,12 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ScrForUseHeal : MethodsFromDevelopers, IUsebleInterFace
 { 
     [SerializeField] float HealHp;
 
-    
+    [SerializeField] float TimeToUse;
+    //[SerializeField] float TimeoToDestroy;
+
     public void Use(GameObject Target, InfoForLoot InfoLoot, SelectAnObject SelectObj)
     {
         Debug.Log("1");
@@ -17,10 +17,10 @@ public class ScrForUseHeal : MethodsFromDevelopers, IUsebleInterFace
         SelectObj.PutLoot(transform);
         SelectObj.SelectObject();
 
-        Destroy(gameObject, 3.0f);
+        Destroy(gameObject, TimeToUse);
         
 
     }
 
-
+    
 }
