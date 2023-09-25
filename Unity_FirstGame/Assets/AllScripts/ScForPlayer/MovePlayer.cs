@@ -5,7 +5,7 @@ public class MovePlayer : MonoBehaviour
 {
     [SerializeField] public PlayerControler ControlerPlayer;
 
-    [SerializeField] float JumpForce = 1.0f;
+    //[SerializeField] float JumpForce = 1.0f;
     [SerializeField] protected float Sens = 1.0f;
 
     [SerializeField] ForceMode MyForceMode;
