@@ -19,12 +19,13 @@ public enum WhatIsInHand
 
 public enum TypeCaliber
 { 
+    Null,
     C7_62MM,
     C5_56MM,
     C9MM,
     C4_45ACP,
-    C12x99MM,
-    None
+    C12x99MM
+    
 }
 
 public enum CameraIs

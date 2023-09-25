@@ -64,8 +64,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.7898139, y: 0.17947465, z: 0.04780799}
-  m_Center: {x: -0.055, y: -0.033255585, z: 0}
+  m_Size: {x: 0.04780799, y: 0.17947465, z: 0.7898139}
+  m_Center: {x: 0, y: -0.033255585, z: -0.055}
 --- !u!114 &7347797770348224600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Mass: 0
-  TupeTheObject: 
+  CanCombining: 0
   SpriteForLoot: {fileID: 21300000, guid: f0f9ba90973eb2a448b68efebb464d4d, type: 3}
 --- !u!114 &9150502356221412890
 MonoBehaviour:
@@ -93,7 +93,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30bbbf443eeb6cf47ab83dd338f2c45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ControlerUi: {fileID: 0}
   SlotForUseShop: {fileID: 5622317534333470642}
   WeaponShoop: {fileID: 0}
   GameObjectForRay: {fileID: 7609413565497747441}
@@ -102,7 +101,7 @@ MonoBehaviour:
   Collet: {fileID: 6940625727822617254, guid: afdce013e28dce848a00d57fdcb33833, type: 3}
   ColletPoint: {fileID: 4807829321483478334}
   TheGun: 0
-  CaliberToWeapon: 0
+  CaliberToWeapon: 1
   ShotDeley: 0.1
   ShotTime: 0
   Mass: 0
@@ -192,7 +191,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5732802374235727121}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 0
@@ -202,7 +201,7 @@ Transform:
   - {fileID: 4833052903397922446}
   m_Father: {fileID: 8880085246267806576}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7609413565497747441
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,7 +294,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4519716788627816, guid: ee329c3cd08e58645834d20702d7f6c6, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4519716788627816, guid: ee329c3cd08e58645834d20702d7f6c6, type: 3}
       propertyPath: m_LocalRotation.x
@@ -303,7 +302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4519716788627816, guid: ee329c3cd08e58645834d20702d7f6c6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4519716788627816, guid: ee329c3cd08e58645834d20702d7f6c6, type: 3}
       propertyPath: m_LocalRotation.z
@@ -315,7 +314,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4519716788627816, guid: ee329c3cd08e58645834d20702d7f6c6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4519716788627816, guid: ee329c3cd08e58645834d20702d7f6c6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
