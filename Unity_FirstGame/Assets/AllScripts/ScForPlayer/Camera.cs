@@ -31,7 +31,7 @@ public class Camera : MonoBehaviour
     [SerializeField] float LenghtOfOneStepToChangeState = 3.0f;
 
     [SerializeField] MoodCamera CameraMood;
-    //[SerializeField] CameraIs CurrentState;
+    [SerializeField] CameraIs CurrentState;
 
     [SerializeField] public bool Aiming = false;
     [SerializeField] private bool CameraIsUsig = false;
@@ -124,7 +124,7 @@ public class Camera : MonoBehaviour
                     //Debug.Log("transform.position.y <= a.y || transform.position.z >= a.z");
                     
                     CameraState01 = true;
-                    //CurrentState = CameraIs.Aiming;
+                    CurrentState = CameraIs.Aiming;
                     CurrentLenghtOfOneStep = LenghtToOneStep;
                     
                     //Debug.Log("1");
@@ -142,7 +142,7 @@ public class Camera : MonoBehaviour
                     //Debug.Log("transform.position.y >= a.y || transform.position.z <= a.z");
                     
                     CameraState02 = true;
-                    //CurrentState = CameraIs.Simple;
+                    CurrentState = CameraIs.Simple;
                     CurrentLenghtOfOneStep = LenghtToOneStep;
 
                     //Debug.Log("2");
@@ -156,8 +156,8 @@ public class Camera : MonoBehaviour
             if (!CameraState01 && !CameraState02)
             {
                 CurrentLenghtOfOneStep = LenghtOfOneStepToChangeState;
-                //CurrentState = CameraIs.Null;
-                Debug.Log("!!!!!!!!!!!");
+                CurrentState = CameraIs.Null;
+                //Debug.Log("!!!!!!!!!!!");
             }
 
 
