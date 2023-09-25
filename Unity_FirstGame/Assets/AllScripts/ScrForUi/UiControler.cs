@@ -29,7 +29,8 @@ public class UiControler : MonoBehaviour
     {
         InventoryIsOpen = false;
         if (Inventory) Inventory.SetActive(false);
-        if (!CameraScr) Debug.Log("Not set CameraScr");
+        //if (!CameraScr) Debug.Log("Not set CameraScr");
+        
     }
 
     void Update()

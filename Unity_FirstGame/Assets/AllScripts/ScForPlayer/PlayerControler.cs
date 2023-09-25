@@ -40,8 +40,25 @@ public class PlayerControler : MonoBehaviour
     {   
         if(ControlerUi && ControlerUi.InventoryIsOpen == false || !ControlerUi)
         {
-            if (SlotControler.ObjectInHand) ControlerShoot = SlotControler.ObjectInHand.GetComponent<ShootControler>();
-            else ControlerShoot = null;
+            if (SlotControler.SlotHand)
+            {
+                if (SlotControler.ObjectInHand)
+                {
+                    if(SlotControler.ObjectInHand.GetComponent<ShootControler>()) ControlerShoot = SlotControler.ObjectInHand.GetComponent<ShootControler>();
+                }
+                else ControlerShoot = null;
+                
+                if (Input.GetKeyDown("1") && SlotControler.Counter == 0)
+                {
+                    SlotControler.ChangingSlots();
+                    SlotControler.Counter = 1;
+                }
+                if (Input.GetKeyUp("1"))
+                {
+                    SlotControler.Counter = 0;
+                }
+            }
+            else Debug.Log("Not set SlotHand");
 
             if (ControlerShoot && Input.GetKey(KeyCode.Mouse0))
             {

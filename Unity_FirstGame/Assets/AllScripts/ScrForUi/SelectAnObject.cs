@@ -27,8 +27,8 @@ public class SelectAnObject : MethodsFromDevelopers
 
     private void Update()
     {
-        if (ObjectToUse) Debug.Log(ObjectToUse.name);
-        else Debug.Log("Not set ObjectToUse");
+        //if (ObjectToUse) Debug.Log(ObjectToUse.name);
+        //else Debug.Log("Not set ObjectToUse");
     }
 
     public void PrintIndexToList(int Index)
