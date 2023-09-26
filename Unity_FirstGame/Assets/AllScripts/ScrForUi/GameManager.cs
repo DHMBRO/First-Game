@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class GameManager : MethodsFromDevelopers
 {
     public GameObject SlotsPanel;
@@ -14,10 +14,14 @@ public class GameManager : MethodsFromDevelopers
     public Sprite None;
 
     [SerializeField] private UiInventory InventoryUi;
-
+    [SerializeField] Inventory PlayerInventory;
+    [SerializeField] private TextMeshProUGUI ObjectDescription;
 
     private void Start()
     {
+        if (InventoryUi.PlayerInventory) PlayerInventory = InventoryUi.PlayerInventory;
+        else Debug.Log("Not set InventoryUi.PlayerInventory");
+
         InventoryUi = gameObject.GetComponent<UiInventory>();
         
         if (!InventoryUi) Debug.Log("Not set InventoryUi");
@@ -51,7 +55,9 @@ public class GameManager : MethodsFromDevelopers
             return;
         }
 
-        if (WatchedSlot && ButtonUse && ButtonDrop && IndexToSlots >= 0 || IndexToSlots  <= 3)
+        if (!ButtonUse || !ButtonDrop) return;
+
+        if (WatchedSlot && IndexToSlots >= 0 || IndexToSlots  <= 3)
         {
             PutObjects(WatchedSlot.transform, AllSlots[IndexToSlots].transform);
             WatchedSlot.SetActive(true);
@@ -62,9 +68,20 @@ public class GameManager : MethodsFromDevelopers
             Button ButtonD = ButtonDrop.GetComponent<Button>();
             ButtonD.interactable = true;
 
+            if (PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].HaveDescription)
+            {
+                if (!ObjectDescription) return;
+                
+                ObjectDescription.text = PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].ObjectDescription;
+                Debug.Log(InventoryUi.PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].ObjectToInstantiate.name);
+                
+            }
 
             //Debug.Log("ActiveUD is work");
+            
         }
+
+        
     }
 
     public void DisActiveUD()
@@ -79,6 +96,7 @@ public class GameManager : MethodsFromDevelopers
             Button ButtonD = ButtonDrop.GetComponent<Button>();
             ButtonD.interactable = false;
 
+            if (ObjectDescription) ObjectDescription.text = null;
         }
 
     }

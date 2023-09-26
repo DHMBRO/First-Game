@@ -4,8 +4,11 @@ public class ScrForAllLoot : MonoBehaviour, IImage
 {
     [SerializeField] public float Mass;
     [SerializeField] public bool CanCombining;
+    [SerializeField] public bool HaveDescription;
+
     [SerializeField] public Sprite SpriteForLoot;
-    
+    [SerializeField] public string ObjectDescription;
+
 
     private void Start()
     {

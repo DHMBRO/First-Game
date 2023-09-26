@@ -5,23 +5,33 @@ public class InfoForLoot
     
     public GameObject ObjectToInstantiate;
 
+    public string ObjectDescription;
+    public bool HaveDescription;
+    
     public int CurrentAmmo;
+
      
     public void SaveInfo(GameObject ObjectFormGetInfo)
     {
         ScrForUseAmmo ScrUseAmmo = ObjectFormGetInfo.GetComponent<ScrForUseAmmo>();
-        
+        ScrForAllLoot ScrAllLoot = ObjectFormGetInfo.GetComponent<ScrForAllLoot>();
+
         Debug.Log(ObjectFormGetInfo.name);
         
-        if (!ScrUseAmmo)
+        if (ScrUseAmmo)
         {
-            Debug.Log("Not set ScrUseAmmo");
-            CurrentAmmo = 0;
-            return;
+            CurrentAmmo = ScrUseAmmo.CurrentAmmo;
+            Debug.Log("CurrentAmmo: " + ScrUseAmmo.CurrentAmmo);
         }
 
-        CurrentAmmo = ScrUseAmmo.CurrentAmmo;
-        Debug.Log("CurrentAmmo: " + ScrUseAmmo.CurrentAmmo);
+        if (ScrAllLoot)
+        {
+            if (ScrAllLoot.HaveDescription) ObjectDescription = ScrAllLoot.ObjectDescription;
+            HaveDescription = ScrAllLoot.HaveDescription;
+        }
+        Debug.Log(HaveDescription);
+
+        
 
         
 
@@ -30,17 +40,22 @@ public class InfoForLoot
     public void GetInfo(GameObject ObjectToGiveInfo)
     {
         ScrForUseAmmo ScrUseAmmo = ObjectToGiveInfo.GetComponent<ScrForUseAmmo>();
+        ScrForAllLoot ScrAllLoot = ObjectToGiveInfo.GetComponent<ScrForAllLoot>();
 
-        if (!ScrUseAmmo)
+        if (ScrUseAmmo)
         {
-            Debug.Log("Not set ScrUseAmmo");
-            CurrentAmmo = 0;
-            return;
+            ScrUseAmmo.CurrentAmmo = CurrentAmmo;
+            Debug.Log("Method Name: GetInfo   CurrentAmmo: " + ScrUseAmmo.CurrentAmmo);
+
         }
 
-        ScrUseAmmo.CurrentAmmo = CurrentAmmo;
-        Debug.Log("Method Name: GetInfo   CurrentAmmo: " + ScrUseAmmo.CurrentAmmo);
-       
+        if (ScrAllLoot)
+        {
+            ScrAllLoot.HaveDescription = HaveDescription;
+            ScrAllLoot.ObjectDescription = ObjectDescription;
+
+        }
+
     }
 
 }
