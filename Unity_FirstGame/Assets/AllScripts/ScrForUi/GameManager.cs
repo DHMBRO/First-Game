@@ -15,9 +15,7 @@ public class GameManager : MethodsFromDevelopers
         
     [SerializeField] private TextMeshProUGUI ObjectDescription;
 
-    [SerializeField] private TextMeshProUGUI CurrentMassInInventory;
-    [SerializeField] private TextMeshProUGUI CurrentMassMaxInInventory;
-
+    
     [SerializeField] private UiInventory InventoryUi;
     [SerializeField] Inventory PlayerInventory;
 

@@ -56,7 +56,7 @@ public class Inventory : MonoBehaviour
         else
         {
             CurrentMass = 0.0f;
-            BackPackPlayer.CurrentMass = 0.0f;
+            if (BackPackPlayer) BackPackPlayer.CurrentMass = 0.0f;
         }
 
 
