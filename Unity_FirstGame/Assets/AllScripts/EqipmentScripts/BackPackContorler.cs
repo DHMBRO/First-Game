@@ -6,7 +6,7 @@ public class BackPackContorler : MonoBehaviour
 {
     [SerializeField] public int LevelBackPack;
     [SerializeField] public float CurrentMaxMass;
-    
+    [SerializeField] public float CurrentMass;
 
     [SerializeField] float MaxMassTo1L = 12.0f;
     [SerializeField] float MaxMassTo2L = 17.0f;

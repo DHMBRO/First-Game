@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
-
+using TMPro;
 
 public class UiControler : MonoBehaviour
 {
@@ -25,6 +25,11 @@ public class UiControler : MonoBehaviour
     [SerializeField] public Image SlotArmor;
     [SerializeField] public Image SlotBackPack;
 
+    [SerializeField] private TextMeshProUGUI CurrentMassInInventory;
+    [SerializeField] private TextMeshProUGUI CurrentMassMaxInInventory;
+
+    [SerializeField] private Inventory PlayerInventory;
+
     void Start()
     {
         InventoryIsOpen = false;
@@ -47,12 +52,21 @@ public class UiControler : MonoBehaviour
 
             if (InventoryIsOpen) Cursor.lockState = CursorLockMode.None;
             else Cursor.lockState = CursorLockMode.Locked;
+            
         }
         
 
     }
-    
-    
-    
-    
+
+    private void PrintUseMassAndMaxMass()
+    {
+        string CurrentMassS = PlayerInventory.CurrentMass.ToString();
+        string MaxMassS = PlayerInventory.MaxMass.ToString();
+
+        CurrentMassInInventory.text = "Current mass in inventory: " + CurrentMassS;
+        CurrentMassMaxInInventory.text = "Max mass in inventory: " + MaxMassS;
+
+    }
+
+
 }

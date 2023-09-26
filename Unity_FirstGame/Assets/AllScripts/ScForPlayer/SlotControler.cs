@@ -51,8 +51,6 @@ public class SlotControler : MethodsFromDevelopers
     [SerializeField] private PickUp PickUp;
     [SerializeField] private Inventory Inventory;
     //
-    
-    //
     [SerializeField] List<Transform> Slots = new List<Transform>();
     //
     [SerializeField] public GameObject ObjectInHand = null; 

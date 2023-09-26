@@ -7,7 +7,8 @@ public class Inventory : MonoBehaviour
     
     [SerializeField] public Sprite None;
     
-    [SerializeField] public GameObject BackPack;    
+    [SerializeField] public GameObject BackPack;
+    [SerializeField] public BackPackContorler BackPackPlayer;
 
     [SerializeField] public float MaxMass = 5.0f;
     [SerializeField] public float CurrentMass = 0.0f;
@@ -15,15 +16,17 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
+        if(BackPack) BackPackPlayer = BackPack.GetComponent<BackPackContorler>();
+
+
         ChargingValueMaxMass();
     }
 
     public void ChargingValueMaxMass()
     {
-        if (BackPack)
+        if (BackPackPlayer)
         {
-            BackPackContorler BackPackContr = BackPack.GetComponent<BackPackContorler>();
-            MaxMass = BackPackContr.CurrentMaxMass;
+            MaxMass = BackPackPlayer.CurrentMaxMass;
         }
     }
 
@@ -31,6 +34,8 @@ public class Inventory : MonoBehaviour
     {
         float SumeMass = 0.0f;
         int LastCount = InfoForSlots.Count;
+
+        if (BackPack && !BackPackPlayer) BackPackPlayer = BackPack.GetComponent<BackPackContorler>();
 
         if (InfoForSlots.Count > 0)
         {
@@ -44,11 +49,15 @@ public class Inventory : MonoBehaviour
                 if (i == LastCount)
                 {
                     CurrentMass = SumeMass;
+                    BackPackPlayer.CurrentMass = CurrentMass;
                 }
             }
         }
-        else CurrentMass = 0.0f;
-        
+        else
+        {
+            CurrentMass = 0.0f;
+            BackPackPlayer.CurrentMass = 0.0f;
+        }
 
 
     }

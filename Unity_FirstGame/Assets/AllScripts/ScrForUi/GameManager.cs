@@ -12,10 +12,15 @@ public class GameManager : MethodsFromDevelopers
     public GameObject ButtonUse;
     public GameObject ButtonDrop;
     public Sprite None;
+        
+    [SerializeField] private TextMeshProUGUI ObjectDescription;
+
+    [SerializeField] private TextMeshProUGUI CurrentMassInInventory;
+    [SerializeField] private TextMeshProUGUI CurrentMassMaxInInventory;
 
     [SerializeField] private UiInventory InventoryUi;
     [SerializeField] Inventory PlayerInventory;
-    [SerializeField] private TextMeshProUGUI ObjectDescription;
+
 
     private void Start()
     {
@@ -68,13 +73,14 @@ public class GameManager : MethodsFromDevelopers
             Button ButtonD = ButtonDrop.GetComponent<Button>();
             ButtonD.interactable = true;
 
+
             if (PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].HaveDescription)
             {
-                if (!ObjectDescription) return;
-                
-                ObjectDescription.text = PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].ObjectDescription;
-                Debug.Log(InventoryUi.PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].ObjectToInstantiate.name);
-                
+                if (ObjectDescription)
+                {
+                    ObjectDescription.text = PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].ObjectDescription;
+                    Debug.Log(InventoryUi.PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].ObjectToInstantiate.name);
+                }
             }
 
             //Debug.Log("ActiveUD is work");
@@ -83,6 +89,7 @@ public class GameManager : MethodsFromDevelopers
 
         
     }
+
 
     public void DisActiveUD()
     {
