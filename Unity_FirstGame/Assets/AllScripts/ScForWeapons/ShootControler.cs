@@ -50,6 +50,7 @@ public class ShootControler : MonoBehaviour
     void Shoot(GameObject Muzzle, GameObject GameObjectForRay, GameObject ColletPoint, GameObject Collet, GameObject Bullet)//ColectPoint
     {
         if (WeaponShoop)
+
         {
             ShopControler Shop = WeaponShoop.gameObject.GetComponent<ShopControler>();
             if (Shop.CurrentAmmo > 0)
