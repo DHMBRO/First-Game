@@ -108,7 +108,7 @@ public class UiInventory : MonoBehaviour
 
     public void AddSpriteInInventory(GameObject ObjectToPickUp)
     {
-        ObjectToPickUp.GetComponent<IImage>();
+       // ObjectToPickUp.GetComponent<IImage>();
     } 
 
 }

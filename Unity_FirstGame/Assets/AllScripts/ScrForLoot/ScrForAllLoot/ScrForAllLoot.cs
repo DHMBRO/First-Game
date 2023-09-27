@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ScrForAllLoot : MonoBehaviour, IImage
+public class ScrForAllLoot : MonoBehaviour
 {
     [SerializeField] public float Mass;
     [SerializeField] public bool CanCombining;
@@ -12,14 +12,10 @@ public class ScrForAllLoot : MonoBehaviour, IImage
 
     private void Start()
     {
-        if (SpriteForLoot) GetImage(SpriteForLoot);
-        else Debug.Log(gameObject.name + "Dont have reference to SpriteForLoot");
+        
+        
         
     }
 
-    public void GetImage(Sprite SpriteForLoot)
-    {
-
-    }
 
 }
