@@ -41,7 +41,6 @@ public class ScrForUseHeal : MethodsFromDevelopers, IUsebleInterFace
 
         HpScript HealPointToTarget = Target.GetComponent<HpScript>();
         if (HealPointToTarget) HealPointToTarget.HealHp(HealHp);
-        
         Destroy(gameObject);
         //yield return null;
     }
