@@ -12,9 +12,10 @@ public interface IReferencesInterface
     public void GetReferences(GameObject ObjectToCopy, GameObject ObjectForCopy);
 }
 
-public interface IImage
+public interface IUpdateInfo
 {
-    public void GetImage(Sprite SpriteForLoot);
+    public void UpdateInfo();
+
 }
 
 public interface IControlerToInfo
