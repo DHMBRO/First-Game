@@ -37,6 +37,7 @@ public class ScrForUseHeal : MethodsFromDevelopers, IUsebleInterFace
 
         yield return new WaitForSeconds(5.0f);
         
+
         Debug.Log("Time is over");
 
         HpScript HealPointToTarget = Target.GetComponent<HpScript>();
