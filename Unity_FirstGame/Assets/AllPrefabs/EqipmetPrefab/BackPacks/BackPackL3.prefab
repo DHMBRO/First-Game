@@ -62,7 +62,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Mass: 0
   CanCombining: 0
+  HaveDescription: 0
   SpriteForLoot: {fileID: 21300000, guid: 251ad41f19fd5b94e9cea08706ba7fa3, type: 3}
+  ObjectDescription: 
 --- !u!114 &3567319833358814331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,6 +78,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LevelBackPack: 3
+  CurrentMaxMass: 25
+  CurrentMass: 0
+  MaxMassTo1L: 12
+  MaxMassTo2L: 17
+  MaxMassTo3L: 25
 --- !u!1 &6972724917573403871
 GameObject:
   m_ObjectHideFlags: 0

@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 4036706380406162447}
   - component: {fileID: 8304046304192196860}
   m_Layer: 0
-  m_Name: FullHP
+  m_Name: +100HP
   m_TagString: FirstAidKit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -161,9 +161,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ef3b5b486fd1d43b53d47da52f3fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mass: 1.2
+  Mass: 2.6
   CanCombining: 0
+  HaveDescription: 1
   SpriteForLoot: {fileID: 21300000, guid: d594335fe1b85d6409793b61a3846f4f, type: 3}
+  ObjectDescription: Heal level 3 - add 100 health points, time to use - 10 seconds,
+    mass - 2.6kg
 --- !u!114 &4036706380406162447
 MonoBehaviour:
   m_ObjectHideFlags: 0

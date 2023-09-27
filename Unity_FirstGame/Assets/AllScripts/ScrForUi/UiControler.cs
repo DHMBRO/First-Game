@@ -66,9 +66,20 @@ public class UiControler : MonoBehaviour
 
     private void PrintUseMassAndMaxMass()
     {
-        string CurrentMassS = PlayerInventory.CurrentMass.ToString();
-        string MaxMassS = PlayerInventory.MaxMass.ToString();
+        string CurrentMassS;
+        string MaxMassS;
 
+        CurrentMassS = PlayerInventory.CurrentMass.ToString();
+        MaxMassS = PlayerInventory.MaxMass.ToString();
+
+        if (PlayerInventory.BackPack && !PlayerInventory.BackPackPlayer) PlayerInventory.BackPackPlayer = PlayerInventory.BackPack.GetComponent<BackPackContorler>();
+        else if (PlayerInventory.BackPackPlayer)
+        {
+            CurrentMassS = PlayerInventory.CurrentMass.ToString();
+            MaxMassS = PlayerInventory.BackPackPlayer.CurrentMaxMass.ToString();
+
+        }
+        
         CurrentMassInInventory.text = "Current mass in inventory: " + CurrentMassS;
         CurrentMaxMassInInventory.text = "Max mass in inventory: " + MaxMassS;
         
