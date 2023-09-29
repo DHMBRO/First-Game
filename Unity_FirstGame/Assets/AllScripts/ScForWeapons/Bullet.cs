@@ -17,12 +17,12 @@ public class Bullet : MonoBehaviour
             HPScr.InflictingDamage(Damage);            
         }
 
-        Destroy(gameObject);
+        Destroy(gameObject, 10.0f);
         
     }
 
     void Update()
     {
-        Destroy(gameObject, 10.0f);
+        
     }
 }

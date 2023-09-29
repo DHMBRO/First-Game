@@ -9,7 +9,9 @@ public class AttackMethod : MonoBehaviour
     [SerializeField] public float GoingDistance;
     [SerializeField] protected float AttackDelay = 3.0f;
     [SerializeField] protected float AttackTime = 3.5f;
-
+    [SerializeField] public GameObject GunPos;
+    [SerializeField] protected GameObject TerroristGun;
+    protected ShootControler TerroristWeaponScript;
     protected bool CanAttack;
 
     protected HpScript TargetHpScript;
@@ -22,27 +24,52 @@ public class AttackMethod : MonoBehaviour
         ZombiePatrolScript = gameObject.GetComponent<PatrolScriptNavMesh>();
         ZombieLocateScript = gameObject.GetComponent<LocateScript>();
         if (ZombieLocateScript.Target) TargetHpScript = ZombieLocateScript.Target.GetComponent<HpScript>();
+
+        
+        
+        if (TerroristGun)
+        {
+            GameObject Gun = Instantiate(TerroristGun, GunPos.transform);
+            (Gun?.GetComponent<Rigidbody>()).isKinematic = true;
+            TerroristWeaponScript = Gun.GetComponentInParent<ShootControler>();
+        }
+        
     }
 
     void Update()
     {
         if (ZombieLocateScript.Target) TargetHpScript = ZombieLocateScript.Target.GetComponent<HpScript>();
+
     }
 
     public void DoCloseAttack(GameObject Target)
     {
-        if (Time.time >= AttackTime)
+        
+        if (TerroristWeaponScript)
         {
-            HpScript TargetHpScript = Target.GetComponentInParent<HpScript>(); 
-            if (TargetHpScript)
-            {
+            GunPos.transform.LookAt(Target.transform);
+            TerroristWeaponScript.Shoot();
 
-                TargetHpScript.InflictingDamage(ZombieDamage);
-                ZombieLocateScript.DefineMyTarget();
+        }
+        else 
+        {
+            if (Time.time >= AttackTime)
+            {
+                HpScript TargetHpScript = Target.GetComponentInParent<HpScript>();
+                if (TargetHpScript)
+                {
+
+                    TargetHpScript.InflictingDamage(ZombieDamage);
+                    ZombieLocateScript.DefineMyTarget();
+                }
+
+                AttackTime = AttackDelay + Time.time;
             }
-            
-            AttackTime = AttackDelay + Time.time; 
-        }        
+        }
+
+
+        
+       
     }
    
 

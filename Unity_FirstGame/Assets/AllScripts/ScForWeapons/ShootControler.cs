@@ -19,10 +19,10 @@ public class ShootControler : MonoBehaviour
     [SerializeField] public float ShotTime = 0.0f;
     [SerializeField] public float Mass = 0.0f;
     [SerializeField] private float BulletSpeed = 0.0f;
-
+    public bool UnLimitedAmmo;
     //[SerializeField] private float ColletSpeed = 0.0f;
 
-    
+
     void Start()
     {
         if (!Muzzle) Debug.Log("Not set Muzzle");
@@ -31,63 +31,67 @@ public class ShootControler : MonoBehaviour
 
     private void Update()
     {
-        
+
 
     }
-    
-    public void Shoot()
+
+
+
+
+    public void Shoot()//ColectPoint
     {
-        bool Audit01 = GameObjectForRay && Muzzle && Bullet && Collet && ColletPoint;
-        if (Audit01)
+        if (!GameObjectForRay || !Muzzle || !Bullet || !Collet || !ColletPoint || !WeaponShoop)
         {
-            Shoot(Muzzle, GameObjectForRay, ColletPoint, Collet, Bullet);
-        }  
-        
-    }
+            return;
+        }
 
-    
-
-    void Shoot(GameObject Muzzle, GameObject GameObjectForRay, GameObject ColletPoint, GameObject Collet, GameObject Bullet)//ColectPoint
-    {
-        if (WeaponShoop)
-
+        if (!WeaponShoop && !UnLimitedAmmo)
         {
-            ShopControler Shop = WeaponShoop.gameObject.GetComponent<ShopControler>();
-            if (Shop.CurrentAmmo > 0)
+            return;
+        }
+        ShopControler Shop = null;
+        if (!UnLimitedAmmo)
+        {
+            Shop = WeaponShoop.gameObject.GetComponent<ShopControler>();
+            if (Shop?.CurrentAmmo <= 0)
+            { return; }
+        }
+        Vector3 TargetPoint = GameObjectForRay.transform.position + GameObjectForRay.transform.forward * 100.0f;
+        RaycastHit Hitresult;
+
+        if (Physics.Raycast(GameObjectForRay.transform.position, GameObjectForRay.transform.forward, out Hitresult))
+        {
+            Debug.DrawRay(GameObjectForRay.transform.position, GameObjectForRay.transform.forward * 100.0f, Color.blue);
+            TargetPoint = Hitresult.point;
+        }
+        if (Input.GetKey(KeyCode.Mouse0) || Time.time >= ShotTime)
+        {
+            ShotTime = ShotDeley + Time.time;
+            GameObject newBullet = Instantiate(Bullet, Muzzle.transform.position, Quaternion.LookRotation(TargetPoint - GameObjectForRay.transform.position));
+            newBullet.transform.rotation = Muzzle.transform.rotation;
+
+            Rigidbody newBulletRB = newBullet.GetComponent<Rigidbody>();
+            if (!newBulletRB) newBulletRB.gameObject.AddComponent<Rigidbody>();
+            if (newBulletRB) newBulletRB.AddForce(GameObjectForRay.transform.forward * BulletSpeed, ForceMode.Impulse); // Dont touch this !!!
+
+            GameObject newCollet = Instantiate(Collet, ColletPoint.transform.position, Quaternion.LookRotation(TargetPoint - Muzzle.transform.position));
+            newCollet.transform.rotation = ColletPoint.transform.rotation;
+
+            //Rigidbody newColletRB = newCollet.GetComponent<Rigidbody>();                    
+
+            //newColletRB.AddRelativeForce(ColletPoint.transform.forward * ColletSpeed, ForceMode.Impulse);
+            Destroy(newCollet, 2.5f);
+            if (Shop)
             {
-                Vector3 TargetPoint = GameObjectForRay.transform.position + GameObjectForRay.transform.forward * 100.0f;
-                RaycastHit Hitresult;
-
-                if (Physics.Raycast(GameObjectForRay.transform.position, GameObjectForRay.transform.forward, out Hitresult))
-                {
-                    Debug.DrawRay(GameObjectForRay.transform.position, GameObjectForRay.transform.forward * 100.0f, Color.blue);
-                    TargetPoint = Hitresult.point;
-                }
-                if (Input.GetKey(KeyCode.Mouse0) && Time.time >= ShotTime)
-                {
-                    ShotTime = ShotDeley + Time.time;
-                    GameObject newBullet = Instantiate(Bullet, Muzzle.transform.position, Quaternion.LookRotation(TargetPoint - GameObjectForRay.transform.position));
-                    newBullet.transform.rotation = Muzzle.transform.rotation;
-
-                    Rigidbody newBulletRB = newBullet.GetComponent<Rigidbody>();
-                    if (!newBulletRB) newBulletRB.gameObject.AddComponent<Rigidbody>();
-                    if(newBulletRB) newBulletRB.AddForce(GameObjectForRay.transform.forward * BulletSpeed, ForceMode.Impulse); // Dont touch this !!!
-
-                    GameObject newCollet = Instantiate(Collet, ColletPoint.transform.position, Quaternion.LookRotation(TargetPoint - Muzzle.transform.position));
-                    newCollet.transform.rotation = ColletPoint.transform.rotation;
-                    
-                    //Rigidbody newColletRB = newCollet.GetComponent<Rigidbody>();                    
-                    
-                    //newColletRB.AddRelativeForce(ColletPoint.transform.forward * ColletSpeed, ForceMode.Impulse);
-                    Destroy(newCollet, 2.5f);
-                    
-                    Shop.CurrentAmmo--;
-                    
-                }
+                Shop.CurrentAmmo--;
             }
-        }        
-        
-        
-        
+            
+
+        }
+
+
+
+
+
     }
 }
