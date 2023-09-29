@@ -12,9 +12,10 @@ public class GameManager : MethodsFromDevelopers
     public GameObject ButtonUse;
     public GameObject ButtonDrop;
     public Sprite None;
-        
-    [SerializeField] private TextMeshProUGUI ObjectDescription;
 
+    [SerializeField] private TextMeshProUGUI ObjectName;
+    [SerializeField] private TextMeshProUGUI ObjectDescription;
+    
     
     [SerializeField] private UiInventory InventoryUi;
     [SerializeField] Inventory PlayerInventory;
@@ -74,10 +75,16 @@ public class GameManager : MethodsFromDevelopers
 
             if (PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].HaveDescription)
             {
+                if (ObjectName)
+                {
+                    ObjectName.text = PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].ObjectName;
+                    //Debug.Log(InventoryUi.PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].ObjectToInstantiate.name);
+                }
+
                 if (ObjectDescription)
                 {
                     ObjectDescription.text = PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].ObjectDescription;
-                    Debug.Log(InventoryUi.PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].ObjectToInstantiate.name);
+                    //Debug.Log(InventoryUi.PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].ObjectToInstantiate.name);
                 }
             }
 
@@ -102,6 +109,7 @@ public class GameManager : MethodsFromDevelopers
             ButtonD.interactable = false;
 
             if (ObjectDescription) ObjectDescription.text = null;
+            if (ObjectName) ObjectName.text = null;
         }
 
     }

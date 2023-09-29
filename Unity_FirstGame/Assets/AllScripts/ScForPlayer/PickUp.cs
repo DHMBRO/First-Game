@@ -295,33 +295,33 @@ public class PickUp : MethodsFromDevelopers
             }
         }
 
-        
-        
-        void PutOn()
-        {
-            ArmorControler Armor = SlotControler.MyArmor.GetComponent<ArmorControler>();
-            Debug.Log(Armor);
-            
-            if (Armor && Armor.Use)
-            {
-                SlotControler.SlotsShop[0] = Armor.SlotShop01;
-                SlotControler.SlotsShop[1] = Armor.SlotShop02;
-                SlotControler.SlotsShop[2] = Armor.SlotShop03;
-
-                SlotControler.SlotPistol01 = Armor.SlotPistol01;
-                SlotControler.SlotKnife01 = Armor.SlotKnife01;
-
-                if (SlotControler.Shop[0]) PutObjects(SlotControler.Shop[0], SlotControler.SlotsShop[0]);
-                if (SlotControler.Shop[1]) PutObjects(SlotControler.Shop[1], SlotControler.SlotsShop[1]);
-                if (SlotControler.Shop[2]) PutObjects(SlotControler.Shop[2], SlotControler.SlotsShop[2]);
-
-                if (SlotControler.MyPistol01) PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01);
-                PutObjects(SlotControler.MyKnife01, SlotControler.SlotKnife01);
-            }
-            else Debug.Log("Not set Armor");
-        }
     }
 
+    void PutOn()
+    {
+        if (SlotControler && !SlotControler.MyArmor) return;
+
+        ArmorControler Armor = SlotControler.MyArmor.GetComponent<ArmorControler>();
+        Debug.Log(Armor);
+
+        if (Armor && Armor.Use)
+        {
+            SlotControler.SlotsShop[0] = Armor.SlotShop01;
+            SlotControler.SlotsShop[1] = Armor.SlotShop02;
+            SlotControler.SlotsShop[2] = Armor.SlotShop03;
+
+            SlotControler.SlotPistol01 = Armor.SlotPistol01;
+            SlotControler.SlotKnife01 = Armor.SlotKnife01;
+
+            if (SlotControler.Shop[0]) PutObjects(SlotControler.Shop[0], SlotControler.SlotsShop[0]);
+            if (SlotControler.Shop[1]) PutObjects(SlotControler.Shop[1], SlotControler.SlotsShop[1]);
+            if (SlotControler.Shop[2]) PutObjects(SlotControler.Shop[2], SlotControler.SlotsShop[2]);
+
+            if (SlotControler.MyPistol01) PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01);
+            PutObjects(SlotControler.MyKnife01, SlotControler.SlotKnife01);
+        }
+        else Debug.Log("Not set Armor");
+    }
 
     public void PickUpWeapons(GameObject ObjectForPickUp)
     {
@@ -383,7 +383,7 @@ public class PickUp : MethodsFromDevelopers
         {
             Debug.Log("Cant take !");
         }
-        
+        PutOn();   
     }
 
     public void PickUpShops(GameObject ShopForPickUp )
@@ -449,11 +449,12 @@ public class PickUp : MethodsFromDevelopers
                 Debug.Log("Cant do this !");
             }
 
-            
+
             //Debug.Log(!SlotControler.Shop[0]);
             //Debug.Log(SlotControler.SlotsShop[0]);
             //Debug.Log(Counter == 0);
 
+            PutOn();
         }
     }
 }
