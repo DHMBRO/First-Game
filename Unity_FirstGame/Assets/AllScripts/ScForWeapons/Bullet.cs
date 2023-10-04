@@ -13,16 +13,17 @@ public class Bullet : MonoBehaviour
         HpScript HPScr = collision.gameObject.GetComponent<HpScript>();
         if (HPScr && Damage > 0.0f)
         {
-            Debug.Log(HPScr.gameObject);
-            HPScr.InflictingDamage(Damage);            
+            Debug.Log(HPScr.gameObject.name + " Bullet Hit");
+            HPScr.InflictingDamage(Damage); 
+            
         }
 
-        Destroy(gameObject, 10.0f);
+        Destroy(gameObject);
         
     }
 
-    void Update()
+    void Start()
     {
-        
+        Destroy(gameObject,10.0f);
     }
 }

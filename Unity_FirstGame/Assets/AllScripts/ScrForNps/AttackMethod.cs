@@ -30,8 +30,10 @@ public class AttackMethod : MonoBehaviour
         if (TerroristGun)
         {
             GameObject Gun = Instantiate(TerroristGun, GunPos.transform);
+            
             (Gun?.GetComponent<Rigidbody>()).isKinematic = true;
             TerroristWeaponScript = Gun.GetComponentInParent<ShootControler>();
+            TerroristWeaponScript.UnLimitedAmmo = true;
         }
         
     }
@@ -42,7 +44,7 @@ public class AttackMethod : MonoBehaviour
 
     }
 
-    public void DoCloseAttack(GameObject Target)
+    public void Attack(GameObject Target)
     {
         
         if (TerroristWeaponScript)
@@ -53,6 +55,7 @@ public class AttackMethod : MonoBehaviour
         }
         else 
         {
+            Debug.Log("12344");
             if (Time.time >= AttackTime)
             {
                 HpScript TargetHpScript = Target.GetComponentInParent<HpScript>();

@@ -11,7 +11,7 @@ public class ZombieController : MonoBehaviour
     protected AttackMethod ZombieAttackScript;
     protected PatrolScriptNavMesh ZombiePatrolScript;
     protected HpScript ZombieHpScript;
-    public bool IsLive = true;
+   
 
     void Start()
     {
@@ -51,7 +51,8 @@ public class ZombieController : MonoBehaviour
                         //Debug.Log("Attack!!!");
 
                         ZombiePatrolScript.ZombieNavMesh.isStopped = true;
-                        ZombieAttackScript.DoCloseAttack(ZombieLocateScript.Target);
+                        ZombieAttackScript.Attack(ZombieLocateScript.Target);
+    
 
                     }
                     else

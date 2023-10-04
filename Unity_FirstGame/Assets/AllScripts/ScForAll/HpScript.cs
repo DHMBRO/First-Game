@@ -8,7 +8,7 @@ public class HpScript : MonoBehaviour
 
     [SerializeField] public float HealthPoint = 10;
     [SerializeField] private float MaxHp;
-    ZombieController ControlerForZombie;
+    
 
     public Live MyLive = Live.Alive;
     
@@ -20,14 +20,8 @@ public class HpScript : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log("Heal Point: " + HealthPoint);
-        if (HealthPoint <= 0.0f)
-        {
-            ControlerForZombie = gameObject.GetComponent<ZombieController>();
-            if (ControlerForZombie) ControlerForZombie.IsLive = false;
-
-            //Debug.Log("Your or your target is dead !");
-        }
+      
+       
     }
 
     public void InflictingDamage(float Damage)
@@ -93,5 +87,9 @@ public class HpScript : MonoBehaviour
             return true;
         }
         return false;
+    }
+    public void InstanceKill()
+    {
+        InflictingDamage(HealthPoint);
     }
 }
