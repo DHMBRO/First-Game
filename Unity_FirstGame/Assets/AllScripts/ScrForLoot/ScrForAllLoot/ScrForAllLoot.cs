@@ -7,15 +7,7 @@ public class ScrForAllLoot : MonoBehaviour
     [SerializeField] public bool HaveDescription;
 
     [SerializeField] public Sprite SpriteForLoot;
+    [SerializeField] public string ObjectName;
     [SerializeField] public string ObjectDescription;
-
-
-    private void Start()
-    {
-        
-        
-        
-    }
-
 
 }

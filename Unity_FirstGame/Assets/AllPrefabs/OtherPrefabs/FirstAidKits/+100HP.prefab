@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 45938a2eadfec57498a1d080ba6d2fba, type: 2}
+  - {fileID: 2100000, guid: f5a9e751c26c2ae4c9bd0f1b1f5dec7d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -165,8 +165,8 @@ MonoBehaviour:
   CanCombining: 0
   HaveDescription: 1
   SpriteForLoot: {fileID: 21300000, guid: d594335fe1b85d6409793b61a3846f4f, type: 3}
-  ObjectDescription: Heal level 3 - add 100 health points, time to use - 10 seconds,
-    mass - 2.6kg
+  ObjectName: Heal
+  ObjectDescription: add 100 health points, time to use - 10 seconds, mass - 2.6kg
 --- !u!114 &4036706380406162447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,6 +181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealHp: 100
   TimeToUse: 10
+  TimeoToDestroy: 0
 --- !u!114 &8304046304192196860
 MonoBehaviour:
   m_ObjectHideFlags: 0

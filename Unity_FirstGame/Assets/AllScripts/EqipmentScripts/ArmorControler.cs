@@ -15,6 +15,7 @@ public class ArmorControler : MonoBehaviour, IEquipment
     [SerializeField] public Transform SlotKnife01;
 
     public bool Use;
+    public bool ChangeOffSet;
 
     [SerializeField] Transform Armor; 
     [SerializeField] Vector3 OffSetDontUse;
@@ -23,7 +24,7 @@ public class ArmorControler : MonoBehaviour, IEquipment
 
     private void Start()
     {
-        ChangePosition(Use);
+        if(ChangeOffSet) ChangePosition(Use);
 
         if (LevelArmor == 1)
         {
@@ -43,6 +44,10 @@ public class ArmorControler : MonoBehaviour, IEquipment
 
     public void ChangePosition(bool Use)
     {
+        this.Use = Use;
+
+        if (!ChangeOffSet) return;
+
         if (Use)
         {
             Armor.transform.position = OffSetUse;
@@ -52,7 +57,7 @@ public class ArmorControler : MonoBehaviour, IEquipment
             Armor.transform.position = OffSetDontUse;
         }
 
-        this.Use = Use;
+    
     }
 
 

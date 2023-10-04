@@ -6,6 +6,8 @@ public class InfoForLoot
     public GameObject ObjectToInstantiate;
 
     public string ObjectDescription;
+    public string ObjectName;
+
     public bool HaveDescription;
     
     public int CurrentAmmo;
@@ -28,6 +30,7 @@ public class InfoForLoot
         {
             if (ScrAllLoot.HaveDescription) ObjectDescription = ScrAllLoot.ObjectDescription;
             HaveDescription = ScrAllLoot.HaveDescription;
+            ObjectName = ScrAllLoot.ObjectName;
         }
         Debug.Log(HaveDescription);
 

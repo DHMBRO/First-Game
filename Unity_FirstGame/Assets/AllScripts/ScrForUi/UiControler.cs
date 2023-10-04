@@ -26,8 +26,7 @@ public class UiControler : MonoBehaviour
     [SerializeField] public Image SlotBackPack;
 
     [SerializeField] private TextMeshProUGUI CurrentMassInInventory;
-    [SerializeField] private TextMeshProUGUI CurrentMaxMassInInventory;
-
+    
     [SerializeField] private Inventory PlayerInventory;
 
     void Start()
@@ -50,8 +49,6 @@ public class UiControler : MonoBehaviour
             PrintUseMassAndMaxMass();
 
             CurrentMassInInventory.gameObject.SetActive(InventoryIsOpen);
-            CurrentMaxMassInInventory.gameObject.SetActive(InventoryIsOpen);
-
 
             if (InventoryUi) InventoryUi.WriteSprite();
             if (ManagerToGame) ManagerToGame.DisActiveUD();
@@ -64,7 +61,7 @@ public class UiControler : MonoBehaviour
 
     }
 
-    private void PrintUseMassAndMaxMass()
+    public void PrintUseMassAndMaxMass()
     {
         string CurrentMassS;
         string MaxMassS;
@@ -80,8 +77,7 @@ public class UiControler : MonoBehaviour
 
         }
         
-        CurrentMassInInventory.text = "Current mass in inventory: " + CurrentMassS;
-        CurrentMaxMassInInventory.text = "Max mass in inventory: " + MaxMassS;
+        CurrentMassInInventory.text = "Mass: " + CurrentMassS + "/" + MaxMassS;
         
     }
 
