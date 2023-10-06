@@ -8,7 +8,8 @@ public class PatrolScriptNavMesh : MonoBehaviour
     public int StartPosIndex = 0;
     LocateScript ZombieLocateScript;
     public NavMeshAgent ZombieNavMesh;
-    GameObject MoveTarget;
+    Vector3 MoveTarget;
+    public bool NeedCheckPosition = false;
     public enum State
     {
         Moving,
@@ -42,21 +43,22 @@ public class PatrolScriptNavMesh : MonoBehaviour
 
     }
 
-    public void MoveTo(GameObject Target, bool IsPatrol = false)
+    public void MoveTo(Vector3 Target, bool IsPatrol = false)
     {
         if (!IsPatrol)
         {
             MoveTarget = Target;
         }
-        ZombieNavMesh.SetDestination(Target.transform.position);
+        NeedCheckPosition = !IsPatrol;
+        ZombieNavMesh.SetDestination(Target);
         MyState = State.Moving;
     }
     
     public void StateIdle()
     {
-        if (!MoveTarget)
+        if (!NeedCheckPosition)
         {
-            MoveTo(MyPointControllScript.Points[CurrentPoint], true);
+            MoveTo(MyPointControllScript.Points[CurrentPoint].transform.position, true);
             MyState = State.Moving;
         }
     }
@@ -65,15 +67,14 @@ public class PatrolScriptNavMesh : MonoBehaviour
     {
         if (ZombieNavMesh.remainingDistance < 1.0f)
         {
-            if (MoveTarget)
+            if (NeedCheckPosition)
             {
-                MyState = State.Idle;
-                MoveTarget = null;  
+                MoveTo(MoveTarget);
             }
             else
             { 
                 CurrentPoint = MyPointControllScript.SearchNextPosition(CurrentPoint);
-                MoveTo(MyPointControllScript.Points[CurrentPoint], true);
+                MoveTo(MyPointControllScript.Points[CurrentPoint].transform.position, true);
             }
         }
         else
@@ -89,14 +90,13 @@ public class PatrolScriptNavMesh : MonoBehaviour
     {
         if (!ZombieLocateScript.Target)
         {
-
             CurrentPoint = MyPointControllScript.SearchNextPosition(CurrentPoint);
-            MoveTo(MyPointControllScript.Points[CurrentPoint], true);
+            MoveTo(MyPointControllScript.Points[CurrentPoint].transform.position, true);
         }
-
     }
     protected void CheckPosition(Vector3 CheckingPosition)
     {
-        //MoveTo(CheckingPosition);
+        MoveTo(CheckingPosition);
+        MyState = State.Moving;
     }
 }

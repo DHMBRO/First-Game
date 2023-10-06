@@ -58,7 +58,7 @@ public class ZombieController : MonoBehaviour
                     else
                     {
                         ZombiePatrolScript.ZombieNavMesh.isStopped = false;
-                        ZombiePatrolScript.MoveTo(ZombieLocateScript.Target);
+                        ZombiePatrolScript.MoveTo(ZombieLocateScript.Target.transform.position);
                     }
 
                 }
