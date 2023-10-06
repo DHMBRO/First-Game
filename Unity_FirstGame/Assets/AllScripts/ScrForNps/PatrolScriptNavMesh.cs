@@ -97,6 +97,6 @@ public class PatrolScriptNavMesh : MonoBehaviour
     }
     protected void CheckPosition(Vector3 CheckingPosition)
     {
-        MoveTo(CheckingPosition);
+        //MoveTo(CheckingPosition);
     }
 }
