@@ -30,7 +30,13 @@ public class MethodsFromDevelopers : MonoBehaviour
     {
         Rigidbody RigObject = ObjectToDrop.gameObject.GetComponent<Rigidbody>();
         BoxCollider BCObject = ObjectToDrop.gameObject.GetComponent<BoxCollider>();
+        
+        SoundCreatorScript SCSObject = ObjectToDrop.GetComponent<SoundCreatorScript>();
+        ExecutoreScript ESObject = ObjectToDrop.GetComponent<ExecutoreScript>();
 
+        if (!SCSObject) SCSObject = ObjectToDrop.gameObject.AddComponent<SoundCreatorScript>();
+        if (!ESObject) ESObject = ObjectToDrop.gameObject.AddComponent<ExecutoreScript>();
+        
         if (RigObject)
         {
             Droping(RigObject, BCObject);
