@@ -51,7 +51,7 @@ public class PatrolScriptNavMesh : MonoBehaviour
         ZombieNavMesh.SetDestination(Target.transform.position);
         MyState = State.Moving;
     }
-
+    
     public void StateIdle()
     {
         if (!MoveTarget)
@@ -94,5 +94,9 @@ public class PatrolScriptNavMesh : MonoBehaviour
             MoveTo(MyPointControllScript.Points[CurrentPoint], true);
         }
 
+    }
+    protected void CheckPosition(Vector3 CheckingPosition)
+    {
+        MoveTo(CheckingPosition);
     }
 }
