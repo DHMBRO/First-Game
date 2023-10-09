@@ -12,10 +12,11 @@ public class ScrForUseAmmo : MonoBehaviour, IUsebleInterFace
     public void Use(GameObject Target, InfoForLoot InfoLoot, SelectAnObject SelectObj)
     {
         SlotControler ContrlerToSlots = Target.GetComponent<SlotControler>();
-        List<ShopControler> ShopControler = new List<ShopControler>();
+        List<ShopControler> AllShopsHave = new List <ShopControler>();
 
+        for (int i = 0; i < ContrlerToSlots.Shop.Length;i++) if (ContrlerToSlots.Shop[i]) AllShopsHave.Add(ContrlerToSlots.Shop[i].GetComponent<ShopControler>());
         
-        if(CurrentAmmo == 0)
+        if (CurrentAmmo == 0)
         {
             Debug.Log("Name Object:" + gameObject.name);
             Debug.Log("Current Ammo: " + CurrentAmmo);
