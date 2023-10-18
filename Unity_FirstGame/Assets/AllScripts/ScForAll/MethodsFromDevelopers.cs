@@ -14,7 +14,7 @@ public class MethodsFromDevelopers : MonoBehaviour
         if (SCSObject) Destroy(SCSObject);
         if (ESObject) Destroy(ESObject);
 
-            if (RigObject) Destroy(RigObject);
+        if (RigObject) Destroy(RigObject);
         if (BCObject) BCObject.enabled = false;
         else
         {

@@ -76,6 +76,27 @@ public class SlotControler : MethodsFromDevelopers
 
     }
 
+    public void PutObjectInHand()
+    {
+        if (!ObjectInHand) return;
+        Transform TargetSlot = null;
+        
+        if (MyWeapon01 && ObjectInHand.transform.position == MyWeapon01.position) TargetSlot = SlotBack01;
+        if (MyWeapon02 && ObjectInHand.transform.position == MyWeapon02.position) TargetSlot = SlotBack02;
+        if (MyPistol01 && ObjectInHand.transform.position == MyPistol01.position) TargetSlot = SlotPistol01;
+
+        if (TargetSlot) PutObjects(ObjectInHand.transform, TargetSlot);
+
+    }
+
+    public void GetObjectInHand()
+    {
+        if (ObjectInHand) return;
+        PutObjects(ObjectInHand.transform,SlotHand);
+
+    }
+
+
     public void MovingGunForSlots()
     {
          

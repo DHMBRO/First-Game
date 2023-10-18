@@ -11,6 +11,7 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private DropControler ControlerDrop;
     [SerializeField] private SlotControler SlotControler;
     [SerializeField] public ShootControler ControlerShoot;
+    [SerializeField] private DivertAttention DivertAttention;
 
     [SerializeField] private UiControler ControlerUi;
 
@@ -23,17 +24,18 @@ public class PlayerControler : MonoBehaviour
 
     void Start()
     {
-        Move = gameObject.GetComponent<Move1F>();
+        Move = GetComponent<Move1F>();
         
-        MovePlayer = gameobject.GetComponent<MovePlayer>();
+        MovePlayer = GetComponent<MovePlayer>();
         MovePlayer.ControlerPlayer = GetComponent<PlayerControler>();
 
-        StelsScript = gameObject.GetComponent<StelsScript>();
+        StelsScript = GetComponent<StelsScript>();
 
-        PickUpPlayer = gameObject.GetComponent<PickUp>();
-        ControlerDrop = gameobject.GetComponent<DropControler>();
-        SlotControler = gameObject.GetComponent<SlotControler>();
-        
+        PickUpPlayer = GetComponent<PickUp>();
+        ControlerDrop = GetComponent<DropControler>();
+        SlotControler = GetComponent<SlotControler>();
+        DivertAttention = GetComponent<DivertAttention>();
+
     }
     
     void Update()
@@ -65,11 +67,20 @@ public class PlayerControler : MonoBehaviour
                 if (!ControlerUi.InventoryIsOpen) ControlerShoot.Shoot();
             }
 
-            
             if (Input.GetKey(KeyCode.Mouse1)) Aiming = true;
             if (Input.GetKeyUp(KeyCode.Mouse1)) Aiming = false;
             if (MovePlayer) MovePlayer.Move();
 
+            if (DivertAttention)
+            {
+                if (Input.GetKeyDown(KeyCode.Z)) DivertAttention.SpawnRock();
+                if (Input.GetKey(KeyCode.Z)) DivertAttention.AimingToDrop();
+                if (Input.GetKeyUp(KeyCode.Z))
+                {
+                    DivertAttention.AimingToDrop();
+                    DivertAttention.DropRock();
+                }
+            }
 
 
             if (PickUpPlayer) PickUpAll();
