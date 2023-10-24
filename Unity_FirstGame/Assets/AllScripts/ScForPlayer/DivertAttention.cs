@@ -1,27 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DivertAttention : MethodsFromDevelopers
 {
     [SerializeField] private GameObject RockForDiverAttention;
     [SerializeField] private SlotControler ControlerSlots;
+    [SerializeField] private LineRenderer LineRender;
     [SerializeField] private Transform CameraPlayer;
     [SerializeField] private Transform HandPlayer;
     
 
-    [SerializeField] float SpeedToDrop;
-    [SerializeField] float HeidhtToDrop;
-    [SerializeField] int Count;
+    [SerializeField] float PowerToDrop;
+    [SerializeField] int CountPoints = 10;
+    [SerializeField] float CalcTime = 2.0f;
+    //float GravityV = 0;
 
     [SerializeField] bool CanDivrtAttention;
-
     [SerializeField] GameObject Rock;
-
+    Vector3 Point;
 
     private void Start()
     {
         ControlerSlots = GetComponent<SlotControler>();
+        LineRender = GetComponent<LineRenderer>();
+        //LineRender.enabled = false;
+        LineRender.enabled = true;
+
         if (ControlerSlots && ControlerSlots.SlotHand) HandPlayer = ControlerSlots.SlotHand;
         else Debug.Log("Not set ControlerSlots");
 
@@ -35,37 +38,87 @@ public class DivertAttention : MethodsFromDevelopers
 
         ControlerSlots.PutObjectInHand();
 
-        Rock = Instantiate(RockForDiverAttention);
-        this.Rock = Rock;
+        Rock = Instantiate(RockForDiverAttention);        
         PutObjects(Rock.transform, HandPlayer);
+
+        this.Rock = Rock;
+        LineRender.enabled = true;
+
 
     }
 
 
     public void AimingToDrop()
     {
-        Rock.transform.forward = CameraPlayer.forward;
+        Vector3 CameraTarget = CameraPlayer.position + CameraPlayer.forward * 10.0f;
+        
+        if (CountPoints <= 0) return;
+        Vector3[] Points = new Vector3[CountPoints];
+        float DeltaT;
+        DeltaT = CalcTime / CountPoints;
+        
+        //GravityV = 0.0f;
+        
+        int i = 0;
+        bool TouchPlane = false;
+        for (float CurrentTime = 0.0f; CurrentTime <= CalcTime && i < Points.Length; CurrentTime += DeltaT, i++)
+        {
+            Points[i] = GetPointByTime(CurrentTime, PowerToDrop, Rock.transform.position, CameraTarget - Rock.transform.position);
 
+            if (!TouchPlane)
+            {
+                if (Physics.Raycast(Points[i], Point,out RaycastHit RayResult, 1.0f))
+                {
+                    Debug.Log(RayResult.collider.gameObject.name);
+                }
+
+            }
+            //else Points[i] = Points[i--];
+        }
+        
+        LineRender.positionCount = CountPoints;
+        LineRender.SetPositions(Points);
+        
     }
 
+    Vector3 GetPointByTime(float CurrentTime, float PowerDrop, Vector3 StartPosition, Vector3 StartDirection)
+    {
+        Vector3 Velocity = StartDirection.normalized * PowerDrop;
+
+        Vector3 Point = new Vector3();
+
+        Point.x = StartPosition.x + Velocity.x * CurrentTime;
+        Point.z = StartPosition.z + Velocity.z * CurrentTime;
+        
+        Point.y = StartPosition.y + Velocity.y * CurrentTime + (Physics.gravity.y * Mathf.Pow(CurrentTime, 2.0f)) / 2;
+
+        this.Point = Point;
+        return Point;
+        
+    }
 
     public void DropRock()
     {
+        
         Vector3 Trajectory;
         Rigidbody RIGRock;
 
         SoundCreatorScript SoundScript;
         ExecutoreScript ExecutorScript;
 
+        LineRender.enabled = false;
+
         Rock.transform.SetParent(null);
+        Rock.transform.rotation = CameraPlayer.transform.rotation;
+
         RIGRock = Rock.AddComponent<Rigidbody>();
+        RIGRock.rotation = Quaternion.identity;
 
         SoundScript = Rock.AddComponent<SoundCreatorScript>();
         ExecutorScript = Rock.AddComponent<ExecutoreScript>();
 
-        Trajectory = new Vector3(0.0f, HeidhtToDrop, SpeedToDrop);
-
-        RIGRock.AddRelativeForce(Trajectory, ForceMode.Force);
+        Trajectory = ((CameraPlayer.position + CameraPlayer.forward * 10.0f) - Rock.transform.position).normalized * PowerToDrop;
+        RIGRock.AddRelativeForce(Trajectory, ForceMode.Impulse);
         
         Destroy(Rock, 10.0f);
         ControlerSlots.GetObjectInHand();

@@ -48,7 +48,7 @@ public class ShootControler : MonoBehaviour
 
         if (!WeaponShoop && !UnLimitedAmmo)
         {
-            Debug.Log("Shoot2");
+            //Debug.Log("Shoot2");
             return;
         }
         ShopControler Shop = null;

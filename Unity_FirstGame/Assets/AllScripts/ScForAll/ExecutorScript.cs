@@ -3,8 +3,11 @@ using UnityEngine;
 public class ExecutoreScript : MonoBehaviour
 {
     [SerializeField] SoundCreatorScript SoundScript;
-    [SerializeField] bool IsWorked;
+
+    [SerializeField] bool DestroyOnTouch = true;
+    bool IsWorked = false;
     
+
     private void OnCollisionEnter(Collision collision)
     {
         SoundScript = gameObject.GetComponent<SoundCreatorScript>();
@@ -13,6 +16,10 @@ public class ExecutoreScript : MonoBehaviour
         Debug.Log("OnColisionIs work");
         SoundScript.CreateNoise();
         IsWorked = true;
+        
+        if(DestroyOnTouch) Destroy(gameObject);
+
+
     }
-    
+
 }

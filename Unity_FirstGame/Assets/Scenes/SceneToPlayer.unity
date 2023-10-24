@@ -2618,16 +2618,48 @@ PrefabInstance:
       value: AK47
       objectReference: {fileID: 0}
     - target: {fileID: 3059040256925347778, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
-      propertyPath: SpeedToDrop
-      value: 5
+      propertyPath: Point
+      value: 
+      objectReference: {fileID: 6204170217957740005, guid: 088e441036ad3e643a1b4b95618b91ce, type: 3}
+    - target: {fileID: 3059040256925347778, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: CalcTime
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3059040256925347778, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: HandPlayer
+      value: 
+      objectReference: {fileID: 165911569}
+    - target: {fileID: 3059040256925347778, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: CountPoints
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3059040256925347778, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: PowerToDrop
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3059040256925347778, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: SpeedToDrop
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 3059040256925347778, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: CameraPlayer
+      value: 
+      objectReference: {fileID: 2100636531}
+    - target: {fileID: 3059040256925347778, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: HeidhtToDrop
-      value: 5
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 3998742673875602231, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595642774281171269, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
+      value: 0.010230716
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595642774281171269, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.13385823
       objectReference: {fileID: 0}
     - target: {fileID: 5669462573118057115, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: m_Drag
@@ -5657,6 +5689,11 @@ Transform:
 --- !u!20 &2100636528 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 7502794220233642860, guid: 99b382a7a7090204b9bd10d055fa8870, type: 3}
+  m_PrefabInstance: {fileID: 752688836}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2100636531 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3811309240065978825, guid: 99b382a7a7090204b9bd10d055fa8870, type: 3}
   m_PrefabInstance: {fileID: 752688836}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2107134416
