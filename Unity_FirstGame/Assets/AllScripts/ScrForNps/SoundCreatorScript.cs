@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundCreatorScript : MonoBehaviour
 {
-    [SerializeField] protected float NoiseRadius;
+    [SerializeField] public float NoiseRadius = 15.0f;
 
     void Start()
     {

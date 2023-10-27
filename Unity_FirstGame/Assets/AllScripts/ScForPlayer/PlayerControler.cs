@@ -22,15 +22,54 @@ public class PlayerControler : MonoBehaviour
 
     [SerializeField] WhatIsInHand Using;
 
+
+    enum MainPlayer
+    {
+        Null,
+
+        InventoryIsOpen,
+        Stels,
+        UseLoot,
+        AimingToDropRock,
+    }
+
+    enum Movement
+    {
+        Null,
+        
+        Go,
+        Run,
+        Jump,
+    }
+    
+    enum Hand
+    {
+        Null,
+        
+        Knife,
+        Weapon,
+        Loot,
+    }
+    
+    enum Camera
+    {
+        Null,
+
+        RotateSimple,
+        Aiming,
+    }
+
+    
+
     void Start()
     {
+        //Movement
         Move = GetComponent<Move1F>();
-        
         MovePlayer = GetComponent<MovePlayer>();
         MovePlayer.ControlerPlayer = GetComponent<PlayerControler>();
-
+        
         StelsScript = GetComponent<StelsScript>();
-
+                    
         PickUpPlayer = GetComponent<PickUp>();
         ControlerDrop = GetComponent<DropControler>();
         SlotControler = GetComponent<SlotControler>();

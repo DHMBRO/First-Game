@@ -10,11 +10,12 @@ public class ExecutoreScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        SoundScript = gameObject.GetComponent<SoundCreatorScript>();
-        if (!SoundScript || IsWorked) return;
+        if (!DestroyOnTouch) return;
         
+        SoundScript = gameObject.GetComponent<SoundCreatorScript>();
+        if (SoundScript) SoundScript.CreateNoise();
+
         Debug.Log("OnColisionIs work");
-        SoundScript.CreateNoise();
         IsWorked = true;
         
         if(DestroyOnTouch) Destroy(gameObject);

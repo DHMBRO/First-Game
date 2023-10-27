@@ -91,9 +91,8 @@ public class SlotControler : MethodsFromDevelopers
 
     public void GetObjectInHand()
     {
-        if (ObjectInHand) return;
-        PutObjects(ObjectInHand.transform,SlotHand);
-
+        if (ObjectInHand) PutObjects(ObjectInHand.transform,SlotHand);
+        
     }
 
 
