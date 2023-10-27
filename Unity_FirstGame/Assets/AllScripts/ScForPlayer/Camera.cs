@@ -272,8 +272,6 @@ public class Camera : MonoBehaviour
 
     void RotateCameraAiming()
     {
-       
-
         transform.eulerAngles = new Vector3(transform.localEulerAngles.x - Input.GetAxis("Mouse Y") * MouseSens,
         TargetCamera.transform.eulerAngles.y * MouseSens, 0.0f);
 
@@ -296,9 +294,6 @@ public class Camera : MonoBehaviour
             TargetPosition01 = (MoveBackObject.transform.TransformPoint(MoveBackObject.forward) - MoveBackObject.transform.forward * ResultHit01.distance);
             //Debug.Log(TargetPosition);
         }
-
-
-
 
         LerpCamera(TargetPosition01);
         //Debug.Log(a);

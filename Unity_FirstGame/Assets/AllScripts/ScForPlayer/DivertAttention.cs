@@ -65,15 +65,19 @@ public class DivertAttention : MethodsFromDevelopers
         {
             Points[i] = GetPointByTime(CurrentTime, PowerToDrop, Rock.transform.position, CameraTarget - Rock.transform.position);
 
-            if (!TouchPlane)
+
+            if (!TouchPlane && i >= 1)
             {
-                if (Physics.Raycast(Points[i], Point,out RaycastHit RayResult, 1.0f))
+                if (Physics.Raycast(Points[i-1], (Points[i] - Points[i-1]).normalized, out RaycastHit RayResult, (Points[i-1] - Points[i]).magnitude))
                 {
                     Debug.Log(RayResult.collider.gameObject.name);
+                    TouchPlane = true;
+                    Points[i] = RayResult.point;
+                    
                 }
 
             }
-            //else Points[i] = Points[i--];
+            else if(i >= 1) Points[i] = Points[i-1]; 
         }
         
         LineRender.positionCount = CountPoints;
