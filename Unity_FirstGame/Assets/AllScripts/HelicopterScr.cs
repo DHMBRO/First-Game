@@ -11,6 +11,11 @@ public class HelicopterScr : MonoBehaviour
     [SerializeField] GameObject FlightTo;
     [SerializeField] Vector3 PositionToLending;
     [SerializeField] int Speed;
+    [SerializeField] GameObject MGameOjct;
+    [SerializeField] GameObject M2GameOjct;
+    [SerializeField] GameObject FGameOjct;
+    [SerializeField] GameObject SGameOjct;
+    [SerializeField] Vector3 PositionAraundFlight;
     float T = 0.00f;
     float AddToT;
     bool landing = false;
@@ -21,6 +26,9 @@ public class HelicopterScr : MonoBehaviour
     public float RandomPosition_Z;
     Vector3 RandomPOsition;
     bool NeedNewPosition = true;
+    Vector3 S;
+    Vector3 F;
+    Vector3 M;
 
     public enum States
     {
@@ -30,6 +38,13 @@ public class HelicopterScr : MonoBehaviour
         Landing,
         FlightOut
     }
+    public enum StatesFlight
+    {
+        FromSToM,
+        FromMToM,
+        FromMToF
+    }
+    StatesFlight StatesFlght;
     States State;
     // Start is called before the first frame update
     void Start()
@@ -99,24 +114,64 @@ public class HelicopterScr : MonoBehaviour
         {
             do
             {
-                RandomPosition_X = UnityEngine.Random.Range(-50f, 50f);
-                RandomPosition_Z = UnityEngine.Random.Range(-50f, 50f);
-                RandomPOsition = new Vector3(RandomPosition_X, gameObject.transform.position.y, RandomPosition_Z);
+                RandomPosition_X = UnityEngine.Random.Range(0f, 100f);
+
+                RandomPOsition = new Vector3(RandomPosition_X, gameObject.transform.position.y, gameObject.transform.position.z);
 
             }
             while (Vector3.Distance(gameObject.transform.position, RandomPOsition) < 30f);
-            PositionFrom = gameObject.transform.position;
+            S = gameObject.transform.position;
+            F = RandomPOsition;
+            if (RandomPosition_X < 0)
+            {
+                M = new Vector3(Vector3.Distance(gameObject.transform.position, RandomPOsition) / 2, gameObject.transform.position.y, Vector3.Distance(gameObject.transform.position, RandomPOsition) / 2 * -1);
+            }
+            else
+            {
+                M = new Vector3(Vector3.Distance(gameObject.transform.position, RandomPOsition) / 2, gameObject.transform.position.y, Vector3.Distance(gameObject.transform.position, RandomPOsition) / 2 * 1);
+            }
+            SGameOjct.transform.position = S;
+            FGameOjct.transform.position = F;
+            MGameOjct.transform.position = M;
             NeedNewPosition = false;
+                
         }
         else
         {
-            AddToT = Time.fixedDeltaTime / (Vector3.Distance(PositionFrom, RandomPOsition) / Speed);
-            gameObject.transform.position = Vector3.Lerp(PositionFrom, RandomPOsition,  T2);
-            T2 += AddToT;
-            if (T2 >=1.00)
+            switch (StatesFlght)
             {
-                T2 = 0.00f;
-                NeedNewPosition = true;
+                case StatesFlight.FromSToM:
+                    AddToT = Time.fixedDeltaTime / (Vector3.Distance(S, M) / Speed);
+                    gameObject.transform.position = gameObject.transform.position + Vector3.Lerp(S, M, T2);
+                    T2 += AddToT;
+                    if (T2 >= 1.00)
+                    {
+                        T2 = 0.00f;
+                        StatesFlght = StatesFlight.FromMToM;
+                    }
+                    break;
+                case StatesFlight.FromMToM:
+                    AddToT = Time.fixedDeltaTime / (Vector3.Distance(M, M) / Speed);
+                    gameObject.transform.position = gameObject.transform.position + Vector3.Lerp(M, M, T2);
+                    T2 += AddToT;
+                    if (T2 >= 1.00)
+                    {
+                        T2 = 0.00f;
+                        StatesFlght = StatesFlight.FromMToF;
+                    }
+                    break;
+                case StatesFlight.FromMToF:
+                    AddToT = Time.fixedDeltaTime / (Vector3.Distance(M, F) / Speed);
+                    gameObject.transform.position = gameObject.transform.position + Vector3.Lerp(M, F, T2);
+                    T2 += AddToT;
+                    if (T2 >= 1.00)
+                    {
+                        T2 = 0.00f;
+                        StatesFlght = StatesFlight.FromSToM;
+                        NeedNewPosition = true;
+                    }
+                    break;
+
             }
         }
     }
