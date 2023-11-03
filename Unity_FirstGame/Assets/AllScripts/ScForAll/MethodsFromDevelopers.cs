@@ -5,8 +5,14 @@ public class MethodsFromDevelopers : MonoBehaviour
     
     protected void PutObjects(Transform ObjectForPut, Transform PosForPut)
     {
-        Rigidbody RigObject = ObjectForPut.gameObject.GetComponent<Rigidbody>();
-        BoxCollider BCObject = ObjectForPut.gameObject.GetComponent<BoxCollider>();
+        Rigidbody RigObject = ObjectForPut.GetComponent<Rigidbody>();
+        BoxCollider BCObject = ObjectForPut.GetComponent<BoxCollider>();
+
+        SoundCreatorScript SCSObject = ObjectForPut.GetComponent<SoundCreatorScript>();
+        ExecutoreScript ESObject = ObjectForPut.GetComponent<ExecutoreScript>();
+
+        if (SCSObject) Destroy(SCSObject);
+        if (ESObject) Destroy(ESObject);
 
         if (RigObject) Destroy(RigObject);
         if (BCObject) BCObject.enabled = false;
@@ -28,9 +34,15 @@ public class MethodsFromDevelopers : MonoBehaviour
 
     protected void DropObjects(Transform ObjectToDrop, Transform ObecjtForCopy)
     {
-        Rigidbody RigObject = ObjectToDrop.gameObject.GetComponent<Rigidbody>();
-        BoxCollider BCObject = ObjectToDrop.gameObject.GetComponent<BoxCollider>();
+        Rigidbody RigObject = ObjectToDrop.GetComponent<Rigidbody>();
+        BoxCollider BCObject = ObjectToDrop.GetComponent<BoxCollider>();
+        
+        SoundCreatorScript SCSObject = ObjectToDrop.GetComponent<SoundCreatorScript>();
+        ExecutoreScript ESObject = ObjectToDrop.GetComponent<ExecutoreScript>();
 
+        if (!SCSObject) SCSObject = ObjectToDrop.gameObject.AddComponent<SoundCreatorScript>();
+        if (!ESObject) ESObject = ObjectToDrop.gameObject.AddComponent<ExecutoreScript>();
+        
         if (RigObject)
         {
             Droping(RigObject, BCObject);
@@ -68,6 +80,6 @@ public class MethodsFromDevelopers : MonoBehaviour
         
     }
 
-    
+
 
 }

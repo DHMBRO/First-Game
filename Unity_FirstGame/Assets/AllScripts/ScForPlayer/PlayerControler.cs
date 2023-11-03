@@ -11,6 +11,7 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private DropControler ControlerDrop;
     [SerializeField] private SlotControler SlotControler;
     [SerializeField] public ShootControler ControlerShoot;
+    [SerializeField] private DivertAttention DivertAttention;
 
     [SerializeField] private UiControler ControlerUi;
 
@@ -21,19 +22,59 @@ public class PlayerControler : MonoBehaviour
 
     [SerializeField] WhatIsInHand Using;
 
+
+    enum MainPlayer
+    {
+        Null,
+
+        InventoryIsOpen,
+        Stels,
+        UseLoot,
+        AimingToDropRock,
+    }
+
+    enum Movement
+    {
+        Null,
+        
+        Go,
+        Run,
+        Jump,
+    }
+    
+    enum Hand
+    {
+        Null,
+        
+        Knife,
+        Weapon,
+        Loot,
+    }
+    
+    enum Camera
+    {
+        Null,
+
+        RotateSimple,
+        Aiming,
+    }
+
+    
+
     void Start()
     {
-        Move = gameObject.GetComponent<Move1F>();
-        
-        MovePlayer = gameobject.GetComponent<MovePlayer>();
+        //Movement
+        Move = GetComponent<Move1F>();
+        MovePlayer = GetComponent<MovePlayer>();
         MovePlayer.ControlerPlayer = GetComponent<PlayerControler>();
-
-        StelsScript = gameObject.GetComponent<StelsScript>();
-
-        PickUpPlayer = gameObject.GetComponent<PickUp>();
-        ControlerDrop = gameobject.GetComponent<DropControler>();
-        SlotControler = gameObject.GetComponent<SlotControler>();
         
+        StelsScript = GetComponent<StelsScript>();
+                    
+        PickUpPlayer = GetComponent<PickUp>();
+        ControlerDrop = GetComponent<DropControler>();
+        SlotControler = GetComponent<SlotControler>();
+        DivertAttention = GetComponent<DivertAttention>();
+
     }
     
     void Update()
@@ -65,11 +106,20 @@ public class PlayerControler : MonoBehaviour
                 if (!ControlerUi.InventoryIsOpen) ControlerShoot.Shoot();
             }
 
-            
             if (Input.GetKey(KeyCode.Mouse1)) Aiming = true;
             if (Input.GetKeyUp(KeyCode.Mouse1)) Aiming = false;
             if (MovePlayer) MovePlayer.Move();
 
+            if (DivertAttention)
+            {
+                if (Input.GetKeyDown(KeyCode.Z)) DivertAttention.SpawnRock();
+                if (Input.GetKey(KeyCode.Z)) DivertAttention.AimingToDrop();
+                if (Input.GetKeyUp(KeyCode.Z))
+                {
+                    DivertAttention.AimingToDrop();
+                    DivertAttention.DropRock();
+                }
+            }
 
 
             if (PickUpPlayer) PickUpAll();
