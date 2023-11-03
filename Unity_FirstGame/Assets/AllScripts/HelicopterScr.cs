@@ -1,9 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+using System.Net.NetworkInformation;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
 
 public class HelicopterScr : MonoBehaviour
 {
@@ -19,16 +16,18 @@ public class HelicopterScr : MonoBehaviour
     float T = 0.00f;
     float AddToT;
     bool landing = false;
+    bool DriveMRight;
     float T2 = 0.00f;
     float T3 = 0.00f;
     Vector3 PositionFrom;
     public float RandomPosition_X;
     public float RandomPosition_Z;
-    Vector3 RandomPOsition;
+
     bool NeedNewPosition = true;
     Vector3 S;
     Vector3 F;
     Vector3 M;
+    Vector3 s;
 
     public enum States
     {
@@ -110,69 +109,38 @@ public class HelicopterScr : MonoBehaviour
     }
     public void RoamAround()
     {
+
+        Vector3 RandomPOsition;
         if (NeedNewPosition)
         {
-            do
-            {
-                RandomPosition_X = UnityEngine.Random.Range(0f, 100f);
-
-                RandomPOsition = new Vector3(RandomPosition_X, gameObject.transform.position.y, gameObject.transform.position.z);
-
-            }
-            while (Vector3.Distance(gameObject.transform.position, RandomPOsition) < 30f);
+            RandomPOsition = GetNewRandomPosition(gameObject.transform.position, FlightTo.transform.position);
             S = gameObject.transform.position;
             F = RandomPOsition;
-            if (RandomPosition_X < 0)
+            if (DriveMRight)
             {
-                M = new Vector3(Vector3.Distance(gameObject.transform.position, RandomPOsition) / 2, gameObject.transform.position.y, Vector3.Distance(gameObject.transform.position, RandomPOsition) / 2 * -1);
+                M = new Vector3(S.x + Vector3.Distance(gameObject.transform.position, RandomPOsition) / 2, gameObject.transform.position.y, Vector3.Distance(gameObject.transform.position, RandomPOsition) * 1.5f * -1);
             }
             else
             {
-                M = new Vector3(Vector3.Distance(gameObject.transform.position, RandomPOsition) / 2, gameObject.transform.position.y, Vector3.Distance(gameObject.transform.position, RandomPOsition) / 2 * 1);
+                M = new Vector3(S.x - Vector3.Distance(gameObject.transform.position, RandomPOsition) / 2, gameObject.transform.position.y, Vector3.Distance(gameObject.transform.position, RandomPOsition) * 1.5f * 1);
             }
+            DriveMRight = !DriveMRight;
             SGameOjct.transform.position = S;
             FGameOjct.transform.position = F;
             MGameOjct.transform.position = M;
             NeedNewPosition = false;
-                
         }
-        else
-        {
-            switch (StatesFlght)
-            {
-                case StatesFlight.FromSToM:
-                    AddToT = Time.fixedDeltaTime / (Vector3.Distance(S, M) / Speed);
-                    gameObject.transform.position = gameObject.transform.position + Vector3.Lerp(S, M, T2);
-                    T2 += AddToT;
-                    if (T2 >= 1.00)
-                    {
-                        T2 = 0.00f;
-                        StatesFlght = StatesFlight.FromMToM;
-                    }
-                    break;
-                case StatesFlight.FromMToM:
-                    AddToT = Time.fixedDeltaTime / (Vector3.Distance(M, M) / Speed);
-                    gameObject.transform.position = gameObject.transform.position + Vector3.Lerp(M, M, T2);
-                    T2 += AddToT;
-                    if (T2 >= 1.00)
-                    {
-                        T2 = 0.00f;
-                        StatesFlght = StatesFlight.FromMToF;
-                    }
-                    break;
-                case StatesFlight.FromMToF:
-                    AddToT = Time.fixedDeltaTime / (Vector3.Distance(M, F) / Speed);
-                    gameObject.transform.position = gameObject.transform.position + Vector3.Lerp(M, F, T2);
-                    T2 += AddToT;
-                    if (T2 >= 1.00)
-                    {
-                        T2 = 0.00f;
-                        StatesFlght = StatesFlight.FromSToM;
-                        NeedNewPosition = true;
-                    }
-                    break;
 
-            }
+        Vector3 SM, MF;
+        SM = Vector3.Lerp(S, M, T2);
+        MF = Vector3.Lerp(M, F, T2);
+        gameObject.transform.position = Vector3.Lerp(SM, MF, T2);
+        AddToT = Time.fixedDeltaTime / (Vector3.Distance(S, M) / Speed);
+        T2 += AddToT;
+        if (T2 >= 1.00)
+        {
+            T2 = 0.00f;
+            NeedNewPosition = true;
         }
     }
     public void Landing()
@@ -194,5 +162,18 @@ public class HelicopterScr : MonoBehaviour
         AddToT = Time.fixedDeltaTime / (Vector3.Distance(FlightFrom.transform.position, PositionToLending) / Speed);
         gameObject.transform.position = Vector3.Lerp(FlightFrom.transform.position, PositionToLending, T);
         T -= AddToT;
+    }
+
+    Vector3 GetNewRandomPosition(Vector3 HelicopterPosition, Vector3 Origin)
+    {
+        Vector3 RandomPOsition;
+        do
+            {
+                RandomPosition_X = UnityEngine.Random.Range(-50f, 50f);
+
+                RandomPOsition = new Vector3(Origin.x + RandomPosition_X, Origin.y, Origin.z);
+            }
+            while (Vector3.Distance(HelicopterPosition, RandomPOsition) < 50f);
+        return RandomPOsition;
     }
 }
