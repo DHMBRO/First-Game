@@ -118,11 +118,11 @@ public class HelicopterScr : MonoBehaviour
             F = RandomPOsition;
             if (DriveMRight)
             {
-                M = new Vector3(S.x + Vector3.Distance(gameObject.transform.position, RandomPOsition) / 2, gameObject.transform.position.y, Vector3.Distance(gameObject.transform.position, RandomPOsition) * 1.5f * -1);
+                M = new Vector3(S.x + Vector3.Distance(gameObject.transform.position, RandomPOsition) / 2, gameObject.transform.position.y, Vector3.Distance(gameObject.transform.position, RandomPOsition) * 1f * -1);
             }
             else
             {
-                M = new Vector3(S.x - Vector3.Distance(gameObject.transform.position, RandomPOsition) / 2, gameObject.transform.position.y, Vector3.Distance(gameObject.transform.position, RandomPOsition) * 1.5f * 1);
+                M = new Vector3(S.x - Vector3.Distance(gameObject.transform.position, RandomPOsition) / 2, gameObject.transform.position.y, Vector3.Distance(gameObject.transform.position, RandomPOsition) * 1f * 1);
             }
             DriveMRight = !DriveMRight;
             SGameOjct.transform.position = S;
@@ -135,6 +135,7 @@ public class HelicopterScr : MonoBehaviour
         SM = Vector3.Lerp(S, M, T2);
         MF = Vector3.Lerp(M, F, T2);
         gameObject.transform.position = Vector3.Lerp(SM, MF, T2);
+        gameObject.transform.LookAt(Vector3.Lerp(SM, MF, T2) * 10);
         AddToT = Time.fixedDeltaTime / (Vector3.Distance(S, M) / Speed);
         T2 += AddToT;
         if (T2 >= 1.00)
