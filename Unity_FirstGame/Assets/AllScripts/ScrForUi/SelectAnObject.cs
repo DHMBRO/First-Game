@@ -4,7 +4,6 @@ public class SelectAnObject : MethodsFromDevelopers
 {
     [SerializeField] private Transform SlotToUseLoot;
     [SerializeField] private UiInventory UiInventory;
-    [SerializeField] private UiControler ControlerUi;
     [SerializeField] private Inventory Inventory;
     [SerializeField] private DropControler ControlerToDrop;
         
@@ -16,8 +15,6 @@ public class SelectAnObject : MethodsFromDevelopers
         if(Inventory)
         {
             SlotControler ControlerSlots = Inventory.GetComponent<SlotControler>();
-            ControlerUi = gameObject.GetComponent<UiControler>();
-            
             if (ControlerSlots)
             {
                 SlotToUseLoot = ControlerSlots.SlotHand;
@@ -93,9 +90,6 @@ public class SelectAnObject : MethodsFromDevelopers
 
             Inventory.ChangeMassInInventory();
             UiInventory.WriteSprite();
-            
-            if (ControlerUi) ControlerUi.PrintUseMassAndMaxMass();
-            else Debug.Log("Not set ControlerUi");
 
             //Debug.Log("InfoForSlots.Count: " + Inventory.InfoForSlots.Count);
             //Debug.Log("SpritesForBackPack.Count: " + UiInventory.SpritesForBackPack.Count);
@@ -125,12 +119,8 @@ public class SelectAnObject : MethodsFromDevelopers
         SelectObject();
         Inventory.ChangeMassInInventory();
         
-        if (ControlerUi) ControlerUi.PrintUseMassAndMaxMass();
-        else Debug.Log("Not set ControlerUi");
-
-
         //Debug.Log("InfoForSlots.Count"  + Inventory.InfoForSlots.Count);
-
+        
     }
 
 

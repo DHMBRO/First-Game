@@ -56,7 +56,7 @@ public class UiControler : MonoBehaviour
 
     }
 
-    public void PrintUseMassAndMaxMass()
+    private void PrintUseMassAndMaxMass()
     {
         string CurrentMassS;
         string MaxMassS;
