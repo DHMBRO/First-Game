@@ -45,7 +45,6 @@ public class Camera : MonoBehaviour
     bool FraimSimple = false;
     bool FraimAiming = false;
 
-
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -60,6 +59,7 @@ public class Camera : MonoBehaviour
 
     private void Update()
     {
+        
         
         if (ControlerUi) ControlerUi.Scope.gameObject.SetActive(Aiming);
         
@@ -204,7 +204,8 @@ public class Camera : MonoBehaviour
 
         FraimSimple = false;
         FraimAiming = false;
-
+        
+        
     }
     
     

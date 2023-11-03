@@ -6,7 +6,8 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private MovePlayer MovePlayer;
     [SerializeField] private Transform PlayerCamera;
     [SerializeField] private StelsScript StelsScript;
-
+    [SerializeField] private Camera CameraPlayer1;
+    
     [SerializeField] private PickUp PickUpPlayer;
     [SerializeField] private DropControler ControlerDrop;
     [SerializeField] private SlotControler SlotControler;
@@ -19,6 +20,8 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] Transform Anchor;
 
     [SerializeField] public bool Aiming = false;
+    [SerializeField] private bool WorkWithOutInventory = false;
+    
 
     [SerializeField] WhatIsInHand Using;
 
@@ -33,25 +36,7 @@ public class PlayerControler : MonoBehaviour
         AimingToDropRock,
     }
 
-    enum Movement
-    {
-        Null,
-        
-        Go,
-        Run,
-        Jump,
-    }
-    
-    enum Hand
-    {
-        Null,
-        
-        Knife,
-        Weapon,
-        Loot,
-    }
-    
-    enum Camera
+    enum CameraPlayer
     {
         Null,
 
@@ -59,6 +44,8 @@ public class PlayerControler : MonoBehaviour
         Aiming,
     }
 
+    [SerializeField] MainPlayer MainStatePlayer;
+    [SerializeField] CameraPlayer StateCamera;
     
 
     void Start()
@@ -78,17 +65,54 @@ public class PlayerControler : MonoBehaviour
     }
     
     void Update()
-    {   
-        if(ControlerUi && ControlerUi.InventoryIsOpen == false || !ControlerUi)
+    {
+        if (!ControlerUi) { Debug.Log("Not set ControlerUi"); WorkWithOutInventory = true;}
+
+        if (!WorkWithOutInventory && Input.GetKeyDown(KeyCode.I))
         {
-            if (SlotControler.SlotHand)
+            ControlerUi.OpenOrCloseInventory();
+        }
+        
+
+
+        if(!WorkWithOutInventory && !ControlerUi.InventoryIsOpen)
+        {
+            // Movement
+            if (MovePlayer)
             {
-                if (SlotControler.ObjectInHand)
+                MovePlayer.Move();
+                //MovePlayer.Jump();
+            }
+            //Camera
+            if (Input.GetKey(KeyCode.Mouse1)) Aiming = true;
+            if (Input.GetKeyUp(KeyCode.Mouse1)) Aiming = false;
+            // PickUp
+            if (PickUpPlayer) 
+            {
+                PickUpPlayer.RayForLoot();
+                PickUpPlayer.ComplertingTheLink();
+            }
+            // Drop
+            if (ControlerDrop)
+            {
+                if (Input.GetKeyDown(KeyCode.Q))
                 {
-                    if(SlotControler.ObjectInHand.GetComponent<ShootControler>()) ControlerShoot = SlotControler.ObjectInHand.GetComponent<ShootControler>();
+                    ControlerDrop.Drop();
+                    SlotControler.ObjectInHand = null;
+                    ControlerShoot = null;
                 }
-                else ControlerShoot = null;
-                
+            }
+            // Slot Controler
+            if (SlotControler)
+            {
+                SlotControler.MovingGunForSlots();
+
+                if (SlotControler.SlotHand && SlotControler.ObjectInHand)
+                {
+                    ControlerShoot = SlotControler.ObjectInHand.GetComponent<ShootControler>();
+                    
+                }
+                // Change Object In Hand
                 if (Input.GetKeyDown("1") && SlotControler.Counter == 0)
                 {
                     SlotControler.ChangingSlots();
@@ -98,18 +122,17 @@ public class PlayerControler : MonoBehaviour
                 {
                     SlotControler.Counter = 0;
                 }
+                
             }
-            else Debug.Log("Not set SlotHand");
-
-            if (ControlerShoot && Input.GetKey(KeyCode.Mouse0))
+            // Shooting
+            if (ControlerShoot)
             {
-                if (!ControlerUi.InventoryIsOpen) ControlerShoot.Shoot();
+                if (Input.GetKey(KeyCode.Mouse0))
+                {
+                    ControlerShoot.Shoot();
+                }
             }
-
-            if (Input.GetKey(KeyCode.Mouse1)) Aiming = true;
-            if (Input.GetKeyUp(KeyCode.Mouse1)) Aiming = false;
-            if (MovePlayer) MovePlayer.Move();
-
+            //Divert Attention 
             if (DivertAttention)
             {
                 if (Input.GetKeyDown(KeyCode.Z)) DivertAttention.SpawnRock();
@@ -120,53 +143,22 @@ public class PlayerControler : MonoBehaviour
                     DivertAttention.DropRock();
                 }
             }
-
-
-            if (PickUpPlayer) PickUpAll();
-            if (ControlerDrop && Input.GetKeyDown(KeyCode.Q))
-            {
-                ControlerDrop.Drop();
-                SlotControler.ObjectInHand = null;
-                ControlerShoot = null;
-                
-            }
-            
-            if (SlotControler) SlotControlerForAll();
-
-            /*
-            if (MovePlayer)
-            {
-                MovePlayer.Move();
-                MovePlayer.Jump();
-            }
-            */
-
-            if (gameobject && Anchor)
+            //Other
+            if (Input.GetKeyDown(KeyCode.T) && gameobject && Anchor)
             {
                 gameobject.transform.position = Anchor.transform.position;
 
             }
+
+
+
         }
 
-        
-    }
 
-    void ShootControlerForAllWeapon()
-    {
-                
-    }
 
-    void PickUpAll()
-    {
-        PickUpPlayer.RayForLoot();
-        PickUpPlayer.ComplertingTheLink();
 
-    }
 
-    void SlotControlerForAll()
-    {
-        SlotControler.MovingGunForSlots();
-        
+
 
     }
 

@@ -5,7 +5,7 @@ public class MovePlayer : MonoBehaviour
 {
     [SerializeField] public PlayerControler ControlerPlayer;
 
-    //[SerializeField] float JumpForce = 1.0f;
+    [SerializeField] float JumpForce = 1.0f;
     [SerializeField] protected float Sens = 1.0f;
 
     [SerializeField] ForceMode MyForceMode;
@@ -37,7 +37,7 @@ public class MovePlayer : MonoBehaviour
 
     
 
-    public void Move()
+    public void Move(/*bool Run, bool Aiming*/)
     {
         MoveVertical = Input.GetAxisRaw("Vertical");
         MoveHorizontal = Input.GetAxisRaw("Horizontal");
@@ -92,14 +92,14 @@ public class MovePlayer : MonoBehaviour
     }
 
 
-    /*
+    
     public void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             RaycastHit Result = new RaycastHit();
             Ray RayForJump = new Ray(transform.position, -transform.up);
-            Debug.DrawRay(transform.position, -transform.up * 1.01f, Color.blue);
+            Debug.DrawRay(transform.position, -transform.up * 0.50f, Color.blue);
             if (Physics.Raycast(RayForJump, out RaycastHit HitResult, 1.01f))
             {
                 Result = HitResult;
@@ -119,5 +119,5 @@ public class MovePlayer : MonoBehaviour
             JumpCount--;
         }
     } 
-    */
+    
 }

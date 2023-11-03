@@ -5,7 +5,7 @@ public class ExecutoreScript : MonoBehaviour
     [SerializeField] SoundCreatorScript SoundScript;
 
     [SerializeField] bool DestroyOnTouch = true;
-    bool IsWorked = false;
+    //bool IsWorked = false;
     
 
     private void OnCollisionEnter(Collision collision)
@@ -16,7 +16,7 @@ public class ExecutoreScript : MonoBehaviour
         if (SoundScript) SoundScript.CreateNoise();
 
         Debug.Log("OnColisionIs work");
-        IsWorked = true;
+        //IsWorked = true;
         
         if(DestroyOnTouch) Destroy(gameObject);
 

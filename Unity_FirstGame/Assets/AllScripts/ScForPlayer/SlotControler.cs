@@ -85,13 +85,13 @@ public class SlotControler : MethodsFromDevelopers
         if (MyWeapon02 && ObjectInHand.transform.position == MyWeapon02.position) TargetSlot = SlotBack02;
         if (MyPistol01 && ObjectInHand.transform.position == MyPistol01.position) TargetSlot = SlotPistol01;
 
-        if (TargetSlot) PutObjects(ObjectInHand.transform, TargetSlot);
+        if (TargetSlot) PutObjects(ObjectInHand.transform, TargetSlot, false);
 
     }
 
     public void GetObjectInHand()
     {
-        if (ObjectInHand) PutObjects(ObjectInHand.transform,SlotHand);
+        if (ObjectInHand) PutObjects(ObjectInHand.transform,SlotHand, false);
         
     }
 
@@ -252,13 +252,13 @@ public class SlotControler : MethodsFromDevelopers
                     void RechargeShop(GameObject ShopToRecharge)
                     {
                         ControlerForShoot.WeaponShoop = ShopToRecharge;
-                        PutObjects(ControlerForShoot.WeaponShoop.transform, ControlerForShoot.SlotForUseShop);
+                        PutObjects(ControlerForShoot.WeaponShoop.transform, ControlerForShoot.SlotForUseShop, false);
 
                     }
 
                     void DisRechargeShop(Transform PointToShop)
                     {
-                        PutObjects(ControlerForShoot.WeaponShoop.transform, PointToShop);
+                        PutObjects(ControlerForShoot.WeaponShoop.transform, PointToShop, false);
                     }
 
                    
@@ -276,7 +276,7 @@ public class SlotControler : MethodsFromDevelopers
         if (!MyWeapon01 && MyWeapon02)
         {
             MyWeapon01 = MyWeapon02;
-            PutObjects(MyWeapon01, SlotBack01);
+            PutObjects(MyWeapon01, SlotBack01, false);
 
             MyWeapon02 = null;
         }
@@ -295,7 +295,7 @@ public class SlotControler : MethodsFromDevelopers
         
         if (MyKnife01 && ObjectInHand == null && Counter == 0)
         {
-            PutObjects(MyKnife01, SlotHand);
+            PutObjects(MyKnife01, SlotHand, false);
 
             ObjectInHand = MyKnife01.gameObject;
             Counter = 1;
@@ -304,26 +304,26 @@ public class SlotControler : MethodsFromDevelopers
         {
             if (MyKnife01)
             {
-                PutObjects(MyKnife01, SlotKnife01);
+                PutObjects(MyKnife01, SlotKnife01, false);
                 ObjectInHand = null;
             }
             if (MyPistol01)
             {
-                PutObjects(MyPistol01, SlotHand);
+                PutObjects(MyPistol01, SlotHand, false);
                 ObjectInHand = MyPistol01.gameObject;
                 Counter = 1;
 
             }
             else if (!ObjectInHand02 && MyWeapon01)
             {
-                PutObjects(MyWeapon01, SlotHand);
+                PutObjects(MyWeapon01, SlotHand, false);
                 ObjectInHand = MyWeapon01.gameObject;
                 Counter = 1;
             }
             else if (!ObjectInHand02 && !ObjectInHand03 && MyWeapon02)
             {
 
-                PutObjects(MyWeapon02, SlotHand);
+                PutObjects(MyWeapon02, SlotHand, false);
                 ObjectInHand = MyWeapon02.gameObject;
                 Counter = 1;
             }
@@ -334,12 +334,12 @@ public class SlotControler : MethodsFromDevelopers
 
             if (ObjectInHand02 && MyPistol01)
             {
-                PutObjects(MyPistol01, SlotPistol01);
+                PutObjects(MyPistol01, SlotPistol01, false);
                 ObjectInHand = null;
             }
             if (!ObjectInHand && MyWeapon01 && Counter == 0)
             {
-                PutObjects(MyWeapon01, SlotHand);
+                PutObjects(MyWeapon01, SlotHand, false);
                 ObjectInHand = MyWeapon01.gameObject;
                 Counter = 1;
             }
@@ -348,12 +348,12 @@ public class SlotControler : MethodsFromDevelopers
         {
             if (MyWeapon01 && ObjectInHand03)
             {
-                PutObjects(MyWeapon01, SlotBack01);
+                PutObjects(MyWeapon01, SlotBack01, false);
                 ObjectInHand = null;
             }
             if (MyWeapon02 && !ObjectInHand && Counter == 0)
             {
-                PutObjects(MyWeapon02, SlotHand);
+                PutObjects(MyWeapon02, SlotHand, false);
                 ObjectInHand = MyWeapon02.gameObject;
                 Counter = 1;
             }
@@ -361,19 +361,19 @@ public class SlotControler : MethodsFromDevelopers
         }
         if (MyPistol01 && !MyWeapon01 && !MyWeapon02 && Counter == 0)
         {
-            PutObjects(MyPistol01, SlotPistol01);
+            PutObjects(MyPistol01, SlotPistol01, false);
             ObjectInHand = null;
 
         }
         else if (MyWeapon01 && !MyWeapon02 && Counter == 0)
         {
-            PutObjects(MyWeapon01, SlotBack01);
+            PutObjects(MyWeapon01, SlotBack01, false);
             ObjectInHand = null;
 
         }
         else if (MyWeapon02 && ObjectInHand04 && Counter == 0)
         {
-            PutObjects(MyWeapon02, SlotBack02);
+            PutObjects(MyWeapon02, SlotBack02, false);
             ObjectInHand = null;
         }
         

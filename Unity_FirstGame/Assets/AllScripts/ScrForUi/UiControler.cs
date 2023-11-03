@@ -37,27 +37,22 @@ public class UiControler : MonoBehaviour
         
     }
 
-    void Update()
+    
+    public void OpenOrCloseInventory()
     {
+        InventoryIsOpen = !InventoryIsOpen;
+        Scope.enabled = !InventoryIsOpen;
 
-        if (Input.GetKeyDown(KeyCode.I))
-        {   
-            InventoryIsOpen = !InventoryIsOpen;
-            Scope.enabled = !InventoryIsOpen;
-            
-            Inventory.SetActive(InventoryIsOpen);
-            PrintUseMassAndMaxMass();
+        Inventory.SetActive(InventoryIsOpen);
+        PrintUseMassAndMaxMass();
 
-            CurrentMassInInventory.gameObject.SetActive(InventoryIsOpen);
+        CurrentMassInInventory.gameObject.SetActive(InventoryIsOpen);
 
-            if (InventoryUi) InventoryUi.WriteSprite();
-            if (ManagerToGame) ManagerToGame.DisActiveUD();
+        if (InventoryUi) InventoryUi.WriteSprite();
+        if (ManagerToGame) ManagerToGame.DisActiveUD();
 
-            if (InventoryIsOpen) Cursor.lockState = CursorLockMode.None;
-            else Cursor.lockState = CursorLockMode.Locked;
-            
-        }
-        
+        if (InventoryIsOpen) Cursor.lockState = CursorLockMode.None;
+        else Cursor.lockState = CursorLockMode.Locked;
 
     }
 

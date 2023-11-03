@@ -105,7 +105,7 @@ public class SelectAnObject : MethodsFromDevelopers
 
     public void PutLoot(Transform LootToPut)
     {
-        PutObjects(LootToPut, SlotToUseLoot);
+        PutObjects(LootToPut, SlotToUseLoot, false);
     }
 
 
@@ -118,7 +118,7 @@ public class SelectAnObject : MethodsFromDevelopers
 
         //Debug.Log("Cordinates: " + ObjectToDrop.transform.position.x + " to x " + ObjectToDrop.transform.position.y + " to y " + ObjectToDrop.transform.position.z + " to z ");
 
-        if (ControlerToDrop) DropObjects(ObjectToDrop.transform, ControlerToDrop.PointForDrop);
+        if (ControlerToDrop) DropObjects(ObjectToDrop.transform, ControlerToDrop.PointForDrop, false);
         else Debug.Log("Not set ControlerToDrop");
 
         

@@ -63,7 +63,7 @@ public class GameManager : MethodsFromDevelopers
 
         if (WatchedSlot && IndexToSlots >= 0 || IndexToSlots  <= 3)
         {
-            PutObjects(WatchedSlot.transform, AllSlots[IndexToSlots].transform);
+            PutObjects(WatchedSlot.transform, AllSlots[IndexToSlots].transform, false);
             WatchedSlot.SetActive(true);
 
             Button ButtonU = ButtonUse.GetComponent<Button>();

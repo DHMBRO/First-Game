@@ -44,7 +44,7 @@ public class DivertAttention : MethodsFromDevelopers
         
         Rock.AddComponent<SoundCreatorScript>();
 
-        PutObjects(Rock.transform, HandPlayer);
+        PutObjects(Rock.transform, HandPlayer, true);
 
         this.Rock = Rock;
         LineRender.enabled = true;
