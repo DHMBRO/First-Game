@@ -235,7 +235,7 @@ public class Camera : MonoBehaviour
 
             //HandTarget.eulerAngles = new Vector3(HandTarget.eulerAngles.x, 0.0f, 0.0f);
             HandTarget.localEulerAngles = new Vector3(HandTarget.localEulerAngles.x, 0.0f,0.0f);
-            Debug.Log(HandTarget.localEulerAngles);
+            //Debug.Log(HandTarget.localEulerAngles);
             
         }
         else if(FraimAiming)
