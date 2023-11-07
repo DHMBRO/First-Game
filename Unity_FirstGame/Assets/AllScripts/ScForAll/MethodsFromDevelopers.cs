@@ -9,12 +9,12 @@ public class MethodsFromDevelopers : MonoBehaviour
         BoxCollider BCObject = ObjectForPut.GetComponent<BoxCollider>();
 
         SoundCreatorScript SCSObject;
-        ExecutoreScript ESObject;
+        ExecutoreScriptToRock ESObject;
 
         if (AddVoice)
         {
             SCSObject = ObjectForPut.GetComponent<SoundCreatorScript>();
-            ESObject = ObjectForPut.GetComponent<ExecutoreScript>();
+            ESObject = ObjectForPut.GetComponent<ExecutoreScriptToRock>();
 
             if (SCSObject) Destroy(SCSObject);
             if (ESObject) Destroy(ESObject);
@@ -44,15 +44,15 @@ public class MethodsFromDevelopers : MonoBehaviour
         BoxCollider BCObject = ObjectToDrop.GetComponent<BoxCollider>();
 
         SoundCreatorScript SCSObject;
-        ExecutoreScript ESObject;
+        ExecutoreScriptToRock ESObject;
 
         if (AddVoice)
         {
             SCSObject = ObjectToDrop.GetComponent<SoundCreatorScript>();
-            ESObject = ObjectToDrop.GetComponent<ExecutoreScript>();
+            ESObject = ObjectToDrop.GetComponent<ExecutoreScriptToRock>();
 
             if (!SCSObject) SCSObject = ObjectToDrop.gameObject.AddComponent<SoundCreatorScript>();
-            if (!ESObject) ESObject = ObjectToDrop.gameObject.AddComponent<ExecutoreScript>();
+            if (!ESObject) ESObject = ObjectToDrop.gameObject.AddComponent<ExecutoreScriptToRock>();
         }
 
         if (RigObject)

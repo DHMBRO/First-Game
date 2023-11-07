@@ -2,31 +2,44 @@ using UnityEngine;
 
 public class PlayerControler : MonoBehaviour
 {
+    //Movement Components
     [SerializeField] private Move1F Move;
     [SerializeField] private MovePlayer MovePlayer;
-    [SerializeField] private Transform PlayerCamera;
+
+    //Other Components
+    [SerializeField] public ShootControler ControlerShoot;
     [SerializeField] private StelsScript StelsScript;
-    [SerializeField] private Camera CameraPlayer1;
-    
+    [SerializeField] private DivertAttention DivertAttention;
+    [SerializeField] private ExecutoreScriptToPlayer EEScript;
+
+    //Main Components To Work Player
     [SerializeField] private PickUp PickUpPlayer;
     [SerializeField] private DropControler ControlerDrop;
     [SerializeField] private SlotControler SlotControler;
-    [SerializeField] public ShootControler ControlerShoot;
-    [SerializeField] private DivertAttention DivertAttention;
 
+    //Camera Components
+    [SerializeField] private Transform PlayerCameraF1;
+    [SerializeField] private Camera CameraPlayerF3;
+    
+    //Inventory Components
     [SerializeField] private UiControler ControlerUi;
-
+    
+    //Game Objects
     [SerializeField] Transform gameobject;
     [SerializeField] Transform Anchor;
-
-    [SerializeField] public bool Aiming = false;
-    [SerializeField] private bool WorkWithOutInventory = false;
     
+    //Bools
+    [SerializeField] public bool Aiming = false;
+    [SerializeField] public bool InStels = false;
 
-    [SerializeField] WhatIsInHand Using;
+    //Enums
+    [SerializeField] public WhatIsInHand Using;
+    [SerializeField] public MainPlayer MainStatePlayer;
+    [SerializeField] public ModeMovement MovementMode;
+    [SerializeField] public CameraPlayer StateCamera;
 
 
-    enum MainPlayer
+    public enum MainPlayer
     {
         Null,
 
@@ -36,7 +49,7 @@ public class PlayerControler : MonoBehaviour
         AimingToDropRock,
     }
 
-    enum CameraPlayer
+    public enum CameraPlayer
     {
         Null,
 
@@ -44,44 +57,52 @@ public class PlayerControler : MonoBehaviour
         Aiming,
     }
 
-    [SerializeField] MainPlayer MainStatePlayer;
-    [SerializeField] CameraPlayer StateCamera;
     
-
     void Start()
     {
         //Movement
         Move = GetComponent<Move1F>();
         MovePlayer = GetComponent<MovePlayer>();
-        MovePlayer.ControlerPlayer = GetComponent<PlayerControler>();
         
+        //Other Scripts
+        DivertAttention = GetComponent<DivertAttention>();
         StelsScript = GetComponent<StelsScript>();
-                    
+        EEScript = GetComponent<ExecutoreScriptToPlayer>();
+        
+        //Main Scripts To Work Player                  
         PickUpPlayer = GetComponent<PickUp>();
         ControlerDrop = GetComponent<DropControler>();
         SlotControler = GetComponent<SlotControler>();
-        DivertAttention = GetComponent<DivertAttention>();
-
+        
+        if (!ControlerUi) Debug.Log("Not set ControlerUi");
     }
-    
+
     void Update()
     {
-        if (!ControlerUi) { Debug.Log("Not set ControlerUi"); WorkWithOutInventory = true;}
-
-        if (!WorkWithOutInventory && Input.GetKeyDown(KeyCode.I))
+        if (ControlerUi && Input.GetKeyDown(KeyCode.I))
         {
             ControlerUi.OpenOrCloseInventory();
         }
         
-
-
-        if(!WorkWithOutInventory && !ControlerUi.InventoryIsOpen)
+        if(!ControlerUi || !ControlerUi.InventoryIsOpen)
         {
-            // Movement
+            // Movement && Executore Noice
             if (MovePlayer)
             {
-                MovePlayer.Move();
+                //Change Mood Movement
+                if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) MovementMode = ModeMovement.Go;
+                else MovementMode = ModeMovement.Null;
+                if (Input.GetKey(KeyCode.LeftShift)) MovementMode = ModeMovement.Run;
+                if (Aiming) MovementMode = ModeMovement.Aiming;
+
+                //Add Noice
+                if (EEScript) EEScript.ExecutoreNoice(MovementMode);
+                else Debug.Log("Not set EEScript");
+                
+                //Movement
+                MovePlayer.Move(MovementMode);
                 //MovePlayer.Jump();
+                
             }
             //Camera
             if (Input.GetKey(KeyCode.Mouse1)) Aiming = true;

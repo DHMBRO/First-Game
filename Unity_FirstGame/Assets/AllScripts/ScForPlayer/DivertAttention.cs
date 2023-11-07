@@ -122,7 +122,7 @@ public class DivertAttention : MethodsFromDevelopers
         Rigidbody RIGRock;
 
         SoundCreatorScript SoundScript;
-        ExecutoreScript ExecutorScript;
+        ExecutoreScriptToRock ExecutorScript;
 
         LineRender.enabled = false;
 
@@ -133,7 +133,7 @@ public class DivertAttention : MethodsFromDevelopers
         RIGRock.rotation = Quaternion.identity;
 
         SoundScript = Rock.GetComponent<SoundCreatorScript>();
-        ExecutorScript = Rock.AddComponent<ExecutoreScript>();
+        ExecutorScript = Rock.AddComponent<ExecutoreScriptToRock>();
         SphereZoneNoice.SetActive(false);
 
         Trajectory = ((CameraPlayer.position + CameraPlayer.forward * 10.0f) - Rock.transform.position).normalized * PowerToDrop;

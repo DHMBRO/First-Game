@@ -35,6 +35,17 @@ public enum CameraIs
     Aiming
 }
 
+public enum ModeMovement
+{
+    Null,
+
+    Go,
+    Aiming,
+    Run,
+    Stels,
+}
+
+
 /*
 public enum TypeLoot
 {

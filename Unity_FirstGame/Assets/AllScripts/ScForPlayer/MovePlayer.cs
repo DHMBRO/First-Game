@@ -18,7 +18,8 @@ public class MovePlayer : MonoBehaviour
     [SerializeField] int JumpCount;
 
     [SerializeField] private float SpeedAiming;
-    [SerializeField] private float SpeedMove;    
+    [SerializeField] private float SpeedGo;
+    [SerializeField] private float SpeedStels;
     [SerializeField] private float SpeedRun;
 
     
@@ -32,50 +33,60 @@ public class MovePlayer : MonoBehaviour
     void Start()
     {
         MyRigidbody = GetComponent<Rigidbody>();
-        
+        ControlerPlayer = GetComponent<PlayerControler>();
     }
 
-    
-
-    public void Move(/*bool Run, bool Aiming*/)
+    public void Move(ModeMovement MovementMode)
     {
         MoveVertical = Input.GetAxisRaw("Vertical");
         MoveHorizontal = Input.GetAxisRaw("Horizontal");
 
         //transform.rotation = Quaternion.Euler(0f, CameraTransform.rotation.y, 0f);
         //Vector3 ForceBack = transform.forward * MoveVertical * Speed;
-
-        Vector3 ForceAxis = new Vector3(MoveHorizontal, 0.0f, MoveVertical).normalized;
-        Vector3 ForceForward = new Vector3(0.0f, 0.0f, SpeedMove);
         //Vector3 ForceBack = new Vector3(MoveHorizontal, 0.0f, MoveVertical).normalized;
 
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Math.Abs(MoveVertical + MoveVertical) > 0.01f)
+        Vector3 ForceAxis = new Vector3(MoveHorizontal, 0.0f, MoveVertical).normalized;
+        
+        if (true || Math.Abs(MoveVertical + MoveVertical) > 0.01f)
         {
-            if (!ControlerPlayer.Aiming)
+
+            if (!ControlerPlayer.Aiming && MovementMode != ModeMovement.Null) //Rotate Body Player
             {
                 Quaternion Forward = Quaternion.LookRotation(ForceAxis);
-
                 Quaternion TargetRotation = Forward * CameraScr.transform.rotation;
 
                 TargetRotation.x = 0;
                 TargetRotation.z = 0;
 
                 float yAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, TargetRotation.eulerAngles.y, ref yVelocity, smooth);
-                
                 transform.rotation = Quaternion.Euler(0, yAngle, 0);
-
-                //Vector3 MoveForward = new Vector3(0.0f, 0.0f, SpeedMove);
-
-                MyRigidbody.AddRelativeForce(ForceForward, ForceMode.Force);
-                if (Input.GetKey(KeyCode.LeftShift)) MyRigidbody.AddRelativeForce(ForceForward * SpeedRun, ForceMode.Force);
-
-            }
-            else
-            {
-                MyRigidbody.AddRelativeForce(ForceAxis * SpeedAiming, MyForceMode);
-                if (Input.GetKey(KeyCode.LeftShift)) MyRigidbody.AddRelativeForce(ForceAxis * SpeedRun, MyForceMode);
+                
                 
             }
+            
+            switch (MovementMode)
+            {
+                case ModeMovement.Aiming:
+                    Movement(SpeedAiming, true);
+                    break;
+                case ModeMovement.Go:
+                    Movement(SpeedGo, false);
+                    break;
+                case ModeMovement.Stels:
+                    Movement(SpeedStels, false);
+                    break;
+                case ModeMovement.Run:
+                    Movement(SpeedRun, false);
+                    break;
+
+            }
+
+            void Movement(float CurrentSpeedToMove,bool Aiming)
+            {
+                if (Aiming) MyRigidbody.AddRelativeForce(ForceAxis * SpeedAiming, MyForceMode);
+                else MyRigidbody.AddRelativeForce(new Vector3(0.0f, 0.0f, 1.0f * CurrentSpeedToMove), ForceMode.Force);
+            }
+
         }
 
         MyRigidbody.velocity = new Vector3(0, MyRigidbody.velocity.y, 0);

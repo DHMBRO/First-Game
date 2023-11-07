@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ExecutoreScript : MonoBehaviour
+public class ExecutoreScriptToRock : MonoBehaviour
 {
     [SerializeField] SoundCreatorScript SoundScript;
 

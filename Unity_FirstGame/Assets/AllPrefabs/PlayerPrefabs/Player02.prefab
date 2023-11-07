@@ -833,6 +833,8 @@ GameObject:
   - component: {fileID: 7577484477006445214}
   - component: {fileID: 1045302744663474186}
   - component: {fileID: 3059040256925347778}
+  - component: {fileID: 2320318701797134959}
+  - component: {fileID: 2001030955048781610}
   - component: {fileID: 4595642774281171269}
   m_Layer: 0
   m_Name: Player02
@@ -902,18 +904,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Move: {fileID: 0}
   MovePlayer: {fileID: 6328347359453867729}
-  PlayerCamera: {fileID: 7231277361793828127}
+  ControlerShoot: {fileID: 0}
   StelsScript: {fileID: 7577484477006445214}
+  DivertAttention: {fileID: 0}
+  EEScript: {fileID: 0}
   PickUpPlayer: {fileID: 0}
   ControlerDrop: {fileID: 0}
   SlotControler: {fileID: 7874716152253843916}
-  ControlerShoot: {fileID: 0}
-  DivertAttention: {fileID: 0}
+  PlayerCameraF1: {fileID: 0}
+  CameraPlayerF3: {fileID: 0}
   ControlerUi: {fileID: 0}
   gameobject: {fileID: 935961475211729313}
   Anchor: {fileID: 0}
   Aiming: 0
+  InStels: 0
   Using: 0
+  MainStatePlayer: 0
+  MovementMode: 0
+  StateCamera: 0
 --- !u!114 &7778607237951541594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1080,6 +1088,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ControlerPlayer: {fileID: 0}
+  JumpForce: 1
   Sens: 1
   MyForceMode: 0
   MyRigidbody: {fileID: 5669462573118057115}
@@ -1087,7 +1096,8 @@ MonoBehaviour:
   CameraTransform: {fileID: 5755626125737214850}
   JumpCount: 0
   SpeedAiming: 0
-  SpeedMove: 0
+  SpeedGo: 0
+  SpeedStels: 0
   SpeedRun: 0
   smooth: 0.1
 --- !u!114 &7577484477006445214
@@ -1133,14 +1143,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RockForDiverAttention: {fileID: 2799542706703838414, guid: 219615bf8d294d04780ab523307832cf, type: 3}
+  SphereZoneNoice: {fileID: 0}
   ControlerSlots: {fileID: 0}
   LineRender: {fileID: 0}
   CameraPlayer: {fileID: 0}
   HandPlayer: {fileID: 0}
   PowerToDrop: 500
-  Count: 0
+  CountPoints: 10
+  CalcTime: 2
   CanDivrtAttention: 0
   Rock: {fileID: 0}
+--- !u!114 &2320318701797134959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9027246094432369652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c15c62dc016af8044b23915b3ab24b54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SCScript: {fileID: 0}
+  DeleyToAddNoice: 0.5
+  TimeToAddNoice: 0
+  RadiusNoiceWhenAiming: 5
+  RadiusNoiceWhenGo: 10
+  RadiusNoiceWhenRun: 15
+--- !u!114 &2001030955048781610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9027246094432369652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d769b754154c77042aae9ea5c8dd47f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NoiseRadius: 15
 --- !u!120 &4595642774281171269
 LineRenderer:
   m_ObjectHideFlags: 0
