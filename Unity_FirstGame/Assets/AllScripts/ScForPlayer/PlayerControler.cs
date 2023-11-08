@@ -89,30 +89,48 @@ public class PlayerControler : MonoBehaviour
             // Movement && Executore Noice
             if (MovePlayer)
             {
+                bool Inputs = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D);
                 //Change Mood Movement
-                if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) MovementMode = ModeMovement.Go;
+                if (Inputs) MovementMode = ModeMovement.Go;
                 else MovementMode = ModeMovement.Null;
-                if (Input.GetKey(KeyCode.LeftShift)) MovementMode = ModeMovement.Run;
+
+                if (Input.GetKey(KeyCode.LeftShift)) 
+                {
+                    InStels = false;
+                    MovementMode = ModeMovement.Run;
+                } 
                 if (Aiming) MovementMode = ModeMovement.Aiming;
 
-                //Add Noice
-                if (EEScript) EEScript.ExecutoreNoice(MovementMode);
-                else Debug.Log("Not set EEScript");
+                if (Inputs)
+                {
+                    //Stels
+                    if (InStels) MovementMode = ModeMovement.Stels;
+                    
+                    //Add Noice
+                    if (EEScript) EEScript.ExecutoreNoice(MovementMode);
+                    else Debug.Log("Not set EEScript");
+
+                }
+
+
                 
                 //Movement
                 MovePlayer.Move(MovementMode);
                 //MovePlayer.Jump();
                 
             }
+            
             //Camera
             if (Input.GetKey(KeyCode.Mouse1)) Aiming = true;
             if (Input.GetKeyUp(KeyCode.Mouse1)) Aiming = false;
+            
             // PickUp
             if (PickUpPlayer) 
             {
                 PickUpPlayer.RayForLoot();
                 PickUpPlayer.ComplertingTheLink();
             }
+            
             // Drop
             if (ControlerDrop)
             {
@@ -123,6 +141,7 @@ public class PlayerControler : MonoBehaviour
                     ControlerShoot = null;
                 }
             }
+            
             // Slot Controler
             if (SlotControler)
             {
@@ -145,6 +164,7 @@ public class PlayerControler : MonoBehaviour
                 }
                 
             }
+            
             // Shooting
             if (ControlerShoot)
             {
@@ -153,6 +173,7 @@ public class PlayerControler : MonoBehaviour
                     ControlerShoot.Shoot();
                 }
             }
+            
             //Divert Attention 
             if (DivertAttention)
             {
@@ -164,6 +185,11 @@ public class PlayerControler : MonoBehaviour
                     DivertAttention.DropRock();
                 }
             }
+            
+            //Stels 
+            if (Input.GetKeyUp(KeyCode.X)) InStels = true;
+            if (Input.GetKeyDown(KeyCode.X)) InStels = false;
+
             //Other
             if (Input.GetKeyDown(KeyCode.T) && gameobject && Anchor)
             {

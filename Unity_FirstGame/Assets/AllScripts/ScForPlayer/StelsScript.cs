@@ -5,6 +5,7 @@ using UnityEngine;
 public class StelsScript : MonoBehaviour
 {
     public bool Stels;
+    
     void Start()
     {
         
