@@ -22,15 +22,17 @@ public class SoundCreatorScript : MonoBehaviour
         Colliders = Physics.OverlapSphere(gameObject.transform.position, NoiseRadius);
         foreach(Collider Colider in Colliders)
         {
-           GameObject ColiderObject = Colider.gameObject;
-            SoundTakerScript SoundScript = ColiderObject.GetComponentInParent<SoundTakerScript>();
-            if (SoundScript && ColiderObject)
+            if (Colider.gameObject == gameObject)
             {
-                SoundScript.TakeSound(ColiderObject.transform.position);
-
+                continue;
+            }
+            SoundTakerScript SoundScript = Colider.gameObject.GetComponentInParent<SoundTakerScript>();
+            if (SoundScript)
+            {
+                SoundScript.TakeSound(gameObject.transform.position);
             }
         }
-
+        Debug.Log("Sound Created");
 
     }
 }

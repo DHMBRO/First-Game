@@ -836,6 +836,7 @@ GameObject:
   - component: {fileID: 2320318701797134959}
   - component: {fileID: 2001030955048781610}
   - component: {fileID: 4595642774281171269}
+  - component: {fileID: 8726783272376750693}
   m_Layer: 0
   m_Name: Player02
   m_TagString: Player01
@@ -1072,6 +1073,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UiHp: {fileID: 0}
   ProzentHealPoint: {fileID: 0}
+  State: 1
   HealthPoint: 100
   MaxHp: 100
   MyLive: 0
@@ -1283,6 +1285,22 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &8726783272376750693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9027246094432369652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8259de7e900ffb444922db29c107e2bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanInstantKill: 0
+  MaxKillDistance: 3
+  MinKillDistance: 0.5
+  BodyPlayer: {fileID: 0}
 --- !u!1 &9125961473927298832
 GameObject:
   m_ObjectHideFlags: 0

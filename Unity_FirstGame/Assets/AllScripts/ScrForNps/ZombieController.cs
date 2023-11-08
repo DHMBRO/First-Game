@@ -11,10 +11,11 @@ public class ZombieController : MonoBehaviour
     protected AttackMethod ZombieAttackScript;
     protected PatrolScriptNavMesh ZombiePatrolScript;
     protected HpScript ZombieHpScript;
-   
-
+    public SoundCreatorScript ZombieSoundCreatorScript;
+    public bool ICanComunicate; 
     void Start()
     {
+        ZombieSoundCreatorScript = gameObject.GetComponent<SoundCreatorScript>();
         ZombieHpScript = gameObject.GetComponent<HpScript>();
         ZombieLocateScript = gameObject.GetComponent<LocateScript>();
         ZombieAttackScript = gameObject.GetComponent<AttackMethod>();
@@ -42,13 +43,15 @@ public class ZombieController : MonoBehaviour
                 ZombieLocateScript.ValidateTarget();
                 if (ZombieLocateScript.CanISeeTarget())
                 {
+                    if (ZombieSoundCreatorScript && ICanComunicate)
+                    {
+                        ZombieSoundCreatorScript.CreateNoise();
+                        ICanComunicate = false;
+                    }
                     ZombieLocateScript.RelocateTarget();
-                    //Debug.Log("canISeeTarget");
-
                     if (ZombieHpScript.IsAlive() && ZombiePatrolScript.ZombieNavMesh.remainingDistance <= ZombieAttackScript.AttackDistance &&
                             (ZombieLocateScript.Target.transform.position - ZombiePatrolScript.ZombieNavMesh.destination).magnitude <= ZombieAttackScript.GoingDistance)
                     {
-                        //Debug.Log("Attack!!!");
 
                         ZombiePatrolScript.ZombieNavMesh.isStopped = true;
                         ZombieAttackScript.Attack(ZombieLocateScript.Target);
@@ -59,15 +62,16 @@ public class ZombieController : MonoBehaviour
                     {
                         ZombiePatrolScript.ZombieNavMesh.isStopped = false;
                         ZombiePatrolScript.MoveTo(ZombieLocateScript.Target.transform.position);
+                       
                     }
 
                 }
 
                 else if (ZombieHpScript.IsAlive())
                 {
-                    
                     ZombiePatrolScript.ZombieNavMesh.isStopped = false;
                     ZombiePatrolScript.Patroling();
+                    ICanComunicate = true;
                 }
 
             }

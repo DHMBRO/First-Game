@@ -58,7 +58,7 @@ public class PatrolScriptNavMesh : MonoBehaviour
     {
         if (!NeedCheckPosition)
         {
-            MoveTo(MyPointControllScript.Points[CurrentPoint].transform.position, true);
+            MoveTo(MyPointControllScript.Points[CurrentPoint].transform.position, true);    
             MyState = State.Moving;
         }
     }
@@ -94,9 +94,8 @@ public class PatrolScriptNavMesh : MonoBehaviour
             MoveTo(MyPointControllScript.Points[CurrentPoint].transform.position, true);
         }
     }
-    protected void CheckPosition(Vector3 CheckingPosition)
+    public  void CheckPosition(Vector3 CheckingPosition)
     {
         MoveTo(CheckingPosition);
-        MyState = State.Moving;
     }
 }
