@@ -61,6 +61,16 @@ public class Camera : MonoBehaviour
     {
         
         
+
+
+
+
+
+
+
+
+
+        
         if (ControlerUi) ControlerUi.Scope.gameObject.SetActive(Aiming);
         
         if (ControlerUi && !ControlerUi.InventoryIsOpen || !ControlerUi)
@@ -209,6 +219,9 @@ public class Camera : MonoBehaviour
     }
     
     
+
+
+
     
     
     void LerpCamera(Vector3 TargetVector)
