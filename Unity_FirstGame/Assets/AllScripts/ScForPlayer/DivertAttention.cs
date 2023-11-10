@@ -55,7 +55,7 @@ public class DivertAttention : MethodsFromDevelopers
 
     public void AimingToDrop()
     {
-        Vector3 CameraTarget = CameraPlayer.position + CameraPlayer.forward * 10.0f;    
+        Vector3 CameraTarget = CameraPlayer.position + CameraPlayer.forward * 10.0f;
         
         if (CountPoints <= 0) return;
         Vector3[] Points = new Vector3[CountPoints];

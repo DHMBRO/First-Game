@@ -270,11 +270,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Head: {fileID: 6744087348165964983}
   Target: {fileID: 0}
+  State: 0
   WhatImLooking: 
   SpeedForMove: 3.5
   MaxDistatzeForAgr: 7
   ZombiePatrolScript: {fileID: 2516517602217220442}
-  ZombieSoundCreatorScript: {fileID: 95283667875477210}
   VisionAngle: 40
 --- !u!114 &4900945666828990210
 MonoBehaviour:
@@ -301,10 +301,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84321c486174e4f49b8d7ce88c83ff52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MyPointControllScript: {fileID: 7530595455176631328}
+  MyPointControllScript: {fileID: 0}
   StartPosIndex: 0
   ZombieNavMesh: {fileID: 6577064939743736596}
-  NeedCheckPosition: 0
   MyState: 1
 --- !u!114 &6519001109737162614
 MonoBehaviour:
@@ -385,7 +384,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UiHp: {fileID: 0}
   ProzentHealPoint: {fileID: 0}
-  State: 0
   HealthPoint: 10
   MaxHp: 10
   MyLive: 0

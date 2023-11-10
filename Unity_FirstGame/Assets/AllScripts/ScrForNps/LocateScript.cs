@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LocateScript : MonoBehaviour
+public class LocateScript : EnemyController
 {
 
     [SerializeField] private Transform Head;
     public GameObject Target = null;
-    
+    [SerializeField] EnemyState State;
     [SerializeField] private string WhatImLooking;
     [SerializeField] private RaycastHit HitResult;
 
@@ -15,18 +15,14 @@ public class LocateScript : MonoBehaviour
     [SerializeField] private float MaxDistatzeForAgr;
     public PatrolScriptNavMesh ZombiePatrolScript;
     private StelsScript TargetStelsScript;
-    protected HpScript ZoombieHpScript;
-    public SoundCreatorScript ZombieSoundCreatorScript;
-
-    [SerializeField] float VisionAngle = 100.0f;
+    [SerializeField] float VisionAngle = 40.0f;
     List<GameObject> Targets;
     
     void Start()
     {
         Targets = new List<GameObject>();
         ZombiePatrolScript = gameObject.GetComponent<PatrolScriptNavMesh>();
-        ZoombieHpScript = gameObject.GetComponent<HpScript>();
-        ZombieSoundCreatorScript = gameObject.GetComponent<SoundCreatorScript>();
+        
     }
 
     private void Update()
@@ -39,10 +35,10 @@ public class LocateScript : MonoBehaviour
         if (other.gameObject.GetComponentInParent<EnemyController>())
         {
             HpScript TargetHpScript = other.gameObject.GetComponent<HpScript>();
-            
-            if (TargetHpScript)
+            LocateScript EnemyLocateScript = other.gameObject.GetComponent<LocateScript>();
+            if (EnemyLocateScript && TargetHpScript)
             {
-                if (TargetHpScript.State != ZoombieHpScript.State)
+                if (State != EnemyLocateScript.State)
                 {
                     if (TargetHpScript.MyLive == HpScript.Live.Alive)
                     {
@@ -86,6 +82,7 @@ public class LocateScript : MonoBehaviour
         {
             return false;
         }
+        
         
 
 
@@ -144,7 +141,9 @@ public class LocateScript : MonoBehaviour
         
         if ((ZombiePatrolScript.ZombieNavMesh.destination - Target.transform.position).magnitude >= 3.0f)
         {
+
             ZombiePatrolScript.ZombieNavMesh.SetDestination(Target.transform.position);
+
         }
 
     }
@@ -156,48 +155,58 @@ public class LocateScript : MonoBehaviour
 
         }
         float AngleToBackTarget = Vector3.Angle(-gameObject.transform.forward, Object.transform.position - gameObject.transform.position);
-        if (AngleToBackTarget <= 40.0f)
+        if (AngleToBackTarget <= 30.0f)
         {
+            
+
+
+
+
             return true;
         }
         return false;
     }
     public GameObject WhatForvardToMe(GameObject Object)
     {
-
          RaycastHit Hitres;
          if (Physics.Raycast(Object.transform.position, Object.transform.forward, out Hitres))
          {
-            return Hitres.collider.gameObject;
-            /*RaycastHit Hitresult;
+            RaycastHit Hitresult;
             if (Physics.Raycast(Object.transform.position, Object.transform.forward - Hitres.collider.gameObject.transform.position , out Hitresult))
             {
-                
                 if (Hitresult.collider.gameObject == Hitres.collider.gameObject)
                 {
-                    
+                    return Hitres.collider.gameObject;
                 }
                 
             }
-               */
+               
          }
         return null;
     }
     // рейкаст між 2(від мене до об,єкта) обєктами перевірка чи нема між ними нічого
     public void DefineMyTarget()
     {
-        float MinDistance = float.MaxValue;
-        GameObject NewTarget = Target;
-        foreach (GameObject SingleTarget in Targets)
-        {
-            float CurenntDis = (SingleTarget.transform.position - gameObject.transform.position).magnitude;
-            if (CurenntDis < MinDistance)
+       
+            float MinDistance = float.MaxValue;
+            GameObject NewTarget = Target;
+            foreach (GameObject SingleTarget in Targets)
             {
-                NewTarget = SingleTarget;
-                MinDistance = CurenntDis;
+            
+            
+                float CurenntDis = (SingleTarget.transform.position - gameObject.transform.position).magnitude;
+                if (CurenntDis < MinDistance)
+                {
+                    NewTarget = SingleTarget;
+                    MinDistance = CurenntDis;
+                }
+
+            
+                
             }
-        }
-        Target = NewTarget;
+            Target = NewTarget;
+        
+
     }
 
     public void ValidateTarget()

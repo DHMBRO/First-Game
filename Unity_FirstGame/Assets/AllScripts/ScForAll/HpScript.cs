@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-public class HpScript : EnemyController
+public class HpScript : MonoBehaviour
 {
     [SerializeField] private Image UiHp;
     [SerializeField] private TextMeshProUGUI ProzentHealPoint;
-    [SerializeField] public EnemyState State;
+
     [SerializeField] public float HealthPoint = 10;
     [SerializeField] private float MaxHp;
     
