@@ -8,7 +8,6 @@ public class ExecutoreScriptToPlayer : MonoBehaviour
     [SerializeField] float DeleyToAddNoice = 0.0f;
     [SerializeField] float TimeToAddNoice = 0.0f;
 
-    [SerializeField] float RadiusNoiceWhenInStels = 2.0f;
     [SerializeField] float RadiusNoiceWhenAiming = 5.0f;
     [SerializeField] float RadiusNoiceWhenGo = 10.0f;
     [SerializeField] float RadiusNoiceWhenRun = 15.0f;
@@ -24,15 +23,12 @@ public class ExecutoreScriptToPlayer : MonoBehaviour
 
     public void ExecutoreNoice(ModeMovement MovementMode)
     {
-        if (Time.time >= TimeToAddNoice)
+        if (Time.time >= DeleyToAddNoice)
         {
             float RadiusNoice = 0.1f;
             
             switch (MovementMode)
             {
-                case ModeMovement.Stels:
-                    RadiusNoice = RadiusNoiceWhenInStels;
-                    break;
                 case ModeMovement.Aiming:
                     RadiusNoice = RadiusNoiceWhenAiming;
                     break;
