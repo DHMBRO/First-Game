@@ -19,7 +19,7 @@ public class PlayerControler : MonoBehaviour
 
     //Camera Components
     [SerializeField] private Transform PlayerCameraF1;
-    [SerializeField] private Camera CameraPlayerF3;
+    [SerializeField] private ThirdPersonCamera CameraPlayerF3;
     
     //Inventory Components
     [SerializeField] private UiControler ControlerUi;
@@ -79,9 +79,10 @@ public class PlayerControler : MonoBehaviour
 
     void Update()
     {
-        if (ControlerUi && Input.GetKeyDown(KeyCode.I))
+        if (ControlerUi)
         {
-            ControlerUi.OpenOrCloseInventory();
+            if(Input.GetKeyDown(KeyCode.I)) ControlerUi.OpenOrCloseInventory();
+            if (ControlerUi.InventoryIsOpen) MainStatePlayer = MainPlayer.InventoryIsOpen;
         }
         
         if(!ControlerUi || !ControlerUi.InventoryIsOpen)
@@ -104,7 +105,11 @@ public class PlayerControler : MonoBehaviour
                 if (Inputs)
                 {
                     //Stels
-                    if (InStels) MovementMode = ModeMovement.Stels;
+                    if (InStels)
+                    {
+                        MovementMode = ModeMovement.Stels;
+                        MainStatePlayer = MainPlayer.Stels;
+                    }
                     
                     //Add Noice
                     if (EEScript) EEScript.ExecutoreNoice(MovementMode);
@@ -112,12 +117,9 @@ public class PlayerControler : MonoBehaviour
 
                 }
 
-
-                
                 //Movement
                 MovePlayer.Move(MovementMode);
                 //MovePlayer.Jump();
-                
             }
             
             //Camera

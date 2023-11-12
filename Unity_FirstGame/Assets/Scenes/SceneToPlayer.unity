@@ -1548,7 +1548,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6761677284600033288, guid: 99b382a7a7090204b9bd10d055fa8870, type: 3}
       propertyPath: m_Name
-      value: Camera
+      value: ThirdPersonCamera
       objectReference: {fileID: 0}
     - target: {fileID: 7488472755565312316, guid: 99b382a7a7090204b9bd10d055fa8870, type: 3}
       propertyPath: m_Icon
@@ -3192,6 +3192,10 @@ PrefabInstance:
       propertyPath: SlotControler
       value: 
       objectReference: {fileID: 1226521084}
+    - target: {fileID: 9222820105927190343, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: CameraPlayerF3
+      value: 
+      objectReference: {fileID: 2100636532}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
 --- !u!1001 &972909478
@@ -5698,6 +5702,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3811309240065978825, guid: 99b382a7a7090204b9bd10d055fa8870, type: 3}
   m_PrefabInstance: {fileID: 752688836}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2100636532 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3994893304370285142, guid: 99b382a7a7090204b9bd10d055fa8870, type: 3}
+  m_PrefabInstance: {fileID: 752688836}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c17c392016f26174f85883697f209549, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2107134416
 GameObject:
   m_ObjectHideFlags: 0
