@@ -24,9 +24,6 @@ public class ScrForUseAmmo : MonoBehaviour, IUsebleInterFace
 
         int NotEnoughAmmo;
 
-        
-
-
         if (ShopCanReload.Count == 1) ShopToReload = ShopCanReload[0];
         else if (ShopCanReload.Count == 2)
         {

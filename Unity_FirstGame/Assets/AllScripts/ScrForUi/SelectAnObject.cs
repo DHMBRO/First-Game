@@ -5,31 +5,30 @@ public class SelectAnObject : MethodsFromDevelopers
     [SerializeField] private Transform SlotToUseLoot;
     [SerializeField] private UiInventory UiInventory;
     [SerializeField] private Inventory Inventory;
+    [SerializeField] public PlayerControler ControlerPlayer;
     [SerializeField] private DropControler ControlerToDrop;
         
     [SerializeField] int IndexToList;
-    [SerializeField] GameObject ObjectToUse;
+    [SerializeField] public GameObject ObjectToUse;
 
     private void Start()
     {
         if(Inventory)
         {
             SlotControler ControlerSlots = Inventory.GetComponent<SlotControler>();
+            PlayerControler ControlerPlayer = Inventory.GetComponent<PlayerControler>(); 
+            
             if (ControlerSlots)
             {
                 SlotToUseLoot = ControlerSlots.SlotHand;
                 //Debug.Log(SlotToUseLoot);
             }
-            
+            if (!ControlerPlayer) Debug.Log("Not set ControlerPlayer");
+
         }
 
     }
 
-    private void Update()
-    {
-        //if (ObjectToUse) Debug.Log(ObjectToUse.name);
-        //else Debug.Log("Not set ObjectToUse");
-    }
 
     public void PrintIndexToList(int Index)
     {
@@ -68,7 +67,7 @@ public class SelectAnObject : MethodsFromDevelopers
         ScrForAllLoot ScrForLoot = ObjectToUse.GetComponent<ScrForAllLoot>();
         IUsebleInterFace UseLoot = ObjectToUse.GetComponent<IUsebleInterFace>();
 
-        if (UseLoot != null)
+        if (UseLoot != null && ControlerPlayer)
         {
             UseLoot.Use(Inventory.gameObject, Inventory.InfoForSlots[UiInventory.Count + IndexToList] , gameObject.GetComponent<SelectAnObject>());
             this.ObjectToUse = ObjectToUse;
@@ -81,12 +80,11 @@ public class SelectAnObject : MethodsFromDevelopers
                 
                 ScrForUseAmmo ScrAmmo = Inventory.InfoForSlots[UiInventory.Count + IndexToList].ObjectToInstantiate.GetComponent<ScrForUseAmmo>();
 
-                Debug.Log(Inventory.InfoForSlots[UiInventory.Count + IndexToList].CurrentAmmo);
-                Debug.Log(ScrAmmo.CurrentAmmo);
+                //Debug.Log(Inventory.InfoForSlots[UiInventory.Count + IndexToList].CurrentAmmo);
+                //Debug.Log(ScrAmmo.CurrentAmmo);
 
 
             }
-
 
             Inventory.ChangeMassInInventory();
             UiInventory.WriteSprite();

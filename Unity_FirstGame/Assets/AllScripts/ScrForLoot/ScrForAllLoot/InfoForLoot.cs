@@ -18,12 +18,12 @@ public class InfoForLoot
         ScrForUseAmmo ScrUseAmmo = ObjectFormGetInfo.GetComponent<ScrForUseAmmo>();
         ScrForAllLoot ScrAllLoot = ObjectFormGetInfo.GetComponent<ScrForAllLoot>();
 
-        Debug.Log(ObjectFormGetInfo.name);
+        //Debug.Log(ObjectFormGetInfo.name);
         
         if (ScrUseAmmo)
         {
             CurrentAmmo = ScrUseAmmo.CurrentAmmo;
-            Debug.Log("CurrentAmmo: " + ScrUseAmmo.CurrentAmmo);
+            //Debug.Log("CurrentAmmo: " + ScrUseAmmo.CurrentAmmo);
         }
 
         if (ScrAllLoot)
@@ -32,11 +32,7 @@ public class InfoForLoot
             HaveDescription = ScrAllLoot.HaveDescription;
             ObjectName = ScrAllLoot.ObjectName;
         }
-        Debug.Log(HaveDescription);
-
-        
-
-        
+        //Debug.Log(HaveDescription);
 
     }
     
@@ -48,7 +44,7 @@ public class InfoForLoot
         if (ScrUseAmmo)
         {
             ScrUseAmmo.CurrentAmmo = CurrentAmmo;
-            Debug.Log("Method Name: GetInfo   CurrentAmmo: " + ScrUseAmmo.CurrentAmmo);
+            //Debug.Log("Method Name: GetInfo   CurrentAmmo: " + ScrUseAmmo.CurrentAmmo);
 
         }
 

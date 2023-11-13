@@ -23,7 +23,8 @@ public class PlayerControler : MonoBehaviour
     
     //Inventory Components
     [SerializeField] private UiControler ControlerUi;
-    
+    [SerializeField] private SelectAnObject SelectObj;
+
     //Game Objects
     [SerializeField] Transform gameobject;
     [SerializeField] Transform Anchor;
@@ -35,6 +36,7 @@ public class PlayerControler : MonoBehaviour
     //Enums
     [SerializeField] public WhatIsInHand Using;
     [SerializeField] public MainPlayer MainStatePlayer;
+    [SerializeField] private WhatDoPlayer PlayerDo;
     [SerializeField] public ModeMovement MovementMode;
     [SerializeField] public CameraPlayer StateCamera;
 
@@ -44,10 +46,19 @@ public class PlayerControler : MonoBehaviour
         Null,
 
         InventoryIsOpen,
+        ShootWithWeapon,
         Stels,
-        UseLoot,
         AimingToDropRock,
+        
     }
+
+    public enum WhatDoPlayer
+    {
+        Null,
+
+        UseLoot,
+    }
+
 
     public enum CameraPlayer
     {
@@ -84,8 +95,15 @@ public class PlayerControler : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.I)) ControlerUi.OpenOrCloseInventory();
             if (ControlerUi.InventoryIsOpen) MainStatePlayer = MainPlayer.InventoryIsOpen;
         }
-        
-        if(!ControlerUi || !ControlerUi.InventoryIsOpen)
+
+        if (SelectObj)
+        {
+            if (SelectObj.ObjectToUse) PlayerDo = WhatDoPlayer.UseLoot;
+            else PlayerDo = WhatDoPlayer.Null;
+        }
+
+
+        if(!ControlerUi || !ControlerUi.InventoryIsOpen && PlayerDo == WhatDoPlayer.Null)
         {
             // Movement && Executore Noice
             if (MovePlayer)

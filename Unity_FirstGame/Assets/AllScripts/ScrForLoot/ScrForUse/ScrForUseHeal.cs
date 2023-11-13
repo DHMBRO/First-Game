@@ -10,40 +10,28 @@ public class ScrForUseHeal : MethodsFromDevelopers, IUsebleInterFace
     
     public void Use(GameObject Target, InfoForLoot InfoLoot, SelectAnObject SelectObj)
     {
-        
-        Debug.Log("1");
-        
-        //HpScript HealPointToTarget = Target.GetComponent<HpScript>();
-        //if (HealPointToTarget) HealPointToTarget.HealHp(HealHp);
-
+        //Methods
         SelectObj.PutLoot(transform);
         SelectObj.SelectObject();
-
+        
+        //Do Use
         //Invoke("RealUse", TimeToUse);
         StartCoroutine("RealUse", Target);
         
-
-        //Destroy(gameObject, TimeToUse);
-
-
-
     }
-
 
 
     IEnumerator RealUse(GameObject Target)
     {
-        Debug.Log("RealUse is work, Time to use: " + TimeToUse);
-
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(TimeToUse);
         
-
-        Debug.Log("Time is over");
-
+        //References To Components
         HpScript HealPointToTarget = Target.GetComponent<HpScript>();
+        
+        //Do Use
         if (HealPointToTarget) HealPointToTarget.HealHp(HealHp);
         Destroy(gameObject);
-        //yield return null;
+        
     }
 
 }
