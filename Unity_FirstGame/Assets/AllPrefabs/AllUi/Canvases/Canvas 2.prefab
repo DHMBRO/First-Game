@@ -566,7 +566,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6162944062173576489
 RectTransform:
   m_ObjectHideFlags: 0
@@ -981,6 +981,7 @@ MonoBehaviour:
   SlotToUseLoot: {fileID: 0}
   UiInventory: {fileID: 3821547029511633812}
   Inventory: {fileID: 0}
+  ControlerPlayer: {fileID: 0}
   ControlerToDrop: {fileID: 0}
   IndexToList: 0
   ObjectToUse: {fileID: 0}
@@ -5834,6 +5835,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1360813496965164131}
     m_Modifications:
+    - target: {fileID: 342996967672416185, guid: f3b7e43f08902984f91f3c69af20f222, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 342996967672416185, guid: f3b7e43f08902984f91f3c69af20f222, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5471218085880486369, guid: f3b7e43f08902984f91f3c69af20f222, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5912,7 +5921,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5471218085880486369, guid: f3b7e43f08902984f91f3c69af20f222, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -71
+      value: -72.437
       objectReference: {fileID: 0}
     - target: {fileID: 5471218085880486369, guid: f3b7e43f08902984f91f3c69af20f222, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
