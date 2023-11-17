@@ -9,6 +9,7 @@ public class UiControler : MonoBehaviour
     [SerializeField] private GameManager ManagerToGame;
 
     [SerializeField] public Image Scope;
+    [SerializeField] private GameObject IndexesTable;
     [SerializeField] GameObject Inventory;
     [SerializeField] Camera CameraScr;
     [SerializeField] public bool InventoryIsOpen = false;
@@ -44,6 +45,7 @@ public class UiControler : MonoBehaviour
         Scope.enabled = !InventoryIsOpen;
 
         Inventory.SetActive(InventoryIsOpen);
+        IndexesTable.SetActive(!InventoryIsOpen);
         PrintUseMassAndMaxMass();
 
         CurrentMassInInventory.gameObject.SetActive(InventoryIsOpen);

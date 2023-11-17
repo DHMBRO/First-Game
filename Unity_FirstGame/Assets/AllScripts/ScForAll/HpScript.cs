@@ -18,10 +18,9 @@ public class HpScript : MonoBehaviour
         NotAlive
     }
 
-    private void Update()
+    private void Start()
     {
-      
-       
+        if (UiHp && ProzentHealPoint) OutPutHp(HealthPoint, UiHp, ProzentHealPoint);
     }
 
     public void InflictingDamage(float Damage)
@@ -75,6 +74,7 @@ public class HpScript : MonoBehaviour
         string HpinString = HpNow.ToString();
         HpByText.text = HpinString + "%";
     }
+
     public bool IsAlive() 
     {
         

@@ -653,7 +653,7 @@ RectTransform:
   m_GameObject: {fileID: 936446273360568068}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3687214219171367588}
@@ -663,7 +663,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -583, y: 583}
+  m_AnchoredPosition: {x: -691, y: -466}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &996847382321697668
@@ -990,6 +990,7 @@ MonoBehaviour:
   InventoryUi: {fileID: 3821547029511633812}
   ManagerToGame: {fileID: 7097426793311847532}
   Scope: {fileID: 1428453968472665848}
+  IndexesTable: {fileID: 936446273360568068}
   Inventory: {fileID: 712525104704355343}
   CameraScr: {fileID: 0}
   InventoryIsOpen: 0
@@ -5963,7 +5964,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5471218085880486369, guid: f3b7e43f08902984f91f3c69af20f222, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 37.5
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5471218085880486369, guid: f3b7e43f08902984f91f3c69af20f222, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6077,7 +6078,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1457710840257054476, guid: 377a9122eda851a4ea3cf827ba871ec1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -37.5
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 1457710840257054476, guid: 377a9122eda851a4ea3cf827ba871ec1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6097,11 +6098,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5166128554984577148, guid: 377a9122eda851a4ea3cf827ba871ec1, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 170
+      value: 169
       objectReference: {fileID: 0}
     - target: {fileID: 6406982342525672085, guid: 377a9122eda851a4ea3cf827ba871ec1, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -170
+      value: -169
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 377a9122eda851a4ea3cf827ba871ec1, type: 3}

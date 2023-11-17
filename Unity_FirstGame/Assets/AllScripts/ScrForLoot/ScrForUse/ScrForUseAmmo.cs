@@ -16,11 +16,14 @@ public class ScrForUseAmmo : MonoBehaviour, IUsebleInterFace
         List<ShopControler> AllShopsHave = new List <ShopControler>();
         List<ShopControler> NotFullMag = new List<ShopControler>();
         List<ShopControler> ShopCanReload = new List<ShopControler>();
-        ShopControler ShopToReload = new ShopControler();
+        ShopControler ShopToReload = null;
 
         for (int i = 0; i < ContrlerToSlots.Shop.Length;i++) if (ContrlerToSlots.Shop[i]) AllShopsHave.Add(ContrlerToSlots.Shop[i].GetComponent<ShopControler>());
         for (int i = 0; i < AllShopsHave.Count; i++) if (AllShopsHave[i].CurrentAmmo != AllShopsHave[i].MaxAmmo) NotFullMag.Add(AllShopsHave[i]);
         for (int i = 0; i < NotFullMag.Count; i++) if (NotFullMag[i].CaliberToShop == CaliberToBox) ShopCanReload.Add(NotFullMag[i]);
+
+        List<GameObject> A = new List<GameObject>();
+
 
         int NotEnoughAmmo;
 
