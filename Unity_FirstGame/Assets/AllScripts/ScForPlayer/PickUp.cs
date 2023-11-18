@@ -118,19 +118,19 @@ public class PickUp : MethodsFromDevelopers
         if (PlayerInventory && Counter == 0)
         {
             ScrForAllLoot Loot = ObjectToPickUp.gameObject.GetComponent<ScrForAllLoot>();
-            ScrInfoToLoot InfoLoot = ObjectToPickUp.gameObject.GetComponent<ScrInfoToLoot>();
+            InfoWhatDoLoot InfoLoot = ObjectToPickUp.gameObject.GetComponent<InfoWhatDoLoot>();
 
             if (Loot && PlayerInventory.CurrentMass + Loot.Mass <= PlayerInventory.MaxMass && Loot.SpriteForLoot)
             {
                 for (int i = 0; i < ReferencesForLoots.ReferencePrefabs.Count; i++)
                 {
-                    
-                    ScrInfoToLoot LootFromList = ReferencesForLoots.ReferencePrefabs[i].GetComponent<ScrInfoToLoot>();
+
+                    InfoWhatDoLoot LootFromList = ReferencesForLoots.ReferencePrefabs[i].GetComponent<InfoWhatDoLoot>();
 
                     if (InfoLoot.InfoTheObject == LootFromList.InfoTheObject)
                     {
-                        
-                        InfoForLoot ObjectToGet = new InfoForLoot();
+
+                        ScrSaveAndGiveInfo ObjectToGet = new ScrSaveAndGiveInfo();
 
                         ObjectToGet.ObjectToInstantiate = ReferencesForLoots.ReferencePrefabs[i];
                         ObjectToGet.SaveInfo(ObjectToPickUp);
@@ -217,6 +217,7 @@ public class PickUp : MethodsFromDevelopers
             PutObjects(SlotControler.MyHelmet, SlotControler.SlotHelmet, false);
             
         }
+
         void ChangeHelmet()
         {
             if (ControlerToDrop && HelmetIsPickUped.LevelHelmet > HelmetIsUsing.LevelHelmet)
@@ -278,6 +279,7 @@ public class PickUp : MethodsFromDevelopers
             PlayerInventory.BackPack = SlotControler.MyBackPack.gameObject;
             PlayerInventory.ChargingValueMaxMass(BackPackIsPickUped);
         }
+
         void ChangeBackPack()
         {
             if (ControlerToDrop && BackPackIsPickUped.LevelBackPack > BackpackIsUsing.LevelBackPack)

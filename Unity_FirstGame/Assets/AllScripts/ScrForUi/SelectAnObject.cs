@@ -122,14 +122,14 @@ public class SelectAnObject : MethodsFromDevelopers
     }
 
 
-    private void CombiningLoot(InfoForLoot ObjectToUse)
+    private void CombiningLoot(ScrSaveAndGiveInfo ObjectToUse)
     {
         
         List<ScrForAllLoot> ScrForAllLoot = new List<ScrForAllLoot>();
-        List<ScrInfoToLoot> ScrInfoToLoot = new List<ScrInfoToLoot>();
-        List<InfoForLoot> ScrInfoForLoot = new List<InfoForLoot>();
+        List<InfoWhatDoLoot> ScrInfoToLoot = new List<InfoWhatDoLoot>();
+        List<ScrSaveAndGiveInfo> ScrInfoForLoot = new List<ScrSaveAndGiveInfo>();
 
-        ScrInfoToLoot ScrInfoToObjectUse = ObjectToUse.ObjectToInstantiate.GetComponent<ScrInfoToLoot>();
+        InfoWhatDoLoot ScrInfoToObjectUse = ObjectToUse.ObjectToInstantiate.GetComponent<InfoWhatDoLoot>();
         ScrForAllLoot ScrForAllLootOBG = ObjectToUse.ObjectToInstantiate.GetComponent<ScrForAllLoot>();
 
         if (!ScrInfoToObjectUse)
@@ -142,7 +142,7 @@ public class SelectAnObject : MethodsFromDevelopers
         for (int i = 0;i < Inventory.InfoForSlots.Count; i++)
         {
             ScrForAllLoot.Add(Inventory.InfoForSlots[i].ObjectToInstantiate.GetComponent<ScrForAllLoot>());
-            ScrInfoToLoot.Add(Inventory.InfoForSlots[i].ObjectToInstantiate.GetComponent<ScrInfoToLoot>());
+            ScrInfoToLoot.Add(Inventory.InfoForSlots[i].ObjectToInstantiate.GetComponent<InfoWhatDoLoot>());
             ScrInfoForLoot.Add(Inventory.InfoForSlots[i]);
 
             //Debug.Log(Inventory.InfoForSlots[i].CurrentAmmo);    
@@ -214,7 +214,7 @@ public class SelectAnObject : MethodsFromDevelopers
             {
                 for (int j = 0;j < Inventory.InfoForSlots.Count; j++)
                 {
-                    ScrInfoToLoot ScrInfoLoot = Inventory.InfoForSlots[j].ObjectToInstantiate.GetComponent<ScrInfoToLoot>();
+                    InfoWhatDoLoot ScrInfoLoot = Inventory.InfoForSlots[j].ObjectToInstantiate.GetComponent<InfoWhatDoLoot>();
 
                     if (ScrInfoLoot.InfoTheObject == ScrInfoToObjectUse.InfoTheObject && Inventory.InfoForSlots[j].CurrentAmmo == 0)
                     {

@@ -3,6 +3,15 @@ public enum MoodCamera
     FirstFace,
     ThirdFace
 }
+
+public enum LevelEquipment
+{
+    FirstLevel,
+    SecondLevel,
+    ThirdLevel,
+}
+
+
 public enum TypeWeapon
 {
     Weapon,

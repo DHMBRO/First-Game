@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ScrInfoToLoot : MonoBehaviour
+public class InfoWhatDoLoot : MonoBehaviour
 {
     [SerializeField] public InfoToLoot InfoTheObject;
 }

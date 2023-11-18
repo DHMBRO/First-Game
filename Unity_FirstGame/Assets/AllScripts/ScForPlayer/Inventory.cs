@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] public List <InfoForLoot> InfoForSlots = new List<InfoForLoot>();    
+    [SerializeField] public List <ScrSaveAndGiveInfo> InfoForSlots = new List<ScrSaveAndGiveInfo>();    
     
     [SerializeField] public Sprite None;
     

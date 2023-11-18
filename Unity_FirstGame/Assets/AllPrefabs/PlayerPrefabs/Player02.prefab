@@ -112,8 +112,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5153421162628138250}
   - {fileID: 6514131520663713175}
+  - {fileID: 5153421162628138250}
   - {fileID: 2795767220084459791}
   - {fileID: 58001793876995264}
   - {fileID: 6669281415779696439}
@@ -136,7 +136,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5153421162628138250}
   m_Layer: 0
-  m_Name: SlotShop01
+  m_Name: SlotShop02
   m_TagString: UnloadingSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,7 +155,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 470050301926751443}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &728848665986219123
 GameObject:
@@ -727,7 +727,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6514131520663713175}
   m_Layer: 0
-  m_Name: SlotShop02
+  m_Name: SlotShop01
   m_TagString: UnloadingSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -746,7 +746,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 470050301926751443}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8106042476341884347
 GameObject:
@@ -914,12 +914,14 @@ MonoBehaviour:
   PlayerCameraF1: {fileID: 0}
   CameraPlayerF3: {fileID: 0}
   ControlerUi: {fileID: 0}
+  SelectObj: {fileID: 0}
   gameobject: {fileID: 935961475211729313}
   Anchor: {fileID: 0}
   Aiming: 0
   InStels: 0
   Using: 0
   MainStatePlayer: 0
+  PlayerDo: 0
   MovementMode: 0
   StateCamera: 0
 --- !u!114 &7778607237951541594
@@ -985,8 +987,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   SlotsShop:
-  - {fileID: 5153421162628138250}
   - {fileID: 6514131520663713175}
+  - {fileID: 5153421162628138250}
   - {fileID: 2795767220084459791}
   PointForShopPistol01: {fileID: 0}
   PointForShopWeapon01: {fileID: 0}
@@ -1168,9 +1170,12 @@ MonoBehaviour:
   SCScript: {fileID: 0}
   DeleyToAddNoice: 0.5
   TimeToAddNoice: 0
+  RadiusNoiceWhenInStels: 2
   RadiusNoiceWhenAiming: 5
   RadiusNoiceWhenGo: 10
   RadiusNoiceWhenRun: 15
+  ZoneNoice: {fileID: 0}
+  ShowRadiuse: 0
 --- !u!114 &2001030955048781610
 MonoBehaviour:
   m_ObjectHideFlags: 0

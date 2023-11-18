@@ -9,7 +9,7 @@ public class ScrForUseAmmo : MonoBehaviour, IUsebleInterFace
 
     public TypeCaliber CaliberToBox;
 
-    public void Use(GameObject Target, InfoForLoot InfoLoot, SelectAnObject SelectObj)
+    public void Use(GameObject Target, ScrSaveAndGiveInfo InfoLoot, SelectAnObject SelectObj)
     {
         SlotControler ContrlerToSlots = Target.GetComponent<SlotControler>();
         

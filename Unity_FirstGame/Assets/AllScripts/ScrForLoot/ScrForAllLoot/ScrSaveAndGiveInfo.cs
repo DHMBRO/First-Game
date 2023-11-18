@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class InfoForLoot
+public class ScrSaveAndGiveInfo
 {
     
     public GameObject ObjectToInstantiate;
