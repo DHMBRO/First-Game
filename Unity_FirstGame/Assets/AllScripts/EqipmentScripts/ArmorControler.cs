@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ArmorControler : MonoBehaviour, IEquipment
 {
-    [SerializeField] public LevelEquipment LevelArmor;
+    [SerializeField] public LevelObject LevelArmor;
 
     [SerializeField] public Transform SlotShop01;
     [SerializeField] public Transform SlotShop02;

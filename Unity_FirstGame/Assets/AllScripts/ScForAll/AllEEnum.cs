@@ -4,7 +4,7 @@ public enum MoodCamera
     ThirdFace
 }
 
-public enum LevelEquipment
+public enum LevelObject
 {
     FirstLevel,
     SecondLevel,
