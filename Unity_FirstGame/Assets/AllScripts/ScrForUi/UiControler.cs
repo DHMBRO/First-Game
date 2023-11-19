@@ -1,35 +1,41 @@
 using UnityEngine;
-using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
 
 public class UiControler : MonoBehaviour
 {
+    //References To Canvas Components
     [SerializeField] private UiInventory InventoryUi;
     [SerializeField] private GameManager ManagerToGame;
 
+    //References Ro Player Components
+    [SerializeField] private Camera CameraScr;
+    [SerializeField] private Inventory PlayerInventory;
+    [SerializeField] private GameObject Inventory;
+    [SerializeField] public ArmorControler ControlerArmor; 
+
+    //References Indexes
     [SerializeField] public Image Scope;
     [SerializeField] private GameObject IndexesTable;
-    [SerializeField] GameObject Inventory;
-    [SerializeField] Camera CameraScr;
     [SerializeField] public bool InventoryIsOpen = false;
-
+    [SerializeField] private TextMeshProUGUI CurrentMassInInventory;
+    
+    //Slots Weapon
     [SerializeField] public Image SlotWeapon01;
     [SerializeField] public Image SlotWeapon02;
     [SerializeField] public Image SlotPistol01;
-
+    
+    //Slots Shop
     [SerializeField] public Image SlotShop01;
     [SerializeField] public Image SlotShop02;
     [SerializeField] public Image SlotShop03;
-
+    
+    //Slots Equipment
     [SerializeField] public Image SlotHelmet;
     [SerializeField] public Image SlotArmor;
     [SerializeField] public Image SlotBackPack;
 
-    [SerializeField] private TextMeshProUGUI CurrentMassInInventory;
     
-    [SerializeField] private Inventory PlayerInventory;
-
     void Start()
     {
         InventoryIsOpen = false;

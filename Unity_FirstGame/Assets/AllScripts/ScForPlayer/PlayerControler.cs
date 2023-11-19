@@ -8,6 +8,7 @@ public class PlayerControler : MonoBehaviour
 
     //Other Components
     [SerializeField] public ShootControler ControlerShoot;
+    [SerializeField] public ArmorControler ControlerArmor;
     [SerializeField] private StelsScript StelsScript;
     [SerializeField] private DivertAttention DivertAttention;
     [SerializeField] private ExecutoreScriptToPlayer EEScript;
