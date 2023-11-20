@@ -2,17 +2,16 @@ using UnityEngine;
 
 public class ScrSaveAndGiveInfo
 {
-    
+    //Main Reference For Work
     public GameObject ObjectToInstantiate;
-
-    public string ObjectDescription;
-    public string ObjectName;
-
-    public bool HaveDescription;
-    
     public int CurrentAmmo;
 
-     
+    //Additional Info For Work
+    public string[] ObjectParemeters = new string[6];
+    public string ObjectDescription;
+    public bool HaveDescription;
+
+
     public void SaveInfo(GameObject ObjectFormGetInfo)
     {
         ScrForUseAmmo ScrUseAmmo = ObjectFormGetInfo.GetComponent<ScrForUseAmmo>();
@@ -28,12 +27,11 @@ public class ScrSaveAndGiveInfo
 
         if (ScrAllLoot)
         {
-            if (ScrAllLoot.HaveDescription) ObjectDescription = ScrAllLoot.ObjectDescription;
+            for (int i = 0; i < ScrAllLoot.ParametersLoot.Length; i++) ObjectParemeters[i] = ScrAllLoot.ParametersLoot[i];
+            ObjectDescription = ScrAllLoot.Descrition;
             HaveDescription = ScrAllLoot.HaveDescription;
-            ObjectName = ScrAllLoot.ObjectName;
         }
-        //Debug.Log(HaveDescription);
-
+        
     }
     
     public void GetInfo(GameObject ObjectToGiveInfo)
@@ -51,8 +49,8 @@ public class ScrSaveAndGiveInfo
         if (ScrAllLoot)
         {
             ScrAllLoot.HaveDescription = HaveDescription;
-            ScrAllLoot.ObjectDescription = ObjectDescription;
-
+            ScrAllLoot.ParametersLoot = ObjectParemeters;
+            ScrAllLoot.Descrition = ObjectDescription;
         }
 
     }

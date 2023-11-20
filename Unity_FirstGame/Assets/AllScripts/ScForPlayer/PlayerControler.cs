@@ -41,7 +41,6 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] public ModeMovement MovementMode;
     [SerializeField] public CameraPlayer StateCamera;
 
-
     public enum MainPlayer
     {
         Null,
@@ -59,7 +58,6 @@ public class PlayerControler : MonoBehaviour
 
         UseLoot,
     }
-
 
     public enum CameraPlayer
     {

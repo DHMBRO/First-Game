@@ -12,26 +12,35 @@ public class GameManager : MethodsFromDevelopers
     public GameObject ButtonUse;
     public GameObject ButtonDrop;
     public Sprite None;
+    
+    //All Panels
+    [SerializeField] GameObject PanelInfoLoot;
 
-    [SerializeField] private TextMeshProUGUI ObjectName;
+    //Parameters && Description
+    [SerializeField] private TextMeshProUGUI[] ObjectParameters = new TextMeshProUGUI[6];
     [SerializeField] private TextMeshProUGUI ObjectDescription;
-    
-    
+    //Refences To Player Components
     [SerializeField] private UiInventory InventoryUi;
     [SerializeField] Inventory PlayerInventory;
 
 
     private void Start()
     {
+        //First Comands
         if (InventoryUi.PlayerInventory) PlayerInventory = InventoryUi.PlayerInventory;
         else Debug.Log("Not set InventoryUi.PlayerInventory");
 
-        InventoryUi = gameObject.GetComponent<UiInventory>();
-        
-        if (!InventoryUi) Debug.Log("Not set InventoryUi");
+        if (PanelInfoLoot) PanelInfoLoot.SetActive(false);
+        else Debug.Log("Not set GameManager.PanelInfoLoot");
 
         if (WatchedSlot) WatchedSlot.SetActive(false);
         else Debug.Log("Not set WatchedSlot");
+        
+        //Add Rferences
+
+        InventoryUi = gameObject.GetComponent<UiInventory>();
+        if (!InventoryUi) Debug.Log("Not set InventoryUi");
+        
     }
 
     public void OpenSlots()
@@ -58,6 +67,7 @@ public class GameManager : MethodsFromDevelopers
             Debug.Log("Index was out of range !");
             return;
         }
+        else PanelInfoLoot.SetActive(true);
 
         if (!ButtonUse || !ButtonDrop) return;
 
@@ -75,19 +85,14 @@ public class GameManager : MethodsFromDevelopers
 
             if (PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].HaveDescription)
             {
-                if (ObjectName)
+                for (int i = 0; i < PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].ObjectParemeters.Length && i < ObjectParameters.Length && ObjectParameters[i] != null; i++)
                 {
-                    ObjectName.text = PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].ObjectName;
-                    //Debug.Log(InventoryUi.PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].ObjectToInstantiate.name);
+                    ObjectParameters[i].text = PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].ObjectParemeters[i];
                 }
+                //Debug.Log(InventoryUi.PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].ObjectToInstantiate.name);
+                ObjectDescription.text = PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].ObjectDescription;
 
-                if (ObjectDescription)
-                {
-                    ObjectDescription.text = PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].ObjectDescription;
-                    //Debug.Log(InventoryUi.PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].ObjectToInstantiate.name);
-                }
             }
-
             //Debug.Log("ActiveUD is work");
             
         }
@@ -101,15 +106,17 @@ public class GameManager : MethodsFromDevelopers
         if (WatchedSlot && ButtonUse && ButtonDrop)
         {
             WatchedSlot.SetActive(false);
-            
+            PanelInfoLoot.SetActive(false);
+
             Button ButtonU = ButtonUse.GetComponent<Button>();
             ButtonU.interactable = false;
 
             Button ButtonD = ButtonDrop.GetComponent<Button>();
             ButtonD.interactable = false;
 
-            if (ObjectDescription) ObjectDescription.text = null;
-            if (ObjectName) ObjectName.text = null;
+            for (int i = 0; i < ObjectParameters.Length && ObjectParameters[i] != null; i++) ObjectParameters[i].text = null;
+            ObjectDescription.text = null;
+
         }
 
     }
