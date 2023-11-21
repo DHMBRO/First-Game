@@ -5,11 +5,13 @@ public class PickUp : MethodsFromDevelopers
 {
     [SerializeField] public GameObject ObjectToBeLifted;
     [SerializeField] private Transform ObjecttoRay;
-    
+       
     [SerializeField] private UiControler ControlerUi;
-    [SerializeField] private UiInventory InventoryUi;
+    [SerializeField] private UiInventoryOutPut InventoryUi;
 
+    [SerializeField] private PlayerControler ControlerPlayer;
     [SerializeField] private Inventory PlayerInventory;
+    
     [SerializeField] private ReferenseForAllLoot ReferencesForLoots;
 
     [SerializeField] List<string> TagsToPickup = new List<string>();
@@ -22,8 +24,12 @@ public class PickUp : MethodsFromDevelopers
     
     void Start()
     {
-        SlotControler = gameObject.GetComponent<SlotControler>();
-        ControlerToDrop = gameObject.GetComponent<DropControler>();
+        //Get References
+        SlotControler = GetComponent<SlotControler>();
+        ControlerToDrop = GetComponent<DropControler>();
+        ControlerPlayer = GetComponent<PlayerControler>();
+        
+        //Auditions
         if (!ControlerUi) Debug.Log("Not set ControlerUi");
     }
 

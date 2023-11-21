@@ -1,9 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
-public class SelectAnObject : MethodsFromDevelopers
+public class UseAndDropTheLoot : MethodsFromDevelopers
 {
+    
     [SerializeField] private Transform SlotToUseLoot;
-    [SerializeField] private UiInventory UiInventory;
+    [SerializeField] private UiInventoryOutPut UiInventory;
     [SerializeField] private Inventory Inventory;
     [SerializeField] public PlayerControler ControlerPlayer;
     [SerializeField] private DropControler ControlerToDrop;
@@ -35,7 +36,7 @@ public class SelectAnObject : MethodsFromDevelopers
         IndexToList = Index;
     }
 
-    public void SelectObject()
+    public void DeleteReferenceToLoot()
     {
         if (UiInventory && Inventory && IndexToList >= 0 || IndexToList <= 3)
         {
@@ -69,7 +70,7 @@ public class SelectAnObject : MethodsFromDevelopers
 
         if (UseLoot != null && ControlerPlayer)
         {
-            UseLoot.Use(Inventory.gameObject, Inventory.InfoForSlots[UiInventory.Count + IndexToList] , gameObject.GetComponent<SelectAnObject>());
+            UseLoot.Use(Inventory.gameObject, Inventory.InfoForSlots[UiInventory.Count + IndexToList] , GetComponent<UseAndDropTheLoot>());
             this.ObjectToUse = ObjectToUse;
 
             
@@ -113,8 +114,8 @@ public class SelectAnObject : MethodsFromDevelopers
         if (ControlerToDrop) DropObjects(ObjectToDrop.transform, ControlerToDrop.PointForDrop, false);
         else Debug.Log("Not set ControlerToDrop");
 
-        
-        SelectObject();
+
+        DeleteReferenceToLoot();
         Inventory.ChangeMassInInventory();
         
         //Debug.Log("InfoForSlots.Count"  + Inventory.InfoForSlots.Count);

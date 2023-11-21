@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class ArmorControler : MonoBehaviour, IEquipment
 {
@@ -18,21 +19,49 @@ public class ArmorControler : MonoBehaviour, IEquipment
     [SerializeField] Transform Armor;
     [SerializeField] Vector3 OffSetDontUse;
     [SerializeField] Vector3 OffSetUse;
-    
+
     //References For Work
-    //[SerializeField] public 
+    [SerializeField] public List<ArmorPlateControler> ControlerArmorPlate = new List<ArmorPlateControler>();
+    [SerializeField] public int SlotsCanUse;
 
 
     private void Start()
     {
         if(ChangeOffSet) ChangePosition(Use);
 
+        switch (LevelArmor)
+        {
+            case LevelObject.FirstLevel:
+                SlotsCanUse = 1; 
+                break;
+            case LevelObject.SecondLevel:
+                SlotsCanUse = 2;
+                break;
+            case LevelObject.ThirdLevel:
+                SlotsCanUse = 3;
+                break;
+        }
+
+
     }
 
-    void ArmorInCanvas()
+    private void Update()
     {
-        
 
+        int PlatesInArmorVest = 0;
+
+        for (int i = 0; i < ControlerArmorPlate.Count; i++)
+        {
+            if (ControlerArmorPlate[i] != null) PlatesInArmorVest++;
+        }
+
+        if (PlatesInArmorVest > SlotsCanUse)
+        {
+            for (int i = PlatesInArmorVest; i >= SlotsCanUse; i--)
+            {
+                if(i < ControlerArmorPlate.Count) ControlerArmorPlate.RemoveAt(i);
+            }
+        }
     }
 
 

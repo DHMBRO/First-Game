@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-public class GameManager : MethodsFromDevelopers
+public class ButtonControler : MethodsFromDevelopers
 {
     public GameObject SlotsPanel;
     public GameObject BackPackPanel;
@@ -20,7 +20,7 @@ public class GameManager : MethodsFromDevelopers
     [SerializeField] private TextMeshProUGUI[] ObjectParameters = new TextMeshProUGUI[6];
     [SerializeField] private TextMeshProUGUI ObjectDescription;
     //Refences To Player Components
-    [SerializeField] private UiInventory InventoryUi;
+    [SerializeField] private UiInventoryOutPut InventoryUi;
     [SerializeField] Inventory PlayerInventory;
 
 
@@ -38,7 +38,7 @@ public class GameManager : MethodsFromDevelopers
         
         //Add Rferences
 
-        InventoryUi = gameObject.GetComponent<UiInventory>();
+        InventoryUi = gameObject.GetComponent<UiInventoryOutPut>();
         if (!InventoryUi) Debug.Log("Not set InventoryUi");
         
     }

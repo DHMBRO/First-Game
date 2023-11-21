@@ -5,18 +5,22 @@ using TMPro;
 public class UiControler : MonoBehaviour
 {
     //References To Canvas Components
-    [SerializeField] private UiInventory InventoryUi;
-    [SerializeField] private GameManager ManagerToGame;
+    [SerializeField] private UiInventoryOutPut InventoryUi;
+    [SerializeField] private ButtonControler ManagerToGame;
 
     //References Ro Player Components
     [SerializeField] private Camera CameraScr;
+    [SerializeField] private PlayerControler ControlerPlayer;
     [SerializeField] private Inventory PlayerInventory;
     [SerializeField] private GameObject Inventory;
-    [SerializeField] public ArmorControler ControlerArmor; 
-
-    //References Indexes
+    
+    //References Interface Canvas
     [SerializeField] public Image Scope;
     [SerializeField] private GameObject IndexesTable;
+    //Armor References
+    [SerializeField] private GameObject[] ArmorPanels = new GameObject[3];
+    [SerializeField] private Image[] ArmorIndexes = new Image[3];
+    //Other
     [SerializeField] public bool InventoryIsOpen = false;
     [SerializeField] private TextMeshProUGUI CurrentMassInInventory;
     
@@ -41,7 +45,7 @@ public class UiControler : MonoBehaviour
         InventoryIsOpen = false;
         if (Inventory) Inventory.SetActive(false);
         //if (!CameraScr) Debug.Log("Not set CameraScr");
-        
+        InterfaceControler();
     }
 
     
@@ -63,6 +67,46 @@ public class UiControler : MonoBehaviour
         else Cursor.lockState = CursorLockMode.Locked;
 
     }
+
+    
+    public void InterfaceControler()
+    {
+        //Audits
+        if (!ControlerPlayer) { Debug.Log("Not set ControlerPlayer");  return; }
+        for (int i = 0;i < ArmorPanels.Length;i++)
+        {
+            if (ArmorPanels[i] == null) { Debug.Log("Not the entire array (ArmorPanels) has valid values"); return; }
+            if (ArmorIndexes[i] == null) { Debug.Log("Not the entire array (ArmorIndexes) has valid values"); return; }
+        }
+        
+        ArmorControler ControlerArmor;
+        
+        if (ControlerPlayer.SlotControler.MyArmor)
+        {
+            ControlerArmor = ControlerPlayer.SlotControler.MyArmor.GetComponent<ArmorControler>();
+            
+
+            for(int i = 0;i < 3; i++)
+            {
+                bool On = true;
+                
+                if(i >= ControlerArmor.SlotsCanUse) On = false;
+
+                ArmorPanels[i].SetActive(On);
+            }
+
+            for (int i = 0;i < ControlerArmor.ControlerArmorPlate.Count;i++)
+            {
+                ArmorIndexes[i].fillAmount = ControlerArmor.ControlerArmorPlate[i].CurrentHpUi;
+            }
+
+            
+
+        }
+        else for (int i = 0; i < ArmorPanels.Length; i++) ArmorPanels[i].SetActive(false);
+
+    }
+
 
     private void PrintUseMassAndMaxMass()
     {
@@ -86,3 +130,4 @@ public class UiControler : MonoBehaviour
 
 
 }
+

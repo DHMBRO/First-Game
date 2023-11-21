@@ -8,11 +8,11 @@ public class ScrForUseHeal : MethodsFromDevelopers, IUsebleInterFace
     [SerializeField] float TimeToUse;
     [SerializeField] float TimeoToDestroy;
     
-    public void Use(GameObject Target, ScrSaveAndGiveInfo InfoLoot, SelectAnObject SelectObj)
+    public void Use(GameObject Target, ScrSaveAndGiveInfo InfoLoot, UseAndDropTheLoot SelectObj)
     {
         //Methods
         SelectObj.PutLoot(transform);
-        SelectObj.SelectObject();
+        SelectObj.DeleteReferenceToLoot();
         
         //Do Use
         //Invoke("RealUse", TimeToUse);

@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class UiInventory : MonoBehaviour
+public class UiInventoryOutPut : MonoBehaviour
 {
     [SerializeField] Image[] SlotsToInventory = new Image[4];
     [SerializeField] public List<Sprite> SpritesForBackPack = new List<Sprite>();
@@ -43,7 +43,7 @@ public class UiInventory : MonoBehaviour
     }
 
 
-    private void WriteBackPack()
+    private void ShowLootInInventory()
     {
         List<ScrForAllLoot> ImageForLoot = new List<ScrForAllLoot>();
         
@@ -52,8 +52,6 @@ public class UiInventory : MonoBehaviour
             ImageForLoot.Add(PlayerInventory.InfoForSlots[i].ObjectToInstantiate.GetComponent<ScrForAllLoot>());
         }
         
-
-
         if (PlayerInventory)
         {
             for (int i = 0;i < 4;i++)
@@ -89,21 +87,21 @@ public class UiInventory : MonoBehaviour
 
     public void WriteSprite()
     {
-        WriteBackPack();
+        ShowLootInInventory();
     }
 
     public void Up()
     {
         if (Count - 1 >= 0) Count = Count - 1;
         //Debug.Log("Count: " + Count);
-        WriteBackPack();
+        ShowLootInInventory();
     }
 
     public void Down()
     {
         Count++;
         //Debug.Log("Count: " + Count);
-        WriteBackPack();
+        ShowLootInInventory();
     }
 
     public void AddSpriteInInventory(GameObject ObjectToPickUp)

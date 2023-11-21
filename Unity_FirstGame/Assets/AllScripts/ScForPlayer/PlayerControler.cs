@@ -8,7 +8,6 @@ public class PlayerControler : MonoBehaviour
 
     //Other Components
     [SerializeField] public ShootControler ControlerShoot;
-    [SerializeField] public ArmorControler ControlerArmor;
     [SerializeField] private StelsScript StelsScript;
     [SerializeField] private DivertAttention DivertAttention;
     [SerializeField] private ExecutoreScriptToPlayer EEScript;
@@ -16,7 +15,7 @@ public class PlayerControler : MonoBehaviour
     //Main Components To Work Player
     [SerializeField] private PickUp PickUpPlayer;
     [SerializeField] private DropControler ControlerDrop;
-    [SerializeField] private SlotControler SlotControler;
+    [SerializeField] public SlotControler SlotControler;
 
     //Camera Components
     [SerializeField] private Transform PlayerCameraF1;
@@ -24,7 +23,7 @@ public class PlayerControler : MonoBehaviour
     
     //Inventory Components
     [SerializeField] private UiControler ControlerUi;
-    [SerializeField] private SelectAnObject SelectObj;
+    [SerializeField] private UseAndDropTheLoot SelectObj;
 
     //Game Objects
     [SerializeField] Transform gameobject;
@@ -93,6 +92,7 @@ public class PlayerControler : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.I)) ControlerUi.OpenOrCloseInventory();
             if (ControlerUi.InventoryIsOpen) MainStatePlayer = MainPlayer.InventoryIsOpen;
+            ControlerUi.InterfaceControler();
         }
 
         if (SelectObj)

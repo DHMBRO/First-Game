@@ -9,7 +9,7 @@ public class ScrForUseAmmo : MonoBehaviour, IUsebleInterFace
 
     public TypeCaliber CaliberToBox;
 
-    public void Use(GameObject Target, ScrSaveAndGiveInfo InfoLoot, SelectAnObject SelectObj)
+    public void Use(GameObject Target, ScrSaveAndGiveInfo InfoLoot, UseAndDropTheLoot SelectObj)
     {
         SlotControler ContrlerToSlots = Target.GetComponent<SlotControler>();
         
@@ -62,7 +62,7 @@ public class ScrForUseAmmo : MonoBehaviour, IUsebleInterFace
             Debug.Log("Name Object:" + gameObject.name);
             Debug.Log("Current Ammo: " + CurrentAmmo);
 
-            SelectObj.SelectObject();
+            SelectObj.DeleteReferenceToLoot();
             return;
         }
         else 

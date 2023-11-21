@@ -62,7 +62,7 @@ public class SlotControler : MethodsFromDevelopers
         Inventory = gameObject.GetComponent<Inventory>();
 
         AllSlots.Add("SlotsShop[0]", SlotsShop[0]);
-        AllSlots.Add("SlotsShop[1]", SlotsShop[1]);
+        AllSlots.Add("SlotsShop[1]", SlotsShop[1]); 
         AllSlots.Add("SlotsShop[2]", SlotsShop[2]);
         
         AllSlots.Add("SlotBack01", SlotBack01);

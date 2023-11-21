@@ -695,8 +695,14 @@ MonoBehaviour:
   CanCombining: 0
   HaveDescription: 0
   SpriteForLoot: {fileID: 0}
-  ObjectName: 
-  ObjectDescription: 
+  ParametersLoot:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  Descrition: 
 --- !u!114 &1725579298908775607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -709,7 +715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a376ded97fec9546a8c72ae184a2392, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelArmor: 2
+  LevelArmor: 1
   SlotShop01: {fileID: 3927210068696462656}
   SlotShop02: {fileID: 3908407750997000406}
   SlotShop03: {fileID: 724031901444878154}
@@ -717,9 +723,15 @@ MonoBehaviour:
   SlotPistol01: {fileID: 8244813245676856037}
   SlotKnife01: {fileID: 894718772999226691}
   Use: 0
+  ChangeOffSet: 0
   Armor: {fileID: 0}
   OffSetDontUse: {x: 0, y: 0, z: 0}
   OffSetUse: {x: 0, y: 0, z: 0}
+  ControlerArmorPlate:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  SlotsCanUse: 0
 --- !u!1 &6876000009145789295
 GameObject:
   m_ObjectHideFlags: 0

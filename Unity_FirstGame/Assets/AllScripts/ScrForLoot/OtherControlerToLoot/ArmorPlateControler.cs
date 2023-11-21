@@ -4,8 +4,13 @@ public class ArmorPlateControler : MonoBehaviour
 {
     [SerializeField] public LevelObject LevelArmorPlate;
     
+    //Paremters For Work
+    [SerializeField] private float MaxHp;
     [SerializeField] public float CurrentHp;
     [SerializeField] public float CurrentPercentAbsortionDamage;
+    //Parameters For UI
+    [SerializeField] public float CurrentHpUi;
+
 
 
     void Start()
@@ -13,7 +18,6 @@ public class ArmorPlateControler : MonoBehaviour
         switch (LevelArmorPlate)
         {
             case LevelObject.FirstLevel:
-                
                 break;
             case LevelObject.SecondLevel:
                 break;
@@ -23,6 +27,13 @@ public class ArmorPlateControler : MonoBehaviour
         }
 
     }
-    
-    
+
+    private void Update()
+    {
+        CurrentHpUi = ((100 / MaxHp) * CurrentHp) / 100;
+        Debug.Log("Current UI heal point: " + CurrentHpUi);
+        
+    }
+
+
 }
