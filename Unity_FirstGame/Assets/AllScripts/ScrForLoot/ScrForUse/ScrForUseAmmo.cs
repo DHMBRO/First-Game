@@ -68,6 +68,7 @@ public class ScrForUseAmmo : MonoBehaviour, IUsebleInterFace
         else 
         {
             InfoLoot.SaveInfo(gameObject);
+
             Destroy(gameObject);
         }
     

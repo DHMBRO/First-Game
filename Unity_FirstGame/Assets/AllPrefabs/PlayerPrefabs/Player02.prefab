@@ -905,7 +905,6 @@ MonoBehaviour:
   Move: {fileID: 0}
   MovePlayer: {fileID: 6328347359453867729}
   ControlerShoot: {fileID: 0}
-  ControlerArmor: {fileID: 0}
   StelsScript: {fileID: 7577484477006445214}
   DivertAttention: {fileID: 3059040256925347778}
   EEScript: {fileID: 2320318701797134959}
@@ -1099,10 +1098,10 @@ MonoBehaviour:
   CameraScr: {fileID: 0}
   CameraTransform: {fileID: 5755626125737214850}
   JumpCount: 0
-  SpeedAiming: 0
-  SpeedGo: 0
-  SpeedStels: 0
-  SpeedRun: 0
+  SpeedAiming: 40
+  SpeedGo: 70
+  SpeedStels: 55
+  SpeedRun: 120
   smooth: 0.1
 --- !u!114 &7577484477006445214
 MonoBehaviour:

@@ -18,6 +18,7 @@ public class ButtonControler : MethodsFromDevelopers
 
     //Parameters && Description
     [SerializeField] private TextMeshProUGUI[] ObjectParameters = new TextMeshProUGUI[6];
+    [SerializeField] private TextMeshProUGUI ObjectAmoutOfSomefing;
     [SerializeField] private TextMeshProUGUI ObjectDescription;
     //Refences To Player Components
     [SerializeField] private UiInventoryOutPut InventoryUi;
@@ -69,6 +70,7 @@ public class ButtonControler : MethodsFromDevelopers
         }
         else PanelInfoLoot.SetActive(true);
 
+
         if (!ButtonUse || !ButtonDrop) return;
 
         if (WatchedSlot && IndexToSlots >= 0 || IndexToSlots  <= 3)
@@ -91,6 +93,16 @@ public class ButtonControler : MethodsFromDevelopers
                 }
                 //Debug.Log(InventoryUi.PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].ObjectToInstantiate.name);
                 ObjectDescription.text = PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].ObjectDescription;
+                
+                //Show the Ammo
+                if(!ObjectAmoutOfSomefing) { Debug.Log("Not set ObjectAmoutOfSomefing"); return; }
+
+                if (PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].ShowTheAmmo)
+                {
+                    ObjectAmoutOfSomefing.text = PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].CurrentAmmoUi;
+
+                }
+                else ObjectAmoutOfSomefing.text = "Dont have it";
 
             }
             //Debug.Log("ActiveUD is work");
