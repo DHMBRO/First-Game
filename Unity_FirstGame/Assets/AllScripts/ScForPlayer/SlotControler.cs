@@ -74,7 +74,6 @@ public class SlotControler : MethodsFromDevelopers
         if (MyWeapon02) PointForShopWeapon02 = MyWeapon02.GetComponent<ShootControler>().SlotForUseShop;
         if (MyPistol01) PointForShopPistol01 = MyPistol01.GetComponent<ShootControler>().SlotForUseShop;
 
-
     }
 
     public void PutObjectInHand()
