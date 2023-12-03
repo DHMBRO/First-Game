@@ -31,7 +31,7 @@ public class PlayerControler : MonoBehaviour
     
     //Bools
     [SerializeField] public bool Aiming = false;
-    [SerializeField] public bool InStels = false;
+    [SerializeField] public bool InStealth = false;
     [SerializeField] public bool HaveWeaponInHand = false;
     [SerializeField] public bool HavePistolInHand = false;
 
@@ -48,7 +48,7 @@ public class PlayerControler : MonoBehaviour
 
         InventoryIsOpen,
         ShootWithWeapon,
-        Stels,
+        Stealth,
         AimingToDropRock,
         
     }
@@ -116,7 +116,7 @@ public class PlayerControler : MonoBehaviour
 
                 if (Input.GetKey(KeyCode.LeftShift)) 
                 {
-                    InStels = false;
+                    InStealth = false;
                     MovementMode = ModeMovement.Run;
                 } 
                 if (Aiming) MovementMode = ModeMovement.Aiming;
@@ -124,10 +124,10 @@ public class PlayerControler : MonoBehaviour
                 if (Inputs)
                 {
                     //Stels
-                    if (InStels)
+                    if (InStealth)
                     {
                         MovementMode = ModeMovement.Stels;
-                        MainStatePlayer = MainPlayer.Stels;
+                        MainStatePlayer = MainPlayer.Stealth;
                     }
                     
                     //Add Noice
@@ -208,8 +208,8 @@ public class PlayerControler : MonoBehaviour
             }
             
             //Stels 
-            if (Input.GetKeyUp(KeyCode.X)) InStels = true;
-            if (Input.GetKeyDown(KeyCode.X)) InStels = false;
+            if (Input.GetKeyUp(KeyCode.X)) InStealth = !InStealth;
+
 
             //Other
             if (Input.GetKeyDown(KeyCode.T) && gameobject && Anchor)

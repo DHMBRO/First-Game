@@ -9,7 +9,7 @@ public class ControlerAnimationsPlayer : MonoBehaviour
 
     //References to additional objects
     [SerializeField] Transform BaseBodyPlayerForAnimations;
-    [SerializeField] bool AimingStopWork;
+    
     //Parameters
     [SerializeField] float CurrentSpeed;
     [SerializeField] float DesirableSpeed;
@@ -53,14 +53,14 @@ public class ControlerAnimationsPlayer : MonoBehaviour
         Parameters.SetBool("IsAiming", ControlerPlayer.Aiming); 
         Parameters.SetBool("HaveWeaponInHand", ControlerPlayer.HaveWeaponInHand);
         Parameters.SetBool("HavePistolInHand", ControlerPlayer.HavePistolInHand);
+        Parameters.SetBool("InStels", ControlerPlayer.InStealth);
 
-        if (ControlerPlayer.Aiming)
+        if (ControlerPlayer.Aiming || ControlerPlayer.InStealth)
         {
             BaseBodyPlayerForAnimations.transform.localEulerAngles = new Vector3(0.0f, RotateBaseBodyWhenAiming, 0.0f);
-            AimingStopWork = false;
         }
-        if (!ControlerPlayer.Aiming && !AimingStopWork) AimingStopWork = true;
-        if(AimingStopWork) BaseBodyPlayerForAnimations.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+        if(Input.GetKeyUp(KeyCode.Mouse1) || Input.GetKeyUp(KeyCode.X) || Input.GetKeyDown(KeyCode.LeftShift)) 
+            BaseBodyPlayerForAnimations.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
 
 
 
