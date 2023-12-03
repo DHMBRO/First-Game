@@ -559,6 +559,38 @@ Transform:
   m_Father: {fileID: 470050301926751443}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: -119.964}
+--- !u!1 &5202823881704093862
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6170257834469969523}
+  m_Layer: 0
+  m_Name: GameObjectForAnimations
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6170257834469969523
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5202823881704093862}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1756812146448605311}
+  m_Father: {fileID: 935961475211729313}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5730699500055248682
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,7 +887,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1756812146448605311}
+  - {fileID: 6170257834469969523}
   - {fileID: 1466317542163811736}
   - {fileID: 470050301926751443}
   - {fileID: 7834168469638226636}
@@ -889,8 +921,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.08850281, z: 1}
-  m_Center: {x: 0, y: 0.016438521, z: 0}
+  m_Size: {x: 0.5, y: 0.05418465, z: 0.48107395}
+  m_Center: {x: 0, y: 0.0335976, z: 0.063437805}
 --- !u!114 &9222820105927190343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -920,6 +952,8 @@ MonoBehaviour:
   Anchor: {fileID: 0}
   Aiming: 0
   InStels: 0
+  HaveWeaponInHand: 0
+  HavePistolInHand: 0
   Using: 0
   MainStatePlayer: 0
   PlayerDo: 0
@@ -997,6 +1031,7 @@ MonoBehaviour:
   PointForShopWeapon02: {fileID: 0}
   Counter: 0
   ShopCounter: 0
+  ControlerPlayer: {fileID: 0}
   PickUp: {fileID: 7778607237951541594}
   Inventory: {fileID: 0}
   Slots: []
@@ -1099,10 +1134,10 @@ MonoBehaviour:
   CameraScr: {fileID: 0}
   CameraTransform: {fileID: 5755626125737214850}
   JumpCount: 0
-  SpeedAiming: 40
-  SpeedGo: 70
+  SpeedAiming: 7500
+  SpeedGo: 9000
   SpeedStels: 55
-  SpeedRun: 250
+  SpeedRun: 21000
   smooth: 0.1
 --- !u!114 &7577484477006445214
 MonoBehaviour:
@@ -1326,7 +1361,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 935961475211729313}
+    m_TransformParent: {fileID: 6170257834469969523}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 32c385e148d9c094ea210cf380d5d4f9, type: 3}
       propertyPath: m_RootOrder
@@ -1417,8 +1452,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parameters: {fileID: 5656907620302518789}
   ControlerPlayer: {fileID: 9222820105927190343}
+  RigPlayer: {fileID: 5669462573118057115}
+  BaseBodyPlayerForAnimations: {fileID: 6170257834469969523}
   CurrentSpeed: 0
   DesirableSpeed: 0
+  RotateBaseBodyWhenAiming: 35
 --- !u!4 &1756812146448605311 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 32c385e148d9c094ea210cf380d5d4f9, type: 3}

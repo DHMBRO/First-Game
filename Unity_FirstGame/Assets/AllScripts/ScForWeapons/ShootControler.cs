@@ -29,15 +29,6 @@ public class ShootControler : MonoBehaviour
         if (!Bullet) Debug.Log("Not set Bullet");
     }
 
-    private void Update()
-    {
-
-
-    }
-
-
-
-
     public void Shoot()//ColectPoint
     {
         if (!GameObjectForRay || !Muzzle || !Bullet || !Collet || !ColletPoint )

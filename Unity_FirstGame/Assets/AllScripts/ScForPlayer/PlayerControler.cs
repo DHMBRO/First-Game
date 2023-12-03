@@ -32,6 +32,8 @@ public class PlayerControler : MonoBehaviour
     //Bools
     [SerializeField] public bool Aiming = false;
     [SerializeField] public bool InStels = false;
+    [SerializeField] public bool HaveWeaponInHand = false;
+    [SerializeField] public bool HavePistolInHand = false;
 
     //Enums
     [SerializeField] public WhatIsInHand Using;
@@ -136,7 +138,7 @@ public class PlayerControler : MonoBehaviour
 
                 //Movement
                 MovePlayer.Move(MovementMode);
-                //MovePlayer.Jump();
+                MovePlayer.Jump();
             }
             
             //Camera

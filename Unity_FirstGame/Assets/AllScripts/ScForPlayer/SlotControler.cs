@@ -45,9 +45,10 @@ public class SlotControler : MethodsFromDevelopers
     //All counetrs for work Script        
     public int Counter;
     protected int CounetrForCharge;
-    [SerializeField] protected int ShopCounter;    
+    [SerializeField] protected int ShopCounter;
     //
     //References for other Component
+    [SerializeField] private PlayerControler ControlerPlayer;
     [SerializeField] private PickUp PickUp;
     [SerializeField] private Inventory Inventory;
     //
@@ -58,9 +59,15 @@ public class SlotControler : MethodsFromDevelopers
 
     void Start()
     {
+        //Geting Refrences to other components 
+        ControlerPlayer = GetComponent<PlayerControler>();
         PickUp = gameObject.GetComponent<PickUp>();
         Inventory = gameObject.GetComponent<Inventory>();
+        
+        //Use methods in strart
+        UpdateTypeWeaponInHand();
 
+        //Other
         AllSlots.Add("SlotsShop[0]", SlotsShop[0]);
         AllSlots.Add("SlotsShop[1]", SlotsShop[1]); 
         AllSlots.Add("SlotsShop[2]", SlotsShop[2]);
@@ -74,6 +81,33 @@ public class SlotControler : MethodsFromDevelopers
         if (MyWeapon02) PointForShopWeapon02 = MyWeapon02.GetComponent<ShootControler>().SlotForUseShop;
         if (MyPistol01) PointForShopPistol01 = MyPistol01.GetComponent<ShootControler>().SlotForUseShop;
 
+    }
+
+    private void UpdateTypeWeaponInHand()
+    {
+        if (!ObjectInHand)
+        {
+            ControlerPlayer.HaveWeaponInHand = false;
+            ControlerPlayer.HavePistolInHand = false;
+            return;
+        }
+        ShootControler ShootControlerObjectInHand = ObjectInHand.GetComponent<ShootControler>();
+
+        if (ShootControlerObjectInHand)
+        {
+            switch (ShootControlerObjectInHand.TheGun)
+            {
+                case TypeWeapon.Weapon:
+                    ControlerPlayer.HaveWeaponInHand = true;
+                    ControlerPlayer.HavePistolInHand = false;
+                    break;
+                case TypeWeapon.Pistol:
+                    ControlerPlayer.HaveWeaponInHand = false;
+                    ControlerPlayer.HavePistolInHand = true;
+                    break;
+            }
+
+        }
 
     }
 
@@ -377,7 +411,8 @@ public class SlotControler : MethodsFromDevelopers
             PutObjects(MyWeapon02, SlotBack02, false);
             ObjectInHand = null;
         }
-        
+
+        UpdateTypeWeaponInHand();
     }
 
     

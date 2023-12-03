@@ -80,11 +80,15 @@ public class MovePlayer : MonoBehaviour
                     break;
 
             }
+            
 
             void Movement(float CurrentSpeedToMove,bool Aiming)
             {
-                if (Aiming) MyRigidbody.AddRelativeForce(ForceAxis * SpeedAiming, MyForceMode);
-                else MyRigidbody.AddRelativeForce(new Vector3(0.0f, 0.0f, 1.0f * CurrentSpeedToMove), ForceMode.Force);
+                
+                if (Aiming) MyRigidbody.AddRelativeForce(ForceAxis * SpeedAiming * Time.deltaTime, MyForceMode);
+                else MyRigidbody.AddRelativeForce(new Vector3(0.0f, 0.0f, 1.0f * CurrentSpeedToMove * Time.deltaTime), ForceMode.Force);
+                Debug.Log("CurrentSpeed: " + CurrentSpeedToMove);
+                
             }
 
         }

@@ -31,7 +31,7 @@ public class ArmorPlateControler : MonoBehaviour
     private void Update()
     {
         CurrentHpUi = ((100 / MaxHp) * CurrentHp) / 100;
-        Debug.Log("Current UI heal point: " + CurrentHpUi);
+        //Debug.Log("Current UI heal point: " + CurrentHpUi);
         
     }
 

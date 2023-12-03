@@ -2,50 +2,67 @@ using UnityEngine;
 
 public class ControlerAnimationsPlayer : MonoBehaviour
 {
-    
+    //Other components
     [SerializeField] Animator Parameters;
     [SerializeField] PlayerControler ControlerPlayer;
+    [SerializeField] Rigidbody RigPlayer;
 
+    //References to additional objects
+    [SerializeField] Transform BaseBodyPlayerForAnimations;
+    [SerializeField] bool AimingStopWork;
+    //Parameters
     [SerializeField] float CurrentSpeed;
     [SerializeField] float DesirableSpeed;
 
+    //Additional parameters to work 
+    [SerializeField] float RotateBaseBodyWhenAiming;
+
+
     void Start()
     {
-        if (!Parameters) 
-        {
-            Parameters = GetComponent<Animator>();
-            Parameters.SetFloat("Speed", 0.0f);
+        Parameters = GetComponent<Animator>();
+        RigPlayer = ControlerPlayer.GetComponent<Rigidbody>();
 
-        }
+        if (Parameters) Parameters.SetFloat("Speed", 0.0f);
         else Parameters.SetFloat("Speed", 0.0f);
 
     }
 
     void Update()
     {
-        switch (ControlerPlayer.MovementMode)
-        {
-            case ModeMovement.Null:
-                DesirableSpeed = 0.0f;
-                break;
-            case ModeMovement.Go:
-                DesirableSpeed = 0.5f;
-                break;
-            case ModeMovement.Aiming:
-                break;
-            case ModeMovement.Run:
-                DesirableSpeed = 1.0f;
-                break;
-            case ModeMovement.Stels:
-                break;
-            default:
-                break;
-        }
+        //Type date for work
+        float Horizontal = Input.GetAxis("Horizontal");
+        float Vertical = Input.GetAxis("Vertical");
+        //Vector3 HowRotateBasePlayer;
+        //
+
+        //Speed Movement
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A)) DesirableSpeed = 0.5f;
+        else DesirableSpeed = 0.0f;
+        if (Input.GetKey(KeyCode.LeftShift)) DesirableSpeed= 1.0f;
 
         if (CurrentSpeed > DesirableSpeed) CurrentSpeed -= 0.01f;
-        else if (CurrentSpeed < DesirableSpeed) CurrentSpeed += 0.01f;
+        if (CurrentSpeed < DesirableSpeed) CurrentSpeed += 0.01f;
 
-        Parameters.SetFloat("Speed", CurrentSpeed);
+        //Change the float parameters
+        Parameters.SetFloat("Speed", CurrentSpeed); //Current speed player
+        Parameters.SetFloat("SpeedHorizontal", Horizontal); 
+        Parameters.SetFloat("SpeedVertical", Vertical);
+
+        //Change the bool parameters
+        Parameters.SetBool("IsAiming", ControlerPlayer.Aiming); 
+        Parameters.SetBool("HaveWeaponInHand", ControlerPlayer.HaveWeaponInHand);
+        Parameters.SetBool("HavePistolInHand", ControlerPlayer.HavePistolInHand);
+
+        if (ControlerPlayer.Aiming)
+        {
+            BaseBodyPlayerForAnimations.transform.localEulerAngles = new Vector3(0.0f, RotateBaseBodyWhenAiming, 0.0f);
+            AimingStopWork = false;
+        }
+        if (!ControlerPlayer.Aiming && !AimingStopWork) AimingStopWork = true;
+        if(AimingStopWork) BaseBodyPlayerForAnimations.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+
+
 
     }
 }
