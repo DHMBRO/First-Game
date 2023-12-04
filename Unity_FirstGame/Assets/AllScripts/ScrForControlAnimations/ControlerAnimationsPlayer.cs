@@ -45,7 +45,7 @@ public class ControlerAnimationsPlayer : MonoBehaviour
         if (CurrentSpeed < DesirableSpeed) CurrentSpeed += 0.01f;
 
         //Change the float parameters
-        Parameters.SetFloat("Speed", CurrentSpeed); //Current speed player
+        Parameters.SetFloat("CurrentSpeed", CurrentSpeed); //Current speed player
         Parameters.SetFloat("SpeedHorizontal", Horizontal); 
         Parameters.SetFloat("SpeedVertical", Vertical);
 
