@@ -22,8 +22,13 @@ public abstract class ILogic
         {
 
 
-            
+
         }
+        else 
+        {
+                
+        }
+
     }
 }
 public class TestLogicScript : ILogic
