@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.AI;
-
 public class PatrolScriptNavMesh : MonoBehaviour
 {
     [SerializeField] public PointControllScript MyPointControllScript;
@@ -16,33 +15,26 @@ public class PatrolScriptNavMesh : MonoBehaviour
         Idle
     }
     public State MyState = State.Idle;
-
     void Start()
     {
-
         ZombieLocateScript = gameObject.GetComponent<LocateScript>();
         ZombieNavMesh = gameObject.GetComponent<NavMeshAgent>();
     }
-
-
     void Update()
     {
         //Debug.Log(ZombieNavMesh.isStopped);
     }
-
     public void Patroling()
     {
         if (MyState == State.Idle)
         {
-            StateIdle();
+           /* StateIdle();*/
         }
         else if (MyState == State.Moving)
         {
             StateMoving();
         }
-
     }
-
     public void MoveTo(Vector3 Target, bool IsPatrol = false)
     {
         if (!IsPatrol)
@@ -53,16 +45,15 @@ public class PatrolScriptNavMesh : MonoBehaviour
         ZombieNavMesh.SetDestination(Target);
         MyState = State.Moving;
     }
-    
-    public void StateIdle()
+
+  /*  public void StateIdle()
     {
         if (!NeedCheckPosition)
         {
             MoveTo(MyPointControllScript.Points[CurrentPoint].transform.position, true);
             MyState = State.Moving;
         }
-    }
-
+    }*/
     void StateMoving()
     {
         if (ZombieNavMesh.remainingDistance < 1.0f)
@@ -72,7 +63,7 @@ public class PatrolScriptNavMesh : MonoBehaviour
                 MoveTo(MoveTarget);
             }
             else
-            { 
+            {
                 CurrentPoint = MyPointControllScript.SearchNextPosition(CurrentPoint);
                 MoveTo(MyPointControllScript.Points[CurrentPoint].transform.position, true);
             }
@@ -81,10 +72,10 @@ public class PatrolScriptNavMesh : MonoBehaviour
         {
             if (ZombieNavMesh.isStopped)
             {
-                
+
             }
         }
-       
+
     }
     void ReturnToPatrol()
     {
@@ -94,7 +85,8 @@ public class PatrolScriptNavMesh : MonoBehaviour
             MoveTo(MyPointControllScript.Points[CurrentPoint].transform.position, true);
         }
     }
-    protected void CheckPosition(Vector3 CheckingPosition)
+    
+    public void CheckPosition(Vector3 CheckingPosition)
     {
         MoveTo(CheckingPosition);
         MyState = State.Moving;

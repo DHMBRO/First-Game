@@ -27,7 +27,7 @@ public class ZombieScript : MonoBehaviour
     {
         ZomblieHpScript.InstanceKill();                                                                    
     }
-    public bool IsObjectFromBehinde(GameObject Object) 
+    public bool IsObjectFromBehinde(GameObject Object) //
     {
        return ZombleLocateScript.IsObjectFromBehinde(Object);
     }

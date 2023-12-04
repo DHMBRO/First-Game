@@ -15,6 +15,7 @@ public class ZombieController : MonoBehaviour
 
     void Start()
     {
+        
         ZombieHpScript = gameObject.GetComponent<HpScript>();
         ZombieLocateScript = gameObject.GetComponent<LocateScript>();
         ZombieAttackScript = gameObject.GetComponent<AttackMethod>();
