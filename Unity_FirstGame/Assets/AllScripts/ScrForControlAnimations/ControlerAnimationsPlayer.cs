@@ -53,7 +53,7 @@ public class ControlerAnimationsPlayer : MonoBehaviour
         Parameters.SetBool("IsAiming", ControlerPlayer.Aiming); 
         Parameters.SetBool("HaveWeaponInHand", ControlerPlayer.HaveWeaponInHand);
         Parameters.SetBool("HavePistolInHand", ControlerPlayer.HavePistolInHand);
-        Parameters.SetBool("InStels", ControlerPlayer.InStealth);
+        Parameters.SetBool("InStealth", ControlerPlayer.InStealth);
 
         if (ControlerPlayer.Aiming || ControlerPlayer.InStealth)
         {
