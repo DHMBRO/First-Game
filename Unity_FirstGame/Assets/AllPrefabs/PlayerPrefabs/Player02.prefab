@@ -951,7 +951,7 @@ MonoBehaviour:
   gameobject: {fileID: 935961475211729313}
   Anchor: {fileID: 0}
   Aiming: 0
-  InStels: 0
+  InStealth: 0
   HaveWeaponInHand: 0
   HavePistolInHand: 0
   Using: 0
@@ -1423,6 +1423,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Y Bot
       objectReference: {fileID: 0}
+    - target: {fileID: 5822821947120931875, guid: 32c385e148d9c094ea210cf380d5d4f9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6e5f6c645ece8ec40b9500928d74cea1, type: 2}
     - target: {fileID: 5866666021909216657, guid: 32c385e148d9c094ea210cf380d5d4f9, type: 3}
       propertyPath: m_Controller
       value: 
@@ -1454,7 +1458,6 @@ MonoBehaviour:
   ControlerPlayer: {fileID: 9222820105927190343}
   RigPlayer: {fileID: 5669462573118057115}
   BaseBodyPlayerForAnimations: {fileID: 6170257834469969523}
-  AimingStopWork: 0
   CurrentSpeed: 0
   DesirableSpeed: 0
   RotateBaseBodyWhenAiming: 35
