@@ -34,6 +34,7 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] public bool InStealth = false;
     [SerializeField] public bool HaveWeaponInHand = false;
     [SerializeField] public bool HavePistolInHand = false;
+    [SerializeField] public bool UsingLoot = false;
 
     //Enums
     [SerializeField] public WhatIsInHand Using;
@@ -99,8 +100,17 @@ public class PlayerControler : MonoBehaviour
 
         if (SelectObj)
         {
-            if (SelectObj.ObjectToUse) PlayerDo = WhatDoPlayer.UseLoot;
-            else PlayerDo = WhatDoPlayer.Null;
+            if (SelectObj.ObjectToUse)
+            {
+                PlayerDo = WhatDoPlayer.UseLoot;
+                UsingLoot = true;
+            }
+            else 
+            {
+                PlayerDo = WhatDoPlayer.Null;
+                UsingLoot = false;
+            }
+
         }
 
 
