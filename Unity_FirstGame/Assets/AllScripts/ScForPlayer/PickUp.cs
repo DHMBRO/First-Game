@@ -4,8 +4,8 @@ using System.Collections.Generic;
 public class PickUp : MethodsFromDevelopers 
 {
     [SerializeField] public GameObject ObjectToBeLifted;
-    [SerializeField] private Transform ObjecttoRay;
-       
+    [SerializeField] public ThirdPersonCamera ThirdCamera;   
+
     [SerializeField] private UiControler ControlerUi;
     [SerializeField] private UiInventoryOutPut InventoryUi;
 
@@ -34,24 +34,28 @@ public class PickUp : MethodsFromDevelopers
     }
 
     public void RayForLoot()
-    {                
-        if (ObjecttoRay)
+    {
+        if (ThirdCamera)
         {
+            Vector3 PointRay = ThirdCamera.TargetCamera.transform.TransformPoint(ThirdCamera.OffsetCameraSimple) + (ThirdCamera.transform.forward * 1.0f);
+            
             //Debug.Log("RayForLoot is work");
-            Ray RayForPickUp = new Ray(ObjecttoRay.position, ObjecttoRay.forward);
-            
-            Debug.DrawRay(ObjecttoRay.position, ObjecttoRay.forward * DistanceForRay, Color.red);
-            
+            Ray RayForPickUp = new Ray(PointRay, ThirdCamera.transform.forward);
+
+            Debug.DrawRay(PointRay, ThirdCamera.transform.forward * DistanceForRay, Color.red);
+
             if (Physics.Raycast(RayForPickUp, out RaycastHit HitResult, DistanceForRay))
             {
                 ObjectToBeLifted = HitResult.collider.gameObject;
-                ComplertingTheLink();              
+                ComplertingTheLink();
             }
             else
             {
                 ObjectToBeLifted = null;
-            }            
+            }
         }
+        else Debug.Log("Not set ThirdCamera");
+
     }
 
     public void ComplertingTheLink()

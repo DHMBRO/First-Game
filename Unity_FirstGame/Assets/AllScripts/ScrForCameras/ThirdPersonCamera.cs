@@ -3,16 +3,20 @@ using UnityEngine;
 public class ThirdPersonCamera : MonoBehaviour
 {
     [SerializeField] UiControler ControlerUi;
-
+    
     [SerializeField] public GameObject TargetCamera;
     
     [SerializeField] Transform HandTarget;
-    [SerializeField] Transform Cube; 
+    [SerializeField] Transform Cube;
+    [SerializeField] Transform Cube1;
 
     [SerializeField] private Transform MoveBackObject;
 
+    //New references 
+    Vector3 CurrentOffSetCamera; 
 
-    [SerializeField] Vector3 OffsetCamera;
+
+    [SerializeField] public Vector3 OffsetCameraSimple;
 
     [SerializeField] Vector3 OffsetCameraToAiming;
 
@@ -23,7 +27,7 @@ public class ThirdPersonCamera : MonoBehaviour
     [SerializeField] Vector3 OffsetHandRot;
 
     [SerializeField] float MouseSens = 1.0f;
-    [SerializeField] float MoveBack = 5.0f;
+    [SerializeField] float MoveBackDistance = 5.0f;
 
     [SerializeField] float t;
     [SerializeField] float CurrentLenghtOfOneStep;
@@ -45,6 +49,9 @@ public class ThirdPersonCamera : MonoBehaviour
     bool FraimSimple = false;
     bool FraimAiming = false;
 
+    float MouseY;
+    float MouseX;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -54,23 +61,38 @@ public class ThirdPersonCamera : MonoBehaviour
 
         CurrentLenghtOfOneStep = LenghtOfOneStepToChangeState;
 
+        Debug.Log("Distance: " + (transform.position - MoveBackObject.position).magnitude);
 
     }
 
     private void Update()
     {
+        //Prameters
+        MouseY = Input.GetAxis("Mouse Y");
+        MouseX = Input.GetAxis("Mouse X");
         
+        //Other Components
         
 
+        //Camera
+        transform.localEulerAngles = new Vector3(
+           transform.localEulerAngles.x + (-MouseY * MouseSens),
+           transform.localEulerAngles.y + (MouseX * MouseSens),
+            0.0f);
+
+        if (Physics.Raycast(TargetCamera.transform.TransformPoint(OffsetCameraSimple) /*- (transform.forward * 1.0f)*/, -transform.forward, out RaycastHit HitInfo, MoveBackDistance /*+ 1.0f*/))
+        {
+            transform.position = HitInfo.point;
+        }
+        else transform.position = TargetCamera.transform.TransformPoint(OffsetCameraSimple) - (transform.forward * MoveBackDistance);
+
+        Debug.DrawRay(TargetCamera.transform.TransformPoint(OffsetCameraSimple) /*- (transform.forward * 1.0f)*/, -transform.forward * (MoveBackDistance /*- 1.0f*/), Color.yellow);
 
 
+        //Cube1.position = TargetCamera.transform.TransformPoint(OffsetCameraSimple) - (transform.forward * 1.0f);
 
 
-
-
-
-
-        
+        /*
         if (ControlerUi) ControlerUi.Scope.gameObject.SetActive(Aiming);
         
         if (ControlerUi && !ControlerUi.InventoryIsOpen || !ControlerUi)
@@ -215,15 +237,16 @@ public class ThirdPersonCamera : MonoBehaviour
         FraimSimple = false;
         FraimAiming = false;
         
-        
+        */
+
     }
-    
-    
 
 
 
-    
-    
+
+
+
+
     void LerpCamera(Vector3 TargetVector)
     {
         t = ((CurrentLenghtOfOneStep / (TargetVector - transform.position).magnitude) * Time.deltaTime);
@@ -302,8 +325,8 @@ public class ThirdPersonCamera : MonoBehaviour
     {
         TargetPosition01 = TargetCamera.transform.TransformPoint(OffsetCameraToAiming);
         
-        Debug.DrawRay(MoveBackObject.position, -MoveBackObject.forward * (MoveBack), Color.blue);
-        if (Physics.Raycast(MoveBackObject.position, -MoveBackObject.forward, out RaycastHit ResultHit01, (MoveBack)))
+        Debug.DrawRay(MoveBackObject.position, -MoveBackObject.forward * (MoveBackDistance), Color.blue);
+        if (Physics.Raycast(MoveBackObject.position, -MoveBackObject.forward, out RaycastHit ResultHit01, (MoveBackDistance)))
         {
             TargetPosition01 = (MoveBackObject.transform.TransformPoint(MoveBackObject.forward) - MoveBackObject.transform.forward * ResultHit01.distance);
             //Debug.Log(TargetPosition);
@@ -319,12 +342,12 @@ public class ThirdPersonCamera : MonoBehaviour
 
     void MoveBackCammera()
     {
-        TargetPosition02 = (TargetCamera.transform.TransformPoint(OffsetCamera)) - transform.forward * MoveBack;
+        TargetPosition02 = (TargetCamera.transform.TransformPoint(OffsetCameraSimple)) - transform.forward * MoveBackDistance;
 
         //transform.position = TargetPosition - transform.forward * MoveBack;
         //Vector3 a = TargetPosition - transform.forward * MoveBack;
-        Debug.DrawRay(MoveBackObject.position, -MoveBackObject.forward * (MoveBack - 1.0f),Color.blue);
-        if (Physics.Raycast(MoveBackObject.position, -MoveBackObject.forward, out RaycastHit ResultHit02, (MoveBack - 1.5f)))
+        Debug.DrawRay(MoveBackObject.position, -MoveBackObject.forward * (MoveBackDistance - 1.0f),Color.blue);
+        if (Physics.Raycast(MoveBackObject.position, -MoveBackObject.forward, out RaycastHit ResultHit02, (MoveBackDistance - 1.5f)))
         {
             TargetPosition02 = MoveBackObject.transform.TransformPoint(MoveBackObject.forward) - MoveBackObject.forward * ResultHit02.distance;
             //Debug.Log(TargetPosition);
@@ -339,14 +362,14 @@ public class ThirdPersonCamera : MonoBehaviour
     void MoveBackObjectToRay()
     {
         
-        Vector3 TargetPosition = TargetCamera.transform.TransformPoint(OffsetCamera);
+        Vector3 TargetPosition = TargetCamera.transform.TransformPoint(OffsetCameraSimple);
         if (!Aiming)
         {
             MoveBackObject.position = TargetPosition - MoveBackObject.forward;
         }
         else
         {
-            TargetPosition = (TargetCamera.transform.TransformPoint(OffsetCameraToAiming)) + MoveBackObject.forward * (MoveBack + 1.0f);
+            TargetPosition = (TargetCamera.transform.TransformPoint(OffsetCameraToAiming)) + MoveBackObject.forward * (MoveBackDistance + 1.0f);
             MoveBackObject.position = TargetPosition - MoveBackObject.forward;
         }
 

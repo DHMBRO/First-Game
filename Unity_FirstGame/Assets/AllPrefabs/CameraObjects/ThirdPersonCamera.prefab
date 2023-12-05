@@ -103,14 +103,15 @@ MonoBehaviour:
   HandTarget: {fileID: 0}
   Cube: {fileID: 0}
   MoveBackObject: {fileID: 0}
-  OffsetCamera: {x: 0, y: 2.5, z: 0}
+  CurrentOffSetCamera: {x: 0, y: 0, z: 0}
+  OffsetCameraSimple: {x: 0, y: 2.5, z: 0}
   OffsetCameraToAiming: {x: 1.072998, y: 1.848, z: -1.093}
   OffsetHandForAimingTra: {x: 0.45, y: -0.293, z: 0.461}
   OffsetHandForAimingRot: {x: 0, y: 90, z: 0}
   OffsetHandPos: {x: 0.321, y: -0.293, z: 0.461}
   OffsetHandRot: {x: 0, y: 33.79, z: 27.9}
   MouseSens: 1
-  MoveBack: 5
+  MoveBackDistance: 5
   t: 0
   CurrentLenghtOfOneStep: 0
   LenghtToOneStep: 1000

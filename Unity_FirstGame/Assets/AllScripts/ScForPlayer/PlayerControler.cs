@@ -35,6 +35,7 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] public bool HaveWeaponInHand = false;
     [SerializeField] public bool HavePistolInHand = false;
     [SerializeField] public bool UsingLoot = false;
+    [SerializeField] public bool IsRun = false;
 
     //Enums
     [SerializeField] public WhatIsInHand Using;
@@ -124,11 +125,14 @@ public class PlayerControler : MonoBehaviour
                 if (Inputs) MovementMode = ModeMovement.Go;
                 else MovementMode = ModeMovement.Null;
 
-                if (Input.GetKey(KeyCode.LeftShift)) 
+                if (Input.GetKey(KeyCode.LeftShift))
                 {
                     InStealth = false;
+                    IsRun = true;
                     MovementMode = ModeMovement.Run;
-                } 
+                }
+                else IsRun = false;
+
                 if (Aiming) MovementMode = ModeMovement.Aiming;
 
                 if (Inputs)
@@ -156,7 +160,7 @@ public class PlayerControler : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.Mouse1)) Aiming = false;
             
             // PickUp
-            if (PickUpPlayer) 
+            if (PickUpPlayer && !IsRun) 
             {
                 PickUpPlayer.RayForLoot();
                 PickUpPlayer.ComplertingTheLink();
