@@ -132,9 +132,11 @@ public class PlayerControler : MonoBehaviour
                     MovementMode = ModeMovement.Run;
                 }
                 else IsRun = false;
-
+                
+                //Aiming
                 if (Aiming) MovementMode = ModeMovement.Aiming;
-
+                ControlerUi.Scope.gameObject.SetActive(Aiming);
+                
                 if (Inputs)
                 {
                     //Stels
@@ -154,11 +156,15 @@ public class PlayerControler : MonoBehaviour
                 MovePlayer.Move(MovementMode);
                 MovePlayer.Jump();
             }
-            
+
             //Camera
-            if (Input.GetKey(KeyCode.Mouse1)) Aiming = true;
-            if (Input.GetKeyUp(KeyCode.Mouse1)) Aiming = false;
-            
+            if (HaveWeaponInHand || HavePistolInHand)
+            {
+                if (Input.GetKey(KeyCode.Mouse1)) Aiming = true;
+                else Aiming = false;
+            }
+            //if (Input.GetKeyUp(KeyCode.Mouse1)) Aiming = false;
+
             // PickUp
             if (PickUpPlayer && !IsRun) 
             {

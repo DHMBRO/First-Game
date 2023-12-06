@@ -42,9 +42,14 @@ public class UiControler : MonoBehaviour
     
     void Start()
     {
+        //Change value varriables
         InventoryIsOpen = false;
-        if (Inventory) Inventory.SetActive(false);
-        //if (!CameraScr) Debug.Log("Not set CameraScr");
+        
+        //Control other game objects
+        if (Inventory) Inventory.SetActive(InventoryIsOpen);
+        Scope.gameObject.SetActive(InventoryIsOpen);
+        
+        //Use Methods
         InterfaceControler();
     }
 

@@ -3,7 +3,8 @@ using UnityEngine;
 public class ThirdPersonCamera : MonoBehaviour
 {
     [SerializeField] UiControler ControlerUi;
-    
+    [SerializeField] PlayerControler ControlerPlayer;
+
     [SerializeField] public GameObject TargetCamera;
     
     [SerializeField] Transform HandTarget;
@@ -37,7 +38,7 @@ public class ThirdPersonCamera : MonoBehaviour
     [SerializeField] MoodCamera CameraMood;
     //[SerializeField] CameraIs CurrentState;
 
-    [SerializeField] public bool Aiming = false;
+    //[SerializeField] public bool Aiming = false;
     [SerializeField] private bool CameraIsUsig = false;
 
     Vector3 TargetPosition01;
@@ -87,6 +88,8 @@ public class ThirdPersonCamera : MonoBehaviour
         else transform.position = TargetCamera.transform.TransformPoint(OffsetCameraSimple) - (transform.forward * MoveBackDistance);
 
         Debug.DrawRay(TargetCamera.transform.TransformPoint(OffsetCameraSimple) /*- (transform.forward * 1.0f)*/, -transform.forward * (MoveBackDistance /*- 1.0f*/), Color.yellow);
+
+        if (ControlerPlayer.Aiming) TargetCamera.transform.localEulerAngles = new Vector3(0.0f, transform.localEulerAngles.y, 0.0f);
 
 
         //Cube1.position = TargetCamera.transform.TransformPoint(OffsetCameraSimple) - (transform.forward * 1.0f);
@@ -363,11 +366,11 @@ public class ThirdPersonCamera : MonoBehaviour
     {
         
         Vector3 TargetPosition = TargetCamera.transform.TransformPoint(OffsetCameraSimple);
-        if (!Aiming)
+        //if (!Aiming)
         {
             MoveBackObject.position = TargetPosition - MoveBackObject.forward;
         }
-        else
+        //else
         {
             TargetPosition = (TargetCamera.transform.TransformPoint(OffsetCameraToAiming)) + MoveBackObject.forward * (MoveBackDistance + 1.0f);
             MoveBackObject.position = TargetPosition - MoveBackObject.forward;
