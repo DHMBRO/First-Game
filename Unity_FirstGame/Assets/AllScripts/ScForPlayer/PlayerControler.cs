@@ -135,7 +135,7 @@ public class PlayerControler : MonoBehaviour
                 
                 //Aiming
                 if (Aiming) MovementMode = ModeMovement.Aiming;
-                ControlerUi.Scope.gameObject.SetActive(Aiming);
+                if(ControlerUi) ControlerUi.Scope.gameObject.SetActive(Aiming);
                 
                 if (Inputs)
                 {
