@@ -15,7 +15,7 @@ public class ExecutoreScriptToRock : MonoBehaviour
         SoundScript = gameObject.GetComponent<SoundCreatorScript>();
         if (SoundScript) SoundScript.CreateNoise();
 
-        Debug.Log("OnColisionIs work");
+        //Debug.Log("OnColisionIs work");
         //IsWorked = true;
         
         if(DestroyOnTouch) Destroy(gameObject);

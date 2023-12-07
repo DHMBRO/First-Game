@@ -17,6 +17,7 @@ public class MovePlayer : MonoBehaviour
 
     [SerializeField] int JumpCount;
 
+    [SerializeField] public float CurrentSpeed;
     [SerializeField] private float SpeedAiming;
     [SerializeField] private float SpeedGo;
     [SerializeField] private float SpeedStels;
@@ -78,16 +79,19 @@ public class MovePlayer : MonoBehaviour
                 case ModeMovement.Run:
                     Movement(SpeedRun, false);
                     break;
-
+                default:
+                    CurrentSpeed = 0.0f;
+                    break;
             }
             
 
             void Movement(float CurrentSpeedToMove,bool Aiming)
             {
-                
                 if (Aiming) MyRigidbody.AddRelativeForce(ForceAxis * SpeedAiming * Time.deltaTime, MyForceMode);
                 else MyRigidbody.AddRelativeForce(new Vector3(0.0f, 0.0f, 1.0f * CurrentSpeedToMove * Time.deltaTime), ForceMode.Force);
-                Debug.Log("CurrentSpeed: " + CurrentSpeedToMove);
+                CurrentSpeed = CurrentSpeedToMove;
+                
+                //Debug.Log("CurrentSpeed: " + CurrentSpeed);
                 
             }
 

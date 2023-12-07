@@ -5,6 +5,7 @@ public class ControlerAnimationsPlayer : MonoBehaviour
     //Other components
     [SerializeField] Animator Parameters;
     [SerializeField] PlayerControler ControlerPlayer;
+    [SerializeField] MovePlayer MovePlayer;
     [SerializeField] Rigidbody RigPlayer;
 
     //References to additional objects
@@ -22,6 +23,7 @@ public class ControlerAnimationsPlayer : MonoBehaviour
     {
         Parameters = GetComponent<Animator>();
         RigPlayer = ControlerPlayer.GetComponent<Rigidbody>();
+        //MovePlayer = GetComponent<MovePlayer>();
 
         if (Parameters) Parameters.SetFloat("Speed", 0.0f);
         else Parameters.SetFloat("Speed", 0.0f);
@@ -46,6 +48,9 @@ public class ControlerAnimationsPlayer : MonoBehaviour
 
         //Change the float parameters
         Parameters.SetFloat("CurrentSpeed", CurrentSpeed); //Current speed player
+        //Debug.Log("velocity: " + RigPlayer.velocity.normalized.sqrMagnitude);
+        Debug.Log("Velocity: " + (MovePlayer.CurrentSpeed /* Time.deltaTime*/) / RigPlayer.drag);
+
         Parameters.SetFloat("SpeedHorizontal", Horizontal); 
         Parameters.SetFloat("SpeedVertical", Vertical);
 

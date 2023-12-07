@@ -1137,6 +1137,7 @@ MonoBehaviour:
   CameraScr: {fileID: 0}
   CameraTransform: {fileID: 5755626125737214850}
   JumpCount: 0
+  CurrentSpeed: 0
   SpeedAiming: 7500
   SpeedGo: 9000
   SpeedStels: 8000
@@ -1207,14 +1208,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c15c62dc016af8044b23915b3ab24b54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SCScript: {fileID: 0}
+  SCScript: {fileID: 2001030955048781610}
   DeleyToAddNoice: 0.5
   TimeToAddNoice: 0
   RadiusNoiceWhenInStels: 2
   RadiusNoiceWhenAiming: 5
   RadiusNoiceWhenGo: 10
   RadiusNoiceWhenRun: 15
-  ZoneNoice: {fileID: 0}
+  ZoneNoice: {fileID: 5171423202122578886}
   ShowRadiuse: 0
 --- !u!114 &2001030955048781610
 MonoBehaviour:
@@ -1459,6 +1460,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parameters: {fileID: 5656907620302518789}
   ControlerPlayer: {fileID: 9222820105927190343}
+  MovePlayer: {fileID: 6328347359453867729}
   RigPlayer: {fileID: 5669462573118057115}
   BaseBodyPlayerForAnimations: {fileID: 6170257834469969523}
   CurrentSpeed: 0

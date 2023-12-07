@@ -1,18 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 public class SoundCreatorScript : MonoBehaviour
 {
     [SerializeField] public float NoiseRadius = 15.0f;
-    void Start()
-    {
+    [SerializeField] private bool DebugingTheWork = false;
 
-    }
-
-    void Update()
-    {
-
-    }
     public void CreateNoise()
     {
         Collider[] Colliders;
@@ -30,7 +21,13 @@ public class SoundCreatorScript : MonoBehaviour
                 SoundScript.TakeSound(gameObject.transform.position);
             }
         }
-        Debug.Log("Sound Created");
+        
+        if (DebugingTheWork)
+        {
+            Debug.Log("Sound Created");
+
+        }
+
     }
 }
 

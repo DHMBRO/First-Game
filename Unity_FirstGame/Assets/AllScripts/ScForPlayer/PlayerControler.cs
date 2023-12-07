@@ -15,7 +15,7 @@ public class PlayerControler : MonoBehaviour
     //Main Components To Work Player
     [SerializeField] private PickUp PickUpPlayer;
     [SerializeField] private DropControler ControlerDrop;
-    [SerializeField] public SlotControler SlotControler;
+    [SerializeField] private SlotControler SlotControler;
 
     //Camera Components
     [SerializeField] private Transform PlayerCameraF1;

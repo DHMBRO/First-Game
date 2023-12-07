@@ -10,7 +10,7 @@ public class UiControler : MonoBehaviour
 
     //References Ro Player Components
     [SerializeField] private Camera CameraScr;
-    [SerializeField] private PlayerControler ControlerPlayer;
+    [SerializeField] private SlotControler ControlerSlots;
     [SerializeField] private Inventory PlayerInventory;
     [SerializeField] private GameObject Inventory;
     
@@ -77,7 +77,7 @@ public class UiControler : MonoBehaviour
     public void InterfaceControler()
     {
         //Audits
-        if (!ControlerPlayer) { Debug.Log("Not set ControlerPlayer");  return; }
+        if (!ControlerSlots) { Debug.Log("Not set ControlerPlayer");  return; }
         for (int i = 0;i < ArmorPanels.Length;i++)
         {
             if (ArmorPanels[i] == null) { Debug.Log("Not the entire array (ArmorPanels) has valid values"); return; }
@@ -86,9 +86,9 @@ public class UiControler : MonoBehaviour
         
         ArmorControler ControlerArmor;
         
-        if (ControlerPlayer.SlotControler.MyArmor)
+        if (ControlerSlots.MyArmor)
         {
-            ControlerArmor = ControlerPlayer.SlotControler.MyArmor.GetComponent<ArmorControler>();
+            ControlerArmor = ControlerSlots.MyArmor.GetComponent<ArmorControler>();
             
 
             for(int i = 0;i < 3; i++)

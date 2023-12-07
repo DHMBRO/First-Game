@@ -62,7 +62,7 @@ public class ThirdPersonCamera : MonoBehaviour
 
         CurrentLenghtOfOneStep = LenghtOfOneStepToChangeState;
 
-        Debug.Log("Distance: " + (transform.position - MoveBackObject.position).magnitude);
+        //Debug.Log("Distance: " + (transform.position - MoveBackObject.position).magnitude);
 
     }
 
@@ -81,15 +81,37 @@ public class ThirdPersonCamera : MonoBehaviour
            transform.localEulerAngles.y + (MouseX * MouseSens),
             0.0f);
 
-        if (Physics.Raycast(TargetCamera.transform.TransformPoint(OffsetCameraSimple) /*- (transform.forward * 1.0f)*/, -transform.forward, out RaycastHit HitInfo, MoveBackDistance /*+ 1.0f*/))
+        if (ControlerPlayer.Aiming) 
+        {
+            TargetCamera.transform.localEulerAngles = new Vector3(0.0f, transform.localEulerAngles.y, 0.0f);
+        }
+
+        if (ControlerPlayer.Aiming)
+        {
+            CurrentOffSetCamera = OffsetCameraToAiming;
+        }
+        else
+        {
+            CurrentOffSetCamera = OffsetCameraSimple;
+        }
+
+        if (Physics.Raycast(TargetCamera.transform.TransformPoint(CurrentOffSetCamera) /*- (transform.forward * 1.0f)*/, -transform.forward, out RaycastHit HitInfo, MoveBackDistance /*+ 1.0f*/))
         {
             transform.position = HitInfo.point;
         }
-        else transform.position = TargetCamera.transform.TransformPoint(OffsetCameraSimple) - (transform.forward * MoveBackDistance);
+        else 
+        {
+            transform.position = TargetCamera.transform.TransformPoint(CurrentOffSetCamera) + (!ControlerPlayer.Aiming ? - (transform.forward * MoveBackDistance) : new Vector3()); 
+        }
 
-        Debug.DrawRay(TargetCamera.transform.TransformPoint(OffsetCameraSimple) /*- (transform.forward * 1.0f)*/, -transform.forward * (MoveBackDistance /*- 1.0f*/), Color.yellow);
+        Debug.DrawRay(TargetCamera.transform.TransformPoint(CurrentOffSetCamera) /*- (transform.forward * 1.0f)*/, -transform.forward * (MoveBackDistance /*- 1.0f*/), Color.yellow);
 
-        if (ControlerPlayer.Aiming) TargetCamera.transform.localEulerAngles = new Vector3(0.0f, transform.localEulerAngles.y, 0.0f);
+        if (Cube1)
+        {
+            Cube1.position = transform.position;
+        
+        }
+        //Debug.Log(transform.position);
 
 
         //Cube1.position = TargetCamera.transform.TransformPoint(OffsetCameraSimple) - (transform.forward * 1.0f);
