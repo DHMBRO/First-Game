@@ -6,7 +6,7 @@ public class ThirdPersonCamera : MonoBehaviour
     [SerializeField] PlayerControler ControlerPlayer;
 
     [SerializeField] public GameObject TargetCamera;
-    
+
     [SerializeField] Transform HandTarget;
     [SerializeField] Transform Cube;
     [SerializeField] Transform Cube1;
@@ -14,8 +14,8 @@ public class ThirdPersonCamera : MonoBehaviour
     [SerializeField] private Transform MoveBackObject;
 
     //New references 
-    Vector3 CurrentOffSetCamera; 
-
+    [SerializeField] public Vector3 CurrentOffSetCamera;
+    [SerializeField] public Vector3 DesirableVector;
 
     [SerializeField] public Vector3 OffsetCameraSimple;
 
@@ -27,8 +27,11 @@ public class ThirdPersonCamera : MonoBehaviour
     [SerializeField] Vector3 OffsetHandPos;
     [SerializeField] Vector3 OffsetHandRot;
 
+    [SerializeField] public float MoveBackDistance = 5.0f;
+    [SerializeField] public float HeightStartPoint = 1.0f;
     [SerializeField] float MouseSens = 1.0f;
-    [SerializeField] float MoveBackDistance = 5.0f;
+    [SerializeField] float MaxMagnitude = 2.4f;
+
 
     [SerializeField] float t;
     [SerializeField] float CurrentLenghtOfOneStep;
@@ -39,7 +42,7 @@ public class ThirdPersonCamera : MonoBehaviour
     //[SerializeField] CameraIs CurrentState;
 
     //[SerializeField] public bool Aiming = false;
-    [SerializeField] private bool CameraIsUsig = false;
+    [SerializeField] public bool CameraIsUsig = false;
 
     Vector3 TargetPosition01;
     Vector3 TargetPosition02;
@@ -68,49 +71,85 @@ public class ThirdPersonCamera : MonoBehaviour
 
     private void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            CameraIsUsig = false;
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            CameraIsUsig = true;
+
+        }
+
+        if (!CameraIsUsig) return;
+
         //Prameters
         MouseY = Input.GetAxis("Mouse Y");
         MouseX = Input.GetAxis("Mouse X");
-        
-        //Other Components
-        
+        HeightStartPoint = (1.0f + OffsetCameraSimple.y);
 
+        CurrentOffSetCamera = transform.position;
+        //Debug.Log("CurrentOffSetCamera: " + CurrentOffSetCamera);
+        
         //Camera
         transform.localEulerAngles = new Vector3(
            transform.localEulerAngles.x + (-MouseY * MouseSens),
            transform.localEulerAngles.y + (MouseX * MouseSens),
             0.0f);
 
+        //Rotate Player When Camera Aiming
         if (ControlerPlayer.Aiming) 
         {
             TargetCamera.transform.localEulerAngles = new Vector3(0.0f, transform.localEulerAngles.y, 0.0f);
         }
-
+        
+        //Change Current OffSet
         if (ControlerPlayer.Aiming)
         {
-            CurrentOffSetCamera = OffsetCameraToAiming;
+            DesirableVector = OffsetCameraToAiming;
         }
         else
         {
-            CurrentOffSetCamera = OffsetCameraSimple;
+            DesirableVector = OffsetCameraSimple;
         }
 
-        if (Physics.Raycast(TargetCamera.transform.TransformPoint(CurrentOffSetCamera) /*- (transform.forward * 1.0f)*/, -transform.forward, out RaycastHit HitInfo, MoveBackDistance /*+ 1.0f*/))
+        //Debug.Log((CurrentOffSetCamera - TargetCamera.transform.position).magnitude);
+        //Cube.transform.position = transform.position;
+        
+
+
+        //Audit To Walls
+        if (Physics.Raycast(TargetCamera.transform.TransformPoint(DesirableVector) - (transform.forward * (DesirableVector.z)) /*- (transform.forward * 1.0f)*/, -transform.forward, out RaycastHit HitInfo, !ControlerPlayer.Aiming ? MoveBackDistance : -DesirableVector.z))
         {
             transform.position = HitInfo.point;
         }
         else 
         {
-            transform.position = TargetCamera.transform.TransformPoint(CurrentOffSetCamera) + (!ControlerPlayer.Aiming ? - (transform.forward * MoveBackDistance) : new Vector3()); 
+            transform.position = TargetCamera.transform.TransformPoint(DesirableVector) + (!ControlerPlayer.Aiming ? - (transform.forward * MoveBackDistance) : new Vector3()); 
         }
+        
+        //Draw Ray Backward
+        Debug.DrawRay(TargetCamera.transform.TransformPoint(DesirableVector) - (transform.forward * (DesirableVector.z)) /*- (transform.forward * 1.0f)*/, -transform.forward * (!ControlerPlayer.Aiming ? MoveBackDistance : -DesirableVector.z), Color.yellow);
 
-        Debug.DrawRay(TargetCamera.transform.TransformPoint(CurrentOffSetCamera) /*- (transform.forward * 1.0f)*/, -transform.forward * (MoveBackDistance /*- 1.0f*/), Color.yellow);
-
+        //Change Position The "Cube1"
         if (Cube1)
         {
-            Cube1.position = transform.position;
-        
+            //Cube1.position = transform.position;
         }
+
+        if (ControlerPlayer.Aiming)
+        {
+            Vector3 TransfromOffSetAiming = TargetCamera.transform.TransformPoint(OffsetCameraToAiming);
+            if ((TransfromOffSetAiming - CurrentOffSetCamera).magnitude > MaxMagnitude)
+            {
+                Debug.Log("CurrentMagnitude > MaxMagnitude");
+                transform.position = TargetCamera.transform.TransformPoint(OffsetCameraSimple);
+            }
+            
+        }
+        
+
         //Debug.Log(transform.position);
 
 
@@ -145,7 +184,7 @@ public class ThirdPersonCamera : MonoBehaviour
             {
                 CameraIsUsig = false;
             }
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 CameraIsUsig = true;
 

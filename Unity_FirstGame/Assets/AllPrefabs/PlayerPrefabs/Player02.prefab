@@ -904,7 +904,7 @@ Rigidbody:
   m_GameObject: {fileID: 9027246094432369652}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 5
+  m_Drag: 0.1
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -953,6 +953,7 @@ MonoBehaviour:
   Anchor: {fileID: 0}
   Aiming: 0
   InStealth: 0
+  Juming: 0
   HaveWeaponInHand: 0
   HavePistolInHand: 0
   UsingLoot: 0
@@ -1130,12 +1131,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ControlerPlayer: {fileID: 0}
-  JumpForce: 1
+  JumpForce: 600
   Sens: 1
   MyForceMode: 0
   MyRigidbody: {fileID: 5669462573118057115}
   CameraScr: {fileID: 0}
   CameraTransform: {fileID: 5755626125737214850}
+  CanJump: 0
   JumpCount: 0
   CurrentSpeed: 0
   SpeedAiming: 7500
@@ -1230,6 +1232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NoiseRadius: 15
+  DebugingTheWork: 0
 --- !u!120 &4595642774281171269
 LineRenderer:
   m_ObjectHideFlags: 0

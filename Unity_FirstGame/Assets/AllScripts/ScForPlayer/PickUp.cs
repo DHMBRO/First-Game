@@ -16,7 +16,7 @@ public class PickUp : MethodsFromDevelopers
 
     [SerializeField] List<string> TagsToPickup = new List<string>();
 
-    private float DistanceForRay = 2.0f;
+    [SerializeField] private float DistanceForRay = 3.0f;
     private int Counter = 0;
 
     private SlotControler SlotControler;
@@ -37,8 +37,9 @@ public class PickUp : MethodsFromDevelopers
     {
         if (ThirdCamera)
         {
-            Vector3 PointRay = ThirdCamera.TargetCamera.transform.TransformPoint(ThirdCamera.OffsetCameraSimple) + (ThirdCamera.transform.forward * 1.0f);
-            
+            Vector3 PointRay1 = ThirdCamera.CurrentOffSetCamera + (ThirdCamera.transform.forward * ThirdCamera.MoveBackDistance);
+            Vector3 PointRay = new Vector3(transform.position.x, ThirdCamera.HeightStartPoint, transform.position.z);
+
             //Debug.Log("RayForLoot is work");
             Ray RayForPickUp = new Ray(PointRay, ThirdCamera.transform.forward);
 

@@ -32,6 +32,7 @@ public class PlayerControler : MonoBehaviour
     //Bools
     [SerializeField] public bool Aiming = false;
     [SerializeField] public bool InStealth = false;
+    [SerializeField] public bool Juming = false;
     [SerializeField] public bool HaveWeaponInHand = false;
     [SerializeField] public bool HavePistolInHand = false;
     [SerializeField] public bool UsingLoot = false;
@@ -132,11 +133,11 @@ public class PlayerControler : MonoBehaviour
                     MovementMode = ModeMovement.Run;
                 }
                 else IsRun = false;
-                
+
                 //Aiming
                 if (Aiming) MovementMode = ModeMovement.Aiming;
-                if(ControlerUi) ControlerUi.Scope.gameObject.SetActive(Aiming);
-                
+                if (ControlerUi) ControlerUi.Scope.gameObject.SetActive(Aiming);
+
                 if (Inputs)
                 {
                     //Stels
@@ -158,7 +159,7 @@ public class PlayerControler : MonoBehaviour
             }
 
             //Camera
-            if (HaveWeaponInHand || HavePistolInHand)
+            if (CameraPlayerF3.CameraIsUsig && HaveWeaponInHand || HavePistolInHand)
             {
                 if (Input.GetKey(KeyCode.Mouse1)) Aiming = true;
                 else Aiming = false;
@@ -166,7 +167,7 @@ public class PlayerControler : MonoBehaviour
             //if (Input.GetKeyUp(KeyCode.Mouse1)) Aiming = false;
 
             // PickUp
-            if (PickUpPlayer && !IsRun) 
+            if (PickUpPlayer && !IsRun && !Aiming) 
             {
                 PickUpPlayer.RayForLoot();
                 PickUpPlayer.ComplertingTheLink();

@@ -61,6 +61,13 @@ public class ControlerAnimationsPlayer : MonoBehaviour
         Parameters.SetBool("InStealth", ControlerPlayer.InStealth);
         Parameters.SetBool("UsingLoot", ControlerPlayer.UsingLoot);
 
+        //Triggers
+        if (ControlerPlayer.Juming) 
+        {
+            Parameters.SetTrigger("Jump");
+            Debug.Log("True");
+        }
+
         if (ControlerPlayer.Aiming || ControlerPlayer.InStealth)
         {
             BaseBodyPlayerForAnimations.transform.localEulerAngles = new Vector3(0.0f, RotateBaseBodyWhenAiming, 0.0f);

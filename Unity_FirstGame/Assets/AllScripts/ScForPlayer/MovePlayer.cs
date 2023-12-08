@@ -15,6 +15,8 @@ public class MovePlayer : MonoBehaviour
 
     [SerializeField] protected Transform CameraTransform;
 
+    [SerializeField] bool CanJump = false;
+    
     [SerializeField] int JumpCount;
 
     [SerializeField] public float CurrentSpeed;
@@ -114,12 +116,26 @@ public class MovePlayer : MonoBehaviour
     
     public void Jump()
     {
+       
+        
+        if (!CanJump) return;
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            MyRigidbody.AddRelativeForce(new Vector3(0.0f, 1.0f * JumpForce, 0.0f), ForceMode.Force);
+            ControlerPlayer.Juming = true;
+            //Debug.Log(ControlerPlayer.Juming);
+        }
+        else ControlerPlayer.Juming = false;
+
+        /*
         if (Input.GetKeyDown(KeyCode.Space))
         {
             RaycastHit Result = new RaycastHit();
-            Ray RayForJump = new Ray(transform.position, -transform.up);
+            //Ray RayForJump = new Ray(transform.position, -transform.up);
+
             Debug.DrawRay(transform.position, -transform.up * 0.50f, Color.blue);
-            if (Physics.Raycast(RayForJump, out RaycastHit HitResult, 1.01f))
+            if (Physics.Raycast(transform.position, -transform.up, out RaycastHit HitResult, 1.0f))
             {
                 Result = HitResult;
                 if (Result.collider)
@@ -136,7 +152,19 @@ public class MovePlayer : MonoBehaviour
         {
             MyRigidbody.AddRelativeForce(new Vector3(0f, 1f * JumpForce, 0f), ForceMode.Force);
             JumpCount--;
+            
         }
-    } 
-    
+        */
+    }
+
+
+    private void OnCollisionStay(Collision collision)
+    {
+        CanJump = true;
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        CanJump = false;
+    }
 }
