@@ -99,25 +99,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ControlerUi: {fileID: 0}
+  ControlerPlayer: {fileID: 0}
   TargetCamera: {fileID: 758934435905196194, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
   HandTarget: {fileID: 0}
   Cube: {fileID: 0}
+  Cube1: {fileID: 0}
   MoveBackObject: {fileID: 0}
   CurrentOffSetCamera: {x: 0, y: 0, z: 0}
+  DesirableVector: {x: 0, y: 0, z: 0}
   OffsetCameraSimple: {x: 0, y: 2.5, z: 0}
-  OffsetCameraToAiming: {x: 1.072998, y: 1.848, z: -1.093}
+  OffsetCameraToAiming: {x: 1.072998, y: 1.848, z: 0}
   OffsetHandForAimingTra: {x: 0.45, y: -0.293, z: 0.461}
   OffsetHandForAimingRot: {x: 0, y: 90, z: 0}
   OffsetHandPos: {x: 0.321, y: -0.293, z: 0.461}
   OffsetHandRot: {x: 0, y: 33.79, z: 27.9}
+  CurrentMoveBackDistance: 0
+  MoveBackDistanceSimple: 4
+  MoveBackDistanceAiming: 2.02
   MouseSens: 1
-  MoveBackDistance: 5
+  MaxMagnitude: 2.4
+  HeightStartPoint: 1
   t: 0
   CurrentLenghtOfOneStep: 0
   LenghtToOneStep: 1000
   LenghtOfOneStepToChangeState: 6
   CameraMood: 0
-  Aiming: 0
   CameraIsUsig: 0
 --- !u!1001 &6299334075684510675
 PrefabInstance:
