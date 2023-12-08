@@ -4,6 +4,8 @@ using UnityEngine;
 public class SoundTakerScript : MonoBehaviour
 {
     protected PatrolScriptNavMesh ZombiePatrolScript;
+    public bool IHearSomething;
+    public Vector3 InerestPos;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,10 +19,11 @@ public class SoundTakerScript : MonoBehaviour
     }
     public void TakeSound(Vector3 SoundPosition)
     {
+        
         if (ZombiePatrolScript)
         {
-            // State Attacking && Chasing ();
-            ZombiePatrolScript.CheckPosition(SoundPosition);
+            IHearSomething = true;
+            SoundPosition = InerestPos;
         }
     }
 }

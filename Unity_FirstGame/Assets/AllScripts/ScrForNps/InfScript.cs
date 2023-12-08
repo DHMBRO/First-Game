@@ -4,33 +4,64 @@ using UnityEngine;
 
 public class InfScript : MonoBehaviour
 {
-    protected HpScript MyHpScript;
-    protected LocateScript MyLocateScript;
-    
+    protected HpScript HpScript;
+    protected LocateScript Locate;
+    protected PatrolScriptNavMesh Patrol;
+    protected AttackMethod Attack;
+    protected ILogic CurrentState; 
+    protected SoundTakerScript SoundTaker;
+   
+
     void Start()
     {
-        MyHpScript = this.gameObject.GetComponent<HpScript>();
-        MyLocateScript = this.gameObject.GetComponent<LocateScript>();
+        HpScript = this.gameObject.GetComponent<HpScript>();
+        Locate = this.gameObject.GetComponent<LocateScript>();
+        Patrol = this.gameObject.GetComponent<PatrolScriptNavMesh>();
+        Attack = this.gameObject.GetComponent<AttackMethod>();
+        SoundTaker = this.gameObject.GetComponent<SoundTakerScript>();
+        SetState(new PatrolState(this));
     }
 
     void Update()
     {
+        if (CurrentState != null)
+        { 
+            CurrentState.Update();
+        }
 
     }
     public bool DoIHaveATarget()
     {
-        if (MyLocateScript.Target)
+        if (Locate.Target)
         {
             return true;
         }
         return false;
     }
+    public bool CanAttack()
+    {
+        return ((Patrol.ZombieNavMesh.remainingDistance <= Attack.AttackDistance) &&
+                            ((Locate.Target.transform.position - Patrol.ZombieNavMesh.destination).magnitude <= Attack.GoingDistance));
+
+    }
     public float HowMuchHpIHave()
     { 
-        return MyHpScript.HealthPoint;
+        return HpScript.HealthPoint;
     }
     public bool CanISeeEnemy()
     {
-        return MyLocateScript.CanISeeTarget();
+        return Locate.CanISeeTarget();
+    }
+    public void SetState(ILogic NewState)
+    {
+       CurrentState = NewState;
+    }
+    public bool IHearSomething()
+    {
+        return SoundTaker.IHearSomething;
+    }
+    public Vector3 UNeedToCheckThis()
+    {
+        return SoundTaker.InerestPos;
     }
 }
