@@ -14,9 +14,13 @@ public class ControlerAnimationsPlayer : MonoBehaviour
     //Parameters
     [SerializeField] float CurrentSpeed;
     [SerializeField] float DesirableSpeed;
+    [SerializeField] bool CanStop;
 
     //Additional parameters to work 
-    [SerializeField] float RotateBaseBodyWhenAiming;
+    //[SerializeField] public float CurrentAddedRotateBodyPlayer;
+
+    [SerializeField] float RotateBodyWhenAiming;
+    //[SerializeField] float RotateBodyPlayerWhenAimingInStelth;
 
 
     void Start()
@@ -47,32 +51,51 @@ public class ControlerAnimationsPlayer : MonoBehaviour
         if (CurrentSpeed < DesirableSpeed) CurrentSpeed += (Time.deltaTime);
 
         //Change the float parameters
-        Parameters.SetFloat("CurrentSpeed", CurrentSpeed); //Current speed player
         
-        //Debug.Log("velocity: " + RigPlayer.velocity.normalized.sqrMagnitude);
-        //Debug.Log("Velocity: " + (MovePlayer.CurrentSpeed /* Time.deltaTime*/) / RigPlayer.drag);
+        if (CanStop == true)
+        {
+            if (CurrentSpeed > DesirableSpeed) CurrentSpeed -= (Time.deltaTime);
+            if (CurrentSpeed < DesirableSpeed) CurrentSpeed += (Time.deltaTime);
 
+            Parameters.SetFloat("CurrentSpeed", CurrentSpeed); //Current speed player
+
+
+        }
 
         Parameters.SetFloat("SpeedHorizontal", Horizontal); 
         Parameters.SetFloat("SpeedVertical", Vertical);
 
         //Change the bool parameters
-        Parameters.SetBool("IsAiming", ControlerPlayer.Aiming); 
+        Parameters.SetBool("IsAiming", ControlerPlayer.IsAiming); 
         Parameters.SetBool("HaveWeaponInHand", ControlerPlayer.HaveWeaponInHand);
         Parameters.SetBool("HavePistolInHand", ControlerPlayer.HavePistolInHand);
         Parameters.SetBool("InStealth", ControlerPlayer.InStealth);
-        Parameters.SetBool("UsingLoot", ControlerPlayer.UsingLoot);
+        Parameters.SetBool("UsingLoot", ControlerPlayer.IsUsingLoot);
+
+        
 
         //Triggers
-        if (ControlerPlayer.Juming) 
+        if (ControlerPlayer.IsJuming) 
         {
             Parameters.SetTrigger("Jump");
             Debug.Log("True");
         }
 
-        if (ControlerPlayer.Aiming || ControlerPlayer.InStealth)
+
+
+        if (ControlerPlayer.IsAiming || ControlerPlayer.InStealth)
         {
-            BaseBodyPlayerForAnimations.transform.localEulerAngles = new Vector3(0.0f, RotateBaseBodyWhenAiming, 0.0f);
+            BaseBodyPlayerForAnimations.transform.localEulerAngles = new Vector3(0.0f, RotateBodyWhenAiming, 0.0f);
+        }
+        //if (ControlerPlayer.IsAiming && ControlerPlayer.InStealth)
+        {
+            //BaseBodyPlayerForAnimations.transform.localEulerAngles = new Vector3(0.0f, RotateBodyWhenAiming, 0.0f);
+            //BaseBodyPlayerForAnimations.transform.localEulerAngles = new Vector3(0.0f, RotateBodyPlayerWhenAimingInStelth, 0.0f);
+            //Debug.Log("Audit 2 is work");
+        }
+        if (!ControlerPlayer.InStealth && !ControlerPlayer.IsAiming)
+        {
+            BaseBodyPlayerForAnimations.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
         }
         if(Input.GetKeyUp(KeyCode.Mouse1) || Input.GetKeyUp(KeyCode.X) || Input.GetKeyDown(KeyCode.LeftShift)) 
             BaseBodyPlayerForAnimations.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);

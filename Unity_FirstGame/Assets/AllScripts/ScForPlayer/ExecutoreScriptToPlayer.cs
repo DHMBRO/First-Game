@@ -30,7 +30,7 @@ public class ExecutoreScriptToPlayer : MonoBehaviour
             
             switch (MovementMode)
             {
-                case ModeMovement.Stels:
+                case ModeMovement.Stelth:
                     RadiusNoice = RadiusNoiceWhenInStels;
                     break;
                 case ModeMovement.Aiming:

@@ -51,7 +51,8 @@ public enum ModeMovement
     Go,
     Aiming,
     Run,
-    Stels,
+    Stelth,
+    StelsAndAiming
 }
 
 

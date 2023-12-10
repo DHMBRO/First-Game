@@ -51,10 +51,10 @@ public class MovePlayer : MonoBehaviour
 
         Vector3 ForceAxis = new Vector3(MoveHorizontal, 0.0f, MoveVertical).normalized;
         
-        if (true || Math.Abs(MoveVertical + MoveVertical) > 0.01f)
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Math.Abs(MoveVertical + MoveVertical) > 0.01f)
         {
 
-            if (!ControlerPlayer.Aiming && MovementMode != ModeMovement.Null) //Rotate Body Player
+            if (!ControlerPlayer.IsAiming && MovementMode != ModeMovement.Null) //Rotate Body Player
             {
                 Quaternion Forward = Quaternion.LookRotation(ForceAxis);
                 Quaternion TargetRotation = Forward * CameraScr.transform.rotation;
@@ -76,12 +76,16 @@ public class MovePlayer : MonoBehaviour
                 case ModeMovement.Go:
                     Movement(SpeedGo, false);
                     break;
-                case ModeMovement.Stels:
+                case ModeMovement.Stelth:
                     Movement(SpeedStels, false);
                     break;
                 case ModeMovement.Run:
                     Movement(SpeedRun, false);
                     break;
+                case ModeMovement.StelsAndAiming:
+                    Movement(SpeedAiming, true);
+                    break;
+                
                 default:
                     CurrentSpeed = 0.0f;
                     break;
@@ -93,6 +97,7 @@ public class MovePlayer : MonoBehaviour
                 if (Aiming) MyRigidbody.AddRelativeForce(ForceAxis * SpeedAiming * Time.deltaTime, MyForceMode);
                 else MyRigidbody.AddRelativeForce(new Vector3(0.0f, 0.0f, 1.0f * CurrentSpeedToMove * Time.deltaTime), ForceMode.Force);
                 CurrentSpeed = CurrentSpeedToMove;
+                Debug.Log(Aiming);
 
                 //Debug.Log("CurrentSpeed: " + CurrentSpeedToMove);
                 //Debug.Log(MyRigidbody.velocity.magnitude);
@@ -125,10 +130,10 @@ public class MovePlayer : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             MyRigidbody.AddRelativeForce(new Vector3(0.0f, 1.0f * JumpForce, 0.0f), ForceMode.Force);
-            ControlerPlayer.Juming = true;
+            ControlerPlayer.IsJuming = true;
             //Debug.Log(ControlerPlayer.Juming);
         }
-        else ControlerPlayer.Juming = false;
+        else ControlerPlayer.IsJuming = false;
 
         /*
         if (Input.GetKeyDown(KeyCode.Space))

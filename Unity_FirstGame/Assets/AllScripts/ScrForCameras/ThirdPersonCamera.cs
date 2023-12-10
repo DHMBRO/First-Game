@@ -18,8 +18,10 @@ public class ThirdPersonCamera : MonoBehaviour
     [SerializeField] public Vector3 DesirableVector;
 
     [SerializeField] public Vector3 OffsetCameraSimple;
+    [SerializeField] Vector3 OffsetCameraInStelth;
 
     [SerializeField] Vector3 OffsetCameraToAiming;
+    [SerializeField] Vector3 OffsetCameraToAimingInStelth;
 
     [SerializeField] Vector3 OffsetHandForAimingTra;
     [SerializeField] Vector3 OffsetHandForAimingRot;
@@ -29,6 +31,7 @@ public class ThirdPersonCamera : MonoBehaviour
 
     [SerializeField] public float CurrentMoveBackDistance;
     [SerializeField] float MoveBackDistanceSimple = 5.0f;
+    [SerializeField] float MoveBackDistanceStelth = 3.0f;
     [SerializeField] float MoveBackDistanceAiming = 2.02f;
 
     [SerializeField] float MouseSens = 1.0f;
@@ -63,7 +66,6 @@ public class ThirdPersonCamera : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         
-        if(HandTarget) RotateHandToSimple();
 
         CurrentLenghtOfOneStep = LenghtOfOneStepToChangeState;
 
@@ -124,22 +126,33 @@ public class ThirdPersonCamera : MonoBehaviour
         //transform.eulerAngles = new Vector3(a, 0.0f, 0.0f);
 
         //Rotate Player When Camera Aiming
-        if (ControlerPlayer.Aiming) 
+        if (ControlerPlayer.IsAiming) 
         {
             TargetCamera.transform.localEulerAngles = new Vector3(0.0f, transform.localEulerAngles.y, 0.0f);
         }
-        
+
         //Change Current OffSet
-        if (ControlerPlayer.Aiming)
+        if (ControlerPlayer.IsAiming && ControlerPlayer.InStealth)
+        {
+            DesirableVector = OffsetCameraToAimingInStelth;
+            CurrentMoveBackDistance = MoveBackDistanceAiming;
+        }
+        else if (ControlerPlayer.IsAiming && !ControlerPlayer.InStealth)
         {
             DesirableVector = OffsetCameraToAiming;
             CurrentMoveBackDistance = MoveBackDistanceAiming;
         }
-        else
+        else if (!ControlerPlayer.IsAiming && ControlerPlayer.InStealth)
+        {
+            DesirableVector = OffsetCameraInStelth;
+            CurrentMoveBackDistance = MoveBackDistanceStelth;
+        }
+        else if(!ControlerPlayer.IsAiming && !ControlerPlayer.InStealth)
         {
             DesirableVector = OffsetCameraSimple;
             CurrentMoveBackDistance = MoveBackDistanceSimple;
         }
+
 
         //Debug.Log((CurrentOffSetCamera - TargetCamera.transform.position).magnitude);
         
@@ -165,7 +178,7 @@ public class ThirdPersonCamera : MonoBehaviour
             //Cube1.position = transform.position;
         }
 
-        if (ControlerPlayer.Aiming)
+        if (ControlerPlayer.IsAiming)
         {
             Vector3 TransfromOffSetAiming = TargetCamera.transform.TransformPoint(OffsetCameraToAiming);
             if ((TransfromOffSetAiming - CurrentOffSetCamera).magnitude > MaxMagnitude)
@@ -333,138 +346,11 @@ public class ThirdPersonCamera : MonoBehaviour
     }
 
 
-
-
-
-
-
     void LerpCamera(Vector3 TargetVector)
     {
         t = ((CurrentLenghtOfOneStep / (TargetVector - transform.position).magnitude) * Time.deltaTime);
         transform.position = Vector3.Lerp(transform.position, TargetVector, t);
     }
 
-    void RoateHandToAiming()
-    {
-        Vector3 TargetPoint;
-
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit HitResult))
-        {
-            TargetPoint = transform.TransformPoint(transform.forward) + transform.forward * (HitResult.distance);
-
-            //Debug.Log(TargetPoint);
-
-            if (Cube) Cube.position = TargetPoint;
-            else Debug.Log("Not set cube");
-
-            HandTarget.localPosition = OffsetHandForAimingTra;
-            HandTarget.LookAt(TargetPoint);
-
-            //HandTarget.eulerAngles = new Vector3(HandTarget.eulerAngles.x, 0.0f, 0.0f);
-            HandTarget.localEulerAngles = new Vector3(HandTarget.localEulerAngles.x, 0.0f,0.0f);
-            //Debug.Log(HandTarget.localEulerAngles);
-            
-        }
-        else if(FraimAiming)
-        {
-            HandTarget.localPosition = OffsetHandForAimingTra;
-            HandTarget.localEulerAngles = OffsetHandForAimingRot;
-        }
-
-
-
-    }
-
-    void RotateHandToSimple()
-    {
-        if (!FraimSimple)
-        {
-            HandTarget.localPosition = OffsetHandPos;
-            HandTarget.localEulerAngles = OffsetHandRot;
-        }
-    }
-
-
-    void RotateCameraSimple()
-    {
-        transform.localEulerAngles = new Vector3(
-        transform.localEulerAngles.x - Input.GetAxis("Mouse Y") * MouseSens,
-        transform.localEulerAngles.y + Input.GetAxis("Mouse X") * MouseSens,
-        0.0f);
-
-        MoveBackObject.transform.localEulerAngles = new Vector3(
-        MoveBackObject.transform.localEulerAngles.x - Input.GetAxis("Mouse Y"),
-        MoveBackObject.transform.localEulerAngles.y + Input.GetAxis("Mouse X"),
-        0.0f);
-    }
-
-    void RotateCameraAiming()
-    {
-        transform.eulerAngles = new Vector3(transform.localEulerAngles.x - Input.GetAxis("Mouse Y") * MouseSens,
-        TargetCamera.transform.eulerAngles.y * MouseSens, 0.0f);
-
-        MoveBackObject.eulerAngles = new Vector3(0.0f, transform.eulerAngles.y * MouseSens, 0.0f);
-
-        TargetCamera.transform.localEulerAngles = new Vector3(
-        0.0f,
-        TargetCamera.transform.localEulerAngles.y + Input.GetAxis("Mouse X") * MouseSens,
-        0.0f);
-
-    }
-
-    void StateCameraAiming()
-    {
-        TargetPosition01 = TargetCamera.transform.TransformPoint(OffsetCameraToAiming);
-        
-        Debug.DrawRay(MoveBackObject.position, -MoveBackObject.forward * (MoveBackDistanceSimple), Color.blue);
-        if (Physics.Raycast(MoveBackObject.position, -MoveBackObject.forward, out RaycastHit ResultHit01, (MoveBackDistanceSimple)))
-        {
-            TargetPosition01 = (MoveBackObject.transform.TransformPoint(MoveBackObject.forward) - MoveBackObject.transform.forward * ResultHit01.distance);
-            //Debug.Log(TargetPosition);
-        }
-
-        LerpCamera(TargetPosition01);
-        //Debug.Log(a);
-
-        //Debug.Log("Camera is Aiming");
-        
-    }
-
-
-    void MoveBackCammera()
-    {
-        TargetPosition02 = (TargetCamera.transform.TransformPoint(OffsetCameraSimple)) - transform.forward * MoveBackDistanceSimple;
-
-        //transform.position = TargetPosition - transform.forward * MoveBack;
-        //Vector3 a = TargetPosition - transform.forward * MoveBack;
-        Debug.DrawRay(MoveBackObject.position, -MoveBackObject.forward * (MoveBackDistanceSimple - 1.0f),Color.blue);
-        if (Physics.Raycast(MoveBackObject.position, -MoveBackObject.forward, out RaycastHit ResultHit02, (MoveBackDistanceSimple - 1.5f)))
-        {
-            TargetPosition02 = MoveBackObject.transform.TransformPoint(MoveBackObject.forward) - MoveBackObject.forward * ResultHit02.distance;
-            //Debug.Log(TargetPosition);
-        }
-
-        //Debug.Log(a);
-
-        LerpCamera(TargetPosition02);
-        
-    }
-
-    void MoveBackObjectToRay()
-    {
-        
-        Vector3 TargetPosition = TargetCamera.transform.TransformPoint(OffsetCameraSimple);
-        //if (!Aiming)
-        {
-            MoveBackObject.position = TargetPosition - MoveBackObject.forward;
-        }
-        //else
-        {
-            TargetPosition = (TargetCamera.transform.TransformPoint(OffsetCameraToAiming)) + MoveBackObject.forward * (MoveBackDistanceSimple + 1.0f);
-            MoveBackObject.position = TargetPosition - MoveBackObject.forward;
-        }
-
-
-    }
 
 }
