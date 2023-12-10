@@ -6,6 +6,7 @@ public class MovePlayer : MonoBehaviour
     [SerializeField] public PlayerControler ControlerPlayer;
 
     [SerializeField] float JumpForce = 1.0f;
+    [SerializeField] float DeleyJump = 1.0f; 
     [SerializeField] protected float Sens = 1.0f;
 
     [SerializeField] ForceMode MyForceMode;
@@ -92,9 +93,10 @@ public class MovePlayer : MonoBehaviour
                 if (Aiming) MyRigidbody.AddRelativeForce(ForceAxis * SpeedAiming * Time.deltaTime, MyForceMode);
                 else MyRigidbody.AddRelativeForce(new Vector3(0.0f, 0.0f, 1.0f * CurrentSpeedToMove * Time.deltaTime), ForceMode.Force);
                 CurrentSpeed = CurrentSpeedToMove;
-                
-                //Debug.Log("CurrentSpeed: " + CurrentSpeed);
-                
+
+                //Debug.Log("CurrentSpeed: " + CurrentSpeedToMove);
+                //Debug.Log(MyRigidbody.velocity.magnitude);
+
             }
 
         }

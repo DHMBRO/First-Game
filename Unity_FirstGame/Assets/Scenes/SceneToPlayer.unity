@@ -775,7 +775,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &526833592
 Transform:
   m_ObjectHideFlags: 0
@@ -1662,6 +1662,10 @@ PrefabInstance:
       value: 0.743
       objectReference: {fileID: 0}
     - target: {fileID: 3994893304370285142, guid: 99b382a7a7090204b9bd10d055fa8870, type: 3}
+      propertyPath: MoveBackDistanceSimple
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3994893304370285142, guid: 99b382a7a7090204b9bd10d055fa8870, type: 3}
       propertyPath: OffsetCameraToAiming.x
       value: 1.19
       objectReference: {fileID: 0}
@@ -1671,7 +1675,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3994893304370285142, guid: 99b382a7a7090204b9bd10d055fa8870, type: 3}
       propertyPath: OffsetCameraToAiming.z
-      value: -2.02
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3994893304370285142, guid: 99b382a7a7090204b9bd10d055fa8870, type: 3}
       propertyPath: OffsetHandForAimingRot.y
@@ -2820,6 +2824,10 @@ PrefabInstance:
       propertyPath: ShowRadiuse
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2403751774268524742, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2663352457323175868, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: None
       value: 
@@ -2940,13 +2948,17 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5400044908591962198, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5656907620302518789, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5669462573118057115, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: m_Drag
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5669462573118057115, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: m_Constraints
@@ -3062,7 +3074,7 @@ PrefabInstance:
       objectReference: {fileID: 2100636528}
     - target: {fileID: 6328347359453867729, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: JumpForce
-      value: 200
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 6328347359453867729, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: SpeedMove
@@ -4571,14 +4583,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1592238895}
-  m_LocalRotation: {x: -0, y: 0.9975816, z: -0.06950572, w: 0}
-  m_LocalPosition: {x: -104.91, y: 10, z: -6.366}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
+  m_LocalPosition: {x: -104.91, y: 10, z: -0.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 7.971, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 180, z: 0}
 --- !u!1 &1593274870
 GameObject:
   m_ObjectHideFlags: 0

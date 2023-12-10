@@ -41,15 +41,17 @@ public class ControlerAnimationsPlayer : MonoBehaviour
         //Speed Movement
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A)) DesirableSpeed = 0.5f;
         else DesirableSpeed = 0.0f;
-        if (Input.GetKey(KeyCode.LeftShift)) DesirableSpeed= 1.0f;
+        if (Input.GetKey(KeyCode.LeftShift)) DesirableSpeed = 1.0f;
 
-        if (CurrentSpeed > DesirableSpeed) CurrentSpeed -= 0.01f;
-        if (CurrentSpeed < DesirableSpeed) CurrentSpeed += 0.01f;
+        if (CurrentSpeed > DesirableSpeed) CurrentSpeed -= (Time.deltaTime);
+        if (CurrentSpeed < DesirableSpeed) CurrentSpeed += (Time.deltaTime);
 
         //Change the float parameters
         Parameters.SetFloat("CurrentSpeed", CurrentSpeed); //Current speed player
+        
         //Debug.Log("velocity: " + RigPlayer.velocity.normalized.sqrMagnitude);
-        Debug.Log("Velocity: " + (MovePlayer.CurrentSpeed /* Time.deltaTime*/) / RigPlayer.drag);
+        //Debug.Log("Velocity: " + (MovePlayer.CurrentSpeed /* Time.deltaTime*/) / RigPlayer.drag);
+
 
         Parameters.SetFloat("SpeedHorizontal", Horizontal); 
         Parameters.SetFloat("SpeedVertical", Vertical);
