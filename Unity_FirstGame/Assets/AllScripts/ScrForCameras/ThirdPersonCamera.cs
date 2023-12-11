@@ -40,7 +40,7 @@ public class ThirdPersonCamera : MonoBehaviour
 
     [SerializeField] float t;
     [SerializeField] float CurrentLenghtOfOneStep;
-    [SerializeField] float LenghtToOneStep = 100.0f;
+    //[SerializeField] float LenghtToOneStep = 100.0f;
     [SerializeField] float LenghtOfOneStepToChangeState = 3.0f;
 
     [SerializeField] MoodCamera CameraMood;
@@ -49,14 +49,14 @@ public class ThirdPersonCamera : MonoBehaviour
     //[SerializeField] public bool Aiming = false;
     [SerializeField] public bool CameraIsUsig = false;
 
-    Vector3 TargetPosition01;
-    Vector3 TargetPosition02;
+    //Vector3 TargetPosition01;
+    //Vector3 TargetPosition02;
 
-    bool CameraState01 = false;
-    bool CameraState02 = false;
+    //bool CameraState01 = false;
+    //bool CameraState02 = false;
 
-    bool FraimSimple = false;
-    bool FraimAiming = false;
+    //bool FraimSimple = false;
+    //bool FraimAiming = false;
 
     float MouseY;
     float MouseX;
@@ -86,7 +86,7 @@ public class ThirdPersonCamera : MonoBehaviour
         }
 
         if (!CameraIsUsig) return;
-
+        
         //Prameters
         MouseY = Input.GetAxis("Mouse Y");
         MouseX = Input.GetAxis("Mouse X");
@@ -104,58 +104,47 @@ public class ThirdPersonCamera : MonoBehaviour
             EulerX -= 360.0f;
         }
 
-        EulerX = Mathf.Clamp(EulerX, -60.0f, 50.0f);
-        
+        EulerX = Mathf.Clamp(EulerX, -60.0f, 70.0f);
+
+        if (ControlerPlayer.IsAiming)
+        {
+            TargetCamera.transform.localEulerAngles = new Vector3(0.0f, transform.localEulerAngles.y, 0.0f);
+        }
 
         transform.eulerAngles = new Vector3(
            EulerX,
            transform.eulerAngles.y + (MouseX * MouseSens),
             0.0f);
 
-
-
         transform.position = TargetCamera.transform.TransformPoint(DesirableVector) + -(transform.forward * CurrentMoveBackDistance);
-
         
-        
-
-
-        //Debug.Log(transform.localEulerAngles.x + "\t" + transform.eulerAngles.x);
-
-        //float a = 0.0f;
-        //transform.eulerAngles = new Vector3(a, 0.0f, 0.0f);
-
         //Rotate Player When Camera Aiming
         if (ControlerPlayer.IsAiming) 
         {
             TargetCamera.transform.localEulerAngles = new Vector3(0.0f, transform.localEulerAngles.y, 0.0f);
         }
-
-        //Change Current OffSet
-        if (ControlerPlayer.IsAiming && ControlerPlayer.InStealth)
-        {
-            DesirableVector = OffsetCameraToAimingInStelth;
-            CurrentMoveBackDistance = MoveBackDistanceAiming;
-        }
-        else if (ControlerPlayer.IsAiming && !ControlerPlayer.InStealth)
-        {
-            DesirableVector = OffsetCameraToAiming;
-            CurrentMoveBackDistance = MoveBackDistanceAiming;
-        }
-        else if (!ControlerPlayer.IsAiming && ControlerPlayer.InStealth)
-        {
-            DesirableVector = OffsetCameraInStelth;
-            CurrentMoveBackDistance = MoveBackDistanceStelth;
-        }
-        else if(!ControlerPlayer.IsAiming && !ControlerPlayer.InStealth)
-        {
-            DesirableVector = OffsetCameraSimple;
-            CurrentMoveBackDistance = MoveBackDistanceSimple;
-        }
-
-
-        //Debug.Log((CurrentOffSetCamera - TargetCamera.transform.position).magnitude);
         
+        //Change Current OffSet
+        switch (ControlerPlayer.MovementMode)
+        {
+            case ModeMovement.Aiming:
+                DesirableVector = OffsetCameraToAiming;
+                CurrentMoveBackDistance = MoveBackDistanceAiming;
+                break;
+            case ModeMovement.Stelth:
+                DesirableVector = OffsetCameraInStelth;
+                CurrentMoveBackDistance = MoveBackDistanceStelth;
+                break;
+            case ModeMovement.StelsAndAiming:
+                DesirableVector = OffsetCameraToAimingInStelth;
+                CurrentMoveBackDistance = MoveBackDistanceAiming;
+                break;
+            default:
+                DesirableVector = OffsetCameraSimple;
+                CurrentMoveBackDistance = MoveBackDistanceSimple;
+                break;
+        }
+
         if (Cube)
         {
             Cube.transform.position = TargetCamera.transform.TransformPoint(DesirableVector) /*+ (transform.forward * CurrentMoveBackDistance)*/;
@@ -177,7 +166,8 @@ public class ThirdPersonCamera : MonoBehaviour
         {
             //Cube1.position = transform.position;
         }
-
+        
+        
         if (ControlerPlayer.IsAiming)
         {
             Vector3 TransfromOffSetAiming = TargetCamera.transform.TransformPoint(OffsetCameraToAiming);
@@ -189,159 +179,6 @@ public class ThirdPersonCamera : MonoBehaviour
             
         }
         
-
-        //Debug.Log(transform.position);
-
-
-        //Cube1.position = TargetCamera.transform.TransformPoint(OffsetCameraSimple) - (transform.forward * 1.0f);
-
-
-        /*
-        if (ControlerUi) ControlerUi.Scope.gameObject.SetActive(Aiming);
-        
-        if (ControlerUi && !ControlerUi.InventoryIsOpen || !ControlerUi)
-        {
-
-            if (MoveBackObject)
-            {
-                if (Physics.Raycast(MoveBackObject.position, -MoveBackObject.forward, out RaycastHit ResultHit01, (MoveBack)))
-                {
-                    TargetPosition01 = (MoveBackObject.transform.TransformPoint(MoveBackObject.forward) - MoveBackObject.transform.forward * ResultHit01.distance);
-                    //Debug.Log(TargetPosition);
-                }
-
-                if (Physics.Raycast(MoveBackObject.position, -MoveBackObject.forward, out RaycastHit ResultHit02, (MoveBack - 1.5f)))
-                {
-                    TargetPosition02 = MoveBackObject.transform.TransformPoint(MoveBackObject.forward) - MoveBackObject.forward * ResultHit02.distance;
-                    //Debug.Log(TargetPosition);
-                }
-
-            }
-
-
-
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                CameraIsUsig = false;
-            }
-            if (Input.GetKeyDown(KeyCode.Mouse1))
-            {
-                CameraIsUsig = true;
-
-            }
-
-            if (Input.GetKeyDown(KeyCode.Mouse1) && CameraIsUsig)
-            {
-                Aiming = true;
-                FraimAiming = true;
-
-                TargetCamera.transform.localEulerAngles = new Vector3(0.0f, transform.eulerAngles.y, 0.0f);
-                CurrentLenghtOfOneStep = LenghtOfOneStepToChangeState;
-
-                transform.position = new Vector3(transform.position.x, transform.position.y - 0.03f, transform.position.z - 0.03f);
-
-            }
-            if (Input.GetKeyUp(KeyCode.Mouse1) && CameraIsUsig)
-            {
-                Aiming = false;
-                FraimSimple = true;
-
-                CurrentLenghtOfOneStep = LenghtOfOneStepToChangeState;
-                transform.position = new Vector3(transform.position.x, transform.position.y + 0.03f, transform.position.z + 0.03f);
-                
-            }
-
-
-            
-            if (Aiming && !FraimAiming)
-            {
-                if ((transform.position - TargetPosition01).magnitude <= 0.5f)
-                {
-                    //Debug.Log("transform.position.y <= a.y || transform.position.z >= a.z");
-                    
-                    CameraState01 = true;
-                    //CurrentState = CameraIs.Aiming;
-                    CurrentLenghtOfOneStep = LenghtToOneStep;
-                    
-                    //Debug.Log("1");
-                    //Debug.Log((transform.position - TargetPosition01).magnitude);
-
-                }
-                else CameraState01 = false;
-            }
-
-            
-            if (!Aiming && !FraimSimple)
-            {
-                if ((transform.position - TargetPosition02).magnitude <= 0.5f)
-                {
-                    //Debug.Log("transform.position.y >= a.y || transform.position.z <= a.z");
-                    
-                    CameraState02 = true;
-                    //CurrentState = CameraIs.Simple;
-                    CurrentLenghtOfOneStep = LenghtToOneStep;
-
-                    //Debug.Log("2");
-                    //Debug.Log((transform.position - TargetPosition02).magnitude);
-
-                }
-                else CameraState02= false;
-
-            }
-
-            if (!CameraState01 && !CameraState02)
-            {
-                CurrentLenghtOfOneStep = LenghtOfOneStepToChangeState;
-                //CurrentState = CameraIs.Null;
-                //Debug.Log("!!!!!!!!!!!");
-            }
-
-
-
-
-
-            if (CameraIsUsig)
-            {
-                if (CameraMood == MoodCamera.ThirdFace)
-                {
-                    if (!Aiming)
-                    {
-                        RotateHandToSimple();
-                        RotateCameraSimple();
-                        
-                        MoveBackCammera();
-                        MoveBackObjectToRay();
-
-                    }
-                    else
-                    {
-
-                        RoateHandToAiming();
-                        StateCameraAiming();
-                        
-                        RotateCameraAiming();
-                        MoveBackObjectToRay();
-
-
-
-                    }
-
-                }
-                if (CameraMood == MoodCamera.FirstFace)
-                {
-                    //TargetCamera.transform.localEulerAngles = new Vector3(0.0f, TargetCamera.transform.localEulerAngles.y + Input.GetAxis("Mouse X") * MouseSens, 0.0f);
-
-                }
-            }
-
-            
-        }
-
-
-        FraimSimple = false;
-        FraimAiming = false;
-        
-        */
 
     }
 

@@ -28,8 +28,8 @@ public class ControlerAnimationsPlayer : MonoBehaviour
         RigPlayer = ControlerPlayer.GetComponent<Rigidbody>();
         //MovePlayer = GetComponent<MovePlayer>();
 
-        if (Parameters) Parameters.SetFloat("Speed", 0.0f);
-        else Parameters.SetFloat("Speed", 0.0f);
+        if (Parameters) Parameters.SetFloat("CurrentSpeed", 0.0f);
+        else Debug.Log("Not set Parameters");
 
     }
 
@@ -46,13 +46,12 @@ public class ControlerAnimationsPlayer : MonoBehaviour
         else DesirableSpeed = 0.0f;
         if (Input.GetKey(KeyCode.LeftShift)) DesirableSpeed = 1.0f;
 
-        if (CurrentSpeed > DesirableSpeed) CurrentSpeed -= (Time.deltaTime);
-        if (CurrentSpeed < DesirableSpeed) CurrentSpeed += (Time.deltaTime);
-
         //Change the float parameters
         if (CurrentSpeed > DesirableSpeed) CurrentSpeed -= (Time.deltaTime);
         if (CurrentSpeed < DesirableSpeed) CurrentSpeed += (Time.deltaTime);
-
+        Mathf.Clamp(CurrentSpeed, 0.0f, 1.0f);
+        
+        //Change the float parameters
         Parameters.SetFloat("CurrentSpeed", CurrentSpeed); //Current speed player
         Parameters.SetFloat("SpeedHorizontal", Horizontal); 
         Parameters.SetFloat("SpeedVertical", Vertical);
@@ -64,8 +63,6 @@ public class ControlerAnimationsPlayer : MonoBehaviour
         Parameters.SetBool("InStealth", ControlerPlayer.InStealth);
         Parameters.SetBool("UsingLoot", ControlerPlayer.IsUsingLoot);
 
-        
-
         //Triggers
         if (ControlerPlayer.IsJuming) 
         {
@@ -73,26 +70,31 @@ public class ControlerAnimationsPlayer : MonoBehaviour
             Debug.Log("True");
         }
 
+        switch (ControlerPlayer.MovementMode)
+        {
+            case ModeMovement.Aiming:
+                ChangeRotationBasePlayer();
+                break;               
+            case ModeMovement.Stelth:
+                ChangeRotationBasePlayer();
+                break;
+            case ModeMovement.StelsAndAiming:
+                ChangeRotationBasePlayer();
+                break;
+            default:
+                ResetRotationBasePlayer();
+                break;
+        }
 
-
-        if (ControlerPlayer.IsAiming || ControlerPlayer.InStealth)
+        void ChangeRotationBasePlayer()
         {
             BaseBodyPlayerForAnimations.transform.localEulerAngles = new Vector3(0.0f, RotateBodyWhenAiming, 0.0f);
         }
-        //if (ControlerPlayer.IsAiming && ControlerPlayer.InStealth)
-        {
-            //BaseBodyPlayerForAnimations.transform.localEulerAngles = new Vector3(0.0f, RotateBodyWhenAiming, 0.0f);
-            //BaseBodyPlayerForAnimations.transform.localEulerAngles = new Vector3(0.0f, RotateBodyPlayerWhenAimingInStelth, 0.0f);
-            //Debug.Log("Audit 2 is work");
-        }
-        if (!ControlerPlayer.InStealth && !ControlerPlayer.IsAiming)
+
+        void ResetRotationBasePlayer()
         {
             BaseBodyPlayerForAnimations.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
         }
-        if(Input.GetKeyUp(KeyCode.Mouse1) || Input.GetKeyUp(KeyCode.X) || Input.GetKeyDown(KeyCode.LeftShift)) 
-            BaseBodyPlayerForAnimations.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-
-
 
     }
 }

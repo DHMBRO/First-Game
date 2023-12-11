@@ -41,7 +41,7 @@ public class PlayerControler : MonoBehaviour
     //Enums
     [SerializeField] public WhatIsInHand Using;
     [SerializeField] public MainPlayer MainStatePlayer;
-    [SerializeField] private WhatDoPlayer PlayerDo;
+    [SerializeField] public WhatDoPlayer PlayerDo;
     [SerializeField] public ModeMovement MovementMode;
     [SerializeField] public CameraPlayer StateCamera;
 
@@ -176,7 +176,7 @@ public class PlayerControler : MonoBehaviour
 
                 //Movement
                 MovePlayer.Move(MovementMode);
-                MovePlayer.Jump();
+                //MovePlayer.Jump();
             }
 
             

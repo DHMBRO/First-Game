@@ -37,7 +37,7 @@ public class PickUp : MethodsFromDevelopers
     {
         if (ThirdCamera)
         {
-            Vector3 PointRay = ThirdCamera.transform.position + ThirdCamera.transform.forward * (ThirdCamera.CurrentMoveBackDistance);
+            Vector3 PointRay = ThirdCamera.TargetCamera.transform.TransformPoint(ThirdCamera.DesirableVector); 
 
             //Debug.Log("RayForLoot is work");
             Ray RayForPickUp = new Ray(PointRay, ThirdCamera.transform.forward);

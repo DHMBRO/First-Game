@@ -6,7 +6,7 @@ public class MovePlayer : MonoBehaviour
     [SerializeField] public PlayerControler ControlerPlayer;
 
     [SerializeField] float JumpForce = 1.0f;
-    [SerializeField] float DeleyJump = 1.0f; 
+    //[SerializeField] float DeleyJump = 1.0f; 
     [SerializeField] protected float Sens = 1.0f;
 
     [SerializeField] ForceMode MyForceMode;
@@ -53,7 +53,6 @@ public class MovePlayer : MonoBehaviour
         
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Math.Abs(MoveVertical + MoveVertical) > 0.01f)
         {
-
             if (!ControlerPlayer.IsAiming && MovementMode != ModeMovement.Null) //Rotate Body Player
             {
                 Quaternion Forward = Quaternion.LookRotation(ForceAxis);
@@ -68,6 +67,7 @@ public class MovePlayer : MonoBehaviour
                 
             }
             
+
             switch (MovementMode)
             {
                 case ModeMovement.Aiming:
