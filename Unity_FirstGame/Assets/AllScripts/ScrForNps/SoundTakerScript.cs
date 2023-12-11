@@ -23,7 +23,11 @@ public class SoundTakerScript : MonoBehaviour
         if (ZombiePatrolScript)
         {
             IHearSomething = true;
-            SoundPosition = InerestPos;
+            InerestPos = SoundPosition;
         }
+    }
+    public void NullInterest()
+    {
+        IHearSomething = false;
     }
 }
