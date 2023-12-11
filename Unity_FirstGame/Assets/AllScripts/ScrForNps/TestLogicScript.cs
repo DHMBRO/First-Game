@@ -10,6 +10,7 @@ public abstract class ILogic
     public LocateScript Locate;
     public AttackMethod Attack;
     public PatrolScriptNavMesh Patrol;
+    public GameObject StartPos;
     public ILogic(InfScript NewOwner) 
     {
         InfOwner = NewOwner;
@@ -30,7 +31,7 @@ public abstract class ILogic
     {
         return InfOwner.CanAttack();
     }
-    public void States()
+    public void DefineState()
     {
         if (DoISeeEnemy())
         {
@@ -61,9 +62,21 @@ public class PatrolState : ILogic
     {
        
     }
-    override public void Update()
+    override public void Update() 
     {
-
+        if (DoISeeEnemy())
+        {
+            InfOwner.SetState(new ChaseState(InfOwner));
+        }
+        else if (InfOwner.IHearSomething())
+        {
+            InfOwner.SetState(new CheckPositionState(InfOwner));
+        }
+        else // TODO :  Patrol logic
+        {
+            CurrentPoint = MyPointControllScript.SearchNextPosition(CurrentPoint);
+            MoveTo(MyPointControllScript.Points[CurrentPoint].transform.position);
+        }
     }
 }
 public class ChaseState : ILogic
@@ -77,7 +90,12 @@ public class ChaseState : ILogic
     {
         if (DoISeeEnemy())
         {
-            Patrol.MoveTo(Locate.Target.transform.position);
+           Locate.RelocateTarget();
+           Patrol.MoveTo(Locate.Target.transform.position);
+        }
+        else
+        {
+            DefineState();
         }
     }
 
@@ -92,9 +110,9 @@ public class CheckPositionState : ILogic
     override public void Update()
     {
         Patrol.CheckPosition(InfOwner.UNeedToCheckThis());
-        if (!Locate.Target)
+        if (Patrol.IsReachTarget())
         {
-            States();
+            InfOwner.NullInterest();
         }
     }
 }
@@ -112,7 +130,7 @@ public class AttackState : ILogic
         Attack.Attack(Locate.Target);
         if (!Locate.Target)
         {
-            States();
+            DefineState();
         }
     }
 }

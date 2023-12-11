@@ -120,7 +120,6 @@ public class LocateScript : EnemyController
     }
     public void RelocateTarget()
     {
-
         if ((ZombiePatrolScript.ZombieNavMesh.destination - Target.transform.position).magnitude >= 3.0f)
         {
             ZombiePatrolScript.ZombieNavMesh.SetDestination(Target.transform.position);
@@ -165,19 +164,14 @@ public class LocateScript : EnemyController
         GameObject NewTarget = Target;
         foreach (GameObject SingleTarget in Targets)
         {
-
-
             float CurenntDis = (SingleTarget.transform.position - gameObject.transform.position).magnitude;
             if (CurenntDis < MinDistance)
             {
                 NewTarget = SingleTarget;
                 MinDistance = CurenntDis;
             }
-
-
         }
         Target = NewTarget;
-
     }
     public void ValidateTarget()
     {

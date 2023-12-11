@@ -64,4 +64,12 @@ public class InfScript : MonoBehaviour
     {
         return SoundTaker.InerestPos;
     }
+    public void NullInterest()
+    {
+        SoundTaker.NullInterest();
+    }
+    public void GoPosition()//TODO FINISH 
+    {
+        Patrol.GoToNextPos();
+    }
 }

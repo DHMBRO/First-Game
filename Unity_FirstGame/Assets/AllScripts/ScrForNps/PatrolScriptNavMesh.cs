@@ -3,7 +3,7 @@ using UnityEngine.AI;
 public class PatrolScriptNavMesh : MonoBehaviour
 {
     [SerializeField] public PointControllScript MyPointControllScript;
-    protected int CurrentPoint;
+    public int CurrentPoint;
     public int StartPosIndex = 0;
     LocateScript ZombieLocateScript;
     public NavMeshAgent ZombieNavMesh;
@@ -35,13 +35,15 @@ public class PatrolScriptNavMesh : MonoBehaviour
             StateMoving();
         }
     }
-    public void MoveTo(Vector3 Target, bool IsPatrol = false)
+    public void MoveTo(Vector3 Target)
     {
-        if (!IsPatrol)
-        {
-            MoveTarget = Target;
-        }
-        NeedCheckPosition = !IsPatrol;
+        /*
+          if (!IsPatrol)
+          {
+              MoveTarget = Target;
+          }
+          NeedCheckPosition = !IsPatrol;
+        */
         ZombieNavMesh.SetDestination(Target);
         MyState = State.Moving;
     }
@@ -64,8 +66,7 @@ public class PatrolScriptNavMesh : MonoBehaviour
             }
             else
             {
-                CurrentPoint = MyPointControllScript.SearchNextPosition(CurrentPoint);
-                MoveTo(MyPointControllScript.Points[CurrentPoint].transform.position, true);
+                GoToNextPos();
             }
         }
         else
@@ -82,7 +83,7 @@ public class PatrolScriptNavMesh : MonoBehaviour
         if (!ZombieLocateScript.Target)
         {
             CurrentPoint = MyPointControllScript.SearchNextPosition(CurrentPoint);
-            MoveTo(MyPointControllScript.Points[CurrentPoint].transform.position, true);
+            MoveTo(MyPointControllScript.Points[CurrentPoint].transform.position);
         }
     }
     
@@ -90,5 +91,14 @@ public class PatrolScriptNavMesh : MonoBehaviour
     {
         MoveTo(CheckingPosition);
         MyState = State.Moving;
+    }
+    public bool IsReachTarget()
+    {
+       return ZombieNavMesh.remainingDistance < 2.0f;
+    }
+    public void GoToNextPos()
+    {
+        CurrentPoint = MyPointControllScript.SearchNextPosition(CurrentPoint);
+        MoveTo(MyPointControllScript.Points[CurrentPoint].transform.position);
     }
 }
