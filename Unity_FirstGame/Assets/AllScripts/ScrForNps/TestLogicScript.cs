@@ -74,8 +74,8 @@ public class PatrolState : ILogic
         }
         else // TODO :  Patrol logic
         {
-            CurrentPoint = MyPointControllScript.SearchNextPosition(CurrentPoint);
-            MoveTo(MyPointControllScript.Points[CurrentPoint].transform.position);
+            //CurrentPoint = MyPointControllScript.SearchNextPosition(CurrentPoint);
+            //MoveTo(MyPointControllScript.Points[CurrentPoint].transform.position);
         }
     }
 }
