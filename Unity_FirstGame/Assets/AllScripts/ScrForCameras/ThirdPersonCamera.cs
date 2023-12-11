@@ -23,11 +23,11 @@ public class ThirdPersonCamera : MonoBehaviour
     [SerializeField] Vector3 OffsetCameraToAiming;
     [SerializeField] Vector3 OffsetCameraToAimingInStelth;
 
-    [SerializeField] Vector3 OffsetHandForAimingTra;
-    [SerializeField] Vector3 OffsetHandForAimingRot;
+    //[SerializeField] Vector3 OffsetHandForAimingTra;
+    //[SerializeField] Vector3 OffsetHandForAimingRot;
 
-    [SerializeField] Vector3 OffsetHandPos;
-    [SerializeField] Vector3 OffsetHandRot;
+    //[SerializeField] Vector3 OffsetHandPos;
+    //[SerializeField] Vector3 OffsetHandRot;
 
     [SerializeField] public float CurrentMoveBackDistance;
     [SerializeField] float MoveBackDistanceSimple = 5.0f;
@@ -36,11 +36,12 @@ public class ThirdPersonCamera : MonoBehaviour
 
     [SerializeField] float MouseSens = 1.0f;
     [SerializeField] float MaxMagnitude = 2.4f;
+    [SerializeField] float MinMadnitude = 0.1f;
     [SerializeField] public float HeightStartPoint = 1.0f;
 
     [SerializeField] float t;
     [SerializeField] float CurrentLenghtOfOneStep;
-    //[SerializeField] float LenghtToOneStep = 100.0f;
+    [SerializeField] float LenghtToOneStepSimple = 100.0f;
     [SerializeField] float LenghtOfOneStepToChangeState = 3.0f;
 
     [SerializeField] MoodCamera CameraMood;
@@ -48,15 +49,6 @@ public class ThirdPersonCamera : MonoBehaviour
 
     //[SerializeField] public bool Aiming = false;
     [SerializeField] public bool CameraIsUsig = false;
-
-    //Vector3 TargetPosition01;
-    //Vector3 TargetPosition02;
-
-    //bool CameraState01 = false;
-    //bool CameraState02 = false;
-
-    //bool FraimSimple = false;
-    //bool FraimAiming = false;
 
     float MouseY;
     float MouseX;
@@ -92,6 +84,29 @@ public class ThirdPersonCamera : MonoBehaviour
         MouseX = Input.GetAxis("Mouse X");
         HeightStartPoint = (0.9935f + OffsetCameraSimple.y);
 
+
+        //Change Current OffSet
+        switch (ControlerPlayer.MovementMode)
+        {
+            case ModeMovement.Aiming:
+                DesirableVector = OffsetCameraToAiming;
+                CurrentMoveBackDistance = MoveBackDistanceAiming;
+                break;
+            case ModeMovement.Stelth:
+                DesirableVector = OffsetCameraInStelth;
+                CurrentMoveBackDistance = MoveBackDistanceStelth;
+                break;
+            case ModeMovement.StelsAndAiming:
+                DesirableVector = OffsetCameraToAimingInStelth;
+                CurrentMoveBackDistance = MoveBackDistanceAiming;
+                break;
+            default:
+                DesirableVector = OffsetCameraSimple;
+                CurrentMoveBackDistance = MoveBackDistanceSimple;
+                break;
+        }
+
+
         CurrentOffSetCamera = transform.position;
         //Debug.Log("CurrentOffSetCamera: " + CurrentOffSetCamera);
 
@@ -115,40 +130,31 @@ public class ThirdPersonCamera : MonoBehaviour
            EulerX,
            transform.eulerAngles.y + (MouseX * MouseSens),
             0.0f);
-
-        transform.position = TargetCamera.transform.TransformPoint(DesirableVector) + -(transform.forward * CurrentMoveBackDistance);
         
+        if (true)
+        {
+            if (((TargetCamera.transform.TransformPoint(DesirableVector) + -(transform.forward * CurrentMoveBackDistance)) - CurrentOffSetCamera).magnitude > MinMadnitude)
+            {
+                CurrentLenghtOfOneStep = LenghtOfOneStepToChangeState;
+                //Debug.Log("True");
+            }
+            else CurrentLenghtOfOneStep = LenghtToOneStepSimple;
+
+           LerpCamera(DesirableVector);
+
+        }
+        else transform.position = TargetCamera.transform.TransformPoint(DesirableVector) + -(transform.forward * CurrentMoveBackDistance);
+
         //Rotate Player When Camera Aiming
         if (ControlerPlayer.IsAiming) 
         {
             TargetCamera.transform.localEulerAngles = new Vector3(0.0f, transform.localEulerAngles.y, 0.0f);
         }
-        
-        //Change Current OffSet
-        switch (ControlerPlayer.MovementMode)
-        {
-            case ModeMovement.Aiming:
-                DesirableVector = OffsetCameraToAiming;
-                CurrentMoveBackDistance = MoveBackDistanceAiming;
-                break;
-            case ModeMovement.Stelth:
-                DesirableVector = OffsetCameraInStelth;
-                CurrentMoveBackDistance = MoveBackDistanceStelth;
-                break;
-            case ModeMovement.StelsAndAiming:
-                DesirableVector = OffsetCameraToAimingInStelth;
-                CurrentMoveBackDistance = MoveBackDistanceAiming;
-                break;
-            default:
-                DesirableVector = OffsetCameraSimple;
-                CurrentMoveBackDistance = MoveBackDistanceSimple;
-                break;
-        }
 
         if (Cube)
         {
-            Cube.transform.position = TargetCamera.transform.TransformPoint(DesirableVector) /*+ (transform.forward * CurrentMoveBackDistance)*/;
-            Cube.transform.localEulerAngles = transform.localEulerAngles;
+            //Cube.transform.position = TargetCamera.transform.TransformPoint(DesirableVector) /*+ (transform.forward * CurrentMoveBackDistance)*/;
+            //Cube.transform.localEulerAngles = transform.localEulerAngles;
 
         }
 
@@ -166,8 +172,7 @@ public class ThirdPersonCamera : MonoBehaviour
         {
             //Cube1.position = transform.position;
         }
-        
-        
+
         if (ControlerPlayer.IsAiming)
         {
             Vector3 TransfromOffSetAiming = TargetCamera.transform.TransformPoint(OffsetCameraToAiming);
@@ -183,8 +188,10 @@ public class ThirdPersonCamera : MonoBehaviour
     }
 
 
-    void LerpCamera(Vector3 TargetVector)
+    void LerpCamera(Vector3 OffSet)
     {
+        Vector3 TargetVector = TargetCamera.transform.TransformPoint(OffSet) + -(transform.forward * CurrentMoveBackDistance);
+
         t = ((CurrentLenghtOfOneStep / (TargetVector - transform.position).magnitude) * Time.deltaTime);
         transform.position = Vector3.Lerp(transform.position, TargetVector, t);
     }

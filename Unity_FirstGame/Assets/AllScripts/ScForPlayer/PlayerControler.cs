@@ -135,51 +135,46 @@ public class PlayerControler : MonoBehaviour
                 }
                 else IsRun = false;
 
-                // Drop
-                if (ControlerDrop)
-                {
-                    if (Input.GetKeyDown(KeyCode.Q))
-                    {
-                        ControlerDrop.Drop();
-                        SlotControler.ObjectInHand = null;
-                        ControlerShoot = null;
-                    }
-                }
-
-                //Stels 
-                if (Input.GetKeyUp(KeyCode.LeftControl)) InStealth = !InStealth;
-
-                //Camera
-                if (CameraPlayerF3.CameraIsUsig && HaveWeaponInHand || HavePistolInHand)
-                {
-                    if (Input.GetKey(KeyCode.Mouse1)) IsAiming = true;
-                    else IsAiming = false;
-                }
-
-                //IsAiming
-                if (IsAiming && !InStealth) MovementMode = ModeMovement.Aiming;
-                if (ControlerUi) ControlerUi.Scope.gameObject.SetActive(IsAiming);
-
-                //Stels
-                if (InStealth && !IsAiming)
-                {
-                    MovementMode = ModeMovement.Stelth;
-                    MainStatePlayer = MainPlayer.InStealth;
-                }
-
-                if (IsAiming && InStealth) MovementMode = ModeMovement.StelsAndAiming;
-
-
                 //Add Noice
                 if (EEScript && Inputs) EEScript.ExecutoreNoice(MovementMode);
                 else if(!EEScript) Debug.Log("Not set EEScript");
 
-                //Movement
-                MovePlayer.Move(MovementMode);
-                //MovePlayer.Jump();
             }
 
-            
+            // Drop
+            if (ControlerDrop)
+            {
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    ControlerDrop.Drop();
+                    SlotControler.ObjectInHand = null;
+                    ControlerShoot = null;
+                }
+            }
+
+            //Stels 
+            if (Input.GetKeyUp(KeyCode.LeftControl)) InStealth = !InStealth;
+
+            //Camera
+            if (CameraPlayerF3.CameraIsUsig && HaveWeaponInHand || HavePistolInHand)
+            {
+                if (Input.GetKey(KeyCode.Mouse1)) IsAiming = true;
+                else IsAiming = false;
+            }
+
+            //IsAiming
+            if (IsAiming && !InStealth) MovementMode = ModeMovement.Aiming;
+            if (ControlerUi) ControlerUi.Scope.gameObject.SetActive(IsAiming);
+
+            //Stels
+            if (InStealth && !IsAiming)
+            {
+                MovementMode = ModeMovement.Stelth;
+                MainStatePlayer = MainPlayer.InStealth;
+            }
+
+            if (IsAiming && InStealth) MovementMode = ModeMovement.StelsAndAiming;
+
             //if (Input.GetKeyUp(KeyCode.Mouse1)) IsAiming = false;
 
             // PickUp
@@ -234,7 +229,12 @@ public class PlayerControler : MonoBehaviour
                     DivertAttention.DropRock();
                 }
             }
-            
+
+            //Movement
+            MovePlayer.Move(MovementMode);
+            //MovePlayer.Jump();
+
+
             //Other
             if (Input.GetKeyDown(KeyCode.T) && gameobject && Anchor)
             {

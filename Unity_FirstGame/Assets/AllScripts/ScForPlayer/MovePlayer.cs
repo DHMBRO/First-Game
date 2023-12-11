@@ -85,19 +85,21 @@ public class MovePlayer : MonoBehaviour
                 case ModeMovement.StelsAndAiming:
                     Movement(SpeedAiming, true);
                     break;
-                
                 default:
                     CurrentSpeed = 0.0f;
                     break;
             }
             
 
+
             void Movement(float CurrentSpeedToMove,bool Aiming)
             {
+                
+
                 if (Aiming) MyRigidbody.AddRelativeForce(ForceAxis * SpeedAiming * Time.deltaTime, MyForceMode);
                 else MyRigidbody.AddRelativeForce(new Vector3(0.0f, 0.0f, 1.0f * CurrentSpeedToMove * Time.deltaTime), ForceMode.Force);
                 CurrentSpeed = CurrentSpeedToMove;
-                Debug.Log(Aiming);
+                //Debug.Log(Aiming);
 
                 //Debug.Log("CurrentSpeed: " + CurrentSpeedToMove);
                 //Debug.Log(MyRigidbody.velocity.magnitude);
