@@ -8,7 +8,7 @@ public class PlayerControler : MonoBehaviour
 
     //Other Components
     [SerializeField] public ShootControler ControlerShoot;
-    [SerializeField] private StelsScript StelsScript;
+    [SerializeField] private StelthScript StelsScript;
     [SerializeField] private DivertAttention DivertAttention;
     [SerializeField] private ExecutoreScriptToPlayer EEScript;
 
@@ -80,7 +80,7 @@ public class PlayerControler : MonoBehaviour
         
         //Other Scripts
         DivertAttention = GetComponent<DivertAttention>();
-        StelsScript = GetComponent<StelsScript>();
+        StelsScript = GetComponent<StelthScript>();
         EEScript = GetComponent<ExecutoreScriptToPlayer>();
         
         //Main Scripts To Work Player                  

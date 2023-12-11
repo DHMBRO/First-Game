@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class StelsScript : MonoBehaviour
+public class StelthScript : MonoBehaviour
 {
-    public bool Stels;
+    public bool Stelth;
     
     void Start()
     {
@@ -14,16 +12,16 @@ public class StelsScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bach") && Input.GetKey(KeyCode.X))
         {
-            Stels = true;            
+            Stelth = true;            
         }
         else if(other.gameObject.CompareTag("Bach") && !Input.GetKey(KeyCode.X))
         {
-            Stels = false;            
+            Stelth = false;            
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        Stels = false;
+        Stelth = false;
        
     }
     void Update()
