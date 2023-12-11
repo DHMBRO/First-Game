@@ -14,8 +14,7 @@ public class ControlerAnimationsPlayer : MonoBehaviour
     //Parameters
     [SerializeField] float CurrentSpeed;
     [SerializeField] float DesirableSpeed;
-    [SerializeField] bool CanStop;
-
+    
     //Additional parameters to work 
     //[SerializeField] public float CurrentAddedRotateBodyPlayer;
 
@@ -51,17 +50,10 @@ public class ControlerAnimationsPlayer : MonoBehaviour
         if (CurrentSpeed < DesirableSpeed) CurrentSpeed += (Time.deltaTime);
 
         //Change the float parameters
-        
-        if (CanStop == true)
-        {
-            if (CurrentSpeed > DesirableSpeed) CurrentSpeed -= (Time.deltaTime);
-            if (CurrentSpeed < DesirableSpeed) CurrentSpeed += (Time.deltaTime);
+        if (CurrentSpeed > DesirableSpeed) CurrentSpeed -= (Time.deltaTime);
+        if (CurrentSpeed < DesirableSpeed) CurrentSpeed += (Time.deltaTime);
 
-            Parameters.SetFloat("CurrentSpeed", CurrentSpeed); //Current speed player
-
-
-        }
-
+        Parameters.SetFloat("CurrentSpeed", CurrentSpeed); //Current speed player
         Parameters.SetFloat("SpeedHorizontal", Horizontal); 
         Parameters.SetFloat("SpeedVertical", Vertical);
 
