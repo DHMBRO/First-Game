@@ -11,7 +11,7 @@ public class LocateScript : EnemyController
     [SerializeField] private float SpeedForMove;
     [SerializeField] private float MaxDistatzeForAgr;
     public PatrolScriptNavMesh ZombiePatrolScript;
-    private StelsScript TargetStelsScript;
+    private StelthScript TargetStelsScript;
     [SerializeField] float VisionAngle = 40.0f;
     List<GameObject> Targets;
 
@@ -78,7 +78,7 @@ public class LocateScript : EnemyController
 
         if (TargetStelsScript)
         {
-            if (TargetStelsScript.Stels)
+            if (TargetStelsScript.Stelth)
             {
                 Target = null;
                 TargetStelsScript = null;
