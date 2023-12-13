@@ -54,9 +54,9 @@ public class ExecutoreScriptToPlayer : MonoBehaviour
             }
             //
             TimeToAddNoice = Time.time + DeleyToAddNoice;
-            SCScript.NoiseRadius = RadiusNoice;
+            //SCScript.NoiseRadius = RadiusNoice;
             //
-            SCScript.CreateNoise();
+            SCScript.CreateNoise(RadiusNoice);
             //Debug.Log("ExecutoreNoice is work");
 
         }

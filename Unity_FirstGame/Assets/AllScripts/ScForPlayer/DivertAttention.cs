@@ -14,7 +14,7 @@ public class DivertAttention : MethodsFromDevelopers
     [SerializeField] float PowerToDrop;
     [SerializeField] int CountPoints = 10;
     [SerializeField] float CalcTime = 2.0f;
-    float RadiusToNoise = 0.0f;
+    [SerializeField] float RadiusToNoise = 10.0f;
 
     [SerializeField] bool CanDivrtAttention;
     [SerializeField] GameObject Rock;
@@ -86,12 +86,12 @@ public class DivertAttention : MethodsFromDevelopers
         }
 
         SoundCreatorScript SoundScript = Rock.GetComponent<SoundCreatorScript>();
-        if (SoundScript) RadiusToNoise = SoundScript.NoiseRadius;
+        //if (SoundScript) RadiusToNoise = SoundScript.CurrentNoiceRadiuse;
         
         LineRender.positionCount = CountPoints;
         SphereZoneNoice.SetActive(true);
 
-        if (RadiusToNoise <= 0.0f) RadiusToNoise = Rock.GetComponent<SoundCreatorScript>().NoiseRadius;
+        //if (RadiusToNoise <= 0.0f) RadiusToNoise = Rock.GetComponent<SoundCreatorScript>().CurrentNoiceRadiuse;
         SphereZoneNoice.transform.localScale = new Vector3(RadiusToNoise, RadiusToNoise, RadiusToNoise);
 
         SphereZoneNoice.transform.position = Points[Points.Length - 1];

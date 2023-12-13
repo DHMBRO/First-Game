@@ -1,13 +1,15 @@
 using UnityEngine;
 public class SoundCreatorScript : MonoBehaviour
 {
-    [SerializeField] public float NoiseRadius = 15.0f;
+    [SerializeField] public float CurrentNoiceRadiuse;
     [SerializeField] private bool DebugingTheWork = false;
-
-    public void CreateNoise()
+    
+    public void CreateNoise(float CurrentNoiceRadius)
     {
+        this.CurrentNoiceRadiuse = CurrentNoiceRadius;
+
         Collider[] Colliders;
-        Colliders = Physics.OverlapSphere(gameObject.transform.position, NoiseRadius);
+        Colliders = Physics.OverlapSphere(gameObject.transform.position, CurrentNoiceRadius);
         foreach (Collider Colider in Colliders)
         {
             GameObject ColiderObject = Colider.gameObject;
