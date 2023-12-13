@@ -11,6 +11,8 @@ public abstract class ILogic
     public AttackMethod Attack;
     public PatrolScriptNavMesh Patrol;
     public GameObject StartPos;
+    public PointControllScript PointScript;
+    public int CurrentPoint = 0;
     public ILogic(InfScript NewOwner) 
     {
         InfOwner = NewOwner;
@@ -19,6 +21,7 @@ public abstract class ILogic
         Locate = gameObj.GetComponent<LocateScript>();
         Attack = gameObj.GetComponent<AttackMethod>();
         Patrol = gameObj.GetComponent<PatrolScriptNavMesh>();
+        PointScript = gameObj.GetComponent<PointControllScript>();
 
     }
     abstract public void Update();
@@ -50,7 +53,7 @@ public abstract class ILogic
         }
         else
         {
-               //SetSatatePatrol 
+            InfOwner.SetState(new PatrolState(InfOwner));
         }
       
     }
@@ -72,10 +75,13 @@ public class PatrolState : ILogic
         {
             InfOwner.SetState(new CheckPositionState(InfOwner));
         }
-        else // TODO :  Patrol logic
-        {
-            //CurrentPoint = MyPointControllScript.SearchNextPosition(CurrentPoint);
-            //MoveTo(MyPointControllScript.Points[CurrentPoint].transform.position);
+        else 
+        {    
+            if (Patrol.IsReachTarget())
+            {
+                CurrentPoint = PointScript.SearchNextPosition(CurrentPoint);
+                Patrol.MoveTo(PointScript.Points[CurrentPoint].transform.position);      
+            }
         }
     }
 }
@@ -113,6 +119,7 @@ public class CheckPositionState : ILogic
         if (Patrol.IsReachTarget())
         {
             InfOwner.NullInterest();
+            DefineState();
         }
     }
 }
