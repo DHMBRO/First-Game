@@ -3,7 +3,10 @@ public class SoundCreatorScript : MonoBehaviour
 {
     [SerializeField] public float CurrentNoiceRadiuse;
     [SerializeField] private bool DebugingTheWork = false;
-    
+
+    [SerializeField] public Transform ZoneNoice;
+    [SerializeField] bool ShowTheZoneNoice;
+
     public void CreateNoise(float CurrentNoiceRadius)
     {
         this.CurrentNoiceRadiuse = CurrentNoiceRadius;

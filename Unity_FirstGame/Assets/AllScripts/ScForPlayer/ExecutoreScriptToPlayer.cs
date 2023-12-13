@@ -47,6 +47,7 @@ public class ExecutoreScriptToPlayer : MonoBehaviour
             
             //Show Noice Zone
             if (ZoneNoice) ZoneNoice.gameObject.SetActive(ShowRadiuse);
+            
             if (ShowRadiuse && ZoneNoice) 
             {
                 ZoneNoice.localScale = new Vector3(RadiusNoice, RadiusNoice, RadiusNoice);
@@ -56,6 +57,7 @@ public class ExecutoreScriptToPlayer : MonoBehaviour
             TimeToAddNoice = Time.time + DeleyToAddNoice;
             //SCScript.NoiseRadius = RadiusNoice;
             //
+            ///SCScript.ZoneNoice = ZoneNoice;
             SCScript.CreateNoise(RadiusNoice);
             //Debug.Log("ExecutoreNoice is work");
 

@@ -1197,6 +1197,7 @@ MonoBehaviour:
   PowerToDrop: 15
   CountPoints: 30
   CalcTime: 2
+  RadiusToNoise: 10
   CanDivrtAttention: 0
   Rock: {fileID: 0}
 --- !u!114 &2320318701797134959
@@ -1232,7 +1233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d769b754154c77042aae9ea5c8dd47f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NoiseRadius: 15
+  CurrentNoiceRadiuse: 0
   DebugingTheWork: 0
 --- !u!120 &4595642774281171269
 LineRenderer:

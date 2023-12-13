@@ -62,6 +62,7 @@ public class DivertAttention : MethodsFromDevelopers
         float DeltaT;
         DeltaT = CalcTime / CountPoints;
         
+
         //GravityV = 0.0f;
         
         int i = 0;
@@ -86,12 +87,13 @@ public class DivertAttention : MethodsFromDevelopers
         }
 
         SoundCreatorScript SoundScript = Rock.GetComponent<SoundCreatorScript>();
-        //if (SoundScript) RadiusToNoise = SoundScript.CurrentNoiceRadiuse;
+        if (SoundScript) SoundScript.CurrentNoiceRadiuse = RadiusToNoise;
         
+        //Debug.Log(SoundScript.CurrentNoiceRadiuse + "\t" + RadiusToNoise);
+
         LineRender.positionCount = CountPoints;
         SphereZoneNoice.SetActive(true);
 
-        //if (RadiusToNoise <= 0.0f) RadiusToNoise = Rock.GetComponent<SoundCreatorScript>().CurrentNoiceRadiuse;
         SphereZoneNoice.transform.localScale = new Vector3(RadiusToNoise, RadiusToNoise, RadiusToNoise);
 
         SphereZoneNoice.transform.position = Points[Points.Length - 1];
