@@ -367,6 +367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyPointControllScript: {fileID: 0}
+  CurrentPoint: 0
   StartPosIndex: 0
   ZombieNavMesh: {fileID: 6577064939743736596}
   NeedCheckPosition: 0
@@ -466,6 +467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NoiseRadius: 10
+  DebugingTheWork: 0
 --- !u!114 &5804095521161962542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -478,6 +480,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 133503cbe35ac3b48856edceb62f15fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IHearSomething: 0
+  InerestPos: {x: 0, y: 0, z: 0}
 --- !u!1 &8349985219191236876
 GameObject:
   m_ObjectHideFlags: 0
@@ -679,3 +683,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5044875757894733831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903779204196023001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12abc76ad4756de429034bba25f73dd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Parameters: {fileID: 6385217581263623021}

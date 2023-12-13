@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ControlerAnimationsZombie : MonoBehaviour
 {
-    [SerializeField] Animation Parameters;
+    [SerializeField] Animator Parameters;
     
     void Update()
     {
