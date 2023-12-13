@@ -130,7 +130,7 @@ public class ThirdPersonCamera : MonoBehaviour
            EulerX,
            transform.eulerAngles.y + (MouseX * MouseSens),
             0.0f);
-        
+        /*
         if (true)
         {
             if (((TargetCamera.transform.TransformPoint(DesirableVector) + -(transform.forward * CurrentMoveBackDistance)) - CurrentOffSetCamera).magnitude > MinMadnitude)
@@ -140,10 +140,11 @@ public class ThirdPersonCamera : MonoBehaviour
             }
             else CurrentLenghtOfOneStep = LenghtToOneStepSimple;
 
-           LerpCamera(DesirableVector);
+           //LerpCamera(DesirableVector);
 
         }
-        else transform.position = TargetCamera.transform.TransformPoint(DesirableVector) + -(transform.forward * CurrentMoveBackDistance);
+        */
+        transform.position = TargetCamera.transform.TransformPoint(DesirableVector) + -(transform.forward * CurrentMoveBackDistance);
 
         //Rotate Player When Camera Aiming
         if (ControlerPlayer.IsAiming) 
