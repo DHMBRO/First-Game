@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HelicopterScr : MonoBehaviour
 {
+    [SerializeField] GameObject TargetToGun;
+    [SerializeField] GameObject Gun;
     [SerializeField] GameObject FlightFrom;
     [SerializeField] GameObject FlightTo;
     [SerializeField] Vector3 PositionToLending;
@@ -52,6 +54,10 @@ public class HelicopterScr : MonoBehaviour
     }
 
     // Update is called once per frame
+    private void Update()
+    {
+        Gun.transform.LookAt(TargetToGun.transform.position);
+    }
     void FixedUpdate()
     {
         if(Input.GetKeyDown(KeyCode.Tab))
@@ -98,6 +104,7 @@ public class HelicopterScr : MonoBehaviour
     }
     public void FlightToPlayer()
     {
+        gameObject.transform.LookAt(FlightTo.transform.position);
         AddToT = Time.fixedDeltaTime / (Vector3.Distance(FlightFrom.transform.position, FlightTo.transform.position) / Speed);
         gameObject.transform.position = Vector3.Lerp(FlightFrom.transform.position, FlightTo.transform.position, T);
         T += AddToT;
@@ -146,7 +153,9 @@ public class HelicopterScr : MonoBehaviour
     }
     public void Landing()
     {
-        if (landing)
+        gameObject.transform.LookAt(PositionToLending * 10);
+        //gameObject.transform.rotation = gameObject.transform.rotation + (Vector3(0, 90, 0));
+            if (landing)
         {
             AddToT = Time.fixedDeltaTime / (Vector3.Distance(FlightFrom.transform.position, FlightTo.transform.position) / Speed);
             gameObject.transform.position =  Vector3.Lerp(PositionFrom, PositionToLending, T3);
