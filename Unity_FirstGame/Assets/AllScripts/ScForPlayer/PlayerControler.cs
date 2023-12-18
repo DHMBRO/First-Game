@@ -200,8 +200,13 @@ public class PlayerControler : MonoBehaviour
                 if (Input.GetKeyDown("1"))
                 {
                     SlotControler.ChangingSlots();
+                    SlotControler.Counter = 1;
                 }
-                
+                if (Input.GetKeyUp("1"))
+                {
+                    SlotControler.Counter = 0;
+                }
+
             }
             
             // Shooting
