@@ -47,8 +47,8 @@ public class ControlerAnimationsPlayer : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift)) DesirableSpeed = 1.0f;
 
         //Change the float parameters
-        if (CurrentSpeed > DesirableSpeed) CurrentSpeed -= (Time.deltaTime);
-        if (CurrentSpeed < DesirableSpeed) CurrentSpeed += (Time.deltaTime);
+        if (CurrentSpeed > DesirableSpeed) CurrentSpeed -= (Time.deltaTime + 0.001f);
+        if (CurrentSpeed < DesirableSpeed) CurrentSpeed += (Time.deltaTime + 0.001f);
         Mathf.Clamp(CurrentSpeed, 0.0f, 1.0f);
         
         //Change the float parameters

@@ -33,7 +33,24 @@ public class SlotControler : MethodsFromDevelopers
     [SerializeField] public Transform SlotHelmet;
     [SerializeField] public Transform SlotArmor;
     [SerializeField] public Transform SlotBackPack;
-    //
+    
+    
+    // Slots Weapons
+    [SerializeField] public Transform CurrentSlotWeapon01;
+    [SerializeField] public Transform CurrentSlotWeapon02;
+    [SerializeField] public Transform CurrentSlotPistol;
+    [SerializeField] public Transform CurreSlotKnife;
+
+    // Slots  Shops
+    [SerializeField] public Transform[] CurrentSlotsShop = new Transform[3];
+
+    // Slots  Equpment
+    [SerializeField] public Transform CurrentSlotsHelmet;
+    [SerializeField] public Transform CurrentSlotArmorVest;
+    [SerializeField] public Transform CurrentSlotBackPack;
+
+
+
     [SerializeField] public Transform[] Shop = new Transform[3];
     //
     [SerializeField] public Transform[] SlotsShop = new Transform[3];

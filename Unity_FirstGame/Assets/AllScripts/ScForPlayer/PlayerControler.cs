@@ -197,14 +197,9 @@ public class PlayerControler : MonoBehaviour
                     
                 }
                 // Change Object In Hand
-                if (Input.GetKeyDown("1") && SlotControler.Counter == 0)
+                if (Input.GetKeyDown("1"))
                 {
                     SlotControler.ChangingSlots();
-                    SlotControler.Counter = 1;
-                }
-                if (Input.GetKeyUp("1"))
-                {
-                    SlotControler.Counter = 0;
                 }
                 
             }
