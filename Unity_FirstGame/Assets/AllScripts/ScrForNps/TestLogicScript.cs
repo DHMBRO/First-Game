@@ -36,26 +36,30 @@ public abstract class ILogic
     }
     public void DefineState()
     {
-        if (DoISeeEnemy())
+        if (InfOwner.Alive())
         {
-            if (CanIAttack())
+            if (DoISeeEnemy())
             {
-                InfOwner.SetState(new AttackState(InfOwner));
+                if (CanIAttack())
+                {
+                    Patrol.ZombieNavMesh.isStopped = true;
+                    Debug.Log("ATTACK");
+                    InfOwner.SetState(new AttackState(InfOwner));
+                }
+                else
+                {
+                    InfOwner.SetState(new ChaseState(InfOwner));
+                }
+            }
+            else if (InfOwner.IHearSomething())
+            {
+                InfOwner.SetState(new CheckPositionState(InfOwner));
             }
             else
             {
-                InfOwner.SetState(new ChaseState(InfOwner));
+                InfOwner.SetState(new PatrolState(InfOwner));
             }
         }
-        else if  (InfOwner.IHearSomething())
-        {
-            InfOwner.SetState(new CheckPositionState(InfOwner));
-        }
-        else
-        {
-            InfOwner.SetState(new PatrolState(InfOwner));
-        }
-      
     }
 }
 public class PatrolState : ILogic
@@ -94,10 +98,11 @@ public class ChaseState : ILogic
 
     override public void Update()
     {
+
         if (DoISeeEnemy())
         {
-           Locate.RelocateTarget();
-           Patrol.MoveTo(Locate.Target.transform.position);
+            Locate.RelocateTarget();
+            Patrol.MoveTo(Locate.Target.transform.position);
         }
         else
         {
@@ -115,11 +120,20 @@ public class CheckPositionState : ILogic
     }
     override public void Update()
     {
-        Patrol.CheckPosition(InfOwner.UNeedToCheckThis());
+        Patrol.CheckPosition(InfOwner.UNeedToCheckThis()); 
         if (Patrol.IsReachTarget())
         {
-            InfOwner.NullInterest();
-            DefineState();
+            
+            if (DoISeeEnemy())
+            {
+                InfOwner.SetState(new ChaseState(InfOwner));
+                InfOwner.NullInterest();
+            }
+            else 
+            {
+                InfOwner.SetState(new PatrolState(InfOwner));
+                InfOwner.NullInterest();
+            }
         }
     }
 }
@@ -135,9 +149,14 @@ public class AttackState : ILogic
     override public void Update()
     {
         Attack.Attack(Locate.Target);
-        if (!Locate.Target)
+        if (Locate.CanISeeTarget())
         {
-            DefineState();
+            if (!CanIAttack())
+            {
+
+                InfOwner.SetState(new ChaseState(InfOwner));
+            }
+            
         }
     }
 }

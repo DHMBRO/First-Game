@@ -10,7 +10,7 @@ public class InfScript : MonoBehaviour
     protected AttackMethod Attack;
     protected ILogic CurrentState; 
     protected SoundTakerScript SoundTaker;
-   
+    protected Animator Animator;
 
     void Start()
     {
@@ -19,6 +19,7 @@ public class InfScript : MonoBehaviour
         Patrol = this.gameObject.GetComponent<PatrolScriptNavMesh>();
         Attack = this.gameObject.GetComponent<AttackMethod>();
         SoundTaker = this.gameObject.GetComponent<SoundTakerScript>();
+        Animator = this.gameObject.GetComponent<Animator>();
         SetState(new PatrolState(this));
     }
 
@@ -29,6 +30,10 @@ public class InfScript : MonoBehaviour
             CurrentState.Update();
         }
 
+    }
+    public bool Alive()
+    {
+        return HpScript.IsAlive();
     }
     public bool DoIHaveATarget()
     {
@@ -68,8 +73,16 @@ public class InfScript : MonoBehaviour
     {
         SoundTaker.NullInterest();
     }
-    public void GoPosition()//TODO FINISH 
+    public void GoPosition() 
     {
         Patrol.GoToNextPos();
+    }
+    public void SetAnimation(string Trigger)
+    {
+        Animator.SetTrigger(Trigger);
+    }
+    public void SetFloatToAnim()
+    {
+
     }
 }
