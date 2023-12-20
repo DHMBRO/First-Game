@@ -5,7 +5,7 @@ public class HpScript : MonoBehaviour
 {
     [SerializeField] private Image UiHp;
     [SerializeField] private TextMeshProUGUI ProzentHealPoint;
-
+    [SerializeField] public EnemyState State;
     [SerializeField] public float HealthPoint = 10;
     [SerializeField] private float MaxHp;
     
@@ -77,16 +77,7 @@ public class HpScript : MonoBehaviour
 
     public bool IsAlive() 
     {
-        
-        if (HealthPoint <= 0)
-        {
-            return false;
-        }
-        if (HealthPoint > 0)
-        {
-            return true;
-        }
-        return false;
+        return HealthPoint > 0;
     }
     public void InstanceKill()
     {

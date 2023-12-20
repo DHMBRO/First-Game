@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class LocateScript : EnemyController
+public class LocateScript : MonoBehaviour
 {
     [SerializeField] private Transform Head;
     public GameObject Target = null;
-    [SerializeField] EnemyState State;
+    
     [SerializeField] private string WhatImLooking;
     [SerializeField] private RaycastHit HitResult;
     [SerializeField] private float SpeedForMove;
@@ -14,9 +14,11 @@ public class LocateScript : EnemyController
     private StelthScript TargetStelsScript;
     [SerializeField] float VisionAngle = 40.0f;
     List<GameObject> Targets;
+    protected HpScript MyHpScript;
 
     void Start()
     {
+        MyHpScript = gameObject.GetComponent<HpScript>();
         Targets = new List<GameObject>();
         ZombiePatrolScript = gameObject.GetComponent<PatrolScriptNavMesh>();
 
@@ -27,24 +29,18 @@ public class LocateScript : EnemyController
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponentInParent<EnemyController>())
+        HpScript TargetHpScript = other.gameObject.GetComponent<HpScript>();
+        if (TargetHpScript)
         {
-            HpScript TargetHpScript = other.gameObject.GetComponent<HpScript>();
-            LocateScript EnemyLocateScript = other.gameObject.GetComponent<LocateScript>();
-            if (EnemyLocateScript && TargetHpScript)
+            if (TargetHpScript.State != MyHpScript.State)
             {
-                if (State != EnemyLocateScript.State)
+                if (TargetHpScript.MyLive == HpScript.Live.Alive)
                 {
-                    if (TargetHpScript.MyLive == HpScript.Live.Alive)
-                    {
-                        Targets.Add(other.gameObject);
-                        DefineMyTarget();
-                    }
+                    Targets.Add(other.gameObject);
+                    DefineMyTarget();
                 }
             }
-
         }
-
     }
     /* private void OnTriggerStay(Collider other)
      {
@@ -96,6 +92,7 @@ public class LocateScript : EnemyController
         // Debug.Log("Angel To Target = " + AngleToTarget);    
         if (AngleToTarget <= VisionAngle)
         {
+            Debug.Log(VisionAngle + " VisionAngle" + AngleToTarget + " Angle");
             Vector3 Rotate = Target.transform.position - transform.position;
             Vector3 RotateHead = Target.transform.position - Head.position;
             Ray HeadForward = new Ray(Head.transform.position, RotateHead);

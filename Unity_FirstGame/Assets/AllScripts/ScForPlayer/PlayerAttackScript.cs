@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerAttackScript : MonoBehaviour
 {
     public bool CanInstantKill;
@@ -26,12 +27,14 @@ public class PlayerAttackScript : MonoBehaviour
             {
                 ZombieScript ZombieScript = Collider.gameObject.GetComponentInParent<ZombieScript>();
                 LocateScript ZombieLocateScript = Collider.gameObject.GetComponentInParent<LocateScript>();
-                if (ZombieScript && ZombieLocateScript)
+                InfScript InfoScript = Collider.gameObject.GetComponentInParent<InfScript>();
+                if (ZombieScript && ZombieLocateScript && InfoScript)
                 {
                     if (ZombieScript.IsObjectFromBehinde(gameObject)) 
                     {
                         if (ZombieLocateScript.WhatForvardToMe(gameObject) == Collider.gameObject)
                         {
+                            InfoScript.SetAnimation("StelthDead");
                             ZombieScript.InstansteKillMe();
                             break;
                         } 
