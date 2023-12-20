@@ -111,21 +111,18 @@ MonoBehaviour:
   OffsetCameraInStelth: {x: 0, y: 2.04, z: 0}
   OffsetCameraToAiming: {x: 1.19, y: 2.54, z: 0}
   OffsetCameraToAimingInStelth: {x: 1.19, y: 1.84, z: 0}
-  OffsetHandForAimingTra: {x: 0.6, y: -0.16, z: 0}
-  OffsetHandForAimingRot: {x: 0, y: 0, z: 0}
-  OffsetHandPos: {x: 0.7, y: 0.048, z: 0.3}
-  OffsetHandRot: {x: 30, y: -60, z: 0}
   CurrentMoveBackDistance: 0
   MoveBackDistanceSimple: 4
   MoveBackDistanceStelth: 4
   MoveBackDistanceAiming: 2.02
   MouseSens: 1
-  MaxMagnitude: 2.4
+  MaxMagnitude: 4.3
+  MinMadnitude: 0.1
   HeightStartPoint: 1
   t: 0
   CurrentLenghtOfOneStep: 0
-  LenghtToOneStep: 1000
-  LenghtOfOneStepToChangeState: 6
+  LenghtToOneStepSimple: 100
+  LenghtOfOneStepIsAiming: 3
   CameraMood: 0
   CameraIsUsig: 0
 --- !u!1001 &6299334075684510675

@@ -36,18 +36,15 @@ public class ThirdPersonCamera : MonoBehaviour
 
     [SerializeField] float MouseSens = 1.0f;
     [SerializeField] float MaxMagnitude = 2.4f;
-    [SerializeField] float MinMadnitude = 0.1f;
+    [SerializeField] float MinMagnitude = 0.1f;
     [SerializeField] public float HeightStartPoint = 1.0f;
 
     [SerializeField] float t;
     [SerializeField] float CurrentLenghtOfOneStep;
-    [SerializeField] float LenghtToOneStepSimple = 100.0f;
-    [SerializeField] float LenghtOfOneStepToChangeState = 3.0f;
+    [SerializeField] float LenghtToOneStepSimple = 1000.0f;
+    [SerializeField] float LenghtOfOneStepIsAiming = 30.0f;
 
     [SerializeField] MoodCamera CameraMood;
-    //[SerializeField] CameraIs CurrentState;
-
-    //[SerializeField] public bool Aiming = false;
     [SerializeField] public bool CameraIsUsig = false;
 
     float MouseY;
@@ -59,7 +56,7 @@ public class ThirdPersonCamera : MonoBehaviour
         Cursor.visible = false;
         
 
-        CurrentLenghtOfOneStep = LenghtOfOneStepToChangeState;
+        CurrentLenghtOfOneStep = LenghtOfOneStepIsAiming;
 
         //Debug.Log("Distance: " + (transform.position - MoveBackObject.position).magnitude);
     }
@@ -130,26 +127,20 @@ public class ThirdPersonCamera : MonoBehaviour
            EulerX,
            transform.eulerAngles.y + (MouseX * MouseSens),
             0.0f);
-        /*
-        if (true)
+        
+        if (ControlerPlayer.IsAiming)
         {
-            if (((TargetCamera.transform.TransformPoint(DesirableVector) + -(transform.forward * CurrentMoveBackDistance)) - CurrentOffSetCamera).magnitude > MinMadnitude)
-            {
-                CurrentLenghtOfOneStep = LenghtOfOneStepToChangeState;
-                //Debug.Log("True");
-            }
-            else CurrentLenghtOfOneStep = LenghtToOneStepSimple;
-
-           //LerpCamera(DesirableVector);
-
+            CurrentLenghtOfOneStep = LenghtOfOneStepIsAiming;
         }
-        */
+        else CurrentLenghtOfOneStep = LenghtToOneStepSimple;
+
+
         transform.position = TargetCamera.transform.TransformPoint(DesirableVector) + -(transform.forward * CurrentMoveBackDistance);
 
         //Rotate Player When Camera Aiming
         if (ControlerPlayer.IsAiming) 
         {
-            TargetCamera.transform.localEulerAngles = new Vector3(0.0f, transform.localEulerAngles.y, 0.0f);
+        //    TargetCamera.transform.localEulerAngles = new Vector3(0.0f, transform.localEulerAngles.y, 0.0f);
         }
 
         if (Cube)
@@ -162,7 +153,7 @@ public class ThirdPersonCamera : MonoBehaviour
         //Audit To Walls
         if (Physics.Raycast(TargetCamera.transform.TransformPoint(DesirableVector) - (transform.forward * (DesirableVector.z)) /*- (transform.forward * 1.0f)*/, -transform.forward, out RaycastHit HitInfo, CurrentMoveBackDistance))
         {
-            transform.position = HitInfo.point;
+            DesirableVector = HitInfo.point;
         }
         
         //Draw Ray Backward
@@ -176,15 +167,24 @@ public class ThirdPersonCamera : MonoBehaviour
 
         if (ControlerPlayer.IsAiming)
         {
-            Vector3 TransfromOffSetAiming = TargetCamera.transform.TransformPoint(OffsetCameraToAiming);
+            Vector3 TransfromOffSetAiming = TargetCamera.transform.TransformPoint(OffsetCameraToAiming) + -(transform.forward * DesirableVector.z);
             if ((TransfromOffSetAiming - CurrentOffSetCamera).magnitude > MaxMagnitude)
             {
                 //Debug.Log("CurrentMagnitude > MaxMagnitude");
-                transform.position = TargetCamera.transform.TransformPoint(OffsetCameraSimple);
+                Debug.Log((TransfromOffSetAiming - CurrentOffSetCamera).magnitude);
+                transform.position = TargetCamera.transform.TransformPoint(OffsetCameraSimple) + -(transform.forward * DesirableVector.z);
             }
-            
+            if ((TransfromOffSetAiming - CurrentOffSetCamera).magnitude <= MinMagnitude)
+            {
+                Debug.Log("True");
+            }
+            Debug.Log((TransfromOffSetAiming - CurrentOffSetCamera).magnitude);
+
         }
-        
+
+
+        LerpCamera(DesirableVector);
+
 
     }
 
