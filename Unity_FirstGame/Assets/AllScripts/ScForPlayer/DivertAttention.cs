@@ -9,7 +9,7 @@ public class DivertAttention : MethodsFromDevelopers
     [SerializeField] private SlotControler ControlerSlots;
     [SerializeField] private LineRenderer LineRender;
     [SerializeField] private Transform CameraPlayer;
-    [SerializeField] private Transform HandPlayer;
+    [SerializeField] private Transform HandPlayerForThrow;
     
 
     [SerializeField] float PowerToDrop;
@@ -28,14 +28,13 @@ public class DivertAttention : MethodsFromDevelopers
         //LineRender.enabled = false;
         LineRender.enabled = true;
 
-        if (ControlerSlots && ControlerSlots.SlotHand) HandPlayer = ControlerSlots.SlotHand;
-        else Debug.Log("Not set ControlerSlots");
+        if (!HandPlayerForThrow) Debug.Log("Not set HandPlayerForThrow");
 
     }
 
     public void SpawnRock()
     {
-        if (!HandPlayer && ControlerSlots && !this.Rock) return;
+        if (!HandPlayerForThrow && ControlerSlots && !this.Rock) return;
 
         GameObject Rock;
 
@@ -45,7 +44,7 @@ public class DivertAttention : MethodsFromDevelopers
         
         Rock.AddComponent<SoundCreatorScript>();
 
-        PutObjects(Rock.transform, HandPlayer, true);
+        PutObjects(Rock.transform, HandPlayerForThrow, true);
 
         this.Rock = Rock;
         LineRender.enabled = true;

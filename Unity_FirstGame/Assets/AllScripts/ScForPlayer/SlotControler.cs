@@ -119,6 +119,7 @@ public class SlotControler : MethodsFromDevelopers
         if (MyWeapon01 && ObjectInHand.transform.position == MyWeapon01.position) TargetSlot = SlotBack01;
         if (MyWeapon02 && ObjectInHand.transform.position == MyWeapon02.position) TargetSlot = SlotBack02;
         if (MyPistol01 && ObjectInHand.transform.position == MyPistol01.position) TargetSlot = SlotPistol01;
+        if (MyKnife01 && ObjectInHand.transform.position == MyKnife01.position) TargetSlot = SlotKnife01;
 
         if (TargetSlot) PutObjects(ObjectInHand.transform, TargetSlot, false);
 
