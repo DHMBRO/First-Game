@@ -5,16 +5,18 @@ public class ExecutoreScriptToPlayer : MonoBehaviour
 {
     [SerializeField] SoundCreatorScript SCScript;
     
-    [SerializeField] float DeleyToAddNoice = 0.0f;
-    [SerializeField] float TimeToAddNoice = 0.0f;
+    [SerializeField] float DeleyToAddNoise = 0.25f;
+    [SerializeField] float TimeToAddNoise = 0.0f;
 
-    [SerializeField] float RadiusNoiceWhenInStels = 2.0f;
-    [SerializeField] float RadiusNoiceWhenAiming = 5.0f;
-    [SerializeField] float RadiusNoiceWhenGo = 10.0f;
-    [SerializeField] float RadiusNoiceWhenRun = 15.0f;
+    [SerializeField] float RadiusNoiseWhenInStels = 0.5f;
+    [SerializeField] float RadiusNoiseWhenAiming = 3.0f;
+    [SerializeField] float RadiusNoiseWhenGo = 5.0f;
+    [SerializeField] float RadiusNoiseWhenRun = 7.0f;
     //
-    [SerializeField] Transform ZoneNoice;
-    [SerializeField] bool ShowRadiuse;
+    [SerializeField] GameObject ZoneNoise;
+    [SerializeField] GameObject LocalZoneNoise;
+    [SerializeField] bool ShowZoneNoise;
+
 
     private void Start()
     {
@@ -24,41 +26,43 @@ public class ExecutoreScriptToPlayer : MonoBehaviour
 
     public void ExecutoreNoice(ModeMovement MovementMode)
     {
-        if (Time.time >= TimeToAddNoice)
+        if (Time.time >= TimeToAddNoise)
         {
-            float RadiusNoice = 0.1f;
+            float RadiusNoise = 0.0f;
             
             switch (MovementMode)
             {
                 case ModeMovement.Stelth:
-                    RadiusNoice = RadiusNoiceWhenInStels;
+                    RadiusNoise = RadiusNoiseWhenInStels;
                     break;
                 case ModeMovement.Aiming:
-                    RadiusNoice = RadiusNoiceWhenAiming;
+                    RadiusNoise = RadiusNoiseWhenAiming;
                     break;
                 case ModeMovement.Go:
-                    RadiusNoice = RadiusNoiceWhenGo;
+                    RadiusNoise = RadiusNoiseWhenGo;
                     break;
                 case ModeMovement.Run:
-                    RadiusNoice = RadiusNoiceWhenRun;
+                    RadiusNoise = RadiusNoiseWhenRun;
+                    break;
+                default:
+                    //RadiusNoise = 0.0f;
                     break;
 
             }
             
             //Show Noice Zone
-            if (ZoneNoice) ZoneNoice.gameObject.SetActive(ShowRadiuse);
-            
-            if (ShowRadiuse && ZoneNoice) 
+            if (ShowZoneNoise && ZoneNoise) 
             {
-                ZoneNoice.localScale = new Vector3(RadiusNoice, RadiusNoice, RadiusNoice);
-                ZoneNoice.position = transform.position;
+                if(!LocalZoneNoise) LocalZoneNoise = Instantiate(ZoneNoise);
+                
+                LocalZoneNoise.transform.position = transform.position;
+                LocalZoneNoise.transform.localScale = new Vector3(RadiusNoise, RadiusNoise, RadiusNoise) * 2.0f;            
             }
-            //
-            TimeToAddNoice = Time.time + DeleyToAddNoice;
-            //SCScript.NoiseRadius = RadiusNoice;
-            //
-            ///SCScript.ZoneNoice = ZoneNoice;
-            SCScript.CreateNoise(RadiusNoice);
+            if (LocalZoneNoise) LocalZoneNoise.gameObject.SetActive(ShowZoneNoise);
+            
+            //Main
+            TimeToAddNoise = Time.time + DeleyToAddNoise;
+            SCScript.CreateNoise(RadiusNoise);
             //Debug.Log("ExecutoreNoice is work");
 
         }

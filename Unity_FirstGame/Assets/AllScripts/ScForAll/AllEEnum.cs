@@ -11,7 +11,6 @@ public enum LevelObject
     ThirdLevel,
 }
 
-
 public enum TypeWeapon
 {
     Weapon,
@@ -36,7 +35,6 @@ public enum TypeCaliber
     C12x99MM
     
 }
-
 public enum CameraIs
 {
     Null,
@@ -52,9 +50,9 @@ public enum ModeMovement
     Aiming,
     Run,
     Stelth,
-    StelsAndAiming
+    StelsAndAiming,
+    
 }
-
 
 /*
 public enum TypeLoot

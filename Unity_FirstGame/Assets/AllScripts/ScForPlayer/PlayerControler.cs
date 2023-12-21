@@ -135,10 +135,6 @@ public class PlayerControler : MonoBehaviour
                 }
                 else IsRun = false;
 
-                //Add Noice
-                if (EEScript && Inputs) EEScript.ExecutoreNoice(MovementMode);
-                else if(!EEScript) Debug.Log("Not set EEScript");
-
             }
 
             // Drop
@@ -229,6 +225,10 @@ public class PlayerControler : MonoBehaviour
                     DivertAttention.DropRock();
                 }
             }
+
+            //Add Noice
+            if (EEScript) EEScript.ExecutoreNoice(MovementMode);
+            else Debug.Log("Not set EEScript");
 
             //Movement
             MovePlayer.Move(MovementMode);

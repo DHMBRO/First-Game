@@ -1149,6 +1149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UiHp: {fileID: 0}
   ProzentHealPoint: {fileID: 0}
+  State: 0
   HealthPoint: 100
   MaxHp: 100
   MyLive: 0
@@ -1222,7 +1223,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RockForDiverAttention: {fileID: 2799542706703838414, guid: 219615bf8d294d04780ab523307832cf, type: 3}
-  SphereZoneNoice: {fileID: 5171423202122578881}
+  ZoneNoise: {fileID: 8520155578379175069, guid: 4f9100f211301ba4bb541bc3a970b238, type: 3}
+  LocalZoneNoise: {fileID: 0}
   ControlerSlots: {fileID: 7874716152253843916}
   LineRender: {fileID: 4595642774281171269}
   CameraPlayer: {fileID: 0}
@@ -1246,14 +1248,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SCScript: {fileID: 2001030955048781610}
-  DeleyToAddNoice: 0.5
-  TimeToAddNoice: 0
-  RadiusNoiceWhenInStels: 2
-  RadiusNoiceWhenAiming: 5
-  RadiusNoiceWhenGo: 10
-  RadiusNoiceWhenRun: 15
-  ZoneNoice: {fileID: 5171423202122578886}
-  ShowRadiuse: 0
+  DeleyToAddNoise: 0.25
+  TimeToAddNoise: 0
+  RadiusNoiseWhenInStels: 0.5
+  RadiusNoiseWhenAiming: 3
+  RadiusNoiseWhenGo: 5
+  RadiusNoiseWhenRun: 7
+  ZoneNoise: {fileID: 8520155578379175069, guid: 4f9100f211301ba4bb541bc3a970b238, type: 3}
+  LocalZoneNoise: {fileID: 0}
+  ShowZoneNoise: 0
 --- !u!114 &2001030955048781610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1268,8 +1271,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentNoiceRadiuse: 0
   DebugingTheWork: 0
-  ZoneNoice: {fileID: 0}
-  ShowTheZoneNoice: 0
 --- !u!120 &4595642774281171269
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1862,11 +1863,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f9100f211301ba4bb541bc3a970b238, type: 3}
---- !u!1 &5171423202122578881 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8520155578379175069, guid: 4f9100f211301ba4bb541bc3a970b238, type: 3}
-  m_PrefabInstance: {fileID: 3600973542157467484}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5171423202122578886 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8520155578379175066, guid: 4f9100f211301ba4bb541bc3a970b238, type: 3}

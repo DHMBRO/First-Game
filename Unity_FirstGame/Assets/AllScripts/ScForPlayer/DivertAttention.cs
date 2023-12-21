@@ -3,7 +3,8 @@ using UnityEngine;
 public class DivertAttention : MethodsFromDevelopers
 {
     [SerializeField] private GameObject RockForDiverAttention;
-    [SerializeField] private GameObject SphereZoneNoice;
+    [SerializeField] private GameObject ZoneNoise;
+    [SerializeField] private GameObject LocalZoneNoise;
 
     [SerializeField] private SlotControler ControlerSlots;
     [SerializeField] private LineRenderer LineRender;
@@ -92,11 +93,13 @@ public class DivertAttention : MethodsFromDevelopers
         //Debug.Log(SoundScript.CurrentNoiceRadiuse + "\t" + RadiusToNoise);
 
         LineRender.positionCount = CountPoints;
-        SphereZoneNoice.SetActive(true);
 
-        SphereZoneNoice.transform.localScale = new Vector3(RadiusToNoise, RadiusToNoise, RadiusToNoise);
+        LocalZoneNoise = Instantiate(ZoneNoise);
+        
+        LocalZoneNoise.SetActive(true);
+        LocalZoneNoise.transform.position = Points[Points.Length - 1];
+        LocalZoneNoise.transform.localScale = new Vector3(RadiusToNoise, RadiusToNoise, RadiusToNoise) * 2.0f;
 
-        SphereZoneNoice.transform.position = Points[Points.Length - 1];
         LineRender.SetPositions(Points);
         
     }
@@ -136,7 +139,7 @@ public class DivertAttention : MethodsFromDevelopers
 
         SoundScript = Rock.GetComponent<SoundCreatorScript>();
         ExecutorScript = Rock.AddComponent<ExecutoreScriptToRock>();
-        SphereZoneNoice.SetActive(false);
+        Destroy(LocalZoneNoise);
 
         Trajectory = ((CameraPlayer.position + CameraPlayer.forward * 10.0f) - Rock.transform.position).normalized * PowerToDrop;
         RIGRock.AddRelativeForce(Trajectory, ForceMode.Impulse);
