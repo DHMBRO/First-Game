@@ -94,8 +94,8 @@ public class DivertAttention : MethodsFromDevelopers
 
         LineRender.positionCount = CountPoints;
 
-        LocalZoneNoise = Instantiate(ZoneNoise);
-        
+        if(!LocalZoneNoise) LocalZoneNoise = Instantiate(ZoneNoise);
+
         LocalZoneNoise.SetActive(true);
         LocalZoneNoise.transform.position = Points[Points.Length - 1];
         LocalZoneNoise.transform.localScale = new Vector3(RadiusToNoise, RadiusToNoise, RadiusToNoise) * 2.0f;
@@ -139,7 +139,7 @@ public class DivertAttention : MethodsFromDevelopers
 
         SoundScript = Rock.GetComponent<SoundCreatorScript>();
         ExecutorScript = Rock.AddComponent<ExecutoreScriptToRock>();
-        Destroy(LocalZoneNoise);
+        LocalZoneNoise.SetActive(false);
 
         Trajectory = ((CameraPlayer.position + CameraPlayer.forward * 10.0f) - Rock.transform.position).normalized * PowerToDrop;
         RIGRock.AddRelativeForce(Trajectory, ForceMode.Impulse);
