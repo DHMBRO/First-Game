@@ -8,6 +8,7 @@ public class ZombieScript : MonoBehaviour
 
     [SerializeField] public MeshRenderer ZombieMeshRenderer;
     [SerializeField] public Material ZombieDeadMaterial;
+     public PatrolScriptNavMesh ZombiePatrol;
     ZombieController ZombieControllerScript;
     HpScript ZomblieHpScript;
     LocateScript ZombleLocateScript;
@@ -16,7 +17,7 @@ public class ZombieScript : MonoBehaviour
         ZombleLocateScript = GetComponent<LocateScript>();
         ZomblieHpScript = gameObject.GetComponent<HpScript>();
         ZombieControllerScript = GetComponentInParent<ZombieController>();
-        
+        ZombiePatrol = GetComponentInParent<PatrolScriptNavMesh>();
     }
 
    
@@ -25,6 +26,7 @@ public class ZombieScript : MonoBehaviour
     }
     public void InstansteKillMe()
     {
+        ZombiePatrol.ZombieNavMesh.isStopped = true;
         ZomblieHpScript.InstanceKill();                                                                    
     }
     public bool IsObjectFromBehinde(GameObject Object) //

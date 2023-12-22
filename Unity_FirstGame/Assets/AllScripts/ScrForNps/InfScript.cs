@@ -10,7 +10,8 @@ public class InfScript : MonoBehaviour
     protected AttackMethod Attack;
     protected ILogic CurrentState; 
     protected SoundTakerScript SoundTaker;
-    protected Animator Animator;
+    [SerializeField] protected Animator Animator;
+    [SerializeField] protected GameObject PointToKillMe;
 
     void Start()
     {
@@ -19,8 +20,9 @@ public class InfScript : MonoBehaviour
         Patrol = this.gameObject.GetComponent<PatrolScriptNavMesh>();
         Attack = this.gameObject.GetComponent<AttackMethod>();
         SoundTaker = this.gameObject.GetComponent<SoundTakerScript>();
-        Animator = this.gameObject.GetComponent<Animator>();
+      //  Animator = this.gameObject.GetComponentInParent<Animator>();
         SetState(new PatrolState(this));
+
     }
 
     void Update()
@@ -55,7 +57,7 @@ public class InfScript : MonoBehaviour
     }
     public bool CanISeeEnemy()
     {
-        return Locate.CanISeeTarget();
+        return false; //Locate.CanISeeTarget();
     }
     public void SetState(ILogic NewState)
     {
@@ -81,8 +83,26 @@ public class InfScript : MonoBehaviour
     {
         Animator.SetTrigger(Trigger);
     }
-    public void SetFloatToAnim()
+    public void SetFloatToAnim(string Trigger,float Value)
     {
-
+        Animator.SetFloat(Trigger, Value);
     }
+    public void SetStopped() //Stealth Method
+    {
+        Patrol.ZombieNavMesh.isStopped = true;
+    }
+    public void StealthKillCast(GameObject Killer)//Stealth Method TO ALL
+    {
+        SetStopped();
+        Killer.transform.position = PointToKillMe.transform.position;//
+        StelthDead();
+        
+        //SetPlayerAnimation("StealthKill");
+    }
+    void StelthDead()   //Stealth Method
+    {
+        SetAnimation("StelthDead");
+        SetStopped();
+    }
+  
 }

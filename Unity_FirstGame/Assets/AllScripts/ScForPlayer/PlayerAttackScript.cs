@@ -5,20 +5,21 @@ using UnityEngine;
 
 public class PlayerAttackScript : MonoBehaviour
 {
-    public bool CanInstantKill;
+  //  public bool CanInstantKill;
     
     [SerializeField] private float MaxKillDistance = 3.0f;
     [SerializeField] private float MinKillDistance = 0.5f;
     Collider[] Colliders;
+    protected Animator PlayerAnimator;
     void Start()
     {
-        
+        PlayerAnimator = GetComponentInChildren<Animator>();
     }
     void Update()
     {
 
          
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.V))
         {
             float HalfExtents = (MaxKillDistance - MinKillDistance) / 2;
 
@@ -32,18 +33,44 @@ public class PlayerAttackScript : MonoBehaviour
                 {
                     if (ZombieScript.IsObjectFromBehinde(gameObject)) 
                     {
-                        if (ZombieLocateScript.WhatForvardToMe(gameObject) == Collider.gameObject)
+                       // if (ZombieLocateScript.WhatForvardToMe(gameObject) == Collider.gameObject)
                         {
-                            InfoScript.SetAnimation("StelthDead");
+                            InfoScript.StealthKillCast(gameObject);
                             ZombieScript.InstansteKillMe();
                             break;
-                        } 
+                        }
                     }
                 }
             }
         }
     }
     
+    public void SetPlayerAnimation(string TriggerName)
+    {
+        PlayerAnimator.SetTrigger(TriggerName);
     }
+    public void StealthKill()
+    {
+        SetPlayerAnimation("StealthKill");
+       //gameObject.transform.position = PointToKillMe.transform.position;
+
+    }
+}
+
+/*
+ void StealthKill (Gameobj Target)
+{
+   InfoScript = target.getComponent<InfScript>();
+    InfoScript.SetStopped();
+    gameobj.traansform.position = InfoScript.PosToKillMe;
+    gameobj.LookAt(Target.transform.rotation);
+    SetPlayerAnimation("StealthKill");
+    InfoScript.SetAnimation("StealthKill")
+    
+}
+
+ 
+ 
+ */
     
 

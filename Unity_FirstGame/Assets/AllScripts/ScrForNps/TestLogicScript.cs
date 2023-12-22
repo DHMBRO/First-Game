@@ -48,15 +48,18 @@ public abstract class ILogic
                 }
                 else
                 {
+                    
                     InfOwner.SetState(new ChaseState(InfOwner));
                 }
             }
             else if (InfOwner.IHearSomething())
             {
+              
                 InfOwner.SetState(new CheckPositionState(InfOwner));
             }
             else
             {
+                
                 InfOwner.SetState(new PatrolState(InfOwner));
             }
         }
@@ -83,6 +86,7 @@ public class PatrolState : ILogic
         {    
             if (Patrol.IsReachTarget())
             {
+                 InfOwner.SetFloatToAnim("CurrentSpeed", 0.5f);
                 CurrentPoint = PointScript.SearchNextPosition(CurrentPoint);
                 Patrol.MoveTo(PointScript.Points[CurrentPoint].transform.position);      
             }
@@ -101,6 +105,7 @@ public class ChaseState : ILogic
 
         if (DoISeeEnemy())
         {
+            InfOwner.SetFloatToAnim("CurrentSpeed", 1.0f);
             Locate.RelocateTarget();
             Patrol.MoveTo(Locate.Target.transform.position);
         }
@@ -120,17 +125,20 @@ public class CheckPositionState : ILogic
     }
     override public void Update()
     {
+        InfOwner.SetFloatToAnim("CurrentSpeed", 0.5f);
         Patrol.CheckPosition(InfOwner.UNeedToCheckThis()); 
         if (Patrol.IsReachTarget())
         {
             
             if (DoISeeEnemy())
             {
+                
                 InfOwner.SetState(new ChaseState(InfOwner));
                 InfOwner.NullInterest();
             }
             else 
             {
+                
                 InfOwner.SetState(new PatrolState(InfOwner));
                 InfOwner.NullInterest();
             }
@@ -153,7 +161,7 @@ public class AttackState : ILogic
         {
             if (!CanIAttack())
             {
-
+                
                 InfOwner.SetState(new ChaseState(InfOwner));
             }
             

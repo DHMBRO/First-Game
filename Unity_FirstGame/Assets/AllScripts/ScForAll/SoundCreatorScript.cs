@@ -4,29 +4,33 @@ public class SoundCreatorScript : MonoBehaviour
     [SerializeField] public float CurrentNoiceRadiuse;
     [SerializeField] private bool DebugingTheWork = false;
 
-    public void CreateNoise(float LocalNoiceRadius)
-    {
-        this.CurrentNoiceRadiuse = LocalNoiceRadius;
+    [SerializeField] public Transform ZoneNoice;
+    [SerializeField] bool ShowTheZoneNoice;
 
+    public void CreateNoise(float NewNoiceRadius)
+    {
+        CurrentNoiceRadiuse = NewNoiceRadius;
+        if(NewNoiceRadius <= 0.0f)
+        {
+            return;
+        }
         Collider[] Colliders;
-        Colliders = Physics.OverlapSphere(gameObject.transform.position, LocalNoiceRadius);
+        Colliders = Physics.OverlapSphere(gameObject.transform.position, CurrentNoiceRadiuse);
         foreach (Collider Colider in Colliders)
         {
-            GameObject ColiderObject = Colider.gameObject;
-            SoundTakerScript SoundScript = ColiderObject.GetComponentInParent<SoundTakerScript>();
-            if (SoundScript && ColiderObject)
+            if (Colider.gameObject && Colider.gameObject != gameObject)
             {
-                if (Colider.gameObject == gameObject)
+                SoundTakerScript SoundScript = Colider.gameObject.GetComponentInParent<SoundTakerScript>();
+                if (SoundScript)
                 {
-                    continue;
+                    SoundScript.TakeSound(gameObject.transform.position);
                 }
-                SoundScript.TakeSound(gameObject.transform.position);
             }
         }
         
         if (DebugingTheWork)
         {
-            Debug.Log("Sound Created");
+            Debug.Log("Sound Created " + NewNoiceRadius + " == Radius  ");
 
         }
 

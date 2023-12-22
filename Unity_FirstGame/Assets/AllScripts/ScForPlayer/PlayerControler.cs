@@ -37,6 +37,7 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] public bool HavePistolInHand = false;
     [SerializeField] public bool IsUsingLoot = false;
     [SerializeField] public bool IsRun = false;
+    public bool StealthKilling;
 
     //Enums
     [SerializeField] public WhatIsInHand Using;
@@ -93,6 +94,7 @@ public class PlayerControler : MonoBehaviour
 
     void Update()
     {
+
         if (ControlerUi)
         {
             if(Input.GetKeyDown(KeyCode.I)) ControlerUi.OpenOrCloseInventory();
@@ -116,7 +118,7 @@ public class PlayerControler : MonoBehaviour
         }
 
 
-        if(!ControlerUi || !ControlerUi.InventoryIsOpen && PlayerDo == WhatDoPlayer.Null)
+        if(!ControlerUi || !ControlerUi.InventoryIsOpen && PlayerDo == WhatDoPlayer.Null && StealthKilling)
         {
             // Movement && Executore Noice
             if (MovePlayer)

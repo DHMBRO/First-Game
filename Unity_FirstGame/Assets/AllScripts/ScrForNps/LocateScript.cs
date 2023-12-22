@@ -130,7 +130,7 @@ public class LocateScript : MonoBehaviour
         if (Physics.Raycast(Object.transform.position, Object.transform.forward, out Hitres))
         {
             RaycastHit Hitresult;
-            if (Physics.Raycast(Object.transform.position, Object.transform.forward - Hitres.collider.gameObject.transform.position, out Hitresult))
+            if (Physics.Raycast(Object.transform.position, Object.transform.position - Hitres.collider.gameObject.transform.position, out Hitresult))
             {
                 if (Hitresult.collider.gameObject == Hitres.collider.gameObject)
                 {
@@ -144,7 +144,7 @@ public class LocateScript : MonoBehaviour
     }
     public bool IsObjectFromBehinde(GameObject Target)
     {
-        float AngleToBackTarget = Vector3.Angle(-gameObject.transform.forward, -Target.transform.position - gameObject.transform.position);
+        float AngleToBackTarget = Vector3.Angle(-gameObject.transform.forward, Target.transform.position - gameObject.transform.position);
         if (AngleToBackTarget <= 30.0f)
         {
 

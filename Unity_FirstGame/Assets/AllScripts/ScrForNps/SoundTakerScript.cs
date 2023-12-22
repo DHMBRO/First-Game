@@ -19,7 +19,7 @@ public class SoundTakerScript : MonoBehaviour
     }
     public void TakeSound(Vector3 SoundPosition)
     {
-        
+        Debug.Log(gameObject.name + " Voice");
         if (ZombiePatrolScript)
         {
             IHearSomething = true;

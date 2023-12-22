@@ -1218,8 +1218,32 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2001030955048781610, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: DebugingTheWork
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320318701797134959, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2320318701797134959, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: ShowRadiuse
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320318701797134959, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: RadiusNoiceWhenGo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320318701797134959, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: RadiusNoiceWhenRun
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320318701797134959, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: RadiusNoiceWhenInStels
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3059040256925347778, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3059040256925347778, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
@@ -1270,6 +1294,10 @@ PrefabInstance:
     - target: {fileID: 95283667875477210, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
       propertyPath: ShowTheZoneNoice
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1903779204196023001, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+      propertyPath: m_Name
+      value: Y Bot@Zombie 11
       objectReference: {fileID: 0}
     - target: {fileID: 2516517602217220442, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
       propertyPath: MyPointControllScript
@@ -1608,6 +1636,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e8db7cde2d8e5c48a237fa655605a48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1176534127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176534090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8259de7e900ffb444922db29c107e2bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxKillDistance: 3
+  MinKillDistance: 0.5
 --- !u!1 &1181213463
 GameObject:
   m_ObjectHideFlags: 0
@@ -1853,6 +1895,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88c6553a6899b3146b3f5b676037ebbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Animator: {fileID: 1586187923}
+  PointToKillMe: {fileID: 0}
 --- !u!1001 &1250869237
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2200,6 +2244,11 @@ GameObject:
 Transform:
   m_CorrespondingSourceObject: {fileID: 355652097750092183, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
   m_PrefabInstance: {fileID: 941417593}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1586187923 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6385217581263623021, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+  m_PrefabInstance: {fileID: 970870948}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1621400707
 GameObject:
