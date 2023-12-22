@@ -46,7 +46,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9, y: 0.9, z: 0.7}
+  m_Size: {x: 0.55, y: 0.9, z: 0.65}
   m_Center: {x: 0, y: 0, z: -0.2}
 --- !u!114 &8327204523113079377
 MonoBehaviour:
@@ -63,8 +63,16 @@ MonoBehaviour:
   Mass: 0
   CanCombining: 0
   HaveDescription: 0
+  ShowTheAmmo: 0
   SpriteForLoot: {fileID: 21300000, guid: 251ad41f19fd5b94e9cea08706ba7fa3, type: 3}
-  ObjectDescription: 
+  ParametersLoot:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  Descrition: 
 --- !u!114 &3567319833358814331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,7 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7140149eefddc2d4bb612402df491c77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelBackPack: 3
+  LevelBackPack: 2
   CurrentMaxMass: 25
   CurrentMass: 0
   MaxMassTo1L: 12
@@ -110,7 +118,7 @@ Transform:
   m_GameObject: {fileID: 6972724917573403871}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.2}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 0.7}
+  m_LocalScale: {x: 0.55, y: 0.9, z: 0.65}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6468030605202173354}

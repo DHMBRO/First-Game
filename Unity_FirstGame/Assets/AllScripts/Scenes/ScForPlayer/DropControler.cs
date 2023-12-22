@@ -33,7 +33,7 @@ public class DropControler : MethodsFromDevelopers
             if (ControlerForShoot)
             {
                 //Debug.Log("3");
-                DropObjects(ControlerForSlots.ObjectInHand.transform, PointForDrop.transform);
+                DropObjects(ControlerForSlots.ObjectInHand.transform, PointForDrop.transform, false);
 
                 if (ControlerForSlots.MyWeapon01 && ControlerForSlots.ObjectInHand.gameObject == ControlerForSlots.MyWeapon01.gameObject)
                 {

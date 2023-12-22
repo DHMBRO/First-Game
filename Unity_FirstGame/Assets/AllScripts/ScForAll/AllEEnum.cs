@@ -3,6 +3,14 @@ public enum MoodCamera
     FirstFace,
     ThirdFace
 }
+
+public enum LevelObject
+{
+    FirstLevel,
+    SecondLevel,
+    ThirdLevel,
+}
+
 public enum TypeWeapon
 {
     Weapon,
@@ -27,12 +35,23 @@ public enum TypeCaliber
     C12x99MM
     
 }
-
 public enum CameraIs
 {
     Null,
     Simple,
     Aiming
+}
+
+public enum ModeMovement
+{
+    Null,
+
+    Go,
+    Aiming,
+    Run,
+    Stelth,
+    StelsAndAiming,
+    
 }
 
 /*

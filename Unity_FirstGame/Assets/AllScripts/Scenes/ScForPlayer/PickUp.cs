@@ -4,17 +4,19 @@ using System.Collections.Generic;
 public class PickUp : MethodsFromDevelopers 
 {
     [SerializeField] public GameObject ObjectToBeLifted;
-    [SerializeField] private Transform ObjecttoRay;
-    
-    [SerializeField] private UiControler ControlerUi;
-    [SerializeField] private UiInventory InventoryUi;
+    [SerializeField] public ThirdPersonCamera ThirdCamera;   
 
+    [SerializeField] private UiControler ControlerUi;
+    [SerializeField] private UiInventoryOutPut InventoryUi;
+
+    [SerializeField] private PlayerControler ControlerPlayer;
     [SerializeField] private Inventory PlayerInventory;
+    
     [SerializeField] private ReferenseForAllLoot ReferencesForLoots;
 
     [SerializeField] List<string> TagsToPickup = new List<string>();
 
-    private float DistanceForRay = 2.0f;
+    [SerializeField] private float DistanceForRay = 3.0f;
     private int Counter = 0;
 
     private SlotControler SlotControler;
@@ -22,30 +24,38 @@ public class PickUp : MethodsFromDevelopers
     
     void Start()
     {
-        SlotControler = gameObject.GetComponent<SlotControler>();
-        ControlerToDrop = gameObject.GetComponent<DropControler>();
+        //Get References
+        SlotControler = GetComponent<SlotControler>();
+        ControlerToDrop = GetComponent<DropControler>();
+        ControlerPlayer = GetComponent<PlayerControler>();
+        
+        //Auditions
         if (!ControlerUi) Debug.Log("Not set ControlerUi");
     }
 
     public void RayForLoot()
-    {                
-        if (ObjecttoRay)
+    {
+        if (ThirdCamera)
         {
+            Vector3 PointRay = ThirdCamera.TargetCamera.transform.TransformPoint(ThirdCamera.DesirableVector); 
+
             //Debug.Log("RayForLoot is work");
-            Ray RayForPickUp = new Ray(ObjecttoRay.position, ObjecttoRay.forward);
-            
-            Debug.DrawRay(ObjecttoRay.position, ObjecttoRay.forward * DistanceForRay, Color.red);
-            
+            Ray RayForPickUp = new Ray(PointRay, ThirdCamera.transform.forward);
+
+            Debug.DrawRay(PointRay, ThirdCamera.transform.forward * DistanceForRay, Color.red);
+
             if (Physics.Raycast(RayForPickUp, out RaycastHit HitResult, DistanceForRay))
             {
                 ObjectToBeLifted = HitResult.collider.gameObject;
-                ComplertingTheLink();              
+                ComplertingTheLink();
             }
             else
             {
                 ObjectToBeLifted = null;
-            }            
+            }
         }
+        else Debug.Log("Not set ThirdCamera");
+
     }
 
     public void ComplertingTheLink()
@@ -118,19 +128,19 @@ public class PickUp : MethodsFromDevelopers
         if (PlayerInventory && Counter == 0)
         {
             ScrForAllLoot Loot = ObjectToPickUp.gameObject.GetComponent<ScrForAllLoot>();
-            ScrInfoToLoot InfoLoot = ObjectToPickUp.gameObject.GetComponent<ScrInfoToLoot>();
+            InfoWhatDoLoot InfoLoot = ObjectToPickUp.gameObject.GetComponent<InfoWhatDoLoot>();
 
             if (Loot && PlayerInventory.CurrentMass + Loot.Mass <= PlayerInventory.MaxMass && Loot.SpriteForLoot)
             {
                 for (int i = 0; i < ReferencesForLoots.ReferencePrefabs.Count; i++)
                 {
-                    
-                    ScrInfoToLoot LootFromList = ReferencesForLoots.ReferencePrefabs[i].GetComponent<ScrInfoToLoot>();
+
+                    InfoWhatDoLoot LootFromList = ReferencesForLoots.ReferencePrefabs[i].GetComponent<InfoWhatDoLoot>();
 
                     if (InfoLoot.InfoTheObject == LootFromList.InfoTheObject)
                     {
-                        
-                        InfoForLoot ObjectToGet = new InfoForLoot();
+
+                        ScrSaveAndGiveInfo ObjectToGet = new ScrSaveAndGiveInfo();
 
                         ObjectToGet.ObjectToInstantiate = ReferencesForLoots.ReferencePrefabs[i];
                         ObjectToGet.SaveInfo(ObjectToPickUp);
@@ -214,14 +224,15 @@ public class PickUp : MethodsFromDevelopers
             HelmetIsPickUped.Use = true;
             SlotControler.MyHelmet = ObjectToPickUp.transform;
 
-            PutObjects(SlotControler.MyHelmet, SlotControler.SlotHelmet);
+            PutObjects(SlotControler.MyHelmet, SlotControler.SlotHelmet, false);
             
         }
+
         void ChangeHelmet()
         {
             if (ControlerToDrop && HelmetIsPickUped.LevelHelmet > HelmetIsUsing.LevelHelmet)
             {
-                DropObjects(SlotControler.MyHelmet.transform, ControlerToDrop.PointForDrop);
+                DropObjects(SlotControler.MyHelmet.transform, ControlerToDrop.PointForDrop, false);
 
                 if (ControlerUi) ControlerUi.SlotHelmet.sprite = ScrForLoot.SpriteForLoot;
                 else Debug.Log("Not set ControelrUi");
@@ -231,7 +242,7 @@ public class PickUp : MethodsFromDevelopers
 
                 SlotControler.MyHelmet = ObjectToPickUp.transform;
 
-                PutObjects(SlotControler.MyHelmet, SlotControler.SlotHelmet);
+                PutObjects(SlotControler.MyHelmet, SlotControler.SlotHelmet, false);
 
             }
         }
@@ -245,7 +256,7 @@ public class PickUp : MethodsFromDevelopers
 
             SlotControler.MyArmor = ObjectToPickUp.transform;
             
-            PutObjects(SlotControler.MyArmor, SlotControler.SlotArmor);
+            PutObjects(SlotControler.MyArmor, SlotControler.SlotArmor, false);
             PutOn();
 
         }
@@ -253,7 +264,7 @@ public class PickUp : MethodsFromDevelopers
         {
             if (ControlerToDrop && ArmorIsPickUped.LevelArmor > ArmorIsUsing.LevelArmor)
             {
-                DropObjects(SlotControler.MyArmor.transform, ControlerToDrop.PointForDrop);
+                DropObjects(SlotControler.MyArmor.transform, ControlerToDrop.PointForDrop, false);
 
                 if (ControlerUi) ControlerUi.SlotArmor.sprite = ScrForLoot.SpriteForLoot;
                 else Debug.Log("Not set ControlerUi");
@@ -263,7 +274,7 @@ public class PickUp : MethodsFromDevelopers
 
                 SlotControler.MyArmor = ObjectToPickUp.transform;
                 
-                PutObjects(SlotControler.MyArmor, SlotControler.SlotArmor);
+                PutObjects(SlotControler.MyArmor, SlotControler.SlotArmor, false);
             }
         }
 
@@ -273,22 +284,23 @@ public class PickUp : MethodsFromDevelopers
             else Debug.Log("Not set ControlerUi");
 
             SlotControler.MyBackPack = ObjectToPickUp.transform;
-            PutObjects(SlotControler.MyBackPack, SlotControler.SlotBackPack);
+            PutObjects(SlotControler.MyBackPack, SlotControler.SlotBackPack, false);
 
             PlayerInventory.BackPack = SlotControler.MyBackPack.gameObject;
             PlayerInventory.ChargingValueMaxMass(BackPackIsPickUped);
         }
+
         void ChangeBackPack()
         {
             if (ControlerToDrop && BackPackIsPickUped.LevelBackPack > BackpackIsUsing.LevelBackPack)
             {
-                DropObjects(SlotControler.MyBackPack.transform, ControlerToDrop.PointForDrop);
+                DropObjects(SlotControler.MyBackPack.transform, ControlerToDrop.PointForDrop, false);
 
                 if (ControlerUi) ControlerUi.SlotBackPack.sprite = ScrForLoot.SpriteForLoot;
                 else Debug.Log("Not set ControlerUi");
 
                 SlotControler.MyBackPack = ObjectToPickUp.transform;
-                PutObjects(SlotControler.MyBackPack, SlotControler.SlotBackPack);
+                PutObjects(SlotControler.MyBackPack, SlotControler.SlotBackPack, false);
                 
                 PlayerInventory.BackPack = SlotControler.MyBackPack.gameObject;
                 PlayerInventory.ChargingValueMaxMass(BackPackIsPickUped);
@@ -313,12 +325,12 @@ public class PickUp : MethodsFromDevelopers
             SlotControler.SlotPistol01 = Armor.SlotPistol01;
             SlotControler.SlotKnife01 = Armor.SlotKnife01;
 
-            if (SlotControler.Shop[0]) PutObjects(SlotControler.Shop[0], SlotControler.SlotsShop[0]);
-            if (SlotControler.Shop[1]) PutObjects(SlotControler.Shop[1], SlotControler.SlotsShop[1]);
-            if (SlotControler.Shop[2]) PutObjects(SlotControler.Shop[2], SlotControler.SlotsShop[2]);
+            if (SlotControler.Shop[0]) PutObjects(SlotControler.Shop[0], SlotControler.SlotsShop[0], false);
+            if (SlotControler.Shop[1]) PutObjects(SlotControler.Shop[1], SlotControler.SlotsShop[1], false);
+            if (SlotControler.Shop[2]) PutObjects(SlotControler.Shop[2], SlotControler.SlotsShop[2], false);
 
-            if (SlotControler.MyPistol01) PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01);
-            PutObjects(SlotControler.MyKnife01, SlotControler.SlotKnife01);
+            if (SlotControler.MyPistol01) PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01, false);
+            PutObjects(SlotControler.MyKnife01, SlotControler.SlotKnife01, false);
         }
         else Debug.Log("Not set Armor");
     }
@@ -337,7 +349,7 @@ public class PickUp : MethodsFromDevelopers
                 if(ControlerUi) ControlerUi.SlotWeapon01.sprite = ScrForLoot.SpriteForLoot;
                 
 
-                PutObjects(SlotControler.MyWeapon01, SlotControler.SlotBack01);
+                PutObjects(SlotControler.MyWeapon01, SlotControler.SlotBack01, false);
                 Counter = 1;
                 //Debug.Log("1");
 
@@ -347,7 +359,7 @@ public class PickUp : MethodsFromDevelopers
                 SlotControler.MyWeapon02 = ObjectForPickUp.transform;
                 if(ControlerUi) ControlerUi.SlotWeapon02.sprite = ScrForLoot.SpriteForLoot;
                 
-                PutObjects(SlotControler.MyWeapon02, SlotControler.SlotBack02);
+                PutObjects(SlotControler.MyWeapon02, SlotControler.SlotBack02, false);
                 Counter = 1;
                 //Debug.Log("2");
 
@@ -374,7 +386,7 @@ public class PickUp : MethodsFromDevelopers
                 SlotControler.MyPistol01 = ObjectForPickUp.transform;
                 if (ControlerUi) ControlerUi.SlotPistol01.sprite = ScrForLoot.SpriteForLoot;
 
-                PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01);
+                PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01, false);
                 Counter = 1;
                 //Debug.Log("3");
             }
@@ -412,7 +424,7 @@ public class PickUp : MethodsFromDevelopers
                 //Debug.Log("SlotControler.MyShope01: " + SlotControler.MyShope01);
 
                 if (ControlerUi) ControlerUi.SlotShop01.sprite = ScrForLoot.SpriteForLoot;
-                if (!ControlerShop.IsUsing) PutObjects(SlotControler.Shop[0], SlotControler.SlotsShop[0]);
+                if (!ControlerShop.IsUsing) PutObjects(SlotControler.Shop[0], SlotControler.SlotsShop[0], false);
                 ControlerShop.PutShopInParent();
                 Counter = 1;
             }
@@ -426,7 +438,7 @@ public class PickUp : MethodsFromDevelopers
                 SlotControler.Shop[1] = ShopForPickUp.transform;
                 if (ControlerUi) ControlerUi.SlotShop02.sprite = ScrForLoot.SpriteForLoot;
 
-                if (!ControlerShop.IsUsing) PutObjects(SlotControler.Shop[1], SlotControler.SlotsShop[1]);
+                if (!ControlerShop.IsUsing) PutObjects(SlotControler.Shop[1], SlotControler.SlotsShop[1], false);
                 ControlerShop.PutShopInParent();
                 Counter = 1;
             }
@@ -440,7 +452,7 @@ public class PickUp : MethodsFromDevelopers
                 SlotControler.Shop[2] = ShopForPickUp.transform;
                 if (ControlerUi) ControlerUi.SlotShop03.sprite = ScrForLoot.SpriteForLoot;
 
-                if (!ControlerShop.IsUsing) PutObjects(SlotControler.Shop[2], SlotControler.SlotsShop[2]);
+                if (!ControlerShop.IsUsing) PutObjects(SlotControler.Shop[2], SlotControler.SlotsShop[2], false);
                 ControlerShop.PutShopInParent();
                 Counter = 1;
             }

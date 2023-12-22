@@ -11,10 +11,11 @@ public class ZombieController : MonoBehaviour
     protected AttackMethod ZombieAttackScript;
     protected PatrolScriptNavMesh ZombiePatrolScript;
     protected HpScript ZombieHpScript;
-    public bool IsLive = true;
+   
 
     void Start()
     {
+        
         ZombieHpScript = gameObject.GetComponent<HpScript>();
         ZombieLocateScript = gameObject.GetComponent<LocateScript>();
         ZombieAttackScript = gameObject.GetComponent<AttackMethod>();
@@ -51,13 +52,14 @@ public class ZombieController : MonoBehaviour
                         //Debug.Log("Attack!!!");
 
                         ZombiePatrolScript.ZombieNavMesh.isStopped = true;
-                        ZombieAttackScript.DoCloseAttack(ZombieLocateScript.Target);
+                        ZombieAttackScript.Attack(ZombieLocateScript.Target);
+    
 
                     }
                     else
                     {
                         ZombiePatrolScript.ZombieNavMesh.isStopped = false;
-                        ZombiePatrolScript.MoveTo(ZombieLocateScript.Target);
+                        ZombiePatrolScript.MoveTo(ZombieLocateScript.Target.transform.position);
                     }
 
                 }

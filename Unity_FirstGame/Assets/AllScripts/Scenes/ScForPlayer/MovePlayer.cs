@@ -5,7 +5,8 @@ public class MovePlayer : MonoBehaviour
 {
     [SerializeField] public PlayerControler ControlerPlayer;
 
-    //[SerializeField] float JumpForce = 1.0f;
+    [SerializeField] float JumpForce = 1.0f;
+    //[SerializeField] float DeleyJump = 1.0f; 
     [SerializeField] protected float Sens = 1.0f;
 
     [SerializeField] ForceMode MyForceMode;
@@ -15,10 +16,14 @@ public class MovePlayer : MonoBehaviour
 
     [SerializeField] protected Transform CameraTransform;
 
+    [SerializeField] bool CanJump = false;
+    
     [SerializeField] int JumpCount;
 
+    [SerializeField] public float CurrentSpeed;
     [SerializeField] private float SpeedAiming;
-    [SerializeField] private float SpeedMove;    
+    [SerializeField] private float SpeedGo;
+    [SerializeField] private float SpeedStels;
     [SerializeField] private float SpeedRun;
 
     
@@ -32,50 +37,75 @@ public class MovePlayer : MonoBehaviour
     void Start()
     {
         MyRigidbody = GetComponent<Rigidbody>();
-        
+        ControlerPlayer = GetComponent<PlayerControler>();
     }
 
-    
-
-    public void Move()
+    public void Move(ModeMovement MovementMode)
     {
         MoveVertical = Input.GetAxisRaw("Vertical");
         MoveHorizontal = Input.GetAxisRaw("Horizontal");
 
         //transform.rotation = Quaternion.Euler(0f, CameraTransform.rotation.y, 0f);
         //Vector3 ForceBack = transform.forward * MoveVertical * Speed;
-
-        Vector3 ForceAxis = new Vector3(MoveHorizontal, 0.0f, MoveVertical).normalized;
-        Vector3 ForceForward = new Vector3(0.0f, 0.0f, SpeedMove);
         //Vector3 ForceBack = new Vector3(MoveHorizontal, 0.0f, MoveVertical).normalized;
 
+        Vector3 ForceAxis = new Vector3(MoveHorizontal, 0.0f, MoveVertical).normalized;
+        
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Math.Abs(MoveVertical + MoveVertical) > 0.01f)
         {
-            if (!ControlerPlayer.Aiming)
+            if (!ControlerPlayer.IsAiming && MovementMode != ModeMovement.Null) //Rotate Body Player
             {
                 Quaternion Forward = Quaternion.LookRotation(ForceAxis);
-
                 Quaternion TargetRotation = Forward * CameraScr.transform.rotation;
 
                 TargetRotation.x = 0;
                 TargetRotation.z = 0;
 
                 float yAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, TargetRotation.eulerAngles.y, ref yVelocity, smooth);
-                
                 transform.rotation = Quaternion.Euler(0, yAngle, 0);
-
-                //Vector3 MoveForward = new Vector3(0.0f, 0.0f, SpeedMove);
-
-                MyRigidbody.AddRelativeForce(ForceForward, ForceMode.Force);
-                if (Input.GetKey(KeyCode.LeftShift)) MyRigidbody.AddRelativeForce(ForceForward * SpeedRun, ForceMode.Force);
-
-            }
-            else
-            {
-                MyRigidbody.AddRelativeForce(ForceAxis * SpeedAiming, MyForceMode);
-                if (Input.GetKey(KeyCode.LeftShift)) MyRigidbody.AddRelativeForce(ForceAxis * SpeedRun, MyForceMode);
+                
                 
             }
+            
+
+            switch (MovementMode)
+            {
+                case ModeMovement.Aiming:
+                    Movement(SpeedAiming, true);
+                    break;
+                case ModeMovement.Go:
+                    Movement(SpeedGo, false);
+                    break;
+                case ModeMovement.Stelth:
+                    Movement(SpeedStels, false);
+                    break;
+                case ModeMovement.Run:
+                    Movement(SpeedRun, false);
+                    break;
+                case ModeMovement.StelsAndAiming:
+                    Movement(SpeedAiming, true);
+                    break;
+                default:
+                    CurrentSpeed = 0.0f;
+                    break;
+            }
+            
+
+
+            void Movement(float CurrentSpeedToMove,bool Aiming)
+            {
+                
+
+                if (Aiming) MyRigidbody.AddRelativeForce(ForceAxis * SpeedAiming * Time.deltaTime, MyForceMode);
+                else MyRigidbody.AddRelativeForce(new Vector3(0.0f, 0.0f, 1.0f * CurrentSpeedToMove * Time.deltaTime), ForceMode.Force);
+                CurrentSpeed = CurrentSpeedToMove;
+                //Debug.Log(Aiming);
+
+                //Debug.Log("CurrentSpeed: " + CurrentSpeedToMove);
+                //Debug.Log(MyRigidbody.velocity.magnitude);
+
+            }
+
         }
 
         MyRigidbody.velocity = new Vector3(0, MyRigidbody.velocity.y, 0);
@@ -92,15 +122,29 @@ public class MovePlayer : MonoBehaviour
     }
 
 
-    /*
+    
     public void Jump()
     {
+       
+        
+        if (!CanJump) return;
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            MyRigidbody.AddRelativeForce(new Vector3(0.0f, 1.0f * JumpForce, 0.0f), ForceMode.Force);
+            ControlerPlayer.IsJuming = true;
+            //Debug.Log(ControlerPlayer.Juming);
+        }
+        else ControlerPlayer.IsJuming = false;
+
+        /*
         if (Input.GetKeyDown(KeyCode.Space))
         {
             RaycastHit Result = new RaycastHit();
-            Ray RayForJump = new Ray(transform.position, -transform.up);
-            Debug.DrawRay(transform.position, -transform.up * 1.01f, Color.blue);
-            if (Physics.Raycast(RayForJump, out RaycastHit HitResult, 1.01f))
+            //Ray RayForJump = new Ray(transform.position, -transform.up);
+
+            Debug.DrawRay(transform.position, -transform.up * 0.50f, Color.blue);
+            if (Physics.Raycast(transform.position, -transform.up, out RaycastHit HitResult, 1.0f))
             {
                 Result = HitResult;
                 if (Result.collider)
@@ -117,7 +161,19 @@ public class MovePlayer : MonoBehaviour
         {
             MyRigidbody.AddRelativeForce(new Vector3(0f, 1f * JumpForce, 0f), ForceMode.Force);
             JumpCount--;
+            
         }
-    } 
-    */
+        */
+    }
+
+
+    private void OnCollisionStay(Collision collision)
+    {
+        CanJump = true;
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        CanJump = false;
+    }
 }

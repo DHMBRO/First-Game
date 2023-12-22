@@ -65,11 +65,11 @@ public class ShopControler : MonoBehaviour
         else
         {
             gameObject.transform.position = ParentShop.transform.position;
-            Debug.Log("PutShopInParent is work");
+            //Debug.Log("PutShopInParent is work");
         }    
 
 
     }
-
+    
 }
 

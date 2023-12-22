@@ -3,10 +3,22 @@ using UnityEngine;
 public class MethodsFromDevelopers : MonoBehaviour
 {
     
-    protected void PutObjects(Transform ObjectForPut, Transform PosForPut)
+    protected void PutObjects(Transform ObjectForPut, Transform PosForPut, bool AddVoice)
     {
-        Rigidbody RigObject = ObjectForPut.gameObject.GetComponent<Rigidbody>();
-        BoxCollider BCObject = ObjectForPut.gameObject.GetComponent<BoxCollider>();
+        Rigidbody RigObject = ObjectForPut.GetComponent<Rigidbody>();
+        BoxCollider BCObject = ObjectForPut.GetComponent<BoxCollider>();
+
+        SoundCreatorScript SCSObject;
+        ExecutoreScriptToRock ESObject;
+
+        if (AddVoice)
+        {
+            SCSObject = ObjectForPut.GetComponent<SoundCreatorScript>();
+            ESObject = ObjectForPut.GetComponent<ExecutoreScriptToRock>();
+
+            if (SCSObject) Destroy(SCSObject);
+            if (ESObject) Destroy(ESObject);
+        }
 
         if (RigObject) Destroy(RigObject);
         if (BCObject) BCObject.enabled = false;
@@ -26,10 +38,22 @@ public class MethodsFromDevelopers : MonoBehaviour
 
     }
 
-    protected void DropObjects(Transform ObjectToDrop, Transform ObecjtForCopy)
+    protected void DropObjects(Transform ObjectToDrop, Transform ObecjtForCopy, bool AddVoice)
     {
-        Rigidbody RigObject = ObjectToDrop.gameObject.GetComponent<Rigidbody>();
-        BoxCollider BCObject = ObjectToDrop.gameObject.GetComponent<BoxCollider>();
+        Rigidbody RigObject = ObjectToDrop.GetComponent<Rigidbody>();
+        BoxCollider BCObject = ObjectToDrop.GetComponent<BoxCollider>();
+
+        SoundCreatorScript SCSObject;
+        ExecutoreScriptToRock ESObject;
+
+        if (AddVoice)
+        {
+            SCSObject = ObjectToDrop.GetComponent<SoundCreatorScript>();
+            ESObject = ObjectToDrop.GetComponent<ExecutoreScriptToRock>();
+
+            if (!SCSObject) SCSObject = ObjectToDrop.gameObject.AddComponent<SoundCreatorScript>();
+            if (!ESObject) ESObject = ObjectToDrop.gameObject.AddComponent<ExecutoreScriptToRock>();
+        }
 
         if (RigObject)
         {
@@ -68,6 +92,6 @@ public class MethodsFromDevelopers : MonoBehaviour
         
     }
 
-    
+
 
 }

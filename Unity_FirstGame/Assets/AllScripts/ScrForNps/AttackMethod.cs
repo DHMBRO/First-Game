@@ -24,27 +24,23 @@ public class AttackMethod : MonoBehaviour
         ZombiePatrolScript = gameObject.GetComponent<PatrolScriptNavMesh>();
         ZombieLocateScript = gameObject.GetComponent<LocateScript>();
         if (ZombieLocateScript.Target) TargetHpScript = ZombieLocateScript.Target.GetComponent<HpScript>();
-
-        
-        
         if (TerroristGun)
         {
             GameObject Gun = Instantiate(TerroristGun, GunPos.transform);
+            
             (Gun?.GetComponent<Rigidbody>()).isKinematic = true;
             TerroristWeaponScript = Gun.GetComponentInParent<ShootControler>();
+            TerroristWeaponScript.UnLimitedAmmo = true;
         }
-        
     }
 
     void Update()
     {
         if (ZombieLocateScript.Target) TargetHpScript = ZombieLocateScript.Target.GetComponent<HpScript>();
-
     }
 
-    public void DoCloseAttack(GameObject Target)
-    {
-        
+    public void Attack(GameObject Target)
+    {  
         if (TerroristWeaponScript)
         {
             GunPos.transform.LookAt(Target.transform);
@@ -53,6 +49,7 @@ public class AttackMethod : MonoBehaviour
         }
         else 
         {
+            Debug.Log("12344");
             if (Time.time >= AttackTime)
             {
                 HpScript TargetHpScript = Target.GetComponentInParent<HpScript>();
@@ -65,14 +62,8 @@ public class AttackMethod : MonoBehaviour
 
                 AttackTime = AttackDelay + Time.time;
             }
-        }
-
-
-        
-       
+        }  
     }
-   
-
 }
 
 

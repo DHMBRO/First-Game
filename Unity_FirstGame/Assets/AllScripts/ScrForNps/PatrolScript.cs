@@ -1,68 +1,52 @@
-using System.Collections.Generic;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-
 public class PatrolScript : MonoBehaviour
 {
-    [SerializeField] private List<Transform> Point = new List<Transform>();
-    [SerializeField] public Dictionary<string, Transform> Route = new Dictionary<string, Transform>();
-
-
-    [SerializeField] private float Delay = 15.0f;
-    [SerializeField] private float MovingTime;
-    [SerializeField] private float SpeedForMove = 10.0f;
-   
+    [SerializeField] public PointControllScript MyPointControllScript;
+    protected int CurrentPoint;
+    public int StartPosIndex = 0;
+    LocateScript ZombieLocateScript;
+    public NavMeshAgent ZombieNavMesh;
+    Vector3 MoveTarget;
+    public bool NeedCheckPosition = false;
+    public enum State
+    {
+        Patrol,
+        NoPatrol
+    }
+    public State MyState = State.Patrol;
     void Start()
     {
-        
-        Route.Add("Point1", Point[0]);
-        Route.Add("Point2", Point[1]);
+        ZombieLocateScript = gameObject.GetComponent<LocateScript>();
+        ZombieNavMesh = gameObject.GetComponent<NavMeshAgent>();
     }
-
-    
     void Update()
     {
-        Vector3 RotateToPint01 = Point[0].transform.position - transform.position;
-        Vector3 RotateToPint02 = Point[1].transform.position - transform.position;
+       
+    }
 
-        bool InPoint01 = transform.position == Point[0].position;
-        bool InPoint02 = transform.position == Point[1].position;
-
-        bool MoveToPoint01 = false;
-        bool MoveToPoint02 = false;
-
-        if (Time.time >= MovingTime && InPoint02)
-        {
-            transform.rotation = Quaternion.LookRotation(RotateToPint02);
-            MoveToPoint02 = true;
-        }
-        else if(Time.time >= MovingTime && InPoint01)
-        {                
-            transform.rotation = Quaternion.LookRotation(RotateToPint01);
-            MoveToPoint01 = true;
-        }
+    public void MoveTo(Vector3 Target)
+    {
         
-        if(InPoint02 == true && MoveToPoint02 == true)
-        {
-            MovingTime = Time.time + Delay;            
-            MoveToPoint02 = false;            
-        }
-        else if(InPoint01 == true && MoveToPoint01 == true)
-        {
-            MovingTime = Time.time + Delay;
-            MoveToPoint01 = false;            
-        }
-
-        if (MoveToPoint02 && MoveToPoint01)
-        {
-            transform.localPosition += transform.forward * SpeedForMove;
-           
-        }
+        ZombieNavMesh.SetDestination(Target);
         
     }
 
-    
-
-    
+    void Patrol()
+    {
+        CurrentPoint = MyPointControllScript.SearchNextPosition(CurrentPoint);
+        MoveTo(MyPointControllScript.Points[CurrentPoint].transform.position);
+    }
+    void ReturnToPatrol() // вернення до патролу
+    {
+        if (!ZombieLocateScript.Target)
+        {
+            CurrentPoint = MyPointControllScript.SearchNextPosition(CurrentPoint);
+            MoveTo(MyPointControllScript.Points[CurrentPoint].transform.position);
+        }
+    }
+    public void CheckPosition(Vector3 CheckingPosition) // перевірити позицію
+    {
+        MoveTo(CheckingPosition);
+    }
 }

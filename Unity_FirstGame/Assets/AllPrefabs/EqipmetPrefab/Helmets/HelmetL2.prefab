@@ -52,7 +52,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9045565526339652299
 Transform:
   m_ObjectHideFlags: 0
@@ -135,7 +135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3066418428203849114
 Transform:
   m_ObjectHideFlags: 0
@@ -247,7 +247,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9, y: 0.09, z: 0.7}
+  m_Size: {x: 0.2, y: 0.05, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3083555155569297668
 MonoBehaviour:
@@ -263,7 +263,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Mass: 0
   CanCombining: 0
+  HaveDescription: 0
+  ShowTheAmmo: 0
   SpriteForLoot: {fileID: 21300000, guid: b5f6a07413bc4f245b535140c5018fcd, type: 3}
+  ParametersLoot:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  Descrition: 
 --- !u!114 &8477262137101757339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bdaeac6dbf647a49b27e565783da4c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelHelmet: 2
+  LevelHelmet: 1
   Use: 0
 --- !u!1 &5655731101419296287
 GameObject:
@@ -295,7 +305,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3948347843000141811
 Transform:
   m_ObjectHideFlags: 0
@@ -388,7 +398,7 @@ Transform:
   m_GameObject: {fileID: 8197372983177936730}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.1, z: 0.7}
+  m_LocalScale: {x: 0.2, y: 0.05, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5071458014159548484}

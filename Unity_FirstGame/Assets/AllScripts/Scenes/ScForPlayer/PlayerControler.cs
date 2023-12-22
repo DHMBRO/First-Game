@@ -2,53 +2,200 @@ using UnityEngine;
 
 public class PlayerControler : MonoBehaviour
 {
+    //Movement Components
     [SerializeField] private Move1F Move;
     [SerializeField] private MovePlayer MovePlayer;
-    [SerializeField] private Transform PlayerCamera;
-    [SerializeField] private StelsScript StelsScript;
 
+    //Other Components
+    [SerializeField] public ShootControler ControlerShoot;
+    [SerializeField] private StelthScript StelsScript;
+    [SerializeField] private DivertAttention DivertAttention;
+    [SerializeField] private ExecutoreScriptToPlayer EEScript;
+
+    //Main Components To Work Player
     [SerializeField] private PickUp PickUpPlayer;
     [SerializeField] private DropControler ControlerDrop;
     [SerializeField] private SlotControler SlotControler;
-    [SerializeField] public ShootControler ControlerShoot;
 
+    //Camera Components
+    [SerializeField] private Transform PlayerCameraF1;
+    [SerializeField] private ThirdPersonCamera CameraPlayerF3;
+    
+    //Inventory Components
     [SerializeField] private UiControler ControlerUi;
+    [SerializeField] private UseAndDropTheLoot SelectObj;
 
+    //Game Objects
     [SerializeField] Transform gameobject;
     [SerializeField] Transform Anchor;
+    
+    //Bools
+    [SerializeField] public bool IsAiming = false;
+    [SerializeField] public bool InStealth = false;
+    [SerializeField] public bool IsJuming = false;
+    [SerializeField] public bool HaveWeaponInHand = false;
+    [SerializeField] public bool HavePistolInHand = false;
+    [SerializeField] public bool IsUsingLoot = false;
+    [SerializeField] public bool IsRun = false;
+    public bool StealthKilling;
 
-    [SerializeField] public bool Aiming = false;
+    //Enums
+    [SerializeField] public WhatIsInHand Using;
+    [SerializeField] public MainPlayer MainStatePlayer;
+    [SerializeField] public WhatDoPlayer PlayerDo;
+    [SerializeField] public ModeMovement MovementMode;
+    [SerializeField] public CameraPlayer StateCamera;
 
-    [SerializeField] WhatIsInHand Using;
-
-    void Start()
+    public enum MainPlayer
     {
-        Move = gameObject.GetComponent<Move1F>();
-        
-        MovePlayer = gameobject.GetComponent<MovePlayer>();
-        MovePlayer.ControlerPlayer = GetComponent<PlayerControler>();
+        Null,
 
-        StelsScript = gameObject.GetComponent<StelsScript>();
-
-        PickUpPlayer = gameObject.GetComponent<PickUp>();
-        ControlerDrop = gameobject.GetComponent<DropControler>();
-        SlotControler = gameObject.GetComponent<SlotControler>();
+        InventoryIsOpen,
+        ShootWithWeapon,
+        InStealth,
+        AimingToDropRock,
         
     }
+
+    public enum WhatDoPlayer
+    {
+        Null,
+
+        UseLoot,
+    }
+
+    public enum CameraPlayer
+    {
+        Null,
+
+        RotateSimple,
+        Aiming,
+    }
+
     
+    void Start()
+    {
+        //Movement
+        Move = GetComponent<Move1F>();
+        MovePlayer = GetComponent<MovePlayer>();
+        
+        //Other Scripts
+        DivertAttention = GetComponent<DivertAttention>();
+        StelsScript = GetComponent<StelthScript>();
+        EEScript = GetComponent<ExecutoreScriptToPlayer>();
+        
+        //Main Scripts To Work Player                  
+        PickUpPlayer = GetComponent<PickUp>();
+        ControlerDrop = GetComponent<DropControler>();
+        SlotControler = GetComponent<SlotControler>();
+        
+        if (!ControlerUi) Debug.Log("Not set ControlerUi");
+    }
+
     void Update()
-    {   
-        if(ControlerUi && ControlerUi.InventoryIsOpen == false || !ControlerUi)
+    {
+
+        if (ControlerUi)
         {
-            if (SlotControler.SlotHand)
+            if(Input.GetKeyDown(KeyCode.I)) ControlerUi.OpenOrCloseInventory();
+            if (ControlerUi.InventoryIsOpen) MainStatePlayer = MainPlayer.InventoryIsOpen;
+            ControlerUi.InterfaceControler();
+        }
+
+        if (SelectObj)
+        {
+            if (SelectObj.ObjectToUse)
             {
-                if (SlotControler.ObjectInHand)
+                PlayerDo = WhatDoPlayer.UseLoot;
+                IsUsingLoot = true;
+            }
+            else 
+            {
+                PlayerDo = WhatDoPlayer.Null;
+                IsUsingLoot = false;
+            }
+
+        }
+
+
+        if(!ControlerUi || !ControlerUi.InventoryIsOpen && PlayerDo == WhatDoPlayer.Null && StealthKilling)
+        {
+            // Movement && Executore Noice
+            if (MovePlayer)
+            {
+                bool Inputs = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D);
+                //Change Mood Movement
+                if (Inputs) MovementMode = ModeMovement.Go;
+                else MovementMode = ModeMovement.Null;
+
+                //Run
+                if (Input.GetKey(KeyCode.LeftShift))
                 {
-                    if(SlotControler.ObjectInHand.GetComponent<ShootControler>()) ControlerShoot = SlotControler.ObjectInHand.GetComponent<ShootControler>();
+                    InStealth = false;
+                    IsRun = true;
+                    MovementMode = ModeMovement.Run;
                 }
-                else ControlerShoot = null;
-                
-                if (Input.GetKeyDown("1") && SlotControler.Counter == 0)
+                else IsRun = false;
+
+            }
+
+            // Drop
+            if (ControlerDrop)
+            {
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    ControlerDrop.Drop();
+                    SlotControler.ObjectInHand = null;
+                    ControlerShoot = null;
+                }
+            }
+
+            //Stels 
+            if (Input.GetKeyUp(KeyCode.LeftControl)) InStealth = !InStealth;
+
+            //Camera
+            if (CameraPlayerF3.CameraIsUsig && HaveWeaponInHand || HavePistolInHand)
+            {
+                if (Input.GetKey(KeyCode.Mouse1)) IsAiming = true;
+                else IsAiming = false;
+            }
+
+            //IsAiming
+            if (IsAiming && !InStealth) MovementMode = ModeMovement.Aiming;
+            if (ControlerUi) ControlerUi.Scope.gameObject.SetActive(IsAiming);
+
+            //Stels
+            if (InStealth && !IsAiming)
+            {
+                MovementMode = ModeMovement.Stelth;
+                MainStatePlayer = MainPlayer.InStealth;
+            }
+
+            if (IsAiming && InStealth) MovementMode = ModeMovement.StelsAndAiming;
+
+            //if (Input.GetKeyUp(KeyCode.Mouse1)) IsAiming = false;
+
+            // PickUp
+            if (PickUpPlayer && !IsRun && !IsAiming) 
+            {
+                PickUpPlayer.RayForLoot();
+                PickUpPlayer.ComplertingTheLink();
+            }
+            
+            
+            
+            // Slot Controler
+            if (SlotControler)
+            {
+                SlotControler.MovingGunForSlots();
+
+                if (SlotControler.SlotHand && SlotControler.ObjectInHand)
+                {
+                    ControlerShoot = SlotControler.ObjectInHand.GetComponent<ShootControler>();
+                    
+                }
+                // Change Object In Hand
+                if (Input.GetKeyDown("1"))
                 {
                     SlotControler.ChangingSlots();
                     SlotControler.Counter = 1;
@@ -57,66 +204,55 @@ public class PlayerControler : MonoBehaviour
                 {
                     SlotControler.Counter = 0;
                 }
-            }
-            else Debug.Log("Not set SlotHand");
 
-            if (ControlerShoot && Input.GetKey(KeyCode.Mouse0))
-            {
-                if (!ControlerUi.InventoryIsOpen) ControlerShoot.Shoot();
-            }
-
-            
-            if (Input.GetKey(KeyCode.Mouse1)) Aiming = true;
-            if (Input.GetKeyUp(KeyCode.Mouse1)) Aiming = false;
-            if (MovePlayer) MovePlayer.Move();
-
-
-
-            if (PickUpPlayer) PickUpAll();
-            if (ControlerDrop && Input.GetKeyDown(KeyCode.Q))
-            {
-                ControlerDrop.Drop();
-                SlotControler.ObjectInHand = null;
-                ControlerShoot = null;
-                
             }
             
-            if (SlotControler) SlotControlerForAll();
-
-            /*
-            if (MovePlayer)
+            // Shooting
+            if (ControlerShoot)
             {
-                MovePlayer.Move();
-                MovePlayer.Jump();
+                if (Input.GetKey(KeyCode.Mouse0))
+                {
+                    ControlerShoot.Shoot();
+                }
             }
-            */
+            
+            //Divert Attention 
+            if (DivertAttention)
+            {
+                if (Input.GetKeyDown(KeyCode.Z)) DivertAttention.SpawnRock();
+                if (Input.GetKey(KeyCode.Z)) DivertAttention.AimingToDrop();
+                if (Input.GetKeyUp(KeyCode.Z))
+                {
+                    DivertAttention.AimingToDrop();
+                    DivertAttention.DropRock();
+                }
+            }
 
-            if (gameobject && Anchor)
+            //Add Noice
+            if (EEScript) EEScript.ExecutoreNoice(MovementMode);
+            else Debug.Log("Not set EEScript");
+
+            //Movement
+            MovePlayer.Move(MovementMode);
+            //MovePlayer.Jump();
+
+
+            //Other
+            if (Input.GetKeyDown(KeyCode.T) && gameobject && Anchor)
             {
                 gameobject.transform.position = Anchor.transform.position;
 
             }
+
+
+
         }
 
-        
-    }
 
-    void ShootControlerForAllWeapon()
-    {
-                
-    }
 
-    void PickUpAll()
-    {
-        PickUpPlayer.RayForLoot();
-        PickUpPlayer.ComplertingTheLink();
 
-    }
 
-    void SlotControlerForAll()
-    {
-        SlotControler.MovingGunForSlots();
-        
+
 
     }
 

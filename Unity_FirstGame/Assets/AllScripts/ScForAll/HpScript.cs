@@ -5,10 +5,10 @@ public class HpScript : MonoBehaviour
 {
     [SerializeField] private Image UiHp;
     [SerializeField] private TextMeshProUGUI ProzentHealPoint;
-
+    [SerializeField] public EnemyState State;
     [SerializeField] public float HealthPoint = 10;
     [SerializeField] private float MaxHp;
-    ZombieController ControlerForZombie;
+    
 
     public Live MyLive = Live.Alive;
     
@@ -18,16 +18,9 @@ public class HpScript : MonoBehaviour
         NotAlive
     }
 
-    private void Update()
+    private void Start()
     {
-        //Debug.Log("Heal Point: " + HealthPoint);
-        if (HealthPoint <= 0.0f)
-        {
-            ControlerForZombie = gameObject.GetComponent<ZombieController>();
-            if (ControlerForZombie) ControlerForZombie.IsLive = false;
-
-            //Debug.Log("Your or your target is dead !");
-        }
+        if (UiHp && ProzentHealPoint) OutPutHp(HealthPoint, UiHp, ProzentHealPoint);
     }
 
     public void InflictingDamage(float Damage)
@@ -81,17 +74,13 @@ public class HpScript : MonoBehaviour
         string HpinString = HpNow.ToString();
         HpByText.text = HpinString + "%";
     }
+
     public bool IsAlive() 
     {
-        
-        if (HealthPoint <= 0)
-        {
-            return false;
-        }
-        if (HealthPoint > 0)
-        {
-            return true;
-        }
-        return false;
+        return HealthPoint > 0;
+    }
+    public void InstanceKill()
+    {
+        InflictingDamage(HealthPoint);
     }
 }

@@ -1,65 +1,117 @@
 using UnityEngine;
-using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
 
 public class UiControler : MonoBehaviour
 {
-    [SerializeField] private UiInventory InventoryUi;
-    [SerializeField] private GameManager ManagerToGame;
+    //References To Canvas Components
+    [SerializeField] private UiInventoryOutPut InventoryUi;
+    [SerializeField] private ButtonControler ManagerToGame;
 
+    //References Ro Player Components
+    [SerializeField] private Camera CameraScr;
+    [SerializeField] private SlotControler ControlerSlots;
+    [SerializeField] private Inventory PlayerInventory;
+    [SerializeField] private GameObject Inventory;
+    
+    //References Interface Canvas
     [SerializeField] public Image Scope;
-    [SerializeField] GameObject Inventory;
-    [SerializeField] Camera CameraScr;
+    [SerializeField] private GameObject IndexesTable;
+    //Armor References
+    [SerializeField] private GameObject[] ArmorPanels = new GameObject[3];
+    [SerializeField] private Image[] ArmorIndexes = new Image[3];
+    //Other
     [SerializeField] public bool InventoryIsOpen = false;
-
+    [SerializeField] private TextMeshProUGUI CurrentMassInInventory;
+    
+    //Slots Weapon
     [SerializeField] public Image SlotWeapon01;
     [SerializeField] public Image SlotWeapon02;
     [SerializeField] public Image SlotPistol01;
-
+    
+    //Slots Shop
     [SerializeField] public Image SlotShop01;
     [SerializeField] public Image SlotShop02;
     [SerializeField] public Image SlotShop03;
-
+    
+    //Slots Equipment
     [SerializeField] public Image SlotHelmet;
     [SerializeField] public Image SlotArmor;
     [SerializeField] public Image SlotBackPack;
 
-    [SerializeField] private TextMeshProUGUI CurrentMassInInventory;
     
-    [SerializeField] private Inventory PlayerInventory;
-
     void Start()
     {
+        //Change value varriables
         InventoryIsOpen = false;
-        if (Inventory) Inventory.SetActive(false);
-        //if (!CameraScr) Debug.Log("Not set CameraScr");
         
+        //Control other game objects
+        if (Inventory) Inventory.SetActive(InventoryIsOpen);
+        Scope.gameObject.SetActive(InventoryIsOpen);
+        
+        //Use Methods
+        InterfaceControler();
     }
 
-    void Update()
+    
+    public void OpenOrCloseInventory()
     {
+        InventoryIsOpen = !InventoryIsOpen;
+        Scope.enabled = !InventoryIsOpen;
 
-        if (Input.GetKeyDown(KeyCode.I))
-        {   
-            InventoryIsOpen = !InventoryIsOpen;
-            Scope.enabled = !InventoryIsOpen;
-            
-            Inventory.SetActive(InventoryIsOpen);
-            PrintUseMassAndMaxMass();
+        Inventory.SetActive(InventoryIsOpen);
+        IndexesTable.SetActive(!InventoryIsOpen);
+        PrintUseMassAndMaxMass();
 
-            CurrentMassInInventory.gameObject.SetActive(InventoryIsOpen);
+        CurrentMassInInventory.gameObject.SetActive(InventoryIsOpen);
 
-            if (InventoryUi) InventoryUi.WriteSprite();
-            if (ManagerToGame) ManagerToGame.DisActiveUD();
+        if (InventoryUi) InventoryUi.WriteSprite();
+        if (ManagerToGame) ManagerToGame.DisActiveUD();
 
-            if (InventoryIsOpen) Cursor.lockState = CursorLockMode.None;
-            else Cursor.lockState = CursorLockMode.Locked;
-            
+        if (InventoryIsOpen) Cursor.lockState = CursorLockMode.None;
+        else Cursor.lockState = CursorLockMode.Locked;
+
+    }
+
+    
+    public void InterfaceControler()
+    {
+        //Audits
+        if (!ControlerSlots) { Debug.Log("Not set ControlerPlayer");  return; }
+        for (int i = 0;i < ArmorPanels.Length;i++)
+        {
+            if (ArmorPanels[i] == null) { Debug.Log("Not the entire array (ArmorPanels) has valid values"); return; }
+            if (ArmorIndexes[i] == null) { Debug.Log("Not the entire array (ArmorIndexes) has valid values"); return; }
         }
         
+        ArmorControler ControlerArmor;
+        
+        if (ControlerSlots.MyArmor)
+        {
+            ControlerArmor = ControlerSlots.MyArmor.GetComponent<ArmorControler>();
+            
+
+            for(int i = 0;i < 3; i++)
+            {
+                bool On = true;
+                
+                if(i >= ControlerArmor.SlotsCanUse) On = false;
+
+                ArmorPanels[i].SetActive(On);
+            }
+
+            for (int i = 0;i < ControlerArmor.ControlerArmorPlate.Count;i++)
+            {
+                ArmorIndexes[i].fillAmount = ControlerArmor.ControlerArmorPlate[i].CurrentHpUi;
+            }
+
+            
+
+        }
+        else for (int i = 0; i < ArmorPanels.Length; i++) ArmorPanels[i].SetActive(false);
 
     }
+
 
     private void PrintUseMassAndMaxMass()
     {
@@ -83,3 +135,4 @@ public class UiControler : MonoBehaviour
 
 
 }
+

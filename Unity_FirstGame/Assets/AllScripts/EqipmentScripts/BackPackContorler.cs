@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BackPackContorler : MonoBehaviour
 {
-    [SerializeField] public int LevelBackPack;
+    [SerializeField] public LevelObject LevelBackPack;
+
+    //[SerializeField] public int LevelBackPack;
     [SerializeField] public float CurrentMaxMass;
     [SerializeField] public float CurrentMass;
 
@@ -15,9 +15,21 @@ public class BackPackContorler : MonoBehaviour
     
     void Start()    
     {
-        if (LevelBackPack == 1) CurrentMaxMass = MaxMassTo1L;
-        else if (LevelBackPack == 2) CurrentMaxMass = MaxMassTo2L;
-        else if (LevelBackPack == 3) CurrentMaxMass = MaxMassTo3L;
+        switch (LevelBackPack)
+        {
+            case LevelObject.FirstLevel:
+                CurrentMaxMass = MaxMassTo1L;
+                break;
+            
+            case LevelObject.SecondLevel:
+                CurrentMaxMass = MaxMassTo2L;
+                break;
+
+            case LevelObject.ThirdLevel:
+                CurrentMaxMass = MaxMassTo3L;
+                break;
+        }
+
     }
     
     
