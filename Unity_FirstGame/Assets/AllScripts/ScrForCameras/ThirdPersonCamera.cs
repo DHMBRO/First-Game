@@ -128,10 +128,6 @@ public class ThirdPersonCamera : MonoBehaviour
         {
             switch (ControlerPlayer.MovementMode)
             {
-                case ModeMovement.Aiming:
-                    DesirableVector = OffsetCameraToAiming;
-                    CurrentMoveBackDistance = MoveBackDistanceAiming;
-                    break;
                 case ModeMovement.Stelth:
                     DesirableVector = OffsetCameraInStelth;
                     CurrentMoveBackDistance = MoveBackDistanceStelth;
@@ -145,8 +141,15 @@ public class ThirdPersonCamera : MonoBehaviour
                     CurrentMoveBackDistance = MoveBackDistanceSimple;
                     break;
             }
+
+            if (ControlerPlayer.IsAiming)
+            {
+                DesirableVector = OffsetCameraToAiming;
+                CurrentMoveBackDistance = MoveBackDistanceAiming;
+            }
+
         }
-        
+
 
         //Draw Ray Backward
         Debug.DrawRay(TargetCamera.transform.TransformPoint(DesirableVector) , -(transform.forward * CurrentMoveBackDistance), Color.blue);

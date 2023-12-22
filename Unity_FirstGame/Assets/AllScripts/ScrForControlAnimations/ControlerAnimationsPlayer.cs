@@ -33,7 +33,7 @@ public class ControlerAnimationsPlayer : MonoBehaviour
 
     }
 
-    void Update()
+    public void UpdateAnimations()
     {
         //Type date for work
         float Horizontal = Input.GetAxis("Horizontal");
@@ -72,9 +72,6 @@ public class ControlerAnimationsPlayer : MonoBehaviour
 
         switch (ControlerPlayer.MovementMode)
         {
-            case ModeMovement.Aiming:
-                ChangeRotationBasePlayer();
-                break;               
             case ModeMovement.Stelth:
                 ChangeRotationBasePlayer();
                 break;
@@ -84,6 +81,11 @@ public class ControlerAnimationsPlayer : MonoBehaviour
             default:
                 ResetRotationBasePlayer();
                 break;
+        }
+
+        if (ControlerPlayer.IsAiming)
+        {
+            ChangeRotationBasePlayer();
         }
 
         void ChangeRotationBasePlayer()

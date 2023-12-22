@@ -11,6 +11,7 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private StelthScript StelsScript;
     [SerializeField] private DivertAttention DivertAttention;
     [SerializeField] private ExecutoreScriptToPlayer EEScript;
+    [SerializeField] private ControlerAnimationsPlayer ScrAnimationsPlayer;
 
     //Main Components To Work Player
     [SerializeField] private PickUp PickUpPlayer;
@@ -37,7 +38,7 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] public bool HavePistolInHand = false;
     [SerializeField] public bool IsUsingLoot = false;
     [SerializeField] public bool IsRun = false;
-    public bool StealthKilling;
+    [SerializeField] public bool StealthKilling = false;
 
     //Enums
     [SerializeField] public WhatIsInHand Using;
@@ -118,12 +119,13 @@ public class PlayerControler : MonoBehaviour
         }
 
 
-        if(!ControlerUi || !ControlerUi.InventoryIsOpen && PlayerDo == WhatDoPlayer.Null && StealthKilling)
+        if(!ControlerUi || !ControlerUi.InventoryIsOpen && PlayerDo == WhatDoPlayer.Null && !StealthKilling)
         {
             // Movement && Executore Noice
+            bool Inputs = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D);
+            
             if (MovePlayer)
             {
-                bool Inputs = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D);
                 //Change Mood Movement
                 if (Inputs) MovementMode = ModeMovement.Go;
                 else MovementMode = ModeMovement.Null;
@@ -161,7 +163,7 @@ public class PlayerControler : MonoBehaviour
             }
 
             //IsAiming
-            if (IsAiming && !InStealth) MovementMode = ModeMovement.Aiming;
+            if (IsAiming && Inputs && !InStealth) MovementMode = ModeMovement.Aiming;
             if (ControlerUi) ControlerUi.Scope.gameObject.SetActive(IsAiming);
 
             //Stels
@@ -236,6 +238,7 @@ public class PlayerControler : MonoBehaviour
             MovePlayer.Move(MovementMode);
             //MovePlayer.Jump();
 
+            ScrAnimationsPlayer.UpdateAnimations();
 
             //Other
             if (Input.GetKeyDown(KeyCode.T) && gameobject && Anchor)
