@@ -11,9 +11,11 @@ public class PlayerAttackScript : MonoBehaviour
     [SerializeField] private float MinKillDistance = 0.5f;
     Collider[] Colliders;
     protected Animator PlayerAnimator;
+    protected PlayerControler PlayerController;
     void Start()
     {
-        PlayerAnimator = GetComponentInChildren<Animator>();
+        PlayerAnimator = gameObject.GetComponentInChildren<Animator>();
+        PlayerController = gameObject.GetComponent<PlayerControler>();
     }
     void Update()
     {
@@ -31,14 +33,16 @@ public class PlayerAttackScript : MonoBehaviour
                 InfScript InfoScript = Collider.gameObject.GetComponentInParent<InfScript>();
                 if (ZombieScript && ZombieLocateScript && InfoScript)
                 {
-                    if (ZombieScript.IsObjectFromBehinde(gameObject)) 
+                    if (ZombieScript.IsObjectFromBehinde(gameObject))
                     {
-                       // if (ZombieLocateScript.WhatForvardToMe(gameObject) == Collider.gameObject)
-                        {
-                            InfoScript.StealthKillCast(gameObject);
-                            ZombieScript.InstansteKillMe();
-                            break;
-                        }
+                        // if (ZombieLocateScript.WhatForvardToMe(gameObject) == Collider.gameObject)
+
+                        PlayerController.StealthKilling = true;                         
+                        StealthKill(Collider.gameObject);
+                        ZombieScript.InstansteKillMe();
+                        Invoke("OnStealthAnimateEnd", 3.0f);
+                        break;
+
                     }
                 }
             }
@@ -49,11 +53,17 @@ public class PlayerAttackScript : MonoBehaviour
     {
         PlayerAnimator.SetTrigger(TriggerName);
     }
-    public void StealthKill()
+    public void StealthKill(GameObject Enemy)
     {
+        InfScript InfScript = Enemy.GetComponent<InfScript>();
         SetPlayerAnimation("StealthKill");
-       //gameObject.transform.position = PointToKillMe.transform.position;
-
+        gameObject.transform.position = InfScript.PointToKillMe.transform.position;
+        InfScript.StelthDead();
+    }
+    void OnStealthAnimateEnd()
+    {
+        PlayerController.StealthKilling = false;
+        Debug.Log("Work");
     }
 }
 

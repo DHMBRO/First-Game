@@ -119,8 +119,13 @@ public class PlayerControler : MonoBehaviour
         }
 
 
+<<<<<<< Updated upstream:Unity_FirstGame/Assets/Scenes/ScForPlayer/PlayerControler.cs
         if(!ControlerUi || !ControlerUi.InventoryIsOpen && PlayerDo == WhatDoPlayer.Null && !StealthKilling)
+=======
+        if((!ControlerUi || !ControlerUi.InventoryIsOpen) && PlayerDo == WhatDoPlayer.Null && !StealthKilling)
+>>>>>>> Stashed changes:Unity_FirstGame/Assets/AllScripts/ScForPlayer/PlayerControler.cs
         {
+            
             // Movement && Executore Noice
             bool Inputs = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D);
             

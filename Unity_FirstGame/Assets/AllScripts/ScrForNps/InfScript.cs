@@ -11,7 +11,7 @@ public class InfScript : MonoBehaviour
     protected ILogic CurrentState; 
     protected SoundTakerScript SoundTaker;
     [SerializeField] protected Animator Animator;
-    [SerializeField] protected GameObject PointToKillMe;
+    [SerializeField] public GameObject PointToKillMe;
 
     void Start()
     {
@@ -87,22 +87,17 @@ public class InfScript : MonoBehaviour
     {
         Animator.SetFloat(Trigger, Value);
     }
-    public void SetStopped() //Stealth Method
+    public void SetStopped()
     {
         Patrol.ZombieNavMesh.isStopped = true;
     }
-    public void StealthKillCast(GameObject Killer)//Stealth Method TO ALL
-    {
-        SetStopped();
-        Killer.transform.position = PointToKillMe.transform.position;//
-        StelthDead();
-        
-        //SetPlayerAnimation("StealthKill");
-    }
-    void StelthDead()   //Stealth Method
+    public void StelthDead()   
     {
         SetAnimation("StelthDead");
         SetStopped();
     }
-  
+    public void OnStealthKillEnd(string Message)
+    {
+        Debug.Log(Message);
+    }
 }
