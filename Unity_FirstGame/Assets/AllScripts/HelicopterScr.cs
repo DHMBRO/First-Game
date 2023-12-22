@@ -33,6 +33,7 @@ public class HelicopterScr : MonoBehaviour
 
     public enum States
     {
+
         Wait,
         FlightToPlayer,
         RoamAround,
@@ -50,7 +51,7 @@ public class HelicopterScr : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        State = States.FlightToPlayer;
+        State = States.Wait;
     }
 
     // Update is called once per frame
@@ -60,7 +61,7 @@ public class HelicopterScr : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if(Input.GetKeyDown(KeyCode.Tab))
+        if(Input.GetKeyDown(KeyCode.H))
         {
             int value = ((int)State);
             value++;
@@ -144,6 +145,7 @@ public class HelicopterScr : MonoBehaviour
         gameObject.transform.position = Vector3.Lerp(SM, MF, T2);
         gameObject.transform.LookAt(Vector3.Lerp(SM, MF, T2) * 10);
         AddToT = Time.fixedDeltaTime / (Vector3.Distance(S, M) / Speed);
+        Gun.transform.LookAt(TargetToGun.transform.position);
         T2 += AddToT;
         if (T2 >= 1.00)
         {
