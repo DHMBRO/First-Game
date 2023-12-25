@@ -1094,8 +1094,7 @@ GameObject:
   - component: {fileID: 1759847437404537064}
   - component: {fileID: 8382459316900287711}
   - component: {fileID: 6328347359453867729}
-  - component: {fileID: 6324633008863278676}
-  - component: {fileID: 1045302744663474186}
+  - component: {fileID: 8720987067841248331}
   - component: {fileID: 3059040256925347778}
   - component: {fileID: 2320318701797134959}
   - component: {fileID: 2001030955048781610}
@@ -1170,9 +1169,10 @@ MonoBehaviour:
   Move: {fileID: 0}
   MovePlayer: {fileID: 6328347359453867729}
   ControlerShoot: {fileID: 0}
-  StelsScript: {fileID: 0}
+  StelsScript: {fileID: 8720987067841248331}
   DivertAttention: {fileID: 3059040256925347778}
   EEScript: {fileID: 2320318701797134959}
+  ScrAnimationsPlayer: {fileID: 69157573147947094}
   PickUpPlayer: {fileID: 7778607237951541594}
   ControlerDrop: {fileID: 2663352457323175868}
   SlotControler: {fileID: 7874716152253843916}
@@ -1379,7 +1379,7 @@ MonoBehaviour:
   SpeedStels: 8000
   SpeedRun: 28000
   smooth: 0.1
---- !u!114 &6324633008863278676
+--- !u!114 &8720987067841248331
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1388,27 +1388,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 9027246094432369652}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc25977b344794640ba2c6a96042d896, type: 3}
+  m_Script: {fileID: 11500000, guid: 59c128a22ee88c24ea3a5b78a755fe68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Stelth: 0
---- !u!114 &1045302744663474186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9027246094432369652}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e761ed87e2f0dc94abd7af10324695c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 935961475211729313}
-  CameraObject: {fileID: 7231277361793828127}
-  ObjectRay: {fileID: 1380303204886864797}
-  Sens: 1.5
-  InventoryIsOpen: 0
 --- !u!114 &3059040256925347778
 MonoBehaviour:
   m_ObjectHideFlags: 0

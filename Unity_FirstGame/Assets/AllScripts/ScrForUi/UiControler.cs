@@ -102,7 +102,12 @@ public class UiControler : MonoBehaviour
 
             for (int i = 0;i < ControlerArmor.ControlerArmorPlate.Count;i++)
             {
-                ArmorIndexes[i].fillAmount = ControlerArmor.ControlerArmorPlate[i].CurrentHpUi;
+                if (ControlerArmor.ControlerArmorPlate[i] != null)
+                {
+                    ArmorIndexes[i].fillAmount = ControlerArmor.ControlerArmorPlate[i].CurrentHpUi;
+                }
+                else ArmorIndexes[i].fillAmount = 0.0f;
+
             }
 
             

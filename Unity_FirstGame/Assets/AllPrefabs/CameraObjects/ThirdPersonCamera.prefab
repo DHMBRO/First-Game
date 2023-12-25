@@ -95,34 +95,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 6761677284600033288}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c17c392016f26174f85883697f209549, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e9acb1f61d44e844a531ef561d5ddb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ControlerUi: {fileID: 0}
   ControlerPlayer: {fileID: 0}
-  TargetCamera: {fileID: 758934435905196194, guid: ce5795ef135a3b54ab3e401c56ad301f, type: 3}
+  TargetCamera: {fileID: 0}
   HandTarget: {fileID: 0}
   Cube: {fileID: 0}
   Cube1: {fileID: 0}
   MoveBackObject: {fileID: 0}
   CurrentOffSetCamera: {x: 0, y: 0, z: 0}
   DesirableVector: {x: 0, y: 0, z: 0}
-  OffsetCameraSimple: {x: 0, y: 2.5, z: 0}
-  OffsetCameraInStelth: {x: 0, y: 2.04, z: 0}
-  OffsetCameraToAiming: {x: 1.19, y: 2.54, z: 0}
-  OffsetCameraToAimingInStelth: {x: 1.19, y: 1.84, z: 0}
+  OffsetCameraSimple: {x: 0, y: 2, z: 0}
+  OffsetCameraInStelth: {x: 0, y: 0, z: 0}
+  OffsetCameraToAiming: {x: 0, y: 0, z: 0}
+  OffsetCameraToAimingInStelth: {x: 0, y: 0, z: 0}
   CurrentMoveBackDistance: 0
-  MoveBackDistanceSimple: 4
-  MoveBackDistanceStelth: 4
+  MoveBackDistanceSimple: 5
+  MoveBackDistanceStelth: 3
   MoveBackDistanceAiming: 2.02
   MouseSens: 1
-  MaxMagnitude: 4.3
-  MinMadnitude: 0.1
+  MaxMagnitude: 2.4
+  MinMagnitude: 0.1
   HeightStartPoint: 1
   t: 0
   CurrentLenghtOfOneStep: 0
-  LenghtToOneStepSimple: 100
-  LenghtOfOneStepIsAiming: 3
+  LenghtToOneStepSimple: 1000
+  LenghtOfOneStepIsAiming: 30
   CameraMood: 0
   CameraIsUsig: 0
 --- !u!1001 &6299334075684510675

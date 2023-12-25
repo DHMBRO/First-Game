@@ -217,17 +217,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!114 &85144208 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8608943030930480018, guid: ce61775f410f63041947220f1aca3174, type: 3}
-  m_PrefabInstance: {fileID: 938968816}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5811e26b66e52ad439ca9e66e29aafd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &131368968
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -482,32 +471,32 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6318793281690898136, guid: b986d3b86e188874ea72623558e20c3d, type: 3}
       propertyPath: ControlerArmorPlate.Array.size
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -6318793281690898136, guid: b986d3b86e188874ea72623558e20c3d, type: 3}
       propertyPath: ControlerArmorPlate.Array.data[0]
       value: 
-      objectReference: {fileID: 1433985347}
+      objectReference: {fileID: 0}
     - target: {fileID: -6318793281690898136, guid: b986d3b86e188874ea72623558e20c3d, type: 3}
       propertyPath: ControlerArmorPlate.Array.data[1]
       value: 
-      objectReference: {fileID: 1433985347}
+      objectReference: {fileID: 0}
     - target: {fileID: -6318793281690898136, guid: b986d3b86e188874ea72623558e20c3d, type: 3}
       propertyPath: ControlerArmorPlate.Array.data[2]
       value: 
-      objectReference: {fileID: 1433985347}
+      objectReference: {fileID: 0}
     - target: {fileID: -6318793281690898136, guid: b986d3b86e188874ea72623558e20c3d, type: 3}
       propertyPath: ControlerArmorPlate.Array.data[3]
       value: 
-      objectReference: {fileID: 1433985347}
+      objectReference: {fileID: 0}
     - target: {fileID: -6318793281690898136, guid: b986d3b86e188874ea72623558e20c3d, type: 3}
       propertyPath: ControlerArmorPlate.Array.data[4]
       value: 
-      objectReference: {fileID: 1433985347}
+      objectReference: {fileID: 0}
     - target: {fileID: -6318793281690898136, guid: b986d3b86e188874ea72623558e20c3d, type: 3}
       propertyPath: ControlerArmorPlate.Array.data[5]
       value: 
-      objectReference: {fileID: 1433985347}
+      objectReference: {fileID: 0}
     - target: {fileID: 4444113037497286419, guid: b986d3b86e188874ea72623558e20c3d, type: 3}
       propertyPath: m_Name
       value: ArmorL3
@@ -681,15 +670,15 @@ PrefabInstance:
     - target: {fileID: 8754236146084536314, guid: f042787b80e536442b2a99ee529cd9cf, type: 3}
       propertyPath: ControlerArmorPlate.Array.data[0]
       value: 
-      objectReference: {fileID: 1433985347}
+      objectReference: {fileID: 0}
     - target: {fileID: 8754236146084536314, guid: f042787b80e536442b2a99ee529cd9cf, type: 3}
       propertyPath: ControlerArmorPlate.Array.data[1]
       value: 
-      objectReference: {fileID: 85144208}
+      objectReference: {fileID: 0}
     - target: {fileID: 8754236146084536314, guid: f042787b80e536442b2a99ee529cd9cf, type: 3}
       propertyPath: ControlerArmorPlate.Array.data[2]
       value: 
-      objectReference: {fileID: 752080813}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f042787b80e536442b2a99ee529cd9cf, type: 3}
 --- !u!1 &526833591
@@ -1380,17 +1369,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46bb1e56a157ecd408afc046e1cc7505, type: 3}
---- !u!114 &752080813 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8608943030930480018, guid: ce61775f410f63041947220f1aca3174, type: 3}
-  m_PrefabInstance: {fileID: 532263823}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5811e26b66e52ad439ca9e66e29aafd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &752688836
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1581,6 +1559,10 @@ PrefabInstance:
     - target: {fileID: 3994893304370285142, guid: 99b382a7a7090204b9bd10d055fa8870, type: 3}
       propertyPath: OffsetToAiming.z
       value: -1.093
+      objectReference: {fileID: 0}
+    - target: {fileID: 3994893304370285142, guid: 99b382a7a7090204b9bd10d055fa8870, type: 3}
+      propertyPath: OffsetCameraSimple.y
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3994893304370285142, guid: 99b382a7a7090204b9bd10d055fa8870, type: 3}
       propertyPath: LenghtToOneStepSimple
@@ -2787,7 +2769,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2306412471838662650, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2320318701797134959, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: ZoneNoice
@@ -2911,7 +2893,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4009807465944967328, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4559628990243238518, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: m_IsActive
@@ -4306,17 +4288,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b861c3c8c8c44446b8bee3631ce99c7, type: 3}
---- !u!114 &1433985347 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8608943030930480018, guid: ce61775f410f63041947220f1aca3174, type: 3}
-  m_PrefabInstance: {fileID: 929222310}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5811e26b66e52ad439ca9e66e29aafd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1439852203
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4327,15 +4298,15 @@ PrefabInstance:
     - target: {fileID: 1725579298908775607, guid: ccf9be9f7dd6f19418ec3af0a9656ef0, type: 3}
       propertyPath: ControlerArmorPlate.Array.data[0]
       value: 
-      objectReference: {fileID: 1433985347}
+      objectReference: {fileID: 0}
     - target: {fileID: 1725579298908775607, guid: ccf9be9f7dd6f19418ec3af0a9656ef0, type: 3}
       propertyPath: ControlerArmorPlate.Array.data[1]
       value: 
-      objectReference: {fileID: 85144208}
+      objectReference: {fileID: 0}
     - target: {fileID: 1725579298908775607, guid: ccf9be9f7dd6f19418ec3af0a9656ef0, type: 3}
       propertyPath: ControlerArmorPlate.Array.data[2]
       value: 
-      objectReference: {fileID: 752080813}
+      objectReference: {fileID: 0}
     - target: {fileID: 6422429555061376820, guid: ccf9be9f7dd6f19418ec3af0a9656ef0, type: 3}
       propertyPath: m_Name
       value: ArmorL2
@@ -5612,7 +5583,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1471707461}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c17c392016f26174f85883697f209549, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e9acb1f61d44e844a531ef561d5ddb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2124614731
