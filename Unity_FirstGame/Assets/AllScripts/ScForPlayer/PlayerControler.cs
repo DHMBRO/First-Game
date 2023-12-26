@@ -8,7 +8,7 @@ public class PlayerControler : MonoBehaviour
 
     //Other Components
     [SerializeField] public ShootControler ControlerShoot;
-    [SerializeField] private StelthScript StelsScript;
+    [SerializeField] private StelthScript StelthScript;
     [SerializeField] private DivertAttention DivertAttention;
     [SerializeField] private ExecutoreScriptToPlayer EEScript;
     [SerializeField] private ControlerAnimationsPlayer ScrAnimationsPlayer;
@@ -82,7 +82,7 @@ public class PlayerControler : MonoBehaviour
         
         //Other Scripts
         DivertAttention = GetComponent<DivertAttention>();
-        StelsScript = GetComponent<StelthScript>();
+        StelthScript = GetComponent<StelthScript>();
         EEScript = GetComponent<ExecutoreScriptToPlayer>();
         
         //Main Scripts To Work Player                  
@@ -117,7 +117,6 @@ public class PlayerControler : MonoBehaviour
             }
 
         }
-
 
         if((!ControlerUi || !ControlerUi.InventoryIsOpen) && PlayerDo == WhatDoPlayer.Null && !StealthKilling)
         {
@@ -239,8 +238,6 @@ public class PlayerControler : MonoBehaviour
             MovePlayer.Move(MovementMode);
             //MovePlayer.Jump();
 
-            ScrAnimationsPlayer.UpdateAnimations();
-
             //Other
             if (Input.GetKeyDown(KeyCode.T) && gameobject && Anchor)
             {
@@ -248,10 +245,11 @@ public class PlayerControler : MonoBehaviour
 
             }
 
-
+            
 
         }
 
+        ScrAnimationsPlayer.UpdateAnimations();
 
 
 

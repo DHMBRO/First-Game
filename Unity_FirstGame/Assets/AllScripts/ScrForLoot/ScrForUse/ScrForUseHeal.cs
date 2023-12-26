@@ -7,7 +7,21 @@ public class ScrForUseHeal : MethodsFromDevelopers, IUsebleInterFace
 
     [SerializeField] float TimeToUse;
     [SerializeField] float TimeoToDestroy;
-    
+
+    public bool Audit(GameObject Target, ScrSaveAndGiveInfo InfoLoot, UseAndDropTheLoot SelectObj)
+    {
+        bool Result = false;
+        HpScript HpTatget = Target.GetComponent<HpScript>();
+
+        if (HpTatget.HealthPoint == HpTatget.MaxHp || HpTatget.HealthPoint == 0.0f)
+        {
+            Result = false;
+        }
+        else Result = true; 
+
+        return Result;
+    }
+
     public void Use(GameObject Target, ScrSaveAndGiveInfo InfoLoot, UseAndDropTheLoot SelectObj)
     {
         //Methods
@@ -33,5 +47,7 @@ public class ScrForUseHeal : MethodsFromDevelopers, IUsebleInterFace
         Destroy(gameObject);
         
     }
+
+
 
 }

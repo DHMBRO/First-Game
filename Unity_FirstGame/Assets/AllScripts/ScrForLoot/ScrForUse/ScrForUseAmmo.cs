@@ -74,63 +74,36 @@ public class ScrForUseAmmo : MonoBehaviour, IUsebleInterFace
     
     }
  
-    
+    public bool Audit(GameObject Target, ScrSaveAndGiveInfo InfoLoot, UseAndDropTheLoot SelectObj)
+    {
+        SlotControler ControlerSlots = Target.GetComponent<SlotControler>();
+        List<ShopControler> ControlerShops = new List<ShopControler>();
+        bool Result = false;
+
+
+        for (int i = 0;i < ControlerSlots.Shop.Length;i++)
+        {
+            if (ControlerSlots.Shop[i] != null)
+            {
+                ControlerShops.Add(ControlerSlots.Shop[i].GetComponent<ShopControler>());
+            }
+        }
+
+        for(int i = 0;!Result && i < ControlerShops.Count;i++)
+        {
+            if (ControlerShops[i].CurrentAmmo == ControlerShops[i].MaxAmmo)
+            {
+                Result = false;
+
+            }
+            else Result = true;
+        }
+
+
+        return Result;
+
+    }   
 
 
 }
-
-/*        
-        
-
-
-/*
  
-        if (!ContrlerToSlots)
-        {
-            Debug.Log("Not set Slot Controler");
-            return;
-        }
-
-        for (int i = 0;i < ContrlerToSlots.Shop.Length;i++)
-        {
-            if (ContrlerToSlots.Shop[i] != null)
-            {
-                ShopControler.Add(ContrlerToSlots.Shop[i].GetComponent<ShopControler>());
-            }
-        }
-
-        for (int i = 0;i < ShopControler.Count; i++)
-        {
-            if (ShopControler[i].CaliberToShop != CaliberToBox)
-            {
-                ShopControler.RemoveAt(i);
-            }
-        }
-
-        for (int i = 0;i < ShopControler.Count; i++)
-        {
-            if (ShopControler[i].CurrentAmmo == ShopControler[i].MaxAmmo)
-            {
-                ShopControler.RemoveAt(i);
-            }
-        }
-
-        if (ShopControler.Count == 0)
-        {
-            Debug.Log("ShopControler.Count: " + ShopControler.Count);
-            return;
-        }
-        else if (ShopControler.Count == 1)
-        {
-            
-        }
-        else if (ShopControler.Count == 2)
-        {
-
-        }
-        else if (ShopControler.Count == 3)
-        {
-
-        }
-
- */ 

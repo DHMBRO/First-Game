@@ -56,9 +56,8 @@ public class UseAndDropTheLoot : MethodsFromDevelopers
 
     public void Use()
     {        
-
         GameObject ObjectToUse = Instantiate(Inventory.InfoForSlots[UiInventory.Count + IndexToList].ObjectToInstantiate);
-        Inventory.InfoForSlots[UiInventory.Count + IndexToList].GetInfo(ObjectToUse);
+        if (Inventory.InfoForSlots[UiInventory.Count + IndexToList] != null) Inventory.InfoForSlots[UiInventory.Count + IndexToList].GetInfo(ObjectToUse);
 
         //Debug.Log("Cordinates: " + ObjectToUse.transform.position.x + " to x " + ObjectToUse.transform.position.y + " to y " + ObjectToUse.transform.position.z + " to z ");
 
@@ -70,12 +69,17 @@ public class UseAndDropTheLoot : MethodsFromDevelopers
 
         if (UseLoot != null && ControlerPlayer)
         {
-            UseLoot.Use(Inventory.gameObject, Inventory.InfoForSlots[UiInventory.Count + IndexToList] , GetComponent<UseAndDropTheLoot>());
-            this.ObjectToUse = ObjectToUse;
+            if (UseLoot.Audit(Inventory.gameObject, Inventory.InfoForSlots[UiInventory.Count + IndexToList], GetComponent<UseAndDropTheLoot>()))
+            {
+                UseLoot.Use(Inventory.gameObject, Inventory.InfoForSlots[UiInventory.Count + IndexToList], GetComponent<UseAndDropTheLoot>());
+                this.ObjectToUse = ObjectToUse;
 
-            
+            }
+            else Debug.Log("Use it now doesn't have meaning !");
 
-            if (ScrForLoot.CanCombining) 
+
+
+            if (ScrForLoot.CanCombining && Inventory.InfoForSlots.Count > (UiInventory.Count + IndexToList)) 
             {
                 CombiningLoot(Inventory.InfoForSlots[UiInventory.Count + IndexToList]);
                 
@@ -107,7 +111,7 @@ public class UseAndDropTheLoot : MethodsFromDevelopers
         //Debug.Log("3");
 
         GameObject ObjectToDrop = Instantiate(Inventory.InfoForSlots[UiInventory.Count + IndexToList].ObjectToInstantiate);
-        Inventory.InfoForSlots[UiInventory.Count + IndexToList].GetInfo(ObjectToDrop);
+        if(Inventory.InfoForSlots[UiInventory.Count + IndexToList] != null) Inventory.InfoForSlots[UiInventory.Count + IndexToList].GetInfo(ObjectToDrop);
 
         //Debug.Log("Cordinates: " + ObjectToDrop.transform.position.x + " to x " + ObjectToDrop.transform.position.y + " to y " + ObjectToDrop.transform.position.z + " to z ");
 

@@ -100,11 +100,11 @@ public class UiControler : MonoBehaviour
                 ArmorPanels[i].SetActive(On);
             }
 
-            for (int i = 0;i < ControlerArmor.ControlerArmorPlate.Count;i++)
+            for (int i = 0;i < ControlerArmor.ControlerArmorPlates.Count;i++)
             {
-                if (ControlerArmor.ControlerArmorPlate[i] != null)
+                if (ControlerArmor.ControlerArmorPlates[i] != null)
                 {
-                    ArmorIndexes[i].fillAmount = ControlerArmor.ControlerArmorPlate[i].CurrentHpUi;
+                    ArmorIndexes[i].fillAmount = ControlerArmor.ControlerArmorPlates[i].CurrentHpUi;
                 }
                 else ArmorIndexes[i].fillAmount = 0.0f;
 

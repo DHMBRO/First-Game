@@ -21,7 +21,7 @@ public class ArmorControler : MonoBehaviour, IEquipment
     [SerializeField] Vector3 OffSetUse;
 
     //References For Work
-    [SerializeField] public List<ArmorPlateControler> ControlerArmorPlate = new List<ArmorPlateControler>();
+    [SerializeField] public List<ArmorPlateControler> ControlerArmorPlates = new List<ArmorPlateControler>();
     [SerializeField] public int SlotsCanUse;
 
 
@@ -47,19 +47,22 @@ public class ArmorControler : MonoBehaviour, IEquipment
 
     private void Update()
     {
-
         int PlatesInArmorVest = 0;
 
-        for (int i = 0; i < ControlerArmorPlate.Count; i++)
+        for (int i = 0; i < ControlerArmorPlates.Count; i++)
         {
-            if (ControlerArmorPlate[i] != null) PlatesInArmorVest++;
+            if (ControlerArmorPlates[i] == null)
+            {
+                ControlerArmorPlates.RemoveAt(i);
+            }
+            else PlatesInArmorVest++;
         }
 
         if (PlatesInArmorVest > SlotsCanUse)
         {
             for (int i = PlatesInArmorVest; i >= SlotsCanUse; i--)
             {
-                if(i < ControlerArmorPlate.Count) ControlerArmorPlate.RemoveAt(i);
+                if(i < ControlerArmorPlates.Count) ControlerArmorPlates.RemoveAt(i);
             }
         }
     }

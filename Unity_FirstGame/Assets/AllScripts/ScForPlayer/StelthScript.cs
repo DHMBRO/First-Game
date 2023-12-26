@@ -8,6 +8,7 @@ public class StelthScript : MonoBehaviour
     {
         
     }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Bach") && Input.GetKey(KeyCode.X))
@@ -19,14 +20,12 @@ public class StelthScript : MonoBehaviour
             Stelth = false;            
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         Stelth = false;
        
     }
-    void Update()
-    {
-        //Debug.Log(Stels + "Стелс");
-    }
+
 
 }

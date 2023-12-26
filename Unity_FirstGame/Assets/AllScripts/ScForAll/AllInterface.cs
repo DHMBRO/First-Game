@@ -4,8 +4,10 @@ public interface IUsebleInterFace
 {
     //public void Use(GameObject Target, SelectAnObject SelectObj);
     public void Use(GameObject Target, ScrSaveAndGiveInfo InfoLoot, UseAndDropTheLoot SelectObj);
+    public bool Audit(GameObject Target, ScrSaveAndGiveInfo InfoLoot, UseAndDropTheLoot SelectObj);
 
 }
+
 
 public interface IReferencesInterface
 {

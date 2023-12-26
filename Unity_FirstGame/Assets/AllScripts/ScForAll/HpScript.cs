@@ -7,7 +7,7 @@ public class HpScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI ProzentHealPoint;
     [SerializeField] public EnemyState State;
     [SerializeField] public float HealthPoint = 10;
-    [SerializeField] private float MaxHp;
+    [SerializeField] public float MaxHp;
     
 
     public Live MyLive = Live.Alive;

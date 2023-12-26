@@ -67,7 +67,6 @@ public class ThirdPersonCamera : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             CameraIsUsig = true;
-
         }
 
         if (!CameraIsUsig) return;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ArmorPlateControler : MonoBehaviour
+public class ArmorPlateControler : MonoBehaviour, IUsebleInterFace
 {
     [SerializeField] public LevelObject LevelArmorPlate;
     
@@ -28,11 +28,32 @@ public class ArmorPlateControler : MonoBehaviour
 
     }
 
-    private void Update()
+
+    public bool Audit(GameObject Target, ScrSaveAndGiveInfo InfoLoot, UseAndDropTheLoot SelectObj)
     {
-        CurrentHpUi = ((100 / MaxHp) * CurrentHp) / 100;
-        //Debug.Log("Current UI heal point: " + CurrentHpUi);
+        bool Result = false;
+        SlotControler ControlerSlots = Target.GetComponent<SlotControler>();
+        ArmorControler ControlerArmor = ControlerSlots.MyArmor.GetComponent<ArmorControler>();
+
+
+        if (!ControlerSlots.MyArmor) return false;
+
+        //for (int i = 0;i < ;i++)
+        {
+
+        }
+
+
+        return Result;
+    }
+
+    public void Use(GameObject Target, ScrSaveAndGiveInfo InfoLoot, UseAndDropTheLoot SelectObj)
+    {
+        SlotControler ControlerSlots = Target.GetComponent<SlotControler>();
+        ArmorControler ControlerArmorPlate = ControlerSlots.MyArmor.GetComponent<ArmorControler>();
+
         
+
     }
 
 
