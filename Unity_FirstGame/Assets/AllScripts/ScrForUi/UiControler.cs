@@ -70,7 +70,7 @@ public class UiControler : MonoBehaviour
 
         if (InventoryIsOpen) Cursor.lockState = CursorLockMode.None;
         else Cursor.lockState = CursorLockMode.Locked;
-
+        
     }
 
     
@@ -95,7 +95,7 @@ public class UiControler : MonoBehaviour
             {
                 bool On = true;
                 
-                if(i >= ControlerArmor.SlotsCanUse) On = false;
+                if(i >= ControlerArmor.ArmorPlatesCanUse) On = false;
 
                 ArmorPanels[i].SetActive(On);
             }

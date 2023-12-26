@@ -106,7 +106,7 @@ public class PickUp : MethodsFromDevelopers
                         else if (ScrLoot)
                         {
                             PickUpOther(ObjectToBeLifted);
-                            Debug.Log("PickUpOther is work");
+                            //Debug.Log("PickUpOther is work");
                         }
                     }   
                 }

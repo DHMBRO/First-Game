@@ -33,16 +33,19 @@ public class ArmorPlateControler : MonoBehaviour, IUsebleInterFace
     {
         bool Result = false;
         SlotControler ControlerSlots = Target.GetComponent<SlotControler>();
-        ArmorControler ControlerArmor = ControlerSlots.MyArmor.GetComponent<ArmorControler>();
+        ArmorControler ControlerArmor = null;
 
-
-        if (!ControlerSlots.MyArmor) return false;
-
-        //for (int i = 0;i < ;i++)
+        if (ControlerSlots && ControlerSlots.MyArmor)
         {
-
+            ControlerArmor = ControlerSlots.MyArmor.GetComponent<ArmorControler>();
         }
 
+        if (!ControlerArmor) return false;
+        
+        if (ControlerArmor.ControlerArmorPlates.Count < ControlerArmor.ArmorPlatesCanUse+1)
+        {
+            Result = true;
+        }
 
         return Result;
     }
@@ -51,7 +54,7 @@ public class ArmorPlateControler : MonoBehaviour, IUsebleInterFace
     {
         SlotControler ControlerSlots = Target.GetComponent<SlotControler>();
         ArmorControler ControlerArmorPlate = ControlerSlots.MyArmor.GetComponent<ArmorControler>();
-
+        
         
 
     }

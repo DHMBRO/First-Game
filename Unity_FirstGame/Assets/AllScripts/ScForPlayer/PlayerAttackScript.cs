@@ -31,6 +31,7 @@ public class PlayerAttackScript : MonoBehaviour
                 ZombieScript ZombieScript = Collider.gameObject.GetComponentInParent<ZombieScript>();
                 LocateScript ZombieLocateScript = Collider.gameObject.GetComponentInParent<LocateScript>();
                 InfScript InfoScript = Collider.gameObject.GetComponentInParent<InfScript>();
+                
                 if (ZombieScript && ZombieLocateScript && InfoScript)
                 {
                     if (ZombieScript.IsObjectFromBehinde(gameObject))

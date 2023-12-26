@@ -22,7 +22,7 @@ public class ArmorControler : MonoBehaviour, IEquipment
 
     //References For Work
     [SerializeField] public List<ArmorPlateControler> ControlerArmorPlates = new List<ArmorPlateControler>();
-    [SerializeField] public int SlotsCanUse;
+    [SerializeField] public int ArmorPlatesCanUse;
 
 
     private void Start()
@@ -32,13 +32,13 @@ public class ArmorControler : MonoBehaviour, IEquipment
         switch (LevelArmor)
         {
             case LevelObject.FirstLevel:
-                SlotsCanUse = 1; 
+                ArmorPlatesCanUse = 1; 
                 break;
             case LevelObject.SecondLevel:
-                SlotsCanUse = 2;
+                ArmorPlatesCanUse = 2;
                 break;
             case LevelObject.ThirdLevel:
-                SlotsCanUse = 3;
+                ArmorPlatesCanUse = 3;
                 break;
         }
 
@@ -58,9 +58,9 @@ public class ArmorControler : MonoBehaviour, IEquipment
             else PlatesInArmorVest++;
         }
 
-        if (PlatesInArmorVest > SlotsCanUse)
+        if (PlatesInArmorVest > ArmorPlatesCanUse)
         {
-            for (int i = PlatesInArmorVest; i >= SlotsCanUse; i--)
+            for (int i = PlatesInArmorVest; i >= ArmorPlatesCanUse; i--)
             {
                 if(i < ControlerArmorPlates.Count) ControlerArmorPlates.RemoveAt(i);
             }

@@ -5,7 +5,10 @@ public class ThirdPersonCamera : MonoBehaviour
     [SerializeField] UiControler ControlerUi;
     [SerializeField] PlayerControler ControlerPlayer;
 
+    [SerializeField] private GameObject CurrentTargetCamera;
     [SerializeField] public GameObject TargetCamera;
+    [SerializeField] private GameObject TargetCameraForAnimations; 
+    
     [SerializeField] private RaycastHit HitResult;
 
     [SerializeField] Transform HandTarget;
@@ -40,7 +43,7 @@ public class ThirdPersonCamera : MonoBehaviour
     [SerializeField] float LenghtOfOneStepIsAiming = 30.0f;
 
     [SerializeField] MoodCamera CameraMood;
-    [SerializeField] public bool CameraIsUsig = false;
+    [SerializeField] public bool CameraIsUsig = true;
 
     float MouseY;
     float MouseX;
@@ -48,7 +51,7 @@ public class ThirdPersonCamera : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        CameraIsUsig = true;
 
         DesirableVector = OffsetCameraSimple;
         CurrentMoveBackDistance = MoveBackDistanceSimple;
@@ -59,7 +62,7 @@ public class ThirdPersonCamera : MonoBehaviour
 
     private void Update()
     {
-
+        
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             CameraIsUsig = false;
@@ -69,7 +72,7 @@ public class ThirdPersonCamera : MonoBehaviour
             CameraIsUsig = true;
         }
 
-        if (!CameraIsUsig) return;
+        if (ControlerUi.InventoryIsOpen || !CameraIsUsig) return;
         
         //Prameters
         MouseY = Input.GetAxis("Mouse Y");
@@ -86,11 +89,6 @@ public class ThirdPersonCamera : MonoBehaviour
         }
 
         EulerX = Mathf.Clamp(EulerX, -60.0f, 70.0f);
-
-        if (ControlerPlayer.IsAiming)
-        {
-            TargetCamera.transform.localEulerAngles = new Vector3(0.0f, transform.localEulerAngles.y, 0.0f);
-        }
 
         transform.eulerAngles = new Vector3(
            EulerX,
@@ -109,9 +107,15 @@ public class ThirdPersonCamera : MonoBehaviour
         }
         else CurrentLenghtOfOneStep = LenghtToOneStepSimple;
 
-        transform.position = TargetCamera.transform.TransformPoint(DesirableVector) + -(transform.forward * CurrentMoveBackDistance);
+        if (ControlerPlayer.StealthKilling)
+        {
+            TargetCameraForAnimations.transform.position = new Vector3(TargetCameraForAnimations.transform.position.x, TargetCamera.transform.position.y, TargetCameraForAnimations.transform.position.z);
+            transform.position = TargetCameraForAnimations.transform.TransformPoint(DesirableVector) + -(transform.forward * CurrentMoveBackDistance);
+            
+        }
+        else
 
-        
+        transform.position = TargetCamera.transform.TransformPoint(DesirableVector) + -(transform.forward * CurrentMoveBackDistance);
 
         //Audit To Walls
         if (Physics.Raycast(TargetCamera.transform.TransformPoint(DesirableVector) - (transform.forward * (DesirableVector.z)) /*- (transform.forward * 1.0f)*/, -transform.forward, out RaycastHit LocalHitResult, CurrentMoveBackDistance))
