@@ -8,6 +8,10 @@ public class ControlerAnimationsPlayer : MonoBehaviour
     [SerializeField] MovePlayer MovePlayer;
     [SerializeField] Rigidbody RigPlayer;
 
+    //Refrence to animations
+    [SerializeField] float TimeStelthKill = 7.0f;
+    [SerializeField] float WhenFinishedStelthKill;
+
     //References to additional objects
     [SerializeField] Transform BaseBodyPlayerForAnimations;
     
@@ -69,6 +73,20 @@ public class ControlerAnimationsPlayer : MonoBehaviour
             Parameters.SetTrigger("Jump");
             Debug.Log("True");
         }
+        
+        if (!ControlerPlayer.StealthKilling && Input.GetKeyDown(KeyCode.V))
+        {
+            ControlerPlayer.StealthKilling = true;
+            WhenFinishedStelthKill = Time.time + TimeStelthKill;
+
+            Parameters.SetTrigger("StealthKill");
+            
+        }
+        if(Time.time >= WhenFinishedStelthKill)
+        {
+            ControlerPlayer.StealthKilling = false;
+        }
+
 
         switch (ControlerPlayer.MovementMode)
         {

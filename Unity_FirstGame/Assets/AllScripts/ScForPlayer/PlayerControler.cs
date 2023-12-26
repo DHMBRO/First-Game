@@ -117,7 +117,7 @@ public class PlayerControler : MonoBehaviour
             }
 
         }
-
+        
         if((!ControlerUi || !ControlerUi.InventoryIsOpen) && PlayerDo == WhatDoPlayer.Null && !StealthKilling)
         {
             
