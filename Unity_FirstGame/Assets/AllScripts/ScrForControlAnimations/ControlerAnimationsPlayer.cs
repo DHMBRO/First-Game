@@ -73,20 +73,14 @@ public class ControlerAnimationsPlayer : MonoBehaviour
             Parameters.SetTrigger("Jump");
             Debug.Log("True");
         }
-        
-        if (ControlerPlayer.StealthKilling)
-        {
-            //ControlerPlayer.StealthKilling = true;
-            WhenFinishedStelthKill = Time.time + TimeStelthKill;
 
-            Parameters.SetTrigger("StealthKill");
-            
-        }
+        /*
         if(Time.time >= WhenFinishedStelthKill)
         {
             ControlerPlayer.StealthKilling = false;
+            WhenFinishedStelthKill = Time.time + TimeStelthKill;
         }
-
+        */
 
         switch (ControlerPlayer.MovementMode)
         {
