@@ -17,6 +17,7 @@ public class ArmorControler : MonoBehaviour, IEquipment
     public bool ChangeOffSet;
 
     [SerializeField] Transform Armor;
+    [SerializeField] Transform SlotToArmorPlates;
     [SerializeField] Vector3 OffSetDontUse;
     [SerializeField] Vector3 OffSetUse;
 

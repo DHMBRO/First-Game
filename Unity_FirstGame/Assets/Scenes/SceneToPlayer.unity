@@ -547,6 +547,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b986d3b86e188874ea72623558e20c3d, type: 3}
+--- !u!1 &389064628 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1220135436676536734, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+  m_PrefabInstance: {fileID: 944569804}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &482216765
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1628,6 +1633,10 @@ PrefabInstance:
       propertyPath: OffsetHandForAimingTra.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3994893304370285142, guid: 99b382a7a7090204b9bd10d055fa8870, type: 3}
+      propertyPath: TargetCameraForAnimations
+      value: 
+      objectReference: {fileID: 389064628}
     - target: {fileID: 3994893304370285142, guid: 99b382a7a7090204b9bd10d055fa8870, type: 3}
       propertyPath: LenghtOfOneStepToChangeState
       value: 1

@@ -53,9 +53,9 @@ public class ArmorPlateControler : MonoBehaviour, IUsebleInterFace
     public void Use(GameObject Target, ScrSaveAndGiveInfo InfoLoot, UseAndDropTheLoot SelectObj)
     {
         SlotControler ControlerSlots = Target.GetComponent<SlotControler>();
-        ArmorControler ControlerArmorPlate = ControlerSlots.MyArmor.GetComponent<ArmorControler>();
-        
-        
+        ArmorControler ControlerArmor = ControlerSlots.MyArmor.GetComponent<ArmorControler>();
+
+        //ControlerArmor.ControlerArmorPlates.Add(gameObject.);
 
     }
 
