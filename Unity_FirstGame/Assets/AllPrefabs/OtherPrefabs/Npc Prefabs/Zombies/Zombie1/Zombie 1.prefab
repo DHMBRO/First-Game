@@ -289,7 +289,6 @@ GameObject:
   - component: {fileID: 4367170480708916216}
   - component: {fileID: 95283667875477210}
   - component: {fileID: 5804095521161962542}
-  - component: {fileID: 1236320389}
   m_Layer: 0
   m_Name: Zombie 1
   m_TagString: Untagged
@@ -503,20 +502,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IHearSomething: 0
   InerestPos: {x: 0, y: 0, z: 0}
---- !u!114 &1236320389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5428616973792416952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88c6553a6899b3146b3f5b676037ebbe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Animator: {fileID: 6385217581263623021}
-  PointToKillMe: {fileID: 0}
 --- !u!1 &8349985219191236876
 GameObject:
   m_ObjectHideFlags: 0
