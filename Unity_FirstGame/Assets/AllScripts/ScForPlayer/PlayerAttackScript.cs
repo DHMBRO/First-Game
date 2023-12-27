@@ -58,8 +58,8 @@ public class PlayerAttackScript : MonoBehaviour
     public void StealthKill(GameObject Enemy)
     {
         InfScript InfScript = Enemy.GetComponent<InfScript>();
-        
-        gameObject.transform.position = InfScript.PointToKillMe.transform.position;
+
+        gameObject.transform.position = Enemy.transform.position + (-Enemy.transform.forward * 3);
         gameObject.transform.rotation = Enemy.transform.rotation;
         SetPlayerAnimation("StealthKill");
         InfScript.StelthDead();
