@@ -72,7 +72,7 @@ public class ThirdPersonCamera : MonoBehaviour
             CameraIsUsig = true;
         }
 
-        if (ControlerUi.InventoryIsOpen || !CameraIsUsig) return;
+        if ((ControlerUi && ControlerUi.InventoryIsOpen) || !CameraIsUsig) return;
         
         //Prameters
         MouseY = Input.GetAxis("Mouse Y");
