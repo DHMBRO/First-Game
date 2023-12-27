@@ -12,6 +12,7 @@ public class PlayerAttackScript : MonoBehaviour
     Collider[] Colliders;
     protected Animator PlayerAnimator;
     protected PlayerControler PlayerController;
+    
     void Start()
     {
         PlayerAnimator = gameObject.GetComponentInChildren<Animator>();
@@ -38,12 +39,12 @@ public class PlayerAttackScript : MonoBehaviour
                     {
                         // if (ZombieLocateScript.WhatForvardToMe(gameObject) == Collider.gameObject)
 
-                        PlayerController.StealthKilling = true;                         
+                        PlayerController.StealthKilling = true;
+                        Invoke("OnStealthAnimateEnd", 7.0f);
                         StealthKill(Collider.gameObject);
                         ZombieScript.InstansteKillMe();
-                        Invoke("OnStealthAnimateEnd", 4.0f);
+                        
                         break;
-
                     }
                 }
             }
@@ -57,32 +58,17 @@ public class PlayerAttackScript : MonoBehaviour
     public void StealthKill(GameObject Enemy)
     {
         InfScript InfScript = Enemy.GetComponent<InfScript>();
-        SetPlayerAnimation("StealthKill");
+        
         gameObject.transform.position = InfScript.PointToKillMe.transform.position;
         gameObject.transform.rotation = Enemy.transform.rotation;
+        SetPlayerAnimation("StealthKill");
         InfScript.StelthDead();
     }
     void OnStealthAnimateEnd()
     {
         PlayerController.StealthKilling = false;
-        Debug.Log("Work");
+        
     }
 }
 
-/*
- void StealthKill (Gameobj Target)
-{
-   InfoScript = target.getComponent<InfScript>();
-    InfoScript.SetStopped();
-    gameobj.traansform.position = InfoScript.PosToKillMe;
-    gameobj.LookAt(Target.transform.rotation);
-    SetPlayerAnimation("StealthKill");
-    InfoScript.SetAnimation("StealthKill")
-    
-}
-
- 
- 
- */
-    
 
