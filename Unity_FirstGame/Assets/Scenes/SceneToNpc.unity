@@ -983,6 +983,14 @@ PrefabInstance:
       value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 3994893304370285142, guid: 99b382a7a7090204b9bd10d055fa8870, type: 3}
+      propertyPath: CurrentTargetCamera
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3994893304370285142, guid: 99b382a7a7090204b9bd10d055fa8870, type: 3}
+      propertyPath: TargetCameraForAnimations
+      value: 
+      objectReference: {fileID: 705862433}
+    - target: {fileID: 3994893304370285142, guid: 99b382a7a7090204b9bd10d055fa8870, type: 3}
       propertyPath: LenghtOfOneStepToChangeState
       value: 3
       objectReference: {fileID: 0}
@@ -996,6 +1004,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99b382a7a7090204b9bd10d055fa8870, type: 3}
+--- !u!1 &705862433 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1220135436676536734, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+  m_PrefabInstance: {fileID: 941417593}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &793875544
 PrefabInstance:
   m_ObjectHideFlags: 0
