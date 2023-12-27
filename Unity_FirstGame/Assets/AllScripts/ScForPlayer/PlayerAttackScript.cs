@@ -41,7 +41,7 @@ public class PlayerAttackScript : MonoBehaviour
                         PlayerController.StealthKilling = true;                         
                         StealthKill(Collider.gameObject);
                         ZombieScript.InstansteKillMe();
-                        Invoke("OnStealthAnimateEnd", 3.0f);
+                        Invoke("OnStealthAnimateEnd", 4.0f);
                         break;
 
                     }
@@ -59,6 +59,7 @@ public class PlayerAttackScript : MonoBehaviour
         InfScript InfScript = Enemy.GetComponent<InfScript>();
         SetPlayerAnimation("StealthKill");
         gameObject.transform.position = InfScript.PointToKillMe.transform.position;
+        gameObject.transform.rotation = Enemy.transform.rotation;
         InfScript.StelthDead();
     }
     void OnStealthAnimateEnd()
