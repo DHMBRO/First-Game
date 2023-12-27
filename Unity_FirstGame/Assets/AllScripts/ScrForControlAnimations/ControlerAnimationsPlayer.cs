@@ -74,9 +74,9 @@ public class ControlerAnimationsPlayer : MonoBehaviour
             Debug.Log("True");
         }
         
-        if (!ControlerPlayer.StealthKilling && Input.GetKeyDown(KeyCode.V))
+        if (!ControlerPlayer.StealthKilling)
         {
-            ControlerPlayer.StealthKilling = true;
+            //ControlerPlayer.StealthKilling = true;
             WhenFinishedStelthKill = Time.time + TimeStelthKill;
 
             Parameters.SetTrigger("StealthKill");
