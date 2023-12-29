@@ -20,21 +20,20 @@ public class HpScript : MonoBehaviour
 
     private void Start()
     {
-        Info = GetComponent<InfScript>();
+
+        Info = GetComponentInParent<InfScript>();
+        if (!Info)
+        {
+            Debug.Log(gameObject.name + " InfoScr = Null" );
+        }
         if (UiHp && ProzentHealPoint) OutPutHp(HealthPoint, UiHp, ProzentHealPoint);
     }
 
     private void Update()
     {
-        if (!IsAlive())
-        {
-            Info.SetAnimation("Death");
-
-        }
         if (Input.GetKey(KeyCode.G))
         {
             InstanceKill();
-
         }
     }
     public void InflictingDamage(float Damage)
@@ -50,12 +49,15 @@ public class HpScript : MonoBehaviour
         if ((HealthPoint - Damage) <= 0)
         {
             HealthPoint = 0;
+            MyLive = Live.NotAlive;
+                Info.SetAnimation("Death");
         }
         else if ((HealthPoint - Damage) > 0)
         {
             HealthPoint -= Damage;
         }
         if (HealthPoint >= 0.0f && UiHp && ProzentHealPoint) OutPutHp(HealthPoint, UiHp, ProzentHealPoint);
+
     }
 
     public void HealHp(float Heal)
@@ -91,10 +93,11 @@ public class HpScript : MonoBehaviour
 
     public bool IsAlive() 
     {
+
         return HealthPoint > 0;
     }
     public void InstanceKill()
     {
-        InflictingDamage(HealthPoint);
+        InflictingDamage(HealthPoint*2f);
     }
 }

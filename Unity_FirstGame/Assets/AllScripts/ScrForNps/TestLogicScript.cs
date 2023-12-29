@@ -42,7 +42,7 @@ public abstract class ILogic
             {
                 if (CanIAttack())
                 {
-                    Patrol.ZombieNavMesh.isStopped = true;
+                   
                     Debug.Log("ATTACK");
                     InfOwner.SetState(new AttackState(InfOwner));
                 }
@@ -108,13 +108,17 @@ public class ChaseState : ILogic
             InfOwner.SetFloatToAnim("CurrentSpeed", 1.0f);
             Locate.RelocateTarget();
             Patrol.MoveTo(Locate.Target.transform.position);
+            if (CanIAttack())
+            {
+                InfOwner.SetState(new AttackState(InfOwner));
+            }
         }
         else
         {
             DefineState();
         }
     }
-
+    
 }
 
 public class CheckPositionState : ILogic
@@ -154,17 +158,28 @@ public class AttackState : ILogic
 {
     public AttackState(InfScript NewOwner) : base(NewOwner)
     {
-            
+        
     }
     override public void Update()
     {
-        Attack.Attack(Locate.Target);
-        if (Locate.CanISeeTarget())
+       
+        if (DoISeeEnemy())
         {
-            if (!CanIAttack())
+            if (CanIAttack())
             {
+                Patrol.ZombieNavMesh.isStopped = true;
+                Attack.Attack(Locate.Target);
+            }
+            else
+            {
+                Patrol.ZombieNavMesh.isStopped = false;
                 InfOwner.SetState(new ChaseState(InfOwner));
             }
+        }
+        else
+        {
+            Patrol.ZombieNavMesh.isStopped = false;
+            InfOwner.SetState(new PatrolState(InfOwner)); // TODO  Check Last Position of enemy
         }
     }
 }

@@ -50,7 +50,7 @@ public class AttackMethod : MonoBehaviour
         else 
         {
             
-            Debug.Log("ATTACK!!!!!!!!!!!!!");
+            
             if (Time.time >= AttackTime)
             {
                 HpScript TargetHpScript = Target.GetComponentInParent<HpScript>();

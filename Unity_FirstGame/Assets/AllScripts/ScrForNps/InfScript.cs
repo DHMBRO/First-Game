@@ -8,10 +8,11 @@ public class InfScript : MonoBehaviour
     protected LocateScript Locate;
     protected PatrolScriptNavMesh Patrol;
     protected AttackMethod Attack;
-    protected ILogic CurrentState; 
+    protected ILogic CurrentState;
     protected SoundTakerScript SoundTaker;
     [SerializeField] protected Animator Animator;
     [SerializeField] public GameObject PointToKillMe;
+    [SerializeField] public GameObject PointToShoot;
 
     void Start()
     {
@@ -21,14 +22,15 @@ public class InfScript : MonoBehaviour
         Attack = this.gameObject.GetComponent<AttackMethod>();
         SoundTaker = this.gameObject.GetComponent<SoundTakerScript>();
       //  Animator = this.gameObject.GetComponentInParent<Animator>();
+
         SetState(new PatrolState(this));
 
     }
 
     void Update()
     {
-        if (CurrentState != null)
-        { 
+        if (CurrentState != null && Alive())
+        {
             CurrentState.Update();
         }
 
@@ -95,5 +97,9 @@ public class InfScript : MonoBehaviour
     public void OnStealthKillEnd(string Message)
     {
         Debug.Log(Message);
+    }
+    public Vector3 PointToAim()
+    {
+        return PointToShoot.transform.position;
     }
 }
