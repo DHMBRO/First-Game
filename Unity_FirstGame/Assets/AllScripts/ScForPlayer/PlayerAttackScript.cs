@@ -9,7 +9,9 @@ public class PlayerAttackScript : MonoBehaviour
     
     [SerializeField] private float MaxKillDistance = 3.0f;
     [SerializeField] private float MinKillDistance = 0.5f;
+    [SerializeField] private float MoveBackDistance = 0.0f;
 
+    
     [SerializeField] Transform Cube;
 
     Collider[] Colliders;
@@ -58,12 +60,13 @@ public class PlayerAttackScript : MonoBehaviour
     {
         PlayerAnimator.SetTrigger(TriggerName);
     }
+
     public void StealthKill(GameObject Enemy)
     {
         InfScript InfScript = Enemy.GetComponent<InfScript>();
 
         gameObject.transform.eulerAngles = Enemy.transform.eulerAngles;
-        gameObject.transform.position = Enemy.transform.position + -(Enemy.transform.forward * 2.23f);//2.23f
+        gameObject.transform.position = Enemy.transform.position + -(Enemy.transform.forward * MoveBackDistance);//2.23f
         
         SetPlayerAnimation("StealthKill");
         InfScript.StelthDead();
