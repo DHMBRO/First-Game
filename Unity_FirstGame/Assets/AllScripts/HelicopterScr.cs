@@ -10,10 +10,10 @@ public class HelicopterScr : MonoBehaviour
     [SerializeField] GameObject FlightTo;
     [SerializeField] Vector3 PositionToLending;
     [SerializeField] int Speed;
-    [SerializeField] GameObject MGameOjct;
-    [SerializeField] GameObject M2GameOjct;
-    [SerializeField] GameObject FGameOjct;
-    [SerializeField] GameObject SGameOjct;
+    //[SerializeField] GameObject MGameOjct;
+    //[SerializeField] GameObject M2GameOjct;
+    //[SerializeField] GameObject FGameOjct;
+    //SerializeField] GameObject SGameOjct;
     [SerializeField] Vector3 PositionAraundFlight;
     float T = 0.00f;
     float AddToT;
@@ -134,9 +134,9 @@ public class HelicopterScr : MonoBehaviour
                 M = new Vector3(S.x - Vector3.Distance(gameObject.transform.position, RandomPOsition) / 2, gameObject.transform.position.y, Vector3.Distance(gameObject.transform.position, RandomPOsition) * 1f * 1);
             }
             DriveMRight = !DriveMRight;
-            SGameOjct.transform.position = S;
-            FGameOjct.transform.position = F;
-            MGameOjct.transform.position = M;
+            //SGameOjct.transform.position = S;
+            //FGameOjct.transform.position = F;
+            //MGameOjct.transform.position = M;
             NeedNewPosition = false;
         }
 
