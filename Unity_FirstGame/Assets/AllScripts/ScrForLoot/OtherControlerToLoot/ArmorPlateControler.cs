@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ArmorPlateControler : MonoBehaviour, IUsebleInterFace
+public class ArmorPlateControler : MethodsFromDevelopers, IUsebleInterFace
 {
     [SerializeField] public LevelObject LevelArmorPlate;
     
@@ -40,7 +40,7 @@ public class ArmorPlateControler : MonoBehaviour, IUsebleInterFace
             ControlerArmor = ControlerSlots.MyArmor.GetComponent<ArmorControler>();
         }
 
-        if (!ControlerArmor) return false;
+        if (!ControlerArmor || !ControlerArmor.SlotToArmorPlates) return false;
         
         if (ControlerArmor.ControlerArmorPlates.Count < ControlerArmor.ArmorPlatesCanUse+1)
         {
@@ -55,7 +55,14 @@ public class ArmorPlateControler : MonoBehaviour, IUsebleInterFace
         SlotControler ControlerSlots = Target.GetComponent<SlotControler>();
         ArmorControler ControlerArmor = ControlerSlots.MyArmor.GetComponent<ArmorControler>();
 
-        //ControlerArmor.ControlerArmorPlates.Add(gameObject.);
+        ControlerArmor.ControlerArmorPlates.Add(gameObject.GetComponent<ArmorPlateControler>());
+        PutObjects(transform, ControlerArmor.SlotToArmorPlates, false);
+        transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+
+        SelectObj.GetComponent<UiControler>().InterfaceControler();
+        SelectObj.DeleteReferenceToLoot();
+
+        Debug.Log("Use armor plate is working !");
 
     }
 

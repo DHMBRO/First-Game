@@ -51,7 +51,7 @@ public class MovePlayer : MonoBehaviour
 
         Vector3 ForceAxis = new Vector3(MoveHorizontal, 0.0f, MoveVertical).normalized;
         
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Math.Abs(MoveVertical + MoveVertical) > 0.01f)
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.LeftShift))
         {
             if (!ControlerPlayer.IsAiming && MovementMode != ModeMovement.Null) //Rotate Body Player
             {
@@ -63,8 +63,7 @@ public class MovePlayer : MonoBehaviour
 
                 float yAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, TargetRotation.eulerAngles.y, ref yVelocity, smooth);
                 transform.rotation = Quaternion.Euler(0, yAngle, 0);
-                
-                
+               
             }
             
 

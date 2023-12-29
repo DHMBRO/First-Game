@@ -88,7 +88,7 @@ public class ThirdPersonCamera : MonoBehaviour
             EulerX -= 360.0f;
         }
 
-        EulerX = Mathf.Clamp(EulerX, -60.0f, 70.0f);
+        EulerX = Mathf.Clamp(EulerX, -80.0f, 70.0f);
 
         transform.eulerAngles = new Vector3(
            EulerX,

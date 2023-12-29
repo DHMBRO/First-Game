@@ -9,8 +9,8 @@ public class ControlerAnimationsPlayer : MonoBehaviour
     [SerializeField] Rigidbody RigPlayer;
 
     //Refrence to animations
-    [SerializeField] float TimeStelthKill = 7.0f;
-    [SerializeField] float WhenFinishedStelthKill;
+    //[SerializeField] float TimeStelthKill = 7.0f;
+    //[SerializeField] float WhenFinishedStelthKill;
 
     //References to additional objects
     [SerializeField] Transform BaseBodyPlayerForAnimations;
