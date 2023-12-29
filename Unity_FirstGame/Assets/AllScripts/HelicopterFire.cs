@@ -7,6 +7,7 @@ public class HelicopterFire : MonoBehaviour
 {
     [SerializeField]GameObject Ammo;
     float timer = 0.00f;
+    [SerializeField] HelicopterScr Hscr; 
     // Start is called before the first frame update
     void Start()
     {
@@ -15,13 +16,16 @@ public class HelicopterFire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-        GameObject Amo;
-        if (0.01 <= timer)
+        if (Hscr.State == HelicopterScr.States.RoamAround)
         {
-            Amo = Instantiate(Ammo, gameObject.transform.position, gameObject.transform.rotation);
-            Destroy(Amo, 10f);
-            timer = 0.00f;
+            timer += Time.deltaTime;
+            //Debug.Log("HelicopterFire" + " " + timer);
+            if (0.01f <= timer)
+            {
+                GameObject Amo = Instantiate(Ammo, gameObject.transform.position, gameObject.transform.rotation);
+                Destroy(Amo, 10f);
+                timer = 0.00f;
+            }
         }
     }
 }

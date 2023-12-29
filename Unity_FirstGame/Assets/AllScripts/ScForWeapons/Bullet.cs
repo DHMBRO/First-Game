@@ -9,13 +9,15 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //audio = GameObject.Instantiate(audioToMetalic);
-        
+        Debug.Log(collision.gameObject.name);
         HpScript HPScr = collision.gameObject.GetComponent<HpScript>();
         if (HPScr && Damage > 0.0f)
         {
-            Debug.Log(HPScr.gameObject.name + " Bullet Hit");
-            HPScr.InflictingDamage(Damage); 
             
+            HPScr.InflictingDamage(Damage);
+            Debug.Log(HPScr.gameObject.name + " Bullet Hit " + HPScr.HealthPoint);
+
+
         }
 
         Destroy(gameObject);

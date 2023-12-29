@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HelicopterScr : MonoBehaviour
 {
-    [SerializeField] GameObject TargetToGun;
+    
     [SerializeField] GameObject Gun;
     [SerializeField] GameObject FlightFrom;
     [SerializeField] GameObject FlightTo;
@@ -24,6 +24,7 @@ public class HelicopterScr : MonoBehaviour
     Vector3 PositionFrom;
     public float RandomPosition_X;
     public float RandomPosition_Z;
+    public GameObject TargetToGun = null;
 
     bool NeedNewPosition = true;
     Vector3 S;
@@ -47,7 +48,7 @@ public class HelicopterScr : MonoBehaviour
         FromMToF
     }
     StatesFlight StatesFlght;
-    States State;
+    public States State;
     // Start is called before the first frame update
     void Start()
     {
@@ -145,7 +146,7 @@ public class HelicopterScr : MonoBehaviour
         gameObject.transform.position = Vector3.Lerp(SM, MF, T2);
         gameObject.transform.LookAt(Vector3.Lerp(SM, MF, T2) * 10);
         AddToT = Time.fixedDeltaTime / (Vector3.Distance(S, M) / Speed);
-        Gun.transform.LookAt(TargetToGun.transform.position);
+        Gun.transform.LookAt(TargetToGun.transform.position + new Vector3(0, 1.5f, 0));
         T2 += AddToT;
         if (T2 >= 1.00)
         {

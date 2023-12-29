@@ -154,6 +154,7 @@ GameObject:
   - component: {fileID: 1641455469337809025}
   - component: {fileID: 4359014935930577882}
   - component: {fileID: 5702454128797480413}
+  - component: {fileID: 1404344617788827130}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -271,4 +272,18 @@ MonoBehaviour:
   Ammo: {fileID: 1641455469337809031}
   shootSpeed: 10
   Mode: 0
-  Force: {x: 0, y: 0, z: -100}
+  Force: {x: 0, y: 0, z: 100}
+--- !u!114 &1404344617788827130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641455469337809031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a44bba1536389644843157fecb6d3d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioToMetalic: {fileID: 0}
+  Damage: 5
