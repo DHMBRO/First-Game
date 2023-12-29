@@ -15,8 +15,6 @@ public class ThirdPersonCamera : MonoBehaviour
     [SerializeField] Transform Cube;
     [SerializeField] Transform Cube1;
 
-    [SerializeField] private Transform MoveBackObject;
-
     //New references 
     [SerializeField] public Vector3 CurrentOffSetCamera;
     [SerializeField] public Vector3 DesirableVector;
