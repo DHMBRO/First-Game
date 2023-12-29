@@ -38,12 +38,8 @@ public class InfScript : MonoBehaviour
         return HpScript.IsAlive();
     }
     public bool DoIHaveATarget()
-    {
-        if (Locate.Target)
-        {
-            return true;
-        }
-        return false;
+    {  
+       return Locate.Target;
     }
     public bool CanAttack()
     {
@@ -57,7 +53,7 @@ public class InfScript : MonoBehaviour
     }
     public bool CanISeeEnemy()
     {
-        return false; //Locate.CanISeeTarget();
+       return Locate.CanISeeTarget();
     }
     public void SetState(ILogic NewState)
     {

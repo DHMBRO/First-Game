@@ -996,7 +996,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6761677284600033288, guid: 99b382a7a7090204b9bd10d055fa8870, type: 3}
       propertyPath: m_Name
-      value: Camera
+      value: ThirdCameraPerson
       objectReference: {fileID: 0}
     - target: {fileID: 6761677284600033288, guid: 99b382a7a7090204b9bd10d055fa8870, type: 3}
       propertyPath: m_IsActive
@@ -1235,12 +1235,20 @@ PrefabInstance:
       propertyPath: DebugingTheWork
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2001030955048781610, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: ShowTheZoneNoice
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2320318701797134959, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2320318701797134959, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: ShowRadiuse
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320318701797134959, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: ShowZoneNoise
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2320318701797134959, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
@@ -1344,6 +1352,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1234062945455005795, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234062945455005795, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234062945455005795, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234062945455005795, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234062945455005795, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234062945455005795, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234062945455005795, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1903779204196023001, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
       propertyPath: m_Name
       value: Y Bot@Zombie 11
@@ -1418,7 +1454,7 @@ PrefabInstance:
       objectReference: {fileID: 1391759904}
     - target: {fileID: 8380841528293721671, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
       propertyPath: m_Radius
-      value: 7.11
+      value: 7.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
@@ -1699,6 +1735,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxKillDistance: 3
   MinKillDistance: 0.5
+  MoveBackDistance: 0
+  Cube: {fileID: 0}
 --- !u!1 &1181213463
 GameObject:
   m_ObjectHideFlags: 0

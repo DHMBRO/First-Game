@@ -12,7 +12,7 @@ public class LocateScript : MonoBehaviour
     [SerializeField] private float MaxDistatzeForAgr;
     public PatrolScriptNavMesh ZombiePatrolScript;
     private StelthScript TargetStelsScript;
-    [SerializeField] float VisionAngle = 40.0f;
+    [SerializeField] float VisionAngle = 60.0f;
     List<GameObject> Targets;
     protected HpScript MyHpScript;
 
@@ -90,27 +90,29 @@ public class LocateScript : MonoBehaviour
 
         float AngleToTarget = Vector3.Angle(gameObject.transform.forward, Target.transform.position - gameObject.transform.position);
         // Debug.Log("Angel To Target = " + AngleToTarget);    
-        if (AngleToTarget <= VisionAngle)
+        if (AngleToTarget >= VisionAngle)
         {
-            Debug.Log(VisionAngle + " VisionAngle" + AngleToTarget + " Angle");
+            //Debug.Log(VisionAngle + " VisionAngle" + AngleToTarget + " Angle");
             Vector3 Rotate = Target.transform.position - transform.position;
             Vector3 RotateHead = Target.transform.position - Head.position;
             Ray HeadForward = new Ray(Head.transform.position, RotateHead);
 
             Head.transform.rotation = Quaternion.LookRotation(RotateHead);
-            // RaycastHit[] HitResults = Physics.RaycastAll(HeadForward, MaxDistatzeForAgr);
-            //  foreach (RaycastHit HitResult in HitResults)
-            RaycastHit Hitres;
-            if (Physics.Raycast(HeadForward, out Hitres, MaxDistatzeForAgr))
-            {
-                if (Hitres.collider.gameObject == Target || Hitres.collider.gameObject.transform.root.gameObject == Target)
+             RaycastHit[] HitResults = Physics.RaycastAll(HeadForward, MaxDistatzeForAgr);
+            foreach (RaycastHit HitResult in HitResults) 
+            { 
+                RaycastHit Hitres;
+                if (Physics.Raycast(HeadForward, out Hitres, MaxDistatzeForAgr))
+                {
+                    if (Hitres.collider.gameObject == Target || Hitres.collider.gameObject.transform.root.gameObject == Target)
+                    {
+                        return true;
+                    }
+                }
+                if ((gameObject.transform.position - Target.transform.position).magnitude <= 2.5f)
                 {
                     return true;
                 }
-            }
-            if ((gameObject.transform.position - Target.transform.position).magnitude <= 2.5f)
-            {
-                return true;
             }
         }
       return false;

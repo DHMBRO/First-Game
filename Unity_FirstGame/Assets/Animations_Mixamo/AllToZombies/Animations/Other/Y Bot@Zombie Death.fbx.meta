@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1fd70fdc025506f4c8a907a5afb35f20
+guid: ad49ab60ba5ce874fbd9cc62f32d39e8
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Stealth Kill
+      name: Zombie Death
       takeName: mixamo.com
       internalID: -203655887218126122
-      firstFrame: 0
-      lastFrame: 420
+      firstFrame: 68
+      lastFrame: 178
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -46,10 +46,10 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 1
+      loopBlendOrientation: 0
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 1
-      keepOriginalOrientation: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
@@ -526,23 +526,23 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: Y Bot(Clone)
+    - name: Y Bot@Zombie(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Alpha_Surface
-      parentName: Y Bot(Clone)
+      parentName: Y Bot@Zombie(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Alpha_Joints
-      parentName: Y Bot(Clone)
+      parentName: Y Bot@Zombie(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:Hips
-      parentName: Y Bot(Clone)
+      parentName: Y Bot@Zombie(Clone)
       position: {x: 0.00000033015945, y: 0.99791867, z: 0.00000051621345}
       rotation: {x: 7.537291e-11, y: 0.0000017531268, z: -0.000043883512, w: 1}
       scale: {x: 1, y: 1, z: 1}
@@ -878,7 +878,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 32c385e148d9c094ea210cf380d5d4f9, type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 42e37a7d114e7b647984cfa87f92e55c, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1

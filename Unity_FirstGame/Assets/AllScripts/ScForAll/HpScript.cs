@@ -8,7 +8,7 @@ public class HpScript : MonoBehaviour
     [SerializeField] public EnemyState State;
     [SerializeField] public float HealthPoint = 10;
     [SerializeField] public float MaxHp;
-    
+    protected InfScript Info;
 
     public Live MyLive = Live.Alive;
     
@@ -20,9 +20,23 @@ public class HpScript : MonoBehaviour
 
     private void Start()
     {
+        Info = GetComponent<InfScript>();
         if (UiHp && ProzentHealPoint) OutPutHp(HealthPoint, UiHp, ProzentHealPoint);
     }
 
+    private void Update()
+    {
+        if (!IsAlive())
+        {
+            Info.SetAnimation("Death");
+
+        }
+        if (Input.GetKey(KeyCode.G))
+        {
+            InstanceKill();
+
+        }
+    }
     public void InflictingDamage(float Damage)
     {
         if (MyLive == Live.Alive)

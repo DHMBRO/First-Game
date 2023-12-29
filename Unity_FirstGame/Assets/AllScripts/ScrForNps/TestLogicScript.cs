@@ -126,23 +126,25 @@ public class CheckPositionState : ILogic
     override public void Update()
     {
         InfOwner.SetFloatToAnim("CurrentSpeed", 0.5f);
-        Patrol.CheckPosition(InfOwner.UNeedToCheckThis()); 
-        if (Patrol.IsReachTarget())
+        Patrol.CheckPosition(InfOwner.UNeedToCheckThis());
+        //if (Patrol.IsReachTarget())
+        
+
+        if (DoISeeEnemy())
         {
-            
-            if (DoISeeEnemy())
+            InfOwner.SetState(new ChaseState(InfOwner));
+            InfOwner.NullInterest();
+        }
+        else
+        {
+            if (Patrol.IsReachTarget())
             {
-                
-                InfOwner.SetState(new ChaseState(InfOwner));
-                InfOwner.NullInterest();
-            }
-            else 
-            {
-                
                 InfOwner.SetState(new PatrolState(InfOwner));
                 InfOwner.NullInterest();
             }
+
         }
+
     }
 }
 
@@ -161,10 +163,8 @@ public class AttackState : ILogic
         {
             if (!CanIAttack())
             {
-                
                 InfOwner.SetState(new ChaseState(InfOwner));
             }
-            
         }
     }
 }

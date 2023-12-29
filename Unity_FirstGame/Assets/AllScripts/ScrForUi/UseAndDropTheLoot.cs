@@ -77,7 +77,7 @@ public class UseAndDropTheLoot : MethodsFromDevelopers
             }
             else Debug.Log("Use it now doesn't have meaning !");
 
-            Debug.Log(UseLoot.Audit(Inventory.gameObject, Inventory.InfoForSlots[UiInventory.Count + IndexToList], GetComponent<UseAndDropTheLoot>()));
+            //Debug.Log(UseLoot.Audit(Inventory.gameObject, Inventory.InfoForSlots[UiInventory.Count + IndexToList], GetComponent<UseAndDropTheLoot>()));
 
 
             if (ScrForLoot.CanCombining && Inventory.InfoForSlots.Count > (UiInventory.Count + IndexToList)) 

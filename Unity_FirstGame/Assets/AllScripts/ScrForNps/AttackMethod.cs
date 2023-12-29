@@ -49,13 +49,13 @@ public class AttackMethod : MonoBehaviour
         }
         else 
         {
-            Debug.Log("12344");
+            
+            Debug.Log("ATTACK!!!!!!!!!!!!!");
             if (Time.time >= AttackTime)
             {
                 HpScript TargetHpScript = Target.GetComponentInParent<HpScript>();
                 if (TargetHpScript)
                 {
-
                     TargetHpScript.InflictingDamage(ZombieDamage);
                     ZombieLocateScript.DefineMyTarget();
                 }

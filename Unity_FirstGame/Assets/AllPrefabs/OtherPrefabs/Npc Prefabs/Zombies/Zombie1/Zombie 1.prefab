@@ -283,7 +283,6 @@ GameObject:
   - component: {fileID: 8935471237089852123}
   - component: {fileID: 2516517602217220442}
   - component: {fileID: 6519001109737162614}
-  - component: {fileID: 7245984310383040334}
   - component: {fileID: 7530595455176631328}
   - component: {fileID: 8205366769275112416}
   - component: {fileID: 4367170480708916216}
@@ -406,21 +405,6 @@ MonoBehaviour:
   AttackTime: 3.5
   GunPos: {fileID: 0}
   TerroristGun: {fileID: 0}
---- !u!114 &7245984310383040334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5428616973792416952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eca6baa367d47524bbb3cf2477c34551, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ZombieMeshRenderer: {fileID: 1642897012431317003}
-  ZombieDeadMaterial: {fileID: 2100000, guid: d42491f1f3fd30a4bbc68a6dc8f5b4a1, type: 2}
-  ZombiePatrol: {fileID: 0}
 --- !u!114 &7530595455176631328
 MonoBehaviour:
   m_ObjectHideFlags: 0

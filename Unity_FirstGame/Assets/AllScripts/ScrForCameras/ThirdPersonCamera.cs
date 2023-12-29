@@ -88,7 +88,7 @@ public class ThirdPersonCamera : MonoBehaviour
             EulerX -= 360.0f;
         }
 
-        EulerX = Mathf.Clamp(EulerX, -60.0f, 70.0f);
+        EulerX = Mathf.Clamp(EulerX, -80.0f, 70.0f);
 
         transform.eulerAngles = new Vector3(
            EulerX,
@@ -107,16 +107,14 @@ public class ThirdPersonCamera : MonoBehaviour
         }
         else CurrentLenghtOfOneStep = LenghtToOneStepSimple;
 
-        /*
+        
         if (ControlerPlayer.StealthKilling)
         {
             TargetCameraForAnimations.transform.position = new Vector3(TargetCameraForAnimations.transform.position.x, TargetCamera.transform.position.y, TargetCameraForAnimations.transform.position.z);
             transform.position = TargetCameraForAnimations.transform.TransformPoint(DesirableVector) + -(transform.forward * CurrentMoveBackDistance);
             
         }
-        else
-            */
-        transform.position = TargetCamera.transform.TransformPoint(DesirableVector) + -(transform.forward * CurrentMoveBackDistance);
+        else transform.position = TargetCamera.transform.TransformPoint(DesirableVector) + -(transform.forward * CurrentMoveBackDistance);
 
 
         //Audit To Walls
