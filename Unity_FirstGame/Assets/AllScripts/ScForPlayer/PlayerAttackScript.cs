@@ -62,13 +62,8 @@ public class PlayerAttackScript : MonoBehaviour
     {
         InfScript InfScript = Enemy.GetComponent<InfScript>();
 
-        Cube.position = Enemy.transform.position + -(Enemy.transform.forward * 3.0f);
-        Cube.rotation = Enemy.transform.rotation;
-
-        Debug.Log("Cube rotation: " + Cube.rotation + "\t" + "Zombie rotation: " + Enemy.transform.rotation);
-
-        gameObject.transform.position = Enemy.transform.position + (-Enemy.transform.forward * 3);
-        gameObject.transform.rotation = Enemy.transform.rotation;
+        gameObject.transform.eulerAngles = Enemy.transform.eulerAngles;
+        gameObject.transform.position = Enemy.transform.position + -(Enemy.transform.forward * 2.23f);//2.23f
         
         SetPlayerAnimation("StealthKill");
         InfScript.StelthDead();

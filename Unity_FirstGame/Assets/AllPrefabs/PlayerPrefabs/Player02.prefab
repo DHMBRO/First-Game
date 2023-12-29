@@ -1169,7 +1169,7 @@ MonoBehaviour:
   Move: {fileID: 0}
   MovePlayer: {fileID: 6328347359453867729}
   ControlerShoot: {fileID: 0}
-  StelsScript: {fileID: 8720987067841248331}
+  StelthScript: {fileID: 0}
   DivertAttention: {fileID: 3059040256925347778}
   EEScript: {fileID: 2320318701797134959}
   ScrAnimationsPlayer: {fileID: 69157573147947094}
@@ -1432,7 +1432,7 @@ MonoBehaviour:
   SCScript: {fileID: 2001030955048781610}
   DeleyToAddNoise: 0.25
   TimeToAddNoise: 0
-  RadiusNoiseWhenInStels: 0.5
+  RadiusNoiseWhenInStels: 0
   RadiusNoiseWhenAiming: 3
   RadiusNoiseWhenGo: 5
   RadiusNoiseWhenRun: 7
@@ -1894,7 +1894,7 @@ MonoBehaviour:
   BaseBodyPlayerForAnimations: {fileID: 6170257834469969523}
   CurrentSpeed: 0
   DesirableSpeed: 0
-  RotateBodyWhenAiming: 0
+  RotateBodyWhenAiming: 35
 --- !u!4 &1756812146448605311 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 32c385e148d9c094ea210cf380d5d4f9, type: 3}

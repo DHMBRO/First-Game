@@ -85,7 +85,9 @@ public class ControlerAnimationsPlayer : MonoBehaviour
         switch (ControlerPlayer.MovementMode)
         {
             case ModeMovement.Stelth:
-                ChangeRotationBasePlayer();
+
+                if (!ControlerPlayer.StealthKilling) ChangeRotationBasePlayer();
+                else ResetRotationBasePlayer();
                 break;
             case ModeMovement.StelsAndAiming:
                 ChangeRotationBasePlayer();

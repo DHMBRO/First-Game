@@ -100,20 +100,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ControlerUi: {fileID: 0}
   ControlerPlayer: {fileID: 0}
+  CurrentTargetCamera: {fileID: 0}
   TargetCamera: {fileID: 0}
+  TargetCameraForAnimations: {fileID: 0}
   HandTarget: {fileID: 0}
   Cube: {fileID: 0}
   Cube1: {fileID: 0}
   MoveBackObject: {fileID: 0}
   CurrentOffSetCamera: {x: 0, y: 0, z: 0}
   DesirableVector: {x: 0, y: 0, z: 0}
-  OffsetCameraSimple: {x: 0, y: 2, z: 0}
-  OffsetCameraInStelth: {x: 0, y: 0, z: 0}
-  OffsetCameraToAiming: {x: 0, y: 0, z: 0}
-  OffsetCameraToAimingInStelth: {x: 0, y: 0, z: 0}
+  OffsetCameraSimple: {x: 0, y: 2.5, z: 0}
+  OffsetCameraInStelth: {x: 0, y: 2.04, z: 0}
+  OffsetCameraToAiming: {x: 1.19, y: 2.54, z: 0}
+  OffsetCameraToAimingInStelth: {x: 1.19, y: 1.84, z: 0}
   CurrentMoveBackDistance: 0
-  MoveBackDistanceSimple: 5
-  MoveBackDistanceStelth: 3
+  MoveBackDistanceSimple: 4
+  MoveBackDistanceStelth: 4
   MoveBackDistanceAiming: 2.02
   MouseSens: 1
   MaxMagnitude: 2.4

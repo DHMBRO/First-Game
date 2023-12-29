@@ -107,16 +107,14 @@ public class ThirdPersonCamera : MonoBehaviour
         }
         else CurrentLenghtOfOneStep = LenghtToOneStepSimple;
 
-        /*
+        
         if (ControlerPlayer.StealthKilling)
         {
             TargetCameraForAnimations.transform.position = new Vector3(TargetCameraForAnimations.transform.position.x, TargetCamera.transform.position.y, TargetCameraForAnimations.transform.position.z);
             transform.position = TargetCameraForAnimations.transform.TransformPoint(DesirableVector) + -(transform.forward * CurrentMoveBackDistance);
             
         }
-        else
-            */
-        transform.position = TargetCamera.transform.TransformPoint(DesirableVector) + -(transform.forward * CurrentMoveBackDistance);
+        else transform.position = TargetCamera.transform.TransformPoint(DesirableVector) + -(transform.forward * CurrentMoveBackDistance);
 
 
         //Audit To Walls
