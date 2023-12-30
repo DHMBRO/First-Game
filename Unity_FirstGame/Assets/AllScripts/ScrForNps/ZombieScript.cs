@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ZombieScript : MonoBehaviour
 {
-
+    //dont actual
 
     [SerializeField] public MeshRenderer ZombieMeshRenderer;
     [SerializeField] public Material ZombieDeadMaterial;

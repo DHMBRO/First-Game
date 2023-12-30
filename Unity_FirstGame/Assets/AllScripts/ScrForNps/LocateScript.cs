@@ -89,10 +89,10 @@ public class LocateScript : MonoBehaviour
         
 
         float AngleToTarget = Vector3.Angle(gameObject.transform.forward, Target.transform.position - gameObject.transform.position);
-        // Debug.Log("Angel To Target = " + AngleToTarget);    
+          
         if (AngleToTarget >= VisionAngle)
         {
-            //Debug.Log(VisionAngle + " VisionAngle" + AngleToTarget + " Angle");
+            
             Vector3 Rotate = Target.transform.position - transform.position;
             Vector3 RotateHead = Target.transform.position - Head.position;
             Ray HeadForward = new Ray(Head.transform.position, RotateHead);
@@ -109,7 +109,7 @@ public class LocateScript : MonoBehaviour
                         return true;
                     }
                 }
-                if ((gameObject.transform.position - Target.transform.position).magnitude <= 2.5f)
+                if ((gameObject.transform.position - Target.transform.position).magnitude <= 1.0f)
                 {
                     return true;
                 }
@@ -145,9 +145,9 @@ public class LocateScript : MonoBehaviour
         return null;
     }
     public bool IsObjectFromBehinde(GameObject Target)
-    {
+   {
         float AngleToBackTarget = Vector3.Angle(-gameObject.transform.forward, Target.transform.position - gameObject.transform.position);
-        if (AngleToBackTarget <= 30.0f)
+        if (AngleToBackTarget <= 30.0f) 
         {
 
             return true;

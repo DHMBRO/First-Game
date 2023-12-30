@@ -29,27 +29,32 @@ public class PlayerAttackScript : MonoBehaviour
          
         if (Input.GetKeyDown(KeyCode.V))
         {
+           
             float HalfExtents = (MaxKillDistance - MinKillDistance) / 2;
 
             Colliders = Physics.OverlapBox(gameObject.transform.position + 1.0f * gameObject.transform.forward, new Vector3(HalfExtents, HalfExtents, HalfExtents));
             foreach (Collider Collider in Colliders)
             {
-                ZombieScript ZombieScript = Collider.gameObject.GetComponentInParent<ZombieScript>();
+
+                HpScript HpScript = Collider.gameObject.GetComponentInParent<HpScript>();
                 LocateScript ZombieLocateScript = Collider.gameObject.GetComponentInParent<LocateScript>();
                 InfScript InfoScript = Collider.gameObject.GetComponentInParent<InfScript>();
                 
-                if (ZombieScript && ZombieLocateScript && InfoScript)
+                if (HpScript && ZombieLocateScript && InfoScript)
                 {
-                    if (ZombieScript.IsObjectFromBehinde(gameObject))
+                   
+                    if (InfoScript.IsObjectFromBehinde(gameObject))
                     {
-                        // if (ZombieLocateScript.WhatForvardToMe(gameObject) == Collider.gameObject)
+                       if (ZombieLocateScript.WhatForvardToMe(gameObject) == Collider.gameObject)
+                       {
+                       
+                            PlayerController.StealthKilling = true;
+                            Invoke("OnStealthAnimateEnd", 7.0f);
+                            StealthKill(Collider.gameObject);
+                            HpScript.InstanceKill();
 
-                        PlayerController.StealthKilling = true;
-                        Invoke("OnStealthAnimateEnd", 7.0f);
-                        StealthKill(Collider.gameObject);
-                        ZombieScript.InstansteKillMe();
-                        
-                        break;
+                            break;
+                       }
                     }
                 }
             }

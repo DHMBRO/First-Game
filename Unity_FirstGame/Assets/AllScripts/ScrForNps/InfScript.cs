@@ -102,4 +102,8 @@ public class InfScript : MonoBehaviour
     {
         return PointToShoot.transform.position;
     }
+    public bool IsObjectFromBehinde(GameObject Object) 
+    {
+        return Locate.IsObjectFromBehinde(Object);
+    }
 }

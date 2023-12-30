@@ -93,7 +93,6 @@ public class HpScript : MonoBehaviour
 
     public bool IsAlive() 
     {
-
         return HealthPoint > 0;
     }
     public void InstanceKill()
