@@ -60,7 +60,7 @@ Transform:
   m_GameObject: {fileID: 2025701887585895473}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2368170599419293464}
@@ -112,9 +112,16 @@ MonoBehaviour:
   Mass: 0
   CanCombining: 0
   HaveDescription: 0
+  ShowTheAmmo: 0
   SpriteForLoot: {fileID: 21300000, guid: 308dbe82aff9325459e2458344bb10d6, type: 3}
-  ObjectName: 
-  ObjectDescription: 
+  ParametersLoot:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  Descrition: 
 --- !u!114 &2441729088439391868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,7 +269,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6263616177085672998}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.255, y: -0.235, z: 0}
+  m_LocalPosition: {x: -0.2667, y: -0.235, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

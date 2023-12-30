@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 8663064590580057190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3421987597979798925}
@@ -79,7 +79,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Mass: 0
   CanCombining: 0
+  HaveDescription: 0
+  ShowTheAmmo: 0
   SpriteForLoot: {fileID: 21300000, guid: 803534d25bb1b1844bf239d5c5bb8ca4, type: 3}
+  ParametersLoot:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  Descrition: 
 --- !u!114 &2554962057813293590
 MonoBehaviour:
   m_ObjectHideFlags: 0
