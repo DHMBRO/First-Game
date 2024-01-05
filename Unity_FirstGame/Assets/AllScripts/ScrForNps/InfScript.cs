@@ -13,7 +13,7 @@ public class InfScript : MonoBehaviour
     [SerializeField] protected Animator Animator;
     [SerializeField] public GameObject PointToKillMe;
     [SerializeField] public GameObject PointToShoot;
-
+    public LayerMask ZombiLayerMask;
     void Start()
     {
         HpScript = this.gameObject.GetComponent<HpScript>();

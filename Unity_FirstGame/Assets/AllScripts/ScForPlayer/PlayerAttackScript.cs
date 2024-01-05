@@ -17,7 +17,7 @@ public class PlayerAttackScript : MonoBehaviour
     Collider[] Colliders;
     protected Animator PlayerAnimator;
     protected PlayerControler PlayerController;
-    
+    [SerializeField]  public GameObject PlayerHead;
     void Start()
     {
         PlayerAnimator = gameObject.GetComponentInChildren<Animator>();
@@ -36,16 +36,16 @@ public class PlayerAttackScript : MonoBehaviour
             foreach (Collider Collider in Colliders)
             {
 
-                HpScript HpScript = Collider.gameObject.GetComponentInParent<HpScript>();
-                LocateScript ZombieLocateScript = Collider.gameObject.GetComponentInParent<LocateScript>();
-                InfScript InfoScript = Collider.gameObject.GetComponentInParent<InfScript>();
+                HpScript HpScript = Collider.gameObject.GetComponent<HpScript>();
+                LocateScript ZombieLocateScript = Collider.gameObject.GetComponent<LocateScript>();
+                InfScript InfoScript = Collider.gameObject.GetComponent<InfScript>();
                 
                 if (HpScript && ZombieLocateScript && InfoScript)
                 {
                    
                     if (InfoScript.IsObjectFromBehinde(gameObject))
                     {
-                       if (ZombieLocateScript.WhatForvardToMe(gameObject) == Collider.gameObject)
+                       if (ZombieLocateScript.WhatForvardToMe(PlayerHead) == Collider.gameObject)
                        {
                        
                             PlayerController.StealthKilling = true;
@@ -74,7 +74,11 @@ public class PlayerAttackScript : MonoBehaviour
         gameObject.transform.position = Enemy.transform.position + -(Enemy.transform.forward * MoveBackDistance);//2.23f
         
         SetPlayerAnimation("StealthKill");
-        InfScript.StelthDead();
+        if (InfScript)
+        {
+            InfScript.StelthDead();
+        }
+        
     }
     void OnStealthAnimateEnd()
     {

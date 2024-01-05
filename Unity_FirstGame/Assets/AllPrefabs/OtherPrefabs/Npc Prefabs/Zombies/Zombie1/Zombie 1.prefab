@@ -503,6 +503,9 @@ MonoBehaviour:
   Animator: {fileID: 6385217581263623021}
   PointToKillMe: {fileID: 2705178623968705795}
   PointToShoot: {fileID: 8982854550460571108}
+  ZombiLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &8349985219191236876
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,7 +556,7 @@ GameObject:
   m_Component:
   - component: {fileID: 101029408656443076}
   - component: {fileID: 8878233700491372262}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PointToShoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

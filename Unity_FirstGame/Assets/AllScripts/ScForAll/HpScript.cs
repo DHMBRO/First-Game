@@ -21,8 +21,9 @@ public class HpScript : MonoBehaviour
     private void Start()
     {
 
-        Info = GetComponentInParent<InfScript>();
-        if (!Info)
+        Info = gameObject.GetComponentInParent<InfScript>();
+        if (!Info && State != EnemyState.Player)
+
         {
             Debug.Log(gameObject.name + " InfoScr = Null" );
         }
@@ -50,7 +51,7 @@ public class HpScript : MonoBehaviour
         {
             HealthPoint = 0;
             MyLive = Live.NotAlive;
-                Info.SetAnimation("Death");
+            //Info.SetAnimation("Death");
         }
         else if ((HealthPoint - Damage) > 0)
         {

@@ -15,7 +15,7 @@ public class LocateScript : MonoBehaviour
     [SerializeField] float VisionAngle = 60.0f;
     List<GameObject> Targets;
     protected HpScript MyHpScript;
-
+    
     void Start()
     {
         MyHpScript = gameObject.GetComponent<HpScript>();
@@ -90,7 +90,7 @@ public class LocateScript : MonoBehaviour
 
         float AngleToTarget = Vector3.Angle(gameObject.transform.forward, Target.transform.position - gameObject.transform.position);
           
-        if (AngleToTarget >= VisionAngle)
+        if (AngleToTarget <= VisionAngle)
         {
             
             Vector3 Rotate = Target.transform.position - transform.position;
@@ -129,25 +129,16 @@ public class LocateScript : MonoBehaviour
     public GameObject WhatForvardToMe(GameObject Object)
     {
         RaycastHit Hitres;
-        if (Physics.Raycast(Object.transform.position, Object.transform.forward, out Hitres))
+        if (Physics.SphereCast(Object.transform.position, 0.5f, Object.transform.forward, out Hitres, LayerMask.GetMask("Obj Layer")))
         {
-            RaycastHit Hitresult;
-            if (Physics.Raycast(Object.transform.position, Object.transform.position - Hitres.collider.gameObject.transform.position, out Hitresult))
-            {
-                if (Hitresult.collider.gameObject == Hitres.collider.gameObject)
-                {
-                    return Hitres.collider.gameObject;
-                }
-
-            }
-
+            return Hitres.collider.gameObject.transform.root.gameObject;
         }
         return null;
     }
     public bool IsObjectFromBehinde(GameObject Target)
    {
         float AngleToBackTarget = Vector3.Angle(-gameObject.transform.forward, Target.transform.position - gameObject.transform.position);
-        if (AngleToBackTarget <= 30.0f) 
+        if (AngleToBackTarget <= 40.0f) 
         {
 
             return true;
