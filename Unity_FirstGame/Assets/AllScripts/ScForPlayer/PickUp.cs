@@ -413,12 +413,11 @@ public class PickUp : MethodsFromDevelopers
         ScrForAllLoot ScrForLoot = ShopForPickUp.GetComponent<ScrForAllLoot>();
 
         //Debug.Log("PickUpShops is work");
-
-
+        
         if (!ControlerShop && !ScrForLoot) return;
 
         //Debug.Log("0");
-
+        
         if (!ControlerShop.InInventory)
         {
             if (!SlotControler.Shop[0] && SlotControler.SlotsShop[0])
