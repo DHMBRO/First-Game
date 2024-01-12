@@ -20,11 +20,14 @@ public class HelicopterFire : MonoBehaviour
         {
             timer += Time.deltaTime;
             //Debug.Log("HelicopterFire" + " " + timer);
-            if (0.01f <= timer)
+            if (Hscr.TargetToGun)
             {
-                GameObject Amo = Instantiate(Ammo, gameObject.transform.position, gameObject.transform.rotation);
-                Destroy(Amo, 10f);
-                timer = 0.00f;
+                if (0.01f <= timer)
+                {
+                    GameObject Amo = Instantiate(Ammo, gameObject.transform.position, gameObject.transform.rotation);
+                    Destroy(Amo, 10f);
+                    timer = 0.00f;
+                }
             }
         }
     }

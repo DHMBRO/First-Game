@@ -35,7 +35,7 @@ public class SearchNewTarget : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<HpScript>() && other.gameObject.GetComponent<HpScript>().HealthPoint > 0f)
+        if (other.gameObject.GetComponent<HpScript>() && other.gameObject.GetComponent<HpScript>().HealthPoint > 0f && other.gameObject.GetComponent<HpScript>().State != EnemyState.Player)
         {
             Targets.Add(other.gameObject);
         }

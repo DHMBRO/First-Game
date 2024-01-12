@@ -24,7 +24,7 @@ public class HelicopterScr : MonoBehaviour
     Vector3 PositionFrom;
     public float RandomPosition_X;
     public float RandomPosition_Z;
-    public GameObject TargetToGun = null;
+    public GameObject TargetToGun;
 
     bool NeedNewPosition = true;
     Vector3 S;
@@ -53,12 +53,12 @@ public class HelicopterScr : MonoBehaviour
     void Start()
     {
         State = States.Wait;
+        TargetToGun = gameObject;
     }
 
     // Update is called once per frame
     private void Update()
     {
-        Gun.transform.LookAt(TargetToGun.transform.position);
     }
     void FixedUpdate()
     {
@@ -146,7 +146,10 @@ public class HelicopterScr : MonoBehaviour
         gameObject.transform.position = Vector3.Lerp(SM, MF, T2);
         gameObject.transform.LookAt(Vector3.Lerp(SM, MF, T2) * 10);
         AddToT = Time.fixedDeltaTime / (Vector3.Distance(S, M) / Speed);
-        Gun.transform.LookAt(TargetToGun.transform.position + new Vector3(0, 1.5f, 0));
+        if (TargetToGun)
+        {
+            Gun.transform.LookAt(TargetToGun.transform.position + new Vector3(0, 1.5f, 0));
+        }
         T2 += AddToT;
         if (T2 >= 1.00)
         {
