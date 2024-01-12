@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1466149122826556976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7546244143336748677}
+  m_Layer: 0
+  m_Name: Gun position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7546244143336748677
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466149122826556976}
+  m_LocalRotation: {x: -0.48176104, y: 0.5192859, z: 0.4799399, w: 0.51759654}
+  m_LocalPosition: {x: -0.082, y: 0.132, z: 0.034}
+  m_LocalScale: {x: 0.6666667, y: 0.66666675, z: 0.6666667}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6186263985457290430}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6540728949826036990
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -176,3 +207,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Parameters: {fileID: 169324636238165907}
+--- !u!4 &6186263985457290430 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1089677607882455104, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+  m_PrefabInstance: {fileID: 6540728949826036990}
+  m_PrefabAsset: {fileID: 0}

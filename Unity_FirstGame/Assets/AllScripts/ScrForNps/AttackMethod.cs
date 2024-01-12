@@ -13,7 +13,7 @@ public class AttackMethod : MonoBehaviour
     [SerializeField] protected GameObject TerroristGun;
     protected ShootControler TerroristWeaponScript;
     protected bool CanAttack;
-
+    [SerializeField] Animator MyAnimator;
     protected HpScript TargetHpScript;
     protected LocateScript ZombieLocateScript;
     protected PatrolScriptNavMesh ZombiePatrolScript;
@@ -21,6 +21,7 @@ public class AttackMethod : MonoBehaviour
 
     void Start()
     {
+        MyAnimator = gameObject.GetComponentInChildren<Animator>();
         ZombiePatrolScript = gameObject.GetComponent<PatrolScriptNavMesh>();
         ZombieLocateScript = gameObject.GetComponent<LocateScript>();
         if (ZombieLocateScript.Target) TargetHpScript = ZombieLocateScript.Target.GetComponent<HpScript>();
@@ -39,13 +40,18 @@ public class AttackMethod : MonoBehaviour
         if (ZombieLocateScript.Target) TargetHpScript = ZombieLocateScript.Target.GetComponent<HpScript>();
     }
 
-    public void Attack(GameObject Target)
+    public void StartAttack(GameObject Target)
     {  
         if (TerroristWeaponScript)
         {
-            GunPos.transform.LookAt(Target.transform);
+            //GunPos.transform.LookAt(Target.transform);
             TerroristWeaponScript.Shoot();
-
+            gameObject.transform.LookAt(Target.transform);
+            if (MyAnimator)
+            {
+                MyAnimator.SetBool("Aiming", true);
+            }
+           
         }
         else 
         {
@@ -63,6 +69,14 @@ public class AttackMethod : MonoBehaviour
                 AttackTime = AttackDelay + Time.time;
             }
         }  
+    }
+   public  void StopAttack()
+   {
+        if (TerroristWeaponScript)
+        {
+            MyAnimator.SetBool("Aiming", false);
+        }
+
     }
 }
 

@@ -8,8 +8,8 @@ public class ZombieScript : MonoBehaviour
 
     [SerializeField] public MeshRenderer ZombieMeshRenderer;
     [SerializeField] public Material ZombieDeadMaterial;
-     public PatrolScriptNavMesh ZombiePatrol;
-    ZombieController ZombieControllerScript;
+    public PatrolScriptNavMesh ZombiePatrol;
+    public ZombieController ZombieControllerScript;
     HpScript ZomblieHpScript;
     LocateScript ZombleLocateScript;
     void Start()

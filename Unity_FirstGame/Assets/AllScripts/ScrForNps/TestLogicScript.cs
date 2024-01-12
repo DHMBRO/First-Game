@@ -168,16 +168,18 @@ public class AttackState : ILogic
             if (CanIAttack())
             {
                 Patrol.ZombieNavMesh.isStopped = true;
-                Attack.Attack(Locate.Target);
+                Attack.StartAttack(Locate.Target);
             }
             else
             {
+                Attack.StopAttack();
                 Patrol.ZombieNavMesh.isStopped = false;
                 InfOwner.SetState(new ChaseState(InfOwner));
             }
         }
         else
         {
+            Attack.StopAttack();
             Patrol.ZombieNavMesh.isStopped = false;
             InfOwner.SetState(new PatrolState(InfOwner)); // TODO  Check Last Position of enemy
         }
