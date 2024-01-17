@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //audio = GameObject.Instantiate(audioToMetalic);
-        Debug.Log(collision.gameObject.name);
+        Debug.Log("Bullet Collide with " + collision.gameObject.name);
         HpScript HPScr = collision.gameObject.GetComponent<HpScript>();
         if (HPScr && Damage > 0.0f)
         {

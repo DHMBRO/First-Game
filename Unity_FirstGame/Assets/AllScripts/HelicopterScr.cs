@@ -14,7 +14,7 @@ public class HelicopterScr : MonoBehaviour
     //[SerializeField] GameObject M2GameOjct;
     //[SerializeField] GameObject FGameOjct;
     //SerializeField] GameObject SGameOjct;
-    [SerializeField] Vector3 PositionAraundFlight;
+    [SerializeField] GameObject PositionAraundFlight;
     float T = 0.00f;
     float AddToT;
     bool landing = false;
@@ -53,7 +53,6 @@ public class HelicopterScr : MonoBehaviour
     void Start()
     {
         State = States.Wait;
-        TargetToGun = gameObject;
     }
 
     // Update is called once per frame
@@ -122,7 +121,7 @@ public class HelicopterScr : MonoBehaviour
         Vector3 RandomPOsition;
         if (NeedNewPosition)
         {
-            RandomPOsition = GetNewRandomPosition(gameObject.transform.position, FlightTo.transform.position);
+            RandomPOsition = GetNewRandomPosition(gameObject.transform.position, PositionAraundFlight.transform.position);
             S = gameObject.transform.position;
             F = RandomPOsition;
             if (DriveMRight)
@@ -144,13 +143,14 @@ public class HelicopterScr : MonoBehaviour
         SM = Vector3.Lerp(S, M, T2);
         MF = Vector3.Lerp(M, F, T2);
         gameObject.transform.position = Vector3.Lerp(SM, MF, T2);
-        gameObject.transform.LookAt(Vector3.Lerp(SM, MF, T2) * 10);
+        //gameObject.transform.LookAt(F);
         AddToT = Time.fixedDeltaTime / (Vector3.Distance(S, M) / Speed);
         if (TargetToGun)
         {
             Gun.transform.LookAt(TargetToGun.transform.position + new Vector3(0, 1.5f, 0));
         }
         T2 += AddToT;
+        gameObject.transform.LookAt(Vector3.Lerp(SM, MF, T2));
         if (T2 >= 1.00)
         {
             T2 = 0.00f;

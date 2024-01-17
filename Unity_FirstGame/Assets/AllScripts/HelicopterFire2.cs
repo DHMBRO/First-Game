@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class HelicopterFire2 : MonoBehaviour
 {
-    [SerializeField] public GameObject Ammo;
     [SerializeField] float shootSpeed;
     [SerializeField] ForceMode Mode;
     [SerializeField] Vector3 Force = new Vector3(0, 100, 0);

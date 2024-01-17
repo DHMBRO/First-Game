@@ -16,7 +16,7 @@ public class SearchNewTarget : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GameObject ClosestTarget = gameObject;
+        GameObject ClosestTarget = null;
         float ClosestDistans = float.PositiveInfinity;
         foreach(GameObject Target in Targets)
         {
@@ -27,7 +27,7 @@ public class SearchNewTarget : MonoBehaviour
             }
         }
         helicopterScr.TargetToGun = ClosestTarget;
-        if (ClosestTarget.gameObject.GetComponent<HpScript>().HealthPoint <= 0f)
+        if (ClosestTarget != null && ClosestTarget.GetComponent<HpScript>().HealthPoint <= 0f)
         {
             Targets.Remove(ClosestTarget.gameObject);
         }
