@@ -76,18 +76,18 @@ public class HelicopterScr : MonoBehaviour
                 break;
             case States.FlightToPlayer:
                 FlightToPlayer();
-                Debug.Log("FlightToPlayer");
+                //Debug.Log("FlightToPlayer");
                 break;
             case States.RoamAround:
                 RoamAround();
-                Debug.Log("RoamAround");
+                //Debug.Log("RoamAround");
                 break;
             case States.Landing:
-                Debug.Log("Landing");
+                //Debug.Log("Landing");
                 Landing();
                 break;
             case States.FlightOut:
-                Debug.Log("FlightOut");
+                //Debug.Log("FlightOut");
                 FlightOut();
                 break;
             default:
