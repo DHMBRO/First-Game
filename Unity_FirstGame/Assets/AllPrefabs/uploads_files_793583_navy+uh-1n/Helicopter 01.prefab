@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3612685198237513882}
-  - component: {fileID: 3612685198237513885}
   - component: {fileID: 6889816045147207352}
-  - component: {fileID: 523694831683393805}
+  - component: {fileID: 3389130409181645056}
+  - component: {fileID: 3612685198237513885}
   m_Layer: 0
-  m_Name: GameObject (2)
+  m_Name: Helicopter 01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,6 +36,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &6889816045147207352
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3612685198237513884}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 100000
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3389130409181645056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3612685198237513884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3faf55a84a3add54eafdb086e3cc52ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  helicopter: {fileID: 3612685198237513884}
+  helicopterScr: {fileID: 3612685198237513885}
+  Targets: []
 --- !u!114 &3612685198237513885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,34 +86,6 @@ MonoBehaviour:
   RandomPosition_Z: 0
   TargetToGun: {fileID: 0}
   State: 0
---- !u!135 &6889816045147207352
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3612685198237513884}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 100000
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &523694831683393805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3612685198237513884}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3faf55a84a3add54eafdb086e3cc52ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  helicopter: {fileID: 0}
-  helicopterScr: {fileID: 0}
-  Targets: []
 --- !u!1 &8537779943400164785
 GameObject:
   m_ObjectHideFlags: 0
