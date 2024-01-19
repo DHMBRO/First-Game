@@ -51,7 +51,7 @@ public class HpScript : MonoBehaviour
         {
             HealthPoint = 0;
             MyLive = Live.NotAlive;
-            //Info.SetAnimation("Death");
+            Info.SetAnimation("Death");
         }
         else if ((HealthPoint - Damage) > 0)
         {
@@ -96,6 +96,7 @@ public class HpScript : MonoBehaviour
     {
         return HealthPoint > 0;
     }
+
     public void InstanceKill()
     {
         InflictingDamage(HealthPoint*2f);
