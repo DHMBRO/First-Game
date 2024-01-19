@@ -14,6 +14,8 @@ public class InfScript : MonoBehaviour
     [SerializeField] public GameObject PointToKillMe;
     [SerializeField] public GameObject PointToShoot;
     public LayerMask ZombiLayerMask;
+    
+    
     void Start()
     {
         HpScript = this.gameObject.GetComponent<HpScript>();
@@ -33,8 +35,9 @@ public class InfScript : MonoBehaviour
         {
             CurrentState.Update();
         }
-
+        
     }
+
     public bool Alive()
     {
         return HpScript.IsAlive();
