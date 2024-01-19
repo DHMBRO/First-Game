@@ -49,10 +49,11 @@ public class PlayerAttackScript : MonoBehaviour
                        {
                        
                             PlayerController.StealthKilling = true;
+                            HpScript.StelthKill = true;
                             Invoke("OnStealthAnimateEnd", 7.0f);
                             StealthKill(Collider.gameObject);
                             HpScript.InstanceKill();
-
+                            HpScript.StelthKill = false;
                             break;
                        }
                     }

@@ -9,7 +9,7 @@ public class HpScript : MonoBehaviour
     [SerializeField] public float HealthPoint = 10;
     [SerializeField] public float MaxHp;
     protected InfScript Info;
-
+    public bool StelthKill = false;
     public Live MyLive = Live.Alive;
     
     public enum Live
@@ -51,7 +51,11 @@ public class HpScript : MonoBehaviour
         {
             HealthPoint = 0;
             MyLive = Live.NotAlive;
-            Info.SetAnimation("Death");
+
+            if (StelthKill == false)
+            {
+                Info.SetAnimation("Death");
+            }
         }
         else if ((HealthPoint - Damage) > 0)
         {
@@ -99,6 +103,7 @@ public class HpScript : MonoBehaviour
 
     public void InstanceKill()
     {
+        
         InflictingDamage(HealthPoint*2f);
     }
 }
