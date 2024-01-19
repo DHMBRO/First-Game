@@ -69,7 +69,14 @@ public class LocateScript : MonoBehaviour
         {
             return false;
         }
-
+       HpScript Hp = Target.GetComponent<HpScript>();
+        if (Hp)
+        {
+            if (!Hp.IsAlive())
+            {
+                return false;
+            }
+        }
 
 
         if (TargetStelsScript)

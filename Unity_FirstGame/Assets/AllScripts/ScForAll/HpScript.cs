@@ -54,6 +54,7 @@ public class HpScript : MonoBehaviour
 
             if (StelthKill == false)
             {
+                
                 Info.SetAnimation("Death");
             }
         }

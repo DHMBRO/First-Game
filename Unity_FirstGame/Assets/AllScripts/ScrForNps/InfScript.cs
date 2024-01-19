@@ -25,6 +25,7 @@ public class InfScript : MonoBehaviour
         SoundTaker = this.gameObject.GetComponent<SoundTakerScript>();
       //  Animator = this.gameObject.GetComponentInParent<Animator>();
 
+        
         SetState(new PatrolState(this));
 
     }
