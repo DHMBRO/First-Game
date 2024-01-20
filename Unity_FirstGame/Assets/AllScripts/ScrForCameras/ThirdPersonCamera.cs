@@ -121,8 +121,7 @@ public class ThirdPersonCamera : MonoBehaviour
             //DesirableVector = HitInfo.point;
             //DesirableVector -= transform.position;
             //HitResult = LocalHitResult;
-            
-            transform.position = LocalHitResult.point;
+            if (!LocalHitResult.collider.isTrigger) transform.position = LocalHitResult.point;
             
         }
         else
