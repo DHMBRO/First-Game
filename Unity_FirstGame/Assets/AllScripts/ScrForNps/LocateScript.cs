@@ -69,7 +69,7 @@ public class LocateScript : MonoBehaviour
         {
             return false;
         }
-       HpScript Hp = Target.GetComponent<HpScript>();
+        HpScript Hp = Target.GetComponent<HpScript>();
         if (Hp)
         {
             if (!Hp.IsAlive())
@@ -121,6 +121,10 @@ public class LocateScript : MonoBehaviour
                     return true;
                 }
             }
+        }
+        if ((Target.transform.position - gameObject.transform.position).magnitude < 1.5f)
+        {
+            return true;
         }
       return false;
     }

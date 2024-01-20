@@ -11,7 +11,7 @@ public class HpScript : MonoBehaviour
     protected InfScript Info;
     public bool StelthKill = false;
     public Live MyLive = Live.Alive;
-    
+    protected PatrolScriptNavMesh MyNavMesh;
     public enum Live
     {
         Alive,
@@ -20,7 +20,7 @@ public class HpScript : MonoBehaviour
 
     private void Start()
     {
-
+        MyNavMesh = gameObject.GetComponent<PatrolScriptNavMesh>();
         Info = gameObject.GetComponentInParent<InfScript>();
         if (!Info && State != EnemyState.Player)
 
@@ -51,10 +51,9 @@ public class HpScript : MonoBehaviour
         {
             HealthPoint = 0;
             MyLive = Live.NotAlive;
-
+            MyNavMesh.ZombieNavMesh.isStopped = true;
             if (StelthKill == false)
             {
-                
                 Info.SetAnimation("Death");
             }
         }
