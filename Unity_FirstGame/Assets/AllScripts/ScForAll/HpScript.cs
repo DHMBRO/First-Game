@@ -23,9 +23,8 @@ public class HpScript : MonoBehaviour
         MyNavMesh = gameObject.GetComponent<PatrolScriptNavMesh>();
         Info = gameObject.GetComponentInParent<InfScript>();
         if (!Info && State != EnemyState.Player)
-
         {
-            Debug.Log(gameObject.name + " InfoScr = Null" );
+            //Debug.Log(gameObject.name + " InfoScr = Null" );
         }
         if (UiHp && ProzentHealPoint) OutPutHp(HealthPoint, UiHp, ProzentHealPoint);
     }

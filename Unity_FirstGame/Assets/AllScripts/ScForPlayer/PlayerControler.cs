@@ -156,7 +156,7 @@ public class PlayerControler : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.LeftControl)) InStealth = !InStealth;
 
             //Camera
-            if (CameraPlayerF3.CameraIsUsig && HaveWeaponInHand || HavePistolInHand)
+            if (CameraPlayerF3.CameraIsUsig && (HaveWeaponInHand || HavePistolInHand))
             {
                 if (Input.GetKey(KeyCode.Mouse1)) IsAiming = true;
                 else IsAiming = false;
