@@ -25,8 +25,6 @@ public class PlayerAttackScript : MonoBehaviour
     }
     void Update()
     {
-
-         
         if (Input.GetKeyDown(KeyCode.V))
         {
               
@@ -42,7 +40,6 @@ public class PlayerAttackScript : MonoBehaviour
                 
                 if (HpScript && ZombieLocateScript && InfoScript)
                 {
-                   
                     if (InfoScript.IsObjectFromBehinde(gameObject))
                     {
                        if (ZombieLocateScript.WhatForvardToMe(PlayerHead) == Collider.gameObject)

@@ -15,6 +15,7 @@ public class LocateScript : MonoBehaviour
     [SerializeField] float VisionAngle = 60.0f;
     List<GameObject> Targets;
     protected HpScript MyHpScript;
+    protected float FullVisionDistance = 1.5f;
     
     void Start()
     {
@@ -56,20 +57,33 @@ public class LocateScript : MonoBehaviour
      }*/
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == Target)
+        if (Targets.Contains(other.gameObject))
         {
-            Targets.Remove(Target);
+            Targets.Remove(other.gameObject);
             DefineMyTarget();
         }
     }
+ 
+    public void RelocateTarget()
+    {
+        if ((ZombiePatrolScript.ZombieNavMesh.destination - Target.transform.position).magnitude >= 3.0f)
+        {
+            ZombiePatrolScript.ZombieNavMesh.SetDestination(Target.transform.position);
+        }
+    }
+    //ToTarget
     public bool CanISeeTarget()
     {
+        return CanISee(Target);
+    }
+    protected bool CanISee(GameObject TestTarget)
+    {
 
-        if (!Target)
+        if (!TestTarget)
         {
             return false;
         }
-        HpScript Hp = Target.GetComponent<HpScript>();
+        HpScript Hp = TestTarget.GetComponent<HpScript>();
         if (Hp)
         {
             if (!Hp.IsAlive())
@@ -78,62 +92,58 @@ public class LocateScript : MonoBehaviour
             }
         }
 
-
-        if (TargetStelsScript)
+        StelthScript TestTargetStelsScript =  TestTarget.GetComponent<StelthScript>();
+        if (TestTargetStelsScript)
         {
-            if (TargetStelsScript.Stelth)
+            if (TestTargetStelsScript.Stelth)
             {
-                Target = null;
-                TargetStelsScript = null;
+                TestTarget = null;
+                TestTargetStelsScript = null;
                 return false;
             }
         }
 
-        if (IsObjectFromBehinde(Target))
-        {
-            return false;
-        }
-        
+        /* 
+         if (IsObjectFromBehinde(Target))
+         {
+             return false;
+         }
+        */
 
-        float AngleToTarget = Vector3.Angle(gameObject.transform.forward, Target.transform.position - gameObject.transform.position);
-          
-        if (AngleToTarget <= VisionAngle)
+
+        float AngleToTestTarget = Vector3.Angle(gameObject.transform.forward, TestTarget.transform.position - gameObject.transform.position);
+
+        if (AngleToTestTarget <= VisionAngle)
         {
-            
-            Vector3 Rotate = Target.transform.position - transform.position;
-            Vector3 RotateHead = Target.transform.position - Head.position;
+
+            Vector3 Rotate = TestTarget.transform.position - transform.position;
+            Vector3 RotateHead = TestTarget.transform.position - Head.position;
             Ray HeadForward = new Ray(Head.transform.position, RotateHead);
 
             Head.transform.rotation = Quaternion.LookRotation(RotateHead);
-             RaycastHit[] HitResults = Physics.RaycastAll(HeadForward, MaxDistatzeForAgr);
-            foreach (RaycastHit HitResult in HitResults) 
-            { 
-                RaycastHit Hitres;
-                if (Physics.Raycast(HeadForward, out Hitres, MaxDistatzeForAgr))
+            RaycastHit[] HitResults = Physics.RaycastAll(HeadForward, MaxDistatzeForAgr);
+            foreach (RaycastHit HitResult in HitResults)
+            {
+                if (HitResult.collider.gameObject.transform.root.gameObject == gameObject)
                 {
-                    if (Hitres.collider.gameObject == Target || Hitres.collider.gameObject.transform.root.gameObject == Target)
-                    {
-                        return true;
-                    }
+                    continue;
                 }
-                if ((gameObject.transform.position - Target.transform.position).magnitude <= 1.0f)
+                if (HitResult.collider.gameObject == TestTarget || HitResult.collider.gameObject.transform.root.gameObject == TestTarget)
                 {
                     return true;
                 }
+                else
+                {
+                    return false;
+                }
             }
         }
-        if ((Target.transform.position - gameObject.transform.position).magnitude < 1.5f)
+        if ((TestTarget.transform.position - gameObject.transform.position).magnitude < 1.5f)
         {
             return true;
         }
-      return false;
-    }
-    public void RelocateTarget()
-    {
-        if ((ZombiePatrolScript.ZombieNavMesh.destination - Target.transform.position).magnitude >= 3.0f)
-        {
-            ZombiePatrolScript.ZombieNavMesh.SetDestination(Target.transform.position);
-        }
+        return false;
+
     }
 
    
@@ -160,18 +170,31 @@ public class LocateScript : MonoBehaviour
     // ??????? ?? 2(?? ???? ?? ??,????) ??????? ???????? ?? ???? ?? ???? ??????
     public void DefineMyTarget()
     {
-
+        
         float MinDistance = float.MaxValue;
         GameObject NewTarget = Target;
-        foreach (GameObject SingleTarget in Targets)
+        for(int i = Targets.Count - 1; Targets.Count >= 0; i-- )
         {
-            float CurenntDis = (SingleTarget.transform.position - gameObject.transform.position).magnitude;
-            if (CurenntDis < MinDistance)
+            HpScript Hp = Targets[i].GetComponent<HpScript>();
+            if (!Hp.IsAlive())
             {
-                NewTarget = SingleTarget;
-                MinDistance = CurenntDis;
+                Targets.RemoveAt(i);
             }
         }
+        foreach (GameObject SingleTarget in Targets)
+        {
+            if (CanISee(SingleTarget))
+            {
+                float CurenntDis = (SingleTarget.transform.position - gameObject.transform.position).magnitude;
+                if (CurenntDis < MinDistance)
+                {
+                    NewTarget = SingleTarget;
+                    MinDistance = CurenntDis;
+                }
+            }  
+        }           
+
+        
         Target = NewTarget;
     }
     public void ValidateTarget()

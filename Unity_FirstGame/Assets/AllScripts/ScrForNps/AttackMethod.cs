@@ -37,7 +37,7 @@ public class AttackMethod : MonoBehaviour
 
     void Update()
     {
-        if (ZombieLocateScript.Target) TargetHpScript = ZombieLocateScript.Target.GetComponent<HpScript>();
+       
     }
 
     public void StartAttack(GameObject Target)
