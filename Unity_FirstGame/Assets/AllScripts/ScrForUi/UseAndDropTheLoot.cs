@@ -21,7 +21,7 @@ public class UseAndDropTheLoot : MethodsFromDevelopers
             
             if (ControlerSlots)
             {
-                SlotToUseLoot = ControlerSlots.SlotHand;
+                SlotToUseLoot = ControlerSlots.SlotHandForUseLoot;
                 //Debug.Log(SlotToUseLoot);
             }
             if (!ControlerPlayer) Debug.Log("Not set ControlerPlayer");

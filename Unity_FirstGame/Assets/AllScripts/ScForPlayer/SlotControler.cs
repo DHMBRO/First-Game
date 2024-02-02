@@ -5,7 +5,11 @@ public class SlotControler : MethodsFromDevelopers
 {    
 
     //All Slots
-    [SerializeField] public Transform SlotHand;
+    [SerializeField] public Transform CurrentSlotHand;
+    [SerializeField] public Transform SlotHandForUseLoot;
+    [SerializeField] public Transform SlotHandForPistols;
+    [SerializeField] public Transform SlotHandForWeapons;
+    
     [SerializeField] public Transform ThatTimeSlot;
     [SerializeField] public Transform ObjectInThatTimeSlot;
     //
@@ -83,7 +87,7 @@ public class SlotControler : MethodsFromDevelopers
 
     }
 
-    private void UpdateTypeWeaponInHand()
+    public void UpdateTypeWeaponInHand()
     {
         if (!ObjectInHand)
         {
@@ -100,10 +104,17 @@ public class SlotControler : MethodsFromDevelopers
                 case TypeWeapon.Weapon:
                     ControlerPlayer.HaveWeaponInHand = true;
                     ControlerPlayer.HavePistolInHand = false;
+                    CurrentSlotHand = SlotHandForWeapons; 
                     break;
                 case TypeWeapon.Pistol:
                     ControlerPlayer.HaveWeaponInHand = false;
                     ControlerPlayer.HavePistolInHand = true;
+                    CurrentSlotHand = SlotHandForPistols;
+                    break;
+                default:
+                    ControlerPlayer.HavePistolInHand = false;
+                    ControlerPlayer.HaveWeaponInHand = false;
+                    CurrentSlotHand = SlotHandForUseLoot;
                     break;
             }
 
@@ -127,7 +138,7 @@ public class SlotControler : MethodsFromDevelopers
 
     public void GetObjectInHand()
     {
-        if (ObjectInHand) PutObjects(ObjectInHand.transform,SlotHand, false);
+        if (ObjectInHand) PutObjects(ObjectInHand.transform,CurrentSlotHand, false);
         
     }
 
@@ -327,90 +338,99 @@ public class SlotControler : MethodsFromDevelopers
         bool ObjectInHand02 = MyPistol01 && ObjectInHand == MyPistol01.gameObject;
         bool ObjectInHand03 = MyWeapon01 && ObjectInHand == MyWeapon01.gameObject;
         bool ObjectInHand04 = MyWeapon02 && ObjectInHand == MyWeapon02.gameObject;
-        
-        
-        if (MyKnife01 && ObjectInHand == null && Counter == 0)
+
+        List<Transform> AllWeapons = new List<Transform>();
+        List<Transform> AllSlots = new List<Transform>();
+
+        Transform NextWeapon = null;
+        Transform NextSlotInHand = null;
+        int CountNextWeapon = 0;
+
+        if(MyKnife01) AllWeapons.Add(MyKnife01);
+        if(MyPistol01) AllWeapons.Add(MyPistol01);
+        if(MyWeapon01) AllWeapons.Add(MyWeapon01);
+        if(MyWeapon02) AllWeapons.Add(MyWeapon02);
+
+        AllSlots.Add(SlotKnife01);
+        AllSlots.Add(SlotPistol01);
+        AllSlots.Add(SlotBack01);
+        AllSlots.Add(SlotBack02);
+
+        if (ObjectInHand)
         {
-            PutObjects(MyKnife01, SlotHand, false);
+            for (int i = 0; i < AllWeapons.Count; i++)
+            {
+                if (ObjectInHand.name == AllWeapons[i].name)
+                {
+                    if (i + 1 < AllWeapons.Count)
+                    {
+                        NextWeapon = AllWeapons[i + 1];
+                        CountNextWeapon = i + 1;
+                        break;
+                    }
+                    else 
+                    {
+                        NextWeapon = AllWeapons[0];
+                        CountNextWeapon = 0;
+                        break;
+                    }
+                }
 
-            ObjectInHand = MyKnife01.gameObject;
-            Counter = 1;
-        }
-        else if (MyKnife01 && SlotKnife01 && ObjectInHand01 && Counter == 0)
-        {
-            if (MyKnife01)
-            {
-                PutObjects(MyKnife01, SlotKnife01, false);
-                ObjectInHand = null;
-            }
-            if (MyPistol01)
-            {
-                PutObjects(MyPistol01, SlotHand, false);
-                ObjectInHand = MyPistol01.gameObject;
-                Counter = 1;
-
-            }
-            else if (!ObjectInHand02 && MyWeapon01)
-            {
-                PutObjects(MyWeapon01, SlotHand, false);
-                ObjectInHand = MyWeapon01.gameObject;
-                Counter = 1;
-            }
-            else if (!ObjectInHand02 && !ObjectInHand03 && MyWeapon02)
-            {
-
-                PutObjects(MyWeapon02, SlotHand, false);
-                ObjectInHand = MyWeapon02.gameObject;
-                Counter = 1;
-            }
-
-        }
-        else if (MyWeapon01 && MyPistol01 && SlotBack01 && ObjectInHand02 && Counter == 0)
-        {
-
-            if (ObjectInHand02 && MyPistol01)
-            {
-                PutObjects(MyPistol01, SlotPistol01, false);
-                ObjectInHand = null;
-            }
-            if (!ObjectInHand && MyWeapon01 && Counter == 0)
-            {
-                PutObjects(MyWeapon01, SlotHand, false);
-                ObjectInHand = MyWeapon01.gameObject;
-                Counter = 1;
+                //Debug.Log("Object in hand ID: " + ObjectInHand.GetInstanceID());
+                //Debug.Log("Object in hand ID: " + AllWeapons[i].GetInstanceID());
             }
         }
-        else if (MyWeapon01 && MyWeapon02 && SlotBack01 && SlotBack02 && Counter == 0)
+        else
         {
-            if (MyWeapon01 && ObjectInHand03)
+            NextWeapon = AllWeapons[0];
+            CountNextWeapon = 0;
+        }
+
+        //Debug.Log("Next weapon of List: " + NextWeapon);
+        //Debug.Log("Count weapon of List: " + CountNextWeapon);
+
+        ShootControler NextShootControler =  NextWeapon.GetComponent<ShootControler>();
+        if (NextShootControler)
+        {
+            switch (NextShootControler.TheGun)
             {
-                PutObjects(MyWeapon01, SlotBack01, false);
-                ObjectInHand = null;
+                case TypeWeapon.Weapon:
+                    NextSlotInHand = SlotHandForWeapons;
+                    break;
+                case TypeWeapon.Pistol:
+                    NextSlotInHand = SlotHandForPistols;
+                    break;
+                default:
+                    NextSlotInHand = SlotHandForPistols;
+                    break;
             }
-            if (MyWeapon02 && !ObjectInHand && Counter == 0)
+
+        }
+        else NextSlotInHand = SlotHandForPistols;
+
+        if (ObjectInHand)
+        {
+            int CountObjectInHand = 0;
+
+            for (int i = 0;i < AllWeapons.Count;i++)
             {
-                PutObjects(MyWeapon02, SlotHand, false);
-                ObjectInHand = MyWeapon02.gameObject;
-                Counter = 1;
+                if (ObjectInHand.name == AllWeapons[i].name)
+                {
+                    CountObjectInHand = i;
+                    break;
+                }
+                else CountObjectInHand = 0;
             }
 
-        }
-        if (MyPistol01 && !MyWeapon01 && !MyWeapon02 && Counter == 0)
-        {
-            PutObjects(MyPistol01, SlotPistol01, false);
-            ObjectInHand = null;
+            PutObjects(ObjectInHand.transform, AllSlots[CountObjectInHand].transform, false);
+            PutObjects(NextWeapon.transform, NextSlotInHand.transform, false);
 
+            ObjectInHand = NextWeapon.gameObject;
         }
-        else if (MyWeapon01 && !MyWeapon02 && Counter == 0)
+        else
         {
-            PutObjects(MyWeapon01, SlotBack01, false);
-            ObjectInHand = null;
-
-        }
-        else if (MyWeapon02 && ObjectInHand04 && Counter == 0)
-        {
-            PutObjects(MyWeapon02, SlotBack02, false);
-            ObjectInHand = null;
+            PutObjects(NextWeapon.transform, NextSlotInHand.transform, false);
+            ObjectInHand = NextWeapon.gameObject;
         }
 
         UpdateTypeWeaponInHand();

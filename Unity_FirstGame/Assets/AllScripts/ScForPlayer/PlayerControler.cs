@@ -190,8 +190,8 @@ public class PlayerControler : MonoBehaviour
             if (SlotControler)
             {
                 SlotControler.MovingGunForSlots();
-
-                if (SlotControler.SlotHand && SlotControler.ObjectInHand)
+                
+                if (SlotControler.CurrentSlotHand && SlotControler.ObjectInHand)
                 {
                     ControlerShoot = SlotControler.ObjectInHand.GetComponent<ShootControler>();
                     
@@ -199,6 +199,7 @@ public class PlayerControler : MonoBehaviour
                 // Change Object In Hand
                 if (Input.GetKeyDown("1"))
                 {
+                    //SlotControler.UpdateTypeWeaponInHand();
                     SlotControler.ChangingSlots();
                     SlotControler.Counter = 1;
                 }
