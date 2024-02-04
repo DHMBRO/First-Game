@@ -29,6 +29,16 @@ public class ShootControler : MonoBehaviour
         if (!Bullet) Debug.Log("Not set Bullet");
     }
 
+    public void ShootWithPoint(Ray ForwardCamera)
+    {
+        if ()
+        {
+
+        }
+
+    }
+
+
     public void Shoot()//ColectPoint
     {
         if (!GameObjectForRay || !Muzzle || !Bullet || !Collet || !ColletPoint )

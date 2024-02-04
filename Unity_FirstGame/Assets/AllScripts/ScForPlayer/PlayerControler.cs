@@ -211,10 +211,11 @@ public class PlayerControler : MonoBehaviour
             }
             
             // Shooting
-            if (ControlerShoot)
+            if (ControlerShoot && CameraPlayerF3)
             {
                 if (Input.GetKey(KeyCode.Mouse0))
                 {
+                    Ray ForwardCamera = new Ray(CameraPlayerF3.transform.position, CameraPlayerF3.transform.forward);
                     ControlerShoot.Shoot();
                 }
             }
