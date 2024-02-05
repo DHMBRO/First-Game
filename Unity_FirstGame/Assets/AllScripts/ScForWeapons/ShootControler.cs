@@ -31,7 +31,7 @@ public class ShootControler : MonoBehaviour
 
     public void ShootWithPoint(Ray ForwardCamera)
     {
-        if ()
+        //if ()
         {
 
         }
