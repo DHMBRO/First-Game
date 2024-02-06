@@ -207,6 +207,7 @@ public class PlayerControler : MonoBehaviour
                 {
                     SlotControler.Counter = 0;
                 }
+                SlotControler.UpdateTypeWeaponInHand();
 
             }
             
