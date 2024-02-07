@@ -37,8 +37,8 @@ public class MethodsFromDevelopers : MonoBehaviour
             ObjectForPut.localScale = Scale;
             CopyTransform(ObjectForPut, PosForPut);   
             
-            Debug.Log("Saved Scale" + Scale);
-            Debug.Log("Current localScale" + ObjectForPut.localScale);    
+            //Debug.Log("Saved Scale" + Scale);
+            //Debug.Log("Current localScale" + ObjectForPut.localScale);    
         }
 
     }
