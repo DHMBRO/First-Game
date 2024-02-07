@@ -207,14 +207,16 @@ public class PlayerControler : MonoBehaviour
                 {
                     SlotControler.Counter = 0;
                 }
+                SlotControler.UpdateTypeWeaponInHand();
 
             }
             
             // Shooting
-            if (ControlerShoot)
+            if (ControlerShoot && CameraPlayerF3)
             {
                 if (Input.GetKey(KeyCode.Mouse0))
                 {
+                    Ray ForwardCamera = new Ray(CameraPlayerF3.transform.position, CameraPlayerF3.transform.forward);
                     ControlerShoot.Shoot();
                 }
             }

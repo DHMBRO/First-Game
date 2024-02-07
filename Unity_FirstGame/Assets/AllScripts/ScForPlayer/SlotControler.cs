@@ -119,7 +119,11 @@ public class SlotControler : MethodsFromDevelopers
             }
 
         }
-
+        else
+        {
+            ControlerPlayer.HaveWeaponInHand = false;
+            ControlerPlayer.HavePistolInHand = false;
+        }
     }
 
     public void PutObjectInHand()
@@ -433,7 +437,6 @@ public class SlotControler : MethodsFromDevelopers
             ObjectInHand = NextWeapon.gameObject;
         }
 
-        UpdateTypeWeaponInHand();
     }
 
     
