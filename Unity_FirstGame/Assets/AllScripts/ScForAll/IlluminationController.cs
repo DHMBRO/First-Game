@@ -4,16 +4,30 @@ using UnityEngine;
 
 public class IlluminationController : MonoBehaviour
 {
-    float GlobalLight = 0.5f;
+    
     public List<LightControl> LightSources = new List<LightControl>();
     [SerializeField] public GameObject HeadObject;
+    GameObject Sun;
     void Start()
     {
-        
+        GameObject [] SunObj = GameObject.FindGameObjectsWithTag("Directional Light");
+        foreach (GameObject obj in SunObj)
+        {
+            if (obj.GetComponent<Light>())
+            {
+                Sun = obj;
+                break;
+            }
+        }
+        //GlobalLight = 
     }
     void Update()
     {
-       Debug.Log("Illumination" + GetIlluminatiLvl());
+        if (gameObject.CompareTag("Player01"))
+        {
+            Debug.Log("Illumination " + GetIlluminatiLvl() + gameObject.name);
+        }
+       
     }
     public float GetIlluminatiLvl()
     {
@@ -26,6 +40,17 @@ public class IlluminationController : MonoBehaviour
     }
     float GetGlobalIlluminatiLvl()
     {
-        return GlobalLight;
+        Debug.DrawLine(HeadObject.transform.position, HeadObject.transform.position + (-Sun.transform.forward * 50.0f));
+        RaycastHit[] Hitresults = Physics.RaycastAll(HeadObject.transform.position, -Sun.transform.forward);
+        foreach (RaycastHit Hitres in Hitresults)
+        {
+            if (Hitres.collider.gameObject.transform.root.gameObject == gameObject.transform.root)
+            {
+                continue;
+            }
+            return 0.0f;
+        }
+       
+        return Mathf.Clamp(((Sun.transform.rotation.x + 20.0f) / 110), 0.0f, 1.0f);
     }
 }

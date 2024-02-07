@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public abstract class ILogic 
+public abstract class ILogic
 {
     public InfScript InfOwner;
     public GameObject gameObj;
@@ -13,6 +13,14 @@ public abstract class ILogic
     public GameObject StartPos;
     public PointControllScript PointScript;
     public int CurrentPoint = 0;
+    [SerializeField] public Types MyType = Types.Patroller;
+    [SerializeField] GameObject[] Points;// незнаю на рахунок цього масиву точок для стейту Вотчінг
+    public enum Types
+    {
+        Camper,
+        Patroller //&
+    }
+        
     public ILogic(InfScript NewOwner) 
     {
         InfOwner = NewOwner;
@@ -38,30 +46,57 @@ public abstract class ILogic
     {
         if (InfOwner.Alive())
         {
-            if (DoISeeEnemy())
+            if (MyType == Types.Camper) // зміни 
             {
-                if (CanIAttack())
+                if (DoISeeEnemy())
                 {
-                   
-                    Debug.Log("ATTACK");
-                    InfOwner.SetState(new AttackState(InfOwner));
+                    if (CanIAttack())
+                    {
+                        InfOwner.SetState(new AttackState(InfOwner));
+                    }
+                    else
+                    {
+                        InfOwner.SetState(new FollowTargetState(InfOwner));
+                    }
+                }
+                else 
+                {
+                    InfOwner.SetState(new GuardState(InfOwner));
+                }
+                if (InfOwner.IHearSomething())
+                {
+                    InfOwner.SetState(new CamperCheckNoice(InfOwner));
+                }
+
+
+            }
+            else if (MyType == Types.Patroller) // зміни
+            {
+                if (DoISeeEnemy())
+                {
+                    if (CanIAttack())
+                    {
+
+                        Debug.Log("ATTACK");
+                        InfOwner.SetState(new AttackState(InfOwner));
+                    }
+                    else
+                    {
+
+                        InfOwner.SetState(new ChaseState(InfOwner));
+                    }
+                }
+                else if (InfOwner.IHearSomething())
+                {
+
+                    InfOwner.SetState(new CheckPositionState(InfOwner));
                 }
                 else
                 {
-                    
-                    InfOwner.SetState(new ChaseState(InfOwner));
+                    InfOwner.SetState(new PatrolState(InfOwner));
                 }
             }
-            else if (InfOwner.IHearSomething())
-            {
-              
-                InfOwner.SetState(new CheckPositionState(InfOwner));
-            }
-            else
-            {
-                
-                InfOwner.SetState(new PatrolState(InfOwner));
-            }
+            
         }
     }
 }
@@ -120,7 +155,6 @@ public class ChaseState : ILogic
     }
     
 }
-
 public class CheckPositionState : ILogic
 {
     public CheckPositionState(InfScript NewOwner) : base(NewOwner)
@@ -151,9 +185,6 @@ public class CheckPositionState : ILogic
 
     }
 }
-
-
-
 public class AttackState : ILogic
 {
     public AttackState(InfScript NewOwner) : base(NewOwner)
@@ -162,7 +193,7 @@ public class AttackState : ILogic
     }
     override public void Update()
     {
-       
+
         if (DoISeeEnemy())
         {
             if (CanIAttack())
@@ -183,5 +214,92 @@ public class AttackState : ILogic
             Patrol.ZombieNavMesh.isStopped = false;
             InfOwner.SetState(new PatrolState(InfOwner)); // TODO  Check Last Position of enemy
         }
+    }
+}
+public class GuardState : ILogic
+{
+    public GuardState(InfScript NewOwner) : base(NewOwner)
+    {
+    }
+    public override void Update()
+    {
+        
+        
+
+    }
+}
+public class FollowTargetState : ILogic
+{
+    public FollowTargetState(InfScript NewOwner) : base(NewOwner)
+    {
+    }
+    public override void Update()
+    {
+        if (!DoISeeEnemy())
+        {
+            InfOwner.SetState(new GuardState(InfOwner));
+            return;
+        }
+       //Rotation *y* only
+        Vector3 NewRotation = Vector3.Lerp(gameObj.transform.forward, Locate.Target.transform.position, 0.1f);
+        gameObj.transform.rotation.SetLookRotation(NewRotation); // Tips* Залежність від часу(DeltaTime)
+        if (CanIAttack())
+        {
+            InfOwner.SetState(new CamperAttackState(InfOwner));
+        }
+    }
+}
+
+public class CamperAttackState : ILogic
+{
+    public CamperAttackState(InfScript NewOwner) : base(NewOwner) 
+    { 
+
+    }
+    override public void Update()
+    {
+        if (DoISeeEnemy())
+        {
+            if (CanIAttack())
+            {
+                Attack.StartAttack(Locate.Target);
+            }
+            else
+            {
+                Attack.StopAttack();
+                InfOwner.SetState(new FollowTargetState(InfOwner));
+            }
+        }
+        else
+        {
+            Attack.StopAttack();
+            InfOwner.SetState(new GuardState(InfOwner)); 
+        }
+        
+    }
+}
+public class CamperCheckNoice : ILogic
+{
+    public CamperCheckNoice (InfScript NewOnwer) : base(NewOnwer)
+    {
+
+    }
+    public override void Update()
+    {
+        if(InfOwner.IHearSomething())
+        {
+           //lerp
+           gameObj.transform.rotation.SetLookRotation(InfOwner.UNeedToCheckThis());
+        }
+        else if (DoISeeEnemy())
+        {
+            InfOwner.SetState(new FollowTargetState(InfOwner));
+
+        }
+        else
+        {
+            InfOwner.SetState(new GuardState(InfOwner));
+        }
+
     }
 }

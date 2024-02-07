@@ -46,15 +46,21 @@ public class HpScript : MonoBehaviour
 
     void MinusHp(float Damage)
     {
+
         if ((HealthPoint - Damage) <= 0)
         {
+            
             HealthPoint = 0;
-            MyLive = Live.NotAlive;
-            MyNavMesh.ZombieNavMesh.isStopped = true;
-            if (StelthKill == false)
+            MyLive = Live.NotAlive; 
+            if (State != EnemyState.Another)
             {
-                Info.SetAnimation("Death");
+                MyNavMesh.ZombieNavMesh.isStopped = true;
+                if (StelthKill == false)
+                {
+                    Info.SetAnimation("Death");
+                }
             }
+
         }
         else if ((HealthPoint - Damage) > 0)
         {

@@ -7,9 +7,10 @@ public class LightControl : MonoBehaviour
     [SerializeField] float Angle = 360.0f;
     [SerializeField] float LightRange = 10.0f;
     [SerializeField] bool DistanceDepend;
-    
+    protected HpScript SpotLightHp;
     void Start()
     {
+        SpotLightHp = gameObject.GetComponent<HpScript>();
         Light LinghtComponent = gameObject.GetComponent<Light>();
         if (LinghtComponent)
         {
@@ -39,42 +40,46 @@ public class LightControl : MonoBehaviour
     }
     public float HowMuchObjShine(GameObject Object)
     {
-        IlluminationController IlluContr = Object.GetComponentInParent<IlluminationController>();
-        if (!IlluContr || !IlluContr.HeadObject)
+        if ((SpotLightHp && SpotLightHp.IsAlive()) || !SpotLightHp)
         {
-            return 0.0f;
-        }
-
-
-
-
-
-
-
-        if (LightRange >= (IlluContr.HeadObject.transform.position - gameObject.transform.position).magnitude)
-        {
-            if (Vector3.Angle(gameObject.transform.forward, (IlluContr.HeadObject.transform.position - gameObject.transform.position).normalized) <= Angle)
+            IlluminationController IlluContr = Object.GetComponentInParent<IlluminationController>();
+            if (!IlluContr || !IlluContr.HeadObject)
             {
-                RaycastHit [] Hitresults = Physics.RaycastAll(gameObject.transform.position, IlluContr.HeadObject.transform.position - gameObject.transform.position);
-                Debug.DrawLine(gameObject.transform.position, IlluContr.HeadObject.transform.position);
-                foreach(RaycastHit Hitres in Hitresults)//Raycast from Light to Obj to check there is no obj between them
+                return 0.0f;
+            }
+            if (LightRange >= (IlluContr.HeadObject.transform.position - gameObject.transform.position).magnitude)
+            {
+                if (Vector3.Angle(gameObject.transform.forward, (IlluContr.HeadObject.transform.position - gameObject.transform.position).normalized) <= Angle)
                 {
-                    if (Hitres.collider.gameObject.transform.root == gameObject.transform.root)
+                    RaycastHit[] Hitresults = Physics.RaycastAll(gameObject.transform.position, IlluContr.HeadObject.transform.position - gameObject.transform.position);
+                    Debug.DrawLine(gameObject.transform.position, IlluContr.HeadObject.transform.position);
+                    foreach (RaycastHit Hitres in Hitresults)//Raycast from Light to Obj to check there is no obj between them
                     {
-                        continue;
+                        if (Hitres.collider.gameObject.transform.root == gameObject.transform.root)
+                        {
+                            continue;
+                        }
+                        if (Hitres.collider.gameObject.transform.root == IlluContr.HeadObject.transform.root)
+                        {
+                            return DistanceDepend ? Mathf.Clamp(1 - ((gameObject.transform.position - IlluContr.HeadObject.transform.position).magnitude / LightRange), 0.0f, 1.0f) : 1.0f;
+                        }
+                        break;
                     }
-                    if (Hitres.collider.gameObject.transform.root == IlluContr.HeadObject.transform.root)
-                    {
-                        return DistanceDepend ?  Mathf.Clamp(1 - ( (gameObject.transform.position - IlluContr.HeadObject.transform.position).magnitude / LightRange ) ,0.0f, 1.0f) : 1.0f;
-                    }
-                    break;
                 }
             }
         }
         return 0.0f;
     }
-    void Update()
+    private void OnDestroy()
     {
-        
+        Collider[] Colliders = Physics.OverlapSphere(gameObject.transform.position, LightRange, LayerMask.GetMask("Detect Box"));
+        foreach(Collider Collider in Colliders)
+        {
+            IlluminationController ObjIlluminControll = Collider.gameObject.GetComponent<IlluminationController>();
+            if (ObjIlluminControll)
+            {
+                ObjIlluminControll.LightSources.Remove(this);
+            }
+        }
     }
 }

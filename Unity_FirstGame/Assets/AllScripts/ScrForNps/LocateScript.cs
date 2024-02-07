@@ -78,7 +78,7 @@ public class LocateScript : MonoBehaviour
     }
     protected bool CanISee(GameObject TestTarget)
     {
-
+        
         if (!TestTarget)
         {
             return false;
@@ -91,6 +91,15 @@ public class LocateScript : MonoBehaviour
                 return false;
             }
         }
+
+
+        float CurrentAgrDistance = MaxDistatzeForAgr;
+        IlluminationController TestTargetIllumin = TestTarget.GetComponentInParent<IlluminationController>();
+        if (TestTargetIllumin)
+        {
+            CurrentAgrDistance =  MaxDistatzeForAgr * TestTargetIllumin.GetIlluminatiLvl();
+        }
+
 
         StelthScript TestTargetStelsScript =  TestTarget.GetComponent<StelthScript>();
         if (TestTargetStelsScript)
@@ -121,7 +130,7 @@ public class LocateScript : MonoBehaviour
             Ray HeadForward = new Ray(Head.transform.position, RotateHead);
 
             Head.transform.rotation = Quaternion.LookRotation(RotateHead);
-            RaycastHit[] HitResults = Physics.RaycastAll(HeadForward, MaxDistatzeForAgr);
+            RaycastHit[] HitResults = Physics.RaycastAll(HeadForward, CurrentAgrDistance);
             foreach (RaycastHit HitResult in HitResults)
             {
                 if (HitResult.collider.gameObject.transform.root.gameObject == gameObject)
@@ -170,10 +179,10 @@ public class LocateScript : MonoBehaviour
     // ??????? ?? 2(?? ???? ?? ??,????) ??????? ???????? ?? ???? ?? ???? ??????
     public void DefineMyTarget()
     {
-        
+        //
         float MinDistance = float.MaxValue;
         GameObject NewTarget = Target;
-        for(int i = Targets.Count - 1; Targets.Count >= 0; i-- )
+        for(int i = Targets.Count - 1; i >= 0; i--)
         {
             HpScript Hp = Targets[i].GetComponent<HpScript>();
             if (!Hp.IsAlive())

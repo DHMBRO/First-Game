@@ -5,7 +5,8 @@ public enum EnemyState
 {
     Zombie,
     Player,
-    Terrorist
+    Terrorist,
+    Another
 }
 public class EnemyController : MonoBehaviour
 {
