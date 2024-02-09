@@ -4,6 +4,7 @@ public enum MoodCamera
     ThirdFace
 }
 
+
 public enum LevelObject
 {
     FirstLevel,
@@ -25,6 +26,15 @@ public enum WhatIsInHand
 
 }
 
+public enum StateWeapon
+{
+    Null,
+
+    IsUsing,
+    HaveOwner,
+    HaventOwher,
+}
+
 public enum TypeCaliber
 { 
     Null,
@@ -35,6 +45,7 @@ public enum TypeCaliber
     C12x99MM
     
 }
+
 public enum CameraIs
 {
     Null,

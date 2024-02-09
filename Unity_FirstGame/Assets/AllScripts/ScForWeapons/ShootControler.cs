@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public class ShootControler : MonoBehaviour
 {
     //[SerializeField] private BoxCollider ColiderForWeapon;
@@ -14,11 +15,13 @@ public class ShootControler : MonoBehaviour
 
     public TypeWeapon TheGun;
     public TypeCaliber CaliberToWeapon;
+    public StateWeapon Weapon;
 
     [SerializeField] public float ShotDeley = 1.0f;
     [SerializeField] public float ShotTime = 0.0f;
     [SerializeField] public float Mass = 0.0f;
     [SerializeField] private float BulletSpeed = 0.0f;
+
     public bool UnLimitedAmmo;
     //[SerializeField] private float ColletSpeed = 0.0f;
 
@@ -27,6 +30,26 @@ public class ShootControler : MonoBehaviour
     {
         if (!Muzzle) Debug.Log("Not set Muzzle");
         if (!Bullet) Debug.Log("Not set Bullet");
+    }
+
+    private void Update()
+    {
+        Transform ParentWeapon = GetComponentInParent<Transform>();
+        
+        if (ParentWeapon.parent)
+        {
+            if (ParentWeapon.parent.tag == "SlotOwner")
+            {
+                Weapon = StateWeapon.HaveOwner;
+            }
+            else if (ParentWeapon.parent.tag == "SlotForUse")
+            {
+                Weapon = StateWeapon.IsUsing;
+            }
+            else Weapon = StateWeapon.HaventOwher;
+        }
+        else Weapon = StateWeapon.HaventOwher;
+        
     }
 
     public void ShootWithPoint(Ray ForwardCamera)

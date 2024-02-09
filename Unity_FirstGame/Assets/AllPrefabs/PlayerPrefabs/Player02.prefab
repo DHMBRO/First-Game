@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 8542197722180041908}
   m_Layer: 0
   m_Name: PlayerHandForPistols
-  m_TagString: Untagged
+  m_TagString: SlotForUse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -203,14 +203,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1064926501720871172}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.7071068, y: -0.7071068, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 355652097750092183}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 90}
 --- !u!1 &1728130923573974538
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 3265514209495405674}
   m_Layer: 0
   m_Name: SlorForPistol
-  m_TagString: UnloadingSlot
+  m_TagString: SlotOwner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -383,7 +383,7 @@ Transform:
   m_GameObject: {fileID: 2545913011635519099}
   m_LocalRotation: {x: 0.5016379, y: -0.498318, z: -0.5046709, w: 0.49532405}
   m_LocalPosition: {x: -0.12, y: 0.048, z: -0.026}
-  m_LocalScale: {x: 0.6666667, y: 0.66666675, z: 0.6666667}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7058693017956608581}
@@ -678,7 +678,7 @@ GameObject:
   - component: {fileID: 8642227369734006730}
   m_Layer: 0
   m_Name: SlorForKnife
-  m_TagString: Untagged
+  m_TagString: SlotOwner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -692,7 +692,7 @@ Transform:
   m_GameObject: {fileID: 4493663753606487337}
   m_LocalRotation: {x: 0.3480147, y: 0.6155678, z: -0.3516917, w: -0.6134127}
   m_LocalPosition: {x: 0.127, y: 0.025, z: 0.068}
-  m_LocalScale: {x: 0.66666657, y: 0.66666657, z: 0.66666657}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3750617523183495372}
@@ -773,7 +773,7 @@ GameObject:
   - component: {fileID: 8309072860443193568}
   m_Layer: 0
   m_Name: SlotWeapon02
-  m_TagString: UnloadingSlot
+  m_TagString: SlotOwner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -838,7 +838,7 @@ GameObject:
   - component: {fileID: 355652097750092183}
   m_Layer: 0
   m_Name: PlayerHand
-  m_TagString: SlotForUse
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -886,7 +886,7 @@ Transform:
   m_GameObject: {fileID: 6777861884062346435}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.105, z: 0}
-  m_LocalScale: {x: 0.66666675, y: 0.6666667, z: 0.66666675}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 355652097750092183}
@@ -1117,7 +1117,7 @@ GameObject:
   - component: {fileID: 3100735423632468982}
   m_Layer: 0
   m_Name: PlayerHandForWeapons
-  m_TagString: Untagged
+  m_TagString: SlotForUse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1129,14 +1129,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8646621967482254202}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.7071068, y: -0.7071068, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 355652097750092183}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 90}
 --- !u!1 &8702361213055288837
 GameObject:
   m_ObjectHideFlags: 0
@@ -1182,7 +1182,7 @@ GameObject:
   - component: {fileID: 5356016234576479898}
   m_Layer: 0
   m_Name: PlayerHandForUseLoot
-  m_TagString: Untagged
+  m_TagString: SlotForUse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1697,7 +1697,7 @@ GameObject:
   - component: {fileID: 6130160416243130551}
   m_Layer: 0
   m_Name: SlotWeapon01
-  m_TagString: UnloadingSlot
+  m_TagString: SlotOwner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1872,6 +1872,18 @@ PrefabInstance:
     - target: {fileID: 8161601084164883030, guid: 2b35364d3493c314c9c06a38127656c8, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161601084164883030, guid: 2b35364d3493c314c9c06a38127656c8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161601084164883030, guid: 2b35364d3493c314c9c06a38127656c8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161601084164883030, guid: 2b35364d3493c314c9c06a38127656c8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8161601084164883030, guid: 2b35364d3493c314c9c06a38127656c8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2553,6 +2565,18 @@ PrefabInstance:
     - target: {fileID: 5920628141422906895, guid: c1ab9abedc9d80f4a9109fe99b4ea8d4, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5920628141422906895, guid: c1ab9abedc9d80f4a9109fe99b4ea8d4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5920628141422906895, guid: c1ab9abedc9d80f4a9109fe99b4ea8d4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5920628141422906895, guid: c1ab9abedc9d80f4a9109fe99b4ea8d4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5920628141422906895, guid: c1ab9abedc9d80f4a9109fe99b4ea8d4, type: 3}
       propertyPath: m_LocalPosition.x
