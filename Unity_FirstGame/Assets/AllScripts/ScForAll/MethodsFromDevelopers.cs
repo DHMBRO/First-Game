@@ -34,7 +34,9 @@ public class MethodsFromDevelopers : MonoBehaviour
         {
             Vector3 Scale = ObjectForPut.localScale;
             ObjectForPut.transform.SetParent(PosForPut);
-            ObjectForPut.localScale = Scale;
+            
+            //ObjectForPut.localScale = Scale;
+            
             CopyTransform(ObjectForPut, PosForPut);   
             
             //Debug.Log("Saved Scale" + Scale);
