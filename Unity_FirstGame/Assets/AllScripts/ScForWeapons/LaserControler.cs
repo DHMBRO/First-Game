@@ -11,7 +11,9 @@ public class LaserControler : MonoBehaviour
     private void Start()
     {
         LaserRenderer = GetComponent<LineRenderer>();
-        
+        if (LaserRenderer) LaserRenderer.enabled = false;
+        else Debug.Log("Not set LaserRenderer");
+
     }
 
     private void Update()
@@ -23,7 +25,11 @@ public class LaserControler : MonoBehaviour
         switch (ShootControlerWeapon.Weapon)
         {
             case StateWeapon.IsUsing:
+                LaserRenderer.enabled = true;
                 EnableLaser();
+                break;
+            default:
+                LaserRenderer.enabled = false;
                 break;
         }
 
@@ -42,5 +48,5 @@ public class LaserControler : MonoBehaviour
         LaserRenderer.SetPosition(1, EndPoint);
 
     }
-
+    
 }
