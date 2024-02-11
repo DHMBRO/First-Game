@@ -56,6 +56,7 @@ public class ScrForUseAmmo : MonoBehaviour, IUsebleInterFace
             }
         }
 
+        SelectObj.ObjectToUse = null;
 
         if (CurrentAmmo == 0)
         {
@@ -63,17 +64,20 @@ public class ScrForUseAmmo : MonoBehaviour, IUsebleInterFace
             Debug.Log("Current Ammo: " + CurrentAmmo);
 
             SelectObj.DeleteReferenceToLoot();
+            Destroy(gameObject);
+            
             return;
         }
         else 
         {
             InfoLoot.SaveInfo(gameObject);
-
+            
             Destroy(gameObject);
         }
-    
+
+
     }
- 
+
     public bool Audit(GameObject Target, ScrSaveAndGiveInfo InfoLoot, UseAndDropTheLoot SelectObj)
     {
         SlotControler ControlerSlots = Target.GetComponent<SlotControler>();

@@ -100,6 +100,7 @@ public class PlayerControler : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.I)) ControlerUi.OpenOrCloseInventory();
             if (ControlerUi.InventoryIsOpen) MainStatePlayer = MainPlayer.InventoryIsOpen;
+            else MainStatePlayer = MainPlayer.Null;
             ControlerUi.InterfaceControler();
         }
 
@@ -117,7 +118,12 @@ public class PlayerControler : MonoBehaviour
             }
 
         }
-        
+        else
+        {
+            PlayerDo = WhatDoPlayer.Null;
+            IsUsingLoot = false;
+        }
+
         if((!ControlerUi || !ControlerUi.InventoryIsOpen) && PlayerDo == WhatDoPlayer.Null && !StealthKilling)
         {
             

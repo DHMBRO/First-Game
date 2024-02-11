@@ -29,7 +29,7 @@ public class SlotControler : MethodsFromDevelopers
     [SerializeField] public Transform MyPistol01;
     //
     [SerializeField] public Transform MyKnife01;
-    //
+    //  
     [SerializeField] public Transform MyHelmet;
     [SerializeField] public Transform MyArmor;
     [SerializeField] public Transform MyBackPack;
