@@ -26,7 +26,7 @@ public class ThirdPersonCamera : MonoBehaviour
 
     [SerializeField] public float CurrentMoveBackDistance;
     [SerializeField] float MoveBackDistanceSimple = 5.0f;
-    [SerializeField] float MoveBackDistanceStelth = 3.0f;
+    //[SerializeField] float MoveBackDistanceStelth = 3.0f;
     [SerializeField] float MoveBackDistanceAiming = 2.02f;
 
     [SerializeField] float MouseSens = 1.0f;
