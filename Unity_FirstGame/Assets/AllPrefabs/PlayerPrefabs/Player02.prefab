@@ -1341,19 +1341,14 @@ MonoBehaviour:
   SelectObj: {fileID: 0}
   gameobject: {fileID: 935961475211729313}
   Anchor: {fileID: 0}
-  IsAiming: 0
-  InStealth: 0
   IsJuming: 0
-  HaveWeaponInHand: 0
-  HavePistolInHand: 0
-  IsUsingLoot: 0
-  IsRun: 0
   StealthKilling: 0
-  Using: 0
-  MainStatePlayer: 0
-  PlayerDo: 0
-  MovementMode: 0
+  WhatPlayerDo: 0
   StateCamera: 0
+  WhatPlayerHandsDo: 0
+  WhatPlayerHandsHave: 0
+  WhatPlayerLegsDo: 0
+  WhatSpeedPlayerLegs: 0
 --- !u!114 &7778607237951541594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1537,9 +1532,8 @@ MonoBehaviour:
   CanJump: 0
   JumpCount: 0
   CurrentSpeed: 0
-  SpeedAiming: 7500
-  SpeedGo: 9000
-  SpeedStels: 8000
+  SpeedWalk: 9000
+  SpeedStelth: 8000
   SpeedRun: 28000
   smooth: 0.1
 --- !u!114 &8720987067841248331
@@ -1554,6 +1548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c128a22ee88c24ea3a5b78a755fe68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ControlerPlayer: {fileID: 0}
   Stelth: 0
 --- !u!114 &3059040256925347778
 MonoBehaviour:
@@ -1593,11 +1588,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SCScript: {fileID: 2001030955048781610}
+  ControlerPlayer: {fileID: 9222820105927190343}
   DeleyToAddNoise: 0.25
   TimeToAddNoise: 0
-  RadiusNoiseWhenInStels: 0
-  RadiusNoiseWhenAiming: 3
-  RadiusNoiseWhenGo: 5
+  RadiusNoiseWhenCrouchWalk: 0.5
+  RadiusNoiseWhenWalk: 5
   RadiusNoiseWhenRun: 7
   ZoneNoise: {fileID: 8520155578379175069, guid: 4f9100f211301ba4bb541bc3a970b238, type: 3}
   LocalZoneNoise: {fileID: 0}

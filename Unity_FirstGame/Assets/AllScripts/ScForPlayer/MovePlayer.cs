@@ -20,11 +20,10 @@ public class MovePlayer : MonoBehaviour
     
     [SerializeField] int JumpCount;
 
-    [SerializeField] public float CurrentSpeed;
-    [SerializeField] private float SpeedAiming;
-    [SerializeField] private float SpeedGo;
-    [SerializeField] private float SpeedStels;
-    [SerializeField] private float SpeedRun;
+    [SerializeField] public float CurrentSpeed = 0.0f;
+    [SerializeField] private float SpeedWalk = 9000.0f;
+    [SerializeField] private float SpeedStelth = 8000.0f;
+    [SerializeField] private float SpeedRun = 28000.0f;
 
     
     float MoveHorizontal;
@@ -40,7 +39,7 @@ public class MovePlayer : MonoBehaviour
         ControlerPlayer = GetComponent<PlayerControler>();
     }
 
-    public void Move(ModeMovement MovementMode)
+    public void RotateBodyPlayer(SpeedLegsPlayer WhatSpeedPlayerLegs)
     {
         MoveVertical = Input.GetAxisRaw("Vertical");
         MoveHorizontal = Input.GetAxisRaw("Horizontal");
@@ -53,7 +52,7 @@ public class MovePlayer : MonoBehaviour
         
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.LeftShift))
         {
-            if (!ControlerPlayer.IsAiming && MovementMode != ModeMovement.Null) //Rotate Body Player
+            if (ControlerPlayer.WhatPlayerHandsDo != HandsPlayer.AimingForDoSomething && ControlerPlayer.WhatSpeedPlayerLegs != SpeedLegsPlayer.Null) //Rotate Body Player
             {
                 Quaternion Forward = Quaternion.LookRotation(ForceAxis);
                 Quaternion TargetRotation = Forward * CameraScr.transform.rotation;
@@ -65,14 +64,29 @@ public class MovePlayer : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0, yAngle, 0);
                
             }
-            
 
-            switch (MovementMode)
+
+
+
+            switch (WhatSpeedPlayerLegs)
             {
-                case ModeMovement.Aiming:
-                    Movement(SpeedAiming, true);
+                case SpeedLegsPlayer.CrouchWalk:
+                    Move(SpeedStelth);
                     break;
-                case ModeMovement.Go:
+                case SpeedLegsPlayer.Walk:
+                    Move(SpeedWalk);
+                    break;
+                case SpeedLegsPlayer.Run:
+                    Move(SpeedRun);
+                    break;
+                default:
+                    CurrentSpeed = 0.0f;
+                    break;
+            }
+
+            /*
+
+            case ModeMovement.Go:
                     Movement(SpeedGo, false);
                     break;
                 case ModeMovement.Stelth:
@@ -87,19 +101,21 @@ public class MovePlayer : MonoBehaviour
                 default:
                     CurrentSpeed = 0.0f;
                     break;
-            }
-            
 
+            */
 
-            void Movement(float CurrentSpeedToMove,bool Aiming)
+            void Move(float CurrentSpeedToMove/*, bool Aiming*/)
             {
-                
-
-                if (Aiming) MyRigidbody.AddRelativeForce(ForceAxis * SpeedAiming * Time.deltaTime, MyForceMode);
-                else MyRigidbody.AddRelativeForce(new Vector3(0.0f, 0.0f, 1.0f * CurrentSpeedToMove * Time.deltaTime), ForceMode.Force);
+                if (ControlerPlayer.WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething)
+                {
+                    MyRigidbody.AddRelativeForce(ForceAxis * CurrentSpeed * Time.deltaTime, MyForceMode);
+                }
+                else
+                {
+                    MyRigidbody.AddRelativeForce(new Vector3(0.0f, 0.0f, 1.0f * CurrentSpeedToMove * Time.deltaTime), MyForceMode);
+                }
                 CurrentSpeed = CurrentSpeedToMove;
-                //Debug.Log(Aiming);
-
+                
                 //Debug.Log("CurrentSpeed: " + CurrentSpeedToMove);
                 //Debug.Log(MyRigidbody.velocity.magnitude);
 

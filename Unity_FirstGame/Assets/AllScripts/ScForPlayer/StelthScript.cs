@@ -2,30 +2,34 @@ using UnityEngine;
 
 public class StelthScript : MonoBehaviour
 {
+    [SerializeField] private PlayerControler ControlerPlayer;
     public bool Stelth;
-    
+
     void Start()
     {
+        ControlerPlayer = GetComponent<PlayerControler>();
         
     }
 
+    
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Bach") && Input.GetKey(KeyCode.X))
+        if (other.gameObject.CompareTag("Bush") 
+        && ControlerPlayer.WhatPlayerLegsDo == LegsPlayer.SatDown 
+        && ControlerPlayer.WhatPlayerHandsDo != HandsPlayer.AimingForDoSomething)
         {
-            Stelth = true;            
+            Stelth = true;
         }
-        else if(other.gameObject.CompareTag("Bach") && !Input.GetKey(KeyCode.X))
-        {
-            Stelth = false;            
-        }
+        else Stelth = false;
+
     }
+    
 
     private void OnTriggerExit(Collider other)
     {
-        Stelth = false;
-       
+        if (other.CompareTag("Bush"))
+        {
+            Stelth = false;
+        }    
     }
-
-
 }

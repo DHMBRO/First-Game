@@ -54,21 +54,21 @@ public class ControlerAnimationsPlayer : MonoBehaviour
         if (CurrentSpeed > DesirableSpeed) CurrentSpeed -= (Time.deltaTime + 0.001f);
         if (CurrentSpeed < DesirableSpeed) CurrentSpeed += (Time.deltaTime + 0.001f);
         Mathf.Clamp(CurrentSpeed, 0.0f, 1.0f);
-        
+
         //Change the float parameters
         Parameters.SetFloat("CurrentSpeed", CurrentSpeed); //Current speed player
-        Parameters.SetFloat("SpeedHorizontal", Horizontal); 
+        Parameters.SetFloat("SpeedHorizontal", Horizontal);
         Parameters.SetFloat("SpeedVertical", Vertical);
 
         //Change the bool parameters
-        Parameters.SetBool("IsAiming", ControlerPlayer.IsAiming); 
-        Parameters.SetBool("HaveWeaponInHand", ControlerPlayer.HaveWeaponInHand);
-        Parameters.SetBool("HavePistolInHand", ControlerPlayer.HavePistolInHand);
-        Parameters.SetBool("InStealth", ControlerPlayer.InStealth);
-        Parameters.SetBool("UsingLoot", ControlerPlayer.IsUsingLoot);
+        Parameters.SetBool("IsAiming", ControlerPlayer.WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething);
+        Parameters.SetBool("HaveWeaponInHand", ControlerPlayer.WhatPlayerHandsHave == HandsPlayerHave.Weapon);
+        Parameters.SetBool("HavePistolInHand", ControlerPlayer.WhatPlayerHandsHave == HandsPlayerHave.Pistol);
+        Parameters.SetBool("IsCrouchWalk", ControlerPlayer.WhatPlayerLegsDo == LegsPlayer.SatDown);
+        Parameters.SetBool("UsingLoot", ControlerPlayer.WhatPlayerHandsDo == HandsPlayer.UseSomething);
 
         //Triggers
-        if (ControlerPlayer.IsJuming) 
+        if (ControlerPlayer.IsJuming)
         {
             Parameters.SetTrigger("Jump");
             Debug.Log("True");
@@ -82,35 +82,5 @@ public class ControlerAnimationsPlayer : MonoBehaviour
         }
         */
 
-        switch (ControlerPlayer.MovementMode)
-        {
-            case ModeMovement.Stelth:
-
-                if (!ControlerPlayer.StealthKilling) ChangeRotationBasePlayer();
-                else ResetRotationBasePlayer();
-                break;
-            case ModeMovement.StelsAndAiming:
-                ChangeRotationBasePlayer();
-                break;
-            default:
-                ResetRotationBasePlayer();
-                break;
-        }
-
-        if (ControlerPlayer.IsAiming)
-        {
-            ChangeRotationBasePlayer();
-        }
-
-        void ChangeRotationBasePlayer()
-        {
-            BaseBodyPlayerForAnimations.transform.localEulerAngles = new Vector3(0.0f, RotateBodyWhenAiming, 0.0f);
-        }
-
-        void ResetRotationBasePlayer()
-        {
-            BaseBodyPlayerForAnimations.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-        }
-
-    }
+    }    
 }
