@@ -3,29 +3,25 @@
 public class MovePlayer : MonoBehaviour
 {
     [SerializeField] public PlayerControler ControlerPlayer;
-
-    [SerializeField] float JumpForce = 1.0f;
-    //[SerializeField] float DeleyJump = 1.0f; 
-    [SerializeField] protected float Sens = 1.0f;
-
-    [SerializeField] ForceMode MyForceMode;
-
     [SerializeField] Rigidbody MyRigidbody;
     [SerializeField] CapsuleCollider ColiderCapsulePlayer;
     [SerializeField] Camera CameraScr;
-
-    [SerializeField] protected Transform CameraTransform;
-
-    [SerializeField] bool CanJump = false;
     
-    [SerializeField] int JumpCount;
+    [SerializeField] Transform CameraTransform;
+
+    [SerializeField] ForceMode MyForceMode;
 
     [SerializeField] public float CurrentSpeed = 0.0f;
     [SerializeField] private float SpeedWalk = 9000.0f;
     [SerializeField] private float SpeedStelth = 8000.0f;
     [SerializeField] private float SpeedRun = 28000.0f;
 
-    
+    [SerializeField] int JumpCount;
+    [SerializeField] bool CanJump = false;
+
+    [SerializeField] float JumpForce = 1.0f;
+    //[SerializeField] float DeleyJump = 1.0f; 
+
     float MoveHorizontal;
     float MoveVertical;
     float yVelocity = 0.0f;
@@ -39,9 +35,24 @@ public class MovePlayer : MonoBehaviour
         ControlerPlayer = GetComponent<PlayerControler>();
     }
     
-    public void ControlCapsuleColider()
+    public void ControlCapsuleColider(bool SatDown)
     {
+        if(!ColiderCapsulePlayer)
+        {
+            Debug.Log("Not set ColiderCapsulePlayer");
+            return;
+        }
 
+        if (SatDown)
+        {
+            ColiderCapsulePlayer.center = new Vector3(0.0f, 0.75f, 0.0f);
+            ColiderCapsulePlayer.height = 1.5f;
+        }
+        else
+        {
+            ColiderCapsulePlayer.center = new Vector3(0.0f, 1.5f, 0.0f);
+            ColiderCapsulePlayer.height = 3.0f;
+        }
     }
 
     public void RotateBodyPlayer(SpeedLegsPlayer WhatSpeedPlayerLegs)

@@ -1524,18 +1524,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ControlerPlayer: {fileID: 0}
-  JumpForce: 600
-  Sens: 1
-  MyForceMode: 0
   MyRigidbody: {fileID: 5669462573118057115}
+  ColiderCapsulePlayer: {fileID: 5236544314472399362}
   CameraScr: {fileID: 0}
   CameraTransform: {fileID: 5755626125737214850}
-  CanJump: 0
-  JumpCount: 0
+  MyForceMode: 0
   CurrentSpeed: 0
   SpeedWalk: 9000
   SpeedStelth: 8000
   SpeedRun: 28000
+  JumpCount: 0
+  CanJump: 0
+  JumpForce: 600
   smooth: 0.1
 --- !u!114 &8720987067841248331
 MonoBehaviour:

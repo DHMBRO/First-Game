@@ -31,16 +31,8 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] Transform Anchor;
     
     //Bools
-    //[SerializeField] public bool IsAiming = false;
-    //[SerializeField] public bool InStealth = false;
     [SerializeField] public bool IsJuming = false;
-    //[SerializeField] public bool HaveWeaponInHand = false;
-    //[SerializeField] public bool HavePistolInHand = false;
-    //[SerializeField] public bool IsUsingLoot = false;
-    //[SerializeField] public bool IsRun = false;
     [SerializeField] public bool StealthKilling = false;
-
-    //Enums
 
     //Player
     [SerializeField] public Player WhatPlayerDo;
@@ -136,8 +128,16 @@ public class PlayerControler : MonoBehaviour
             }
 
             //Stelth 
-            if (Input.GetKeyDown(KeyCode.LeftControl) && WhatPlayerLegsDo != LegsPlayer.SatDown) WhatPlayerLegsDo = LegsPlayer.SatDown;
-            else if (Input.GetKeyDown(KeyCode.LeftControl)) WhatPlayerLegsDo = LegsPlayer.Null;
+            if (Input.GetKeyDown(KeyCode.LeftControl) && WhatPlayerLegsDo != LegsPlayer.SatDown)
+            {
+                WhatPlayerLegsDo = LegsPlayer.SatDown;
+                MovePlayer.ControlCapsuleColider(true);
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                WhatPlayerLegsDo = LegsPlayer.Null;
+                MovePlayer.ControlCapsuleColider(false);
+            }
 
             //Camera
             if (CameraPlayerF3.CameraIsUsig && (WhatPlayerHandsHave == HandsPlayerHave.Weapon || WhatPlayerHandsHave == HandsPlayerHave.Pistol))
