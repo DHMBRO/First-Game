@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MovePlayer : MonoBehaviour
 {
@@ -12,6 +11,7 @@ public class MovePlayer : MonoBehaviour
     [SerializeField] ForceMode MyForceMode;
 
     [SerializeField] Rigidbody MyRigidbody;
+    [SerializeField] CapsuleCollider ColiderCapsulePlayer;
     [SerializeField] Camera CameraScr;
 
     [SerializeField] protected Transform CameraTransform;
@@ -37,6 +37,11 @@ public class MovePlayer : MonoBehaviour
     {
         MyRigidbody = GetComponent<Rigidbody>();
         ControlerPlayer = GetComponent<PlayerControler>();
+    }
+    
+    public void ControlCapsuleColider()
+    {
+
     }
 
     public void RotateBodyPlayer(SpeedLegsPlayer WhatSpeedPlayerLegs)
