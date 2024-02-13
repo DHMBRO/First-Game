@@ -1243,7 +1243,7 @@ GameObject:
   m_Component:
   - component: {fileID: 935961475211729313}
   - component: {fileID: 5669462573118057115}
-  - component: {fileID: 6762333649877684918}
+  - component: {fileID: 5236544314472399362}
   - component: {fileID: 9222820105927190343}
   - component: {fileID: 7778607237951541594}
   - component: {fileID: 7874716152253843916}
@@ -1300,8 +1300,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!65 &6762333649877684918
-BoxCollider:
+--- !u!136 &5236544314472399362
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1310,9 +1310,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.05418465, z: 0.48107395}
-  m_Center: {x: 0, y: 0.0335976, z: 0.063437805}
+  m_Radius: 0.5
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!114 &9222820105927190343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1656,7 +1657,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 4}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
