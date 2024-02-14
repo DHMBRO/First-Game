@@ -38,6 +38,7 @@ public class PickUp : MethodsFromDevelopers
         if (ThirdCamera)
         {
             Vector3 PointRay = ThirdCamera.TargetCamera.transform.TransformPoint(ThirdCamera.DesirableVector); 
+            ScrForAllLoot ScrLoot = null;
 
             //Debug.Log("RayForLoot is work");
             Ray RayForPickUp = new Ray(PointRay, ThirdCamera.transform.forward);
@@ -47,7 +48,20 @@ public class PickUp : MethodsFromDevelopers
             if (Physics.Raycast(RayForPickUp, out RaycastHit HitResult, DistanceForRay))
             {
                 ObjectToBeLifted = HitResult.collider.gameObject;
+                ScrLoot = HitResult.collider.GetComponent<ScrForAllLoot>();
+                
                 ComplertingTheLink();
+
+                if (ControlerUi)
+                {
+                    if (ScrLoot)
+                    {
+                        ControlerUi.UpdateNameOnTable(ScrLoot);
+                    }
+                    else ControlerUi.DeleteNameOnTable();
+                }
+                else Debug.Log("Not set ControlerUi");
+
             }
             else
             {
@@ -56,6 +70,7 @@ public class PickUp : MethodsFromDevelopers
         }
         else Debug.Log("Not set ThirdCamera");
 
+        
     }
 
     public void ComplertingTheLink()
@@ -76,24 +91,18 @@ public class PickUp : MethodsFromDevelopers
                 BackPackContorler ControlerBackPack = ObjectToBeLifted.GetComponent<BackPackContorler>();
 
                 ScrForAllLoot ScrLoot = ObjectToBeLifted.GetComponent<ScrForAllLoot>();
-                //Debug.Log(ScrLoot);
-                
+
                 for (int i = 0; i < TagsToPickup.Count; i++)
                 {
-                    //Debug.Log("For is work");
                     if (ObjectToBeLifted.tag == TagsToPickup[i])
                     {
-                        //Debug.Log("1-3");
-                        if (ControlerWeapon)
+                        if (ControlerWeapon && ControlerWeapon.TheGun == TypeWeapon.Weapon)
                         {
-                            if (ControlerWeapon.TheGun == TypeWeapon.Weapon)
-                            {
-                                PickUpWeapons(ObjectToBeLifted);
-                            }
-                            else if (ControlerWeapon.TheGun == TypeWeapon.Pistol)
-                            {
-                                PickUpPistols(ObjectToBeLifted);
-                            }
+                            PickUpWeapons(ObjectToBeLifted);
+                        }
+                        else if (ControlerWeapon && ControlerWeapon.TheGun == TypeWeapon.Pistol)
+                        {
+                            PickUpPistols(ObjectToBeLifted);
                         }
                         else if (ControlerShop)
                         {
@@ -107,9 +116,8 @@ public class PickUp : MethodsFromDevelopers
                         else if (ScrLoot)
                         {
                             PickUpOther(ObjectToBeLifted);
-                            //Debug.Log("PickUpOther is work");
                         }
-                    }   
+                    }
                 }
             }
             if (Input.GetKeyUp(KeyCode.F) && Counter == 1)

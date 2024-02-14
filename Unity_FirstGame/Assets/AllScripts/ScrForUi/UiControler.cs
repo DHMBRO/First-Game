@@ -16,10 +16,13 @@ public class UiControler : MonoBehaviour
     
     //References Interface Canvas
     [SerializeField] public Image Scope;
+    [SerializeField] public TextMeshProUGUI TableNameObjectForPickUp;
     [SerializeField] private GameObject IndexesTable;
+    
     //Armor References
     [SerializeField] private GameObject[] ArmorPanels = new GameObject[3];
     [SerializeField] private Image[] ArmorIndexes = new Image[3];
+    
     //Other
     [SerializeField] public bool InventoryIsOpen = false;
     [SerializeField] private TextMeshProUGUI CurrentMassInInventory;
@@ -73,7 +76,29 @@ public class UiControler : MonoBehaviour
         
     }
 
+    public void UpdateNameOnTable(ScrForAllLoot LocalObjectScript)
+    {
+        if (!TableNameObjectForPickUp)
+        {
+            Debug.Log("Not set TableNameObjectForPickUp !");
+            return;
+        }
+        
+        TableNameObjectForPickUp.text = LocalObjectScript.NameOfThisObject;
+        
+
+    }
     
+    public void DeleteNameOnTable()
+    {
+        if (!TableNameObjectForPickUp)
+        {
+            Debug.Log("Not set TableNameObjectForPickUp !");
+            return;
+        }
+        else TableNameObjectForPickUp.text = " ";
+    }
+
     public void InterfaceControler()
     {
         //Audits
