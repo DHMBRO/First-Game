@@ -283,7 +283,6 @@ GameObject:
   - component: {fileID: 8935471237089852123}
   - component: {fileID: 2516517602217220442}
   - component: {fileID: 6519001109737162614}
-  - component: {fileID: 7530595455176631328}
   - component: {fileID: 8205366769275112416}
   - component: {fileID: 4367170480708916216}
   - component: {fileID: 95283667875477210}
@@ -384,7 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84321c486174e4f49b8d7ce88c83ff52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MyPointControllScript: {fileID: 7530595455176631328}
+  MyPointControllScript: {fileID: 0}
   CurrentPoint: 0
   StartPosIndex: 0
   ZombieNavMesh: {fileID: 6577064939743736596}
@@ -409,23 +408,6 @@ MonoBehaviour:
   GunPos: {fileID: 0}
   TerroristGun: {fileID: 0}
   MyAnimator: {fileID: 0}
---- !u!114 &7530595455176631328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5428616973792416952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbd2ba798630b4845b89ad267869aefa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Points:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!54 &8205366769275112416
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -509,6 +491,10 @@ MonoBehaviour:
   ZombiLayerMask:
     serializedVersion: 2
     m_Bits: 8
+  PointController: {fileID: 0}
+  DirectionToTarget: {x: 0, y: 0, z: 0}
+  RotationSpeed: 0
+  MyType: 0
 --- !u!1 &6286794247434823245
 GameObject:
   m_ObjectHideFlags: 0

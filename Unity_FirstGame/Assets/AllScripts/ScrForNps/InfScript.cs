@@ -14,8 +14,17 @@ public class InfScript : MonoBehaviour
     [SerializeField] public GameObject PointToKillMe;
     [SerializeField] public GameObject PointToShoot;
     public LayerMask ZombiLayerMask;
+    [SerializeField] public PointControllScript PointController;
     
-    
+    [SerializeField] public float RotationSpeed;
+    [SerializeField] public Types MyType;
+
+    public enum Types
+    {
+        Camper,
+        Patroller //&
+    }
+   
     void Start()
     {
         HpScript = this.gameObject.GetComponent<HpScript>();
@@ -23,11 +32,16 @@ public class InfScript : MonoBehaviour
         Patrol = this.gameObject.GetComponent<PatrolScriptNavMesh>();
         Attack = this.gameObject.GetComponent<AttackMethod>();
         SoundTaker = this.gameObject.GetComponent<SoundTakerScript>();
-      //  Animator = this.gameObject.GetComponentInParent<Animator>();
-
-        
-        SetState(new PatrolState(this));
-
+       
+        //Animator = this.gameObject.GetComponentInParent<Animator>();
+        if(MyType == Types.Patroller)
+        {
+            SetState(new PatrolState(this));
+        }
+        else
+        {
+            SetState(new GuardState(this));
+        }
     }
 
     void Update()
@@ -36,8 +50,24 @@ public class InfScript : MonoBehaviour
         {
             CurrentState.Update();
         }
-        
+        Debug.Log(Alive() + " " +  gameObject.name);
     }
+ 
+    public void Watch(PointControllScript PointContr)
+    {
+        Debug.DrawLine(Attack.GunPos.transform.forward, Attack.GunPos.transform.forward*10, color:Color.blue);
+        Vector3 DirectionToTarget = PointContr.GetPosByIndex(PointContr.CurrentPointIndex) - Attack.GunPos.transform.position;
+        Quaternion DirectionToTargetQ = Quaternion.LookRotation(DirectionToTarget).normalized;
+        if (Vector3.Angle(Attack.GunPos.transform.forward, DirectionToTarget) > 0.1f)//
+        {
+            Attack.GunPos.transform.rotation = Quaternion.RotateTowards(Attack.GunPos.transform.rotation, DirectionToTargetQ, RotationSpeed * Time.deltaTime);
+        } 
+        else
+        {
+            PointContr.CurrentPointIndex = PointContr.SearchNextPosition(PointContr.CurrentPointIndex);
+        }
+    }
+
 
     public bool Alive()
     {
