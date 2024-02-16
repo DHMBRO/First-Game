@@ -108,6 +108,11 @@ public class PlayerControler : MonoBehaviour
                 if (Inputs) WhatSpeedPlayerLegs = SpeedLegsPlayer.Walk;
                 else WhatSpeedPlayerLegs = SpeedLegsPlayer.Null;
 
+                if (Inputs)
+                {
+                    Debug.Log("Is work");
+                }
+
                 //Run
                 if (Input.GetKey(KeyCode.LeftShift))
                 {

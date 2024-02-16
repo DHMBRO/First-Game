@@ -48,7 +48,7 @@ public class PickUp : MethodsFromDevelopers
             if (Physics.Raycast(RayForPickUp, out RaycastHit HitResult, DistanceForRay))
             {
                 ObjectToBeLifted = HitResult.collider.gameObject;
-                ScrLoot = HitResult.collider.GetComponent<ScrForAllLoot>();
+                ScrLoot = HitResult.collider.GetComponent<ScrForAllLoot>(); 
                 
                 ComplertingTheLink();
 
