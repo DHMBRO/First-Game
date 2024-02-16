@@ -196,7 +196,11 @@ MonoBehaviour:
   Mass: 2.4
   CanCombining: 0
   HaveDescription: 1
+  ShowTheAmmo: 0
   SpriteForLoot: {fileID: 21300000, guid: f6d8e16fd0a9ee442819c600f74a665f, type: 3}
+  NameOfThisObject: Armor plate - level 2
+  Descrition: Armor plates - installed in a bulletproof vest to protect the player
+    from bullets
   ParametersLoot:
   - Armor Plate
   - Add 120 health points to armor
@@ -204,8 +208,6 @@ MonoBehaviour:
   - Absorbs 60% of bullet damage
   - Second
   - 2.4 Kg
-  Descrition: Armor plates - installed in a bulletproof vest to protect the player
-    from bullets
 --- !u!114 &5793682864067164078
 MonoBehaviour:
   m_ObjectHideFlags: 0

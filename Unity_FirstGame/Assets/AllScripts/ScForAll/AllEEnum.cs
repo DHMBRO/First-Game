@@ -1,50 +1,10 @@
+//Camera enums
 public enum MoodCamera
 {
     FirstFace,
     ThirdFace
 }
 
-
-public enum LevelObject
-{
-    FirstLevel,
-    SecondLevel,
-    ThirdLevel,
-}
-
-public enum TypeWeapon
-{
-    Weapon,
-    Pistol
-}
-
-public enum WhatIsInHand
-{
-    Null,
-    Weapon,
-    Loot,
-
-}
-
-public enum StateWeapon
-{
-    Null,
-
-    IsUsing,
-    HaveOwner,
-    HaventOwher,
-}
-
-public enum TypeCaliber
-{ 
-    Null,
-    C7_62MM,
-    C5_56MM,
-    C9MM,
-    C4_45ACP,
-    C12x99MM
-    
-}
 
 public enum CameraIs
 {
@@ -53,29 +13,69 @@ public enum CameraIs
     Aiming
 }
 
-public enum ModeMovement
+public enum CameraPlayer
 {
     Null,
 
-    Go,
+    RotateSimple,
     Aiming,
-    Run,
-    Stelth,
-    StelsAndAiming,
-    
 }
 
-/*
-public enum TypeLoot
+//Player body enums
+public enum Player
 {
     Null,
-    FirstAidKit,
-    ArmorPlate,
-    BoxAmmo,
-    
+
+    OpenInventory,
+}
+
+
+public enum HandsPlayer
+{
+    Null,
+
+    AimingForDoSomething,
+    UseSomething,
+}
+
+public enum HandsPlayerHave
+{
+    Null,
+
+    RockForThrow,
+    Weapon,
+    Pistol,
+}
+
+
+public enum LegsPlayer
+{
+    Null,
+
+    SatDown,
+}
+
+public enum SpeedLegsPlayer
+{
+    Null,
+
+    CrouchWalk,
+    Walk,
+    Run,
+}
+
+//Loot enums
+
+public enum TypeCaliber
+{
+    Null,
+    C7_62MM,
+    C5_56MM,
+    C9MM,
+    C4_45ACP,
+    C12x99MM
 
 }
-*/
 
 public enum InfoToLoot
 {
@@ -90,9 +90,43 @@ public enum InfoToLoot
     Add15HP,
     Add50HP,
     Add100HP,
-    
+
     Add80Arm,
     Add120Arm,
     Add160Arm
 
 }
+
+public enum LevelObject
+{
+    FirstLevel,
+    SecondLevel,
+    ThirdLevel,
+}
+
+//Weapons enums
+public enum TypeWeapon
+{
+    Weapon,
+    Pistol
+}
+
+public enum StateWeapon
+{
+    Null,
+
+    IsUsing,
+    HaveOwner,
+    HaventOwher,
+}
+
+//Other enums
+
+public enum WhatIsInHand
+{
+    Null,
+    Weapon,
+    Loot,
+
+}
+

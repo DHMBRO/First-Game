@@ -20,14 +20,13 @@ public class ThirdPersonCamera : MonoBehaviour
     [SerializeField] public Vector3 DesirableVector;
 
     [SerializeField] public Vector3 OffsetCameraSimple;
-    [SerializeField] Vector3 OffsetCameraInStelth;
-
     [SerializeField] Vector3 OffsetCameraToAiming;
-    [SerializeField] Vector3 OffsetCameraToAimingInStelth;
+    //[SerializeField] Vector3 OffsetCameraToAimingInStelth;
+    //[SerializeField] Vector3 OffsetCameraInStelth;
 
     [SerializeField] public float CurrentMoveBackDistance;
     [SerializeField] float MoveBackDistanceSimple = 5.0f;
-    [SerializeField] float MoveBackDistanceStelth = 3.0f;
+    //[SerializeField] float MoveBackDistanceStelth = 3.0f;
     [SerializeField] float MoveBackDistanceAiming = 2.02f;
 
     [SerializeField] float MouseSens = 1.0f;
@@ -94,18 +93,15 @@ public class ThirdPersonCamera : MonoBehaviour
             0.0f);
 
         //Rotate Player When Camera Aiming
-        if (ControlerPlayer.IsAiming)
+        if (ControlerPlayer.WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething)
         {
             TargetCamera.transform.localEulerAngles = new Vector3(0.0f, transform.localEulerAngles.y, 0.0f);
-        }
-
-        if (ControlerPlayer.IsAiming)
-        {
             CurrentLenghtOfOneStep = LenghtOfOneStepIsAiming;
+
         }
         else CurrentLenghtOfOneStep = LenghtToOneStepSimple;
 
-        
+
         if (ControlerPlayer.StealthKilling)
         {
             TargetCameraForAnimations.transform.position = new Vector3(TargetCameraForAnimations.transform.position.x, TargetCamera.transform.position.y, TargetCameraForAnimations.transform.position.z);
@@ -126,26 +122,17 @@ public class ThirdPersonCamera : MonoBehaviour
         }
         else
         {
-            switch (ControlerPlayer.MovementMode)
-            {
-                case ModeMovement.Stelth:
-                    DesirableVector = OffsetCameraInStelth;
-                    CurrentMoveBackDistance = MoveBackDistanceStelth;
-                    break;
-                case ModeMovement.StelsAndAiming:
-                    DesirableVector = OffsetCameraToAimingInStelth;
-                    CurrentMoveBackDistance = MoveBackDistanceAiming;
-                    break;
-                default:
-                    DesirableVector = OffsetCameraSimple;
-                    CurrentMoveBackDistance = MoveBackDistanceSimple;
-                    break;
-            }
+            
 
-            if (ControlerPlayer.IsAiming)
+            if (ControlerPlayer.WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething)
             {
                 DesirableVector = OffsetCameraToAiming;
                 CurrentMoveBackDistance = MoveBackDistanceAiming;
+            }
+            else
+            {
+                DesirableVector = OffsetCameraSimple;
+                CurrentMoveBackDistance = MoveBackDistanceSimple;
             }
 
         }
@@ -155,7 +142,7 @@ public class ThirdPersonCamera : MonoBehaviour
         Debug.DrawRay(TargetCamera.transform.TransformPoint(DesirableVector) , -(transform.forward * CurrentMoveBackDistance), Color.blue);
 
 
-        if (ControlerPlayer.IsAiming)
+        if (ControlerPlayer.WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething)
         {
             Vector3 TransfromOffSetAiming = TargetCamera.transform.TransformPoint(OffsetCameraToAiming) + -(transform.forward * DesirableVector.z);
             if ((TransfromOffSetAiming - CurrentOffSetCamera).magnitude > MaxMagnitude)

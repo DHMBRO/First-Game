@@ -29,7 +29,7 @@ public class SlotControler : MethodsFromDevelopers
     [SerializeField] public Transform MyPistol01;
     //
     [SerializeField] public Transform MyKnife01;
-    //
+    //  
     [SerializeField] public Transform MyHelmet;
     [SerializeField] public Transform MyArmor;
     [SerializeField] public Transform MyBackPack;
@@ -91,8 +91,7 @@ public class SlotControler : MethodsFromDevelopers
     {
         if (!ObjectInHand)
         {
-            ControlerPlayer.HaveWeaponInHand = false;
-            ControlerPlayer.HavePistolInHand = false;
+            ControlerPlayer.WhatPlayerHandsHave = HandsPlayerHave.Null;
             return;
         }
         ShootControler ShootControlerObjectInHand = ObjectInHand.GetComponent<ShootControler>();
@@ -102,27 +101,19 @@ public class SlotControler : MethodsFromDevelopers
             switch (ShootControlerObjectInHand.TheGun)
             {
                 case TypeWeapon.Weapon:
-                    ControlerPlayer.HaveWeaponInHand = true;
-                    ControlerPlayer.HavePistolInHand = false;
-                    CurrentSlotHand = SlotHandForWeapons; 
+                    ControlerPlayer.WhatPlayerHandsHave = HandsPlayerHave.Weapon;
+                    CurrentSlotHand = SlotHandForWeapons;//! 
                     break;
                 case TypeWeapon.Pistol:
-                    ControlerPlayer.HaveWeaponInHand = false;
-                    ControlerPlayer.HavePistolInHand = true;
-                    CurrentSlotHand = SlotHandForPistols;
-                    break;
-                default:
-                    ControlerPlayer.HavePistolInHand = false;
-                    ControlerPlayer.HaveWeaponInHand = false;
-                    CurrentSlotHand = SlotHandForUseLoot;
+                    ControlerPlayer.WhatPlayerHandsHave = HandsPlayerHave.Pistol;
+                    CurrentSlotHand = SlotHandForPistols;//!
                     break;
             }
 
         }
         else
         {
-            ControlerPlayer.HaveWeaponInHand = false;
-            ControlerPlayer.HavePistolInHand = false;
+            ControlerPlayer.WhatPlayerHandsHave = HandsPlayerHave.Null; 
         }
     }
 

@@ -31,48 +31,23 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] Transform Anchor;
     
     //Bools
-    [SerializeField] public bool IsAiming = false;
-    [SerializeField] public bool InStealth = false;
     [SerializeField] public bool IsJuming = false;
-    [SerializeField] public bool HaveWeaponInHand = false;
-    [SerializeField] public bool HavePistolInHand = false;
-    [SerializeField] public bool IsUsingLoot = false;
-    [SerializeField] public bool IsRun = false;
     [SerializeField] public bool StealthKilling = false;
 
-    //Enums
-    [SerializeField] public WhatIsInHand Using;
-    [SerializeField] public MainPlayer MainStatePlayer;
-    [SerializeField] public WhatDoPlayer PlayerDo;
-    [SerializeField] public ModeMovement MovementMode;
+    //Player
+    [SerializeField] public Player WhatPlayerDo;
     [SerializeField] public CameraPlayer StateCamera;
-
-    public enum MainPlayer
-    {
-        Null,
-
-        InventoryIsOpen,
-        ShootWithWeapon,
-        InStealth,
-        AimingToDropRock,
-        
-    }
-
-    public enum WhatDoPlayer
-    {
-        Null,
-
-        UseLoot,
-    }
-
-    public enum CameraPlayer
-    {
-        Null,
-
-        RotateSimple,
-        Aiming,
-    }
-
+    
+    //Hands
+    [SerializeField] public HandsPlayer WhatPlayerHandsDo;
+    [SerializeField] public HandsPlayerHave WhatPlayerHandsHave;
+    
+    //Legs
+    [SerializeField] public LegsPlayer WhatPlayerLegsDo;
+    [SerializeField] public SpeedLegsPlayer WhatSpeedPlayerLegs;
+    
+    
+    //[SerializeField] public ModeMovement MovementMode;
     
     void Start()
     {
@@ -99,7 +74,8 @@ public class PlayerControler : MonoBehaviour
         if (ControlerUi)
         {
             if(Input.GetKeyDown(KeyCode.I)) ControlerUi.OpenOrCloseInventory();
-            if (ControlerUi.InventoryIsOpen) MainStatePlayer = MainPlayer.InventoryIsOpen;
+            if (ControlerUi.InventoryIsOpen) WhatPlayerDo = Player.OpenInventory;
+            else WhatPlayerDo = Player.Null;
             ControlerUi.InterfaceControler();
         }
 
@@ -107,18 +83,20 @@ public class PlayerControler : MonoBehaviour
         {
             if (SelectObj.ObjectToUse)
             {
-                PlayerDo = WhatDoPlayer.UseLoot;
-                IsUsingLoot = true;
+                WhatPlayerHandsDo = HandsPlayer.UseSomething;
             }
             else 
             {
-                PlayerDo = WhatDoPlayer.Null;
-                IsUsingLoot = false;
+                WhatPlayerHandsDo = HandsPlayer.Null;
             }
 
         }
-        
-        if((!ControlerUi || !ControlerUi.InventoryIsOpen) && PlayerDo == WhatDoPlayer.Null && !StealthKilling)
+        else
+        {
+            WhatPlayerHandsDo = HandsPlayer.Null;
+        }
+
+        if((!ControlerUi || !ControlerUi.InventoryIsOpen) && WhatPlayerHandsDo == HandsPlayer.Null && !StealthKilling)
         {
             
             // Movement && Executore Noice
@@ -127,18 +105,15 @@ public class PlayerControler : MonoBehaviour
             if (MovePlayer)
             {
                 //Change Mood Movement
-                if (Inputs) MovementMode = ModeMovement.Go;
-                else MovementMode = ModeMovement.Null;
+                if (Inputs) WhatSpeedPlayerLegs = SpeedLegsPlayer.Walk;
+                else WhatSpeedPlayerLegs = SpeedLegsPlayer.Null;
 
                 //Run
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
-                    InStealth = false;
-                    IsRun = true;
-                    MovementMode = ModeMovement.Run;
+                    WhatSpeedPlayerLegs = SpeedLegsPlayer.Run;
                 }
-                else IsRun = false;
-
+                
             }
 
             // Drop
@@ -152,33 +127,42 @@ public class PlayerControler : MonoBehaviour
                 }
             }
 
-            //Stels 
-            if (Input.GetKeyUp(KeyCode.LeftControl)) InStealth = !InStealth;
+            //Stelth 
+            if (Input.GetKeyDown(KeyCode.LeftControl) && WhatPlayerLegsDo != LegsPlayer.SatDown)
+            {
+                WhatPlayerLegsDo = LegsPlayer.SatDown;
+                MovePlayer.ControlCapsuleColider(true);
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                WhatPlayerLegsDo = LegsPlayer.Null;
+                MovePlayer.ControlCapsuleColider(false);
+            }
 
             //Camera
-            if (CameraPlayerF3.CameraIsUsig && (HaveWeaponInHand || HavePistolInHand))
+            if (CameraPlayerF3.CameraIsUsig && (WhatPlayerHandsHave == HandsPlayerHave.Weapon || WhatPlayerHandsHave == HandsPlayerHave.Pistol))
             {
-                if (Input.GetKey(KeyCode.Mouse1)) IsAiming = true;
-                else IsAiming = false;
+                if (Input.GetKey(KeyCode.Mouse1)) WhatPlayerHandsDo = HandsPlayer.AimingForDoSomething;
             }
 
             //IsAiming
-            if (IsAiming && Inputs && !InStealth) MovementMode = ModeMovement.Aiming;
-            if (ControlerUi) ControlerUi.Scope.gameObject.SetActive(IsAiming);
+            if (WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething && Inputs && WhatSpeedPlayerLegs != SpeedLegsPlayer.CrouchWalk) WhatSpeedPlayerLegs = SpeedLegsPlayer.Walk;
+            if (ControlerUi) ControlerUi.Scope.gameObject.SetActive(WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething);
 
-            //Stels
-            if (InStealth && !IsAiming)
+            //Stelth
+            if (WhatPlayerLegsDo == LegsPlayer.SatDown)
             {
-                MovementMode = ModeMovement.Stelth;
-                MainStatePlayer = MainPlayer.InStealth;
+                if (Inputs) WhatSpeedPlayerLegs = SpeedLegsPlayer.CrouchWalk;
+                else WhatSpeedPlayerLegs = SpeedLegsPlayer.Null;
             }
+             
 
-            if (IsAiming && InStealth) MovementMode = ModeMovement.StelsAndAiming;
+            //if (WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething && WhatSpeedPlayerLegs == SpeedLegsPlayer.CrouchWalk) WhatSpeedPlayerLegs = SpeedLegsPlayer.Walk;
 
             //if (Input.GetKeyUp(KeyCode.Mouse1)) IsAiming = false;
 
             // PickUp
-            if (PickUpPlayer && !IsRun && !IsAiming) 
+            if (PickUpPlayer && WhatSpeedPlayerLegs != SpeedLegsPlayer.Run && WhatPlayerHandsDo != HandsPlayer.AimingForDoSomething) 
             {
                 PickUpPlayer.RayForLoot();
                 PickUpPlayer.ComplertingTheLink();
@@ -234,11 +218,11 @@ public class PlayerControler : MonoBehaviour
             }
 
             //Add Noice
-            if (EEScript) EEScript.ExecutoreNoice(MovementMode);
+            if (EEScript) EEScript.ExecutoreNoice();
             else Debug.Log("Not set EEScript");
 
             //Movement
-            MovePlayer.Move(MovementMode);
+            MovePlayer.RotateBodyPlayer(WhatSpeedPlayerLegs);
             //MovePlayer.Jump();
 
             //Other

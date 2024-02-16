@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1477317795365491750}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3189737771811129045}
@@ -63,8 +63,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.04327552, y: 0.17994241, z: 0.78852105}
-  m_Center: {x: -0.0013742372, y: -0.03660295, z: -0.05666703}
+  m_Size: {x: 0.7850046, y: 0.17994241, z: 0.04327552}
+  m_Center: {x: -0.0639534, y: -0.03660295, z: 0}
 --- !u!114 &7347797770348224600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,6 +82,8 @@ MonoBehaviour:
   HaveDescription: 0
   ShowTheAmmo: 0
   SpriteForLoot: {fileID: 21300000, guid: f0f9ba90973eb2a448b68efebb464d4d, type: 3}
+  NameOfThisObject: First aid kit - level 1
+  Descrition: 
   ParametersLoot:
   - 
   - 
@@ -89,7 +91,6 @@ MonoBehaviour:
   - 
   - 
   - 
-  Descrition: 
 --- !u!114 &9150502356221412890
 MonoBehaviour:
   m_ObjectHideFlags: 0

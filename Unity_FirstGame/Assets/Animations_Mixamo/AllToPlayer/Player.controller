@@ -104,7 +104,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: InStealth
+    m_ConditionEvent: IsCrouchWalk
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: HaveWeaponInHand
@@ -188,7 +188,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: InStealth
+    m_ConditionEvent: IsCrouchWalk
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: HaveWeaponInHand
@@ -244,7 +244,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: InStealth
+    m_ConditionEvent: IsCrouchWalk
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: HaveWeaponInHand
@@ -357,7 +357,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: InStealth
+    m_ConditionEvent: IsCrouchWalk
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: HaveWeaponInHand
@@ -415,7 +415,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: InStealth
+    m_ConditionEvent: IsCrouchWalk
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -9142525158153570808}
@@ -540,7 +540,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: InStealth
+    m_ConditionEvent: IsCrouchWalk
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: HaveWeaponInHand
@@ -599,7 +599,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: InStealth
+    m_ConditionEvent: IsCrouchWalk
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4002151262038463229}
@@ -708,7 +708,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 7fa85a29033d6ea46a315f2408c0c846, type: 3}
+    m_Motion: {fileID: 7400000, guid: c0dc543898ada6f499f6bf9f169902d7, type: 2}
     m_Threshold: -7
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -794,7 +794,7 @@ AnimatorStateTransition:
     m_ConditionEvent: HaveWeaponInHand
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: InStealth
+    m_ConditionEvent: IsCrouchWalk
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1309367212971953706}
@@ -819,7 +819,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: InStealth
+    m_ConditionEvent: IsCrouchWalk
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: HaveWeaponInHand
@@ -1081,7 +1081,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: InStealth
+  - m_Name: IsCrouchWalk
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -1171,7 +1171,7 @@ BlendTree:
     m_DirectBlendParameter: CurrentSpeed
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 82593bd5ccd33934daf99f23de035362, type: 3}
+    m_Motion: {fileID: -203655887218126122, guid: 4097f6a13451dcb4783061e5b41aafec, type: 3}
     m_Threshold: 0.5
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1.3
@@ -1378,7 +1378,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: InStealth
+    m_ConditionEvent: IsCrouchWalk
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: HaveWeaponInHand
@@ -1410,9 +1410,6 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: HavePistolInHand
-    m_EventTreshold: 0
-  - m_ConditionMode: 3
-    m_ConditionEvent: CurrentSpeed
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7872796356448074847}

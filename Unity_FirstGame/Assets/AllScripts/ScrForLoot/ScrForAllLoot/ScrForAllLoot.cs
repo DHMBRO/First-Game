@@ -10,8 +10,9 @@ public class ScrForAllLoot : MonoBehaviour
     [SerializeField] public Sprite SpriteForLoot;
 
     //Description Object
-    [SerializeField] public string[] ParametersLoot = new string[6];
+    [SerializeField] public string NameOfThisObject;
     [SerializeField] public string Descrition;
+    [SerializeField] public string[] ParametersLoot = new string[6];
 
 }
 
