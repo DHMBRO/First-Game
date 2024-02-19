@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5835073632003183475
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5464528779833087994}
+  m_Layer: 0
+  m_Name: RootationPrefab
+  m_TagString: Shop
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5464528779833087994
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5835073632003183475}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3421987597979798925}
+  m_Father: {fileID: 4164836268211833132}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &8663064590580057190
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4164836268211833132}
   - component: {fileID: 4785979053987699470}
-  - component: {fileID: 2789719808652161333}
+  - component: {fileID: 8499268466509993746}
   - component: {fileID: 3106306450253956825}
   - component: {fileID: 2554962057813293590}
   m_Layer: 0
@@ -29,10 +61,10 @@ Transform:
   m_GameObject: {fileID: 8663064590580057190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3421987597979798925}
+  - {fileID: 5464528779833087994}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -52,7 +84,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &2789719808652161333
+--- !u!65 &8499268466509993746
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -63,8 +95,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.04327552, y: 0.20092218, z: 0.14716747}
-  m_Center: {x: 0, y: -0.08994236, z: -0.06499718}
+  m_Size: {x: 0.04327552, y: 0.20092218, z: 0.12388822}
+  m_Center: {x: 0, y: -0.08994236, z: 0.06826161}
 --- !u!114 &3106306450253956825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,7 +141,7 @@ MonoBehaviour:
   CaliberToShop: 1
   InInventory: 0
   IsUsing: 0
-  ColiderToShop: {fileID: 2789719808652161333}
+  ColiderToShop: {fileID: 0}
   RigidbodyToShop: {fileID: 4785979053987699470}
   ParentShop: {fileID: 0}
 --- !u!1001 &3451617555050313941
@@ -117,7 +149,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 4164836268211833132}
+    m_TransformParent: {fileID: 5464528779833087994}
     m_Modifications:
     - target: {fileID: 39611358166936110, guid: 18049ecaf6e2117498afd1a53778e65b, type: 3}
       propertyPath: m_Name

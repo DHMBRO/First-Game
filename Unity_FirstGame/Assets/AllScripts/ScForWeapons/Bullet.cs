@@ -2,17 +2,13 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] GameObject audioToMetalic;
+    [SerializeField] GameObject ParentObject;
     [SerializeField] float Damage;
     //GameObject audio;
     
     private void OnCollisionEnter(Collision collision)
     {
-        //audio = GameObject.Instantiate(audioToMetalic);
         HpScript HPScr = collision.gameObject.GetComponent<HpScript>();
-
-
-        //Debug.Log("Bullet Collide with " + collision.gameObject.name);
 
         if (HPScr)
         {
@@ -24,9 +20,6 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         HpScript HPScr = other.gameObject.GetComponent<HpScript>();
-
-
-        //Debug.Log("Bullet Collide with " + other.gameObject.name);
 
         if (HPScr)
         {
@@ -43,12 +36,9 @@ public class Bullet : MonoBehaviour
             Debug.Log(HPScr.gameObject.name + " Bullet Hit " + HPScr.HealthPoint);
         }
 
-        Destroy(gameObject);
+        Destroy(ParentObject);
 
     }
 
-    void Start()
-    {
-        Destroy(gameObject,10.0f);
-    }
+    
 }

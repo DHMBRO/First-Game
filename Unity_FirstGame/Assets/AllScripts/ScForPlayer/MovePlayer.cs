@@ -16,6 +16,9 @@ public class MovePlayer : MonoBehaviour
     [SerializeField] private float SpeedStelth = 8000.0f;
     [SerializeField] private float SpeedRun = 28000.0f;
 
+    [SerializeField] private float HeightWenStand = 3.0f;
+    [SerializeField] private float HeightWneSatDown = 1.5f;
+
     [SerializeField] int JumpCount;
     [SerializeField] bool CanJump = false;
 
@@ -45,14 +48,25 @@ public class MovePlayer : MonoBehaviour
 
         if (SatDown)
         {
-            ColiderCapsulePlayer.center = new Vector3(0.0f, 0.75f, 0.0f);
-            ColiderCapsulePlayer.height = 1.5f;
+            ColiderCapsulePlayer.center = new Vector3(0.0f, HeightWneSatDown / 2.0f, 0.0f);
+            ColiderCapsulePlayer.height = HeightWneSatDown;
         }
         else
         {
-            ColiderCapsulePlayer.center = new Vector3(0.0f, 1.5f, 0.0f);
-            ColiderCapsulePlayer.height = 3.0f;
+            ColiderCapsulePlayer.center = new Vector3(0.0f, HeightWenStand / 2.0f, 0.0f);
+            ColiderCapsulePlayer.height = HeightWenStand;
         }
+    }
+
+    public bool AuditToStandUp()
+    {
+        Vector3 StartPosForRay = transform.position + transform.up * HeightWneSatDown;
+
+        if (Physics.Raycast(StartPosForRay, transform.up, out RaycastHit HitResult, HeightWenStand))
+        {
+            return false;    
+        }
+        else return true;
     }
 
     public void RotateBodyPlayer(SpeedLegsPlayer WhatSpeedPlayerLegs)

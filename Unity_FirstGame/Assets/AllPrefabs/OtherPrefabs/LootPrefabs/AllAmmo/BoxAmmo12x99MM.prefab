@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2129486457031087199
+--- !u!1 &5537749871154743637
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4657434503435766095}
-  - component: {fileID: 4841830363716870661}
-  - component: {fileID: 6394268167246651116}
+  - component: {fileID: 3206126612568811662}
+  - component: {fileID: 5440598059399378264}
+  - component: {fileID: 6274974796252455264}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -18,13 +18,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4657434503435766095
+--- !u!4 &3206126612568811662
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2129486457031087199}
+  m_GameObject: {fileID: 5537749871154743637}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -33,21 +33,21 @@ Transform:
   m_Father: {fileID: 6997960550769804061}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4841830363716870661
+--- !u!33 &5440598059399378264
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2129486457031087199}
+  m_GameObject: {fileID: 5537749871154743637}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &6394268167246651116
+--- !u!23 &6274974796252455264
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2129486457031087199}
+  m_GameObject: {fileID: 5537749871154743637}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: eaa8466f3b82ef14f980d87df23173d1, type: 2}
+  - {fileID: 2100000, guid: f5a9e751c26c2ae4c9bd0f1b1f5dec7d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -92,13 +92,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6997960550769804061}
-  - component: {fileID: 7446277360249850334}
+  - component: {fileID: 610255562864194088}
   - component: {fileID: 734206658062402400}
   - component: {fileID: 8696934755685015745}
   - component: {fileID: 2495431474470962367}
-  - component: {fileID: 6342020929300582979}
+  - component: {fileID: 2861043711813129387}
   m_Layer: 0
-  m_Name: Ammo5,56MM
+  m_Name: BoxAmmo12x99MM
   m_TagString: BoxAmmo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,11 +116,11 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4657434503435766095}
+  - {fileID: 3206126612568811662}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &7446277360249850334
+--- !u!54 &610255562864194088
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,20 +161,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ef3b5b486fd1d43b53d47da52f3fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mass: 0.55
+  Mass: 0.95
   CanCombining: 1
   HaveDescription: 1
   ShowTheAmmo: 1
-  SpriteForLoot: {fileID: 21300000, guid: e83e9a2cf2e7e9b418418ef649c7144a, type: 3}
-  NameOfThisObject: Box ammo - 5,56MM
-  Descrition: Ammo box - adds ammo for "5.56MM" caliber store with weapon
+  SpriteForLoot: {fileID: 21300000, guid: 9f2612f7906946342b9e56d8d99e6a86, type: 3}
+  NameOfThisObject: Box ammo - 12x99MM
+  Descrition: Ammo box - adds ammo for "12X99MM" caliber store with weapon
   ParametersLoot:
   - Ammo Box
   - Add ammo with weapon store
   - Dont have it
   - Dont have it
   - Dont have level
-  - 0.55 Kg
+  - 0.95 Kg
 --- !u!114 &2495431474470962367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,8 +189,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentAmmo: 20
   MaxAmmo: 20
-  CaliberToBox: 2
---- !u!114 &6342020929300582979
+  CaliberToBox: 5
+--- !u!114 &2861043711813129387
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -202,4 +202,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b65f55f5233b9b4db8357e44834f778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InfoTheObject: 3
+  InfoTheObject: 5

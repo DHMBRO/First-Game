@@ -108,11 +108,6 @@ public class PlayerControler : MonoBehaviour
                 if (Inputs) WhatSpeedPlayerLegs = SpeedLegsPlayer.Walk;
                 else WhatSpeedPlayerLegs = SpeedLegsPlayer.Null;
 
-                if (Inputs)
-                {
-                    Debug.Log("Is work");
-                }
-
                 //Run
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
@@ -138,7 +133,7 @@ public class PlayerControler : MonoBehaviour
                 WhatPlayerLegsDo = LegsPlayer.SatDown;
                 MovePlayer.ControlCapsuleColider(true);
             }
-            else if (Input.GetKeyDown(KeyCode.LeftControl))
+            else if (Input.GetKeyDown(KeyCode.LeftControl) && MovePlayer.AuditToStandUp())
             {
                 WhatPlayerLegsDo = LegsPlayer.Null;
                 MovePlayer.ControlCapsuleColider(false);
