@@ -31,7 +31,7 @@ public class HpScript : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.G))
+        if (Input.GetKey(KeyCode.G) && State != EnemyState.Player)
         {
             InstanceKill();
         }
