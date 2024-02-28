@@ -216,7 +216,7 @@ public class GuardState : ILogic
 {
     public GuardState(InfScript NewOwner) : base(NewOwner)
     {
-        Update();   
+          
     }
     public override void Update()
     {   

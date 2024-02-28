@@ -34,6 +34,7 @@ public class InfScript : MonoBehaviour
         SoundTaker = this.gameObject.GetComponent<SoundTakerScript>();
        
         //Animator = this.gameObject.GetComponentInParent<Animator>();
+        
         if(MyType == Types.Patroller)
         {
             SetState(new PatrolState(this));
@@ -50,7 +51,7 @@ public class InfScript : MonoBehaviour
         {
             CurrentState.Update();
         }
-        Debug.Log(Alive() + " " +  gameObject.name);
+        Debug.Log(CanISeeEnemy() + " Enemy Vision " + gameObject.name);
     }
  
     public void Watch(PointControllScript PointContr)

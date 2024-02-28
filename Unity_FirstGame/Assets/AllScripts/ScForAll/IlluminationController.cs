@@ -51,6 +51,6 @@ public class IlluminationController : MonoBehaviour
             return 0.0f;
         }
        
-        return Mathf.Clamp(((Sun.transform.rotation.x + 20.0f) / 110), 0.0f, 1.0f);
+        return Mathf.Clamp(((Sun.transform.eulerAngles.x + 20.0f) / 110), 0.0f, 1.0f);
     }
 }

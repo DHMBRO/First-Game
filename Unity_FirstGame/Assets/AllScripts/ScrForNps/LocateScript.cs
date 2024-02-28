@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 public class LocateScript : MonoBehaviour
 {
-    [SerializeField] private Transform Head;
-    public GameObject Target = null;
     
+    public GameObject Target = null;
+    private HeadScript MyHeadScript;
     [SerializeField] private string WhatImLooking;
     [SerializeField] private RaycastHit HitResult;
     [SerializeField] private float SpeedForMove;
@@ -22,7 +22,7 @@ public class LocateScript : MonoBehaviour
         MyHpScript = gameObject.GetComponent<HpScript>();
         Targets = new List<GameObject>();
         ZombiePatrolScript = gameObject.GetComponent<PatrolScriptNavMesh>();
-
+        MyHeadScript = gameObject.GetComponent<HeadScript>();
     }
     private void Update()
     {
@@ -74,6 +74,7 @@ public class LocateScript : MonoBehaviour
     //ToTarget
     public bool CanISeeTarget()
     {
+        DefineMyTarget();
         return CanISee(Target);
     }
     protected bool CanISee(GameObject TestTarget)
@@ -124,13 +125,14 @@ public class LocateScript : MonoBehaviour
 
         if (AngleToTestTarget <= VisionAngle)
         {
-
+           
             Vector3 Rotate = TestTarget.transform.position - transform.position;
-            Vector3 RotateHead = TestTarget.transform.position - Head.position;
-            Ray HeadForward = new Ray(Head.transform.position, RotateHead);
+            Vector3 RotateHead = TestTarget.transform.position - MyHeadScript.GetHeadPosition();
+            Ray HeadForward = new Ray(MyHeadScript.GetHeadPosition(), RotateHead);
 
-            Head.transform.rotation = Quaternion.LookRotation(RotateHead);
+            MyHeadScript.Head.transform.rotation = Quaternion.LookRotation(RotateHead);
             RaycastHit[] HitResults = Physics.RaycastAll(HeadForward, CurrentAgrDistance);
+           // Debug.DrawLine(HeadForward, CurrentAgrDistance);    //в загальному скрипті повинно бути посилання на голову(дай мені свою голову) 
             foreach (RaycastHit HitResult in HitResults)
             {
                 if (HitResult.collider.gameObject.transform.root.gameObject == gameObject)
