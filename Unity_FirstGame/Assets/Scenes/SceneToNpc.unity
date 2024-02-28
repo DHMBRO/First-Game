@@ -6027,7 +6027,8 @@ PrefabInstance:
       propertyPath: PointController
       value: 
       objectReference: {fileID: 30075435}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: c8e0e9e7965f3574793b00c6e780efbe, type: 3}
 --- !u!43 &801156945
 Mesh:
@@ -6505,11 +6506,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7419324047145549906, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.54
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7419324047145549906, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.027
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7778607237951541594, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: ThirdCamera

@@ -52,7 +52,7 @@ public class ZombieController : MonoBehaviour
                         //Debug.Log("Attack!!!");
 
                         ZombiePatrolScript.ZombieNavMesh.isStopped = true;
-                        ZombieAttackScript.StartAttack(ZombieLocateScript.Target);
+                        ZombieAttackScript.StartAttack(ZombieLocateScript.Target.gameObject);
     
 
                     }

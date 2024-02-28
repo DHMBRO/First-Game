@@ -288,6 +288,8 @@ GameObject:
   - component: {fileID: 95283667875477210}
   - component: {fileID: 5804095521161962542}
   - component: {fileID: 2558508992499366921}
+  - component: {fileID: 1271309367837362580}
+  - component: {fileID: 8022685615950990206}
   m_Layer: 7
   m_Name: Zombie 1
   m_TagString: Untagged
@@ -364,7 +366,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6ec6bf59b8b9a749b9f2c83dc3208de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Head: {fileID: 6744087348165964983}
   Target: {fileID: 0}
   WhatImLooking: 
   SpeedForMove: 3.5
@@ -492,9 +493,34 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   PointController: {fileID: 0}
-  DirectionToTarget: {x: 0, y: 0, z: 0}
   RotationSpeed: 0
   MyType: 0
+--- !u!114 &1271309367837362580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5428616973792416952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ac1d5543f73334396f150aa6b9dccd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HealthScript: {fileID: 0}
+--- !u!114 &8022685615950990206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5428616973792416952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3f427fbee3099848a5d09df8f6c2ef3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Head: {fileID: 8349985219191236876}
 --- !u!1 &6286794247434823245
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,13 +591,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8349985219191236876}
-  m_LocalRotation: {x: 0.019574381, y: -0, z: -0, w: 0.99980843}
-  m_LocalPosition: {x: 0, y: 1.683, z: 0.139}
-  m_LocalScale: {x: 0.40000004, y: 0.13333334, z: 0.13333334}
+  m_LocalRotation: {x: 0.01957438, y: 0.000000752316, z: 0.000043626635, w: 0.9998084}
+  m_LocalPosition: {x: -0.00005174327, y: 0.082247026, z: 0.14240749}
+  m_LocalScale: {x: 0.40000004, y: 0.13333333, z: 0.13333333}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1234062945455005795}
-  m_RootOrder: 3
+  m_Father: {fileID: 5137717957506659040}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6549316058692892056
 MeshFilter:
@@ -1016,3 +1042,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Parameters: {fileID: 6385217581263623021}
+--- !u!4 &5137717957506659040 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -3321919801592875672, guid: 42e37a7d114e7b647984cfa87f92e55c, type: 3}
+  m_PrefabInstance: {fileID: 1633395753364490120}
+  m_PrefabAsset: {fileID: 0}

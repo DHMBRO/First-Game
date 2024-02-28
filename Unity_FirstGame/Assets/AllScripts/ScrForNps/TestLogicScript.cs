@@ -195,7 +195,7 @@ public class AttackState : ILogic
             if (CanIAttack())
             {
                 Patrol.ZombieNavMesh.isStopped = true;
-                Attack.StartAttack(Locate.Target);
+                Attack.StartAttack(Locate.Target.gameObject);
             }
             else
             {
@@ -272,7 +272,7 @@ public class CamperAttackState : ILogic
         {
             if (CanIAttack())
             {
-                Attack.StartAttack(Locate.Target);
+                Attack.StartAttack(Locate.Target.gameObject);
             }
             else
             {

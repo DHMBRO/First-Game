@@ -84,7 +84,8 @@ public class PlayerControler : MonoBehaviour, HeadInterface
 
     void Update()
     {
-        
+        PlayerSpeed = (PlayerLastPosition - gameObject.transform.position) / Time.deltaTime;
+        PlayerLastPosition = gameObject.transform.position;
 
         if (ControlerUi)
         {
@@ -271,8 +272,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
     }
     public Vector3 GetSpeed()
     {
-        PlayerSpeed = PlayerLastPosition - gameObject.transform.position / Time.deltaTime;
-        PlayerLastPosition = gameObject.transform.position;
+        
         return PlayerSpeed;
     }
 }

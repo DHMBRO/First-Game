@@ -781,13 +781,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5665221572061346460}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.919, z: 0.309}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.0000000016298145, y: -0.00000010179281, z: 0.00004363301, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6666667, y: 0.66666657, z: 0.66666657}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 935961475211729313}
-  m_RootOrder: 4
+  m_Father: {fileID: 5624399594569609980}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5730699500055248682
 GameObject:
@@ -1252,6 +1252,7 @@ GameObject:
   - component: {fileID: 2001030955048781610}
   - component: {fileID: 4595642774281171269}
   - component: {fileID: 4204884600277346387}
+  - component: {fileID: 3895106789929070742}
   m_Layer: 0
   m_Name: Player02
   m_TagString: Player01
@@ -1275,7 +1276,6 @@ Transform:
   - {fileID: 1466317542163811736}
   - {fileID: 470050301926751443}
   - {fileID: 7834168469638226636}
-  - {fileID: 7419324047145549906}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1338,6 +1338,7 @@ MonoBehaviour:
   SelectObj: {fileID: 0}
   gameobject: {fileID: 935961475211729313}
   Anchor: {fileID: 0}
+  Head: {fileID: 5665221572061346460}
   IsJuming: 0
   StealthKilling: 0
   WhatPlayerDo: 0
@@ -1346,6 +1347,8 @@ MonoBehaviour:
   WhatPlayerHandsHave: 0
   WhatPlayerLegsDo: 0
   WhatSpeedPlayerLegs: 0
+  PlayerSpeed: {x: 0, y: 0, z: 0}
+  PlayerLastPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &7778607237951541594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1726,6 +1729,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ControlerPlayer: {fileID: 0}
   PlayerHingeJoint: {fileID: 0}
+--- !u!114 &3895106789929070742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9027246094432369652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ac1d5543f73334396f150aa6b9dccd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HealthScript: {fileID: 0}
 --- !u!1 &9125961473927298832
 GameObject:
   m_ObjectHideFlags: 0

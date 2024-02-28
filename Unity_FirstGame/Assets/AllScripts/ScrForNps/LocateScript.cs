@@ -4,7 +4,7 @@ using UnityEngine;
 public class LocateScript : MonoBehaviour
 {
     
-    public GameObject Target = null;
+    public BaseInformationScript Target = null;
     private HeadScript MyHeadScript;
     [SerializeField] private string WhatImLooking;
     [SerializeField] private RaycastHit HitResult;
@@ -13,14 +13,14 @@ public class LocateScript : MonoBehaviour
     public PatrolScriptNavMesh ZombiePatrolScript;
     private StelthScript TargetStelsScript;
     [SerializeField] float VisionAngle = 60.0f;
-    List<GameObject> Targets;
+    List<BaseInformationScript> Targets;
     protected HpScript MyHpScript;
     protected float FullVisionDistance = 1.5f;
     
     void Start()
     {
         MyHpScript = gameObject.GetComponent<HpScript>();
-        Targets = new List<GameObject>();
+        Targets = new List<BaseInformationScript>();
         ZombiePatrolScript = gameObject.GetComponent<PatrolScriptNavMesh>();
         MyHeadScript = gameObject.GetComponent<HeadScript>();
     }
@@ -30,14 +30,14 @@ public class LocateScript : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        HpScript TargetHpScript = other.gameObject.GetComponent<HpScript>();
-        if (TargetHpScript)
+        BaseInformationScript BaseInfo = other.GetComponent<BaseInformationScript>();
+        if (BaseInfo && BaseInfo.HealthScript)
         {
-            if (TargetHpScript.State != MyHpScript.State)
+            if (BaseInfo.HealthScript.State != MyHpScript.State)
             {
-                if (TargetHpScript.MyLive == HpScript.Live.Alive)
+                if (BaseInfo.HealthScript.MyLive == HpScript.Live.Alive)
                 {
-                    Targets.Add(other.gameObject);
+                    Targets.Add(BaseInfo);
                     DefineMyTarget();
                 }
             }
@@ -57,9 +57,10 @@ public class LocateScript : MonoBehaviour
      }*/
     private void OnTriggerExit(Collider other)
     {
-        if (Targets.Contains(other.gameObject))
+        BaseInformationScript BaseInfo = other.GetComponent<BaseInformationScript>();
+        if (BaseInfo && Targets.Contains(BaseInfo))
         {
-            Targets.Remove(other.gameObject);
+            Targets.Remove(BaseInfo);
             DefineMyTarget();
         }
     }
@@ -75,12 +76,19 @@ public class LocateScript : MonoBehaviour
     public bool CanISeeTarget()
     {
         DefineMyTarget();
-        return CanISee(Target);
+        return Target && CanISee(Target.gameObject);
     }
     protected bool CanISee(GameObject TestTarget)
     {
         
+        
+
         if (!TestTarget)
+        {
+            return false;
+        }
+        BaseInformationScript BaseInfo = TestTarget.GetComponent<BaseInformationScript>();
+        if (!BaseInfo)
         {
             return false;
         }
@@ -127,12 +135,12 @@ public class LocateScript : MonoBehaviour
         {
            
             Vector3 Rotate = TestTarget.transform.position - transform.position;
-            Vector3 RotateHead = TestTarget.transform.position - MyHeadScript.GetHeadPosition();
+            Vector3 RotateHead = BaseInfo.MyHeadScript.GetHeadPosition() - MyHeadScript.GetHeadPosition();
             Ray HeadForward = new Ray(MyHeadScript.GetHeadPosition(), RotateHead);
 
             MyHeadScript.Head.transform.rotation = Quaternion.LookRotation(RotateHead);
             RaycastHit[] HitResults = Physics.RaycastAll(HeadForward, CurrentAgrDistance);
-           // Debug.DrawLine(HeadForward, CurrentAgrDistance);    //в загальному скрипті повинно бути посилання на голову(дай мені свою голову) 
+            // Debug.DrawLine(HeadForward, CurrentAgrDistance); 
             foreach (RaycastHit HitResult in HitResults)
             {
                 if (HitResult.collider.gameObject.transform.root.gameObject == gameObject)
@@ -168,7 +176,7 @@ public class LocateScript : MonoBehaviour
         return null;
     }
     public bool IsObjectFromBehinde(GameObject Target)
-   {
+    {
         float AngleToBackTarget = Vector3.Angle(-gameObject.transform.forward, Target.transform.position - gameObject.transform.position);
         if (AngleToBackTarget <= 40.0f) 
         {
@@ -178,12 +186,12 @@ public class LocateScript : MonoBehaviour
         return false;
 
     }
-    // ??????? ?? 2(?? ???? ?? ??,????) ??????? ???????? ?? ???? ?? ???? ??????
+
     public void DefineMyTarget()
     {
         //
         float MinDistance = float.MaxValue;
-        GameObject NewTarget = Target;
+        BaseInformationScript NewTarget = Target;
         for(int i = Targets.Count - 1; i >= 0; i--)
         {
             HpScript Hp = Targets[i].GetComponent<HpScript>();
@@ -192,9 +200,9 @@ public class LocateScript : MonoBehaviour
                 Targets.RemoveAt(i);
             }
         }
-        foreach (GameObject SingleTarget in Targets)
+        foreach (BaseInformationScript SingleTarget in Targets)
         {
-            if (CanISee(SingleTarget))
+            if (CanISee(SingleTarget.gameObject))
             {
                 float CurenntDis = (SingleTarget.transform.position - gameObject.transform.position).magnitude;
                 if (CurenntDis < MinDistance)
@@ -212,8 +220,8 @@ public class LocateScript : MonoBehaviour
     {
         if (Target)
         {
-            HpScript TTargetHpScript = Target.GetComponent<HpScript>();
-            if (Target && TTargetHpScript && TTargetHpScript.IsAlive())
+            
+            if (Target && Target.HealthScript && Target.HealthScript.IsAlive())
             {
                 return;
             }
