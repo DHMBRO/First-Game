@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class PlayerControler : MonoBehaviour
+public class PlayerControler : MonoBehaviour, HeadInterface
 {
+    
     //Movement Components
     [SerializeField] private Move1F Move;
     [SerializeField] private MovePlayer MovePlayer;
@@ -30,7 +31,8 @@ public class PlayerControler : MonoBehaviour
     //Game Objects
     [SerializeField] Transform gameobject;
     [SerializeField] Transform Anchor;
-    
+    [SerializeField] public GameObject Head;
+
     //Bools
     [SerializeField] public bool IsJuming = false;
     [SerializeField] public bool StealthKilling = false;
@@ -46,12 +48,21 @@ public class PlayerControler : MonoBehaviour
     //Legs
     [SerializeField] public LegsPlayer WhatPlayerLegsDo;
     [SerializeField] public SpeedLegsPlayer WhatSpeedPlayerLegs;
+
+
+
     
-    
+    public Vector3 PlayerSpeed;
+
+    // Positions
+    public Vector3 PlayerLastPosition;
     //[SerializeField] public ModeMovement MovementMode;
     
     void Start()
     {
+        PlayerLastPosition = gameObject.transform.position;
+
+
         //Movement
         Move = GetComponent<Move1F>();
         MovePlayer = GetComponent<MovePlayer>();
@@ -73,6 +84,7 @@ public class PlayerControler : MonoBehaviour
 
     void Update()
     {
+        
 
         if (ControlerUi)
         {
@@ -253,5 +265,14 @@ public class PlayerControler : MonoBehaviour
 
 
     }
-
+    public Vector3 GetHeadPosition()
+    {
+        return Head.transform.position;
+    }
+    public Vector3 GetSpeed()
+    {
+        PlayerSpeed = PlayerLastPosition - gameObject.transform.position / Time.deltaTime;
+        PlayerLastPosition = gameObject.transform.position;
+        return PlayerSpeed;
+    }
 }
