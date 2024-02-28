@@ -17,7 +17,7 @@ public class PickUp : MethodsFromDevelopers
     [SerializeField] List<string> TagsToPickup = new List<string>();
 
     [SerializeField] private float DistanceForRay = 3.0f;
-    private int Counter = 0;
+    [SerializeField] private int Counter = 0;
 
     private SlotControler SlotControler;
     private DropControler ControlerToDrop;
@@ -44,14 +44,14 @@ public class PickUp : MethodsFromDevelopers
             Ray RayForPickUp = new Ray(PointRay, ThirdCamera.transform.forward);
 
             Debug.DrawRay(PointRay, ThirdCamera.transform.forward * DistanceForRay, Color.red);
-
+            
             if (Physics.Raycast(RayForPickUp, out RaycastHit HitResult, DistanceForRay))
             {
                 ObjectToBeLifted = HitResult.collider.gameObject;
-                ScrLoot = HitResult.collider.GetComponent<ScrForAllLoot>(); 
-                
-                ComplertingTheLink();
+                ScrLoot = HitResult.collider.GetComponent<ScrForAllLoot>();
 
+                ComplertingTheLink();
+                               
                 if (ControlerUi)
                 {
                     if (ScrLoot)
@@ -75,16 +75,12 @@ public class PickUp : MethodsFromDevelopers
         
     }
 
-    public void ComplertingTheLink()
+    private void ComplertingTheLink()
     {
-        //Debug.Log("1-0");
         if (ObjectToBeLifted)
         {
-            //Debug.Log("1-1");
             if (Input.GetKeyDown(KeyCode.F) && ObjectToBeLifted && Counter == 0)
             {
-                //Debug.Log("1-2");
-
                 ShootControler ControlerWeapon = ObjectToBeLifted.GetComponent<ShootControler>();
                 ShopControler ControlerShop = ObjectToBeLifted.GetComponent<ShopControler>();
 
@@ -265,6 +261,8 @@ public class PickUp : MethodsFromDevelopers
 
         void PickUpArmor()
         {
+            Debug.Log("1");
+
             if (ControlerUi) ControlerUi.SlotArmor.sprite = ScrForLoot.SpriteForLoot;
             else Debug.Log("Not set ControlerUi");
 
@@ -278,6 +276,7 @@ public class PickUp : MethodsFromDevelopers
         }
         void ChangeArmor()
         {
+            Debug.Log("2");
             if (ControlerToDrop && ArmorIsPickUped.LevelArmor > ArmorIsUsing.LevelArmor)
             {
                 DropObjects(SlotControler.MyArmor.transform, ControlerToDrop.PointForDrop, false);

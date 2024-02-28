@@ -3,7 +3,7 @@ using UnityEngine;
 public class MethodsFromDevelopers : MonoBehaviour
 {
     
-    protected void PutObjects(Transform ObjectForPut, Transform PosForPut, bool AddVoice)
+    protected void PutObjects(Transform ObjectForPut, Transform PosForPut, bool AddNoice)
     {
         Rigidbody RigObject = ObjectForPut.GetComponent<Rigidbody>();
         BoxCollider BCObject = ObjectForPut.GetComponent<BoxCollider>();
@@ -11,7 +11,7 @@ public class MethodsFromDevelopers : MonoBehaviour
         SoundCreatorScript SCSObject;
         ExecutoreScriptToRock ESObject;
 
-        if (AddVoice)
+        if (AddNoice)
         {
             SCSObject = ObjectForPut.GetComponent<SoundCreatorScript>();
             ESObject = ObjectForPut.GetComponent<ExecutoreScriptToRock>();
@@ -28,9 +28,9 @@ public class MethodsFromDevelopers : MonoBehaviour
             BCObject.enabled = false;
         }
 
-        Puting();
+        Put();
         
-        void Puting()
+        void Put()
         {
             Vector3 Scale = ObjectForPut.localScale;
             ObjectForPut.transform.SetParent(PosForPut);
@@ -45,7 +45,7 @@ public class MethodsFromDevelopers : MonoBehaviour
 
     }
 
-    protected void DropObjects(Transform ObjectToDrop, Transform ObecjtForCopy, bool AddVoice)
+    protected void DropObjects(Transform ObjectToDrop, Transform ObecjtForCopy, bool AddNoice)
     {
         Rigidbody RigObject = ObjectToDrop.GetComponent<Rigidbody>();
         BoxCollider BCObject = ObjectToDrop.GetComponent<BoxCollider>();
@@ -53,7 +53,7 @@ public class MethodsFromDevelopers : MonoBehaviour
         SoundCreatorScript SCSObject;
         ExecutoreScriptToRock ESObject;
 
-        if (AddVoice)
+        if (AddNoice)
         {
             SCSObject = ObjectToDrop.GetComponent<SoundCreatorScript>();
             ESObject = ObjectToDrop.GetComponent<ExecutoreScriptToRock>();

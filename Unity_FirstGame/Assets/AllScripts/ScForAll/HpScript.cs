@@ -38,7 +38,7 @@ public class HpScript : MonoBehaviour
     }
     public void InflictingDamage(float Damage)
     {
-        if (MyLive == Live.Alive)
+        if (MyLive == Live.NotAlive)
         {
             MinusHp(Damage);
         }

@@ -12,6 +12,7 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private DivertAttention DivertAttention;
     [SerializeField] private ExecutoreScriptToPlayer EEScript;
     [SerializeField] private ControlerAnimationsPlayer ScrAnimationsPlayer;
+    [SerializeField] private PullBodyScript PlayerPullBodyScript;
 
     //Main Components To Work Player
     [SerializeField] private PickUp PickUpPlayer;
@@ -20,7 +21,7 @@ public class PlayerControler : MonoBehaviour
 
     //Camera Components
     [SerializeField] private Transform PlayerCameraF1;
-    [SerializeField] private ThirdPersonCamera CameraPlayerF3;
+    [SerializeField] public ThirdPersonCamera CameraPlayerF3;
     
     //Inventory Components
     [SerializeField] private UiControler ControlerUi;
@@ -59,13 +60,15 @@ public class PlayerControler : MonoBehaviour
         DivertAttention = GetComponent<DivertAttention>();
         StelthScript = GetComponent<StelthScript>();
         EEScript = GetComponent<ExecutoreScriptToPlayer>();
-        
+        PlayerPullBodyScript = GetComponent<PullBodyScript>();
+
         //Main Scripts To Work Player                  
         PickUpPlayer = GetComponent<PickUp>();
         ControlerDrop = GetComponent<DropControler>();
         SlotControler = GetComponent<SlotControler>();
         
         if (!ControlerUi) Debug.Log("Not set ControlerUi");
+        
     }
 
     void Update()
@@ -165,7 +168,6 @@ public class PlayerControler : MonoBehaviour
             if (PickUpPlayer && WhatSpeedPlayerLegs != SpeedLegsPlayer.Run && WhatPlayerHandsDo != HandsPlayer.AimingForDoSomething) 
             {
                 PickUpPlayer.RayForLoot();
-                PickUpPlayer.ComplertingTheLink();
             }
             
             
@@ -216,6 +218,13 @@ public class PlayerControler : MonoBehaviour
                     DivertAttention.DropRock();
                 }
             }
+
+            //PullBodyScript
+            if (PlayerPullBodyScript)
+            {
+                PlayerPullBodyScript.SearchEnemyBody();
+            }
+
 
             //Add Noice
             if (EEScript) EEScript.ExecutoreNoice();
