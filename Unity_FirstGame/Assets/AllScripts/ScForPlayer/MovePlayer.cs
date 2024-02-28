@@ -36,6 +36,9 @@ public class MovePlayer : MonoBehaviour
     {
         MyRigidbody = GetComponent<Rigidbody>();
         ControlerPlayer = GetComponent<PlayerControler>();
+
+        if (!CameraScr) Debug.Log("Not set CameraScr");
+        
     }
     
     public void ControlCapsuleColider(bool SatDown)

@@ -106,16 +106,12 @@ MonoBehaviour:
   HandTarget: {fileID: 0}
   Cube: {fileID: 0}
   Cube1: {fileID: 0}
-  MoveBackObject: {fileID: 0}
   CurrentOffSetCamera: {x: 0, y: 0, z: 0}
   DesirableVector: {x: 0, y: 0, z: 0}
   OffsetCameraSimple: {x: 0, y: 2.5, z: 0}
-  OffsetCameraInStelth: {x: 0, y: 2.04, z: 0}
   OffsetCameraToAiming: {x: 1.19, y: 2.54, z: 0}
-  OffsetCameraToAimingInStelth: {x: 1.19, y: 1.84, z: 0}
   CurrentMoveBackDistance: 0
   MoveBackDistanceSimple: 4
-  MoveBackDistanceStelth: 4
   MoveBackDistanceAiming: 2.02
   MouseSens: 1
   MaxMagnitude: 2.4
@@ -125,8 +121,8 @@ MonoBehaviour:
   CurrentLenghtOfOneStep: 0
   LenghtToOneStepSimple: 1000
   LenghtOfOneStepIsAiming: 30
-  CameraMood: 0
-  CameraIsUsig: 0
+  CameraMood: 1
+  CameraIsUsig: 1
 --- !u!1001 &6299334075684510675
 PrefabInstance:
   m_ObjectHideFlags: 0
