@@ -272,7 +272,12 @@ public class CamperAttackState : ILogic
         {
             if (CanIAttack())
             {
+               
+                Attack.GunPos.transform.rotation = Quaternion.RotateTowards(Attack.GunPos.transform.rotation,
+                    Quaternion.LookRotation(InfOwner.GetTargetHead() - Attack.GunPos.transform.position), 0.1f * Time.deltaTime);
+                
                 Attack.StartAttack(Locate.Target.gameObject);
+               
             }
             else
             {
@@ -300,6 +305,7 @@ public class CamperCheckNoice : ILogic
         {
            //lerp
            gameObj.transform.rotation.SetLookRotation(InfOwner.UNeedToCheckThis());
+            InfOwner.NullInterest();
         }
         else if (DoISeeEnemy())
         {
