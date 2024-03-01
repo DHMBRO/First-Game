@@ -15,10 +15,10 @@ public class InfScript : MonoBehaviour
     [SerializeField] public GameObject PointToShoot;
     public LayerMask ZombiLayerMask;
     [SerializeField] public PointControllScript PointController;
-    
+    public BaseInformationScript BaseInfoScript;
     [SerializeField] public float RotationSpeed;
     [SerializeField] public Types MyType;
-
+   
     public enum Types
     {
         Camper,
@@ -27,6 +27,8 @@ public class InfScript : MonoBehaviour
    
     void Start()
     {
+
+        BaseInfoScript = this.gameObject.GetComponent<BaseInformationScript>();
         HpScript = this.gameObject.GetComponent<HpScript>();
         Locate = this.gameObject.GetComponent<LocateScript>();
         Patrol = this.gameObject.GetComponent<PatrolScriptNavMesh>();
@@ -140,5 +142,9 @@ public class InfScript : MonoBehaviour
     public bool IsObjectFromBehinde(GameObject Object) 
     {
         return Locate.IsObjectFromBehinde(Object);
+    }
+    public Vector3 GetTargetHead()
+    {
+       return BaseInfoScript.MyHeadScript.GetHeadPosition();
     }
 }
