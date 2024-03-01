@@ -112,7 +112,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             WhatPlayerHandsDo = HandsPlayer.Null;
         }
 
-        if((!ControlerUi || !ControlerUi.InventoryIsOpen) && WhatPlayerHandsDo == HandsPlayer.Null && !StealthKilling)
+        if (/*(!ControlerUi || !ControlerUi.InventoryIsOpen) &&*/ WhatPlayerHandsDo == HandsPlayer.Null && !StealthKilling)
         {
             
             // Movement && Executore Noice
@@ -158,7 +158,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             //Camera
             if (CameraPlayerF3.CameraIsUsig && (WhatPlayerHandsHave == HandsPlayerHave.Weapon || WhatPlayerHandsHave == HandsPlayerHave.Pistol))
             {
-                if (Input.GetKey(KeyCode.Mouse1)) WhatPlayerHandsDo = HandsPlayer.AimingForDoSomething;
+                //if (Input.GetKey(KeyCode.Mouse1)) WhatPlayerHandsDo = HandsPlayer.AimingForDoSomething;
             }
 
             //IsAiming

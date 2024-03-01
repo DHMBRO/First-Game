@@ -13,6 +13,7 @@ public class PullBodyScript : MonoBehaviour
 
     public void SearchEnemyBody()
     {
+        /*
         if (!ControlerPlayer.CameraPlayerF3)
         {
             Debug.Log("Not set CameraPlayerF3");
@@ -30,7 +31,7 @@ public class PullBodyScript : MonoBehaviour
             Debug.Log(HitResult.collider.name);
 
         }
-
+        */
     }
 
 }

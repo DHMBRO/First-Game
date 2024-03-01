@@ -8,6 +8,12 @@ public interface IUsebleInterFace
 
 }
 
+public interface IInteractionWithObjects
+{
+    public bool AuditToUse();
+    public void Interaction();
+}
+
 
 public interface IReferencesInterface
 {
