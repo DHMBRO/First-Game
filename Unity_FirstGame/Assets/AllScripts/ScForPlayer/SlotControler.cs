@@ -329,6 +329,53 @@ public class SlotControler : MethodsFromDevelopers
 
     public void ChangingSlots()
     {
+        //Rferences
+        Transform[] AllWeaponsInPlayer = new Transform[4];
+        Transform[] AllSlotsForWeapon = new Transform[4];
+        Transform SelectedWeapon = null;
+
+        int CountObjectInHand = 0;
+
+
+        //Setup references
+        AllWeaponsInPlayer[0] = MyKnife01;
+        AllWeaponsInPlayer[1] = MyPistol01;
+        AllWeaponsInPlayer[2] = MyWeapon01;
+        AllWeaponsInPlayer[3] = MyWeapon02;
+
+        AllSlotsForWeapon[0] = SlotKnife01;
+        AllSlotsForWeapon[1] = SlotPistol01;
+        AllSlotsForWeapon[2] = SlotBack01;
+        AllSlotsForWeapon[3] = SlotBack02;
+
+        if (ObjectInHand)
+        {
+            for (int i = 0;i < AllWeaponsInPlayer.Length;i++)
+            {
+                if (AllWeaponsInPlayer[i] && ObjectInHand.name == AllWeaponsInPlayer[i].name)
+                {
+                    CountObjectInHand = i;
+                    break;
+                }
+            }
+
+
+
+        }
+        else
+        {
+            for (int i = 0;i < AllWeaponsInPlayer.Length;i++)
+            {
+                if (AllWeaponsInPlayer[i])
+                {
+                    SelectedWeapon = AllWeaponsInPlayer[i];
+                    break;
+                }
+            }
+        }
+
+
+        /*
         bool ObjectInHand01 = MyKnife01 && ObjectInHand == MyKnife01.gameObject;
         bool ObjectInHand02 = MyPistol01 && ObjectInHand == MyPistol01.gameObject;
         bool ObjectInHand03 = MyWeapon01 && ObjectInHand == MyWeapon01.gameObject;
@@ -351,6 +398,8 @@ public class SlotControler : MethodsFromDevelopers
         AllSlots.Add(SlotBack01);
         AllSlots.Add(SlotBack02);
 
+
+        
         if (ObjectInHand)
         {
             for (int i = 0; i < AllWeapons.Count; i++)
@@ -428,10 +477,11 @@ public class SlotControler : MethodsFromDevelopers
             ObjectInHand = NextWeapon.gameObject;
         }
 
+        */
     }
 
-    
 
-        
+
+
 }
 

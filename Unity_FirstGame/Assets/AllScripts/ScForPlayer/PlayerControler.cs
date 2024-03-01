@@ -156,9 +156,12 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             }
 
             //Camera
-            if (CameraPlayerF3.CameraIsUsig && (WhatPlayerHandsHave == HandsPlayerHave.Weapon || WhatPlayerHandsHave == HandsPlayerHave.Pistol))
+            if (CameraPlayerF3.CameraIsUsig)
             {
-                //if (Input.GetKey(KeyCode.Mouse1)) WhatPlayerHandsDo = HandsPlayer.AimingForDoSomething;
+                if (Input.GetKey(KeyCode.Mouse1) || Input.GetKey(KeyCode.Z)) 
+                {
+                    WhatPlayerHandsDo = HandsPlayer.AimingForDoSomething;
+                }
             }
 
             //IsAiming
