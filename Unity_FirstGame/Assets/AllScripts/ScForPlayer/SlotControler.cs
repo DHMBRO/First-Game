@@ -330,50 +330,98 @@ public class SlotControler : MethodsFromDevelopers
     public void ChangingSlots()
     {
         //Rferences
-        Transform[] AllWeaponsInPlayer = new Transform[4];
-        Transform[] AllSlotsForWeapon = new Transform[4];
+        Dictionary<int, Transform> AllWeapons = new Dictionary<int, Transform>();
+        Dictionary<string, Transform> AllSlotsForWeapon = new Dictionary<string, Transform>();
+        
         Transform SelectedWeapon = null;
+        Transform SlotHand = null;
+        ShootControler ShootControlerWeapon = null;
 
-        int CountObjectInHand = 0;
+        //Setup References
+        int Count = 0;
+        if (MyKnife01)
+        {
+            AllWeapons.Add(Count, MyKnife01.transform);
+            AllSlotsForWeapon.Add(MyKnife01.name, SlotKnife01.transform);
+        }
+        if (MyPistol01)
+        {
+            Count++;
+            AllWeapons.Add(Count, MyPistol01.transform);
+            AllSlotsForWeapon.Add(MyPistol01.name, SlotPistol01.transform);
+        }
+        if (MyWeapon01) 
+        {
+            Count++;
+            AllWeapons.Add(Count, MyWeapon01.transform);
+            AllSlotsForWeapon.Add(MyWeapon01.name, SlotBack01.transform);
+        }
+        if (MyWeapon02) 
+        {
+            Count++;
+            AllWeapons.Add(Count, MyWeapon02.transform);
+            AllSlotsForWeapon.Add(MyWeapon02.name, SlotBack02.transform);
+        }
 
-
-        //Setup references
-        AllWeaponsInPlayer[0] = MyKnife01;
-        AllWeaponsInPlayer[1] = MyPistol01;
-        AllWeaponsInPlayer[2] = MyWeapon01;
-        AllWeaponsInPlayer[3] = MyWeapon02;
-
-        AllSlotsForWeapon[0] = SlotKnife01;
-        AllSlotsForWeapon[1] = SlotPistol01;
-        AllSlotsForWeapon[2] = SlotBack01;
-        AllSlotsForWeapon[3] = SlotBack02;
 
         if (ObjectInHand)
         {
-            for (int i = 0;i < AllWeaponsInPlayer.Length;i++)
+            for (int i = 0;i < AllWeapons.Count;i++)
             {
-                if (AllWeaponsInPlayer[i] && ObjectInHand.name == AllWeaponsInPlayer[i].name)
+                if (AllWeapons[i].name == ObjectInHand.name)
                 {
-                    CountObjectInHand = i;
+                    if (i == AllWeapons.Count - 1)
+                    {
+                        SelectedWeapon = AllWeapons[0];
+                    }
+                    else
+                    {
+                        SelectedWeapon = AllWeapons[i + 1];
+                    }
                     break;
                 }
             }
 
-
+            RemoveWeapon();
+            SelectSlotHand();
+            ClotheWeapon();
 
         }
         else
         {
-            for (int i = 0;i < AllWeaponsInPlayer.Length;i++)
-            {
-                if (AllWeaponsInPlayer[i])
-                {
-                    SelectedWeapon = AllWeaponsInPlayer[i];
-                    break;
-                }
-            }
+            SelectedWeapon = AllWeapons[0];
+            SelectSlotHand();
+            ClotheWeapon();
         }
 
+        void SelectSlotHand()
+        {
+            ShootControlerWeapon = SelectedWeapon.GetComponent<ShootControler>();
+            if (ShootControlerWeapon)
+            {
+                switch (ShootControlerWeapon.TheGun)
+                {
+                    case TypeWeapon.Weapon:
+                        SlotHand = SlotHandForWeapons;
+                        break;
+                    default:
+                        SlotHand = SlotHandForPistols;
+                        break;
+                }
+            }
+            else SlotHand = SlotHandForPistols;
+        }
+
+        void ClotheWeapon()
+        {
+            PutObjects(SelectedWeapon, SlotHand, false);
+            ObjectInHand = SelectedWeapon.gameObject;
+        }
+
+        void RemoveWeapon()
+        {
+            PutObjects(ObjectInHand.transform, AllSlotsForWeapon[ObjectInHand.name], false);
+        }
 
         /*
         bool ObjectInHand01 = MyKnife01 && ObjectInHand == MyKnife01.gameObject;
