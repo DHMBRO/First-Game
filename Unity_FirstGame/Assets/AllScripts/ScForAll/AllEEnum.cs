@@ -36,6 +36,7 @@ public enum HandsPlayer
 
     AimingForDoSomething,
     UseSomething,
+    CarryBody,
 }
 
 public enum HandsPlayerHave
