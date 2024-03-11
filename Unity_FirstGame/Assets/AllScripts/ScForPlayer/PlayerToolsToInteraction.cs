@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections.Generic;
 public class PlayerToolsToInteraction : MonoBehaviour
 {
     [SerializeField] Transform CameraPlayer;
@@ -20,23 +20,38 @@ public class PlayerToolsToInteraction : MonoBehaviour
 
     public void InteractionWithRayCast()
     {
+        /*
         if(!CameraCompPlayer)
         {
             Debug.Log("Not set CameraCompPlayer");
             return;
         }
 
-        RaycastHit[] RayForInteraction = new RaycastHit[5];
-        RayForInteraction = Physics.RaycastAll(CameraPlayer.transform.position, CameraPlayer.transform.forward, CameraCompPlayer.CurrentMoveBackDistance);
+        List<RaycastHit> RayForInteraction = new List<RaycastHit>();
+        RaycastHit LocalRayForInteraction = new RaycastHit();
 
+        Physics.Raycast(CameraPlayer.position, CameraPlayer.forward, CameraCompPlayer.CurrentMoveBackDistance, LocalRayForInteraction);
+
+        RayForInteraction.Add();
+
+        //Physics.RaycastAll(CameraPlayer.transform.position, CameraPlayer.transform.forward, CameraCompPlayer.CurrentMoveBackDistance)
 
         Debug.DrawLine(CameraPlayer.position, CameraPlayer.forward * CameraCompPlayer.CurrentMoveBackDistance, ColorRayCast);
-        
-        //if (Physics.Raycast(RayForInteraction, out RaycastHit HitResult))
+
+
+        if (RayForInteraction.Length > 0)
         {
-            
+            for (int i = 0; i < RayForInteraction.Length; i++)
+            {
+                if (RayForInteraction[i].collider.isTrigger)
+                {
+
+                }
+            }
         }
+
         
+        */
     }
     
 }

@@ -5,13 +5,20 @@ public class HpScript : MonoBehaviour
 {
     [SerializeField] private Image UiHp;
     [SerializeField] private TextMeshProUGUI ProzentHealPoint;
-    [SerializeField] public EnemyState State;
+    [SerializeField] private RagdollControler MyRagdollControler;
+
+    protected PatrolScriptNavMesh MyNavMesh;
+    protected InfScript Info;
+
     [SerializeField] public float HealthPoint = 10;
     [SerializeField] public float MaxHp;
-    protected InfScript Info;
-    public bool StelthKill = false;
-    public Live MyLive = Live.Alive;
-    protected PatrolScriptNavMesh MyNavMesh;
+    
+    [SerializeField] public EnemyState State;
+    [SerializeField] public Live MyLive = Live.Alive;
+    
+    [SerializeField] public bool StelthKill = false;
+    [SerializeField] private bool WorkWithRagdollControler = false;
+
     public enum Live
     {
         Alive,
@@ -36,9 +43,10 @@ public class HpScript : MonoBehaviour
             InstanceKill();
         }
     }
+
     public void InflictingDamage(float Damage)
     {
-        if (MyLive == Live.NotAlive)
+        if (MyLive == Live.Alive)
         {
             MinusHp(Damage);
         }
@@ -52,20 +60,34 @@ public class HpScript : MonoBehaviour
             
             HealthPoint = 0;
             MyLive = Live.NotAlive; 
+            
             if (State != EnemyState.Another)
             {
-                MyNavMesh.ZombieNavMesh.isStopped = true;
+                if(MyNavMesh && MyNavMesh.enabled)
+                {
+                    MyNavMesh.ZombieNavMesh.isStopped = true;
+                }
+
                 if (StelthKill == false)
                 {
                     Info.SetAnimation("Death");
                 }
             }
 
+            if (WorkWithRagdollControler && MyRagdollControler)
+            {
+                MyRagdollControler.EnableRagdoll();
+            }
         }
         else if ((HealthPoint - Damage) > 0)
         {
             HealthPoint -= Damage;
+            if(WorkWithRagdollControler && MyRagdollControler)
+            {
+                MyRagdollControler.DisebleRagdoll();
+            }
         }
+
         if (HealthPoint >= 0.0f && UiHp && ProzentHealPoint) OutPutHp(HealthPoint, UiHp, ProzentHealPoint);
 
     }

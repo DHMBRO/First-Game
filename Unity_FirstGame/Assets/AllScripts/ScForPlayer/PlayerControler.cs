@@ -50,9 +50,6 @@ public class PlayerControler : MonoBehaviour, HeadInterface
     [SerializeField] public LegsPlayer WhatPlayerLegsDo;
     [SerializeField] public SpeedLegsPlayer WhatSpeedPlayerLegs;
 
-
-
-    
     public Vector3 PlayerSpeed;
 
     // Positions
@@ -80,7 +77,10 @@ public class PlayerControler : MonoBehaviour, HeadInterface
         ControlerDrop = GetComponent<DropControler>();
         SlotControler = GetComponent<SlotControler>();
         
+        //All Debug
         if (!ControlerUi) Debug.Log("Not set ControlerUi");
+        
+        //Setup References
         
     }
 
@@ -91,7 +91,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
 
         if (ControlerUi)
         {
-            if(Input.GetKeyDown(KeyCode.I)) ControlerUi.OpenOrCloseInventory();
+            if (Input.GetKeyDown(KeyCode.I)) ControlerUi.OpenOrCloseInventory();
             if (ControlerUi.InventoryIsOpen) WhatPlayerDo = Player.OpenInventory;
             else if(WhatPlayerDo == Player.OpenInventory) WhatPlayerDo = Player.Null;
             ControlerUi.InterfaceControler();
@@ -143,25 +143,28 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             }
 
             //Stelth 
-            if (Input.GetKeyDown(KeyCode.LeftControl) && WhatPlayerLegsDo != LegsPlayer.SatDown && WhatPlayerHandsDo != HandsPlayer.CarryBody)
+            if (WhatPlayerHandsDo != HandsPlayer.CarryBody)
             {
-                WhatPlayerLegsDo = LegsPlayer.SatDown;
-                MovePlayer.ControlCapsuleColider(true);
-            }
-            else if (Input.GetKeyDown(KeyCode.LeftControl) && MovePlayer.AuditToStandUp() && WhatPlayerHandsDo != HandsPlayer.CarryBody)
-            {
-                WhatPlayerLegsDo = LegsPlayer.Null;
-                MovePlayer.ControlCapsuleColider(false);
+                if (Input.GetKeyDown(KeyCode.LeftControl) && WhatPlayerLegsDo != LegsPlayer.SatDown)
+                {
+                    WhatPlayerLegsDo = LegsPlayer.SatDown;
+                    MovePlayer.ControlCapsuleColider(true);
+                }
+                else if (Input.GetKeyDown(KeyCode.LeftControl) && MovePlayer.AuditToStandUp())
+                {
+                    WhatPlayerLegsDo = LegsPlayer.Null;
+                    MovePlayer.ControlCapsuleColider(false);
+                }
             }
 
             //Camera
             if (CameraPlayerF3.CameraIsUsig)
             {
-                if (Input.GetKey(KeyCode.Mouse1) || Input.GetKey(KeyCode.Z) && WhatPlayerHandsDo == HandsPlayer.Null) 
+                if (Input.GetKey(KeyCode.Mouse1) || Input.GetKey(KeyCode.Z))
                 {
-                    WhatPlayerHandsDo = HandsPlayer.AimingForDoSomething;
+                    if (WhatPlayerHandsDo == HandsPlayer.Null) WhatPlayerHandsDo = HandsPlayer.AimingForDoSomething;
                 }
-                else WhatPlayerHandsDo = HandsPlayer.Null;
+                else if (WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething) WhatPlayerHandsDo = HandsPlayer.Null;
 
             }
 
@@ -199,11 +202,18 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             //PlayerPullBodyScript
             if (PlayerPullBodyScript && Input.GetKeyUp(KeyCode.X))
             {
+                SlotControler.PutWeapon();
                 PlayerPullBodyScript.Working();
                 
-                if (PlayerPullBodyScript.PlayerHingeJoint) WhatPlayerHandsDo = HandsPlayer.CarryBody;
-                else WhatPlayerHandsDo = HandsPlayer.Null;
-
+                if (PlayerPullBodyScript.PlayerHingeJoint)
+                {
+                    WhatPlayerHandsDo = HandsPlayer.CarryBody;
+                }
+                else
+                {
+                    WhatPlayerHandsDo = HandsPlayer.Null;
+                    SlotControler.UpWeapon();
+                }
                 if (WhatPlayerLegsDo != LegsPlayer.SatDown)
                 {
                     WhatPlayerLegsDo = LegsPlayer.SatDown;
@@ -214,7 +224,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
 
 
             // Slot Controler
-            if (SlotControler)
+            if (SlotControler && WhatPlayerHandsDo == HandsPlayer.Null)
             {
                 SlotControler.MovingGunForSlots();
                 
@@ -250,7 +260,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             }
             
             //Divert Attention 
-            if (DivertAttention)
+            if (DivertAttention && WhatPlayerHandsDo == HandsPlayer.Null)
             {
                 if (Input.GetKeyDown(KeyCode.Z)) DivertAttention.SpawnRock();
                 if (Input.GetKey(KeyCode.Z)) DivertAttention.AimingToDrop();
