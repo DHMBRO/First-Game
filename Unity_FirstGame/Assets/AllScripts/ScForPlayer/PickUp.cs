@@ -51,7 +51,9 @@ public class PickUp : MethodsFromDevelopers
                 ScrLoot = HitResult.collider.GetComponent<ScrForAllLoot>();
 
                 ComplertingTheLink();
-                               
+                InteractionWithSomething();
+
+
                 if (ControlerUi)
                 {
                     if (ScrLoot)
@@ -73,6 +75,23 @@ public class PickUp : MethodsFromDevelopers
         //else Debug.Log("Not set ThirdCamera");
 
         
+    }
+
+    private void InteractionWithSomething()
+    {
+        if (ObjectToBeLifted)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                IInteractionWithObjects LocalInetaction = ObjectToBeLifted.GetComponent<IInteractionWithObjects>();
+                if (LocalInetaction != null && LocalInetaction.AuditToUse())
+                {
+                    LocalInetaction.Interaction();
+                }
+
+            }
+
+        }
     }
 
     private void ComplertingTheLink()

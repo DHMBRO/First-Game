@@ -2,36 +2,41 @@ using UnityEngine;
 
 public class PullBodyScript : MonoBehaviour
 {
-    [SerializeField] PlayerControler ControlerPlayer;
-    [SerializeField] HingeJoint PlayerHingeJoint;
+    [SerializeField] PickUp PickUpPlayer;
+    [SerializeField] public HingeJoint PlayerHingeJoint;
 
     private void Start()
     {
-        ControlerPlayer = GetComponent<PlayerControler>();
-        
+        //Setup references
+        PickUpPlayer = GetComponent<PickUp>();
+        PlayerHingeJoint = GetComponent<HingeJoint>();
+
+        //All Debug
+        if (PlayerHingeJoint) Destroy(PlayerHingeJoint);
     }
 
-    public void SearchEnemyBody()
+    public void Working()
     {
-        /*
-        if (!ControlerPlayer.CameraPlayerF3)
+        if (!PickUpPlayer)
         {
-            Debug.Log("Not set CameraPlayerF3");
+            Debug.Log("Not set PickUpPlayer");
             return;
         }
 
-        Vector3 Origin = transform.TransformPoint(ControlerPlayer.CameraPlayerF3.DesirableVector);
-        Vector3 Direction = ControlerPlayer.CameraPlayerF3.transform.position = 
-            ControlerPlayer.CameraPlayerF3.transform.forward * ControlerPlayer.CameraPlayerF3.CurrentMoveBackDistance;
-
-        //Debug.DrawRay(Origin, Direction, Color.red);
-
-        if (Physics.Raycast(Origin, Direction, out RaycastHit HitResult, ControlerPlayer.CameraPlayerF3.CurrentMoveBackDistance))
+        if (PlayerHingeJoint)
         {
-            Debug.Log(HitResult.collider.name);
-
+            Destroy(PlayerHingeJoint);
+            PlayerHingeJoint = null;
         }
-        */
+        else if (PickUpPlayer.ObjectToBeLifted && PickUpPlayer.ObjectToBeLifted.GetComponent<HpScript>())
+        {
+            PlayerHingeJoint = gameObject.AddComponent<HingeJoint>();
+            PlayerHingeJoint.connectedBody = PickUpPlayer.ObjectToBeLifted.GetComponent<Rigidbody>();
+            PlayerHingeJoint.axis = new Vector3(0.0f, 1.0f, 0.0f);
+        }
+        else if (PickUpPlayer.ObjectToBeLifted && !PickUpPlayer.ObjectToBeLifted.GetComponent<HpScript>()) Debug.Log(PickUpPlayer.ObjectToBeLifted.name);
+        
     }
+
 
 }

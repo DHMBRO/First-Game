@@ -16,6 +16,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
     [SerializeField] private PullBodyScript PlayerPullBodyScript;
 
     //Main Components To Work Player
+    [SerializeField] private PlayerToolsToInteraction PlayerTools; 
     [SerializeField] private PickUp PickUpPlayer;
     [SerializeField] private DropControler ControlerDrop;
     [SerializeField] private SlotControler SlotControler;
@@ -49,9 +50,6 @@ public class PlayerControler : MonoBehaviour, HeadInterface
     [SerializeField] public LegsPlayer WhatPlayerLegsDo;
     [SerializeField] public SpeedLegsPlayer WhatSpeedPlayerLegs;
 
-
-
-    
     public Vector3 PlayerSpeed;
 
     // Positions
@@ -73,12 +71,16 @@ public class PlayerControler : MonoBehaviour, HeadInterface
         EEScript = GetComponent<ExecutoreScriptToPlayer>();
         PlayerPullBodyScript = GetComponent<PullBodyScript>();
 
-        //Main Scripts To Work Player                  
+        //Main Scripts To Work Player
+        PlayerTools = GetComponent<PlayerToolsToInteraction>();
         PickUpPlayer = GetComponent<PickUp>();
         ControlerDrop = GetComponent<DropControler>();
         SlotControler = GetComponent<SlotControler>();
         
+        //All Debug
         if (!ControlerUi) Debug.Log("Not set ControlerUi");
+        
+        //Setup References
         
     }
 
@@ -89,9 +91,9 @@ public class PlayerControler : MonoBehaviour, HeadInterface
 
         if (ControlerUi)
         {
-            if(Input.GetKeyDown(KeyCode.I)) ControlerUi.OpenOrCloseInventory();
+            if (Input.GetKeyDown(KeyCode.I)) ControlerUi.OpenOrCloseInventory();
             if (ControlerUi.InventoryIsOpen) WhatPlayerDo = Player.OpenInventory;
-            else WhatPlayerDo = Player.Null;
+            else if(WhatPlayerDo == Player.OpenInventory) WhatPlayerDo = Player.Null;
             ControlerUi.InterfaceControler();
         }
 
@@ -101,18 +103,15 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             {
                 WhatPlayerHandsDo = HandsPlayer.UseSomething;
             }
-            else 
-            {
-                WhatPlayerHandsDo = HandsPlayer.Null;
-            }
+            
 
         }
-        else
+        else if(WhatPlayerHandsDo == HandsPlayer.UseSomething)
         {
             WhatPlayerHandsDo = HandsPlayer.Null;
         }
 
-        if (/*(!ControlerUi || !ControlerUi.InventoryIsOpen) &&*/ WhatPlayerHandsDo == HandsPlayer.Null && !StealthKilling)
+        if (/*(!ControlerUi || !ControlerUi.InventoryIsOpen) && WhatPlayerHandsDo == HandsPlayer.Null &&*/ !StealthKilling)
         {
             
             // Movement && Executore Noice
@@ -125,7 +124,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                 else WhatSpeedPlayerLegs = SpeedLegsPlayer.Null;
 
                 //Run
-                if (Input.GetKey(KeyCode.LeftShift))
+                if (Input.GetKey(KeyCode.LeftShift) && WhatPlayerHandsDo == HandsPlayer.Null)
                 {
                     WhatSpeedPlayerLegs = SpeedLegsPlayer.Run;
                 }
@@ -144,21 +143,29 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             }
 
             //Stelth 
-            if (Input.GetKeyDown(KeyCode.LeftControl) && WhatPlayerLegsDo != LegsPlayer.SatDown)
+            if (WhatPlayerHandsDo != HandsPlayer.CarryBody)
             {
-                WhatPlayerLegsDo = LegsPlayer.SatDown;
-                MovePlayer.ControlCapsuleColider(true);
-            }
-            else if (Input.GetKeyDown(KeyCode.LeftControl) && MovePlayer.AuditToStandUp())
-            {
-                WhatPlayerLegsDo = LegsPlayer.Null;
-                MovePlayer.ControlCapsuleColider(false);
+                if (Input.GetKeyDown(KeyCode.LeftControl) && WhatPlayerLegsDo != LegsPlayer.SatDown)
+                {
+                    WhatPlayerLegsDo = LegsPlayer.SatDown;
+                    MovePlayer.ControlCapsuleColider(true);
+                }
+                else if (Input.GetKeyDown(KeyCode.LeftControl) && MovePlayer.AuditToStandUp())
+                {
+                    WhatPlayerLegsDo = LegsPlayer.Null;
+                    MovePlayer.ControlCapsuleColider(false);
+                }
             }
 
             //Camera
-            if (CameraPlayerF3.CameraIsUsig && (WhatPlayerHandsHave == HandsPlayerHave.Weapon || WhatPlayerHandsHave == HandsPlayerHave.Pistol))
+            if (CameraPlayerF3.CameraIsUsig)
             {
-                //if (Input.GetKey(KeyCode.Mouse1)) WhatPlayerHandsDo = HandsPlayer.AimingForDoSomething;
+                if (Input.GetKey(KeyCode.Mouse1) || Input.GetKey(KeyCode.Z))
+                {
+                    if (WhatPlayerHandsDo == HandsPlayer.Null) WhatPlayerHandsDo = HandsPlayer.AimingForDoSomething;
+                }
+                else if (WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething) WhatPlayerHandsDo = HandsPlayer.Null;
+
             }
 
             //IsAiming
@@ -171,22 +178,53 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                 if (Inputs) WhatSpeedPlayerLegs = SpeedLegsPlayer.CrouchWalk;
                 else WhatSpeedPlayerLegs = SpeedLegsPlayer.Null;
             }
-             
+
 
             //if (WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething && WhatSpeedPlayerLegs == SpeedLegsPlayer.CrouchWalk) WhatSpeedPlayerLegs = SpeedLegsPlayer.Walk;
 
             //if (Input.GetKeyUp(KeyCode.Mouse1)) IsAiming = false;
 
+            //Player Tools
+            if (PlayerTools && WhatSpeedPlayerLegs != SpeedLegsPlayer.Run && WhatPlayerHandsDo == HandsPlayer.Null)
+            {
+                PlayerTools.InteractionWithRayCast();
+                
+            }
+            if(!PlayerTools) Debug.Log("Not set PlayerTools");
+
             // PickUp
-            if (PickUpPlayer && WhatSpeedPlayerLegs != SpeedLegsPlayer.Run && WhatPlayerHandsDo != HandsPlayer.AimingForDoSomething) 
+            if (PickUpPlayer && WhatSpeedPlayerLegs != SpeedLegsPlayer.Run && WhatPlayerHandsDo == HandsPlayer.Null) 
             {
                 PickUpPlayer.RayForLoot();
             }
-            
-            
-            
+            if (!PickUpPlayer) Debug.Log("Not set PickUpPlayer");
+
+            //PlayerPullBodyScript
+            if (PlayerPullBodyScript && Input.GetKeyUp(KeyCode.X))
+            {
+                SlotControler.PutWeapon();
+                PlayerPullBodyScript.Working();
+                
+                if (PlayerPullBodyScript.PlayerHingeJoint)
+                {
+                    WhatPlayerHandsDo = HandsPlayer.CarryBody;
+                }
+                else
+                {
+                    WhatPlayerHandsDo = HandsPlayer.Null;
+                    SlotControler.UpWeapon();
+                }
+                if (WhatPlayerLegsDo != LegsPlayer.SatDown)
+                {
+                    WhatPlayerLegsDo = LegsPlayer.SatDown;
+                    MovePlayer.ControlCapsuleColider(true);
+                }
+
+            }
+
+
             // Slot Controler
-            if (SlotControler)
+            if (SlotControler && WhatPlayerHandsDo == HandsPlayer.Null)
             {
                 SlotControler.MovingGunForSlots();
                 
@@ -195,6 +233,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                     ControlerShoot = SlotControler.ObjectInHand.GetComponent<ShootControler>();
                     
                 }
+                
                 // Change Object In Hand
                 if (Input.GetKeyDown("1"))
                 {
@@ -221,7 +260,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             }
             
             //Divert Attention 
-            if (DivertAttention)
+            if (DivertAttention && WhatPlayerHandsDo == HandsPlayer.Null)
             {
                 if (Input.GetKeyDown(KeyCode.Z)) DivertAttention.SpawnRock();
                 if (Input.GetKey(KeyCode.Z)) DivertAttention.AimingToDrop();
@@ -231,13 +270,6 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                     DivertAttention.DropRock();
                 }
             }
-
-            //PullBodyScript
-            if (PlayerPullBodyScript)
-            {
-                PlayerPullBodyScript.SearchEnemyBody();
-            }
-
 
             //Add Noice
             if (EEScript) EEScript.ExecutoreNoice();
@@ -266,10 +298,12 @@ public class PlayerControler : MonoBehaviour, HeadInterface
 
 
     }
+
     public Vector3 GetHeadPosition()
     {
         return Head.transform.position;
     }
+    
     public Vector3 GetSpeed()
     {
         

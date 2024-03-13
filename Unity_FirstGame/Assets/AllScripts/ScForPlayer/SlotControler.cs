@@ -58,8 +58,8 @@ public class SlotControler : MethodsFromDevelopers
     //
     [SerializeField] List<Transform> Slots = new List<Transform>();
     //
-    [SerializeField] public GameObject ObjectInHand = null; 
-
+    [SerializeField] public Transform ObjectInHand = null;
+    [SerializeField] public Transform LastWeaponInHand = null;
 
     void Start()
     {
@@ -85,6 +85,77 @@ public class SlotControler : MethodsFromDevelopers
         if (MyWeapon02) PointForShopWeapon02 = MyWeapon02.GetComponent<ShootControler>().SlotForUseShop;
         if (MyPistol01) PointForShopPistol01 = MyPistol01.GetComponent<ShootControler>().SlotForUseShop;
 
+    }
+
+    public void PutWeapon()
+    {
+        if (ObjectInHand)
+        {
+            ShootControler LocalShootControler = ObjectInHand.GetComponent<ShootControler>();
+            if (LocalShootControler)
+            {
+                if (LocalShootControler.TheGun == TypeWeapon.Pistol)
+                {
+                    PutObjects(ObjectInHand.transform, SlotPistol01, false);
+                    
+                    LastWeaponInHand = ObjectInHand;
+                    ObjectInHand = null;
+                    UpdateTypeWeaponInHand();
+                }
+                else if (LocalShootControler.TheGun == TypeWeapon.Weapon)
+                {
+                    LastWeaponInHand = ObjectInHand;
+
+                    if (ObjectInHand.name == MyWeapon01.name) 
+                    {
+                        PutObjects(ObjectInHand, SlotBack01, false);
+                        ObjectInHand = null;
+                    }
+                    else
+                    {
+                        PutObjects(ObjectInHand, SlotBack02, false);
+                        ObjectInHand = null;
+                    }
+                    
+                    UpdateTypeWeaponInHand();
+                }
+            }
+            else
+            {
+                ControlerPlayer.WhatPlayerHandsHave = HandsPlayerHave.Null;
+                PutObjects(ObjectInHand.transform, SlotKnife01, false);
+
+                LastWeaponInHand = ObjectInHand;
+                ObjectInHand = null;
+                UpdateTypeWeaponInHand();
+
+            }
+        }
+        else return;
+    }
+
+    public void UpWeapon()
+    {
+        if (LastWeaponInHand)
+        {
+            ShootControler LocalShootControler = LastWeaponInHand.GetComponent<ShootControler>();
+
+            if (LocalShootControler)
+            {
+                switch (LocalShootControler.TheGun)
+                {
+                    case TypeWeapon.Weapon:
+                        PutObjects(LastWeaponInHand, SlotHandForWeapons, false);
+                        break;
+                    default:
+                        PutObjects(LastWeaponInHand, SlotHandForPistols, false);
+                        break;
+                }
+            }
+            else PutObjects(LastWeaponInHand, SlotHandForPistols, false);
+            ObjectInHand = LastWeaponInHand;
+            UpdateTypeWeaponInHand();
+        }
     }
 
     public void UpdateTypeWeaponInHand()
@@ -329,109 +400,102 @@ public class SlotControler : MethodsFromDevelopers
 
     public void ChangingSlots()
     {
-        bool ObjectInHand01 = MyKnife01 && ObjectInHand == MyKnife01.gameObject;
-        bool ObjectInHand02 = MyPistol01 && ObjectInHand == MyPistol01.gameObject;
-        bool ObjectInHand03 = MyWeapon01 && ObjectInHand == MyWeapon01.gameObject;
-        bool ObjectInHand04 = MyWeapon02 && ObjectInHand == MyWeapon02.gameObject;
+        //Rferences
+        Dictionary<int, Transform> AllWeapons = new Dictionary<int, Transform>();
+        Dictionary<string, Transform> AllSlotsForWeapon = new Dictionary<string, Transform>();
+        
+        Transform SelectedWeapon = null;
+        Transform SlotHand = null;
+        ShootControler ShootControlerWeapon = null;
 
-        List<Transform> AllWeapons = new List<Transform>();
-        List<Transform> AllSlots = new List<Transform>();
+        //Setup References
+        int Count = 0;
+        if (MyKnife01)
+        {
+            AllWeapons.Add(Count, MyKnife01.transform);
+            AllSlotsForWeapon.Add(MyKnife01.name, SlotKnife01.transform);
+        }
+        if (MyPistol01)
+        {
+            Count++;
+            AllWeapons.Add(Count, MyPistol01.transform);
+            AllSlotsForWeapon.Add(MyPistol01.name, SlotPistol01.transform);
+        }
+        if (MyWeapon01) 
+        {
+            Count++;
+            AllWeapons.Add(Count, MyWeapon01.transform);
+            AllSlotsForWeapon.Add(MyWeapon01.name, SlotBack01.transform);
+        }
+        if (MyWeapon02) 
+        {
+            Count++;
+            AllWeapons.Add(Count, MyWeapon02.transform);
+            AllSlotsForWeapon.Add(MyWeapon02.name, SlotBack02.transform);
+        }
 
-        Transform NextWeapon = null;
-        Transform NextSlotInHand = null;
-        int CountNextWeapon = 0;
-
-        if(MyKnife01) AllWeapons.Add(MyKnife01);
-        if(MyPistol01) AllWeapons.Add(MyPistol01);
-        if(MyWeapon01) AllWeapons.Add(MyWeapon01);
-        if(MyWeapon02) AllWeapons.Add(MyWeapon02);
-
-        AllSlots.Add(SlotKnife01);
-        AllSlots.Add(SlotPistol01);
-        AllSlots.Add(SlotBack01);
-        AllSlots.Add(SlotBack02);
 
         if (ObjectInHand)
         {
-            for (int i = 0; i < AllWeapons.Count; i++)
-            {
-                if (ObjectInHand.name == AllWeapons[i].name)
-                {
-                    if (i + 1 < AllWeapons.Count)
-                    {
-                        NextWeapon = AllWeapons[i + 1];
-                        CountNextWeapon = i + 1;
-                        break;
-                    }
-                    else 
-                    {
-                        NextWeapon = AllWeapons[0];
-                        CountNextWeapon = 0;
-                        break;
-                    }
-                }
-
-                //Debug.Log("Object in hand ID: " + ObjectInHand.GetInstanceID());
-                //Debug.Log("Object in hand ID: " + AllWeapons[i].GetInstanceID());
-            }
-        }
-        else
-        {
-            NextWeapon = AllWeapons[0];
-            CountNextWeapon = 0;
-        }
-
-        //Debug.Log("Next weapon of List: " + NextWeapon);
-        //Debug.Log("Count weapon of List: " + CountNextWeapon);
-
-        ShootControler NextShootControler =  NextWeapon.GetComponent<ShootControler>();
-        if (NextShootControler)
-        {
-            switch (NextShootControler.TheGun)
-            {
-                case TypeWeapon.Weapon:
-                    NextSlotInHand = SlotHandForWeapons;
-                    break;
-                case TypeWeapon.Pistol:
-                    NextSlotInHand = SlotHandForPistols;
-                    break;
-                default:
-                    NextSlotInHand = SlotHandForPistols;
-                    break;
-            }
-
-        }
-        else NextSlotInHand = SlotHandForPistols;
-
-        if (ObjectInHand)
-        {
-            int CountObjectInHand = 0;
-
             for (int i = 0;i < AllWeapons.Count;i++)
             {
-                if (ObjectInHand.name == AllWeapons[i].name)
+                if (AllWeapons[i].name == ObjectInHand.name)
                 {
-                    CountObjectInHand = i;
+                    if (i == AllWeapons.Count - 1)
+                    {
+                        SelectedWeapon = AllWeapons[0];
+                    }
+                    else
+                    {
+                        SelectedWeapon = AllWeapons[i + 1];
+                    }
                     break;
                 }
-                else CountObjectInHand = 0;
             }
 
-            PutObjects(ObjectInHand.transform, AllSlots[CountObjectInHand].transform, false);
-            PutObjects(NextWeapon.transform, NextSlotInHand.transform, false);
+            RemoveWeapon();
+            SelectSlotHand();
+            ClotheWeapon();
 
-            ObjectInHand = NextWeapon.gameObject;
         }
         else
         {
-            PutObjects(NextWeapon.transform, NextSlotInHand.transform, false);
-            ObjectInHand = NextWeapon.gameObject;
+            SelectedWeapon = AllWeapons[0];
+            SelectSlotHand();
+            ClotheWeapon();
         }
 
+        void SelectSlotHand()
+        {
+            ShootControlerWeapon = SelectedWeapon.GetComponent<ShootControler>();
+            if (ShootControlerWeapon)
+            {
+                switch (ShootControlerWeapon.TheGun)
+                {
+                    case TypeWeapon.Weapon:
+                        SlotHand = SlotHandForWeapons;
+                        break;
+                    default:
+                        SlotHand = SlotHandForPistols;
+                        break;
+                }
+            }
+            else SlotHand = SlotHandForPistols;
+        }
+
+        void ClotheWeapon()
+        {
+            PutObjects(SelectedWeapon, SlotHand, false);
+            ObjectInHand = SelectedWeapon;
+        }
+
+        void RemoveWeapon()
+        {
+            PutObjects(ObjectInHand.transform, AllSlotsForWeapon[ObjectInHand.name], false);
+        }
+
+       
     }
 
-    
-
-        
 }
 
