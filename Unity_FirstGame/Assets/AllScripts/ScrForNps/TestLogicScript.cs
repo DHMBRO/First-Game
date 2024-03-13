@@ -241,22 +241,25 @@ public class FollowTargetState : ILogic
     }
     public override void Update()
     {
-
+        
+        
+        if (!DoISeeEnemy())
+        {
+            InfOwner.SetState(new GuardState(InfOwner));
+            
+        } 
         if (DoISeeEnemy()) 
         {
-            Vector3 NewRotation = Vector3.Lerp(gameObj.transform.forward, Locate.Target.transform.position, 0.1f);
-            gameObj.transform.rotation.SetLookRotation(NewRotation);
+           
+            Quaternion NewRotation = Quaternion.RotateTowards(gameObj.transform.rotation, Quaternion.LookRotation(Locate.Target.transform.position - gameObj.transform.position), 1.0f);
+            gameObj.transform.rotation = NewRotation;
         }
          
         if (CanIAttack())
         {
             InfOwner.SetState(new CamperAttackState(InfOwner));
         }
-        if (!DoISeeEnemy())
-        {
-            InfOwner.SetState(new GuardState(InfOwner));
-            return;
-        }
+      
     }
 }
 
@@ -268,15 +271,38 @@ public class CamperAttackState : ILogic
     }
     override public void Update()
     {
+        
         if (DoISeeEnemy())
         {
             if (CanIAttack())
             {
-               
-                Attack.GunPos.transform.rotation = Quaternion.RotateTowards(Attack.GunPos.transform.rotation,
-                    Quaternion.LookRotation(InfOwner.GetTargetHead() - Attack.GunPos.transform.position), 0.1f * Time.deltaTime);
-                
                 Attack.StartAttack(Locate.Target.gameObject);
+                //Vector3 TargetLocation = Quaternion.RotateTowards(Attack.GunPos.transform.rotation,
+                //Quaternion.LookRotation(InfOwner.GetTargetHead() - Attack.GunPos.transform.position), 0.1f * Time.deltaTime).eulerAngles;
+
+                //Body Rotate
+                Quaternion NewRotation = Quaternion.RotateTowards(gameObj.transform.rotation, Quaternion.LookRotation(Locate.Target.transform.position - gameObj.transform.position), 1.0f);
+                gameObj.transform.rotation = NewRotation;
+
+                //Gun Rotate
+                Debug.DrawLine(Locate.Target.MyHeadScript.GetHeadPosition(), Attack.GunPos.transform.position, Color.red);
+                Vector3 DirectionToTarget = Locate.Target.MyHeadScript.GetHeadPosition() - Attack.GunPos.transform.position;
+                Quaternion DirectionToTargetQ = Quaternion.LookRotation(DirectionToTarget).normalized;
+                
+                Attack.GunPos.transform.rotation = Quaternion.RotateTowards(Attack.GunPos.transform.rotation, DirectionToTargetQ, 50.0f * Time.deltaTime);
+                
+
+
+
+              //  Attack.TerroristWeaponScript.gameObject.transform.rotation = Quaternion.RotateTowards(Attack.GunPos.transform.rotation,
+                // Quaternion.LookRotation(InfOwner.GetTargetHead() - Attack.GunPos.transform.position), 10.0f * Time.deltaTime);
+              //  Debug.DrawLine(Attack.GunPos.transform.position, Attack.GunPos.transform.position +Attack.AttackDistance* Attack.TerroristWeaponScript.gameObject.transform.forward , color: Color.blue,0.1f );
+
+                // Attack.TerroristWeaponScript.gameObject.transform.rotation = 
+                // Quaternion.Euler(Attack.TerroristWeaponScript.gameObject.transform.eulerAngles + new Vector3(45.0f, -90.0f, 0.0f));
+
+
+               
                
             }
             else

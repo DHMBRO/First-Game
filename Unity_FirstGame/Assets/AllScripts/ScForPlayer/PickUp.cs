@@ -60,17 +60,17 @@ public class PickUp : MethodsFromDevelopers
                     }
                     else ControlerUi.DeleteNameOnTable();
                 }
-                else Debug.Log("Not set ControlerUi");
+                //else Debug.Log("Not set ControlerUi");
 
             }
             else
             {
                 ObjectToBeLifted = null;
                 if (ControlerUi) ControlerUi.DeleteNameOnTable();
-                else Debug.Log("Not set ControlerUi");
+                //else Debug.Log("Not set ControlerUi");
             }
         }
-        else Debug.Log("Not set ThirdCamera");
+        //else Debug.Log("Not set ThirdCamera");
 
         
     }

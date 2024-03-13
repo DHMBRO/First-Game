@@ -18,7 +18,8 @@ public class InfScript : MonoBehaviour
     public BaseInformationScript BaseInfoScript;
     [SerializeField] public float RotationSpeed;
     [SerializeField] public Types MyType;
-   
+    
+
     public enum Types
     {
         Camper,
@@ -49,16 +50,18 @@ public class InfScript : MonoBehaviour
 
     void Update()
     {
+
+        Debug.Log(CurrentState.GetType().Name);
         if (CurrentState != null && Alive())
         {
             CurrentState.Update();
         }
-        Debug.Log(CanISeeEnemy() + " Enemy Vision " + gameObject.name);
+        //Debug.Log(CanISeeEnemy() + " Enemy Vision " + gameObject.name);
     }
  
     public void Watch(PointControllScript PointContr)
     {
-        Debug.DrawLine(Attack.GunPos.transform.forward, Attack.GunPos.transform.forward*10, color:Color.blue);
+        //Debug.DrawLine(Attack.GunPos.transform.forward, Attack.GunPos.transform.forward*10, color:Color.blue);
         Vector3 DirectionToTarget = PointContr.GetPosByIndex(PointContr.CurrentPointIndex) - Attack.GunPos.transform.position;
         Quaternion DirectionToTargetQ = Quaternion.LookRotation(DirectionToTarget).normalized;
         if (Vector3.Angle(Attack.GunPos.transform.forward, DirectionToTarget) > 0.1f)//
@@ -82,9 +85,9 @@ public class InfScript : MonoBehaviour
     }
     public bool CanAttack()
     {
-        return ((Patrol.ZombieNavMesh.remainingDistance <= Attack.AttackDistance) &&
-                            ((Locate.Target.transform.position - Patrol.ZombieNavMesh.destination).magnitude <= Attack.GoingDistance));
-
+        // return ((Patrol.ZombieNavMesh.remainingDistance <= Attack.AttackDistance) &&
+        //               ((Locate.Target.transform.position - Patrol.ZombieNavMesh.destination).magnitude <= Attack.GoingDistance));
+        return ((Locate.Target.gameObject.transform.position - gameObject.transform.position).magnitude <= Attack.AttackDistance);
     }
     public float HowMuchHpIHave()
     { 

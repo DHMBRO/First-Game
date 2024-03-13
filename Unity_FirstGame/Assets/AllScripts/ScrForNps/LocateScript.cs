@@ -140,7 +140,7 @@ public class LocateScript : MonoBehaviour
 
             MyHeadScript.Head.transform.rotation = Quaternion.LookRotation(RotateHead);
             RaycastHit[] HitResults = Physics.RaycastAll(HeadForward, CurrentAgrDistance);
-            Debug.DrawLine(MyHeadScript.GetHeadPosition(), BaseInfo.MyHeadScript.GetHeadPosition(), color:Color.blue, CurrentAgrDistance); 
+            
             foreach (RaycastHit HitResult in HitResults)
             {
                 if (HitResult.collider.gameObject.transform.root.gameObject == gameObject)

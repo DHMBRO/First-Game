@@ -25,7 +25,7 @@ public class IlluminationController : MonoBehaviour
     {
         if (gameObject.CompareTag("Player01"))
         {
-            Debug.Log("Illumination " + GetIlluminatiLvl() + gameObject.name);
+            //Debug.Log("Illumination " + GetIlluminatiLvl() + gameObject.name);
         }
        
     }
