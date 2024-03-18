@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 public class PickUp : MethodsFromDevelopers 
 {
-    [SerializeField] public GameObject ObjectToBeLifted;
-    [SerializeField] public ThirdPersonCamera ThirdCamera;   
+    [SerializeField] private Transform LocalObject;
+    [SerializeField] bool CanWork = false;
 
     [SerializeField] private UiControler ControlerUi;
     [SerializeField] private UiInventoryOutPut InventoryUi;
@@ -15,9 +15,8 @@ public class PickUp : MethodsFromDevelopers
     [SerializeField] private ReferenseForAllLoot ReferencesForLoots;
 
     [SerializeField] List<string> TagsToPickup = new List<string>();
-
-    [SerializeField] private float DistanceForRay = 3.0f;
-    [SerializeField] private int Counter = 0;
+    
+    //[SerializeField] public int Counter = 0;
 
     private SlotControler SlotControler;
     private DropControler ControlerToDrop;
@@ -31,127 +30,75 @@ public class PickUp : MethodsFromDevelopers
         
         //Auditions
         if (!ControlerUi) Debug.Log("Not set ControlerUi");
-    }
 
-    public void RayForLoot()
-    {
-        if (ThirdCamera)
-        {
-            Vector3 PointRay = ThirdCamera.TargetCamera.transform.TransformPoint(ThirdCamera.DesirableVector); 
-            ScrForAllLoot ScrLoot = null;
-
-            //Debug.Log("RayForLoot is work");
-            Ray RayForPickUp = new Ray(PointRay, ThirdCamera.transform.forward);
-
-            Debug.DrawRay(PointRay, ThirdCamera.transform.forward * DistanceForRay, Color.red);
-            
-            if (Physics.Raycast(RayForPickUp, out RaycastHit HitResult, DistanceForRay))
-            {
-                ObjectToBeLifted = HitResult.collider.gameObject;
-                ScrLoot = HitResult.collider.GetComponent<ScrForAllLoot>();
-
-                ComplertingTheLink();
-                InteractionWithSomething();
-
-
-                if (ControlerUi)
-                {
-                    if (ScrLoot)
-                    {
-                        ControlerUi.UpdateNameOnTable(ScrLoot);
-                    }
-                    else ControlerUi.DeleteNameOnTable();
-                }
-                //else Debug.Log("Not set ControlerUi");
-
-            }
-            else
-            {
-                ObjectToBeLifted = null;
-                if (ControlerUi) ControlerUi.DeleteNameOnTable();
-                //else Debug.Log("Not set ControlerUi");
-            }
-        }
-        //else Debug.Log("Not set ThirdCamera");
-
+        GetComponent<PlayerToolsToInteraction>().PlayerSetInteractionDelegat += ChekToInteraction;
         
     }
 
-    private void InteractionWithSomething()
+    public void Work()
     {
-        if (ObjectToBeLifted)
+        if (LocalObject && CanWork)
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                IInteractionWithObjects LocalInetaction = ObjectToBeLifted.GetComponent<IInteractionWithObjects>();
-                if (LocalInetaction != null && LocalInetaction.AuditToUse())
-                {
-                    LocalInetaction.Interaction();
-                }
-
-            }
-
+            ComplertingTheLink();
         }
+
+    }
+
+    private void ChekToInteraction(Transform GivenReference)
+    {
+        Debug.Log("ChekToInteraction working in PickUp_SCR");
+        
+        LocalObject = GivenReference;
+        CanWork = true;
     }
 
     private void ComplertingTheLink()
     {
-        if (ObjectToBeLifted)
+        ShootControler ControlerWeapon = LocalObject.GetComponent<ShootControler>();
+        ShopControler ControlerShop = LocalObject.GetComponent<ShopControler>();
+
+        HelmetControler ControlerHelmet = LocalObject.GetComponent<HelmetControler>();
+        ArmorControler ControlerArmor = LocalObject.GetComponent<ArmorControler>();
+        BackPackContorler ControlerBackPack = LocalObject.GetComponent<BackPackContorler>();
+
+        ScrForAllLoot ScrLoot = LocalObject.GetComponent<ScrForAllLoot>();
+
+        for (int i = 0; i < TagsToPickup.Count; i++)
         {
-            if (Input.GetKeyDown(KeyCode.F) && ObjectToBeLifted && Counter == 0)
+            if (LocalObject.tag == TagsToPickup[i])
             {
-                ShootControler ControlerWeapon = ObjectToBeLifted.GetComponent<ShootControler>();
-                ShopControler ControlerShop = ObjectToBeLifted.GetComponent<ShopControler>();
-
-                HelmetControler ControlerHelmet = ObjectToBeLifted.GetComponent<HelmetControler>();
-                ArmorControler ControlerArmor = ObjectToBeLifted.GetComponent<ArmorControler>();
-                BackPackContorler ControlerBackPack = ObjectToBeLifted.GetComponent<BackPackContorler>();
-
-                ScrForAllLoot ScrLoot = ObjectToBeLifted.GetComponent<ScrForAllLoot>();
-
-                for (int i = 0; i < TagsToPickup.Count; i++)
+                if (ControlerWeapon && ControlerWeapon.TheGun == TypeWeapon.Weapon)
                 {
-                    if (ObjectToBeLifted.tag == TagsToPickup[i])
-                    {
-                        if (ControlerWeapon && ControlerWeapon.TheGun == TypeWeapon.Weapon)
-                        {
-                            PickUpWeapons(ObjectToBeLifted);
-                        }
-                        else if (ControlerWeapon && ControlerWeapon.TheGun == TypeWeapon.Pistol)
-                        {
-                            PickUpPistols(ObjectToBeLifted);
-                        }
-                        else if (ControlerShop)
-                        {
-                            PickUpShops(ObjectToBeLifted);
-                        }
-                        else if (ControlerHelmet || ControlerArmor || ControlerBackPack)
-                        {
-                            PickUpEqipment(ObjectToBeLifted);
-                            ControlerUi.InterfaceControler();
-                        }
-                        else if (ScrLoot)
-                        {
-                            PickUpOther(ObjectToBeLifted);
-                        }
-                    }
+                    PickUpWeapons(LocalObject);
+                }
+                else if (ControlerWeapon && ControlerWeapon.TheGun == TypeWeapon.Pistol)
+                {
+                    PickUpPistols(LocalObject);
+                }
+                else if (ControlerShop)
+                {
+                    PickUpShops(LocalObject);
+                }
+                else if (ControlerHelmet || ControlerArmor || ControlerBackPack)
+                {
+                    PickUpEqipment(LocalObject);
+                    ControlerUi.InterfaceControler();
+                }
+                else if (ScrLoot)
+                {
+                    PickUpOther(LocalObject);
                 }
             }
-            if (Input.GetKeyUp(KeyCode.F) && Counter == 1)
-            {
-                Counter = 0;
-            }
-            
-
         }
     }
 
+
     
 
-    public void PickUpOther(GameObject ObjectToPickUp)
+    public void PickUpOther(Transform ObjectToPickUp)
     {
         
-        if (PlayerInventory && Counter == 0)
+        if (PlayerInventory)
         {
             ScrForAllLoot Loot = ObjectToPickUp.gameObject.GetComponent<ScrForAllLoot>();
             InfoWhatDoLoot InfoLoot = ObjectToPickUp.gameObject.GetComponent<InfoWhatDoLoot>();
@@ -169,38 +116,29 @@ public class PickUp : MethodsFromDevelopers
                         ScrSaveAndGiveInfo ObjectToGet = new ScrSaveAndGiveInfo();
 
                         ObjectToGet.ObjectToInstantiate = ReferencesForLoots.ReferencePrefabs[i];
-                        ObjectToGet.SaveInfo(ObjectToPickUp);
+                        ObjectToGet.SaveInfo(ObjectToPickUp.gameObject);
 
                         PlayerInventory.InfoForSlots.Add(ObjectToGet);
                         PlayerInventory.CurrentMass += Loot.Mass;
 
                         for (int j = 0; j < InventoryUi.SpritesForBackPack.Count; j++)
                         {
-                            if (InventoryUi.SpritesForBackPack[j] == PlayerInventory.None && Counter == 0)
+                            if (InventoryUi.SpritesForBackPack[j] == PlayerInventory.None)
                             {
                                 //Debug.Log("6");
                                 InventoryUi.SpritesForBackPack[j] = Loot.SpriteForLoot;
-                                Counter = 1;
                                 break;
                             }
-
-
                         }
-
                         Destroy(ObjectToPickUp);
                     }
-
                 }
-
-               
-                
-               
             }
         }
     }
 
 
-    void PickUpEqipment(GameObject ObjectToPickUp)
+    void PickUpEqipment(Transform ObjectToPickUp)
     {
         ScrForAllLoot ScrForLoot = ObjectToPickUp.GetComponent<ScrForAllLoot>();
 
@@ -372,7 +310,7 @@ public class PickUp : MethodsFromDevelopers
         else Debug.Log("Not set Armor");
     }
 
-    public void PickUpWeapons(GameObject ObjectForPickUp)
+    public void PickUpWeapons(Transform ObjectForPickUp)
     {
         ShootControler ControlerShoot = ObjectForPickUp.GetComponent<ShootControler>();
         ScrForAllLoot ScrForLoot = ObjectForPickUp.GetComponent<ScrForAllLoot>();
@@ -380,26 +318,20 @@ public class PickUp : MethodsFromDevelopers
         
         if (ControlerShoot && ScrForLoot)
         {
-            if (!SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 && Counter == 0)
+            if (!SlotControler.MyWeapon01 && !SlotControler.MyWeapon02)
             {
                 SlotControler.MyWeapon01 = ObjectForPickUp.transform;
                 if(ControlerUi) ControlerUi.SlotWeapon01.sprite = ScrForLoot.SpriteForLoot;
-                
-
                 PutObjects(SlotControler.MyWeapon01, SlotControler.SlotBack01, false);
-                Counter = 1;
-                //Debug.Log("1");
-
+                return;
             }
-            else if (SlotControler.MyWeapon01 && !SlotControler.MyWeapon02 && Counter == 0)
+            else if (SlotControler.MyWeapon01 && !SlotControler.MyWeapon02)
             {
                 SlotControler.MyWeapon02 = ObjectForPickUp.transform;
                 if(ControlerUi) ControlerUi.SlotWeapon02.sprite = ScrForLoot.SpriteForLoot;
                 
                 PutObjects(SlotControler.MyWeapon02, SlotControler.SlotBack02, false);
-                Counter = 1;
-                //Debug.Log("2");
-
+                return;
             }
             else 
             {
@@ -410,7 +342,7 @@ public class PickUp : MethodsFromDevelopers
         
     }
 
-    public void PickUpPistols(GameObject ObjectForPickUp)
+    public void PickUpPistols(Transform ObjectForPickUp)
     {
         ShootControler ControlerShoot = ObjectForPickUp.GetComponent<ShootControler>();
         ScrForAllLoot ScrForLoot = ObjectForPickUp.GetComponent<ScrForAllLoot>();
@@ -418,14 +350,13 @@ public class PickUp : MethodsFromDevelopers
         
         if (ControlerShoot && ScrForLoot)
         {
-            if (!SlotControler.MyPistol01 && Counter == 0)
+            if (!SlotControler.MyPistol01)
             {
                 SlotControler.MyPistol01 = ObjectForPickUp.transform;
                 if (ControlerUi) ControlerUi.SlotPistol01.sprite = ScrForLoot.SpriteForLoot;
 
                 PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01, false);
-                Counter = 1;
-                //Debug.Log("3");
+                return;
             }
         }
         else 
@@ -435,7 +366,7 @@ public class PickUp : MethodsFromDevelopers
         PutOn();   
     }
 
-    public void PickUpShops(GameObject ShopForPickUp )
+    public void PickUpShops(Transform ShopForPickUp )
     {
         ShopControler ControlerShop = ShopForPickUp.GetComponent<ShopControler>();
         ScrForAllLoot ScrForLoot = ShopForPickUp.GetComponent<ScrForAllLoot>();
@@ -452,8 +383,8 @@ public class PickUp : MethodsFromDevelopers
             {
                 //Debug.Log("1");
 
-                ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
-                ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
+                ShopForPickUp.transform.position = LocalObject .transform.position;
+                ShopForPickUp.transform.rotation = LocalObject .transform.rotation;
 
                 SlotControler.Shop[0] = ShopForPickUp.transform;
 
@@ -462,35 +393,35 @@ public class PickUp : MethodsFromDevelopers
                 if (ControlerUi) ControlerUi.SlotShop01.sprite = ScrForLoot.SpriteForLoot;
                 if (!ControlerShop.IsUsing) PutObjects(SlotControler.Shop[0], SlotControler.SlotsShop[0], false);
                 ControlerShop.PutShopInParent();
-                Counter = 1;
+                return;
             }
             else if (!SlotControler.Shop[1] && SlotControler.SlotsShop[1])
             {
                 //Debug.Log("2");
 
-                ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
-                ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
+                ShopForPickUp.transform.position = LocalObject .transform.position;
+                ShopForPickUp.transform.rotation = LocalObject .transform.rotation;
 
                 SlotControler.Shop[1] = ShopForPickUp.transform;
                 if (ControlerUi) ControlerUi.SlotShop02.sprite = ScrForLoot.SpriteForLoot;
 
                 if (!ControlerShop.IsUsing) PutObjects(SlotControler.Shop[1], SlotControler.SlotsShop[1], false);
                 ControlerShop.PutShopInParent();
-                Counter = 1;
+                return;
             }
             else if (!SlotControler.Shop[2] && SlotControler.SlotsShop[2])
             {
                 //Debug.Log("3");
 
-                ShopForPickUp.transform.position = ObjectToBeLifted.transform.position;
-                ShopForPickUp.transform.rotation = ObjectToBeLifted.transform.rotation;
+                ShopForPickUp.transform.position = LocalObject .transform.position;
+                ShopForPickUp.transform.rotation = LocalObject .transform.rotation;
                 
                 SlotControler.Shop[2] = ShopForPickUp.transform;
                 if (ControlerUi) ControlerUi.SlotShop03.sprite = ScrForLoot.SpriteForLoot;
 
                 if (!ControlerShop.IsUsing) PutObjects(SlotControler.Shop[2], SlotControler.SlotsShop[2], false);
                 ControlerShop.PutShopInParent();
-                Counter = 1;
+                return;
             }
             else 
             {

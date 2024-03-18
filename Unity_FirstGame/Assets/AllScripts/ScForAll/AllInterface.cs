@@ -14,7 +14,6 @@ public interface IInteractionWithObjects
     public void Interaction();
 }
 
-
 public interface IReferencesInterface
 {
     public void GetReferences(GameObject ObjectToCopy, GameObject ObjectForCopy);

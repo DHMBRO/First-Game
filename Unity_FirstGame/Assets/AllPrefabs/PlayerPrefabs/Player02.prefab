@@ -1243,6 +1243,8 @@ GameObject:
   - component: {fileID: 9222820105927190343}
   - component: {fileID: 1187246579547213906}
   - component: {fileID: 7778607237951541594}
+  - component: {fileID: 4204884600277346387}
+  - component: {fileID: 5192534622578152218}
   - component: {fileID: 7874716152253843916}
   - component: {fileID: 2663352457323175868}
   - component: {fileID: 655437941069588223}
@@ -1253,7 +1255,6 @@ GameObject:
   - component: {fileID: 3059040256925347778}
   - component: {fileID: 2320318701797134959}
   - component: {fileID: 2001030955048781610}
-  - component: {fileID: 4204884600277346387}
   - component: {fileID: 3895106789929070742}
   m_Layer: 0
   m_Name: Player02
@@ -1494,14 +1495,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9027246094432369652}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5120783047b7e9f4cb7a8126480e89e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LastSelectedObject: {fileID: 0}
   CameraPlayer: {fileID: 0}
   CameraCompPlayer: {fileID: 0}
-  ColorRayCast: {r: 1, g: 0, b: 0, a: 1}
+  ObjectThatWatching: {fileID: 0}
+  DistanceRay: 3
+  ColorRayCast: {r: 1, g: 0.018983461, b: 0, a: 1}
 --- !u!114 &7778607237951541594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1515,7 +1519,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectToBeLifted: {fileID: 0}
-  ThirdCamera: {fileID: 0}
   ControlerUi: {fileID: 0}
   InventoryUi: {fileID: 0}
   ControlerPlayer: {fileID: 9222820105927190343}
@@ -1531,8 +1534,34 @@ MonoBehaviour:
   - FirstAidKit
   - BoxAmmo
   - ArmorPlate
-  DistanceForRay: 3
   Counter: 0
+--- !u!114 &4204884600277346387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9027246094432369652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94e62db8fa5f4824099affb0caac7e9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerHingeJoint: {fileID: 0}
+  LocalBody: {fileID: 0}
+  CanWork: 0
+--- !u!114 &5192534622578152218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9027246094432369652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef81a3e98ce5e324f9be79af9a10f2b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7874716152253843916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1584,6 +1613,7 @@ MonoBehaviour:
   Inventory: {fileID: 0}
   Slots: []
   ObjectInHand: {fileID: 0}
+  LastWeaponInHand: {fileID: 0}
 --- !u!114 &2663352457323175868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1659,11 +1689,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UiHp: {fileID: 0}
   ProzentHealPoint: {fileID: 0}
-  State: 1
+  MyRagdollControler: {fileID: 0}
   HealthPoint: 100
   MaxHp: 100
-  StelthKill: 0
+  State: 1
   MyLive: 0
+  StelthKill: 0
+  WorkWithRagdollControler: 0
 --- !u!114 &6328347359453867729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1769,21 +1801,6 @@ MonoBehaviour:
   DebugingTheWork: 0
   ZoneNoice: {fileID: 0}
   ShowTheZoneNoice: 0
---- !u!114 &4204884600277346387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9027246094432369652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94e62db8fa5f4824099affb0caac7e9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PickUpPlayer: {fileID: 0}
-  PlayerHingeJoint: {fileID: 0}
-  HaveTarget: 0
 --- !u!114 &3895106789929070742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1907,10 +1924,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Y Bot
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 32c385e148d9c094ea210cf380d5d4f9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5822821947120931875, guid: 32c385e148d9c094ea210cf380d5d4f9, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6e5f6c645ece8ec40b9500928d74cea1, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 32c385e148d9c094ea210cf380d5d4f9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 32c385e148d9c094ea210cf380d5d4f9, type: 3}
       propertyPath: m_Controller
       value: 

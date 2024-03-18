@@ -2,39 +2,59 @@ using UnityEngine;
 
 public class PullBodyScript : MonoBehaviour
 {
-    [SerializeField] PickUp PickUpPlayer;
     [SerializeField] public HingeJoint PlayerHingeJoint;
+
+    [SerializeField] Transform LocalBody;
+    [SerializeField] bool CanWork = false;
 
     private void Start()
     {
         //Setup references
-        PickUpPlayer = GetComponent<PickUp>();
         PlayerHingeJoint = GetComponent<HingeJoint>();
+        GetComponent<PlayerToolsToInteraction>().PlayerSetInteractionDelegat += ChekToInteraction;
 
         //All Debug
         if (PlayerHingeJoint) Destroy(PlayerHingeJoint);
     }
 
-    public void Working()
+    public void Work()
     {
-        if (!PickUpPlayer)
+        if(CanWork && LocalBody)
         {
-            Debug.Log("Not set PickUpPlayer");
-            return;
+            PullBody(LocalBody);
         }
+    }
 
+    private void ChekToInteraction(Transform GivenReference)
+    {
+        if (GivenReference.GetComponent<HpScript>())
+        {
+            CanWork = true;
+            LocalBody = GivenReference;
+        }
+        else
+        {
+            LocalBody = null;
+            CanWork = false;
+        }
+    }
+
+    private void PullBody(Transform LocalBody)
+    {
+        
         if (PlayerHingeJoint)
         {
             Destroy(PlayerHingeJoint);
             PlayerHingeJoint = null;
         }
-        else if (PickUpPlayer.ObjectToBeLifted && PickUpPlayer.ObjectToBeLifted.GetComponent<HpScript>())
+        else if (LocalBody.GetComponent<HpScript>())
         {
             PlayerHingeJoint = gameObject.AddComponent<HingeJoint>();
-            PlayerHingeJoint.connectedBody = PickUpPlayer.ObjectToBeLifted.GetComponent<Rigidbody>();
+            PlayerHingeJoint.connectedBody = LocalBody.GetComponent<Rigidbody>();
             PlayerHingeJoint.axis = new Vector3(0.0f, 1.0f, 0.0f);
         }
-        else if (PickUpPlayer.ObjectToBeLifted && !PickUpPlayer.ObjectToBeLifted.GetComponent<HpScript>()) Debug.Log(PickUpPlayer.ObjectToBeLifted.name);
+        else if (LocalBody && !LocalBody.GetComponent<HpScript>()) Debug.Log(LocalBody.name);
+        
         
     }
 
