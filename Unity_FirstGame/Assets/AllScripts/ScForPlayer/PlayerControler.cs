@@ -13,11 +13,12 @@ public class PlayerControler : MonoBehaviour, HeadInterface
     [SerializeField] private DivertAttention DivertAttention;
     [SerializeField] private ExecutoreScriptToPlayer EEScript;
     [SerializeField] private ControlerAnimationsPlayer ScrAnimationsPlayer;
-    [SerializeField] private PullBodyScript PlayerPullBodyScript;
-
+    
     //Main Components To Work Player
     [SerializeField] private PlayerToolsToInteraction PlayerTools; 
     [SerializeField] private PickUp PickUpPlayer;
+    [SerializeField] private InteractionScr PlayerInteractionScr;
+    [SerializeField] private PullBodyScript PlayerPullBodyScript;
     [SerializeField] private DropControler ControlerDrop;
     [SerializeField] private SlotControler SlotControler;
 
@@ -69,11 +70,13 @@ public class PlayerControler : MonoBehaviour, HeadInterface
         DivertAttention = GetComponent<DivertAttention>();
         StelthScript = GetComponent<StelthScript>();
         EEScript = GetComponent<ExecutoreScriptToPlayer>();
-        PlayerPullBodyScript = GetComponent<PullBodyScript>();
-
+        
         //Main Scripts To Work Player
         PlayerTools = GetComponent<PlayerToolsToInteraction>();
         PickUpPlayer = GetComponent<PickUp>();
+        PlayerInteractionScr = GetComponent<InteractionScr>();
+        PlayerPullBodyScript = GetComponent<PullBodyScript>();
+        
         ControlerDrop = GetComponent<DropControler>();
         SlotControler = GetComponent<SlotControler>();
         
@@ -104,7 +107,6 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                 WhatPlayerHandsDo = HandsPlayer.UseSomething;
             }
             
-
         }
         else if(WhatPlayerHandsDo == HandsPlayer.UseSomething)
         {
@@ -124,7 +126,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                 else WhatSpeedPlayerLegs = SpeedLegsPlayer.Null;
 
                 //Run
-                if (Input.GetKey(KeyCode.LeftShift) && WhatPlayerHandsDo == HandsPlayer.Null)
+                if (Input.GetKey(KeyCode.LeftShift) && WhatPlayerHandsDo == HandsPlayer.Null )
                 {
                     WhatSpeedPlayerLegs = SpeedLegsPlayer.Run;
                 }
@@ -188,22 +190,24 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             if (PlayerTools && WhatSpeedPlayerLegs != SpeedLegsPlayer.Run && WhatPlayerHandsDo == HandsPlayer.Null)
             {
                 PlayerTools.InteractionWithRayCast();
-                
             }
             if(!PlayerTools) Debug.Log("Not set PlayerTools");
 
             // PickUp
             if (PickUpPlayer && WhatSpeedPlayerLegs != SpeedLegsPlayer.Run && WhatPlayerHandsDo == HandsPlayer.Null) 
             {
-                PickUpPlayer.RayForLoot();
+                if (Input.GetKeyUp(KeyCode.F))
+                {
+                    PickUpPlayer.Work();
+                }
             }
-            if (!PickUpPlayer) Debug.Log("Not set PickUpPlayer");
+            if (!PickUpPlayer) Debug.Log("Cannot  PickUpPlayer");
 
             //PlayerPullBodyScript
             if (PlayerPullBodyScript && Input.GetKeyUp(KeyCode.X))
             {
                 SlotControler.PutWeapon();
-                PlayerPullBodyScript.Working();
+                PlayerPullBodyScript.Work();
                 
                 if (PlayerPullBodyScript.PlayerHingeJoint)
                 {
@@ -222,6 +226,14 @@ public class PlayerControler : MonoBehaviour, HeadInterface
 
             }
 
+            //InteractionScr
+            if (PlayerInteractionScr)
+            {
+                if (Input.GetKeyUp(KeyCode.E))
+                {
+                    PlayerInteractionScr.Work();
+                }
+            }
 
             // Slot Controler
             if (SlotControler && WhatPlayerHandsDo == HandsPlayer.Null)

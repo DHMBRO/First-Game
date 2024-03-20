@@ -12,9 +12,10 @@ public class RagdollEnDis : MonoBehaviour
             MyRagdollControler.SetRagdollDelegat += SayResultOfWork;
 
 
-            MyRagdollControler.SetRagdollDelegat += SetRigidboby;
             MyRagdollControler.SetRagdollDelegat += SetColision;
-            //MyRagdollControler.SetRagdollDelegat += SetJoints;
+            MyRagdollControler.SetRagdollDelegat += SetJoints;
+            MyRagdollControler.SetRagdollDelegat += SetRigidboby;
+
 
         }
         else Debug.Log(gameObject.name + " not set MyRagdollControler !!!");
@@ -35,7 +36,8 @@ public class RagdollEnDis : MonoBehaviour
         Rigidbody LocalRigidbody = GetComponent<Rigidbody>();
         
         LocalRigidbody.isKinematic = !EnableRagdoll;
-        
+            
+        //Destroy(LocalRigidbody);
     }
 
     public void SetColision(bool EnableRagdoll)
@@ -45,11 +47,15 @@ public class RagdollEnDis : MonoBehaviour
         LocalCollider.enabled = EnableRagdoll;
         LocalCollider.isTrigger = !EnableRagdoll;
 
+        //Destroy(LocalCollider);
     }
 
     public void SetJoints(bool EnableRagdoll)
     {
+        Joint LocalJoint = GetComponent<Joint>();
 
+        //Destroy(LocalJoint);
+        
     }
 
 }
