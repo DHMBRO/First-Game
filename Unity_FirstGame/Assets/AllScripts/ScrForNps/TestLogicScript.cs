@@ -117,9 +117,13 @@ public class PatrolState : ILogic
         {    
             if (Patrol.IsReachTarget())
             {
-                 InfOwner.SetFloatToAnim("CurrentSpeed", 0.5f);
-                CurrentPoint = InfOwner.PointController.SearchNextPosition(CurrentPoint);
-                Patrol.MoveTo(InfOwner.PointController.Points[CurrentPoint].transform.position);      
+               
+                if (Time.deltaTime > InfOwner.WaitingTime)
+                {
+                    InfOwner.SetFloatToAnim("CurrentSpeed", 0.5f);
+                    CurrentPoint = InfOwner.PointController.SearchNextPosition(CurrentPoint);
+                    Patrol.MoveTo(InfOwner.PointController.Points[CurrentPoint].transform.position);
+                }  
             }
         }
     }
@@ -130,7 +134,7 @@ public class ChaseState : ILogic
     {
             
     }
-
+    
     override public void Update()
     {
 
@@ -290,19 +294,12 @@ public class CamperAttackState : ILogic
                 Quaternion DirectionToTargetQ = Quaternion.LookRotation(DirectionToTarget).normalized;
                 
                 Attack.GunPos.transform.rotation = Quaternion.RotateTowards(Attack.GunPos.transform.rotation, DirectionToTargetQ, 50.0f * Time.deltaTime);
-                
-
-
 
               //  Attack.TerroristWeaponScript.gameObject.transform.rotation = Quaternion.RotateTowards(Attack.GunPos.transform.rotation,
                 // Quaternion.LookRotation(InfOwner.GetTargetHead() - Attack.GunPos.transform.position), 10.0f * Time.deltaTime);
               //  Debug.DrawLine(Attack.GunPos.transform.position, Attack.GunPos.transform.position +Attack.AttackDistance* Attack.TerroristWeaponScript.gameObject.transform.forward , color: Color.blue,0.1f );
-
                 // Attack.TerroristWeaponScript.gameObject.transform.rotation = 
                 // Quaternion.Euler(Attack.TerroristWeaponScript.gameObject.transform.eulerAngles + new Vector3(45.0f, -90.0f, 0.0f));
-
-
-               
                
             }
             else
@@ -314,9 +311,9 @@ public class CamperAttackState : ILogic
         else
         {
             Attack.StopAttack();
+            InfOwner.ReturnToDefaultRotation();
             InfOwner.SetState(new GuardState(InfOwner)); 
         }
-        
     }
 }
 public class CamperCheckNoice : ILogic

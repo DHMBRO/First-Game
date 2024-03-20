@@ -18,7 +18,7 @@ public class InfScript : MonoBehaviour
     public BaseInformationScript BaseInfoScript;
     [SerializeField] public float RotationSpeed;
     [SerializeField] public Types MyType;
-    
+    [SerializeField] public float WaitingTime;
 
     public enum Types
     {
@@ -58,7 +58,11 @@ public class InfScript : MonoBehaviour
         }
         //Debug.Log(CanISeeEnemy() + " Enemy Vision " + gameObject.name);
     }
- 
+    public void LookAround()
+    {
+
+
+    }
     public void Watch(PointControllScript PointContr)
     {
         //Debug.DrawLine(Attack.GunPos.transform.forward, Attack.GunPos.transform.forward*10, color:Color.blue);
@@ -67,6 +71,7 @@ public class InfScript : MonoBehaviour
         if (Vector3.Angle(Attack.GunPos.transform.forward, DirectionToTarget) > 0.1f)//
         {
             Attack.GunPos.transform.rotation = Quaternion.RotateTowards(Attack.GunPos.transform.rotation, DirectionToTargetQ, RotationSpeed * Time.deltaTime);
+            gameObject.transform.rotation = Quaternion.LookRotation(Vector3.Lerp(gameObject.transform.forward, PointController.gameObject.transform.forward, RotationSpeed * Time.deltaTime));
         } 
         else
         {
@@ -74,7 +79,11 @@ public class InfScript : MonoBehaviour
         }
     }
 
-
+    public void ReturnToDefaultRotation()
+    {
+        Vector3 NewRotation = new Vector3(0.0f, Vector3.Lerp(gameObject.transform.forward, PointController.gameObject.transform.root.transform.forward, RotationSpeed * Time.deltaTime).y, 0.0f);
+        gameObject.transform.rotation = Quaternion.LookRotation(NewRotation);
+    }
     public bool Alive()
     {
         return HpScript.IsAlive();
