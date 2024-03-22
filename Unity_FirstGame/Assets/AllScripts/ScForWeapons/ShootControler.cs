@@ -7,7 +7,7 @@ public class ShootControler : MonoBehaviour
     private bool CanWork;
 
     [SerializeField] public Transform SlotForUseShop;
-    [SerializeField] public GameObject WeaponShoop;
+    [SerializeField] public ShopControler WeaponShoop;
     [SerializeField] private GameObject GameObjectForRay;
     [SerializeField] private GameObject Muzzle;
     [SerializeField] private GameObject Bullet;
@@ -34,7 +34,7 @@ public class ShootControler : MonoBehaviour
         if (!Muzzle) Debug.Log("Not set Muzzle");
         if (!Bullet) Debug.Log("Not set Bullet");
 
-        SetShootDelegat += Shoot;
+        SetShootDelegat += ShootWeapon;
     }
 
     private void Update()
@@ -67,84 +67,64 @@ public class ShootControler : MonoBehaviour
 
         return CanWork;
     }
-    
 
-
-    private void Shoot()//ColectPoint
+    private void ShootWeapon()
     {
-        if (!GameObjectForRay || !Muzzle || !Bullet || !Collet || !ColletPoint )
+        if(!GameObjectForRay || !Muzzle || !Bullet || !Collet || !ColletPoint || !WeaponShoop)
         {
-           
+            Debug.Log("GameObjectForRay is: " + GameObjectForRay);
+            Debug.Log("Muzzle is: " + Muzzle);
+            Debug.Log("Collet is: " + Collet);
+            Debug.Log("ColletPoint is: " + ColletPoint);
+            Debug.Log("WeaponShoop is: " + WeaponShoop);
+
             return;
         }
 
-        if (!WeaponShoop && !UnLimitedAmmo)
+        if (WeaponShoop.CurrentAmmo > 0 && Time.time > ShotTime)
         {
-            //Debug.Log("Shoot2");
-            return;
+            ShotTime = Time.time + ShotDeley;
+
+            //All References
+            GameObject NewBullet = Instantiate(Bullet);
+            GameObject NewCollet = Instantiate(Collet);
+            
+            Rigidbody NewBulletRIG = NewBullet.GetComponent<Rigidbody>();
+            Rigidbody NewColletRIG = NewCollet.GetComponent<Rigidbody>();
+
+            //Rigidbody
+            NewBulletRIG.useGravity = false;
+            NewBulletRIG.isKinematic = false;
+
+            NewColletRIG.useGravity = true;
+            NewColletRIG.isKinematic = true;// !!!
+            
+            //Transform
+            NewBullet.transform.position = Muzzle.transform.position;
+            NewBullet.transform.forward = Muzzle.transform.forward;
+            NewBullet.transform.eulerAngles = ChangeBulletDirection(NewBullet.transform.eulerAngles);
+
+            NewCollet.transform.position = ColletPoint.transform.position;
+            NewCollet.transform.forward = ColletPoint.transform.forward;
+
+            //Shoot
+            NewBulletRIG.AddForce(NewBullet.transform.forward * BulletSpeed, ForceMode.Force);
+
+            Destroy(NewBullet, 10.0f);
+            //Destroy(NewCollet, 10.0f);
         }
-        ShopControler Shop = null;
-        if (!UnLimitedAmmo)
-        {
-            Shop = WeaponShoop.gameObject.GetComponent<ShopControler>();
-            if (Shop?.CurrentAmmo <= 0)
-            {; return; }
-        }
-        Vector3 TargetPoint = GameObjectForRay.transform.position + GameObjectForRay.transform.forward * 100.0f;
-        RaycastHit Hitresult;
+        else Debug.Log("Cannot shoot beacuse low ammo");
 
-        if (Physics.Raycast(GameObjectForRay.transform.position, GameObjectForRay.transform.forward, out Hitresult))
-        {
-            Debug.DrawRay(Muzzle.transform.position, Muzzle.transform.forward * 100.0f, Color.blue);
-            TargetPoint = Hitresult.point;
-        }
-        if (Time.time >= ShotTime)
-        {
-            ShotTime = ShotDeley + Time.time;
-            GameObject newBullet = Instantiate(Bullet, Muzzle.transform.position, Quaternion.LookRotation(TargetPoint - GameObjectForRay.transform.position));
 
-            Vector3 ShootDirection = Muzzle.transform.forward;
-            newBullet.transform.forward = ChangeDirection(ShootDirection);
-
-            Rigidbody newBulletRB = newBullet.GetComponent<Rigidbody>();
-            if (!newBulletRB) newBulletRB.gameObject.AddComponent<Rigidbody>();
-            if (newBulletRB) newBulletRB.AddForce(newBulletRB.transform.forward * BulletSpeed, ForceMode.Impulse); // Dont touch this !!!
-
-            GameObject newCollet = Instantiate(Collet, ColletPoint.transform.position, Quaternion.LookRotation(TargetPoint - Muzzle.transform.position));
-            newCollet.transform.rotation = ColletPoint.transform.rotation;
-
-            Rigidbody newColletRB = newCollet.GetComponent<Rigidbody>();                    
-
-            //newColletRB.AddRelativeForce(ColletPoint.transform.forward * ColletSpeed, ForceMode.Impulse);
-            Destroy(newCollet, 2.5f);
-
-            if (Shop)
-            {
-                Shop.CurrentAmmo--;
-            }
-        }
     }
 
-    private Vector3 ChangeDirection(Vector3 ShootDirection)
+    private Vector3 ChangeBulletDirection(Vector3 CurrentDirection)
     {
-        Quaternion NewShootDirection = Quaternion.LookRotation(ShootDirection);
+        CurrentDirection += new Vector3(Random.Range(-ChangedAngle, ChangedAngle), 
+        Random.Range(-ChangedAngle, ChangedAngle), 
+        Random.Range(-ChangedAngle, ChangedAngle));
 
-        /*
-        ShootDirection += new Vector3(Random.Range(-ChangedAngle, ChangedAngle) - (ChangedAngle / 2.0f), 
-            Random.Range(-ChangedAngle, ChangedAngle) - (ChangedAngle / 2.0f), 
-            Random.Range(-ChangedAngle, ChangedAngle) - (ChangedAngle / 2.0f));
-
-        */
-        
-        NewShootDirection.eulerAngles = NewShootDirection.eulerAngles + new Vector3(Random.Range(1.0f, ChangedAngle) - (ChangedAngle / 2.0f),
-        Random.Range(1.0f, ChangedAngle) - (ChangedAngle / 2.0f),
-        Random.Range(1.0f, ChangedAngle) - (ChangedAngle / 2.0f));
-
-        Quaternion randomRotation = Quaternion.Euler(Random.onUnitSphere * ChangedAngle);
-        Vector3 randomizedDirection = randomRotation * ShootDirection;
-        
-
-        return NewShootDirection.eulerAngles;
+        return CurrentDirection;
     }
 
 }

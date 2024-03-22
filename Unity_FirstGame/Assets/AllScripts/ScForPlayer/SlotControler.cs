@@ -317,20 +317,15 @@ public class SlotControler : MethodsFromDevelopers
                     }
                     else if(ControlerForShoot.WeaponShoop)
                     {
-                        GameObject ShopFromWeapon;
+                        ShopControler ShopFromWeapon;
 
                         //Debug.Log("1");
                         for (int i = 0;i < Shop.Length;i++)
                         {
                             if (Shop[i] != null && ShopToRecharge.transform.position == SlotsShop[i].position)
                             {
-                                //Debug.Log("2");
-                                
                                 DisRechargeShop(SlotsShop[i]);
                                 ShopFromWeapon = ControlerForShoot.WeaponShoop;
-                                Debug.Log(SlotsShop[i].name);
-                                Debug.Log(ShopFromWeapon.name);
-                                
                                 
                                 for (int j = 0;j < Shop.Length;j++)
                                 {
@@ -364,7 +359,7 @@ public class SlotControler : MethodsFromDevelopers
 
                     void RechargeShop(GameObject ShopToRecharge)
                     {
-                        ControlerForShoot.WeaponShoop = ShopToRecharge;
+                        ControlerForShoot.WeaponShoop = ShopToRecharge.GetComponent<ShopControler>();
                         PutObjects(ControlerForShoot.WeaponShoop.transform, ControlerForShoot.SlotForUseShop, false);
 
                     }
