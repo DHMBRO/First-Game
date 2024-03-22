@@ -47,7 +47,8 @@ public class UiControler : MonoBehaviour
     {
         //Change value varriables
         InventoryIsOpen = false;
-        
+        PlayerInventory.GetComponent<PlayerToolsToInteraction>().PlayerSetInteractionDelegat += ChekToInteraction;
+
         //Control other game objects
         if (Inventory) Inventory.SetActive(InventoryIsOpen);
         Scope.gameObject.SetActive(InventoryIsOpen);
@@ -56,7 +57,17 @@ public class UiControler : MonoBehaviour
         InterfaceControler();
     }
 
-    
+    private void ChekToInteraction(Transform GivenReference)
+    {
+        ScrForAllLoot LocalScrForAllLoot = GivenReference.GetComponent<ScrForAllLoot>();
+
+        if (LocalScrForAllLoot)
+        {
+            UpdateNameOnTable(LocalScrForAllLoot);
+        }
+        else DeleteNameOnTable();
+    }
+
     public void OpenOrCloseInventory()
     {
         InventoryIsOpen = !InventoryIsOpen;
@@ -76,7 +87,9 @@ public class UiControler : MonoBehaviour
         
     }
 
-    public void UpdateNameOnTable(ScrForAllLoot LocalObjectScript)
+    
+
+    private void UpdateNameOnTable(ScrForAllLoot LocalObjectScript)
     {
         if (!TableNameObjectForPickUp)
         {
@@ -89,7 +102,7 @@ public class UiControler : MonoBehaviour
 
     }
     
-    public void DeleteNameOnTable()
+    private void DeleteNameOnTable()
     {
         if (!TableNameObjectForPickUp)
         {

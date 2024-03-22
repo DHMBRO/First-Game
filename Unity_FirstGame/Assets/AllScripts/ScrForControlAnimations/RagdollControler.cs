@@ -7,26 +7,39 @@ public class RagdollControler : MonoBehaviour
     [SerializeField] private Animator MyAnimator;
     [SerializeField] public SetRagdoll SetRagdollDelegat;
 
-    [SerializeField] List<GameObject> AllBoneObjects = new List<GameObject>();
-    
-
     private void Start()
     {
+        
         MyAnimator = gameObject.GetComponent<Animator>();
-
-        for (int i = 0;i < AllBoneObjects.Count;i++)
+        List<Rigidbody> AllBonesObject = new List<Rigidbody>(gameObject.GetComponentsInChildren<Rigidbody>());
+        
+        for (int i = 0;i < AllBonesObject.Count;i++)
         {
-            RagdollEnDis LocalRagdollEnDis = AllBoneObjects[i].AddComponent<RagdollEnDis>();
+            RagdollEnDis LocalRagdollEnDis = AllBonesObject[i].gameObject.AddComponent<RagdollEnDis>();
             
-            LocalRagdollEnDis.MyRagdollControler = GetComponent<RagdollControler>();
+            LocalRagdollEnDis.MyRagdollControler = this;
             LocalRagdollEnDis.GetReferences();
 
-            if (i == AllBoneObjects.Count - 1) break;
         }
-        
-        DisebleRagdoll();
 
+        //EnableRagdoll();
+        DisebleRagdoll();
     }
+
+    /*
+    private void Update()
+    {
+        
+        if (Input.GetKey(KeyCode.P))
+        {
+            EnableRagdoll();
+        }
+        else if (Input.GetKey(KeyCode.O))
+        {
+            DisebleRagdoll();
+        }  
+    }
+    */
 
     public void EnableRagdoll()
     {
@@ -35,7 +48,7 @@ public class RagdollControler : MonoBehaviour
             SetRagdollDelegat(true);
             MyAnimator.enabled = false;
         }
-        else Debug.Log("RagdollControler desnt have some references " + gameObject.name);
+        else Debug.Log("RagdollControler doesnt have some references " + gameObject.name);
     }
 
     public void DisebleRagdoll()
@@ -45,6 +58,6 @@ public class RagdollControler : MonoBehaviour
             SetRagdollDelegat(false);
             MyAnimator.enabled = true;
         }
-        else Debug.Log("RagdollControler desnt have some references " + gameObject.name);
+        else Debug.Log("RagdollControler doesnt have some references " + gameObject.name);
     }
 }   

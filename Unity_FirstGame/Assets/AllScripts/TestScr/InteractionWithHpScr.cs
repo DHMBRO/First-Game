@@ -10,17 +10,23 @@ public class InteractionWithHpScr : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        LocalHpScr = other.GetComponent<HpScript>();
-
-        if (LocalHpScr)
+        if (Work)
         {
-            if (Heal)
+            if(!LocalHpScr || (LocalHpScr && LocalHpScr.gameObject.name != other.gameObject.name))
             {
-                LocalHpScr.HealHp(SpeedOfInteraction);
+                LocalHpScr = other.GetComponent<HpScript>();
             }
-            else
+
+            if (LocalHpScr)
             {
-                LocalHpScr.HealHp(-SpeedOfInteraction);
+                if (Heal)
+                {
+                    LocalHpScr.HealHp(SpeedOfInteraction);
+                }
+                else
+                {
+                    LocalHpScr.HealHp(-SpeedOfInteraction);
+                }
             }
         }
 

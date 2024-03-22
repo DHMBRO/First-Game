@@ -10,7 +10,7 @@ public class HpScript : MonoBehaviour
     protected PatrolScriptNavMesh MyNavMesh;
     protected InfScript Info;
 
-    [SerializeField] public float HealthPoint = 10;
+    [SerializeField] public float HealthPoint = 10.0f;
     [SerializeField] public float MaxHp;
     
     [SerializeField] public EnemyState State;
@@ -55,7 +55,7 @@ public class HpScript : MonoBehaviour
     void MinusHp(float Damage)
     {
 
-        if ((HealthPoint - Damage) <= 0)
+        if ((HealthPoint - Damage) <= 0.0f)
         {
             
             HealthPoint = 0;
@@ -79,7 +79,7 @@ public class HpScript : MonoBehaviour
                 MyRagdollControler.EnableRagdoll();
             }
         }
-        else if ((HealthPoint - Damage) > 0)
+        else if ((HealthPoint - Damage) > 0.0f)
         {
             HealthPoint -= Damage;
             if(WorkWithRagdollControler && MyRagdollControler)
@@ -125,12 +125,11 @@ public class HpScript : MonoBehaviour
 
     public bool IsAlive() 
     {
-        return HealthPoint > 0;
+        return HealthPoint > 0.0f;
     }
 
     public void InstanceKill()
-    {
-        
-        InflictingDamage(HealthPoint*2f);
+    {   
+        InflictingDamage(HealthPoint * 2.0f);
     }
 }
