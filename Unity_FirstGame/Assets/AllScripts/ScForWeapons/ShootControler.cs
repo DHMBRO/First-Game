@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class ShootControler : MonoBehaviour
 {
-    //[SerializeField] private BoxCollider ColiderForWeapon;
+    public WeaponIsShoting SetShootDelegat;
+    private bool CanWork;
 
     [SerializeField] public Transform SlotForUseShop;
     [SerializeField] public GameObject WeaponShoop;
@@ -22,6 +23,8 @@ public class ShootControler : MonoBehaviour
     [SerializeField] public float Mass = 0.0f;
     [SerializeField] private float BulletSpeed = 0.0f;
 
+    [SerializeField] private float ChangedAngle = 0.0f;
+
     public bool UnLimitedAmmo;
     //[SerializeField] private float ColletSpeed = 0.0f;
 
@@ -30,6 +33,8 @@ public class ShootControler : MonoBehaviour
     {
         if (!Muzzle) Debug.Log("Not set Muzzle");
         if (!Bullet) Debug.Log("Not set Bullet");
+
+        SetShootDelegat += Shoot;
     }
 
     private void Update()
@@ -52,17 +57,20 @@ public class ShootControler : MonoBehaviour
         
     }
 
-    public void ShootWithPoint(Ray ForwardCamera)
+    public bool NowIsEnable()
     {
-        //if ()
+        if (SetShootDelegat != null)
         {
-
+            CanWork = true;
         }
+        else CanWork = false;
 
+        return CanWork;
     }
+    
 
 
-    public void Shoot()//ColectPoint
+    private void Shoot()//ColectPoint
     {
         if (!GameObjectForRay || !Muzzle || !Bullet || !Collet || !ColletPoint )
         {
@@ -94,30 +102,49 @@ public class ShootControler : MonoBehaviour
         {
             ShotTime = ShotDeley + Time.time;
             GameObject newBullet = Instantiate(Bullet, Muzzle.transform.position, Quaternion.LookRotation(TargetPoint - GameObjectForRay.transform.position));
-            newBullet.transform.rotation = Muzzle.transform.rotation;
+
+            Vector3 ShootDirection = Muzzle.transform.forward;
+            newBullet.transform.forward = ChangeDirection(ShootDirection);
 
             Rigidbody newBulletRB = newBullet.GetComponent<Rigidbody>();
             if (!newBulletRB) newBulletRB.gameObject.AddComponent<Rigidbody>();
-            if (newBulletRB) newBulletRB.AddForce(Muzzle.transform.forward * BulletSpeed, ForceMode.Impulse); // Dont touch this !!!
+            if (newBulletRB) newBulletRB.AddForce(newBulletRB.transform.forward * BulletSpeed, ForceMode.Impulse); // Dont touch this !!!
 
             GameObject newCollet = Instantiate(Collet, ColletPoint.transform.position, Quaternion.LookRotation(TargetPoint - Muzzle.transform.position));
             newCollet.transform.rotation = ColletPoint.transform.rotation;
 
-            //Rigidbody newColletRB = newCollet.GetComponent<Rigidbody>();                    
+            Rigidbody newColletRB = newCollet.GetComponent<Rigidbody>();                    
 
             //newColletRB.AddRelativeForce(ColletPoint.transform.forward * ColletSpeed, ForceMode.Impulse);
             Destroy(newCollet, 2.5f);
+
             if (Shop)
             {
                 Shop.CurrentAmmo--;
             }
-            
-
         }
-
-
-
-
-
     }
+
+    private Vector3 ChangeDirection(Vector3 ShootDirection)
+    {
+        Quaternion NewShootDirection = Quaternion.LookRotation(ShootDirection);
+
+        /*
+        ShootDirection += new Vector3(Random.Range(-ChangedAngle, ChangedAngle) - (ChangedAngle / 2.0f), 
+            Random.Range(-ChangedAngle, ChangedAngle) - (ChangedAngle / 2.0f), 
+            Random.Range(-ChangedAngle, ChangedAngle) - (ChangedAngle / 2.0f));
+
+        */
+        
+        NewShootDirection.eulerAngles = NewShootDirection.eulerAngles + new Vector3(Random.Range(1.0f, ChangedAngle) - (ChangedAngle / 2.0f),
+        Random.Range(1.0f, ChangedAngle) - (ChangedAngle / 2.0f),
+        Random.Range(1.0f, ChangedAngle) - (ChangedAngle / 2.0f));
+
+        Quaternion randomRotation = Quaternion.Euler(Random.onUnitSphere * ChangedAngle);
+        Vector3 randomizedDirection = randomRotation * ShootDirection;
+        
+
+        return NewShootDirection.eulerAngles;
+    }
+
 }

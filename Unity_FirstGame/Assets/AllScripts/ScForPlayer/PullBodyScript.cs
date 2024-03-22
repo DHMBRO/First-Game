@@ -17,6 +17,18 @@ public class PullBodyScript : MonoBehaviour
         if (PlayerHingeJoint) Destroy(PlayerHingeJoint);
     }
 
+    public bool CanEnable()
+    {
+        if (LocalBody)
+        {
+            CanWork = true;
+        }
+        else CanWork = false;
+
+        return CanWork;
+
+    }
+
     public void Work()
     {
         if(CanWork && LocalBody)

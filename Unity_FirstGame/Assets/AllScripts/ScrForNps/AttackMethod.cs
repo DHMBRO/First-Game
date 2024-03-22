@@ -45,7 +45,12 @@ public class AttackMethod : MonoBehaviour
         if (TerroristWeaponScript)
         {
             //GunPos.transform.LookAt(Target.transform);
-            TerroristWeaponScript.Shoot();
+            if (TerroristWeaponScript.NowIsEnable())
+            {
+                TerroristWeaponScript.SetShootDelegat();
+            }
+
+            
             //gameObject.transform.LookAt(Target.transform);
             if (MyAnimator)
             {

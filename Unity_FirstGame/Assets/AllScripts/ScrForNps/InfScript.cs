@@ -65,6 +65,8 @@ public class InfScript : MonoBehaviour
     }
     public void Watch(PointControllScript PointContr)
     {
+        if (!PointContr) return;
+
         //Debug.DrawLine(Attack.GunPos.transform.forward, Attack.GunPos.transform.forward*10, color:Color.blue);
         Vector3 DirectionToTarget = PointContr.GetPosByIndex(PointContr.CurrentPointIndex) - Attack.GunPos.transform.position;
         Quaternion DirectionToTargetQ = Quaternion.LookRotation(DirectionToTarget).normalized;

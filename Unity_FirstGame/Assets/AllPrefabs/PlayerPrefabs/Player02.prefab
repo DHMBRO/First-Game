@@ -139,14 +139,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 352590614664819260}
-  m_LocalRotation: {x: 0.060730223, y: -0.0000043919626, z: 0.00004956605, w: 0.9981542}
+  m_LocalRotation: {x: 0.042903025, y: -0.70580405, z: 0.042976905, w: 0.7057995}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 134281513563280910}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 6.963, y: -90, z: 0.006}
 --- !u!1 &728848665986219123
 GameObject:
   m_ObjectHideFlags: 0
@@ -978,7 +978,7 @@ Transform:
   m_GameObject: {fileID: 7866320958931519412}
   m_LocalRotation: {x: 0, y: -0.38268343, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0.12, y: 0.003, z: -0.023}
-  m_LocalScale: {x: 1, y: 0.66616666, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 134281513563280910}
@@ -1466,9 +1466,10 @@ MonoBehaviour:
   DivertAttention: {fileID: 3059040256925347778}
   EEScript: {fileID: 2320318701797134959}
   ScrAnimationsPlayer: {fileID: 69157573147947094}
-  PlayerPullBodyScript: {fileID: 4204884600277346387}
   PlayerTools: {fileID: 1187246579547213906}
   PickUpPlayer: {fileID: 7778607237951541594}
+  PlayerInteractionScr: {fileID: 0}
+  PlayerPullBodyScript: {fileID: 4204884600277346387}
   ControlerDrop: {fileID: 2663352457323175868}
   SlotControler: {fileID: 7874716152253843916}
   PlayerCameraF1: {fileID: 0}
@@ -1518,7 +1519,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0524826c35c685458f39789c6806837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectToBeLifted: {fileID: 0}
+  LocalObject: {fileID: 0}
+  CanWork: 0
   ControlerUi: {fileID: 0}
   InventoryUi: {fileID: 0}
   ControlerPlayer: {fileID: 9222820105927190343}
@@ -1534,7 +1536,6 @@ MonoBehaviour:
   - FirstAidKit
   - BoxAmmo
   - ArmorPlate
-  Counter: 0
 --- !u!114 &4204884600277346387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1562,6 +1563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef81a3e98ce5e324f9be79af9a10f2b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanWork: 0
 --- !u!114 &7874716152253843916
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -204,7 +204,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             if (!PickUpPlayer) Debug.Log("Cannot  PickUpPlayer");
 
             //PlayerPullBodyScript
-            if (PlayerPullBodyScript && Input.GetKeyUp(KeyCode.X))
+            if (PlayerPullBodyScript && PlayerPullBodyScript.CanEnable() && Input.GetKeyUp(KeyCode.X))
             {
                 SlotControler.PutWeapon();
                 PlayerPullBodyScript.Work();
@@ -261,14 +261,16 @@ public class PlayerControler : MonoBehaviour, HeadInterface
 
             }
             
-            // Shooting
+            // Shooting || Weapon
             if (ControlerShoot && CameraPlayerF3)
             {
-                if (Input.GetKey(KeyCode.Mouse0))
+                if (Input.GetKey(KeyCode.Mouse0) && ControlerShoot.NowIsEnable())
                 {
                     Ray ForwardCamera = new Ray(CameraPlayerF3.transform.position, CameraPlayerF3.transform.forward);
-                    ControlerShoot.Shoot();
+                    ControlerShoot.SetShootDelegat();
                 }
+
+                
             }
             
             //Divert Attention 

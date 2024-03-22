@@ -71,10 +71,11 @@ public class ExecutoreScriptToPlayer : MonoBehaviour
             }
             if (LocalZoneNoise) LocalZoneNoise.gameObject.SetActive(ShowZoneNoise);
             
+            
             //Main
             TimeToAddNoise = Time.time + DeleyToAddNoise;
             SCScript.CreateNoise(RadiusNoise);
-            //Debug.Log("ExecutoreNoice is work");
+            
 
         }
 
