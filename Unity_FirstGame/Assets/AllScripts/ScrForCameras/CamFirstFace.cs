@@ -10,13 +10,13 @@ public class CamFirstFace : MonoBehaviour
     [SerializeField] private float Sens = 1.5f;
     [SerializeField] public bool InventoryIsOpen = false; 
 
-    private void Start()
+    public void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         InventoryIsOpen = false;
     }
 
-    void Update()
+    public void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
