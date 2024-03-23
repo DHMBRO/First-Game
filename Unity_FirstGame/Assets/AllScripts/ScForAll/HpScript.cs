@@ -76,7 +76,7 @@ public class HpScript : MonoBehaviour
 
             if (WorkWithRagdollControler && MyRagdollControler)
             {
-                MyRagdollControler.EnableRagdoll();
+                MyRagdollControler.SetRagdol(true);
             }
         }
         else if ((HealthPoint - Damage) > 0.0f)
@@ -84,7 +84,7 @@ public class HpScript : MonoBehaviour
             HealthPoint -= Damage;
             if(WorkWithRagdollControler && MyRagdollControler)
             {
-                MyRagdollControler.DisebleRagdoll();
+                MyRagdollControler.SetRagdollDelegat(false);
             }
         }
 
