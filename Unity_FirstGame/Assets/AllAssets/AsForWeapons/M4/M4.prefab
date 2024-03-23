@@ -178,10 +178,11 @@ MonoBehaviour:
   TheGun: 0
   CaliberToWeapon: 2
   Weapon: 0
-  ShotDeley: 1
+  ShotDeley: 0.5
   ShotTime: 0
   Mass: 0
-  BulletSpeed: 3
+  BulletSpeed: 100
+  ChangedAngle: 45
   UnLimitedAmmo: 0
 --- !u!1 &2135052165428356616
 GameObject:
@@ -206,7 +207,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2135052165428356616}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -214,7 +215,7 @@ Transform:
   - {fileID: 1695553988697308600}
   m_Father: {fileID: 2849330975077027762}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5145759556809567171
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,7 +28,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
     
     //Inventory Components
     [SerializeField] private UiControler ControlerUi;
-    [SerializeField] private UseAndDropTheLoot SelectObj;
+    [SerializeField] private UseAndDropTheLoot UseAndDropTheLootScr;
 
     //Game Objects
     [SerializeField] Transform gameobject;
@@ -100,9 +100,9 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             ControlerUi.InterfaceControler();
         }
 
-        if (SelectObj)
+        if (UseAndDropTheLootScr)
         {
-            if (SelectObj.ObjectToUse)
+            if (UseAndDropTheLootScr.ObjectToUse)
             {
                 WhatPlayerHandsDo = HandsPlayer.UseSomething;
             }
@@ -204,7 +204,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             if (!PickUpPlayer) Debug.Log("Cannot  PickUpPlayer");
 
             //PlayerPullBodyScript
-            if (PlayerPullBodyScript && Input.GetKeyUp(KeyCode.X))
+            if (PlayerPullBodyScript && PlayerPullBodyScript.CanEnable() && Input.GetKeyUp(KeyCode.X))
             {
                 SlotControler.PutWeapon();
                 PlayerPullBodyScript.Work();
@@ -251,24 +251,21 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                 {
                     //SlotControler.UpdateTypeWeaponInHand();
                     SlotControler.ChangingSlots();
-                    SlotControler.Counter = 1;
-                }
-                if (Input.GetKeyUp("1"))
-                {
-                    SlotControler.Counter = 0;
                 }
                 SlotControler.UpdateTypeWeaponInHand();
 
             }
             
-            // Shooting
+            // Shooting || Weapon
             if (ControlerShoot && CameraPlayerF3)
             {
-                if (Input.GetKey(KeyCode.Mouse0))
+                if (Input.GetKey(KeyCode.Mouse0) && ControlerShoot.NowIsEnable())
                 {
                     Ray ForwardCamera = new Ray(CameraPlayerF3.transform.position, CameraPlayerF3.transform.forward);
-                    ControlerShoot.Shoot();
+                    ControlerShoot.SetShootDelegat();
                 }
+
+                
             }
             
             //Divert Attention 

@@ -7,9 +7,6 @@ public class RagdollControler : MonoBehaviour
     [SerializeField] private Animator MyAnimator;
     [SerializeField] public SetRagdoll SetRagdollDelegat;
 
-    [SerializeField] List<GameObject> AllBoneObjects = new List<GameObject>();
-    
-
     private void Start()
     {
         

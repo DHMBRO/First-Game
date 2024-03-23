@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerToolsToInteraction : MonoBehaviour
 {
-    [SerializeField] public SetInteractions PlayerSetInteractionDelegat;
+    public SetInteractions PlayerSetInteractionDelegat;
     [SerializeField] private Transform LastSelectedObject; 
 
     [SerializeField] Transform CameraPlayer;
@@ -22,8 +22,6 @@ public class PlayerToolsToInteraction : MonoBehaviour
             CameraCompPlayer = CameraPlayer.GetComponent<ThirdPersonCamera>();
         }
         else Debug.Log("Not set CameraPlayer");
-        
-
     }
 
     public void InteractionWithRayCast()

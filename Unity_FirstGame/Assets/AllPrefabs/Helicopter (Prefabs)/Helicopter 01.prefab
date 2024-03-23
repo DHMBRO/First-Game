@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6889816045147207352}
   - component: {fileID: 3389130409181645056}
   - component: {fileID: 3612685198237513885}
+  - component: {fileID: 181994828291859582}
   m_Layer: 0
   m_Name: Helicopter 01
   m_TagString: Untagged
@@ -86,6 +87,20 @@ MonoBehaviour:
   RandomPosition_Z: 0
   TargetToGun: {fileID: 0}
   State: 0
+--- !u!136 &181994828291859582
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3612685198237513884}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 2352.857
+  m_Height: 18145.121
+  m_Direction: 2
+  m_Center: {x: 0, y: 2774.3838, z: 2615.6748}
 --- !u!1 &8537779943400164785
 GameObject:
   m_ObjectHideFlags: 0
