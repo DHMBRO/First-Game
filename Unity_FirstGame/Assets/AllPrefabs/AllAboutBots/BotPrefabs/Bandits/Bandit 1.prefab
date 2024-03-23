@@ -161,7 +161,7 @@ PrefabInstance:
     - target: {fileID: 2558508992499366921, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
       propertyPath: Animator
       value: 
-      objectReference: {fileID: 4398143118146084406}
+      objectReference: {fileID: 3796101368772827770}
     - target: {fileID: 2625013959053697449, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -244,12 +244,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4367170480708916216, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
       propertyPath: State
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4367170480708916216, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
       propertyPath: MyRagdollControler
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3321762400144816420}
     - target: {fileID: 4367170480708916216, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
       propertyPath: WorkWithRagdollControler
       value: 1
@@ -405,7 +405,7 @@ PrefabInstance:
     - target: {fileID: 6519001109737162614, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
       propertyPath: MyAnimator
       value: 
-      objectReference: {fileID: 4398143118146084406}
+      objectReference: {fileID: 0}
     - target: {fileID: 6519001109737162614, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
       propertyPath: GoingDistance
       value: 12
@@ -530,10 +530,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7956488652965199492, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c8c9d64b6b97a6945b7a2dfa8c7ebb10, type: 2}
     - target: {fileID: 7996438817575266983, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8056768597790807862, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8f9d61993629b2f42b70c84ae9bac302, type: 2}
     - target: {fileID: 8113984127906275880, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -631,9 +639,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LightSources: []
   HeadObject: {fileID: 6491836798826493945}
---- !u!95 &4398143118146084406 stripped
+--- !u!114 &3321762400144816420 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8420626426782277082, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+  m_PrefabInstance: {fileID: 6540728949826036990}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9847ff2a713e1b46a3344604af3fc37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &3796101368772827770 stripped
 Animator:
-  m_CorrespondingSourceObject: {fileID: 7479354791862450888, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7956488652965199492, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
   m_PrefabInstance: {fileID: 6540728949826036990}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &4598149541319204718 stripped

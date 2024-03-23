@@ -71,12 +71,15 @@ public class HpScript : MonoBehaviour
                 if (StelthKill == false)
                 {
                     Info.SetAnimation("Death");
+                    Debug.Log("Call animation is working");
                 }
             }
 
             if (WorkWithRagdollControler && MyRagdollControler)
             {
-                MyRagdollControler.SetRagdol(true);
+                Invoke("CallRagdollControler", 2.117f);
+                //MyRagdollControler.SetRagdol(true);
+                
             }
         }
         else if ((HealthPoint - Damage) > 0.0f)
@@ -90,6 +93,11 @@ public class HpScript : MonoBehaviour
 
         if (HealthPoint >= 0.0f && UiHp && ProzentHealPoint) OutPutHp(HealthPoint, UiHp, ProzentHealPoint);
 
+    }
+
+    private void CallRagdollControler()
+    {
+        MyRagdollControler.SetRagdol(true);
     }
 
     public void HealHp(float Heal)
