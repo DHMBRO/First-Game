@@ -5,7 +5,7 @@ public class UseAndDropTheLoot : MethodsFromDevelopers
     
     [SerializeField] private Transform SlotToUseLoot;
     [SerializeField] private UiInventoryOutPut UiInventory;
-    [SerializeField] private Inventory Inventory;
+    [SerializeField] private Inventory PlayerInventory;
     [SerializeField] public PlayerControler ControlerPlayer;
     [SerializeField] private DropControler ControlerToDrop;
         
@@ -14,10 +14,10 @@ public class UseAndDropTheLoot : MethodsFromDevelopers
 
     private void Start()
     {
-        if(Inventory)
+        if(PlayerInventory)
         {
-            SlotControler ControlerSlots = Inventory.GetComponent<SlotControler>();
-            PlayerControler ControlerPlayer = Inventory.GetComponent<PlayerControler>(); 
+            SlotControler ControlerSlots = PlayerInventory.GetComponent<SlotControler>();
+            PlayerControler ControlerPlayer = PlayerInventory.GetComponent<PlayerControler>(); 
             
             if (ControlerSlots)
             {
@@ -38,26 +38,26 @@ public class UseAndDropTheLoot : MethodsFromDevelopers
 
     public void DeleteReferenceToLoot()
     {
-        if (UiInventory && Inventory && IndexToList >= 0 || IndexToList <= 3)
+        if (UiInventory && PlayerInventory && IndexToList >= 0 || IndexToList <= 3)
         {
             if (UiInventory.Count + IndexToList < UiInventory.SpritesForBackPack.Count) UiInventory.SpritesForBackPack.RemoveAt(UiInventory.Count + IndexToList);
             else Debug.Log("Index was out of range");
             
-            if(UiInventory.Count + IndexToList < Inventory.InfoForSlots.Count) Inventory.InfoForSlots.RemoveAt(UiInventory.Count + IndexToList);
+            if(UiInventory.Count + IndexToList < PlayerInventory.InfoForSlots.Count) PlayerInventory.InfoForSlots.RemoveAt(UiInventory.Count + IndexToList);
             else Debug.Log("Index was out of range");
 
             UiInventory.SpritesForBackPack.Add(UiInventory.None);
             UiInventory.WriteSprite();
         }
         else if (!UiInventory) Debug.Log("Not set UiInventory");
-        else if(!Inventory) Debug.Log("Not set Inventory");
+        else if(!PlayerInventory) Debug.Log("Not set Inventory");
 
     }
 
     public void Use()
     {        
-        GameObject ObjectToUse = Instantiate(Inventory.InfoForSlots[UiInventory.Count + IndexToList].ObjectToInstantiate);
-        if (Inventory.InfoForSlots[UiInventory.Count + IndexToList] != null) Inventory.InfoForSlots[UiInventory.Count + IndexToList].GetInfo(ObjectToUse);
+        GameObject ObjectToUse = Instantiate(PlayerInventory.InfoForSlots[UiInventory.Count + IndexToList].ObjectToInstantiate);
+        if (PlayerInventory.InfoForSlots[UiInventory.Count + IndexToList] != null) PlayerInventory.InfoForSlots[UiInventory.Count + IndexToList].GetInfo(ObjectToUse);
 
         //Debug.Log("Cordinates: " + ObjectToUse.transform.position.x + " to x " + ObjectToUse.transform.position.y + " to y " + ObjectToUse.transform.position.z + " to z ");
 
@@ -69,9 +69,9 @@ public class UseAndDropTheLoot : MethodsFromDevelopers
 
         if (UseLoot != null && ControlerPlayer)
         {
-            if (UseLoot.Audit(Inventory.gameObject, Inventory.InfoForSlots[UiInventory.Count + IndexToList], GetComponent<UseAndDropTheLoot>()))
+            if (UseLoot.Audit(PlayerInventory.gameObject, PlayerInventory.InfoForSlots[UiInventory.Count + IndexToList], GetComponent<UseAndDropTheLoot>()))
             {
-                UseLoot.Use(Inventory.gameObject, Inventory.InfoForSlots[UiInventory.Count + IndexToList], GetComponent<UseAndDropTheLoot>());
+                UseLoot.Use(PlayerInventory.gameObject, PlayerInventory.InfoForSlots[UiInventory.Count + IndexToList], GetComponent<UseAndDropTheLoot>());
                 this.ObjectToUse = ObjectToUse;
 
             }
@@ -80,11 +80,11 @@ public class UseAndDropTheLoot : MethodsFromDevelopers
             //Debug.Log(UseLoot.Audit(Inventory.gameObject, Inventory.InfoForSlots[UiInventory.Count + IndexToList], GetComponent<UseAndDropTheLoot>()));
 
 
-            if (ScrForLoot.CanCombining && Inventory.InfoForSlots.Count > (UiInventory.Count + IndexToList)) 
+            if (ScrForLoot.CanCombining && PlayerInventory.InfoForSlots.Count > (UiInventory.Count + IndexToList)) 
             {
-                CombiningLoot(Inventory.InfoForSlots[UiInventory.Count + IndexToList]);
+                CombiningLoot(PlayerInventory.InfoForSlots[UiInventory.Count + IndexToList]);
                 
-                ScrForUseAmmo ScrAmmo = Inventory.InfoForSlots[UiInventory.Count + IndexToList].ObjectToInstantiate.GetComponent<ScrForUseAmmo>();
+                ScrForUseAmmo ScrAmmo = PlayerInventory.InfoForSlots[UiInventory.Count + IndexToList].ObjectToInstantiate.GetComponent<ScrForUseAmmo>();
 
                 //Debug.Log(Inventory.InfoForSlots[UiInventory.Count + IndexToList].CurrentAmmo);
                 //Debug.Log(ScrAmmo.CurrentAmmo);
@@ -92,7 +92,7 @@ public class UseAndDropTheLoot : MethodsFromDevelopers
 
             }
 
-            Inventory.ChangeMassInInventory();
+            PlayerInventory.ChangeMassInInventory();
             UiInventory.WriteSprite();
 
             //Debug.Log("InfoForSlots.Count: " + Inventory.InfoForSlots.Count);
@@ -111,8 +111,8 @@ public class UseAndDropTheLoot : MethodsFromDevelopers
     {
         //Debug.Log("3");
 
-        GameObject ObjectToDrop = Instantiate(Inventory.InfoForSlots[UiInventory.Count + IndexToList].ObjectToInstantiate);
-        if(Inventory.InfoForSlots[UiInventory.Count + IndexToList] != null) Inventory.InfoForSlots[UiInventory.Count + IndexToList].GetInfo(ObjectToDrop);
+        GameObject ObjectToDrop = Instantiate(PlayerInventory.InfoForSlots[UiInventory.Count + IndexToList].ObjectToInstantiate);
+        if(PlayerInventory.InfoForSlots[UiInventory.Count + IndexToList] != null) PlayerInventory.InfoForSlots[UiInventory.Count + IndexToList].GetInfo(ObjectToDrop);
 
         //Debug.Log("Cordinates: " + ObjectToDrop.transform.position.x + " to x " + ObjectToDrop.transform.position.y + " to y " + ObjectToDrop.transform.position.z + " to z ");
 
@@ -121,7 +121,7 @@ public class UseAndDropTheLoot : MethodsFromDevelopers
 
 
         DeleteReferenceToLoot();
-        Inventory.ChangeMassInInventory();
+        PlayerInventory.ChangeMassInInventory();
         
         //Debug.Log("InfoForSlots.Count"  + Inventory.InfoForSlots.Count);
         
@@ -145,11 +145,11 @@ public class UseAndDropTheLoot : MethodsFromDevelopers
         }
 
 
-        for (int i = 0;i < Inventory.InfoForSlots.Count; i++)
+        for (int i = 0;i < PlayerInventory.InfoForSlots.Count; i++)
         {
-            ScrForAllLoot.Add(Inventory.InfoForSlots[i].ObjectToInstantiate.GetComponent<ScrForAllLoot>());
-            ScrInfoToLoot.Add(Inventory.InfoForSlots[i].ObjectToInstantiate.GetComponent<InfoWhatDoLoot>());
-            ScrInfoForLoot.Add(Inventory.InfoForSlots[i]);
+            ScrForAllLoot.Add(PlayerInventory.InfoForSlots[i].ObjectToInstantiate.GetComponent<ScrForAllLoot>());
+            ScrInfoToLoot.Add(PlayerInventory.InfoForSlots[i].ObjectToInstantiate.GetComponent<InfoWhatDoLoot>());
+            ScrInfoForLoot.Add(PlayerInventory.InfoForSlots[i]);
 
             //Debug.Log(Inventory.InfoForSlots[i].CurrentAmmo);    
             
@@ -218,16 +218,16 @@ public class UseAndDropTheLoot : MethodsFromDevelopers
             }
             else
             {
-                for (int j = 0;j < Inventory.InfoForSlots.Count; j++)
+                for (int j = 0;j < PlayerInventory.InfoForSlots.Count; j++)
                 {
-                    InfoWhatDoLoot ScrInfoLoot = Inventory.InfoForSlots[j].ObjectToInstantiate.GetComponent<InfoWhatDoLoot>();
+                    InfoWhatDoLoot ScrInfoLoot = PlayerInventory.InfoForSlots[j].ObjectToInstantiate.GetComponent<InfoWhatDoLoot>();
 
-                    if (ScrInfoLoot.InfoTheObject == ScrInfoToObjectUse.InfoTheObject && Inventory.InfoForSlots[j].CurrentAmmo == 0)
+                    if (ScrInfoLoot.InfoTheObject == ScrInfoToObjectUse.InfoTheObject && PlayerInventory.InfoForSlots[j].CurrentAmmo == 0)
                     {
                         //Debug.Log("J: " + j);
                         //Debug.Log("CurrentAmmo: " + Inventory.InfoForSlots[j].CurrentAmmo);
 
-                        Inventory.InfoForSlots.RemoveAt(j);                        
+                        PlayerInventory.InfoForSlots.RemoveAt(j);                        
                     }
                 }
             }

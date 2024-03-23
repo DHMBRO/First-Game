@@ -28,7 +28,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
     
     //Inventory Components
     [SerializeField] private UiControler ControlerUi;
-    [SerializeField] private UseAndDropTheLoot SelectObj;
+    [SerializeField] private UseAndDropTheLoot UseAndDropTheLootScr;
 
     //Game Objects
     [SerializeField] Transform gameobject;
@@ -100,9 +100,9 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             ControlerUi.InterfaceControler();
         }
 
-        if (SelectObj)
+        if (UseAndDropTheLootScr)
         {
-            if (SelectObj.ObjectToUse)
+            if (UseAndDropTheLootScr.ObjectToUse)
             {
                 WhatPlayerHandsDo = HandsPlayer.UseSomething;
             }
@@ -251,11 +251,6 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                 {
                     //SlotControler.UpdateTypeWeaponInHand();
                     SlotControler.ChangingSlots();
-                    SlotControler.Counter = 1;
-                }
-                if (Input.GetKeyUp("1"))
-                {
-                    SlotControler.Counter = 0;
                 }
                 SlotControler.UpdateTypeWeaponInHand();
 

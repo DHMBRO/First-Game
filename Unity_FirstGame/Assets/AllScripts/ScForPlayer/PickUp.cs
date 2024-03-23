@@ -46,8 +46,6 @@ public class PickUp : MethodsFromDevelopers
 
     private void ChekToInteraction(Transform GivenReference)
     {
-        Debug.Log("ChekToInteraction working in PickUp_SCR");
-        
         LocalObject = GivenReference;
         CanWork = true;
     }
