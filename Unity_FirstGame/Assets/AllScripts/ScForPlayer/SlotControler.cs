@@ -47,7 +47,7 @@ public class SlotControler : MethodsFromDevelopers
     [SerializeField] public Transform PointForShopWeapon02;
     
     //All counetrs for work Script        
-    public int Counter;
+    //public int Counter;
     protected int CounetrForCharge;
     [SerializeField] protected int ShopCounter;
     //

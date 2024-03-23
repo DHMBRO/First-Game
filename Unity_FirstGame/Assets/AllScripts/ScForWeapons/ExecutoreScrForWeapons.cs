@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class ExecutoreScrForWeapons : MonoBehaviour
 {
-    private SoundCreatorScript SCSript;
-    private bool CanWork = false;
+    //private SoundCreatorScript SCSript;
+    //private bool CanWork = false;
 
 
     void Start()
     {
-        SCSript = GetComponent<SoundCreatorScript>();
+        //SCSript = GetComponent<SoundCreatorScript>();
         GetComponent<ShootControler>().SetShootDelegat += Work;
 
-        CanWork = true;
+        //CanWork = true;
     }
 
     public void Work()

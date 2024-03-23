@@ -1188,7 +1188,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_TargetDisplay: 1
+  m_TargetDisplay: 0
 --- !u!114 &1360813496965164129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1339,7 +1339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SlotToUseLoot: {fileID: 0}
   UiInventory: {fileID: 3821547029511633812}
-  Inventory: {fileID: 0}
+  PlayerInventory: {fileID: 0}
   ControlerPlayer: {fileID: 0}
   ControlerToDrop: {fileID: 0}
   IndexToList: 0
@@ -8073,9 +8073,17 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1337116716543092592, guid: f3b7e43f08902984f91f3c69af20f222, type: 3}
+      propertyPath: m_Name
+      value: HealPoints +
+      objectReference: {fileID: 0}
     - target: {fileID: 2447342130981514871, guid: f3b7e43f08902984f91f3c69af20f222, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561692657889162004, guid: f3b7e43f08902984f91f3c69af20f222, type: 3}
+      propertyPath: m_Name
+      value: Text (TMP) +
       objectReference: {fileID: 0}
     - target: {fileID: 5471218085880486369, guid: f3b7e43f08902984f91f3c69af20f222, type: 3}
       propertyPath: m_Pivot.x

@@ -96,7 +96,6 @@ public class UiControler : MonoBehaviour
             Debug.Log("Not set TableNameObjectForPickUp !");
             return;
         }
-        
         TableNameObjectForPickUp.text = LocalObjectScript.NameOfThisObject;
         
 
