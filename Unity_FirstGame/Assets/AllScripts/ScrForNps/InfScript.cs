@@ -58,11 +58,7 @@ public class InfScript : MonoBehaviour
         }
         //Debug.Log(CanISeeEnemy() + " Enemy Vision " + gameObject.name);
     }
-    public void LookAround()
-    {
-
-
-    }
+   
     public void Watch(PointControllScript PointContr)
     {
         //Debug.DrawLine(Attack.GunPos.transform.forward, Attack.GunPos.transform.forward*10, color:Color.blue);
