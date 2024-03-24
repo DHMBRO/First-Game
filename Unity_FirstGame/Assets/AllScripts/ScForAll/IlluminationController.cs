@@ -40,6 +40,12 @@ public class IlluminationController : MonoBehaviour
     }
     float GetGlobalIlluminatiLvl()
     {
+        if(!Sun)
+        {
+            Debug.Log("Not set Sun");
+            return 0.0f;
+        }
+
         Debug.DrawLine(HeadObject.transform.position, HeadObject.transform.position + (-Sun.transform.forward * 50.0f));
         RaycastHit[] Hitresults = Physics.RaycastAll(HeadObject.transform.position, -Sun.transform.forward);
         foreach (RaycastHit Hitres in Hitresults)
