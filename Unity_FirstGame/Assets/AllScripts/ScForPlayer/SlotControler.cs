@@ -247,7 +247,7 @@ public class SlotControler : MethodsFromDevelopers
                 }
                 else if (ShopToCanUse.Count == 1)
                 {
-                    Recharge(ShopToCanUse[0].gameObject);                    
+                    Recharge(ShopToCanUse[0]);                    
                 }
                 else if (ShopToCanUse.Count == 2)
                 {
@@ -262,14 +262,14 @@ public class SlotControler : MethodsFromDevelopers
                             {
                                 //Debug.Log("2");
                                 ShopToRecharge = ShopToCanUse[i].gameObject;
-                                Recharge(ShopToCanUse[i].gameObject);
+                                Recharge(ShopToCanUse[i]);
                                 return;
                             }
                             else if (j < ShopToCanUse.Count && ShopToCanUse[j].CurrentAmmo > ShopToCanUse[i].CurrentAmmo)
                             {
                                 //Debug.Log("3");
                                 ShopToRecharge = ShopToCanUse[j].gameObject;
-                                Recharge(ShopToCanUse[j].gameObject);
+                                Recharge(ShopToCanUse[j]);
                                 return;
                             }
                             
@@ -293,13 +293,13 @@ public class SlotControler : MethodsFromDevelopers
                         if (ShopToCanUse[2].CurrentAmmo > ShopToUse.CurrentAmmo || ShopToCanUse[2].CurrentAmmo == ShopToUse.CurrentAmmo)
                         {
                             //Debug.Log("4");
-                            Recharge(ShopToCanUse[2].gameObject);
+                            Recharge(ShopToCanUse[2]);
                             return;
                         }
                         else if(ShopToCanUse[2].CurrentAmmo < ShopToUse.CurrentAmmo)
                         {
                             //Debug.Log("5");
-                            Recharge(ShopToUse.gameObject);
+                            Recharge(ShopToUse);
                             return;
                         }
                     }
@@ -307,17 +307,17 @@ public class SlotControler : MethodsFromDevelopers
 
                 }
 
-                void Recharge(GameObject ShopToRecharge)
+                void Recharge(ShopControler ShopToRecharge)
                 {
                     //Debug.Log("");
                     if (!ControlerForShoot.WeaponShoop)
                     {
-                        RechargeShop(ShopToRecharge);
-                        DeleyReferences(ShopToRecharge);
+                        RechargeShop(ShopToRecharge.GetComponent<ShopControler>());
+                        DeleyReferences(ShopToRecharge.transform);
                     }
                     else if(ControlerForShoot.WeaponShoop)
                     {
-                        GameObject ShopFromWeapon;
+                        ShopControler ShopFromWeapon;
 
                         //Debug.Log("1");
                         for (int i = 0;i < Shop.Length;i++)
@@ -326,8 +326,9 @@ public class SlotControler : MethodsFromDevelopers
                             {
                                 //Debug.Log("2");
                                 
-                                DisRechargeShop(SlotsShop[i]);
+                                DisRechargeShop(SlotsShop[i].GetComponent<ShopControler>());
                                 ShopFromWeapon = ControlerForShoot.WeaponShoop;
+                                
                                 Debug.Log(SlotsShop[i].name);
                                 Debug.Log(ShopFromWeapon.name);
                                 
@@ -348,7 +349,7 @@ public class SlotControler : MethodsFromDevelopers
                         return;
                     }
                     
-                    void DeleyReferences(GameObject ShopToUse)
+                    void DeleyReferences(Transform ShopToUse)
                     {
                         for (int i = 0;i < Shop.Length;i++)
                         {
@@ -362,16 +363,16 @@ public class SlotControler : MethodsFromDevelopers
                     }
 
 
-                    void RechargeShop(GameObject ShopToRecharge)
+                    void RechargeShop(ShopControler ShopToRecharge)
                     {
                         ControlerForShoot.WeaponShoop = ShopToRecharge;
                         PutObjects(ControlerForShoot.WeaponShoop.transform, ControlerForShoot.SlotForUseShop, false);
 
                     }
 
-                    void DisRechargeShop(Transform PointToShop)
+                    void DisRechargeShop(ShopControler PointToShop)
                     {
-                        PutObjects(ControlerForShoot.WeaponShoop.transform, PointToShop, false);
+                        PutObjects(ControlerForShoot.WeaponShoop.transform, PointToShop.transform, false);
                     }
 
                    

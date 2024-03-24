@@ -7,7 +7,7 @@ public class ShootControler : MonoBehaviour
     private bool CanWork;
 
     [SerializeField] public Transform SlotForUseShop;
-    [SerializeField] public GameObject WeaponShoop;
+    [SerializeField] public ShopControler WeaponShoop;
     [SerializeField] private GameObject GameObjectForRay;
     [SerializeField] private GameObject Muzzle;
     [SerializeField] private GameObject Bullet;
@@ -72,12 +72,62 @@ public class ShootControler : MonoBehaviour
 
     private void Shoot()//ColectPoint
     {
-        if (!GameObjectForRay || !Muzzle || !Bullet || !Collet || !ColletPoint )
+        //Chek referece
+        if (!GameObjectForRay || !Muzzle || !Bullet || !Collet || !ColletPoint || !WeaponShoop)
         {
-           
+            Debug.Log(GameObjectForRay);
+            Debug.Log(Muzzle);
+            Debug.Log(Bullet);
+            Debug.Log(Collet);
+            Debug.Log(ColletPoint);
+            Debug.Log(WeaponShoop);
+
             return;
         }
 
+        //Chek that can work
+        if (Time.time < ShotTime)
+        {
+            if(ShotTime == 0.0f) ShotTime = ShotDeley + Time.time;
+            return;
+        }
+        else ShotTime = ShotDeley + Time.time;
+
+        if (WeaponShoop.CurrentAmmo > 0 || UnLimitedAmmo)
+        {
+            if (WeaponShoop.CurrentAmmo > 0) WeaponShoop.CurrentAmmo--;
+        }
+        else return;
+
+        // Instance reference
+        GameObject NewBullet = Instantiate(Bullet);
+        GameObject NewCollet = Instantiate(Collet);
+
+        Rigidbody NewBulletRIG = NewBullet.GetComponent<Rigidbody>();
+        Rigidbody NewColletRIG = NewCollet.GetComponent<Rigidbody>();
+
+        if (!NewBulletRIG) NewBulletRIG = NewBullet.AddComponent<Rigidbody>();
+        if (!NewColletRIG) NewColletRIG = NewCollet.AddComponent<Rigidbody>();
+
+        // Setup reference
+        NewBullet.transform.position = Muzzle.transform.position;
+        NewBullet.transform.eulerAngles = ChangedDirection(Muzzle.transform.eulerAngles); 
+
+        NewCollet.transform.position = ColletPoint.transform.position;
+        NewCollet.transform.eulerAngles = ColletPoint.transform.eulerAngles;
+
+        // Implemetation
+
+        NewBulletRIG.useGravity = false;
+        NewBulletRIG.AddForce(NewBullet.transform.forward * BulletSpeed, ForceMode.Force);
+        
+        Debug.DrawRay(Muzzle.transform.position, Muzzle.transform.forward, Color.blue);
+
+
+        Destroy(NewBullet, 10.0f);
+        Destroy(NewCollet, 10.0f);
+
+        /*
         if (!WeaponShoop && !UnLimitedAmmo)
         {
             //Debug.Log("Shoot2");
@@ -123,28 +173,17 @@ public class ShootControler : MonoBehaviour
                 Shop.CurrentAmmo--;
             }
         }
+        */
+
     }
 
-    private Vector3 ChangeDirection(Vector3 ShootDirection)
+    private Vector3 ChangedDirection(Vector3 CurrentDirection)
     {
-        Quaternion NewShootDirection = Quaternion.LookRotation(ShootDirection);
+        CurrentDirection += new Vector3(Random.Range(-ChangedAngle, ChangedAngle), 
+        Random.Range(-ChangedAngle, ChangedAngle), 
+        Random.Range(-ChangedAngle, ChangedAngle));
 
-        /*
-        ShootDirection += new Vector3(Random.Range(-ChangedAngle, ChangedAngle) - (ChangedAngle / 2.0f), 
-            Random.Range(-ChangedAngle, ChangedAngle) - (ChangedAngle / 2.0f), 
-            Random.Range(-ChangedAngle, ChangedAngle) - (ChangedAngle / 2.0f));
-
-        */
-        
-        NewShootDirection.eulerAngles = NewShootDirection.eulerAngles + new Vector3(Random.Range(1.0f, ChangedAngle) - (ChangedAngle / 2.0f),
-        Random.Range(1.0f, ChangedAngle) - (ChangedAngle / 2.0f),
-        Random.Range(1.0f, ChangedAngle) - (ChangedAngle / 2.0f));
-
-        Quaternion randomRotation = Quaternion.Euler(Random.onUnitSphere * ChangedAngle);
-        Vector3 randomizedDirection = randomRotation * ShootDirection;
-        
-
-        return NewShootDirection.eulerAngles;
+        return CurrentDirection;
     }
 
 }
