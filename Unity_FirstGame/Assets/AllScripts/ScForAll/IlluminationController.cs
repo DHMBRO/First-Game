@@ -42,7 +42,7 @@ public class IlluminationController : MonoBehaviour
     {
         if(!Sun)
         {
-            Debug.Log("Not set Sun");
+            //Debug.Log("Not set Sun");
             return 0.0f;
         }
 

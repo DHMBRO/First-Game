@@ -190,6 +190,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             if (PlayerTools && WhatSpeedPlayerLegs != SpeedLegsPlayer.Run && WhatPlayerHandsDo == HandsPlayer.Null)
             {
                 PlayerTools.InteractionWithRayCast();
+                Debug.Log("Call method InteractionWithRayCast");
             }
             if(!PlayerTools) Debug.Log("Not set PlayerTools");
 

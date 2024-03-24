@@ -6,6 +6,8 @@ public class RagdollControler : MonoBehaviour
     [SerializeField] private Animator MyAnimator;
     [SerializeField] public SetRagdoll SetRagdollDelegat;
 
+    [SerializeField] bool Enable = false;
+
     private void Start()
     {
         MyAnimator = gameObject.GetComponent<Animator>();
@@ -17,7 +19,13 @@ public class RagdollControler : MonoBehaviour
             LocalRagdollEnDis.GetReferences(this);
         }
 
-        SetRagdollDelegat(false);
+        SetRagdol(false);
+    }
+
+    private void Update()
+    {
+        //SetRagdol(Enable);
+        
     }
 
     public void SetRagdol(bool Enable)
@@ -26,6 +34,10 @@ public class RagdollControler : MonoBehaviour
         {
             SetRagdollDelegat(Enable);
             MyAnimator.enabled = !Enable;
+
+            GetComponent<BoxCollider>().enabled = Enable;
+            GetComponent<BoneControler>().enabled = Enable;
+            GetComponent<ScrForAllLoot>().enabled = Enable;
         }
         else Debug.Log("RagdollControler doesnt have some references " + gameObject.name);
     }

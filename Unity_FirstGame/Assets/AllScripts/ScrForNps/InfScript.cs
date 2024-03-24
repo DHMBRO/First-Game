@@ -51,7 +51,7 @@ public class InfScript : MonoBehaviour
     void Update()
     {
 
-        Debug.Log(CurrentState.GetType().Name);
+        //Debug.Log(CurrentState.GetType().Name);
         if (CurrentState != null && Alive())
         {
             CurrentState.Update();

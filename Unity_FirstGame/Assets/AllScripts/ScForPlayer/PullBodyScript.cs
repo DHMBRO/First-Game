@@ -11,7 +11,7 @@ public class PullBodyScript : MonoBehaviour
     {
         //Setup references
         PlayerHingeJoint = GetComponent<HingeJoint>();
-        GetComponent<PlayerToolsToInteraction>().PlayerSetInteractionDelegat += ChekToInteraction;
+        GetComponent<PlayerToolsToInteraction>().PlayerChekToInteractionDelegat += ChekToInteraction;
 
         //All Debug
         if (PlayerHingeJoint) Destroy(PlayerHingeJoint);
@@ -37,9 +37,9 @@ public class PullBodyScript : MonoBehaviour
         }
     }
 
-    private void ChekToInteraction(Transform GivenReference)
+    private bool ChekToInteraction(Transform GivenReference)
     {
-        if (GivenReference.GetComponent<HpScript>())
+        if (GivenReference.GetComponent<BoneControler>())
         {
             CanWork = true;
             LocalBody = GivenReference;
@@ -49,25 +49,33 @@ public class PullBodyScript : MonoBehaviour
             LocalBody = null;
             CanWork = false;
         }
+
+        return LocalBody != null;
     }
 
     private void PullBody(Transform LocalBody)
     {
+        BoneControler LocalBoneControler = LocalBody.GetComponent<BoneControler>();
         
+        Transform LocalLimb = LocalBoneControler.ReturnLimb(this.transform);
+        Rigidbody LimbRigidbody = LocalLimb.GetComponent<Rigidbody>();
+
         if (PlayerHingeJoint)
         {
             Destroy(PlayerHingeJoint);
             PlayerHingeJoint = null;
         }
-        else if (LocalBody.GetComponent<HpScript>())
+        else if (LocalLimb)
         {
+            if (!LimbRigidbody) LimbRigidbody = LocalLimb.gameObject.AddComponent<Rigidbody>();
             PlayerHingeJoint = gameObject.AddComponent<HingeJoint>();
-            PlayerHingeJoint.connectedBody = LocalBody.GetComponent<Rigidbody>();
+
+            PlayerHingeJoint.connectedBody = LocalLimb.GetComponent<Rigidbody>();
             PlayerHingeJoint.axis = new Vector3(0.0f, 1.0f, 0.0f);
         }
-        else if (LocalBody && !LocalBody.GetComponent<HpScript>()) Debug.Log(LocalBody.name);
+        else if (!LocalLimb) Debug.Log(LocalBody.name);
         
-        
+
     }
 
 

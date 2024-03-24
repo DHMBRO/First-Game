@@ -5,10 +5,9 @@ public class InteractionScr : MonoBehaviour
     [SerializeField] IInteractionWithObjects LocalInetaction;
     [SerializeField] bool CanWork = false;
 
-
     void Start()
     {
-        GetComponent<PlayerToolsToInteraction>().PlayerSetInteractionDelegat += ChekToInteraction;
+        GetComponent<PlayerToolsToInteraction>().PlayerChekToInteractionDelegat += ChekToInteraction;
     }
 
     public void Work()
@@ -20,7 +19,7 @@ public class InteractionScr : MonoBehaviour
 
     }
     
-    private void ChekToInteraction(Transform GivenReference)
+    private bool ChekToInteraction(Transform GivenReference)
     {
         if (GivenReference.GetComponent<IInteractionWithObjects>() != null)
         {
@@ -32,6 +31,8 @@ public class InteractionScr : MonoBehaviour
             LocalInetaction = null;
             CanWork = false;
         }
+
+        return LocalInetaction != null;
     }
 
     private void InteractionWithSomething(IInteractionWithObjects LocalInetaction)

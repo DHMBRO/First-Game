@@ -47,7 +47,7 @@ public class UiControler : MonoBehaviour
     {
         //Change value varriables
         InventoryIsOpen = false;
-        PlayerInventory.GetComponent<PlayerToolsToInteraction>().PlayerSetInteractionDelegat += ChekToInteraction;
+        PlayerInventory.GetComponent<PlayerToolsToInteraction>().PlayerChekToInteractionDelegat += ChekToInteraction;
 
         //Control other game objects
         if (Inventory) Inventory.SetActive(InventoryIsOpen);
@@ -57,7 +57,7 @@ public class UiControler : MonoBehaviour
         InterfaceControler();
     }
 
-    private void ChekToInteraction(Transform GivenReference)
+    private bool ChekToInteraction(Transform GivenReference)
     {
         ScrForAllLoot LocalScrForAllLoot = GivenReference.GetComponent<ScrForAllLoot>();
 
@@ -66,6 +66,8 @@ public class UiControler : MonoBehaviour
             UpdateNameOnTable(LocalScrForAllLoot);
         }
         else DeleteNameOnTable();
+
+        return LocalScrForAllLoot != null;
     }
 
     public void OpenOrCloseInventory()

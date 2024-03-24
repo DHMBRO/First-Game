@@ -31,7 +31,7 @@ public class PickUp : MethodsFromDevelopers
         //Auditions
         if (!ControlerUi) Debug.Log("Not set ControlerUi");
 
-        GetComponent<PlayerToolsToInteraction>().PlayerSetInteractionDelegat += ChekToInteraction;
+        GetComponent<PlayerToolsToInteraction>().PlayerChekToInteractionDelegat += ChekToInteraction;
         
     }
 
@@ -44,10 +44,13 @@ public class PickUp : MethodsFromDevelopers
 
     }
 
-    private void ChekToInteraction(Transform GivenReference)
+    private bool ChekToInteraction(Transform GivenReference)
     {
         LocalObject = GivenReference;
         CanWork = true;
+        
+        return GetComponent<ShootControler>() || GetComponent<ShopControler>() || GetComponent<InfoWhatDoLoot>() ||
+        GetComponent<HelmetControler>() || GetComponent<ArmorControler>() || GetComponent<BackPackContorler>();
     }
 
     private void ComplertingTheLink()
@@ -59,7 +62,7 @@ public class PickUp : MethodsFromDevelopers
         ArmorControler ControlerArmor = LocalObject.GetComponent<ArmorControler>();
         BackPackContorler ControlerBackPack = LocalObject.GetComponent<BackPackContorler>();
 
-        ScrForAllLoot ScrLoot = LocalObject.GetComponent<ScrForAllLoot>();
+        InfoWhatDoLoot ScrWhatDoLoot = LocalObject.GetComponent<InfoWhatDoLoot>();
 
         for (int i = 0; i < TagsToPickup.Count; i++)
         {
@@ -82,7 +85,7 @@ public class PickUp : MethodsFromDevelopers
                     PickUpEqipment(LocalObject);
                     ControlerUi.InterfaceControler();
                 }
-                else if (ScrLoot)
+                else if (ScrWhatDoLoot)
                 {
                     PickUpOther(LocalObject);
                 }
