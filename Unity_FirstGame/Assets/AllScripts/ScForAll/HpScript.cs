@@ -18,6 +18,7 @@ public class HpScript : MonoBehaviour
     
     [SerializeField] public bool StelthKill = false;
     [SerializeField] private bool WorkWithRagdollControler = false;
+    [SerializeField] private bool WorkWithLightControler = false;
 
     public enum Live
     {
@@ -54,7 +55,6 @@ public class HpScript : MonoBehaviour
 
     void MinusHp(float Damage)
     {
-
         if ((HealthPoint - Damage) <= 0.0f)
         {
             
@@ -92,6 +92,11 @@ public class HpScript : MonoBehaviour
         }
 
         if (HealthPoint >= 0.0f && UiHp && ProzentHealPoint) OutPutHp(HealthPoint, UiHp, ProzentHealPoint);
+        
+        if (WorkWithLightControler)
+        {
+            GetComponentInParent<LightControl>().EliminateTheLight();
+        }
 
     }
 

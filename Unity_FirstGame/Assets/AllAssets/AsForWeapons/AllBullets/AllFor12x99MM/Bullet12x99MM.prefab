@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 152516417924842738}
   - component: {fileID: 6269841432182121923}
+  - component: {fileID: 8420701547081058959}
   - component: {fileID: -8839259648454354100}
+  - component: {fileID: 1867746570713352544}
   m_Layer: 8
   m_Name: Bullet12x99MM
   m_TagString: Untagged
@@ -50,6 +52,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!136 &8420701547081058959
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5567339272405987103}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.004
+  m_Height: 0.02
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0.005}
 --- !u!96 &-8839259648454354100
 TrailRenderer:
   serializedVersion: 2
@@ -149,6 +165,19 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &1867746570713352544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5567339272405987103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a44bba1536389644843157fecb6d3d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletDamage: 1
 --- !u!1 &5592421935527363245
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,8 +187,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8677687712998822374}
-  - component: {fileID: 5281911790129542305}
-  - component: {fileID: 8545675865708195100}
   m_Layer: 8
   m_Name: RootationPrefab
   m_TagString: Untagged
@@ -183,34 +210,6 @@ Transform:
   m_Father: {fileID: 152516417924842738}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!136 &5281911790129542305
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5592421935527363245}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.004
-  m_Height: 0.02
-  m_Direction: 0
-  m_Center: {x: -0.005, y: 0, z: 0}
---- !u!114 &8545675865708195100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5592421935527363245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a44bba1536389644843157fecb6d3d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ParentObject: {fileID: 5567339272405987103}
-  Damage: 70
 --- !u!1001 &967563022272267874
 PrefabInstance:
   m_ObjectHideFlags: 0

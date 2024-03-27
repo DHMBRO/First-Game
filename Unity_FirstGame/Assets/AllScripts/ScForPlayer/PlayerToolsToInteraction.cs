@@ -40,22 +40,13 @@ public class PlayerToolsToInteraction : MonoBehaviour
             return;
         }
         
-
         Vector3 Origin = CameraCompPlayer.TargetCamera.transform.TransformPoint(CameraCompPlayer.DesirableVector) + CameraPlayer.forward / 2.0f;
         Vector3 Direction = CameraPlayer.forward * DistanceRay;
         
         Ray RayCast = new Ray(Origin, Direction);
 
-
         RaycastHit[] MassForInteraction = new RaycastHit[10];
         MassForInteraction = Physics.RaycastAll(RayCast, DistanceRay);
-
-        /*
-        if (Physics.Raycast(RayToRayCast, out RaycastHit A, DistanceRay, LayerMask.GetMask("Default")))
-        {
-            Debug.Log(A.collider.name);
-        }
-        */
 
         Debug.DrawRay(Origin, Direction, ColorRayCast);
 
@@ -68,49 +59,10 @@ public class PlayerToolsToInteraction : MonoBehaviour
                 ObjectThatWatching = MassForInteraction[i].transform;
                 LastSelectedObject = MassForInteraction[i].transform;
 
-                Debug.Log(MassForInteraction[i].collider.name);
                 break;
             }
-            
         }
-
-        /*
-
-      for (int i = MassForInteraction.Length-1; i > -1 && i < MassForInteraction.Length; i++)
-      {
-          //Debug.Log("Part 1 is work");
-
-          if (MassForInteraction[i].collider.gameObject != null && PlayerChekToInteractionDelegat != null)
-          {
-              if (PlayerChekToInteractionDelegat(MassForInteraction[i].collider.transform))
-              {
-                  Debug.Log(MassForInteraction[i].collider.name);
-              }
-              else Debug.Log(MassForInteraction[i].collider.name);
-
-          }
-
-          if (MassForInteraction[i].collider.gameObject != null && PlayerChekToInteractionDelegat != null 
-          && PlayerChekToInteractionDelegat(MassForInteraction[i].collider.transform)) 
-          {
-              Debug.Log("Part 2 is work");
-
-              if (!LastSelectedObject || (LastSelectedObject && LastSelectedObject.name != MassForInteraction[i].collider.name))
-              {
-                  Debug.Log("Part 3 is work");
-
-                  LastSelectedObject = MassForInteraction[i].collider.transform;
-                  ObjectThatWatching = MassForInteraction[i].collider.transform;
-
-                  break;
-              }
-
-          }    
-          */
     }
-
-
-
 }
 
 

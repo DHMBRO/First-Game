@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5853051819225235337}
   - component: {fileID: 7304925855896743491}
+  - component: {fileID: 3893536265693839369}
   - component: {fileID: 1092475189742672358}
+  - component: {fileID: 4957157167008265353}
   m_Layer: 8
   m_Name: Bullet 7,62
   m_TagString: Untagged
@@ -50,6 +52,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!136 &3893536265693839369
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2817725760091043437}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.004
+  m_Height: 0.02
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0.005}
 --- !u!96 &1092475189742672358
 TrailRenderer:
   serializedVersion: 2
@@ -149,6 +165,19 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &4957157167008265353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2817725760091043437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a44bba1536389644843157fecb6d3d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletDamage: 1
 --- !u!1 &8032059442445487103
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,9 +187,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 967023107946412899}
-  - component: {fileID: 6867092428754118075}
-  - component: {fileID: 5064158678124346739}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: RootationPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,34 +210,6 @@ Transform:
   m_Father: {fileID: 5853051819225235337}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!136 &6867092428754118075
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8032059442445487103}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.004
-  m_Height: 0.02
-  m_Direction: 0
-  m_Center: {x: -0.005, y: 0, z: 0}
---- !u!114 &5064158678124346739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8032059442445487103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a44bba1536389644843157fecb6d3d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ParentObject: {fileID: 2817725760091043437}
-  Damage: 15
 --- !u!1001 &1392530233591634619
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -224,7 +223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6671005759312339746, guid: d1e5869b3a5207f4aa3d12870e530bfd, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9065843369186379431, guid: d1e5869b3a5207f4aa3d12870e530bfd, type: 3}
       propertyPath: m_RootOrder
