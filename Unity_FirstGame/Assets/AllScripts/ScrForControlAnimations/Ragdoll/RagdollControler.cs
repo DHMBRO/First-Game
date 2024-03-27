@@ -4,6 +4,10 @@ using System.Collections.Generic;
 public class RagdollControler : MonoBehaviour
 {
     [SerializeField] private Animator MyAnimator;
+
+    [SerializeField] private BoxCollider ColiderToInteraction;
+    [SerializeField] private BoneControler ControlerBone;
+
     [SerializeField] public SetRagdoll SetRagdollDelegat;
 
     [SerializeField] List<Transform> AllBones = new List<Transform>();
@@ -17,9 +21,12 @@ public class RagdollControler : MonoBehaviour
 
         for (int i = 0;i < AllBonesObject.Count;i++)
         {
-            RagdollEnDis LocalRagdollEnDis = AllBonesObject[i].gameObject.AddComponent<RagdollEnDis>();
-            LocalRagdollEnDis.GetReferences(this);
-            AllBones.Add(AllBonesObject[i].transform);
+            if (AllBonesObject[i].tag != "Another")
+            {
+                RagdollEnDis LocalRagdollEnDis = AllBonesObject[i].gameObject.AddComponent<RagdollEnDis>();
+                LocalRagdollEnDis.GetReferences(this);
+                AllBones.Add(AllBonesObject[i].transform);
+            }
         }
 
         SetRagdol(false);
@@ -29,10 +36,9 @@ public class RagdollControler : MonoBehaviour
     {
         if (SetRagdollDelegat != null && MyAnimator)
         {
-            GetComponent<BoxCollider>().enabled = Enable;
-            GetComponent<BoneControler>().enabled = Enable;
-            GetComponent<ScrForAllLoot>().enabled = Enable;
-
+            ColiderToInteraction.enabled = Enable;
+            ColiderToInteraction.enabled = Enable;
+            
             SetRagdollDelegat(Enable);
             MyAnimator.enabled = !Enable;
         }
