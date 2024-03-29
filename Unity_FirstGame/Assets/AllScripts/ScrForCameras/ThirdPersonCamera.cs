@@ -24,6 +24,7 @@ public class ThirdPersonCamera : MonoBehaviour
     //[SerializeField] Vector3 OffsetCameraToAimingInStelth;
     //[SerializeField] Vector3 OffsetCameraInStelth;
 
+    [SerializeField] public float CurrentMoveRightDistance;
     [SerializeField] public float CurrentMoveBackDistance;
     [SerializeField] float MoveBackDistanceSimple = 5.0f;
     //[SerializeField] float MoveBackDistanceStelth = 3.0f;

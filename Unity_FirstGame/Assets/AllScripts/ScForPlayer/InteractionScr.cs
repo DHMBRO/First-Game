@@ -21,7 +21,7 @@ public class InteractionScr : MonoBehaviour
     
     private bool ChekToInteraction(Transform GivenReference)
     {
-        if (GivenReference.GetComponent<IInteractionWithObjects>() != null)
+        if (GivenReference && GivenReference.GetComponent<IInteractionWithObjects>() != null)
         {
             LocalInetaction = GivenReference.GetComponent<IInteractionWithObjects>();
             CanWork = true;

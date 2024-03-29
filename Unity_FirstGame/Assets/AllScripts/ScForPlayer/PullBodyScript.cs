@@ -39,7 +39,7 @@ public class PullBodyScript : MonoBehaviour
 
     private bool ChekToInteraction(Transform GivenReference)
     {
-        if (GivenReference.GetComponent<BoneControler>())
+        if (GivenReference && GivenReference.GetComponent<BoneControler>())
         {
             CanWork = true;
             LocalBody = GivenReference;
@@ -71,7 +71,10 @@ public class PullBodyScript : MonoBehaviour
             PlayerHingeJoint = gameObject.AddComponent<HingeJoint>();
 
             PlayerHingeJoint.connectedBody = LocalLimb.GetComponent<Rigidbody>();
+            
             PlayerHingeJoint.axis = new Vector3(0.0f, 1.0f, 0.0f);
+            
+
         }
         else if (!LocalLimb) Debug.Log(LocalBody.name);
         

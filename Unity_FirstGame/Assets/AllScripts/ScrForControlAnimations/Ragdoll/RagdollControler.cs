@@ -24,8 +24,11 @@ public class RagdollControler : MonoBehaviour
             if (AllBonesObject[i].tag != "Another")
             {
                 RagdollEnDis LocalRagdollEnDis = AllBonesObject[i].gameObject.AddComponent<RagdollEnDis>();
+
+                LocalRagdollEnDis.gameObject.layer = LayerMask.NameToLayer("Bone");
                 LocalRagdollEnDis.GetReferences(this);
                 AllBones.Add(AllBonesObject[i].transform);
+                
             }
         }
 

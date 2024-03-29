@@ -97,7 +97,10 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             if (Input.GetKeyDown(KeyCode.I)) ControlerUi.OpenOrCloseInventory();
             if (ControlerUi.InventoryIsOpen) WhatPlayerDo = Player.OpenInventory;
             else if(WhatPlayerDo == Player.OpenInventory) WhatPlayerDo = Player.Null;
+            
             ControlerUi.InterfaceControler();
+            ControlerUi.DeleteNameOnTable();
+
         }
 
         if (UseAndDropTheLootScr)
@@ -180,18 +183,15 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                 if (Inputs) WhatSpeedPlayerLegs = SpeedLegsPlayer.CrouchWalk;
                 else WhatSpeedPlayerLegs = SpeedLegsPlayer.Null;
             }
-
-
-            //if (WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething && WhatSpeedPlayerLegs == SpeedLegsPlayer.CrouchWalk) WhatSpeedPlayerLegs = SpeedLegsPlayer.Walk;
-
-            //if (Input.GetKeyUp(KeyCode.Mouse1)) IsAiming = false;
-
+            
             //Player Tools
-            if (PlayerTools && WhatSpeedPlayerLegs != SpeedLegsPlayer.Run && WhatPlayerHandsDo == HandsPlayer.Null)
+            if (PlayerTools /* && WhatSpeedPlayerLegs != SpeedLegsPlayer.Run && WhatPlayerHandsDo == HandsPlayer.Null*/)
             {
                 PlayerTools.InteractionWithRayCast();
+                
             }
-            if(!PlayerTools) Debug.Log("Not set PlayerTools");
+            
+            if (!PlayerTools) Debug.Log("Not set PlayerTools");
 
             // PickUp
             if (PickUpPlayer && WhatSpeedPlayerLegs != SpeedLegsPlayer.Run && WhatPlayerHandsDo == HandsPlayer.Null) 

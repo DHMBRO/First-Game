@@ -56,6 +56,7 @@ public class LightControl : MonoBehaviour
             {
                 return 0.0f;
             }
+            
             if (LightRange >= (IlluContr.HeadObject.transform.position - gameObject.transform.position).magnitude)
             {
                 if (Vector3.Angle(gameObject.transform.forward, (IlluContr.HeadObject.transform.position - gameObject.transform.position).normalized) <= Angle)
