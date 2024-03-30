@@ -168,14 +168,28 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                 if (Input.GetKey(KeyCode.Mouse1) || Input.GetKey(KeyCode.Z))
                 {
                     if (WhatPlayerHandsDo == HandsPlayer.Null) WhatPlayerHandsDo = HandsPlayer.AimingForDoSomething;
+                    if (StateCamera == CameraPlayer.RotateSimple) StateCamera = CameraPlayer.Aiming; 
                 }
-                else if (WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething) WhatPlayerHandsDo = HandsPlayer.Null;
+                else if (WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething)
+                {
+                    WhatPlayerHandsDo = HandsPlayer.Null;
+                    StateCamera = CameraPlayer.RotateSimple;
+                }
 
             }
 
             //IsAiming
-            if (WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething && Inputs && WhatSpeedPlayerLegs != SpeedLegsPlayer.CrouchWalk) WhatSpeedPlayerLegs = SpeedLegsPlayer.Walk;
-            if (ControlerUi) ControlerUi.Scope.gameObject.SetActive(WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething);
+            if (WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething && Inputs && WhatSpeedPlayerLegs != SpeedLegsPlayer.CrouchWalk) 
+            {
+                WhatSpeedPlayerLegs = SpeedLegsPlayer.Walk;
+                
+            }
+
+            if (ControlerUi)
+            {
+                ControlerUi.Scope.gameObject.SetActive(WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething);
+
+            }
 
             //Stelth
             if (WhatPlayerLegsDo == LegsPlayer.SatDown)
@@ -204,7 +218,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             if (!PickUpPlayer) Debug.Log("Cannot  PickUpPlayer");
 
             //PlayerPullBodyScript
-            if (PlayerPullBodyScript && PlayerPullBodyScript.CanEnable() && Input.GetKeyUp(KeyCode.X))
+            if (PlayerPullBodyScript && PlayerPullBodyScript.CanEnable() && Input.GetKeyDown(KeyCode.X))
             {
                 SlotControler.PutWeapon();
                 PlayerPullBodyScript.Work();
@@ -225,6 +239,8 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                 }
 
             }
+
+            Debug.Log(PlayerPullBodyScript && PlayerPullBodyScript.CanEnable() && Input.GetKeyDown(KeyCode.X));
 
             //InteractionScr
             if (PlayerInteractionScr)
