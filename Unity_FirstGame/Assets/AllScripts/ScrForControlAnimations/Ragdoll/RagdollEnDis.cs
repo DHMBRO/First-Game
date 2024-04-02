@@ -6,16 +6,20 @@ public class RagdollEnDis : MonoBehaviour
     {
         ControlerRagdoll.SetRagdollDelegat += SetColision;
         ControlerRagdoll.SetRagdollDelegat += SetRigidboby;
+
+        ControlerRagdoll.SetRagdollDelegat = delegate (bool Enable) { Debug.Log(Enable); };
+        ControlerRagdoll.SetRagdollDelegat = (bool Enable) => { Debug.Log(Enable); }; 
+                
     }
 
-    public void SetRigidboby(bool EnableRagdoll)
+    private void SetRigidboby(bool EnableRagdoll)
     {
         Rigidbody LocalRigidbody = GetComponent<Rigidbody>();
         
         LocalRigidbody.isKinematic = !EnableRagdoll;
     }
 
-    public void SetColision(bool EnableRagdoll)
+    private void SetColision(bool EnableRagdoll)
     {
         Collider LocalCollider = GetComponent<Collider>();
         

@@ -309,7 +309,6 @@ public class SlotControler : MethodsFromDevelopers
 
                 void Recharge(ShopControler ShopToRecharge)
                 {
-                    //Debug.Log("");
                     if (!ControlerForShoot.WeaponShoop)
                     {
                         RechargeShop(ShopToRecharge.GetComponent<ShopControler>());
@@ -319,19 +318,12 @@ public class SlotControler : MethodsFromDevelopers
                     {
                         ShopControler ShopFromWeapon;
 
-                        //Debug.Log("1");
                         for (int i = 0;i < Shop.Length;i++)
                         {
                             if (Shop[i] != null && ShopToRecharge.transform.position == SlotsShop[i].position)
                             {
-                                //Debug.Log("2");
-                                
-                                DisRechargeShop(SlotsShop[i].GetComponent<ShopControler>());
+                                DisRechargeShop(SlotsShop[i].transform);
                                 ShopFromWeapon = ControlerForShoot.WeaponShoop;
-                                
-                                Debug.Log(SlotsShop[i].name);
-                                Debug.Log(ShopFromWeapon.name);
-                                
                                 
                                 for (int j = 0;j < Shop.Length;j++)
                                 {
@@ -339,7 +331,6 @@ public class SlotControler : MethodsFromDevelopers
                                     {
                                         Shop[j] = ShopFromWeapon.transform;
                                         RechargeShop(ShopToRecharge);
-                                        Debug.Log(Shop[j]);
                                         break;
                                     }
                                 }
@@ -370,7 +361,7 @@ public class SlotControler : MethodsFromDevelopers
 
                     }
 
-                    void DisRechargeShop(ShopControler PointToShop)
+                    void DisRechargeShop(Transform PointToShop)
                     {
                         PutObjects(ControlerForShoot.WeaponShoop.transform, PointToShop.transform, false);
                     }

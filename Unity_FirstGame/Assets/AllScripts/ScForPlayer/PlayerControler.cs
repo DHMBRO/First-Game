@@ -97,7 +97,10 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             if (Input.GetKeyDown(KeyCode.I)) ControlerUi.OpenOrCloseInventory();
             if (ControlerUi.InventoryIsOpen) WhatPlayerDo = Player.OpenInventory;
             else if(WhatPlayerDo == Player.OpenInventory) WhatPlayerDo = Player.Null;
+            
             ControlerUi.InterfaceControler();
+            ControlerUi.DeleteNameOnTable();
+
         }
 
         if (UseAndDropTheLootScr)
@@ -165,14 +168,28 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                 if (Input.GetKey(KeyCode.Mouse1) || Input.GetKey(KeyCode.Z))
                 {
                     if (WhatPlayerHandsDo == HandsPlayer.Null) WhatPlayerHandsDo = HandsPlayer.AimingForDoSomething;
+                    if (StateCamera == CameraPlayer.RotateSimple) StateCamera = CameraPlayer.Aiming; 
                 }
-                else if (WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething) WhatPlayerHandsDo = HandsPlayer.Null;
+                else if (WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething)
+                {
+                    WhatPlayerHandsDo = HandsPlayer.Null;
+                    StateCamera = CameraPlayer.RotateSimple;
+                }
 
             }
 
             //IsAiming
-            if (WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething && Inputs && WhatSpeedPlayerLegs != SpeedLegsPlayer.CrouchWalk) WhatSpeedPlayerLegs = SpeedLegsPlayer.Walk;
-            if (ControlerUi) ControlerUi.Scope.gameObject.SetActive(WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething);
+            if (WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething && Inputs && WhatSpeedPlayerLegs != SpeedLegsPlayer.CrouchWalk) 
+            {
+                WhatSpeedPlayerLegs = SpeedLegsPlayer.Walk;
+                
+            }
+
+            if (ControlerUi)
+            {
+                ControlerUi.Scope.gameObject.SetActive(WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething);
+
+            }
 
             //Stelth
             if (WhatPlayerLegsDo == LegsPlayer.SatDown)
@@ -180,19 +197,15 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                 if (Inputs) WhatSpeedPlayerLegs = SpeedLegsPlayer.CrouchWalk;
                 else WhatSpeedPlayerLegs = SpeedLegsPlayer.Null;
             }
-
-
-            //if (WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething && WhatSpeedPlayerLegs == SpeedLegsPlayer.CrouchWalk) WhatSpeedPlayerLegs = SpeedLegsPlayer.Walk;
-
-            //if (Input.GetKeyUp(KeyCode.Mouse1)) IsAiming = false;
-
+            
             //Player Tools
-            if (PlayerTools && WhatSpeedPlayerLegs != SpeedLegsPlayer.Run && WhatPlayerHandsDo == HandsPlayer.Null)
+            if (PlayerTools /* && WhatSpeedPlayerLegs != SpeedLegsPlayer.Run && WhatPlayerHandsDo == HandsPlayer.Null*/)
             {
                 PlayerTools.InteractionWithRayCast();
-                Debug.Log("Call method InteractionWithRayCast");
+                
             }
-            if(!PlayerTools) Debug.Log("Not set PlayerTools");
+            
+            if (!PlayerTools) Debug.Log("Not set PlayerTools");
 
             // PickUp
             if (PickUpPlayer && WhatSpeedPlayerLegs != SpeedLegsPlayer.Run && WhatPlayerHandsDo == HandsPlayer.Null) 
@@ -205,7 +218,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             if (!PickUpPlayer) Debug.Log("Cannot  PickUpPlayer");
 
             //PlayerPullBodyScript
-            if (PlayerPullBodyScript && PlayerPullBodyScript.CanEnable() && Input.GetKeyUp(KeyCode.X))
+            if (PlayerPullBodyScript && PlayerPullBodyScript.CanEnable() && Input.GetKeyDown(KeyCode.X))
             {
                 SlotControler.PutWeapon();
                 PlayerPullBodyScript.Work();
@@ -226,6 +239,8 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                 }
 
             }
+
+            Debug.Log(PlayerPullBodyScript && PlayerPullBodyScript.CanEnable() && Input.GetKeyDown(KeyCode.X));
 
             //InteractionScr
             if (PlayerInteractionScr)

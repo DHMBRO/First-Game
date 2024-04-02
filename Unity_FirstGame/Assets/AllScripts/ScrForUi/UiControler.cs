@@ -59,14 +59,21 @@ public class UiControler : MonoBehaviour
 
     private bool ChekToInteraction(Transform GivenReference)
     {
-        ScrForAllLoot LocalScrForAllLoot = GivenReference.GetComponent<ScrForAllLoot>();
+        ScrForAllLoot LocalScrForAllLoot = null;
 
-        if (LocalScrForAllLoot)
+        if (GivenReference)
         {
-            UpdateNameOnTable(LocalScrForAllLoot);
+            LocalScrForAllLoot = GivenReference.GetComponent<ScrForAllLoot>();
+
+            if (LocalScrForAllLoot)
+            {
+                UpdateNameOnTable(LocalScrForAllLoot);
+            }
+            else DeleteNameOnTable();
         }
         else DeleteNameOnTable();
-
+        
+        
         return LocalScrForAllLoot != null;
     }
 
@@ -103,7 +110,7 @@ public class UiControler : MonoBehaviour
 
     }
     
-    private void DeleteNameOnTable()
+    public void DeleteNameOnTable()
     {
         if (!TableNameObjectForPickUp)
         {

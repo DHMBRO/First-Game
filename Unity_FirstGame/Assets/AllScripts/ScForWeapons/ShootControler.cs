@@ -39,6 +39,8 @@ public class ShootControler : MonoBehaviour
 
     private void Update()
     {
+        Debug.DrawRay(Muzzle.transform.position, Muzzle.transform.forward * 100.0f, Color.blue);
+
         Transform ParentWeapon = GetComponentInParent<Transform>();
         
         if (ParentWeapon.parent)
@@ -119,61 +121,12 @@ public class ShootControler : MonoBehaviour
         // Implemetation
 
         NewBulletRIG.useGravity = false;
-        NewBulletRIG.AddForce(NewBullet.transform.forward * BulletSpeed, ForceMode.Force);
         
-        Debug.DrawRay(Muzzle.transform.position, Muzzle.transform.forward, Color.blue);
-
+        NewBulletRIG.AddForce(NewBullet.transform.forward * BulletSpeed, ForceMode.Force);
+        NewColletRIG.AddForce((NewCollet.transform.right + NewCollet.transform.up) * BulletSpeed, ForceMode.Force);
 
         Destroy(NewBullet, 10.0f);
         Destroy(NewCollet, 10.0f);
-
-        /*
-        if (!WeaponShoop && !UnLimitedAmmo)
-        {
-            //Debug.Log("Shoot2");
-            return;
-        }
-        ShopControler Shop = null;
-        if (!UnLimitedAmmo)
-        {
-            Shop = WeaponShoop.gameObject.GetComponent<ShopControler>();
-            if (Shop?.CurrentAmmo <= 0)
-            {; return; }
-        }
-        Vector3 TargetPoint = GameObjectForRay.transform.position + GameObjectForRay.transform.forward * 100.0f;
-        RaycastHit Hitresult;
-
-        if (Physics.Raycast(GameObjectForRay.transform.position, GameObjectForRay.transform.forward, out Hitresult))
-        {
-            Debug.DrawRay(Muzzle.transform.position, Muzzle.transform.forward * 100.0f, Color.blue);
-            TargetPoint = Hitresult.point;
-        }
-        if (Time.time >= ShotTime)
-        {
-            ShotTime = ShotDeley + Time.time;
-            GameObject newBullet = Instantiate(Bullet, Muzzle.transform.position, Quaternion.LookRotation(TargetPoint - GameObjectForRay.transform.position));
-
-            Vector3 ShootDirection = Muzzle.transform.forward;
-            newBullet.transform.forward = ChangeDirection(ShootDirection);
-
-            Rigidbody newBulletRB = newBullet.GetComponent<Rigidbody>();
-            if (!newBulletRB) newBulletRB.gameObject.AddComponent<Rigidbody>();
-            if (newBulletRB) newBulletRB.AddForce(newBulletRB.transform.forward * BulletSpeed, ForceMode.Impulse); // Dont touch this !!!
-
-            GameObject newCollet = Instantiate(Collet, ColletPoint.transform.position, Quaternion.LookRotation(TargetPoint - Muzzle.transform.position));
-            newCollet.transform.rotation = ColletPoint.transform.rotation;
-
-            Rigidbody newColletRB = newCollet.GetComponent<Rigidbody>();                    
-
-            //newColletRB.AddRelativeForce(ColletPoint.transform.forward * ColletSpeed, ForceMode.Impulse);
-            Destroy(newCollet, 2.5f);
-
-            if (Shop)
-            {
-                Shop.CurrentAmmo--;
-            }
-        }
-        */
 
     }
 

@@ -14,10 +14,12 @@ public class HpScript : MonoBehaviour
     [SerializeField] public float MaxHp;
     
     [SerializeField] public EnemyState State;
-    [SerializeField] public Live MyLive = Live.Alive;
+    [SerializeField] public Live MyLive = Live.Alive; 
     
     [SerializeField] public bool StelthKill = false;
     [SerializeField] private bool WorkWithRagdollControler = false;
+    [SerializeField] private bool WorkWithLightControler = false;
+
 
     public enum Live
     {
@@ -54,7 +56,6 @@ public class HpScript : MonoBehaviour
 
     void MinusHp(float Damage)
     {
-
         if ((HealthPoint - Damage) <= 0.0f)
         {
             
@@ -92,6 +93,12 @@ public class HpScript : MonoBehaviour
         }
 
         if (HealthPoint >= 0.0f && UiHp && ProzentHealPoint) OutPutHp(HealthPoint, UiHp, ProzentHealPoint);
+        
+        if (MyLive == Live.NotAlive && WorkWithLightControler)
+        {
+            GetComponentInParent<LightControl>().EliminateTheLight();
+            
+        }
 
     }
 
