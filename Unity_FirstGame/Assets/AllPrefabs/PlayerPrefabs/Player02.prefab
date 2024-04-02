@@ -1504,11 +1504,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5120783047b7e9f4cb7a8126480e89e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ControlerPlayer: {fileID: 0}
   LastSelectedObject: {fileID: 0}
   CameraPlayer: {fileID: 0}
   CameraCompPlayer: {fileID: 0}
   ObjectThatWatching: {fileID: 0}
-  DistanceRay: 3
+  CurrentDistanceRay: 0
+  DistanceRay: 4.5
+  DistanceRayAiming: 100
   ColorRayCast: {r: 1, g: 0.018983461, b: 0, a: 1}
 --- !u!114 &7778607237951541594
 MonoBehaviour:
@@ -1699,7 +1702,6 @@ MonoBehaviour:
   State: 1
   MyLive: 0
   StelthKill: 0
-  DestroyIfDie: 0
   WorkWithRagdollControler: 0
   WorkWithLightControler: 0
 --- !u!114 &6328347359453867729

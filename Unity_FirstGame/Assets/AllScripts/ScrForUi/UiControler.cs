@@ -15,7 +15,7 @@ public class UiControler : MonoBehaviour
     [SerializeField] private GameObject Inventory;
     
     //References Interface Canvas
-    [SerializeField] public Image Scope;
+    [SerializeField] private Image Scope;
     [SerializeField] public TextMeshProUGUI TableNameObjectForPickUp;
     [SerializeField] private GameObject IndexesTable;
     
@@ -51,7 +51,7 @@ public class UiControler : MonoBehaviour
 
         //Control other game objects
         if (Inventory) Inventory.SetActive(InventoryIsOpen);
-        Scope.gameObject.SetActive(InventoryIsOpen);
+        Scope.gameObject.SetActive(true);
         
         //Use Methods
         InterfaceControler();
@@ -80,7 +80,7 @@ public class UiControler : MonoBehaviour
     public void OpenOrCloseInventory()
     {
         InventoryIsOpen = !InventoryIsOpen;
-        Scope.enabled = !InventoryIsOpen;
+        //Scope.enabled = !InventoryIsOpen;
 
         Inventory.SetActive(InventoryIsOpen);
         IndexesTable.SetActive(!InventoryIsOpen);

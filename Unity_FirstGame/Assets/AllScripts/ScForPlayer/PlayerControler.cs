@@ -187,7 +187,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
 
             if (ControlerUi)
             {
-                ControlerUi.Scope.gameObject.SetActive(WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething);
+                //ControlerUi.Scope.gameObject.SetActive(WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething);
 
             }
 
@@ -239,8 +239,6 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                 }
 
             }
-
-            Debug.Log(PlayerPullBodyScript && PlayerPullBodyScript.CanEnable() && Input.GetKeyDown(KeyCode.X));
 
             //InteractionScr
             if (PlayerInteractionScr)
