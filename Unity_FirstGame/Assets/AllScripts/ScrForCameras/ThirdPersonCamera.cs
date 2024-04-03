@@ -21,16 +21,16 @@ public class ThirdPersonCamera : MonoBehaviour
 
     [SerializeField] public Vector3 OffsetCameraSimple;
     [SerializeField] Vector3 OffsetCameraToAiming;
-    
+    //[SerializeField] Vector3 OffsetCameraToAimingInStelth;
+    //[SerializeField] Vector3 OffsetCameraInStelth;
+
     [SerializeField] public float CurrentMoveRightDistance;
     [SerializeField] public float CurrentMoveBackDistance;
 
     [SerializeField] float MoveBackDistanceDefault = 5.0f;
+    [SerializeField] float MoveBackDistanceAiming = 2.02f;
     [SerializeField] float MoveRightDistanceDefault = 1.0f;
 
-    [SerializeField] float MoveBackDistanceAiming = 2.02f;
-    [SerializeField] float MoveRightDisatnceAiming = 0.5f;
-    
     [SerializeField] float MouseSens = 1.0f;
     [SerializeField] float MaxMagnitude = 2.4f;
     [SerializeField] float MinMagnitude = 0.1f;
@@ -101,11 +101,10 @@ public class ThirdPersonCamera : MonoBehaviour
         if (ControlerPlayer.StateCamera == CameraPlayer.Aiming)
         {
             TargetCamera.transform.localEulerAngles = new Vector3(0.0f, transform.localEulerAngles.y, 0.0f);
-            
-            CurrentMoveRightDistance = MoveRightDisatnceAiming;
-            CurrentMoveBackDistance = MoveBackDistanceAiming;
+            CurrentLenghtOfOneStep = LenghtOfOneStepIsAiming;
         }
-        
+        else CurrentLenghtOfOneStep = LenghtToOneStepSimple;
+
         //Set Position Default
         transform.position = TargetCamera.TransformPoint(DesirableVector);
         
