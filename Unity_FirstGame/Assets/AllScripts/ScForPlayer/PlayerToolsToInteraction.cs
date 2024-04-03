@@ -32,6 +32,15 @@ public class PlayerToolsToInteraction : MonoBehaviour
 
     }
 
+    public Vector3 RaycastByInteraction()
+    {
+        Physics.Raycast(transform.position, transform.forward, out RaycastHit HitResult, DistanceRay);
+        Vector3 Result = HitResult.point;
+
+        return Result;
+    } 
+
+
     public void InteractionWithRayCast()
     {
         

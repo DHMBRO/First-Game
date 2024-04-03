@@ -18,12 +18,12 @@ public class ShootControler : MonoBehaviour
     public TypeCaliber CaliberToWeapon;
     public StateWeapon Weapon;
 
+    [SerializeField] public Vector3 ShoulderOffSet;
     [SerializeField] public float ShotDeley = 1.0f;
     [SerializeField] public float ShotTime = 0.0f;
     [SerializeField] public float Mass = 0.0f;
     [SerializeField] private float BulletSpeed = 0.0f;
-
-    [SerializeField] private float ChangedAngle = 0.0f;
+    [SerializeField] private float ChangedBulletAngle = 0.0f;
 
     public bool UnLimitedAmmo;
     //[SerializeField] private float ColletSpeed = 0.0f;
@@ -132,9 +132,9 @@ public class ShootControler : MonoBehaviour
 
     private Vector3 ChangedDirection(Vector3 CurrentDirection)
     {
-        CurrentDirection += new Vector3(Random.Range(-ChangedAngle, ChangedAngle), 
-        Random.Range(-ChangedAngle, ChangedAngle), 
-        Random.Range(-ChangedAngle, ChangedAngle));
+        CurrentDirection += new Vector3(Random.Range(-ChangedBulletAngle, ChangedBulletAngle), 
+        Random.Range(-ChangedBulletAngle, ChangedBulletAngle), 
+        Random.Range(-ChangedBulletAngle, ChangedBulletAngle));
 
         return CurrentDirection;
     }

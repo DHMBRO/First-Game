@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 public class SlotControler : MethodsFromDevelopers
 {    
-
     //All Slots
     [SerializeField] public Transform CurrentSlotHand;
     [SerializeField] public Transform SlotHandForUseLoot;
     [SerializeField] public Transform SlotHandForPistols;
     [SerializeField] public Transform SlotHandForWeapons;
-    
+    //
+    [SerializeField] private Transform ShoulderAnim;
     [SerializeField] public Transform ThatTimeSlot;
     [SerializeField] public Transform ObjectInThatTimeSlot;
     //
@@ -84,6 +84,19 @@ public class SlotControler : MethodsFromDevelopers
         if (MyWeapon01) PointForShopWeapon01 = MyWeapon01.GetComponent<ShootControler>().SlotForUseShop;
         if (MyWeapon02) PointForShopWeapon02 = MyWeapon02.GetComponent<ShootControler>().SlotForUseShop;
         if (MyPistol01) PointForShopPistol01 = MyPistol01.GetComponent<ShootControler>().SlotForUseShop;
+
+    }
+
+    private void Update()
+    {
+        if (ShoulderAnim)
+        {
+            SlotHandForWeapons.position = ShoulderAnim.position;
+            SlotHandForWeapons.transform.LookAt(GetComponent<PlayerToolsToInteraction>().RaycastByInteraction());
+        }
+
+        if (!ShoulderAnim) Debug.Log("Not set ShoulderAnim");
+        if (!SlotHandForWeapons) Debug.Log("Not set SlotHandForWeapons");
 
     }
 
@@ -401,6 +414,7 @@ public class SlotControler : MethodsFromDevelopers
         ShootControler ShootControlerWeapon = null;
 
         //Setup References
+        
         int Count = 0;
         if (MyKnife01)
         {
@@ -445,6 +459,8 @@ public class SlotControler : MethodsFromDevelopers
                 }
             }
 
+            ShootControlerWeapon = SelectedWeapon.GetComponent<ShootControler>();
+
             RemoveWeapon();
             SelectSlotHand();
             ClotheWeapon();
@@ -459,7 +475,6 @@ public class SlotControler : MethodsFromDevelopers
 
         void SelectSlotHand()
         {
-            ShootControlerWeapon = SelectedWeapon.GetComponent<ShootControler>();
             if (ShootControlerWeapon)
             {
                 switch (ShootControlerWeapon.TheGun)
@@ -478,6 +493,13 @@ public class SlotControler : MethodsFromDevelopers
         void ClotheWeapon()
         {
             PutObjects(SelectedWeapon, SlotHand, false);
+
+            if (ShootControlerWeapon && ShootControlerWeapon.TheGun == TypeWeapon.Weapon)
+            {
+                SelectedWeapon.localPosition += ShootControlerWeapon.ShoulderOffSet;
+            }
+
+
             ObjectInHand = SelectedWeapon;
         }
 
