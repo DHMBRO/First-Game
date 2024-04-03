@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PPOScr : MonoBehaviour, IInteractionWithObjects
+public class PPOscr : MonoBehaviour, IInteractionWithObjects
 {
     private Quaternion ToTargetRotation;
     GameObject Turget;
@@ -45,15 +45,15 @@ public class PPOScr : MonoBehaviour, IInteractionWithObjects
         }
         if (Turget && PPOIsOn)
         {
-            ToTargetRotation = Quaternion.LookRotation(Turget.transform.position - transform.position, transform.forward);
+            ToTargetRotation = Quaternion.LookRotation(Turget.transform.position - transform.position);
             gameObject.transform.rotation = Quaternion.RotateTowards(transform.rotation, ToTargetRotation, RSpeed);
             if (RotateTo == HorisontalOrVertical.Horisontal)
             {
-                gameObject.transform.rotation = Quaternion.Euler(0, transform.localRotation.y, 0);
+                gameObject.transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
             }
             else
             {
-                gameObject.transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0);
+                gameObject.transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, 0);
                 if (timer >= TimeOfSet)
                 {
                     GameObject bullet = Instantiate(BulletOrRocket, FierFrom.transform.position, gameObject.transform.rotation);
