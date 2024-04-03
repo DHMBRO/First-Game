@@ -2,19 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PPOscr : MonoBehaviour, IInteractionWithObjects
+public class PPOScr : MonoBehaviour, IInteractionWithObjects
 {
+    private Quaternion ToTargetRotation;
     GameObject Turget;
     bool PPOIsOn = true;
     [SerializeField] float RSpeed;
     [SerializeField] GameObject BulletOrRocket;
     [SerializeField] GameObject FierFrom;
+    [SerializeField] float TimeOfSet;
+    float timer = 0.00f;
     enum HorisontalOrVertical
     {
         Horisontal,
         Vertical
     }
     [SerializeField] HorisontalOrVertical RotateTo;
+    float bulletSpeed = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,33 +35,57 @@ public class PPOscr : MonoBehaviour, IInteractionWithObjects
     // Update is called once per frame
     void Update()
     {
+        if (GetComponentInParent<PPOSettings>().PPORotationSpeed != 0f)
+        {
+            RSpeed = GetComponentInParent<PPOSettings>().PPORotationSpeed;
+        }
+        if (GetComponentInParent<PPOSettings>().BulletSpeed != 0f)
+        {
+            bulletSpeed = GetComponentInParent<PPOSettings>().BulletSpeed;
+        }
         if (Turget && PPOIsOn)
         {
-            Quaternion ToTargetRotation = Quaternion.LookRotation(Turget.transform.position - gameObject.transform.position);
+            ToTargetRotation = Quaternion.LookRotation(Turget.transform.position - transform.position, transform.forward);
             gameObject.transform.rotation = Quaternion.RotateTowards(transform.rotation, ToTargetRotation, RSpeed);
             if (RotateTo == HorisontalOrVertical.Horisontal)
             {
-                gameObject.transform.rotation = Quaternion.Euler(0, transform.localPosition.y, 0);
+                gameObject.transform.rotation = Quaternion.Euler(0, transform.localRotation.y, 0);
             }
             else
             {
-                gameObject.transform.rotation = Quaternion.Euler(transform.localPosition.x, transform.localPosition.y, 0);
-                GameObject bullet = Instantiate(BulletOrRocket, FierFrom.transform.position, gameObject.transform.rotation);
-                Destroy(bullet, 10f);
+                gameObject.transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0);
+                if (timer >= TimeOfSet)
+                {
+                    GameObject bullet = Instantiate(BulletOrRocket, FierFrom.transform.position, gameObject.transform.rotation);
+                    Destroy(bullet, 10f);
+                    if (bulletSpeed != 0f)
+                    {
+                        bullet.GetComponent<Fier>().Speed = bulletSpeed;
+                    }
+                }
             }
 
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Helicopter - " + other.gameObject.name);
         if (other.gameObject.CompareTag("Helicopter"))
         {
             Turget = other.gameObject;
+            Debug.Log("Helicopter In");
+        }
+        else
+        {
+            if (other.gameObject.name == "Helicopter 01")
+            {
+                Debug.LogError("No Teg Helicopter");
+            }
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    public void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Helicopter"))
         {
