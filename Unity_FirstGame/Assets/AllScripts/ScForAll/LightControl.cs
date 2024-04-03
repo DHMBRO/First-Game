@@ -1,13 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LightControl : MonoBehaviour
 {
+    [SerializeField] GameObject Parent;
     [SerializeField] float Angle = 360.0f;
     [SerializeField] float LightRange = 10.0f;
     [SerializeField] bool DistanceDepend;
     protected HpScript SpotLightHp;
+    
+
     void Start()
     {
         SpotLightHp = gameObject.GetComponent<HpScript>();
@@ -19,6 +20,7 @@ public class LightControl : MonoBehaviour
                 LinghtComponent.spotAngle/2.0f : 360.0f;
         }
     }
+
     private void OnTriggerEnter(Collider other)
     {
         IlluminationController OtherIlluminationController = other.GetComponentInParent<IlluminationController>();
@@ -29,6 +31,7 @@ public class LightControl : MonoBehaviour
         }
        
     }
+
     private void OnTriggerExit(Collider other)
     {
         IlluminationController OtherIlluminationController = other.GetComponentInParent<IlluminationController>();
@@ -38,6 +41,12 @@ public class LightControl : MonoBehaviour
 
         }
     }
+
+    public void EliminateTheLight()
+    {
+        Destroy(Parent.gameObject);
+    }
+
     public float HowMuchObjShine(GameObject Object)
     {
         if ((SpotLightHp && SpotLightHp.IsAlive()) || !SpotLightHp)
@@ -47,6 +56,7 @@ public class LightControl : MonoBehaviour
             {
                 return 0.0f;
             }
+            
             if (LightRange >= (IlluContr.HeadObject.transform.position - gameObject.transform.position).magnitude)
             {
                 if (Vector3.Angle(gameObject.transform.forward, (IlluContr.HeadObject.transform.position - gameObject.transform.position).normalized) <= Angle)
@@ -70,6 +80,7 @@ public class LightControl : MonoBehaviour
         }
         return 0.0f;
     }
+
     private void OnDestroy()
     {
         Collider[] Colliders = Physics.OverlapSphere(gameObject.transform.position, LightRange, LayerMask.GetMask("Detect Box"));

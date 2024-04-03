@@ -15,7 +15,7 @@ public class UiControler : MonoBehaviour
     [SerializeField] private GameObject Inventory;
     
     //References Interface Canvas
-    [SerializeField] public Image Scope;
+    [SerializeField] private Image Scope;
     [SerializeField] public TextMeshProUGUI TableNameObjectForPickUp;
     [SerializeField] private GameObject IndexesTable;
     
@@ -51,7 +51,7 @@ public class UiControler : MonoBehaviour
 
         //Control other game objects
         if (Inventory) Inventory.SetActive(InventoryIsOpen);
-        Scope.gameObject.SetActive(InventoryIsOpen);
+        Scope.gameObject.SetActive(true);
         
         //Use Methods
         InterfaceControler();
@@ -59,21 +59,28 @@ public class UiControler : MonoBehaviour
 
     private bool ChekToInteraction(Transform GivenReference)
     {
-        ScrForAllLoot LocalScrForAllLoot = GivenReference.GetComponent<ScrForAllLoot>();
+        ScrForAllLoot LocalScrForAllLoot = null;
 
-        if (LocalScrForAllLoot)
+        if (GivenReference)
         {
-            UpdateNameOnTable(LocalScrForAllLoot);
+            LocalScrForAllLoot = GivenReference.GetComponent<ScrForAllLoot>();
+
+            if (LocalScrForAllLoot)
+            {
+                UpdateNameOnTable(LocalScrForAllLoot);
+            }
+            else DeleteNameOnTable();
         }
         else DeleteNameOnTable();
-
+        
+        
         return LocalScrForAllLoot != null;
     }
 
     public void OpenOrCloseInventory()
     {
         InventoryIsOpen = !InventoryIsOpen;
-        Scope.enabled = !InventoryIsOpen;
+        //Scope.enabled = !InventoryIsOpen;
 
         Inventory.SetActive(InventoryIsOpen);
         IndexesTable.SetActive(!InventoryIsOpen);
@@ -103,7 +110,7 @@ public class UiControler : MonoBehaviour
 
     }
     
-    private void DeleteNameOnTable()
+    public void DeleteNameOnTable()
     {
         if (!TableNameObjectForPickUp)
         {

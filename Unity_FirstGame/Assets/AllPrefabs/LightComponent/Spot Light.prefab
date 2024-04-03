@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2793471881583442526}
   - component: {fileID: 2793471881583442527}
   - component: {fileID: 2793471881583442524}
-  - component: {fileID: 1170614190430249668}
   m_Layer: 0
   m_Name: Spot Light
   m_TagString: Untagged
@@ -111,6 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f1a9d8721cb12748a88747d085a4864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Parent: {fileID: 2793471881583442520}
   Angle: 25
   LightRange: 12
   DistanceDepend: 1
@@ -127,25 +127,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 12
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1170614190430249668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2793471881583442520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5de6a5a91ce79a4ea04d6f930f9a507, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UiHp: {fileID: 0}
-  ProzentHealPoint: {fileID: 0}
-  State: 0
-  HealthPoint: 1
-  MaxHp: 0
-  StelthKill: 0
-  MyLive: 0
 --- !u!1 &4510569665194038786
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,7 +137,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6911822587565346011}
   - component: {fileID: 3209606946272298597}
-  m_Layer: 0
+  - component: {fileID: 7067929564610344448}
+  - component: {fileID: 3182484484824545410}
+  m_Layer: 6
   m_Name: Hit Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,6 +174,54 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.7
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7067929564610344448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4510569665194038786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ef3b5b486fd1d43b53d47da52f3fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mass: 0
+  CanCombining: 0
+  HaveDescription: 0
+  ShowTheAmmo: 0
+  SpriteForLoot: {fileID: 0}
+  NameOfThisObject: Destroy the light
+  Descrition: 
+  ParametersLoot:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+--- !u!114 &3182484484824545410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4510569665194038786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5de6a5a91ce79a4ea04d6f930f9a507, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UiHp: {fileID: 0}
+  ProzentHealPoint: {fileID: 0}
+  MyRagdollControler: {fileID: 0}
+  HealthPoint: 1
+  MaxHp: 1
+  State: 3
+  MyLive: 0
+  StelthKill: 0
+  WorkWithRagdollControler: 0
+  WorkWithLightControler: 1
 --- !u!1 &8303494118077686434
 GameObject:
   m_ObjectHideFlags: 0

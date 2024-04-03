@@ -19,7 +19,7 @@ public class PullBodyScript : MonoBehaviour
 
     public bool CanEnable()
     {
-        if (LocalBody)
+        if (PlayerHingeJoint || LocalBody)
         {
             CanWork = true;
         }
@@ -31,15 +31,15 @@ public class PullBodyScript : MonoBehaviour
 
     public void Work()
     {
-        if(CanWork && LocalBody)
+        if(CanWork)
         {
-            PullBody(LocalBody);
+            PullBody();
         }
     }
 
     private bool ChekToInteraction(Transform GivenReference)
     {
-        if (GivenReference.GetComponent<BoneControler>())
+        if (GivenReference && GivenReference.GetComponent<BoneControler>())
         {
             CanWork = true;
             LocalBody = GivenReference;
@@ -53,30 +53,30 @@ public class PullBodyScript : MonoBehaviour
         return LocalBody != null;
     }
 
-    private void PullBody(Transform LocalBody)
+    private void PullBody()
     {
-        BoneControler LocalBoneControler = LocalBody.GetComponent<BoneControler>();
-        
-        Transform LocalLimb = LocalBoneControler.ReturnLimb(this.transform);
-        Rigidbody LimbRigidbody = LocalLimb.GetComponent<Rigidbody>();
+        BoneControler LocalBoneControler = null;
+        Transform LocalLimb = null;
+        Rigidbody LimbRigidbody = null;
+
 
         if (PlayerHingeJoint)
         {
             Destroy(PlayerHingeJoint);
             PlayerHingeJoint = null;
         }
-        else if (LocalLimb)
+        else if (LocalBody)
         {
+            LocalBoneControler = LocalBody.GetComponent<BoneControler>();
+            LocalLimb = LocalBoneControler.ReturnLimb(this.transform);
+            LimbRigidbody = LocalLimb.GetComponent<Rigidbody>();
+
             if (!LimbRigidbody) LimbRigidbody = LocalLimb.gameObject.AddComponent<Rigidbody>();
             PlayerHingeJoint = gameObject.AddComponent<HingeJoint>();
 
-            PlayerHingeJoint.connectedBody = LocalLimb.GetComponent<Rigidbody>();
+            PlayerHingeJoint.connectedBody = LimbRigidbody;
             PlayerHingeJoint.axis = new Vector3(0.0f, 1.0f, 0.0f);
         }
-        else if (!LocalLimb) Debug.Log(LocalBody.name);
-        
-
     }
-
 
 }

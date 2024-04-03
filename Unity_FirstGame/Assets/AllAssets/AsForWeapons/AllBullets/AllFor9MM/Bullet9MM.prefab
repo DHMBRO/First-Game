@@ -9,9 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1937048278016728182}
-  - component: {fileID: 2067516510833194328}
-  - component: {fileID: 3402825883770628673}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: RootationPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,34 +32,6 @@ Transform:
   m_Father: {fileID: 6215300900525056869}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!136 &2067516510833194328
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1320431580496078130}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.006
-  m_Height: 0.016
-  m_Direction: 0
-  m_Center: {x: -0.0015, y: 0, z: 0}
---- !u!114 &3402825883770628673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1320431580496078130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a44bba1536389644843157fecb6d3d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ParentObject: {fileID: 6895987822013454153}
-  Damage: 5
 --- !u!1 &6895987822013454153
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,7 +42,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6215300900525056869}
   - component: {fileID: 8753470810607610775}
+  - component: {fileID: 2229657100021901154}
   - component: {fileID: -4105849443783263339}
+  - component: {fileID: 1041442918093531198}
   m_Layer: 8
   m_Name: Bullet9MM
   m_TagString: Untagged
@@ -112,6 +84,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!136 &2229657100021901154
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6895987822013454153}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.006
+  m_Height: 0.016
+  m_Direction: 2
+  m_Center: {x: -0.0015, y: 0, z: 0.0015}
 --- !u!96 &-4105849443783263339
 TrailRenderer:
   serializedVersion: 2
@@ -211,6 +197,19 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &1041442918093531198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6895987822013454153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a44bba1536389644843157fecb6d3d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletDamage: 1
 --- !u!1001 &835899283630232112
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -268,7 +267,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6134681609783580483, guid: 05538b2b752e7e345bcb59dba9fa8e2f, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05538b2b752e7e345bcb59dba9fa8e2f, type: 3}
