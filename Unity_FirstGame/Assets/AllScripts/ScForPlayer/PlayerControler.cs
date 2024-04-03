@@ -163,7 +163,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             }
 
             //Camera
-            if (CameraPlayerF3.CameraIsUsig)
+            if (CameraPlayerF3 && CameraPlayerF3.CameraIsUsig)
             {
                 if (Input.GetKey(KeyCode.Mouse1) || Input.GetKey(KeyCode.Z))
                 {
