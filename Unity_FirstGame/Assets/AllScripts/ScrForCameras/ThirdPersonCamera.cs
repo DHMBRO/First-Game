@@ -11,7 +11,6 @@ public class ThirdPersonCamera : MonoBehaviour
     
     [SerializeField] private RaycastHit HitResult;
 
-    [SerializeField] Transform HandTarget;
     [SerializeField] Transform Cube;
     [SerializeField] Transform Cube1;
 
