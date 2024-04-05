@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 8658747838941348289}
   - component: {fileID: 7347797770348224600}
   - component: {fileID: 9150502356221412890}
+  - component: {fileID: 2434178922148979108}
+  - component: {fileID: -398578843373071948}
   m_Layer: 0
   m_Name: AK47
   m_TagString: Weapon
@@ -113,12 +115,44 @@ MonoBehaviour:
   TheGun: 0
   CaliberToWeapon: 1
   Weapon: 0
+  ShoulderOffSet: {x: 0, y: 0, z: 0}
   ShotDeley: 0.5
   ShotTime: 0
   Mass: 0
   BulletSpeed: 1000
-  ChangedAngle: 15
+  ColletSpeed: 250
+  ChangedBulletAngle: 0
   UnLimitedAmmo: 0
+--- !u!114 &2434178922148979108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477317795365491750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fbe622a48536e54db11b1f9402df734, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RadiuseNoise: 5
+  DeleayToDisable: 0.25
+  ZoneNoise: {fileID: 8520155578379175069, guid: 4f9100f211301ba4bb541bc3a970b238, type: 3}
+  ShowZoneNoise: 0
+--- !u!114 &-398578843373071948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477317795365491750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d769b754154c77042aae9ea5c8dd47f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentNoiceRadiuse: 0
+  DebugingTheWork: 0
 --- !u!1 &1765363267750734824
 GameObject:
   m_ObjectHideFlags: 0

@@ -36,10 +36,12 @@ public class ThirdPersonCamera : MonoBehaviour
     [SerializeField] float MinMagnitude = 0.1f;
     [SerializeField] public float HeightStartPoint = 1.0f;
 
+    /*
     [SerializeField] float t;
     [SerializeField] float CurrentLenghtOfOneStep;
     [SerializeField] float LenghtToOneStepSimple = 1000.0f;
     [SerializeField] float LenghtOfOneStepIsAiming = 30.0f;
+    */
 
     [SerializeField] MoodCamera CameraMood;
     [SerializeField] public bool CameraIsUsig = true;
@@ -55,7 +57,7 @@ public class ThirdPersonCamera : MonoBehaviour
         DesirableVector = OffsetCameraSimple;
         CurrentMoveBackDistance = MoveBackDistanceDefault;
 
-        CurrentLenghtOfOneStep = LenghtOfOneStepIsAiming;
+        //CurrentLenghtOfOneStep = LenghtOfOneStepIsAiming;
 
     }
 
@@ -185,7 +187,8 @@ public class ThirdPersonCamera : MonoBehaviour
 
     }
 
-
+    /*
+     
     void LerpCamera(Vector3 OffSet)
     {
         Vector3 TargetVector = TargetCamera.transform.TransformPoint(OffSet) + -(transform.forward * CurrentMoveBackDistance);
@@ -193,6 +196,7 @@ public class ThirdPersonCamera : MonoBehaviour
         t = ((CurrentLenghtOfOneStep / (TargetVector - transform.position).magnitude) * Time.deltaTime);
         transform.position = Vector3.Lerp(transform.position, TargetVector, t);
     }
-
+    
+    */
 
 }

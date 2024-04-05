@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ExecutoreScriptToPlayer : MonoBehaviour
 {
-    [SerializeField] SoundCreatorScript SCScript;
+    SoundCreatorScript SCScript;
     [SerializeField] PlayerControler ControlerPlayer;
 
     [SerializeField] float DeleyToAddNoise = 0.25f;
@@ -14,31 +14,16 @@ public class ExecutoreScriptToPlayer : MonoBehaviour
     [SerializeField] float RadiusNoiseWhenRun = 7.0f;
     //
     [SerializeField] GameObject ZoneNoise;
-    [SerializeField] GameObject LocalZoneNoise;
-    [SerializeField] bool ShowZoneNoise;
+    GameObject LocalZoneNoise;
+    [SerializeField] bool ShowZoneNoise = false;
 
 
-    private void Start()
+    void Start()
     {
         SCScript = GetComponent<SoundCreatorScript>();
         ControlerPlayer = GetComponent<PlayerControler>();   
     }
-    /*
-                case ModeMovement.Stelth:
-                    RadiusNoise = RadiusNoiseWhenInStels;
-                    break;
-                case ModeMovement.Aiming:
-                    RadiusNoise = RadiusNoiseWhenAiming;
-                    break;
-                case ModeMovement.Go:
-                    RadiusNoise = RadiusNoiseWhenGo;
-                    break;
-                case ModeMovement.Run:
-                    RadiusNoise = RadiusNoiseWhenRun;
-                    break;
-                
-    */
-
+    
     public void ExecutoreNoice()
     {
         if (Time.time >= TimeToAddNoise)
@@ -61,21 +46,20 @@ public class ExecutoreScriptToPlayer : MonoBehaviour
                     break;
             }
 
-            //Show Noice Zone
+            //Show noise zone
             if (ShowZoneNoise && ZoneNoise) 
             {
-                if(!LocalZoneNoise) LocalZoneNoise = Instantiate(ZoneNoise);
-                
+                if (ZoneNoise && !LocalZoneNoise) LocalZoneNoise = Instantiate(ZoneNoise);
+
                 LocalZoneNoise.transform.position = transform.position;
-                LocalZoneNoise.transform.localScale = new Vector3(RadiusNoise, RadiusNoise, RadiusNoise) * 2.0f;            
+                LocalZoneNoise.transform.localScale = new Vector3(RadiusNoise, RadiusNoise, RadiusNoise) * 2.0f;
+                LocalZoneNoise.gameObject.SetActive(ShowZoneNoise);
             }
-            if (LocalZoneNoise) LocalZoneNoise.gameObject.SetActive(ShowZoneNoise);
             
-            
-            //Main
+            //Realization create noise
             TimeToAddNoise = Time.time + DeleyToAddNoise;
             SCScript.CreateNoise(RadiusNoise);
-            
+
 
         }
 

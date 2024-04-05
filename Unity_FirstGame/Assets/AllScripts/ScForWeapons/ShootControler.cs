@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -22,10 +23,13 @@ public class ShootControler : MonoBehaviour
     [SerializeField] public float ShotDeley = 1.0f;
     [SerializeField] public float ShotTime = 0.0f;
     [SerializeField] public float Mass = 0.0f;
-    [SerializeField] private float BulletSpeed = 0.0f;
+    [SerializeField] private float BulletSpeed = 1.0f;
+    [SerializeField] private float ColletSpeed = 1.0f;
     [SerializeField] private float ChangedBulletAngle = 0.0f;
 
     public bool UnLimitedAmmo;
+    //[SerializeField] List<Rigidbody> ColletsRig = new List<Rigidbody>();
+
     //[SerializeField] private float ColletSpeed = 0.0f;
 
 
@@ -69,7 +73,12 @@ public class ShootControler : MonoBehaviour
 
         return CanWork;
     }
-    
+
+    public Vector3 WeaponMuzzle()
+    {
+        return Muzzle.transform.position;
+    } 
+
 
 
     private void Shoot()//ColectPoint
@@ -107,6 +116,8 @@ public class ShootControler : MonoBehaviour
         Rigidbody NewBulletRIG = NewBullet.GetComponent<Rigidbody>();
         Rigidbody NewColletRIG = NewCollet.GetComponent<Rigidbody>();
 
+        //ColletsRig.Add(NewColletRIG);
+
         if (!NewBulletRIG) NewBulletRIG = NewBullet.AddComponent<Rigidbody>();
         if (!NewColletRIG) NewColletRIG = NewCollet.AddComponent<Rigidbody>();
 
@@ -122,12 +133,16 @@ public class ShootControler : MonoBehaviour
         NewBulletRIG.useGravity = false;
         
         NewBulletRIG.AddForce(NewBullet.transform.forward * BulletSpeed, ForceMode.Force);
-        NewColletRIG.AddForce((NewCollet.transform.right + NewCollet.transform.up) * BulletSpeed, ForceMode.Force);
+        NewColletRIG.AddForce((NewCollet.transform.right + (NewCollet.transform.up / 2.0f)) * ColletSpeed, ForceMode.Force);
 
+        NewColletRIG.AddTorque(NewCollet.transform.right * 1000.0f);
+        
         Destroy(NewBullet, 10.0f);
-        Destroy(NewCollet, 10.0f);
-
+        Destroy(NewCollet, 3.0f);
+         
     }
+
+
 
     private Vector3 ChangedDirection(Vector3 CurrentDirection)
     {

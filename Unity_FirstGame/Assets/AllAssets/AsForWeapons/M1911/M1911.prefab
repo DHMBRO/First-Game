@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 450365454394615385}
   - component: {fileID: 5223276569134201100}
   - component: {fileID: 7818485075443907868}
+  - component: {fileID: -2434283172049437063}
   - component: {fileID: 926038900785421185}
   m_Layer: 0
   m_Name: M1911
@@ -65,6 +66,32 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-2434283172049437063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2750913537098556372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ef3b5b486fd1d43b53d47da52f3fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mass: 0
+  CanCombining: 0
+  HaveDescription: 0
+  ShowTheAmmo: 0
+  SpriteForLoot: {fileID: 0}
+  NameOfThisObject: Weapon - M1911
+  Descrition: 
+  ParametersLoot:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
 --- !u!114 &926038900785421185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,10 +113,14 @@ MonoBehaviour:
   ColletPoint: {fileID: 0}
   TheGun: 0
   CaliberToWeapon: 0
+  Weapon: 0
+  ShoulderOffSet: {x: 0, y: 0, z: 0}
   ShotDeley: 1
   ShotTime: 0
   Mass: 0
   BulletSpeed: 20
+  ColletSpeed: 1
+  ChangedBulletAngle: 0
   UnLimitedAmmo: 0
 --- !u!1 &7733093246789845795
 GameObject:

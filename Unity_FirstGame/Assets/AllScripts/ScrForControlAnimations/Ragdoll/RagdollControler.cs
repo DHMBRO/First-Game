@@ -11,8 +11,7 @@ public class RagdollControler : MonoBehaviour
     [SerializeField] public SetRagdoll SetRagdollDelegat;
 
     [SerializeField] List<Transform> AllBones = new List<Transform>();
-    [SerializeField] bool Enable = false;
-
+    
     private void Start()
     {
         MyAnimator = gameObject.GetComponent<Animator>();
