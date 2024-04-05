@@ -75,18 +75,17 @@ public class ShootControler : MonoBehaviour
     private void Shoot()//ColectPoint
     {
         //Chek referece
-        if (!GameObjectForRay || !Muzzle || !Bullet || !Collet || !ColletPoint || !WeaponShoop)
+        if ((!GameObjectForRay || !Muzzle || !Bullet || !Collet || !ColletPoint))
         {
             Debug.Log(GameObjectForRay);
             Debug.Log(Muzzle);
             Debug.Log(Bullet);
             Debug.Log(Collet);
             Debug.Log(ColletPoint);
-            Debug.Log(WeaponShoop);
 
             return;
         }
-
+        
         //Chek that can work
         if (Time.time < ShotTime)
         {
@@ -95,11 +94,11 @@ public class ShootControler : MonoBehaviour
         }
         else ShotTime = ShotDeley + Time.time;
 
-        if (WeaponShoop.CurrentAmmo > 0 || UnLimitedAmmo)
+        if (WeaponShoop && WeaponShoop.CurrentAmmo > 0)
         {
             if (WeaponShoop.CurrentAmmo > 0) WeaponShoop.CurrentAmmo--;
         }
-        else return;
+        else if(!UnLimitedAmmo) return;
 
         // Instance reference
         GameObject NewBullet = Instantiate(Bullet);
