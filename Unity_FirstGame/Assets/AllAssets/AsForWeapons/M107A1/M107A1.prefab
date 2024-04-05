@@ -242,6 +242,8 @@ GameObject:
   - component: {fileID: 3172701125988586674}
   - component: {fileID: 3811602884797789301}
   - component: {fileID: 372156113381979742}
+  - component: {fileID: 2124973576992208714}
+  - component: {fileID: 6952917975620779659}
   m_Layer: 0
   m_Name: M107A1
   m_TagString: Weapon
@@ -342,12 +344,44 @@ MonoBehaviour:
   TheGun: 0
   CaliberToWeapon: 5
   Weapon: 0
+  ShoulderOffSet: {x: 0, y: 0, z: 0}
   ShotDeley: 3
   ShotTime: 0
   Mass: 0
   BulletSpeed: 1000
-  ChangedAngle: 1
+  ColletSpeed: 1
+  ChangedBulletAngle: 0
   UnLimitedAmmo: 0
+--- !u!114 &2124973576992208714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8600588800247072252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fbe622a48536e54db11b1f9402df734, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RadiuseNoise: 5
+  DeleayToDisable: 0.25
+  ZoneNoise: {fileID: 8520155578379175069, guid: 4f9100f211301ba4bb541bc3a970b238, type: 3}
+  ShowZoneNoise: 0
+--- !u!114 &6952917975620779659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8600588800247072252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d769b754154c77042aae9ea5c8dd47f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentNoiceRadiuse: 0
+  DebugingTheWork: 0
 --- !u!1001 &1581280479036928742
 PrefabInstance:
   m_ObjectHideFlags: 0

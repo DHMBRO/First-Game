@@ -1,12 +1,9 @@
 using UnityEngine;
 public class SoundCreatorScript : MonoBehaviour
 {
-    [SerializeField] public float CurrentNoiceRadiuse;
-    [SerializeField] private bool DebugingTheWork = false;
-
-    [SerializeField] public Transform ZoneNoice;
-    [SerializeField] bool ShowTheZoneNoice;
-
+    [SerializeField] public float CurrentNoiceRadiuse = 0.0f;
+    [SerializeField] bool DebugingTheWork = false;
+    
     public void CreateNoise(float NewNoiceRadius)
     {
         CurrentNoiceRadiuse = NewNoiceRadius;
@@ -14,6 +11,7 @@ public class SoundCreatorScript : MonoBehaviour
         {
             return;
         }
+        
         Collider[] Colliders;
         Colliders = Physics.OverlapSphere(gameObject.transform.position, CurrentNoiceRadiuse);
         foreach (Collider Colider in Colliders)

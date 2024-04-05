@@ -6,7 +6,7 @@ public class MethodsFromDevelopers : MonoBehaviour
     protected void PutObjects(Transform ObjectForPut, Transform PosForPut, bool AddNoice)
     {
         Rigidbody RigObject = ObjectForPut.GetComponent<Rigidbody>();
-        BoxCollider BCObject = ObjectForPut.GetComponent<BoxCollider>();
+        Collider BCObject = ObjectForPut.GetComponent<Collider>();
 
         SoundCreatorScript SCSObject;
         ExecutoreScriptToRock ESObject;
@@ -24,7 +24,7 @@ public class MethodsFromDevelopers : MonoBehaviour
         if (BCObject) BCObject.enabled = false;
         else
         {
-            BCObject = ObjectForPut.gameObject.AddComponent<BoxCollider>();
+            BCObject = ObjectForPut.gameObject.AddComponent<Collider>();
             BCObject.enabled = false;
         }
 
@@ -48,7 +48,7 @@ public class MethodsFromDevelopers : MonoBehaviour
     protected void DropObjects(Transform ObjectToDrop, Transform ObecjtForCopy, bool AddNoice)
     {
         Rigidbody RigObject = ObjectToDrop.GetComponent<Rigidbody>();
-        BoxCollider BCObject = ObjectToDrop.GetComponent<BoxCollider>();
+        Collider BCObject = ObjectToDrop.GetComponent<Collider>();
 
         SoundCreatorScript SCSObject;
         ExecutoreScriptToRock ESObject;
@@ -69,12 +69,12 @@ public class MethodsFromDevelopers : MonoBehaviour
         else 
         {
             RigObject = ObjectToDrop.gameObject.AddComponent<Rigidbody>();
-            if (!BCObject) BCObject = ObjectToDrop.gameObject.AddComponent<BoxCollider>();
+            if (!BCObject) BCObject = ObjectToDrop.gameObject.AddComponent<Collider>();
 
             Droping(RigObject, BCObject);
         }
         
-        void Droping(Rigidbody RigObject, BoxCollider BCObject)
+        void Droping(Rigidbody RigObject, Collider BCObject)
         {
             RigObject.isKinematic = false;
             RigObject.useGravity = true;

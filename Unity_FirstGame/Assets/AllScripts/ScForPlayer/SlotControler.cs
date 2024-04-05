@@ -92,7 +92,12 @@ public class SlotControler : MethodsFromDevelopers
         if (ShoulderAnim)
         {
             SlotHandForWeapons.position = ShoulderAnim.position;
-            SlotHandForWeapons.transform.LookAt(GetComponent<PlayerToolsToInteraction>().RaycastByInteraction());
+
+            if (ControlerPlayer.StateCamera == CameraPlayer.Aiming)
+            {
+                SlotHandForWeapons.transform.LookAt(GetComponent<PlayerToolsToInteraction>().RaycastByInteraction());
+            }
+
         }
 
         if (!ShoulderAnim) Debug.Log("Not set ShoulderAnim");
