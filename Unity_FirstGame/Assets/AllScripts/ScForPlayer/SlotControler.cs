@@ -5,9 +5,11 @@ public class SlotControler : MethodsFromDevelopers
 {    
     //All Slots
     [SerializeField] public Transform CurrentSlotHand;
+
     [SerializeField] public Transform SlotHandForUseLoot;
     [SerializeField] public Transform SlotHandForPistols;
     [SerializeField] public Transform SlotHandForWeapons;
+    
     //
     [SerializeField] private Transform ShoulderAnim;
     [SerializeField] public Transform ThatTimeSlot;
@@ -17,7 +19,6 @@ public class SlotControler : MethodsFromDevelopers
     //
     [SerializeField] public Transform SlotBack01;
     [SerializeField] public Transform SlotBack02;
-    [SerializeField] public Transform AdditionalSlot01;
     //
     [SerializeField] public Transform SlotPistol01;
     //
@@ -499,7 +500,7 @@ public class SlotControler : MethodsFromDevelopers
         {
             PutObjects(SelectedWeapon, SlotHand, false);
 
-            if (ShootControlerWeapon && ShootControlerWeapon.TheGun == TypeWeapon.Weapon)
+            if (ShootControlerWeapon)
             {
                 SelectedWeapon.localPosition += ShootControlerWeapon.ShoulderOffSet;
             }
