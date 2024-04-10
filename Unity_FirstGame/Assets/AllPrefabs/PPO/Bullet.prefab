@@ -113,8 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a44bba1536389644843157fecb6d3d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentObject: {fileID: 0}
-  Damage: 5
+  BulletDamage: 0
 --- !u!114 &1147372921518262786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceMode: 0
-  Speed: 50
+  Speed: 0
 --- !u!54 &4464431810010024435
 Rigidbody:
   m_ObjectHideFlags: 0
