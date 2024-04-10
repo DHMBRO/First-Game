@@ -34,10 +34,22 @@ public class PlayerToolsToInteraction : MonoBehaviour
 
     public Vector3 RaycastByInteraction()
     {
-        Physics.Raycast(transform.position, transform.forward, out RaycastHit HitResult, DistanceRay);
-        Vector3 Result = HitResult.point;
+        Vector3 Origin = CameraPlayer.position + (CameraPlayer.forward * CameraCompPlayer.CurrentMoveBackDistance);
+        Vector3 Direction = CameraPlayer.forward;
+        Vector3 EndPoint = new Vector3();
 
-        return Result;
+        Ray RayCast = new Ray(Origin, Direction * DistanceRayAiming);
+        
+        if (Physics.Raycast(RayCast, out RaycastHit HitResult, CurrentDistanceRay)) 
+        {
+            EndPoint = HitResult.point;
+        }
+        else
+        {
+            EndPoint = CameraPlayer.position + (CameraPlayer.forward * DistanceRayAiming);   
+        }
+        return EndPoint;
+        
     } 
 
 

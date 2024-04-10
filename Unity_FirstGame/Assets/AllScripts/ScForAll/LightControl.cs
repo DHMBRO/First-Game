@@ -62,7 +62,7 @@ public class LightControl : MonoBehaviour
                 if (Vector3.Angle(gameObject.transform.forward, (IlluContr.HeadObject.transform.position - gameObject.transform.position).normalized) <= Angle)
                 {
                     RaycastHit[] Hitresults = Physics.RaycastAll(gameObject.transform.position, IlluContr.HeadObject.transform.position - gameObject.transform.position);
-                   // Debug.DrawLine(gameObject.transform.position, IlluContr.HeadObject.transform.position);
+                    Debug.DrawLine(gameObject.transform.position, IlluContr.HeadObject.transform.position);
                     foreach (RaycastHit Hitres in Hitresults)//Raycast from Light to Obj to check there is no obj between them
                     {
                         if (Hitres.collider.gameObject.transform.root == gameObject.transform.root)
