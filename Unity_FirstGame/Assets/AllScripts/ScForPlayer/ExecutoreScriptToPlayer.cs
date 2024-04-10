@@ -42,8 +42,7 @@ public class ExecutoreScriptToPlayer : MonoBehaviour
                     RadiusNoise = RadiusNoiseWhenRun;
                     break;
                 default:
-                    RadiusNoise = 0.0f;
-                    break;
+                    return;
             }
 
             //Show noise zone
