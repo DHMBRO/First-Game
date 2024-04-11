@@ -28,7 +28,7 @@ public class ExecutoreScrForWeapons : MonoBehaviour
         {
             if (!LocalZoneNoise) LocalZoneNoise = Instantiate(ZoneNoise).transform;
 
-            LocalZoneNoise.position = ControlerShoot.WeaponMuzzle();
+            LocalZoneNoise.position = ControlerShoot.WeaponMuzzle().position;
             LocalZoneNoise.localScale = new Vector3(RadiuseNoise, RadiuseNoise, RadiuseNoise) * 2.0f;
 
             LocalZoneNoise.gameObject.SetActive(true);

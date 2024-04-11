@@ -21,6 +21,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
     [SerializeField] private PullBodyScript PlayerPullBodyScript;
     [SerializeField] private DropControler ControlerDrop;
     [SerializeField] private SlotControler SlotControler;
+    [SerializeField] private AimControler ControlerAim;
 
     //Camera Components
     [SerializeField] private Transform PlayerCameraF1;
@@ -79,12 +80,10 @@ public class PlayerControler : MonoBehaviour, HeadInterface
         
         ControlerDrop = GetComponent<DropControler>();
         SlotControler = GetComponent<SlotControler>();
-        
+        ControlerAim = GetComponent<AimControler>();
+
         //All Debug
         if (!ControlerUi) Debug.Log("Not set ControlerUi");
-        
-        //Setup References
-        
     }
 
     void Update()
@@ -116,7 +115,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             WhatPlayerHandsDo = HandsPlayer.Null;
         }
 
-        if (/*(!ControlerUi || !ControlerUi.InventoryIsOpen) && WhatPlayerHandsDo == HandsPlayer.Null &&*/ !StealthKilling)
+        if (!StealthKilling)
         {
             
             // Movement && Executore Noice
@@ -136,7 +135,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                 
             }
 
-            // Drop
+            //Drop
             if (ControlerDrop)
             {
                 if (Input.GetKeyDown(KeyCode.Q))
@@ -182,7 +181,6 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             if (WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething && Inputs && WhatSpeedPlayerLegs != SpeedLegsPlayer.CrouchWalk) 
             {
                 WhatSpeedPlayerLegs = SpeedLegsPlayer.Walk;
-                
             }
 
             if (ControlerUi)
@@ -202,12 +200,11 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             if (PlayerTools /* && WhatSpeedPlayerLegs != SpeedLegsPlayer.Run && WhatPlayerHandsDo == HandsPlayer.Null*/)
             {
                 PlayerTools.InteractionWithRayCast();
-                
             }
             
             if (!PlayerTools) Debug.Log("Not set PlayerTools");
 
-            // PickUp
+            //PickUp
             if (PickUpPlayer && WhatSpeedPlayerLegs != SpeedLegsPlayer.Run && WhatPlayerHandsDo == HandsPlayer.Null) 
             {
                 if (Input.GetKeyUp(KeyCode.F))
@@ -249,7 +246,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                 }
             }
 
-            // Slot Controler
+            //SlotControler
             if (SlotControler && WhatPlayerHandsDo == HandsPlayer.Null)
             {
                 SlotControler.MovingGunForSlots();
@@ -265,6 +262,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                 {
                     //SlotControler.UpdateTypeWeaponInHand();
                     SlotControler.ChangingSlots();
+                    ControlerAim.UpdateWeapoMuzzle();
                 }
                 SlotControler.UpdateTypeWeaponInHand();
 
@@ -278,8 +276,6 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                     Ray ForwardCamera = new Ray(CameraPlayerF3.transform.position, CameraPlayerF3.transform.forward);
                     ControlerShoot.SetShootDelegat();
                 }
-
-                
             }
             
             //Divert Attention 
@@ -309,16 +305,8 @@ public class PlayerControler : MonoBehaviour, HeadInterface
 
             }
 
-            
-
         }
-
         ScrAnimationsPlayer.UpdateAnimations();
-
-
-
-
-
 
     }
 

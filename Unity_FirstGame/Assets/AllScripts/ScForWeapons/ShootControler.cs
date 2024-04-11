@@ -10,7 +10,7 @@ public class ShootControler : MonoBehaviour
     [SerializeField] public Transform SlotForUseShop;
     [SerializeField] public ShopControler WeaponShoop;
     [SerializeField] private GameObject GameObjectForRay;
-    [SerializeField] private GameObject Muzzle;
+    [SerializeField] public GameObject Muzzle;
     [SerializeField] private GameObject Bullet;
     [SerializeField] private GameObject Collet;
     [SerializeField] private GameObject ColletPoint;
@@ -73,13 +73,12 @@ public class ShootControler : MonoBehaviour
 
         return CanWork;
     }
-
-    public Vector3 WeaponMuzzle()
+    
+    public Transform WeaponMuzzle()
     {
-        return Muzzle.transform.position;
+        return Muzzle.transform;
     } 
-
-
+    
 
     private void Shoot()//ColectPoint
     {
