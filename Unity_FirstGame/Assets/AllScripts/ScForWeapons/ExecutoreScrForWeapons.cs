@@ -6,7 +6,7 @@ public class ExecutoreScrForWeapons : MonoBehaviour
     ShootControler ControlerShoot;
 
     [SerializeField] float RadiuseNoise = 5.0f;
-    [SerializeField] float DeleayToDisable = 0.25f;
+    [SerializeField] float DeleayToDisable = 1.0f;
     
     [SerializeField] GameObject ZoneNoise;
     Transform LocalZoneNoise;
