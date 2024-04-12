@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-public class HpScript : MonoBehaviour
+public class HpScript : MethodsFromDevelopers
 {
     [SerializeField] private Image UiHp;
     [SerializeField] private TextMeshProUGUI ProzentHealPoint;
@@ -20,7 +20,7 @@ public class HpScript : MonoBehaviour
     [SerializeField] private bool WorkWithRagdollControler = false;
     [SerializeField] private bool WorkWithLightControler = false;
 
-
+    
     public enum Live
     {
         Alive,
@@ -29,6 +29,7 @@ public class HpScript : MonoBehaviour
 
     private void Start()
     {
+       
         MyNavMesh = gameObject.GetComponent<PatrolScriptNavMesh>();
         Info = gameObject.GetComponentInParent<InfScript>();
         if (!Info && State != EnemyState.Player)
@@ -58,10 +59,10 @@ public class HpScript : MonoBehaviour
     {
         if ((HealthPoint - Damage) <= 0.0f)
         {
+            Debug.Log("Dropp <---");
             
             HealthPoint = 0;
             MyLive = Live.NotAlive; 
-            
             if (State != EnemyState.Another)
             {
                 if(MyNavMesh && MyNavMesh.enabled)
@@ -78,9 +79,10 @@ public class HpScript : MonoBehaviour
 
             if (WorkWithRagdollControler && MyRagdollControler)
             {
-                Invoke("CallRagdollControler", 2.117f);
-                //MyRagdollControler.SetRagdol(true);
-                
+               // CallRagdollControler();
+               // Invoke("CallRagdollControler", 6.117f);
+               //MyRagdollControler.SetRagdol(true);
+
             }
         }
         else if ((HealthPoint - Damage) > 0.0f)
@@ -102,9 +104,13 @@ public class HpScript : MonoBehaviour
 
     }
 
-    private void CallRagdollControler()
+    public void CallRagdollControler()
     {
-        MyRagdollControler.SetRagdol(true);
+        if (WorkWithRagdollControler && MyRagdollControler)
+        {
+            MyRagdollControler.SetRagdol(true);
+        }
+        DropObjects(Info.Attack.TerroristGun.transform, gameObject.transform, false);
     }
 
     public void HealHp(float Heal)
@@ -146,5 +152,6 @@ public class HpScript : MonoBehaviour
     public void InstanceKill()
     {   
         InflictingDamage(HealthPoint * 2.0f);
+        Debug.Log("InstanceKill <---");
     }
 }

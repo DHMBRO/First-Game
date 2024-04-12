@@ -462,8 +462,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentNoiceRadiuse: 0
   DebugingTheWork: 0
-  ZoneNoice: {fileID: 0}
-  ShowTheZoneNoice: 1
 --- !u!114 &5804095521161962542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,6 +488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88c6553a6899b3146b3f5b676037ebbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Attack: {fileID: 0}
   Animator: {fileID: 6646006915615707556}
   PointToKillMe: {fileID: 2705178623968705795}
   PointToShoot: {fileID: 8982854550460571108}
@@ -630,10 +629,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 45938a2eadfec57498a1d080ba6d2fba, type: 2}
-    - target: {fileID: 379457296328360451, guid: a93b0219bd5f2af45a301b444e8f257a, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 6721f0c378b84c14f8eafb2ba3b214df, type: 2}
     - target: {fileID: 1016787578431472051, guid: a93b0219bd5f2af45a301b444e8f257a, type: 3}
       propertyPath: AllBonesScr.Array.data[0]
       value: 

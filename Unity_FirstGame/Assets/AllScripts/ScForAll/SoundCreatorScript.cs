@@ -21,7 +21,25 @@ public class SoundCreatorScript : MonoBehaviour
                 SoundTakerScript SoundScript = Colider.gameObject.GetComponentInParent<SoundTakerScript>();
                 if (SoundScript)
                 {
-                    SoundScript.TakeSound(gameObject.transform.position);
+                    Vector3 TakerPosition = Colider.gameObject.transform.position;
+                    BaseInformationScript BaseInfo = Colider.gameObject.GetComponentInParent<BaseInformationScript>();
+                    if (BaseInfo)
+                    {
+                        TakerPosition = BaseInfo.MyHeadScript.GetHeadPosition();
+                    }
+                    float DistanceToNoice = (gameObject.transform.position - BaseInfo.MyHeadScript.GetHeadPosition()).magnitude;
+                    RaycastHit[] Hitres = Physics.RaycastAll(gameObject.transform.position, BaseInfo.MyHeadScript.GetHeadPosition());
+                    foreach (RaycastHit obj in Hitres)
+                    {
+                        if (obj.collider.gameObject.transform.root != Colider.gameObject.transform.root && obj.collider.gameObject.isStatic)
+                        {
+                            DistanceToNoice = DistanceToNoice / 2;
+                        }
+                    }
+                    if (DistanceToNoice >= NewNoiceRadius)
+                    {
+                        SoundScript.TakeSound(gameObject.transform.position);
+                    }
                 }
             }
         }

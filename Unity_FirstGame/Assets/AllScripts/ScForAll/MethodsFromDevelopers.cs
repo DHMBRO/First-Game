@@ -47,6 +47,10 @@ public class MethodsFromDevelopers : MonoBehaviour
 
     protected void DropObjects(Transform ObjectToDrop, Transform ObecjtForCopy, bool AddNoice)
     {
+        if (!ObjectToDrop || !ObecjtForCopy)
+        {
+            return;
+        }
         Rigidbody RigObject = ObjectToDrop.GetComponent<Rigidbody>();
         Collider BCObject = ObjectToDrop.GetComponent<Collider>();
 
@@ -66,14 +70,14 @@ public class MethodsFromDevelopers : MonoBehaviour
         {
             Droping(RigObject, BCObject);
         }
-        else 
+        else
         {
             RigObject = ObjectToDrop.gameObject.AddComponent<Rigidbody>();
             if (!BCObject) BCObject = ObjectToDrop.gameObject.AddComponent<Collider>();
 
             Droping(RigObject, BCObject);
         }
-        
+
         void Droping(Rigidbody RigObject, Collider BCObject)
         {
             RigObject.isKinematic = false;
@@ -81,15 +85,15 @@ public class MethodsFromDevelopers : MonoBehaviour
 
             BCObject.enabled = true;
 
-            CopyTransform(ObjectToDrop, ObecjtForCopy);
+            CopyTransform(ObjectToDrop.transform, ObecjtForCopy.transform);
 
             ObjectToDrop.transform.SetParent(null);
 
-           RigObject.AddRelativeForce(new Vector3(0.0f - 1.0f * 1.5f, 0.0f + 1.0f * 3.5f, 0.0f), ForceMode.Impulse);
-           RigObject.AddRelativeTorque(new Vector3(0.0f + 1.0f, 0.0f - 1.0f * 32.0f, 0.0f));
+            RigObject.AddRelativeForce(new Vector3(0.0f - 1.0f * 1.5f, 0.0f + 1.0f * 3.5f, 0.0f), ForceMode.Impulse);
+            RigObject.AddRelativeTorque(new Vector3(0.0f + 1.0f, 0.0f - 1.0f * 32.0f, 0.0f));
         }
-
     }
+
 
     protected void CopyTransform(Transform ObjectToCopy, Transform ObjectForCopy)
     {

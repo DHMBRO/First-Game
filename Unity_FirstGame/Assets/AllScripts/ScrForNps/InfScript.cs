@@ -7,7 +7,7 @@ public class InfScript : MonoBehaviour
     protected HpScript HpScript;
     protected LocateScript Locate;
     protected PatrolScriptNavMesh Patrol;
-    protected AttackMethod Attack;
+    public AttackMethod Attack;
     protected ILogic CurrentState;
     protected SoundTakerScript SoundTaker;
     [SerializeField] protected Animator Animator;
@@ -113,7 +113,7 @@ public class InfScript : MonoBehaviour
         return SoundTaker.IHearSomething;
     }
     public Vector3 UNeedToCheckThis()
-    {
+    {  
         return SoundTaker.InerestPos;
     }
     public void NullInterest()
@@ -157,4 +157,6 @@ public class InfScript : MonoBehaviour
     {
        return BaseInfoScript.MyHeadScript.GetHeadPosition();
     }
+    
+
 }

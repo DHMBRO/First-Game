@@ -16,6 +16,7 @@ public class SoundTakerScript : MonoBehaviour
     void Update()
     {
 
+
     }
     public void TakeSound(Vector3 SoundPosition)
     {
@@ -30,4 +31,5 @@ public class SoundTakerScript : MonoBehaviour
     {
         IHearSomething = false;
     }
+   
 }
