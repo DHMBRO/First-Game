@@ -11,7 +11,7 @@ public class SlotControler : MethodsFromDevelopers
     [SerializeField] public Transform SlotHandForWeapons;
     
     //
-    [SerializeField] private Transform ShoulderAnim;
+    //[SerializeField] private Transform ShoulderAnim;
     [SerializeField] public Transform ThatTimeSlot;
     [SerializeField] public Transform ObjectInThatTimeSlot;
     //
@@ -87,25 +87,7 @@ public class SlotControler : MethodsFromDevelopers
         if (MyPistol01) PointForShopPistol01 = MyPistol01.GetComponent<ShootControler>().SlotForUseShop;
 
     }
-
-    private void Update()
-    {
-        if (ShoulderAnim)
-        {
-            SlotHandForWeapons.position = ShoulderAnim.position;
-
-            if (ControlerPlayer.StateCamera == CameraPlayer.Aiming)
-            {
-                SlotHandForWeapons.transform.LookAt(GetComponent<PlayerToolsToInteraction>().RaycastByInteraction());
-            }
-
-        }
-
-        if (!ShoulderAnim) Debug.Log("Not set ShoulderAnim");
-        if (!SlotHandForWeapons) Debug.Log("Not set SlotHandForWeapons");
-
-    }
-
+        
     public void PutWeapon()
     {
         if (ObjectInHand)

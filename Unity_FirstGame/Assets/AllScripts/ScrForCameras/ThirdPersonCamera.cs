@@ -35,13 +35,6 @@ public class ThirdPersonCamera : MonoBehaviour
     [SerializeField] float MinMagnitude = 0.1f;
     [SerializeField] public float HeightStartPoint = 1.0f;
 
-    /*
-    [SerializeField] float t;
-    [SerializeField] float CurrentLenghtOfOneStep;
-    [SerializeField] float LenghtToOneStepSimple = 1000.0f;
-    [SerializeField] float LenghtOfOneStepIsAiming = 30.0f;
-    */
-
     [SerializeField] MoodCamera CameraMood;
     [SerializeField] public bool CameraIsUsig = true;
 

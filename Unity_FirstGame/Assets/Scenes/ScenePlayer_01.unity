@@ -1300,8 +1300,17 @@ PrefabInstance:
       propertyPath: UnLimitedAmmo
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7005030952826292226, guid: d166725c79ece0c4f8c1e2720d54eefa, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100556023848846538, guid: d166725c79ece0c4f8c1e2720d54eefa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5104025842943061041, guid: d166725c79ece0c4f8c1e2720d54eefa, type: 3}
+    - {fileID: 4613082119003259971, guid: d166725c79ece0c4f8c1e2720d54eefa, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d166725c79ece0c4f8c1e2720d54eefa, type: 3}
 --- !u!4 &1067151462 stripped
 Transform:
@@ -1621,6 +1630,22 @@ PrefabInstance:
       propertyPath: m_AutoConfigureConnectedAnchor
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4995820621049572137, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: PlayerCamera
+      value: 
+      objectReference: {fileID: 234849554}
+    - target: {fileID: 4995820621049572137, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: WeaponMuzzle
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4995820621049572137, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: RayMuzzleColor.b
+      value: 0.011764705
+      objectReference: {fileID: 0}
+    - target: {fileID: 4995820621049572137, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: RayMuzzleColor.g
+      value: 0.96235746
+      objectReference: {fileID: 0}
     - target: {fileID: 6328347359453867729, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: CameraScr
       value: 
@@ -1645,6 +1670,10 @@ PrefabInstance:
       propertyPath: PointForShopWeapon01
       value: 
       objectReference: {fileID: 1624199530}
+    - target: {fileID: 8216622489410022667, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: UnLimitedAmmo
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8382459316900287711, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: UiHp
       value: 

@@ -62,7 +62,9 @@ public class PPOscr : MonoBehaviour, IInteractionWithObjects
                     {
                         bullet.GetComponent<Fier>().Speed = bulletSpeed;
                     }
+                    timer = 0.00f;
                 }
+                timer += Time.deltaTime;
             }
 
         }

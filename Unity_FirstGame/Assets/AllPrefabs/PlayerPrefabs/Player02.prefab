@@ -1272,7 +1272,6 @@ GameObject:
   - component: {fileID: 4595642774281171269}
   - component: {fileID: 5669462573118057115}
   - component: {fileID: 5236544314472399362}
-  - component: {fileID: 2364199962032741961}
   - component: {fileID: 9222820105927190343}
   - component: {fileID: 1187246579547213906}
   - component: {fileID: 7778607237951541594}
@@ -1448,42 +1447,6 @@ CapsuleCollider:
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 1.5, z: 0}
---- !u!59 &2364199962032741961
-HingeJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9027246094432369652}
-  m_ConnectedBody: {fileID: 0}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_Anchor: {x: 0, y: 0.25, z: 0}
-  m_Axis: {x: 1, y: 0, z: 0}
-  m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
-  m_UseSpring: 0
-  m_Spring:
-    spring: 0
-    damper: 0
-    targetPosition: 0
-  m_UseMotor: 0
-  m_Motor:
-    targetVelocity: 0
-    force: 0
-    freeSpin: 0
-  m_UseLimits: 0
-  m_Limits:
-    min: 0
-    max: 0
-    bounciness: 0
-    bounceMinVelocity: 0.2
-    contactDistance: 0
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
 --- !u!114 &9222820105927190343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1547,7 +1510,7 @@ MonoBehaviour:
   CurrentDistanceRay: 0
   DistanceRay: 4.5
   DistanceRayAiming: 100
-  ColorRayCast: {r: 1, g: 0.018983461, b: 0, a: 1}
+  ColorRayCast: {r: 0, g: 0.0009829998, b: 1, a: 1}
 --- !u!114 &7778607237951541594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1589,7 +1552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94e62db8fa5f4824099affb0caac7e9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerHingeJoint: {fileID: 2364199962032741961}
+  PlayerHingeJoint: {fileID: 0}
   LocalBody: {fileID: 0}
   CanWork: 0
 --- !u!114 &5192534622578152218
@@ -1667,8 +1630,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fffc6870ebb1ca4b8704f6ada245e74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerCamera: {fileID: 0}
+  MaxDistanceEyes: 100
   ButtSlot: {fileID: 2476801796749729086}
+  PlayerShoulder: {fileID: 9067829579070537225}
   WeaponMuzzle: {fileID: 0}
+  RayMuzzleColor: {r: 1, g: 0.032516263, b: 0.013207495, a: 0}
   CanAim: 1
 --- !u!114 &2663352457323175868
 MonoBehaviour:
@@ -2100,6 +2067,11 @@ Animator:
 --- !u!4 &7977194647049271252 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8169382868667117632, guid: 32c385e148d9c094ea210cf380d5d4f9, type: 3}
+  m_PrefabInstance: {fileID: 2300154323563464596}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &9067829579070537225 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7078722787440015773, guid: 32c385e148d9c094ea210cf380d5d4f9, type: 3}
   m_PrefabInstance: {fileID: 2300154323563464596}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2487108339930390838
