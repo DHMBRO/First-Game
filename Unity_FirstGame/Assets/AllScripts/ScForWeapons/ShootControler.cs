@@ -43,7 +43,7 @@ public class ShootControler : MonoBehaviour
 
     private void Update()
     {
-        Debug.DrawRay(Muzzle.transform.position, Muzzle.transform.forward * 100.0f, Color.blue);
+        Debug.DrawRay(GameObjectForRay.transform.position, GameObjectForRay.transform.forward * 100.0f, Color.yellow);
 
         Transform ParentWeapon = GetComponentInParent<Transform>();
         

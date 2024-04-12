@@ -8,9 +8,6 @@ public class AimControler : MonoBehaviour
     [SerializeField] Transform ButtSlot;
     [SerializeField] Transform PlayerShoulder;
 
-    [SerializeField] Transform Object01;
-    [SerializeField] Transform Object02;
-
     [SerializeField] public Transform WeaponMuzzle;
     [SerializeField] Color RayMuzzleColor;
 
@@ -65,9 +62,8 @@ public class AimControler : MonoBehaviour
 
         //Additioanll
         ButtSlot.eulerAngles = new Vector3(ButtSlot.eulerAngles.x, DirectionWeapon.y, DirectionWeapon.z);
+        Debug.DrawRay(WeaponMuzzle.position, WeaponMuzzle.forward * MaxDistanceEyes, Color.green);
         
-        Debug.DrawRay(WeaponMuzzle.position, WeaponMuzzle.forward * MaxDistanceEyes, RayMuzzleColor);
-
     }
 
 
