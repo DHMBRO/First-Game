@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PlayerControler : MonoBehaviour, HeadInterface
 {
-    
     //Movement Components
     [SerializeField] private Move1F Move;
     [SerializeField] private MovePlayer MovePlayer;
@@ -143,6 +142,8 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                     ControlerDrop.Drop();
                     SlotControler.ObjectInHand = null;
                     ControlerShoot = null;
+
+                    ControlerAim.UpdateWeapoMuzzle();
                 }
             }
 
@@ -274,7 +275,9 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                 if (Input.GetKey(KeyCode.Mouse0) && ControlerShoot.NowIsEnable())
                 {
                     Ray ForwardCamera = new Ray(CameraPlayerF3.transform.position, CameraPlayerF3.transform.forward);
+                    
                     ControlerShoot.SetShootDelegat();
+                    ScrAnimationsPlayer.ShootTrigger();
                 }
             }
             

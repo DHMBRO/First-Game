@@ -74,6 +74,7 @@ public class ControlerAnimationsPlayer : MonoBehaviour
             Debug.Log("True");
         }
 
+
         /*
         if(Time.time >= WhenFinishedStelthKill)
         {
@@ -83,4 +84,10 @@ public class ControlerAnimationsPlayer : MonoBehaviour
         */
 
     }    
+    
+    public void ShootTrigger()
+    {
+        Parameters.SetTrigger("Shoot");
+    }
+
 }

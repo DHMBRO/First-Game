@@ -25,11 +25,23 @@ public class AimControler : MonoBehaviour
 
     public void UpdateWeapoMuzzle()
     {
+        if (!ControlerSlot.ObjectInHand)
+        {
+            WeaponMuzzle = null;
+            WeaponMuzzle.eulerAngles = Vector3.zero;
+        }
+
+
+
         if (ControlerSlot.ObjectInHand && ControlerSlot.ObjectInHand.GetComponent<ShootControler>())
         {
             WeaponMuzzle = ControlerSlot.ObjectInHand.GetComponent<ShootControler>().Muzzle.transform;
         }
-        
+    }
+
+    public void EliminateReferenceWeapoinMuzzle()
+    {
+        WeaponMuzzle = null;
     }
 
     private void Update()
