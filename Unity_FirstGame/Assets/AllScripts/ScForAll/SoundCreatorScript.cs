@@ -33,7 +33,7 @@ public class SoundCreatorScript : MonoBehaviour
                     {
                         if (obj.collider.gameObject.transform.root != Colider.gameObject.transform.root && obj.collider.gameObject.isStatic)
                         {
-                            DistanceToNoice = DistanceToNoice / 2;
+                            DistanceToNoice = DistanceToNoice / 5;
                         }
                     }
                     if (DistanceToNoice >= NewNoiceRadius)
