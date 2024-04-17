@@ -1,9 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-public class HpScript : MethodsFromDevelopers
+public class HpScript : MonoBehaviour
 {
+    [SerializeField] public UpdateState StateDelegate;
+
     [SerializeField] private Image UiHp;
+    [SerializeField] Transform ObjectForCopy;
     [SerializeField] private TextMeshProUGUI ProzentHealPoint;
     [SerializeField] private RagdollControler MyRagdollControler;
 
@@ -59,10 +62,18 @@ public class HpScript : MethodsFromDevelopers
     {
         if ((HealthPoint - Damage) <= 0.0f)
         {
-            Debug.Log("Dropp <---");
+            Debug.Log("1");
             
             HealthPoint = 0;
-            MyLive = Live.NotAlive; 
+            MyLive = Live.NotAlive;
+
+            if (StateDelegate != null)
+            {
+                Debug.Log("2");
+                StateDelegate(false);
+            }
+
+
             if (State != EnemyState.Another)
             {
                 if(MyNavMesh && MyNavMesh.enabled)
@@ -106,11 +117,17 @@ public class HpScript : MethodsFromDevelopers
 
     public void CallRagdollControler()
     {
+        Debug.Log("CallRagdollControler is working");
+
+
+        if (!ObjectForCopy)
+        {
+            return;
+        }
         if (WorkWithRagdollControler && MyRagdollControler)
         {
             MyRagdollControler.SetRagdol(true);
         }
-        DropObjects(Info.Attack.TerroristGun.transform, gameObject.transform, false);
     }
 
     public void HealHp(float Heal)

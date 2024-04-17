@@ -29,7 +29,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7280841711503965072}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1526992597423294712
 GameObject:
@@ -92,7 +92,38 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7280841711503965072}
-  m_RootOrder: 4
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4062045085233205048
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1114740138334043660}
+  m_Layer: 0
+  m_Name: ObjectForCopy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1114740138334043660
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4062045085233205048}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7280841711503965072}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4244225769226863533
 GameObject:
@@ -124,7 +155,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7280841711503965072}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &7626082007421261493
 SphereCollider:
@@ -169,7 +200,7 @@ Transform:
   m_Children:
   - {fileID: 4454050936158156324}
   m_Father: {fileID: 7280841711503965072}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5014599888506805786
 GameObject:
@@ -290,6 +321,7 @@ GameObject:
   - component: {fileID: 2558508992499366921}
   - component: {fileID: 1271309367837362580}
   - component: {fileID: 8022685615950990206}
+  - component: {fileID: 457748867706237145}
   m_Layer: 7
   m_Name: Zombie 1
   m_TagString: Untagged
@@ -310,6 +342,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 272001072513918184}
+  - {fileID: 1114740138334043660}
   - {fileID: 24277513778465424}
   - {fileID: 2625013959053697449}
   - {fileID: 6487317187055646772}
@@ -439,6 +472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UiHp: {fileID: 0}
+  ObjectForCopy: {fileID: 1114740138334043660}
   ProzentHealPoint: {fileID: 0}
   MyRagdollControler: {fileID: 5083560448480326394}
   HealthPoint: 10
@@ -526,6 +560,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Head: {fileID: 0}
+--- !u!114 &457748867706237145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5428616973792416952}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f054392800fb914ba500fe2474c9bd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AllLoot: []
+  DropSlot: {fileID: 1114740138334043660}
 --- !u!1 &6286794247434823245
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,7 +604,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7280841711503965072}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3583302406830154945
 MonoBehaviour:
@@ -602,7 +650,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7280841711503965072}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &8878233700491372262
 CapsuleCollider:

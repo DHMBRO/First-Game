@@ -264,6 +264,10 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                     //SlotControler.UpdateTypeWeaponInHand();
                     SlotControler.ChangingSlots();
                     ControlerAim.UpdateWeapoMuzzle();
+
+                    //ControlerUi.UpdateCurrentScopeImage();
+
+
                 }
                 SlotControler.UpdateTypeWeaponInHand();
 
