@@ -82,7 +82,8 @@ public class PlayerToolsToInteraction : MonoBehaviour
 
         Vector3 Origin = CameraPlayer.position + (CameraPlayer.forward * CameraCompPlayer.CurrentMoveBackDistance);
         Vector3 Direction = CameraPlayer.forward * CurrentDistanceRay;
-        
+        ScrForAllLoot ForAllLootScr = null;
+
         Ray RayCast = new Ray(Origin, Direction);
 
         RaycastHit[] MassForInteraction = new RaycastHit[10];
@@ -93,14 +94,17 @@ public class PlayerToolsToInteraction : MonoBehaviour
         for (int i = 0;i < MassForInteraction.Length;i++)
         {
             ObjectThatWatching = MassForInteraction[i].transform;
+            ForAllLootScr = ObjectThatWatching.GetComponent<ScrForAllLoot>();
 
-            if (MassForInteraction[i].collider && PlayerChekToInteractionDelegat(MassForInteraction[i].collider.transform))
+            if (MassForInteraction[i].collider && ForAllLootScr && !ForAllLootScr.HasOwner && PlayerChekToInteractionDelegat(MassForInteraction[i].collider.transform))
             {
                 ObjectThatWatching = MassForInteraction[i].transform;
                 LastSelectedObject = MassForInteraction[i].transform;
 
                 break;
             }
+            else PlayerChekToInteractionDelegat(null);
+
         }
     }
 }
