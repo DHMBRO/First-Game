@@ -148,9 +148,6 @@ public class MovePlayer : MonoBehaviour
                     MyRigidbody.AddRelativeForce(new Vector3(0.0f, 0.0f, 1.0f * CurrentSpeedToMove * Time.deltaTime), MyForceMode);
                 }
                 CurrentSpeed = CurrentSpeedToMove;
-                
-                //Debug.Log("CurrentSpeed: " + CurrentSpeedToMove);
-                //Debug.Log(MyRigidbody.velocity.magnitude);
 
             }
 

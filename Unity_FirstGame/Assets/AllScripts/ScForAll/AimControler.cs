@@ -27,8 +27,8 @@ public class AimControler : MonoBehaviour
     {
         if (!ControlerSlot.ObjectInHand)
         {
-            WeaponMuzzle = null;
             WeaponMuzzle.eulerAngles = Vector3.zero;
+            WeaponMuzzle = null;
         }
 
 

@@ -16,6 +16,7 @@ public class UiControler : MonoBehaviour
     
     //References Interface Canvas
     [SerializeField] private Image Scope;
+    [SerializeField] Image CurrentScopeWeapon;
     [SerializeField] public TextMeshProUGUI TableNameObjectForPickUp;
     [SerializeField] private GameObject IndexesTable;
     
@@ -57,7 +58,7 @@ public class UiControler : MonoBehaviour
         InterfaceControler();
     }
 
-    private bool ChekToInteraction(Transform GivenReference)
+    bool ChekToInteraction(Transform GivenReference)
     {
         ScrForAllLoot LocalScrForAllLoot = null;
 
@@ -76,7 +77,7 @@ public class UiControler : MonoBehaviour
         
         return LocalScrForAllLoot != null;
     }
-
+    
     public void OpenOrCloseInventory()
     {
         InventoryIsOpen = !InventoryIsOpen;
@@ -96,9 +97,7 @@ public class UiControler : MonoBehaviour
         
     }
 
-    
-
-    private void UpdateNameOnTable(ScrForAllLoot LocalObjectScript)
+    void UpdateNameOnTable(ScrForAllLoot LocalObjectScript)
     {
         if (!TableNameObjectForPickUp)
         {
@@ -110,6 +109,11 @@ public class UiControler : MonoBehaviour
 
     }
     
+    public void UpdateCurrentScopeImage(Image NewScope)
+    {
+        CurrentScopeWeapon = NewScope;
+    }
+
     public void DeleteNameOnTable()
     {
         if (!TableNameObjectForPickUp)
@@ -164,7 +168,7 @@ public class UiControler : MonoBehaviour
     }
 
 
-    private void PrintUseMassAndMaxMass()
+    void PrintUseMassAndMaxMass()
     {
         string CurrentMassS;
         string MaxMassS;

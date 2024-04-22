@@ -3,7 +3,8 @@ using UnityEngine;
 public class ControlerAnimationsPlayer : MonoBehaviour
 {
     //Other components
-    [SerializeField] Animator Parameters;
+    Animator Parameters;
+
     [SerializeField] PlayerControler ControlerPlayer;
     [SerializeField] MovePlayer MovePlayer;
     [SerializeField] Rigidbody RigPlayer;
@@ -30,8 +31,7 @@ public class ControlerAnimationsPlayer : MonoBehaviour
     {
         Parameters = GetComponent<Animator>();
         RigPlayer = ControlerPlayer.GetComponent<Rigidbody>();
-        //MovePlayer = GetComponent<MovePlayer>();
-
+        
         if (Parameters) Parameters.SetFloat("CurrentSpeed", 0.0f);
         else Debug.Log("Not set Parameters");
 
@@ -62,6 +62,7 @@ public class ControlerAnimationsPlayer : MonoBehaviour
 
         //Change the bool parameters
         Parameters.SetBool("IsAiming", ControlerPlayer.WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething);
+
         Parameters.SetBool("HaveWeaponInHand", ControlerPlayer.WhatPlayerHandsHave == HandsPlayerHave.Weapon);
         Parameters.SetBool("HavePistolInHand", ControlerPlayer.WhatPlayerHandsHave == HandsPlayerHave.Pistol);
         Parameters.SetBool("IsCrouchWalk", ControlerPlayer.WhatPlayerLegsDo == LegsPlayer.SatDown);
