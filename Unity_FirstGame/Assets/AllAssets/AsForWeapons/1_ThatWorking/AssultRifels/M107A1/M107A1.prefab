@@ -313,6 +313,7 @@ MonoBehaviour:
   HaveDescription: 0
   ShowTheAmmo: 0
   SpriteForLoot: {fileID: 0}
+  HasOwner: 0
   NameOfThisObject: Weapon - M107A1
   Descrition: 
   ParametersLoot:
@@ -338,19 +339,20 @@ MonoBehaviour:
   WeaponShoop: {fileID: 0}
   GameObjectForRay: {fileID: 7802602602309449565}
   Muzzle: {fileID: 5293535466875258052}
-  Bullet: {fileID: 5567339272405987103, guid: cd89a82e3dc958b4b9489848702bef6e, type: 3}
+  BulletPrefab: {fileID: 5567339272405987103, guid: cd89a82e3dc958b4b9489848702bef6e, type: 3}
   Collet: {fileID: 2184731645126045172, guid: 16b09b5e881f5804fa14926d6c7e4bdc, type: 3}
   ColletPoint: {fileID: 6138284234073665251}
   TheGun: 0
   CaliberToWeapon: 5
   Weapon: 0
   ShoulderOffSet: {x: 0, y: 0, z: 0}
-  ShotDeley: 3
+  ShotDeley: 1.1428572
   ShotTime: 0
+  BulletPrefabDmage: 80
   Mass: 0
-  BulletSpeed: 1000
+  BulletPrefabSpeed: 700
   ColletSpeed: 1
-  ChangedBulletAngle: 0
+  ChangedBulletPrefabAngle: 0.285
   UnLimitedAmmo: 0
 --- !u!114 &2124973576992208714
 MonoBehaviour:

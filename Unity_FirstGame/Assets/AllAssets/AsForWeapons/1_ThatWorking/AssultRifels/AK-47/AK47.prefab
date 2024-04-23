@@ -84,6 +84,7 @@ MonoBehaviour:
   HaveDescription: 0
   ShowTheAmmo: 0
   SpriteForLoot: {fileID: 21300000, guid: f0f9ba90973eb2a448b68efebb464d4d, type: 3}
+  HasOwner: 0
   NameOfThisObject: Weapon - AK47
   Descrition: 
   ParametersLoot:
@@ -109,19 +110,20 @@ MonoBehaviour:
   WeaponShoop: {fileID: 0}
   GameObjectForRay: {fileID: 7609413565497747441}
   Muzzle: {fileID: 7661199048230084804}
-  Bullet: {fileID: 2817725760091043437, guid: 01b8095742158ab4eb096d42902e255e, type: 3}
+  BulletPrefab: {fileID: 2817725760091043437, guid: 01b8095742158ab4eb096d42902e255e, type: 3}
   Collet: {fileID: 6940625727822617254, guid: afdce013e28dce848a00d57fdcb33833, type: 3}
   ColletPoint: {fileID: 4807829321483478334}
   TheGun: 0
   CaliberToWeapon: 1
   Weapon: 0
   ShoulderOffSet: {x: 0, y: 0, z: 0}
-  ShotDeley: 0.5
+  ShotDeley: 0.4
   ShotTime: 0
+  BulletPrefabDmage: 50
   Mass: 0
-  BulletSpeed: 1000
+  BulletPrefabSpeed: 70
   ColletSpeed: 250
-  ChangedBulletAngle: 0
+  ChangedBulletPrefabAngle: 2.86
   UnLimitedAmmo: 0
 --- !u!114 &2434178922148979108
 MonoBehaviour:

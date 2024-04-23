@@ -59,8 +59,6 @@ public class UseAndDropTheLoot : MethodsFromDevelopers
         GameObject ObjectToUse = Instantiate(PlayerInventory.InfoForSlots[UiInventory.Count + IndexToList].ObjectToInstantiate);
         if (PlayerInventory.InfoForSlots[UiInventory.Count + IndexToList] != null) PlayerInventory.InfoForSlots[UiInventory.Count + IndexToList].GetInfo(ObjectToUse);
 
-        //Debug.Log("Cordinates: " + ObjectToUse.transform.position.x + " to x " + ObjectToUse.transform.position.y + " to y " + ObjectToUse.transform.position.z + " to z ");
-
         Rigidbody RigObjectToUse = ObjectToUse.GetComponent<Rigidbody>();
         if (RigObjectToUse) Destroy(RigObjectToUse);
         
@@ -77,27 +75,15 @@ public class UseAndDropTheLoot : MethodsFromDevelopers
             }
             else Debug.Log("Use it now doesn't have meaning !");
 
-            //Debug.Log(UseLoot.Audit(Inventory.gameObject, Inventory.InfoForSlots[UiInventory.Count + IndexToList], GetComponent<UseAndDropTheLoot>()));
-
-
             if (ScrForLoot.CanCombining && PlayerInventory.InfoForSlots.Count > (UiInventory.Count + IndexToList)) 
             {
                 CombiningLoot(PlayerInventory.InfoForSlots[UiInventory.Count + IndexToList]);
                 
                 ScrForUseAmmo ScrAmmo = PlayerInventory.InfoForSlots[UiInventory.Count + IndexToList].ObjectToInstantiate.GetComponent<ScrForUseAmmo>();
-
-                //Debug.Log(Inventory.InfoForSlots[UiInventory.Count + IndexToList].CurrentAmmo);
-                //Debug.Log(ScrAmmo.CurrentAmmo);
-
-
             }
 
             PlayerInventory.ChangeMassInInventory();
             UiInventory.WriteSprite();
-
-            //Debug.Log("InfoForSlots.Count: " + Inventory.InfoForSlots.Count);
-            //Debug.Log("SpritesForBackPack.Count: " + UiInventory.SpritesForBackPack.Count);
-
         }
     }
 

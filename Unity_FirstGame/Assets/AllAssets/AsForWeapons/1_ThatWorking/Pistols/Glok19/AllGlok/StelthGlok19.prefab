@@ -261,6 +261,7 @@ MonoBehaviour:
   HaveDescription: 0
   ShowTheAmmo: 0
   SpriteForLoot: {fileID: 0}
+  HasOwner: 0
   NameOfThisObject: Psitol - Stelth Glok19
   Descrition: 
   ParametersLoot:
@@ -286,19 +287,20 @@ MonoBehaviour:
   WeaponShoop: {fileID: 0}
   GameObjectForRay: {fileID: 2366092103679355946}
   Muzzle: {fileID: 71627738932095913}
-  Bullet: {fileID: 6895987822013454153, guid: 85ae06ebd503ee2438ceb02f16fa97f9, type: 3}
+  BulletPrefab: {fileID: 6895987822013454153, guid: 85ae06ebd503ee2438ceb02f16fa97f9, type: 3}
   Collet: {fileID: 7377190171975279841, guid: ba817832a2193304fb74541789147f8b, type: 3}
   ColletPoint: {fileID: 8729599372297148652}
   TheGun: 1
   CaliberToWeapon: 3
   Weapon: 0
   ShoulderOffSet: {x: 0, y: 0.1, z: 0.8}
-  ShotDeley: 0.5
+  ShotDeley: 0.875
   ShotTime: 0
+  BulletPrefabDmage: 30
   Mass: 0
-  BulletSpeed: 1000
+  BulletPrefabSpeed: 56
   ColletSpeed: 250
-  ChangedBulletAngle: 0
+  ChangedBulletPrefabAngle: 3.575
   UnLimitedAmmo: 0
 --- !u!1 &6601536499366403592
 GameObject:

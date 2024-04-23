@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] float BulletDamage;
-    
+    public float BulletDamage = 0.0f;
+
     private void OnCollisionEnter(Collision collision)
     {
         HpScript HPScr = collision.gameObject.GetComponent<HpScript>();
