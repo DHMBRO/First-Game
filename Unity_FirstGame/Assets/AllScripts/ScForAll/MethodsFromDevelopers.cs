@@ -25,7 +25,7 @@ public class MethodsFromDevelopers : MonoBehaviour
         else
         {
             BCObject = ObjectForPut.gameObject.AddComponent<Collider>();
-            BCObject.enabled = false;
+            //BCObject.enabled = false;
         }
 
         Put();

@@ -91,7 +91,6 @@ public class ButtonControler : MethodsFromDevelopers
                 {
                     ObjectParameters[i].text = PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].ObjectParemeters[i];
                 }
-                //Debug.Log(InventoryUi.PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].ObjectToInstantiate.name);
                 ObjectDescription.text = PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].ObjectDescription;
                 
                 //Show the Ammo
@@ -104,8 +103,7 @@ public class ButtonControler : MethodsFromDevelopers
                 }
                 else ObjectAmoutOfSomefing.text = "Dont have it";
 
-            }
-            //Debug.Log("ActiveUD is work");
+            }           
             
         }
 

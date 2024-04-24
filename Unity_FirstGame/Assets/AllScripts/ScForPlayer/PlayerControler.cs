@@ -286,7 +286,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             }
             
             //Divert Attention 
-            if (DivertAttention && WhatPlayerHandsDo == HandsPlayer.Null)
+            if (DivertAttention && !SlotControler.ObjectInHand)
             {
                 if (Input.GetKeyDown(KeyCode.Z)) DivertAttention.SpawnRock();
                 if (Input.GetKey(KeyCode.Z)) DivertAttention.AimingToDrop();

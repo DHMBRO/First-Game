@@ -30,6 +30,10 @@ public class UseAndDropTheLoot : MethodsFromDevelopers
 
     }
 
+    public void CallButton()
+    {
+        Debug.Log("Button is work !");
+    }
 
     public void PrintIndexToList(int Index)
     {
