@@ -24,6 +24,7 @@ public class HeadScript : MonoBehaviour, HeadInterface
 
     public Vector3 GetHeadPosition()
     {
+      
         return Head.transform.position;
     }
     public Vector3 GetSpeed()
