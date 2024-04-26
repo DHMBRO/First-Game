@@ -131,6 +131,7 @@ public class ShootControler : MonoBehaviour
         NewCollet.transform.eulerAngles = ColletPoint.transform.eulerAngles;
 
         NewBulletScr.BulletDamage = BulletPrefabDmage;
+        NewBulletScr.LauncherBullet = gameObject.GetComponentInParent<PlayerControler>().transform;
 
         // Implemetation
 
