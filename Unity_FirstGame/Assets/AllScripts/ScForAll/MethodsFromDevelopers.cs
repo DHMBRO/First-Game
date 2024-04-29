@@ -24,7 +24,7 @@ public class MethodsFromDevelopers : MonoBehaviour
         if (BCObject) BCObject.enabled = false;
         else
         {
-            BCObject = ObjectForPut.gameObject.AddComponent<Collider>();
+            //BCObject = ObjectForPut.gameObject.AddComponent<Collider>();
             //BCObject.enabled = false;
         }
 

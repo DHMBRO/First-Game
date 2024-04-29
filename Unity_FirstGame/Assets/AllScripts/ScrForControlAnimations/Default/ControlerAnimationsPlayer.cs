@@ -37,6 +37,11 @@ public class ControlerAnimationsPlayer : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        UpdateAnimations();
+    }
+
     public void UpdateAnimations()
     {
         //Type date for work

@@ -24,6 +24,11 @@ public class ExecutoreScrForWeapons : MonoBehaviour
 
     void ExecutoreNoise()
     {
+        if (!ControlerShoot.UnLimitedAmmo || !ControlerShoot.WeaponShoop)
+        {
+            return;
+        }
+
         if (ShowZoneNoise && ZoneNoise)
         {
             if (!LocalZoneNoise) LocalZoneNoise = Instantiate(ZoneNoise).transform;
