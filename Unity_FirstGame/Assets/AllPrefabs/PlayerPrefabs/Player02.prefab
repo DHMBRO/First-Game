@@ -494,7 +494,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2795767220084459791}
   m_Layer: 0
-  m_Name: SlotShop03
+  m_Name: SlotShop01
   m_TagString: UnloadingSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -996,7 +996,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6514131520663713175}
   m_Layer: 0
-  m_Name: SlotShop01
+  m_Name: SlotShop03
   m_TagString: UnloadingSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1605,9 +1605,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   SlotsShop:
-  - {fileID: 6514131520663713175}
-  - {fileID: 5153421162628138250}
   - {fileID: 2795767220084459791}
+  - {fileID: 5153421162628138250}
+  - {fileID: 6514131520663713175}
   PointForShopPistol01: {fileID: 0}
   PointForShopWeapon01: {fileID: 0}
   PointForShopWeapon02: {fileID: 0}
@@ -1849,6 +1849,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LightSources: []
   HeadObject: {fileID: 5665221572061346460}
+  BaseIlluminationLvl: 0.2
 --- !u!114 &8884787740129407110
 MonoBehaviour:
   m_ObjectHideFlags: 0

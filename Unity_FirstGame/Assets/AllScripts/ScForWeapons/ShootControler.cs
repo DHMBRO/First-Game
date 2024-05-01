@@ -131,9 +131,14 @@ public class ShootControler : MonoBehaviour
         NewCollet.transform.eulerAngles = ColletPoint.transform.eulerAngles;
 
         NewBulletScr.BulletDamage = BulletPrefabDmage;
-        NewBulletScr.LauncherBullet = gameObject.GetComponentInParent<PlayerControler>().transform;
 
-        // Implemetation
+        if (gameObject.GetComponentInParent<PlayerControler>())
+        {
+            NewBulletScr.LauncherBullet = gameObject.GetComponentInParent<PlayerControler>().gameObject;
+
+        }
+
+        // Realization
 
         NewBulletPrefabRIG.AddForce(NewBulletPrefab.transform.forward * BulletPrefabSpeed, ForceMode.Impulse);
         NewColletRIG.AddForce((NewCollet.transform.right + (NewCollet.transform.up / 2.0f)) * ColletSpeed, ForceMode.Force);

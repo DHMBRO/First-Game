@@ -7,7 +7,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
     [SerializeField] private MovePlayer MovePlayer;
 
     //Other Components
-    [SerializeField] public ShootControler ControlerShoot;
+    [SerializeField] private ShootControler ControlerShoot;
     [SerializeField] private StelthScript StelthScript;
     [SerializeField] private DivertAttention DivertAttention;
     [SerializeField] private ExecutoreScriptToPlayer EEScript;
@@ -27,7 +27,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
     [SerializeField] public ThirdPersonCamera CameraPlayerF3;
     
     //Inventory Components
-    [SerializeField] private UiControler ControlerUi;
+    [SerializeField] public UiControler ControlerUi;
     [SerializeField] private UseAndDropTheLoot UseAndDropTheLootScr;
 
     //Game Objects
@@ -93,7 +93,11 @@ public class PlayerControler : MonoBehaviour, HeadInterface
         if (ControlerUi)
         {
             if (Input.GetKeyDown(KeyCode.I)) ControlerUi.OpenOrCloseInventory();
-            if (ControlerUi.InventoryIsOpen) WhatPlayerDo = Player.OpenInventory;
+            if (ControlerUi.InventoryIsOpen)
+            {
+                WhatPlayerDo = Player.OpenInventory;
+                return;
+            }
             else if(WhatPlayerDo == Player.OpenInventory) WhatPlayerDo = Player.Null;
             
             ControlerUi.InterfaceControler();
@@ -249,27 +253,27 @@ public class PlayerControler : MonoBehaviour, HeadInterface
 
             //SlotControler
             if (SlotControler && WhatPlayerHandsDo == HandsPlayer.Null)
-            {
-                SlotControler.MovingGunForSlots();
-                
+            {    
                 if (SlotControler.CurrentSlotHand && SlotControler.ObjectInHand)
                 {
                     ControlerShoot = SlotControler.ObjectInHand.GetComponent<ShootControler>();
-                    
                 }
-                
-                // Change Object In Hand
+                else
+                {
+                    ControlerShoot = null;
+                }
+
                 if (Input.GetKeyDown("1"))
                 {
-                    //SlotControler.UpdateTypeWeaponInHand();
                     SlotControler.ChangingSlots();
                     ControlerAim.UpdateWeapoMuzzle();
-
-                    //ControlerUi.UpdateCurrentScopeImage();
-
-
                 }
                 SlotControler.UpdateTypeWeaponInHand();
+                
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    SlotControler.Recharge();
+                }
 
             }
             
@@ -313,6 +317,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             }
 
         }
+
         ScrAnimationsPlayer.UpdateAnimations();
 
     }
