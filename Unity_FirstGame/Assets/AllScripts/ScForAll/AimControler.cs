@@ -65,10 +65,15 @@ public class AimControler : MonoBehaviour
 
         
         Vector3 DirectionWeapon = ButtSlot.eulerAngles;
+        //Ray RayDirection = new 
+
+        RaycastHit[] HitPoints = new RaycastHit[10];
+        HitPoints = Physics.RaycastAll(PlayerCamera,);
 
         if (Physics.Raycast(PlayerCamera.position, PlayerCamera.forward, out RaycastHit HitInfo, MaxDistanceEyes))
         {
             WeaponMuzzle.LookAt(HitInfo.point);
+            Debug.Log(HitInfo.collider.name);
         }
         else
         {
