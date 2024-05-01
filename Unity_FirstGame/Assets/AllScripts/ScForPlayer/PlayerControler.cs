@@ -25,6 +25,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
     //Camera Components
     [SerializeField] private Transform PlayerCameraF1;
     [SerializeField] public ThirdPersonCamera CameraPlayerF3;
+    private ScopeControler ControlerScope;
     
     //Inventory Components
     [SerializeField] public UiControler ControlerUi;
@@ -80,6 +81,11 @@ public class PlayerControler : MonoBehaviour, HeadInterface
         ControlerDrop = GetComponent<DropControler>();
         SlotControler = GetComponent<SlotControler>();
         ControlerAim = GetComponent<AimControler>();
+
+        if (CameraPlayerF3)
+        {
+            ControlerScope = CameraPlayerF3.GetComponent<ScopeControler>();
+        }
 
         //All Debug
         if (!ControlerUi) Debug.Log("Not set ControlerUi");
@@ -280,6 +286,8 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             // Shooting || Weapon
             if (ControlerShoot && CameraPlayerF3)
             {
+                ScopeScr ScrScope = ControlerShoot.GetComponent<ScopeScr>(); 
+
                 if (Input.GetKey(KeyCode.Mouse0) && ControlerShoot.NowIsEnable())
                 {
                     Ray ForwardCamera = new Ray(CameraPlayerF3.transform.position, CameraPlayerF3.transform.forward);
@@ -287,6 +295,8 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                     ControlerShoot.SetShootDelegat();
                     ScrAnimationsPlayer.ShootTrigger();
                 }
+
+                ControlerScope.UseScope(ScrScope, Input.GetKey(KeyCode.Mouse1));
             }
             
             //Divert Attention 

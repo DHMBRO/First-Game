@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 2090051774395049428}
   - component: {fileID: 6395257536678441091}
   - component: {fileID: 2441729088439391868}
+  - component: {fileID: 1728767424464675550}
   - component: {fileID: 6586805248889520886}
   - component: {fileID: -773530282177925612}
   m_Layer: 0
@@ -94,8 +95,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2025701887585895473}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -86.61, y: 27.069283, z: -18.047998}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -187,9 +188,23 @@ MonoBehaviour:
   BulletPrefabDmage: 45
   Mass: 0
   BulletPrefabSpeed: 98
-  ColletSpeed: 250
+  ColletSpeed: 5
   ChangedBulletPrefabAngle: 2.045
   UnLimitedAmmo: 0
+--- !u!114 &1728767424464675550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025701887585895473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c57428b6a28249c4a9eb4e5d361ea5ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AimFieldFoView: 60
+  UsingFieldFoView: 1
 --- !u!114 &6586805248889520886
 MonoBehaviour:
   m_ObjectHideFlags: 0
