@@ -6,10 +6,11 @@ public class SoundTakerScript : MonoBehaviour
     protected PatrolScriptNavMesh ZombiePatrolScript;
     public bool IHearSomething;
     public Vector3 InerestPos;
+    protected InfScript MyInfo;
     // Start is called before the first frame update
     void Start()
     {
-
+        MyInfo = gameObject.GetComponent<InfScript>();
         ZombiePatrolScript = gameObject.GetComponent<PatrolScriptNavMesh>();
     }
     // Update is called once per frame
@@ -21,15 +22,16 @@ public class SoundTakerScript : MonoBehaviour
     public void TakeSound(Vector3 SoundPosition)
     {
         //Debug.Log(gameObject.name + " Voice");
-        if (ZombiePatrolScript)
+        if (ZombiePatrolScript && MyInfo && MyInfo.InterestPosition != Vector3.zero)
         {
             IHearSomething = true;
-            InerestPos = SoundPosition;
+            MyInfo.InterestPosition = SoundPosition;
         }
     }
     public void NullInterest()
     {
         IHearSomething = false;
+        MyInfo.InterestPosition = Vector3.zero;
     }
    
 }
