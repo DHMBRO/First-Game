@@ -13932,11 +13932,11 @@ PrefabInstance:
       objectReference: {fileID: 2025701887585895473, guid: d166725c79ece0c4f8c1e2720d54eefa, type: 3}
     - target: {fileID: 53324849467909000, guid: c8e0e9e7965f3574793b00c6e780efbe, type: 3}
       propertyPath: GoingDistance
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 53324849467909000, guid: c8e0e9e7965f3574793b00c6e780efbe, type: 3}
       propertyPath: AttackDistance
-      value: 5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 108996666902140906, guid: c8e0e9e7965f3574793b00c6e780efbe, type: 3}
       propertyPath: m_AutoRepath
@@ -13952,11 +13952,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2793496121996697125, guid: c8e0e9e7965f3574793b00c6e780efbe, type: 3}
       propertyPath: VisionAngle
-      value: 60
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793496121996697125, guid: c8e0e9e7965f3574793b00c6e780efbe, type: 3}
+      propertyPath: MaxDistatzeForAgr
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3354034537678283449, guid: c8e0e9e7965f3574793b00c6e780efbe, type: 3}
       propertyPath: m_Radius
-      value: 10
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3860456091437215616, guid: c8e0e9e7965f3574793b00c6e780efbe, type: 3}
       propertyPath: Head
@@ -14845,11 +14849,11 @@ PrefabInstance:
       objectReference: {fileID: 2025701887585895473, guid: d166725c79ece0c4f8c1e2720d54eefa, type: 3}
     - target: {fileID: 53324849467909000, guid: c8e0e9e7965f3574793b00c6e780efbe, type: 3}
       propertyPath: GoingDistance
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 53324849467909000, guid: c8e0e9e7965f3574793b00c6e780efbe, type: 3}
       propertyPath: AttackDistance
-      value: 5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 108996666902140906, guid: c8e0e9e7965f3574793b00c6e780efbe, type: 3}
       propertyPath: m_AutoRepath
@@ -15429,7 +15433,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2793496121996697125, guid: c8e0e9e7965f3574793b00c6e780efbe, type: 3}
       propertyPath: VisionAngle
-      value: 60
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793496121996697125, guid: c8e0e9e7965f3574793b00c6e780efbe, type: 3}
+      propertyPath: MaxDistatzeForAgr
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2795580360971188363, guid: c8e0e9e7965f3574793b00c6e780efbe, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15481,7 +15489,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3354034537678283449, guid: c8e0e9e7965f3574793b00c6e780efbe, type: 3}
       propertyPath: m_Radius
-      value: 10
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3549926689155610162, guid: c8e0e9e7965f3574793b00c6e780efbe, type: 3}
       propertyPath: m_LocalPosition.x

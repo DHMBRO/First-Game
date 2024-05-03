@@ -173,5 +173,5 @@ public class InfScript : MonoBehaviour
     public Vector3 UNeedToCheckThis()
     {
         return InterestPosition;
-    }
+    } 
 }
