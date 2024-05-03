@@ -141,7 +141,7 @@ public class ShootControler : MonoBehaviour
         // Realization
 
         NewBulletPrefabRIG.AddForce(NewBulletPrefab.transform.forward * BulletPrefabSpeed, ForceMode.Impulse);
-        NewColletRIG.AddForce((NewCollet.transform.right + (NewCollet.transform.up / 2.0f)) * ColletSpeed, ForceMode.Force);
+        NewColletRIG.AddForce((NewCollet.transform.right + (NewCollet.transform.up / 2.0f)) * ColletSpeed, ForceMode.Impulse);
 
         NewColletRIG.AddTorque(NewCollet.transform.right * 1000.0f);
         

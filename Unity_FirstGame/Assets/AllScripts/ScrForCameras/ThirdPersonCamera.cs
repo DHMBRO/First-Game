@@ -30,7 +30,9 @@ public class ThirdPersonCamera : MonoBehaviour
     [SerializeField] float MoveRightDistanceDefault = 1.0f;
     [SerializeField] float MoveRightDistanceAiming = 0.5f;
 
-    [SerializeField] float MouseSens = 1.0f;
+    public float DefaultMouseSens = 1.0f;
+    public float  CurrentMouseSens = 1.0f;
+    
     [SerializeField] float MaxMagnitude = 2.4f;
     [SerializeField] float MinMagnitude = 0.1f;
     [SerializeField] public float HeightStartPoint = 1.0f;
@@ -48,6 +50,7 @@ public class ThirdPersonCamera : MonoBehaviour
 
         DesirableVector = OffsetCameraSimple;
         CurrentMoveBackDistance = MoveBackDistanceDefault;
+        CurrentMouseSens = DefaultMouseSens;
 
         //CurrentLenghtOfOneStep = LenghtOfOneStepIsAiming;
 
@@ -76,7 +79,7 @@ public class ThirdPersonCamera : MonoBehaviour
         CurrentMoveBackDistance = MoveBackDistanceDefault;
         CurrentMoveRightDistance = MoveRightDistanceDefault;
 
-        float EulerX = transform.eulerAngles.x + (-MouseY * MouseSens);
+        float EulerX = transform.eulerAngles.x + (-MouseY * CurrentMouseSens);
         
         if (EulerX >= 180.0f)
         {
@@ -88,7 +91,7 @@ public class ThirdPersonCamera : MonoBehaviour
         
         transform.eulerAngles = new Vector3(
            EulerX,
-           transform.eulerAngles.y + (MouseX * MouseSens),
+           transform.eulerAngles.y + (MouseX * CurrentMouseSens),
             0.0f);
 
         //Aiming Rotate

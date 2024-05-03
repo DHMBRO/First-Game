@@ -1,32 +1,33 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ScopeControler : MonoBehaviour
 {
-    [SerializeField] Image UIScopeImage;
-    [SerializeField] Vector3 OffSetCamera;
+    [SerializeField] float DefaultFiledOfView = 60.0f; 
 
-    [SerializeField] bool IsWorking = false;
-    [SerializeField] bool UsingScopeImage = false;
-    
+    Camera LocalCamera;
+    ThirdPersonCamera CameraScr;
 
-    public Image ReturnUIIScopeMage()
+    private void Start()
     {
-        Image SelectedImage = null;
+        LocalCamera = GetComponent<Camera>();
+        CameraScr = GetComponent<ThirdPersonCamera>();
+    }
 
-        if (UsingScopeImage)
+    public void UseScope(ScopeScr ScrScope, bool Aim)
+    {
+        if (Aim) 
         {
-            SelectedImage = UIScopeImage;
+            LocalCamera.fieldOfView = ScrScope.Return_AimFieldFoView();
+            CameraScr.CurrentMouseSens = (CameraScr.DefaultMouseSens / (DefaultFiledOfView / ScrScope.Return_AimFieldFoView()));
+        }
+        else
+        {
+            LocalCamera.fieldOfView = DefaultFiledOfView;
+            CameraScr.CurrentMouseSens = CameraScr.DefaultMouseSens;
         }
 
-        return SelectedImage;
     }
 
-    public Vector3 ReturnOffSetCamera()
-    {
-        
-        return transform.TransformPoint(OffSetCamera);
-    }
-
-    
 }
