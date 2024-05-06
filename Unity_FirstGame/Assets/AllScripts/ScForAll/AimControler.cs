@@ -15,7 +15,10 @@ public class AimControler : MonoBehaviour
     SlotControler ControlerSlot;
 
     [SerializeField] bool CanAim = true;
-    
+
+    [SerializeField] Vector3 SelectedPoint = new Vector3();
+    RaycastHit[] HitPoints = new RaycastHit[10];
+
 
     void Start()
     {
@@ -65,15 +68,22 @@ public class AimControler : MonoBehaviour
 
         
         Vector3 DirectionWeapon = ButtSlot.eulerAngles;
-        //Ray RayDirection = new 
+        SelectedPoint = Vector3.zero;
 
-        RaycastHit[] HitPoints = new RaycastHit[10];
-        HitPoints = Physics.RaycastAll(PlayerCamera,);
+        HitPoints = Physics.RaycastAll(PlayerCamera.position, PlayerCamera.forward, MaxDistanceEyes);
 
-        if (Physics.Raycast(PlayerCamera.position, PlayerCamera.forward, out RaycastHit HitInfo, MaxDistanceEyes))
+        for (int i = HitPoints.Length - 1; i > -1; i--)
         {
-            WeaponMuzzle.LookAt(HitInfo.point);
-            Debug.Log(HitInfo.collider.name);
+            if (HitPoints[i].collider != null && HitPoints[i].collider.isTrigger == false)
+            {
+                SelectedPoint = HitPoints[i].point;
+                break;
+            }
+        }
+
+        if (SelectedPoint != Vector3.zero)
+        {
+            WeaponMuzzle.LookAt(SelectedPoint);
         }
         else
         {
