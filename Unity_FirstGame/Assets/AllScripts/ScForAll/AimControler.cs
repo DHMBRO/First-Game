@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AimControler : MonoBehaviour
@@ -15,8 +16,6 @@ public class AimControler : MonoBehaviour
     SlotControler ControlerSlot;
 
     [SerializeField] bool CanAim = true;
-
-    [SerializeField] Vector3 SelectedPoint = new Vector3();
     RaycastHit[] HitPoints = new RaycastHit[10];
 
 
@@ -68,22 +67,38 @@ public class AimControler : MonoBehaviour
 
         
         Vector3 DirectionWeapon = ButtSlot.eulerAngles;
-        SelectedPoint = Vector3.zero;
+        RaycastHit SelectedPoint = new RaycastHit();
 
         HitPoints = Physics.RaycastAll(PlayerCamera.position, PlayerCamera.forward, MaxDistanceEyes);
+        List<RaycastHit> ValidValues = new List<RaycastHit>();
 
-        for (int i = HitPoints.Length - 1; i > -1; i--)
+        for (int i = 0; i < HitPoints.Length; i++)
         {
             if (HitPoints[i].collider != null && HitPoints[i].collider.isTrigger == false)
             {
-                SelectedPoint = HitPoints[i].point;
-                break;
+                ValidValues.Add(HitPoints[i]);
+                
             }
         }
 
-        if (SelectedPoint != Vector3.zero)
+        for (int i = 0;i < ValidValues.Count;i++)
         {
-            WeaponMuzzle.LookAt(SelectedPoint);
+            if (SelectedPoint.collider == null)
+            {
+                SelectedPoint = ValidValues[i];
+            }
+            else
+            {
+                if ((ValidValues[i].point - WeaponMuzzle.position).magnitude <= (SelectedPoint.point - WeaponMuzzle.position).magnitude)
+                {
+                    SelectedPoint = ValidValues[i];
+                }
+            }
+        }
+
+        if (SelectedPoint.collider != null)
+        {
+            WeaponMuzzle.LookAt(SelectedPoint.point);
         }
         else
         {

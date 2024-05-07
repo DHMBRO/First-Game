@@ -30,7 +30,7 @@ public class HpScript : MonoBehaviour
         NotAlive
     }
 
-    private void Start()
+    void Start()
     {
        
         MyNavMesh = gameObject.GetComponent<PatrolScriptNavMesh>();
@@ -42,7 +42,7 @@ public class HpScript : MonoBehaviour
         if (UiHp && ProzentHealPoint) OutPutHp(HealthPoint, UiHp, ProzentHealPoint);
     }
 
-    private void Update()
+    void Update()
     {
         if (Input.GetKey(KeyCode.G) && State != EnemyState.Player)
         {
@@ -58,18 +58,23 @@ public class HpScript : MonoBehaviour
         }
     }
 
+    public void HealHp(float Heal)
+    {
+        if (MyLive == Live.Alive)
+        {
+            PlusHp(Heal);
+        }
+    }
+
     void MinusHp(float Damage)
     {
         if ((HealthPoint - Damage) <= 0.0f)
         {
-            Debug.Log("1");
-            
             HealthPoint = 0;
             MyLive = Live.NotAlive;
 
             if (StateDelegate != null)
             {
-                Debug.Log("2");
                 StateDelegate(false);
             }
 
@@ -84,7 +89,6 @@ public class HpScript : MonoBehaviour
                 if (StelthKill == false)
                 {
                     Info.SetAnimation("Death");
-                    Debug.Log("Call animation is working");
                 }
             }
 
@@ -117,9 +121,6 @@ public class HpScript : MonoBehaviour
 
     public void CallRagdollControler()
     {
-        Debug.Log("CallRagdollControler is working");
-
-
         if (!ObjectForCopy)
         {
             return;
@@ -127,14 +128,6 @@ public class HpScript : MonoBehaviour
         if (WorkWithRagdollControler && MyRagdollControler)
         {
             MyRagdollControler.SetRagdol(true);
-        }
-    }
-
-    public void HealHp(float Heal)
-    {
-        if (MyLive == Live.Alive)
-        {
-            PlusHp(Heal);
         }
     }
 
