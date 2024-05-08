@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8658747838941348289}
   - component: {fileID: 7347797770348224600}
   - component: {fileID: 9150502356221412890}
+  - component: {fileID: 1758599905245807722}
   - component: {fileID: 2434178922148979108}
   - component: {fileID: -398578843373071948}
   m_Layer: 0
@@ -84,6 +85,7 @@ MonoBehaviour:
   HaveDescription: 0
   ShowTheAmmo: 0
   SpriteForLoot: {fileID: 21300000, guid: f0f9ba90973eb2a448b68efebb464d4d, type: 3}
+  HasOwner: 0
   NameOfThisObject: Weapon - AK47
   Descrition: 
   ParametersLoot:
@@ -109,20 +111,34 @@ MonoBehaviour:
   WeaponShoop: {fileID: 0}
   GameObjectForRay: {fileID: 7609413565497747441}
   Muzzle: {fileID: 7661199048230084804}
-  Bullet: {fileID: 2817725760091043437, guid: 01b8095742158ab4eb096d42902e255e, type: 3}
+  BulletPrefab: {fileID: 2817725760091043437, guid: 01b8095742158ab4eb096d42902e255e, type: 3}
   Collet: {fileID: 6940625727822617254, guid: afdce013e28dce848a00d57fdcb33833, type: 3}
   ColletPoint: {fileID: 4807829321483478334}
   TheGun: 0
   CaliberToWeapon: 1
   Weapon: 0
   ShoulderOffSet: {x: 0, y: 0, z: 0}
-  ShotDeley: 0.5
+  ShotDeley: 0.4
   ShotTime: 0
+  BulletPrefabDmage: 50
   Mass: 0
-  BulletSpeed: 1000
-  ColletSpeed: 250
-  ChangedBulletAngle: 0
+  BulletPrefabSpeed: 70
+  ColletSpeed: 5
+  ChangedBulletPrefabAngle: 2.86
   UnLimitedAmmo: 0
+--- !u!114 &1758599905245807722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477317795365491750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c57428b6a28249c4a9eb4e5d361ea5ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AimFieldFoView: 60
 --- !u!114 &2434178922148979108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,7 +167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d769b754154c77042aae9ea5c8dd47f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentNoiceRadiuse: 0
   DebugingTheWork: 0
 --- !u!1 &1765363267750734824
 GameObject:

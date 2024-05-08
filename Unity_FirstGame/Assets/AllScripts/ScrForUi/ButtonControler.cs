@@ -7,10 +7,15 @@ public class ButtonControler : MethodsFromDevelopers
     public GameObject BackPackPanel;
 
     public GameObject WatchedSlot;
-    public GameObject[] AllSlots = new GameObject[4];
+    public GameObject WatchedSlot02;
     
+    public GameObject[] AllSlotsInPlayer = new GameObject[4];
+    public GameObject[] AllSlotsOnPlayer = new GameObject[9];
+    int IndexToList;
+
     public GameObject ButtonUse;
     public GameObject ButtonDrop;
+    public GameObject ButtonDrop02;
     public Sprite None;
     
     //All Panels
@@ -20,10 +25,13 @@ public class ButtonControler : MethodsFromDevelopers
     [SerializeField] private TextMeshProUGUI[] ObjectParameters = new TextMeshProUGUI[6];
     [SerializeField] private TextMeshProUGUI ObjectAmoutOfSomefing;
     [SerializeField] private TextMeshProUGUI ObjectDescription;
+    
     //Refences To Player Components
     [SerializeField] private UiInventoryOutPut InventoryUi;
     [SerializeField] Inventory PlayerInventory;
-
+    
+    SlotControler ControlerSlot;
+    DropControler ControlerDrop;
 
     private void Start()
     {
@@ -40,6 +48,9 @@ public class ButtonControler : MethodsFromDevelopers
         //Add Rferences
 
         InventoryUi = gameObject.GetComponent<UiInventoryOutPut>();
+        ControlerSlot = PlayerInventory.GetComponent<SlotControler>();
+        ControlerDrop = ControlerSlot.GetComponent<DropControler>();
+
         if (!InventoryUi) Debug.Log("Not set InventoryUi");
         
     }
@@ -75,7 +86,7 @@ public class ButtonControler : MethodsFromDevelopers
 
         if (WatchedSlot && IndexToSlots >= 0 || IndexToSlots  <= 3)
         {
-            PutObjects(WatchedSlot.transform, AllSlots[IndexToSlots].transform, false);
+            PutObjects(WatchedSlot.transform, AllSlotsInPlayer[IndexToSlots].transform, false);
             WatchedSlot.SetActive(true);
 
             Button ButtonU = ButtonUse.GetComponent<Button>();
@@ -91,7 +102,6 @@ public class ButtonControler : MethodsFromDevelopers
                 {
                     ObjectParameters[i].text = PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].ObjectParemeters[i];
                 }
-                //Debug.Log(InventoryUi.PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].ObjectToInstantiate.name);
                 ObjectDescription.text = PlayerInventory.InfoForSlots[InventoryUi.Count + IndexToSlots].ObjectDescription;
                 
                 //Show the Ammo
@@ -104,20 +114,20 @@ public class ButtonControler : MethodsFromDevelopers
                 }
                 else ObjectAmoutOfSomefing.text = "Dont have it";
 
-            }
-            //Debug.Log("ActiveUD is work");
+            }           
             
         }
 
         
     }
-
+        
 
     public void DisActiveUD()
     {
         if (WatchedSlot && ButtonUse && ButtonDrop)
         {
             WatchedSlot.SetActive(false);
+            WatchedSlot02.SetActive(false);
             PanelInfoLoot.SetActive(false);
 
             Button ButtonU = ButtonUse.GetComponent<Button>();
@@ -132,5 +142,108 @@ public class ButtonControler : MethodsFromDevelopers
         }
 
     }
+    
+    public void SelectTheObject(int Index)
+    {
+        if (!WatchedSlot && !WatchedSlot02 && ButtonDrop02)
+        {
+            return;
+        }
 
+        if (AllSlotsOnPlayer[Index].GetComponent<Image>().sprite != None)
+        {
+            if (Index < 2)
+            {
+                PutObjects(WatchedSlot02.transform, AllSlotsOnPlayer[Index].transform, false);
+                
+                WatchedSlot02.SetActive(true);
+                WatchedSlot.SetActive(false);
+            }
+            else if (Index >= 2)
+            {
+                PutObjects(WatchedSlot.transform, AllSlotsOnPlayer[Index].transform, false);
+                
+                WatchedSlot.SetActive(true);
+                WatchedSlot02.SetActive(false);
+            }
+            
+            IndexToList = Index;
+            ButtonDrop02.GetComponent<Button>().interactable = true;
+        }
+
+    }
+
+    
+
+    public void SetDropButton(bool Enable)
+    {
+        if (!ButtonDrop02)
+        {
+            return;
+        }
+        
+        ButtonDrop02.GetComponent<Button>().interactable = Enable;
+    }
+    
+    public void DropSelectedObject()
+    {
+        if(!ControlerDrop)
+        {
+            return;
+        }
+
+        Transform SelectedObject = null;
+
+        if(IndexToList < 3)
+        {
+            if (IndexToList == 0)
+            {
+                SelectedObject = ControlerSlot.MyWeapon01;
+                ControlerSlot.MyWeapon01 = null;
+            }
+            else if (IndexToList == 1)
+            {
+                SelectedObject = ControlerSlot.MyWeapon02;
+                ControlerSlot.MyWeapon02 = null;
+            }
+            else if (IndexToList == 2)
+            {
+                SelectedObject = ControlerSlot.MyPistol01;
+                ControlerSlot.MyPistol01 = null;
+            } 
+        }
+        else if (IndexToList > 2 && IndexToList < 6)
+        {
+            SelectedObject = ControlerSlot.Shop[IndexToList - 3];
+            ControlerSlot.Shop[IndexToList - 3] = null; 
+        }
+        else
+        {
+            if (IndexToList == 6)
+            {
+                SelectedObject = ControlerSlot.MyHelmet;
+                ControlerSlot.MyHelmet = null;
+            }
+            else if (IndexToList == 7)
+            {
+                SelectedObject = ControlerSlot.MyArmor;
+                ControlerDrop.DropArmorVest();
+                ControlerSlot.MyArmor = null;   
+            }
+
+        }
+
+
+        if (SelectedObject)
+        {
+            
+            DropObjects(SelectedObject, ControlerDrop.PointForDrop, false);
+            AllSlotsOnPlayer[IndexToList].GetComponent<Image>().sprite = None;
+
+            DisActiveUD();
+            SetDropButton(false);
+            ControlerDrop.UpdateInformation(SelectedObject.gameObject);
+        }
+
+    }
 }

@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 2090051774395049428}
   - component: {fileID: 6395257536678441091}
   - component: {fileID: 2441729088439391868}
+  - component: {fileID: 1728767424464675550}
   - component: {fileID: 6586805248889520886}
   - component: {fileID: -773530282177925612}
   m_Layer: 0
@@ -149,6 +150,7 @@ MonoBehaviour:
   HaveDescription: 0
   ShowTheAmmo: 0
   SpriteForLoot: {fileID: 21300000, guid: 308dbe82aff9325459e2458344bb10d6, type: 3}
+  HasOwner: 0
   NameOfThisObject: Weapon - M4
   Descrition: 
   ParametersLoot:
@@ -174,20 +176,35 @@ MonoBehaviour:
   WeaponShoop: {fileID: 0}
   GameObjectForRay: {fileID: 5528742215050240608}
   Muzzle: {fileID: 2135052165428356616}
-  Bullet: {fileID: 4797105551472130353, guid: 9beae3c03257c1943bb0f2947f464346, type: 3}
+  BulletPrefab: {fileID: 4797105551472130353, guid: 9beae3c03257c1943bb0f2947f464346, type: 3}
   Collet: {fileID: 1049788153312626777, guid: 07671d050b95a524b8b8db0bf34811a6, type: 3}
   ColletPoint: {fileID: 665726274810567144}
   TheGun: 0
   CaliberToWeapon: 2
-  Weapon: 2
-  ShoulderOffSet: {x: 0, y: 0, z: 0.5}
-  ShotDeley: 0.5
+  Weapon: 0
+  ShoulderOffSet: {x: 0.2, y: 0, z: 0.45}
+  ShotDeley: 0.36
   ShotTime: 0
+  BulletPrefabDmage: 45
   Mass: 0
-  BulletSpeed: 1000
-  ColletSpeed: 250
-  ChangedBulletAngle: 0
+  BulletPrefabSpeed: 98
+  ColletSpeed: 5
+  ChangedBulletPrefabAngle: 2.045
   UnLimitedAmmo: 0
+--- !u!114 &1728767424464675550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025701887585895473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c57428b6a28249c4a9eb4e5d361ea5ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AimFieldFoView: 60
+  UsingFieldFoView: 1
 --- !u!114 &6586805248889520886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,7 +258,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2135052165428356616}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -249,7 +266,7 @@ Transform:
   - {fileID: 1695553988697308600}
   m_Father: {fileID: 2849330975077027762}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5145759556809567171
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,7 +324,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5528742215050240608}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.676, y: -0.0036, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -315,7 +332,7 @@ Transform:
   - {fileID: 6005951270125294382}
   m_Father: {fileID: 6919284418606839544}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &6263616177085672998
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,6 +590,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6005951270125294382}
     m_Modifications:
+    - target: {fileID: 558664957267930554, guid: 9beae3c03257c1943bb0f2947f464346, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3125150932284538947, guid: 9beae3c03257c1943bb0f2947f464346, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -617,6 +638,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3388867874485322897, guid: 9beae3c03257c1943bb0f2947f464346, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4797105551472130353, guid: 9beae3c03257c1943bb0f2947f464346, type: 3}
       propertyPath: m_Name
       value: Bullet5,56MM
@@ -625,7 +650,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6768852928201651705, guid: 9beae3c03257c1943bb0f2947f464346, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8997594846246271416, guid: 9beae3c03257c1943bb0f2947f464346, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9beae3c03257c1943bb0f2947f464346, type: 3}
 --- !u!4 &1695553988697308600 stripped
 Transform:

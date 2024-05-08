@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 558664957267930554}
   - component: {fileID: 6768852928201651705}
   - component: {fileID: 4042529922148702081}
+  - component: {fileID: 3388867874485322897}
   m_Layer: 8
   m_Name: Bullet5,56MM
   m_TagString: Untagged
@@ -78,8 +79,8 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_AngularDrag: 0
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -140,7 +141,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 5
+  m_Time: 1
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.01
@@ -210,6 +211,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletDamage: 1
+--- !u!114 &3388867874485322897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4797105551472130353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3dcb876aee304a45acb874645fa31c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentSpeed: 0
 --- !u!1001 &7551153880858469464
 PrefabInstance:
   m_ObjectHideFlags: 0

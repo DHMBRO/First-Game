@@ -3,7 +3,10 @@ using UnityEngine.UI;
 using TMPro;
 public class HpScript : MonoBehaviour
 {
+    [SerializeField] public UpdateState StateDelegate;
+
     [SerializeField] private Image UiHp;
+    [SerializeField] Transform ObjectForCopy;
     [SerializeField] private TextMeshProUGUI ProzentHealPoint;
     [SerializeField] private RagdollControler MyRagdollControler;
 
@@ -20,15 +23,16 @@ public class HpScript : MonoBehaviour
     [SerializeField] private bool WorkWithRagdollControler = false;
     [SerializeField] private bool WorkWithLightControler = false;
 
-
+    
     public enum Live
     {
         Alive,
         NotAlive
     }
 
-    private void Start()
+    void Start()
     {
+       
         MyNavMesh = gameObject.GetComponent<PatrolScriptNavMesh>();
         Info = gameObject.GetComponentInParent<InfScript>();
         if (!Info && State != EnemyState.Player)
@@ -38,7 +42,7 @@ public class HpScript : MonoBehaviour
         if (UiHp && ProzentHealPoint) OutPutHp(HealthPoint, UiHp, ProzentHealPoint);
     }
 
-    private void Update()
+    void Update()
     {
         if (Input.GetKey(KeyCode.G) && State != EnemyState.Player)
         {
@@ -54,14 +58,27 @@ public class HpScript : MonoBehaviour
         }
     }
 
+    public void HealHp(float Heal)
+    {
+        if (MyLive == Live.Alive)
+        {
+            PlusHp(Heal);
+        }
+    }
+
     void MinusHp(float Damage)
     {
         if ((HealthPoint - Damage) <= 0.0f)
         {
-            
             HealthPoint = 0;
-            MyLive = Live.NotAlive; 
-            
+            MyLive = Live.NotAlive;
+
+            if (StateDelegate != null)
+            {
+                StateDelegate(false);
+            }
+
+
             if (State != EnemyState.Another)
             {
                 if(MyNavMesh && MyNavMesh.enabled)
@@ -72,15 +89,15 @@ public class HpScript : MonoBehaviour
                 if (StelthKill == false)
                 {
                     Info.SetAnimation("Death");
-                    Debug.Log("Call animation is working");
                 }
             }
 
             if (WorkWithRagdollControler && MyRagdollControler)
             {
-                Invoke("CallRagdollControler", 2.117f);
-                //MyRagdollControler.SetRagdol(true);
-                
+               // CallRagdollControler();
+               // Invoke("CallRagdollControler", 6.117f);
+               //MyRagdollControler.SetRagdol(true);
+
             }
         }
         else if ((HealthPoint - Damage) > 0.0f)
@@ -102,16 +119,15 @@ public class HpScript : MonoBehaviour
 
     }
 
-    private void CallRagdollControler()
+    public void CallRagdollControler()
     {
-        MyRagdollControler.SetRagdol(true);
-    }
-
-    public void HealHp(float Heal)
-    {
-        if (MyLive == Live.Alive)
+        if (!ObjectForCopy)
         {
-            PlusHp(Heal);
+            return;
+        }
+        if (WorkWithRagdollControler && MyRagdollControler)
+        {
+            MyRagdollControler.SetRagdol(true);
         }
     }
 
@@ -146,5 +162,6 @@ public class HpScript : MonoBehaviour
     public void InstanceKill()
     {   
         InflictingDamage(HealthPoint * 2.0f);
+        Debug.Log("InstanceKill <---");
     }
 }

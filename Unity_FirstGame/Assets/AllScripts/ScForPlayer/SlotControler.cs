@@ -11,7 +11,7 @@ public class SlotControler : MethodsFromDevelopers
     [SerializeField] public Transform SlotHandForWeapons;
     
     //
-    [SerializeField] private Transform ShoulderAnim;
+    //[SerializeField] private Transform ShoulderAnim;
     [SerializeField] public Transform ThatTimeSlot;
     [SerializeField] public Transform ObjectInThatTimeSlot;
     //
@@ -56,6 +56,8 @@ public class SlotControler : MethodsFromDevelopers
     [SerializeField] private PlayerControler ControlerPlayer;
     [SerializeField] private PickUp PickUp;
     [SerializeField] private Inventory Inventory;
+    private UiControler ControlerUI;
+    private DropControler ControlerDrop;
     //
     [SerializeField] List<Transform> Slots = new List<Transform>();
     //
@@ -64,10 +66,12 @@ public class SlotControler : MethodsFromDevelopers
 
     void Start()
     {
-        //Geting Refrences to other components 
+        //Setup
         ControlerPlayer = GetComponent<PlayerControler>();
+        ControlerUI = ControlerPlayer.ControlerUi;
         PickUp = gameObject.GetComponent<PickUp>();
         Inventory = gameObject.GetComponent<Inventory>();
+        ControlerDrop = GetComponent<DropControler>();
         
         //Use methods in strart
         UpdateTypeWeaponInHand();
@@ -87,25 +91,7 @@ public class SlotControler : MethodsFromDevelopers
         if (MyPistol01) PointForShopPistol01 = MyPistol01.GetComponent<ShootControler>().SlotForUseShop;
 
     }
-
-    private void Update()
-    {
-        if (ShoulderAnim)
-        {
-            SlotHandForWeapons.position = ShoulderAnim.position;
-
-            if (ControlerPlayer.StateCamera == CameraPlayer.Aiming)
-            {
-                SlotHandForWeapons.transform.LookAt(GetComponent<PlayerToolsToInteraction>().RaycastByInteraction());
-            }
-
-        }
-
-        if (!ShoulderAnim) Debug.Log("Not set ShoulderAnim");
-        if (!SlotHandForWeapons) Debug.Log("Not set SlotHandForWeapons");
-
-    }
-
+        
     public void PutWeapon()
     {
         if (ObjectInHand)
@@ -221,21 +207,36 @@ public class SlotControler : MethodsFromDevelopers
 
     }
 
+    private void UpdateImageOnUI()
+    {
+        for (int i = 0; i < ControlerUI.SlotShopUi.Length; i++)
+        {
+            if (Shop[i])
+            {
+                ControlerUI.SlotShopUi[i].sprite = Shop[i].GetComponent<ScrForAllLoot>().SpriteForLoot;
+            }
+            else
+            {
+                ControlerUI.SlotShopUi[i].sprite = ControlerDrop.None;
+            }
+        }   
+    }
+
     public void GetObjectInHand()
     {
-        if (ObjectInHand) PutObjects(ObjectInHand.transform,CurrentSlotHand, false);
+        if (ObjectInHand) PutObjects(ObjectInHand.transform, CurrentSlotHand, false);
         
     }
 
 
-    public void MovingGunForSlots()
+    public void Recharge()
     {
          
         List<ShopControler> ShopControler = new List<ShopControler>();
         List<ShopControler> ShopToCanUse = new List<ShopControler>();
         ShootControler ControlerForShoot;
 
-        if (ObjectInHand && Input.GetKeyDown(KeyCode.R))
+        if (ObjectInHand)
         {
             ControlerForShoot = ObjectInHand.gameObject.GetComponent<ShootControler>();
             if (ControlerForShoot)
@@ -266,7 +267,7 @@ public class SlotControler : MethodsFromDevelopers
                 }
                 else if (ShopToCanUse.Count == 1)
                 {
-                    Recharge(ShopToCanUse[0]);                    
+                    Reload(ShopToCanUse[0]);                    
                 }
                 else if (ShopToCanUse.Count == 2)
                 {
@@ -281,14 +282,14 @@ public class SlotControler : MethodsFromDevelopers
                             {
                                 //Debug.Log("2");
                                 ShopToRecharge = ShopToCanUse[i].gameObject;
-                                Recharge(ShopToCanUse[i]);
+                                Reload(ShopToCanUse[i]);
                                 return;
                             }
                             else if (j < ShopToCanUse.Count && ShopToCanUse[j].CurrentAmmo > ShopToCanUse[i].CurrentAmmo)
                             {
                                 //Debug.Log("3");
                                 ShopToRecharge = ShopToCanUse[j].gameObject;
-                                Recharge(ShopToCanUse[j]);
+                                Reload(ShopToCanUse[j]);
                                 return;
                             }
                             
@@ -312,13 +313,13 @@ public class SlotControler : MethodsFromDevelopers
                         if (ShopToCanUse[2].CurrentAmmo > ShopToUse.CurrentAmmo || ShopToCanUse[2].CurrentAmmo == ShopToUse.CurrentAmmo)
                         {
                             //Debug.Log("4");
-                            Recharge(ShopToCanUse[2]);
+                            Reload(ShopToCanUse[2]);
                             return;
                         }
                         else if(ShopToCanUse[2].CurrentAmmo < ShopToUse.CurrentAmmo)
                         {
                             //Debug.Log("5");
-                            Recharge(ShopToUse);
+                            Reload(ShopToUse);
                             return;
                         }
                     }
@@ -326,11 +327,11 @@ public class SlotControler : MethodsFromDevelopers
 
                 }
 
-                void Recharge(ShopControler ShopToRecharge)
+                void Reload(ShopControler ShopToRecharge)
                 {
                     if (!ControlerForShoot.WeaponShoop)
                     {
-                        RechargeShop(ShopToRecharge.GetComponent<ShopControler>());
+                        ReloadShop(ShopToRecharge.GetComponent<ShopControler>());
                         DeleyReferences(ShopToRecharge.transform);
                     }
                     else if(ControlerForShoot.WeaponShoop)
@@ -341,7 +342,7 @@ public class SlotControler : MethodsFromDevelopers
                         {
                             if (Shop[i] != null && ShopToRecharge.transform.position == SlotsShop[i].position)
                             {
-                                DisRechargeShop(SlotsShop[i].transform);
+                                DisReloadShop(SlotsShop[i].transform);
                                 ShopFromWeapon = ControlerForShoot.WeaponShoop;
                                 
                                 for (int j = 0;j < Shop.Length;j++)
@@ -349,7 +350,7 @@ public class SlotControler : MethodsFromDevelopers
                                     if (Shop[j] != null && ShopToRecharge.transform.position == Shop[j].position)
                                     {
                                         Shop[j] = ShopFromWeapon.transform;
-                                        RechargeShop(ShopToRecharge);
+                                        ReloadShop(ShopToRecharge);
                                         break;
                                     }
                                 }
@@ -373,14 +374,14 @@ public class SlotControler : MethodsFromDevelopers
                     }
 
 
-                    void RechargeShop(ShopControler ShopToRecharge)
+                    void ReloadShop(ShopControler ShopToRecharge)
                     {
                         ControlerForShoot.WeaponShoop = ShopToRecharge;
                         PutObjects(ControlerForShoot.WeaponShoop.transform, ControlerForShoot.SlotForUseShop, false);
 
                     }
 
-                    void DisRechargeShop(Transform PointToShop)
+                    void DisReloadShop(Transform PointToShop)
                     {
                         PutObjects(ControlerForShoot.WeaponShoop.transform, PointToShop.transform, false);
                     }
@@ -404,8 +405,8 @@ public class SlotControler : MethodsFromDevelopers
 
             MyWeapon02 = null;
         }
-       
-        
+
+        UpdateImageOnUI();
     }
 
 
@@ -451,7 +452,7 @@ public class SlotControler : MethodsFromDevelopers
         {
             for (int i = 0;i < AllWeapons.Count;i++)
             {
-                if (AllWeapons[i].name == ObjectInHand.name)
+                if (AllWeapons.Count > 0 && AllWeapons[i].name == ObjectInHand.name)
                 {
                     if (i == AllWeapons.Count - 1)
                     {

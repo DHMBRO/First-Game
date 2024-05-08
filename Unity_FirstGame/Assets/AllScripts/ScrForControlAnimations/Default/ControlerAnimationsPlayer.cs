@@ -3,7 +3,8 @@ using UnityEngine;
 public class ControlerAnimationsPlayer : MonoBehaviour
 {
     //Other components
-    [SerializeField] Animator Parameters;
+    Animator Parameters;
+
     [SerializeField] PlayerControler ControlerPlayer;
     [SerializeField] MovePlayer MovePlayer;
     [SerializeField] Rigidbody RigPlayer;
@@ -30,11 +31,15 @@ public class ControlerAnimationsPlayer : MonoBehaviour
     {
         Parameters = GetComponent<Animator>();
         RigPlayer = ControlerPlayer.GetComponent<Rigidbody>();
-        //MovePlayer = GetComponent<MovePlayer>();
-
+        
         if (Parameters) Parameters.SetFloat("CurrentSpeed", 0.0f);
         else Debug.Log("Not set Parameters");
 
+    }
+
+    private void Update()
+    {
+        UpdateAnimations();
     }
 
     public void UpdateAnimations()
@@ -62,6 +67,7 @@ public class ControlerAnimationsPlayer : MonoBehaviour
 
         //Change the bool parameters
         Parameters.SetBool("IsAiming", ControlerPlayer.WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething);
+
         Parameters.SetBool("HaveWeaponInHand", ControlerPlayer.WhatPlayerHandsHave == HandsPlayerHave.Weapon);
         Parameters.SetBool("HavePistolInHand", ControlerPlayer.WhatPlayerHandsHave == HandsPlayerHave.Pistol);
         Parameters.SetBool("IsCrouchWalk", ControlerPlayer.WhatPlayerLegsDo == LegsPlayer.SatDown);
@@ -74,6 +80,7 @@ public class ControlerAnimationsPlayer : MonoBehaviour
             Debug.Log("True");
         }
 
+
         /*
         if(Time.time >= WhenFinishedStelthKill)
         {
@@ -83,4 +90,10 @@ public class ControlerAnimationsPlayer : MonoBehaviour
         */
 
     }    
+    
+    public void ShootTrigger()
+    {
+        Parameters.SetTrigger("Shoot");
+    }
+
 }

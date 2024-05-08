@@ -68,12 +68,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 550393c00d1e007488e42963a8c9e36e, type: 2}
     - target: {fileID: 5866666021909216657, guid: 5004e8c0fce4126438b418542bee0219, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c8c9d64b6b97a6945b7a2dfa8c7ebb10, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 5004e8c0fce4126438b418542bee0219, type: 3}
       propertyPath: m_UpdateMode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 5004e8c0fce4126438b418542bee0219, type: 3}
       propertyPath: m_CullingMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 5004e8c0fce4126438b418542bee0219, type: 3}
       propertyPath: m_ApplyRootMotion
@@ -748,7 +752,18 @@ MonoBehaviour:
   ColiderToInteraction: {fileID: 8410268507858072836}
   ControlerBone: {fileID: 8796297488174059139}
   AllBones: []
-  Enable: 0
+--- !u!114 &5785825455848289285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6408593813792129731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 313e34a935dd2724b87026fca22ae750, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6569502071462650264 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1082271958561512970, guid: 5004e8c0fce4126438b418542bee0219, type: 3}

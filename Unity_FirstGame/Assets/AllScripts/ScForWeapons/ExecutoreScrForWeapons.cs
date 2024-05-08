@@ -6,7 +6,7 @@ public class ExecutoreScrForWeapons : MonoBehaviour
     ShootControler ControlerShoot;
 
     [SerializeField] float RadiuseNoise = 5.0f;
-    [SerializeField] float DeleayToDisable = 0.25f;
+    [SerializeField] float DeleayToDisable = 1.0f;
     
     [SerializeField] GameObject ZoneNoise;
     Transform LocalZoneNoise;
@@ -24,11 +24,16 @@ public class ExecutoreScrForWeapons : MonoBehaviour
 
     void ExecutoreNoise()
     {
+        if (!ControlerShoot.UnLimitedAmmo || !ControlerShoot.WeaponShoop)
+        {
+            return;
+        }
+
         if (ShowZoneNoise && ZoneNoise)
         {
             if (!LocalZoneNoise) LocalZoneNoise = Instantiate(ZoneNoise).transform;
 
-            LocalZoneNoise.position = ControlerShoot.WeaponMuzzle();
+            LocalZoneNoise.position = ControlerShoot.WeaponMuzzle().position;
             LocalZoneNoise.localScale = new Vector3(RadiuseNoise, RadiuseNoise, RadiuseNoise) * 2.0f;
 
             LocalZoneNoise.gameObject.SetActive(true);

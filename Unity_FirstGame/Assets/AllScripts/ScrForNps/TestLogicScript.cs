@@ -116,7 +116,8 @@ public class PatrolState : ILogic
             InfOwner.SetState(new CheckPositionState(InfOwner));
         }
         else 
-        {    
+        {
+            Patrol.ZombieNavMesh.speed = 1.5f;
             if (Patrol.IsReachTarget())
             {
                 if (IsPatroling)
@@ -148,6 +149,7 @@ public class ChaseState : ILogic
 
         if (DoISeeEnemy())
         {
+            Patrol.ZombieNavMesh.speed = 5.0f;
             InfOwner.SetFloatToAnim("CurrentSpeed", 1.0f);
             Locate.RelocateTarget();
             Patrol.MoveTo(Locate.Target.transform.position);
@@ -183,8 +185,10 @@ public class CheckPositionState : ILogic
         }
         else
         {
+            Patrol.ZombieNavMesh.speed = 3.5f;
             if (Patrol.IsReachTarget())
             {
+
                 InfOwner.SetState(new PatrolState(InfOwner));
                 InfOwner.NullInterest();
             }
@@ -262,7 +266,7 @@ public class FollowTargetState : ILogic
         } 
         if (DoISeeEnemy()) 
         {
-           
+           //follow target(only watching)
             Quaternion NewRotation = Quaternion.RotateTowards(gameObj.transform.rotation, Quaternion.LookRotation(Locate.Target.transform.position - gameObj.transform.position), 1.0f);
             gameObj.transform.rotation = NewRotation;
         }
@@ -349,4 +353,43 @@ public class CamperCheckNoice : ILogic
         }
 
     }
+}
+public class SpinChecking : ILogic
+{
+    public SpinChecking(InfScript NewOnwer) : base(NewOnwer)
+    {
+
+    }
+    public override void Update()
+    {
+        if (DoISeeEnemy())
+        {
+            if (CanIAttack())
+            {
+                InfOwner.SetState(new AttackState(InfOwner));
+            }
+            else
+            {
+                InfOwner.SetState(new ChaseState(InfOwner));
+            }
+        }
+        else if(InfOwner.IHearSomething())
+        {
+            InfOwner.SetState(new CheckPositionState(InfOwner));
+        }
+        else
+        {
+            
+        }
+
+    }
+    void Spin()
+    {
+        
+
+    }
+
+
+
+
 }

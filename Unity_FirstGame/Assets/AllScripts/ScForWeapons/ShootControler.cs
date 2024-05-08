@@ -10,8 +10,8 @@ public class ShootControler : MonoBehaviour
     [SerializeField] public Transform SlotForUseShop;
     [SerializeField] public ShopControler WeaponShoop;
     [SerializeField] private GameObject GameObjectForRay;
-    [SerializeField] private GameObject Muzzle;
-    [SerializeField] private GameObject Bullet;
+    [SerializeField] public GameObject Muzzle;
+    [SerializeField] private GameObject BulletPrefab;
     [SerializeField] private GameObject Collet;
     [SerializeField] private GameObject ColletPoint;
 
@@ -22,10 +22,11 @@ public class ShootControler : MonoBehaviour
     [SerializeField] public Vector3 ShoulderOffSet;
     [SerializeField] public float ShotDeley = 1.0f;
     [SerializeField] public float ShotTime = 0.0f;
+    [SerializeField] float BulletPrefabDmage = 1.0f;
     [SerializeField] public float Mass = 0.0f;
-    [SerializeField] private float BulletSpeed = 1.0f;
+    [SerializeField] private float BulletPrefabSpeed = 1.0f;
     [SerializeField] private float ColletSpeed = 1.0f;
-    [SerializeField] private float ChangedBulletAngle = 0.0f;
+    [SerializeField] private float ChangedBulletPrefabAngle = 0.0f;
 
     public bool UnLimitedAmmo;
     //[SerializeField] List<Rigidbody> ColletsRig = new List<Rigidbody>();
@@ -36,14 +37,14 @@ public class ShootControler : MonoBehaviour
     void Start()
     {
         if (!Muzzle) Debug.Log("Not set Muzzle");
-        if (!Bullet) Debug.Log("Not set Bullet");
+        if (!BulletPrefab) Debug.Log("Not set BulletPrefab");
 
         SetShootDelegat += Shoot;
     }
 
     private void Update()
     {
-        Debug.DrawRay(Muzzle.transform.position, Muzzle.transform.forward * 100.0f, Color.blue);
+        Debug.DrawRay(GameObjectForRay.transform.position, GameObjectForRay.transform.forward * 100.0f, Color.yellow);
 
         Transform ParentWeapon = GetComponentInParent<Transform>();
         
@@ -73,22 +74,21 @@ public class ShootControler : MonoBehaviour
 
         return CanWork;
     }
-
-    public Vector3 WeaponMuzzle()
+    
+    public Transform WeaponMuzzle()
     {
-        return Muzzle.transform.position;
+        return Muzzle.transform;
     } 
-
-
+    
 
     private void Shoot()//ColectPoint
     {
         //Chek referece
-        if ((!GameObjectForRay || !Muzzle || !Bullet || !Collet || !ColletPoint))
+        if ((!GameObjectForRay || !Muzzle || !BulletPrefab || !Collet || !ColletPoint))
         {
             Debug.Log(GameObjectForRay);
             Debug.Log(Muzzle);
-            Debug.Log(Bullet);
+            Debug.Log(BulletPrefab);
             Debug.Log(Collet);
             Debug.Log(ColletPoint);
 
@@ -110,34 +110,42 @@ public class ShootControler : MonoBehaviour
         else if(!UnLimitedAmmo) return;
 
         // Instance reference
-        GameObject NewBullet = Instantiate(Bullet);
+        GameObject NewBulletPrefab = Instantiate(BulletPrefab);
         GameObject NewCollet = Instantiate(Collet);
 
-        Rigidbody NewBulletRIG = NewBullet.GetComponent<Rigidbody>();
+        Rigidbody NewBulletPrefabRIG = NewBulletPrefab.GetComponent<Rigidbody>();
         Rigidbody NewColletRIG = NewCollet.GetComponent<Rigidbody>();
+
+        Bullet NewBulletScr = NewBulletPrefab.GetComponent<Bullet>();
 
         //ColletsRig.Add(NewColletRIG);
 
-        if (!NewBulletRIG) NewBulletRIG = NewBullet.AddComponent<Rigidbody>();
+        if (!NewBulletPrefabRIG) NewBulletPrefabRIG = NewBulletPrefab.AddComponent<Rigidbody>();
         if (!NewColletRIG) NewColletRIG = NewCollet.AddComponent<Rigidbody>();
 
         // Setup reference
-        NewBullet.transform.position = Muzzle.transform.position;
-        NewBullet.transform.eulerAngles = ChangedDirection(Muzzle.transform.eulerAngles); 
+        NewBulletPrefab.transform.position = Muzzle.transform.position;
+        NewBulletPrefab.transform.eulerAngles = ChangedDirection(Muzzle.transform.eulerAngles); 
 
         NewCollet.transform.position = ColletPoint.transform.position;
         NewCollet.transform.eulerAngles = ColletPoint.transform.eulerAngles;
 
-        // Implemetation
+        NewBulletScr.BulletDamage = BulletPrefabDmage;
 
-        NewBulletRIG.useGravity = false;
-        
-        NewBulletRIG.AddForce(NewBullet.transform.forward * BulletSpeed, ForceMode.Force);
-        NewColletRIG.AddForce((NewCollet.transform.right + (NewCollet.transform.up / 2.0f)) * ColletSpeed, ForceMode.Force);
+        if (gameObject.GetComponentInParent<PlayerControler>())
+        {
+            NewBulletScr.LauncherBullet = gameObject.GetComponentInParent<PlayerControler>().gameObject;
+
+        }
+
+        // Realization
+
+        NewBulletPrefabRIG.AddForce(NewBulletPrefab.transform.forward * BulletPrefabSpeed, ForceMode.Impulse);
+        NewColletRIG.AddForce((NewCollet.transform.right + (NewCollet.transform.up / 2.0f)) * ColletSpeed, ForceMode.Impulse);
 
         NewColletRIG.AddTorque(NewCollet.transform.right * 1000.0f);
         
-        Destroy(NewBullet, 10.0f);
+        Destroy(NewBulletPrefab, 10.0f);
         Destroy(NewCollet, 3.0f);
          
     }
@@ -146,9 +154,9 @@ public class ShootControler : MonoBehaviour
 
     private Vector3 ChangedDirection(Vector3 CurrentDirection)
     {
-        CurrentDirection += new Vector3(Random.Range(-ChangedBulletAngle, ChangedBulletAngle), 
-        Random.Range(-ChangedBulletAngle, ChangedBulletAngle), 
-        Random.Range(-ChangedBulletAngle, ChangedBulletAngle));
+        CurrentDirection += new Vector3(Random.Range(-ChangedBulletPrefabAngle, ChangedBulletPrefabAngle), 
+        Random.Range(-ChangedBulletPrefabAngle, ChangedBulletPrefabAngle), 
+        Random.Range(-ChangedBulletPrefabAngle, ChangedBulletPrefabAngle));
 
         return CurrentDirection;
     }

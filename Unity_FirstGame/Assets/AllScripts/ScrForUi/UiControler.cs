@@ -6,33 +6,36 @@ public class UiControler : MonoBehaviour
 {
     //References To Canvas Components
     [SerializeField] private UiInventoryOutPut InventoryUi;
-    [SerializeField] private ButtonControler ManagerToGame;
+    [SerializeField] private GameObject InterFace;
+    [SerializeField] private ButtonControler ControlerButton;
 
     //References Ro Player Components
     [SerializeField] private Camera CameraScr;
     [SerializeField] private SlotControler ControlerSlots;
     [SerializeField] private Inventory PlayerInventory;
-    [SerializeField] private GameObject Inventory;
-    
+    [SerializeField] public GameObject Inventory;
+
     //References Interface Canvas
     [SerializeField] private Image Scope;
+    [SerializeField] Image CurrentScopeWeapon;
     [SerializeField] public TextMeshProUGUI TableNameObjectForPickUp;
     [SerializeField] private GameObject IndexesTable;
-    
+
     //Armor References
     [SerializeField] private GameObject[] ArmorPanels = new GameObject[3];
     [SerializeField] private Image[] ArmorIndexes = new Image[3];
-    
+
     //Other
     [SerializeField] public bool InventoryIsOpen = false;
     [SerializeField] private TextMeshProUGUI CurrentMassInInventory;
-    
+
     //Slots Weapon
     [SerializeField] public Image SlotWeapon01;
     [SerializeField] public Image SlotWeapon02;
     [SerializeField] public Image SlotPistol01;
-    
+
     //Slots Shop
+    [SerializeField] public Image[] SlotShopUi = new Image[3];  
     [SerializeField] public Image SlotShop01;
     [SerializeField] public Image SlotShop02;
     [SerializeField] public Image SlotShop03;
@@ -45,9 +48,15 @@ public class UiControler : MonoBehaviour
     
     void Start()
     {
-        //Change value varriables
+        //Setup
         InventoryIsOpen = false;
         PlayerInventory.GetComponent<PlayerToolsToInteraction>().PlayerChekToInteractionDelegat += ChekToInteraction;
+        ControlerButton.GetComponent<ButtonControler>();
+
+        SlotShopUi[0] = SlotShop01;
+        SlotShopUi[1] = SlotShop02;
+        SlotShopUi[2] = SlotShop03;
+
 
         //Control other game objects
         if (Inventory) Inventory.SetActive(InventoryIsOpen);
@@ -57,7 +66,7 @@ public class UiControler : MonoBehaviour
         InterfaceControler();
     }
 
-    private bool ChekToInteraction(Transform GivenReference)
+    bool ChekToInteraction(Transform GivenReference)
     {
         ScrForAllLoot LocalScrForAllLoot = null;
 
@@ -76,12 +85,12 @@ public class UiControler : MonoBehaviour
         
         return LocalScrForAllLoot != null;
     }
-
+    
     public void OpenOrCloseInventory()
     {
         InventoryIsOpen = !InventoryIsOpen;
-        //Scope.enabled = !InventoryIsOpen;
 
+        //InterFace.SetActive(!InventoryIsOpen);
         Inventory.SetActive(InventoryIsOpen);
         IndexesTable.SetActive(!InventoryIsOpen);
         PrintUseMassAndMaxMass();
@@ -89,16 +98,18 @@ public class UiControler : MonoBehaviour
         CurrentMassInInventory.gameObject.SetActive(InventoryIsOpen);
 
         if (InventoryUi) InventoryUi.WriteSprite();
-        if (ManagerToGame) ManagerToGame.DisActiveUD();
+        if (ControlerButton) 
+        {
+            ControlerButton.SetDropButton(false);
+            ControlerButton.DisActiveUD();
+        }
 
         if (InventoryIsOpen) Cursor.lockState = CursorLockMode.None;
         else Cursor.lockState = CursorLockMode.Locked;
         
     }
 
-    
-
-    private void UpdateNameOnTable(ScrForAllLoot LocalObjectScript)
+    void UpdateNameOnTable(ScrForAllLoot LocalObjectScript)
     {
         if (!TableNameObjectForPickUp)
         {
@@ -110,6 +121,11 @@ public class UiControler : MonoBehaviour
 
     }
     
+    public void UpdateCurrentScopeImage(Image NewScope)
+    {
+        CurrentScopeWeapon = NewScope;
+    }
+
     public void DeleteNameOnTable()
     {
         if (!TableNameObjectForPickUp)
@@ -164,7 +180,7 @@ public class UiControler : MonoBehaviour
     }
 
 
-    private void PrintUseMassAndMaxMass()
+    void PrintUseMassAndMaxMass()
     {
         string CurrentMassS;
         string MaxMassS;

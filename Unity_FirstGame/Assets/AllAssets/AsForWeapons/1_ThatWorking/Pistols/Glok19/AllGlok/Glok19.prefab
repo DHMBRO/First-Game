@@ -56,7 +56,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4423625220979593759}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.2046, y: 0.057489827, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -64,7 +64,7 @@ Transform:
   - {fileID: 3647308733173354312}
   m_Father: {fileID: 6361972049594101034}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &4965438261709640327
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 5752078726147703554}
   - component: {fileID: 8980927656229120753}
   - component: {fileID: 4272853772287642738}
+  - component: {fileID: -3995368212777285479}
   - component: {fileID: 1134387109113757903}
   - component: {fileID: 3901563627357055046}
   m_Layer: 0
@@ -149,7 +150,8 @@ MonoBehaviour:
   HaveDescription: 0
   ShowTheAmmo: 0
   SpriteForLoot: {fileID: 21300000, guid: 5bf1bf23c3394f64d9f63958632c2dbd, type: 3}
-  NameOfThisObject: PISTOL - Glok19
+  HasOwner: 0
+  NameOfThisObject: Pistol - Glok19
   Descrition: 
   ParametersLoot:
   - 
@@ -174,20 +176,34 @@ MonoBehaviour:
   WeaponShoop: {fileID: 0}
   GameObjectForRay: {fileID: 4423625220979593759}
   Muzzle: {fileID: 8918663486306701883}
-  Bullet: {fileID: 6895987822013454153, guid: 85ae06ebd503ee2438ceb02f16fa97f9, type: 3}
+  BulletPrefab: {fileID: 6895987822013454153, guid: 85ae06ebd503ee2438ceb02f16fa97f9, type: 3}
   Collet: {fileID: 7377190171975279841, guid: ba817832a2193304fb74541789147f8b, type: 3}
   ColletPoint: {fileID: 5362117552002414686}
   TheGun: 1
   CaliberToWeapon: 3
   Weapon: 0
   ShoulderOffSet: {x: 0, y: 0.1, z: 0.8}
-  ShotDeley: 0.5
+  ShotDeley: 0.875
   ShotTime: 0
+  BulletPrefabDmage: 35
   Mass: 0
-  BulletSpeed: 1000
-  ColletSpeed: 1
-  ChangedBulletAngle: 0
+  BulletPrefabSpeed: 42
+  ColletSpeed: 5
+  ChangedBulletPrefabAngle: 4.765
   UnLimitedAmmo: 0
+--- !u!114 &-3995368212777285479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4965438261709640327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c57428b6a28249c4a9eb4e5d361ea5ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AimFieldFoView: 60
 --- !u!114 &1134387109113757903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,7 +232,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d769b754154c77042aae9ea5c8dd47f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentNoiceRadiuse: 0
   DebugingTheWork: 0
 --- !u!1 &5362117552002414686
 GameObject:
@@ -339,7 +354,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8918663486306701883}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -347,7 +362,7 @@ Transform:
   - {fileID: 981200080136974752}
   m_Father: {fileID: 6555963976173861778}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4218901251766133897
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -429,6 +444,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3647308733173354312}
     m_Modifications:
+    - target: {fileID: -4105849443783263339, guid: 85ae06ebd503ee2438ceb02f16fa97f9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6215300900525056869, guid: 85ae06ebd503ee2438ceb02f16fa97f9, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -481,7 +500,9 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8753470810607610775, guid: 85ae06ebd503ee2438ceb02f16fa97f9, type: 3}
+    - {fileID: 2229657100021901154, guid: 85ae06ebd503ee2438ceb02f16fa97f9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 85ae06ebd503ee2438ceb02f16fa97f9, type: 3}
 --- !u!4 &981200080136974752 stripped
 Transform:
@@ -547,7 +568,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5725781729847000049, guid: ba817832a2193304fb74541789147f8b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ba817832a2193304fb74541789147f8b, type: 3}
 --- !u!4 &3152193740843464054 stripped
 Transform:
@@ -613,7 +635,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 3391301111965353200, guid: b6c8bbc02cf7e3a41b1dede0a1966c94, type: 3}
+      propertyPath: ColiderToShop
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391301111965353200, guid: b6c8bbc02cf7e3a41b1dede0a1966c94, type: 3}
+      propertyPath: RigidbodyToShop
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 929363254268591510, guid: b6c8bbc02cf7e3a41b1dede0a1966c94, type: 3}
+    - {fileID: 5741173038617629198, guid: b6c8bbc02cf7e3a41b1dede0a1966c94, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b6c8bbc02cf7e3a41b1dede0a1966c94, type: 3}
 --- !u!4 &8079302072900802920 stripped
 Transform:

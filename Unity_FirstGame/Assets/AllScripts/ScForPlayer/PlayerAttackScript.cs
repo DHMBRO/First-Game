@@ -44,7 +44,6 @@ public class PlayerAttackScript : MonoBehaviour
                     {
                        if (ZombieLocateScript.WhatForvardToMe(PlayerHead) == Collider.gameObject)
                        {
-                       
                             PlayerController.StealthKilling = true;
                             HpScript.StelthKill = true;
                             Invoke("OnStealthAnimateEnd", 7.0f);
