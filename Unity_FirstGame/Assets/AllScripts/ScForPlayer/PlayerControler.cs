@@ -160,7 +160,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             //Stelth 
             if (WhatPlayerHandsDo != HandsPlayer.CarryBody)
             {
-                if (Input.GetKeyDown(KeyCode.LeftControl) && WhatPlayerLegsDo != LegsPlayer.SatDown)
+                if (Input.GetKeyDown(KeyCode.LeftControl))
                 {
                     WhatPlayerLegsDo = LegsPlayer.SatDown;
                     MovePlayer.ControlCapsuleColider(true);
