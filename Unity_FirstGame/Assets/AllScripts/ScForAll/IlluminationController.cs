@@ -26,7 +26,7 @@ public class IlluminationController : MonoBehaviour
     {
         if (gameObject.CompareTag("Player01"))
         {
-            Debug.Log("Illumination " + GetIlluminatiLvl() + gameObject.name);
+            //Debug.Log("Illumination " + GetIlluminatiLvl() + gameObject.name);
         }
        
     }
@@ -47,7 +47,7 @@ public class IlluminationController : MonoBehaviour
             return 0.0f;
         }
 
-        Debug.DrawLine(HeadObject.transform.position, HeadObject.transform.position + (-Sun.transform.forward * 50.0f));
+       // Debug.DrawLine(HeadObject.transform.position, HeadObject.transform.position + (-Sun.transform.forward * 50.0f));
         RaycastHit[] Hitresults = Physics.RaycastAll(HeadObject.transform.position, -Sun.transform.forward);
         foreach (RaycastHit Hitres in Hitresults)
         {

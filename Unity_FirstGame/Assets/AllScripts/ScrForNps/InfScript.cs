@@ -19,7 +19,9 @@ public class InfScript : MonoBehaviour
     [SerializeField] public float RotationSpeed;
     [SerializeField] public Types MyType;
     [SerializeField] public float WaitingTime;
-    public Vector3 InterestPosition; 
+    public Vector3 InterestPosition;
+    public List<GameObject> Allies;
+    public float SpiningSpeed = 10.0f;
     public enum Types
     {
         Camper,
@@ -114,6 +116,7 @@ public class InfScript : MonoBehaviour
     public void SetState(ILogic NewState)
     {
        CurrentState = NewState;
+        Debug.Log("New State = " + NewState);
     }
     public bool IHearSomething()
     {

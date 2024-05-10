@@ -178,6 +178,14 @@ PrefabInstance:
       propertyPath: Animator
       value: 
       objectReference: {fileID: 503851481501201754}
+    - target: {fileID: 2558508992499366921, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+      propertyPath: WaitingTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558508992499366921, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+      propertyPath: RotationSpeed
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2625013959053697449, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -622,6 +630,10 @@ PrefabInstance:
       propertyPath: State
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8935471237089852123, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+      propertyPath: MaxDistatzeForAgr
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 8982854550460571108, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -672,6 +684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LightSources: []
   HeadObject: {fileID: 6491836798826493945}
+  BaseIlluminationLvl: 0.2
 --- !u!114 &2038223082134148612 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5083560448480326394, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
