@@ -87,7 +87,7 @@ public class DivertAttention : MethodsFromDevelopers
         }
 
         SoundCreatorScript SoundScript = Rock.GetComponent<SoundCreatorScript>();
-        if (SoundScript) SoundScript.CurrentNoiceRadiuse = RadiusToNoise;
+        //if (SoundScript) SoundScript.CurrentNoiceRadiuse = RadiusToNoise;
         
         //Debug.Log(SoundScript.CurrentNoiceRadiuse + "\t" + RadiusToNoise);
 

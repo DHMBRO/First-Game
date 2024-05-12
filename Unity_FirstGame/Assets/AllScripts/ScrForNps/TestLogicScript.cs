@@ -116,7 +116,8 @@ public class PatrolState : ILogic
             InfOwner.SetState(new CheckPositionState(InfOwner));
         }
         else 
-        {    
+        {
+            Patrol.ZombieNavMesh.speed = 1.5f;
             if (Patrol.IsReachTarget())
             {
                 if (IsPatroling)
@@ -148,6 +149,7 @@ public class ChaseState : ILogic
 
         if (DoISeeEnemy())
         {
+            Patrol.ZombieNavMesh.speed = 5.0f;
             InfOwner.SetFloatToAnim("CurrentSpeed", 1.0f);
             Locate.RelocateTarget();
             Patrol.MoveTo(Locate.Target.transform.position);
@@ -183,8 +185,10 @@ public class CheckPositionState : ILogic
         }
         else
         {
+            Patrol.ZombieNavMesh.speed = 3.5f;
             if (Patrol.IsReachTarget())
             {
+
                 InfOwner.SetState(new PatrolState(InfOwner));
                 InfOwner.NullInterest();
             }
@@ -207,6 +211,15 @@ public class AttackState : ILogic
             if (CanIAttack())
             {
                 Patrol.ZombieNavMesh.isStopped = true;
+                Quaternion NewRotation = Quaternion.RotateTowards(gameObj.transform.rotation, Quaternion.LookRotation(Locate.Target.transform.position - gameObj.transform.position),InfOwner.RotationSpeed * Time.deltaTime);
+                gameObj.transform.rotation = NewRotation;
+
+                //Gun Rotate
+                Debug.DrawLine(Locate.Target.MyHeadScript.GetHeadPosition(), Attack.GunPos.transform.position, Color.red);
+                Vector3 DirectionToTarget = Locate.Target.MyHeadScript.GetHeadPosition() - Attack.GunPos.transform.position;
+                Quaternion DirectionToTargetQ = Quaternion.LookRotation(DirectionToTarget).normalized;
+
+                Attack.GunPos.transform.rotation = Quaternion.RotateTowards(Attack.GunPos.transform.rotation, DirectionToTargetQ, 50.0f * Time.deltaTime);
                 Attack.StartAttack(Locate.Target.gameObject);
             }
             else
@@ -262,7 +275,7 @@ public class FollowTargetState : ILogic
         } 
         if (DoISeeEnemy()) 
         {
-           
+           //follow target(only watching)
             Quaternion NewRotation = Quaternion.RotateTowards(gameObj.transform.rotation, Quaternion.LookRotation(Locate.Target.transform.position - gameObj.transform.position), 1.0f);
             gameObj.transform.rotation = NewRotation;
         }
@@ -293,7 +306,7 @@ public class CamperAttackState : ILogic
                 //Quaternion.LookRotation(InfOwner.GetTargetHead() - Attack.GunPos.transform.position), 0.1f * Time.deltaTime).eulerAngles;
 
                 //Body Rotate
-                Quaternion NewRotation = Quaternion.RotateTowards(gameObj.transform.rotation, Quaternion.LookRotation(Locate.Target.transform.position - gameObj.transform.position), 1.0f);
+                Quaternion NewRotation = Quaternion.RotateTowards(gameObj.transform.rotation, Quaternion.LookRotation(Locate.Target.transform.position - gameObj.transform.position),InfOwner.RotationSpeed * Time.deltaTime);
                 gameObj.transform.rotation = NewRotation;
 
                 //Gun Rotate
@@ -349,4 +362,76 @@ public class CamperCheckNoice : ILogic
         }
 
     }
+}
+public class SpinChecking : ILogic
+{
+    Quaternion TargetRotation;
+    Quaternion StartRotation;
+    bool IsIRotatingToStart = false;
+    bool DoISpining = true;
+    float TimeToSpin;
+    public SpinChecking(InfScript NewOnwer) : base(NewOnwer)
+    {
+        TargetRotation = Quaternion.LookRotation(-gameObj.transform.forward);
+        StartRotation = Quaternion.LookRotation(gameObj.transform.forward);
+        TimeToSpin = Time.time + InfOwner.WaitingTime;
+    }
+
+    public override void Update()
+    {
+        if (DoISpining)
+        {
+            UpdateRotation();
+        }
+        else 
+        {
+            TimeToRest();
+        }
+
+        if (DoISeeEnemy())
+        {
+            if (CanIAttack())
+            {
+                InfOwner.SetState(new AttackState(InfOwner));
+            }
+            else
+            {
+                InfOwner.SetState(new ChaseState(InfOwner));
+            }
+        }
+        else if(InfOwner.IHearSomething())
+        {
+            InfOwner.SetState(new CheckPositionState(InfOwner));
+        }
+    }
+
+    void UpdateRotation()
+    {
+        Quaternion CurrentTargetRotation = IsIRotatingToStart ? StartRotation : TargetRotation;
+        gameObj.transform.rotation = Quaternion.RotateTowards(Quaternion.LookRotation(gameObj.transform.forward), CurrentTargetRotation,
+            InfOwner.SpiningSpeed * Time.deltaTime);
+
+        if (Vector3.Angle(gameObj.transform.forward, CurrentTargetRotation.eulerAngles) < 1.0f) 
+        {
+            if (IsIRotatingToStart)
+            {
+                InfOwner.SetState(new PatrolState(InfOwner));
+            }
+            else 
+            {
+                IsIRotatingToStart = true;
+                DoISpining = false;
+            }
+
+        }
+    }
+    void TimeToRest()
+    {
+        if (Time.time >= TimeToSpin)
+        {
+            DoISpining = true;
+        }
+    }
+
+
 }

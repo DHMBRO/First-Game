@@ -132,10 +132,16 @@ public class ShootControler : MonoBehaviour
 
         NewBulletScr.BulletDamage = BulletPrefabDmage;
 
-        // Implemetation
+        if (gameObject.GetComponentInParent<PlayerControler>())
+        {
+            NewBulletScr.LauncherBullet = gameObject.GetComponentInParent<PlayerControler>().gameObject;
+
+        }
+
+        // Realization
 
         NewBulletPrefabRIG.AddForce(NewBulletPrefab.transform.forward * BulletPrefabSpeed, ForceMode.Impulse);
-        NewColletRIG.AddForce((NewCollet.transform.right + (NewCollet.transform.up / 2.0f)) * ColletSpeed, ForceMode.Force);
+        NewColletRIG.AddForce((NewCollet.transform.right + (NewCollet.transform.up / 2.0f)) * ColletSpeed, ForceMode.Impulse);
 
         NewColletRIG.AddTorque(NewCollet.transform.right * 1000.0f);
         

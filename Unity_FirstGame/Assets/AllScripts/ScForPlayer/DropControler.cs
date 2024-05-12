@@ -1,58 +1,78 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEditor.SceneManagement;
 
 public class DropControler : MethodsFromDevelopers
 {
     [SerializeField] public Transform PointForDrop;
     [SerializeField] GameObject ObjectToDrop;
 
-    [SerializeField] SlotControler ControlerForSlots;
+    [SerializeField] SlotControler ControlerSlot;
     [SerializeField] ShootControler ControlerForShoot;
     [SerializeField] PlayerControler ControlerPlayer;
 
     [SerializeField] public UiControler ControlerToUi;
-    [SerializeField] Sprite None;
+    [SerializeField] public Sprite None;
 
     void Start()
     {
-        ControlerForSlots = gameObject.GetComponent<SlotControler>();
+        ControlerSlot = gameObject.GetComponent<SlotControler>();
+    }
+
+    public void UpdateInformation(GameObject DropedObject)
+    {
+        AimControler ControlerAim = null;
+
+        if (ControlerSlot.ObjectInHand && ControlerSlot.ObjectInHand.name == DropedObject.name)
+        {
+            ControlerSlot.ObjectInHand = null;
+        }
+        
+        ControlerAim = GetComponent<AimControler>();
+        ControlerAim.UpdateWeapoMuzzle();
+    
+    }
+
+    public void DropArmorVest()
+    {
+        if (ControlerSlot.Shop[0]) PutObjects(ControlerSlot.Shop[0], ControlerSlot.SlotsShop[0], false);
+        if (ControlerSlot.Shop[1]) PutObjects(ControlerSlot.Shop[1], ControlerSlot.SlotsShop[1], false);
+        if (ControlerSlot.Shop[2]) PutObjects(ControlerSlot.Shop[2], ControlerSlot.SlotsShop[2], false);
+
+        if (ControlerSlot.MyPistol01) PutObjects(ControlerSlot.MyPistol01, ControlerSlot.SlotPistol01, false);
+        PutObjects(ControlerSlot.MyKnife01, ControlerSlot.SlotKnife01, false);
 
     }
 
-    
     public void Drop()
     {
-        //Debug.Log("1");
-        if (PointForDrop && ControlerForSlots.ObjectInHand)
+        if (PointForDrop && ControlerSlot.ObjectInHand)
         {
-            //Debug.Log("2");
-            if (ControlerForSlots.ObjectInHand) ControlerForShoot = ControlerForSlots.ObjectInHand.GetComponent<ShootControler>();
+            if (ControlerSlot.ObjectInHand) ControlerForShoot = ControlerSlot.ObjectInHand.GetComponent<ShootControler>();
             else ControlerForShoot = null;
 
             if (ControlerForShoot)
             {
-                //Debug.Log("3");
-                DropObjects(ControlerForSlots.ObjectInHand.transform, PointForDrop.transform, false);
+                DropObjects(ControlerSlot.ObjectInHand.transform, PointForDrop.transform, false);
 
-                if (ControlerForSlots.MyWeapon01 && ControlerForSlots.ObjectInHand.gameObject == ControlerForSlots.MyWeapon01.gameObject)
+                if (ControlerSlot.MyWeapon01 && ControlerSlot.ObjectInHand.gameObject == ControlerSlot.MyWeapon01.gameObject)
                 {
-                    ControlerForSlots.MyWeapon01 = null;
+                    ControlerSlot.MyWeapon01 = null;
                     ControlerToUi.SlotWeapon01.sprite = None;
                     DeleyReferenceShops();
-                    //Debug.Log("2");
                 }
 
-                if (ControlerForSlots.MyWeapon02 && ControlerForSlots.ObjectInHand.gameObject == ControlerForSlots.MyWeapon02.gameObject)
+                if (ControlerSlot.MyWeapon02 && ControlerSlot.ObjectInHand.gameObject == ControlerSlot.MyWeapon02.gameObject)
                 {
-                    ControlerForSlots.MyWeapon02 = null;
+                    ControlerSlot.MyWeapon02 = null;
                     ControlerToUi.SlotWeapon02.sprite = None;
                     DeleyReferenceShops();
                 }
 
-                if (ControlerForSlots.MyPistol01 && ControlerForSlots.ObjectInHand.gameObject == ControlerForSlots.MyPistol01.gameObject)
+                if (ControlerSlot.MyPistol01 && ControlerSlot.ObjectInHand.gameObject == ControlerSlot.MyPistol01.gameObject)
                 {
-                    ControlerForSlots.MyPistol01 = null;
+                    ControlerSlot.MyPistol01 = null;
                     ControlerToUi.SlotPistol01.sprite = None;
                     DeleyReferenceShops();
                 }
@@ -62,19 +82,19 @@ public class DropControler : MethodsFromDevelopers
                 {
                     if (ControlerForShoot.WeaponShoop)
                     {
-                        if (ControlerForSlots.Shop[0] && ControlerForShoot.WeaponShoop.transform == ControlerForSlots.Shop[0].transform)
+                        if (ControlerSlot.Shop[0] && ControlerForShoot.WeaponShoop.transform == ControlerSlot.Shop[0].transform)
                         {
-                            ControlerForSlots.Shop[0] = null;
+                            ControlerSlot.Shop[0] = null;
                             ControlerToUi.SlotShop01.sprite = None;
                         }
-                        else if (ControlerForSlots.Shop[1] && ControlerForShoot.WeaponShoop.transform == ControlerForSlots.Shop[1].transform)
+                        else if (ControlerSlot.Shop[1] && ControlerForShoot.WeaponShoop.transform == ControlerSlot.Shop[1].transform)
                         {
-                            ControlerForSlots.Shop[1]  = null;
+                            ControlerSlot.Shop[1]  = null;
                             ControlerToUi.SlotShop02.sprite = None;
                         }
-                        else if (ControlerForSlots.Shop[2]  && ControlerForShoot.WeaponShoop.transform == ControlerForSlots.Shop[2] .transform)
+                        else if (ControlerSlot.Shop[2]  && ControlerForShoot.WeaponShoop.transform == ControlerSlot.Shop[2] .transform)
                         {
-                            ControlerForSlots.Shop[2]  = null;
+                            ControlerSlot.Shop[2]  = null;
                             ControlerToUi.SlotShop03.sprite = None;
                         }
                     }

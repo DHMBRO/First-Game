@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 5752078726147703554}
   - component: {fileID: 8980927656229120753}
   - component: {fileID: 4272853772287642738}
+  - component: {fileID: -3995368212777285479}
   - component: {fileID: 1134387109113757903}
   - component: {fileID: 3901563627357055046}
   m_Layer: 0
@@ -150,7 +151,7 @@ MonoBehaviour:
   ShowTheAmmo: 0
   SpriteForLoot: {fileID: 21300000, guid: 5bf1bf23c3394f64d9f63958632c2dbd, type: 3}
   HasOwner: 0
-  NameOfThisObject: PISTOL - Glok19
+  NameOfThisObject: Pistol - Glok19
   Descrition: 
   ParametersLoot:
   - 
@@ -187,9 +188,22 @@ MonoBehaviour:
   BulletPrefabDmage: 35
   Mass: 0
   BulletPrefabSpeed: 42
-  ColletSpeed: 250
+  ColletSpeed: 5
   ChangedBulletPrefabAngle: 4.765
   UnLimitedAmmo: 0
+--- !u!114 &-3995368212777285479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4965438261709640327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c57428b6a28249c4a9eb4e5d361ea5ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AimFieldFoView: 60
 --- !u!114 &1134387109113757903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,7 +232,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d769b754154c77042aae9ea5c8dd47f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentNoiceRadiuse: 0
   DebugingTheWork: 0
 --- !u!1 &5362117552002414686
 GameObject:

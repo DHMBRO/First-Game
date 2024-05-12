@@ -7,7 +7,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
     [SerializeField] private MovePlayer MovePlayer;
 
     //Other Components
-    [SerializeField] public ShootControler ControlerShoot;
+    [SerializeField] private ShootControler ControlerShoot;
     [SerializeField] private StelthScript StelthScript;
     [SerializeField] private DivertAttention DivertAttention;
     [SerializeField] private ExecutoreScriptToPlayer EEScript;
@@ -25,9 +25,10 @@ public class PlayerControler : MonoBehaviour, HeadInterface
     //Camera Components
     [SerializeField] private Transform PlayerCameraF1;
     [SerializeField] public ThirdPersonCamera CameraPlayerF3;
+    private ScopeControler ControlerScope;
     
     //Inventory Components
-    [SerializeField] private UiControler ControlerUi;
+    [SerializeField] public UiControler ControlerUi;
     [SerializeField] private UseAndDropTheLoot UseAndDropTheLootScr;
 
     //Game Objects
@@ -81,6 +82,11 @@ public class PlayerControler : MonoBehaviour, HeadInterface
         SlotControler = GetComponent<SlotControler>();
         ControlerAim = GetComponent<AimControler>();
 
+        if (CameraPlayerF3)
+        {
+            ControlerScope = CameraPlayerF3.GetComponent<ScopeControler>();
+        }
+
         //All Debug
         if (!ControlerUi) Debug.Log("Not set ControlerUi");
     }
@@ -93,7 +99,11 @@ public class PlayerControler : MonoBehaviour, HeadInterface
         if (ControlerUi)
         {
             if (Input.GetKeyDown(KeyCode.I)) ControlerUi.OpenOrCloseInventory();
-            if (ControlerUi.InventoryIsOpen) WhatPlayerDo = Player.OpenInventory;
+            if (ControlerUi.InventoryIsOpen)
+            {
+                WhatPlayerDo = Player.OpenInventory;
+                return;
+            }
             else if(WhatPlayerDo == Player.OpenInventory) WhatPlayerDo = Player.Null;
             
             ControlerUi.InterfaceControler();
@@ -150,7 +160,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             //Stelth 
             if (WhatPlayerHandsDo != HandsPlayer.CarryBody)
             {
-                if (Input.GetKeyDown(KeyCode.LeftControl) && WhatPlayerLegsDo != LegsPlayer.SatDown)
+                if (Input.GetKeyDown(KeyCode.LeftControl))
                 {
                     WhatPlayerLegsDo = LegsPlayer.SatDown;
                     MovePlayer.ControlCapsuleColider(true);
@@ -249,33 +259,35 @@ public class PlayerControler : MonoBehaviour, HeadInterface
 
             //SlotControler
             if (SlotControler && WhatPlayerHandsDo == HandsPlayer.Null)
-            {
-                SlotControler.MovingGunForSlots();
-                
+            {    
                 if (SlotControler.CurrentSlotHand && SlotControler.ObjectInHand)
                 {
                     ControlerShoot = SlotControler.ObjectInHand.GetComponent<ShootControler>();
-                    
                 }
-                
-                // Change Object In Hand
+                else
+                {
+                    ControlerShoot = null;
+                }
+
                 if (Input.GetKeyDown("1"))
                 {
-                    //SlotControler.UpdateTypeWeaponInHand();
                     SlotControler.ChangingSlots();
                     ControlerAim.UpdateWeapoMuzzle();
-
-                    //ControlerUi.UpdateCurrentScopeImage();
-
-
                 }
                 SlotControler.UpdateTypeWeaponInHand();
+                
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    SlotControler.Recharge();
+                }
 
             }
             
             // Shooting || Weapon
             if (ControlerShoot && CameraPlayerF3)
             {
+                ScopeScr ScrScope = ControlerShoot.GetComponent<ScopeScr>(); 
+
                 if (Input.GetKey(KeyCode.Mouse0) && ControlerShoot.NowIsEnable())
                 {
                     Ray ForwardCamera = new Ray(CameraPlayerF3.transform.position, CameraPlayerF3.transform.forward);
@@ -283,6 +295,8 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                     ControlerShoot.SetShootDelegat();
                     ScrAnimationsPlayer.ShootTrigger();
                 }
+
+                ControlerScope.UseScope(ScrScope, Input.GetKey(KeyCode.Mouse1));
             }
             
             //Divert Attention 
@@ -313,6 +327,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             }
 
         }
+
         ScrAnimationsPlayer.UpdateAnimations();
 
     }

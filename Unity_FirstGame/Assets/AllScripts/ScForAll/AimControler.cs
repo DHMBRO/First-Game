@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AimControler : MonoBehaviour
@@ -15,7 +16,8 @@ public class AimControler : MonoBehaviour
     SlotControler ControlerSlot;
 
     [SerializeField] bool CanAim = true;
-    
+    RaycastHit[] HitPoints = new RaycastHit[10];
+
 
     void Start()
     {
@@ -25,17 +27,23 @@ public class AimControler : MonoBehaviour
 
     public void UpdateWeapoMuzzle()
     {
+        Debug.Log("UpdateWeapoMuzzle is work");
+
         if (!ControlerSlot.ObjectInHand)
         {
-            WeaponMuzzle.eulerAngles = Vector3.zero;
+            if (WeaponMuzzle)
+            {
+                WeaponMuzzle.eulerAngles = Vector3.zero;
+            }
             WeaponMuzzle = null;
         }
-
-
-
-        if (ControlerSlot.ObjectInHand && ControlerSlot.ObjectInHand.GetComponent<ShootControler>())
+        else if (ControlerSlot.ObjectInHand.GetComponent<ShootControler>())
         {
             WeaponMuzzle = ControlerSlot.ObjectInHand.GetComponent<ShootControler>().Muzzle.transform;
+        }
+        else
+        {
+            WeaponMuzzle = null;
         }
     }
 
@@ -59,10 +67,38 @@ public class AimControler : MonoBehaviour
 
         
         Vector3 DirectionWeapon = ButtSlot.eulerAngles;
+        RaycastHit SelectedPoint = new RaycastHit();
 
-        if (Physics.Raycast(PlayerCamera.position, PlayerCamera.forward, out RaycastHit HitInfo, MaxDistanceEyes))
+        HitPoints = Physics.RaycastAll(PlayerCamera.position, PlayerCamera.forward, MaxDistanceEyes);
+        List<RaycastHit> ValidValues = new List<RaycastHit>();
+
+        for (int i = 0; i < HitPoints.Length; i++)
         {
-            WeaponMuzzle.LookAt(HitInfo.point);
+            if (HitPoints[i].collider != null && HitPoints[i].collider.isTrigger == false)
+            {
+                ValidValues.Add(HitPoints[i]);
+                
+            }
+        }
+
+        for (int i = 0;i < ValidValues.Count;i++)
+        {
+            if (SelectedPoint.collider == null)
+            {
+                SelectedPoint = ValidValues[i];
+            }
+            else
+            {
+                if ((ValidValues[i].point - WeaponMuzzle.position).magnitude <= (SelectedPoint.point - WeaponMuzzle.position).magnitude)
+                {
+                    SelectedPoint = ValidValues[i];
+                }
+            }
+        }
+
+        if (SelectedPoint.collider != null)
+        {
+            WeaponMuzzle.LookAt(SelectedPoint.point);
         }
         else
         {

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8658747838941348289}
   - component: {fileID: 7347797770348224600}
   - component: {fileID: 9150502356221412890}
+  - component: {fileID: 1758599905245807722}
   - component: {fileID: 2434178922148979108}
   - component: {fileID: -398578843373071948}
   m_Layer: 0
@@ -122,9 +123,22 @@ MonoBehaviour:
   BulletPrefabDmage: 50
   Mass: 0
   BulletPrefabSpeed: 70
-  ColletSpeed: 250
+  ColletSpeed: 5
   ChangedBulletPrefabAngle: 2.86
   UnLimitedAmmo: 0
+--- !u!114 &1758599905245807722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477317795365491750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c57428b6a28249c4a9eb4e5d361ea5ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AimFieldFoView: 60
 --- !u!114 &2434178922148979108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,7 +167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d769b754154c77042aae9ea5c8dd47f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentNoiceRadiuse: 0
   DebugingTheWork: 0
 --- !u!1 &1765363267750734824
 GameObject:

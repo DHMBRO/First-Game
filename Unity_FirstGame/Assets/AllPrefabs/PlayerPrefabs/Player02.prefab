@@ -114,6 +114,7 @@ Transform:
   m_Children:
   - {fileID: 5028615846564861412}
   - {fileID: 2476801796749729086}
+  - {fileID: 3445581163921136218}
   m_Father: {fileID: 935961475211729313}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -494,7 +495,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2795767220084459791}
   m_Layer: 0
-  m_Name: SlotShop03
+  m_Name: SlotShop01
   m_TagString: UnloadingSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -759,6 +760,68 @@ Transform:
   m_Father: {fileID: 4354878319767878039}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: -119.964}
+--- !u!1 &4733894611357813331
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3445581163921136218}
+  - component: {fileID: 7385110184613627192}
+  - component: {fileID: 8698084426106751731}
+  m_Layer: 6
+  m_Name: BodySlot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3445581163921136218
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4733894611357813331}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.22, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 470050301926751443}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &7385110184613627192
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4733894611357813331}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.3
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8698084426106751731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4733894611357813331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e9d93138b50a6c4fba253ab1890d6e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnerHpScript: {fileID: 0}
+  BodyPart: 2
+  DamageMultiplier: 1
 --- !u!1 &5202823881704093862
 GameObject:
   m_ObjectHideFlags: 0
@@ -800,7 +863,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7419324047145549906}
-  m_Layer: 0
+  - component: {fileID: 2683412848671859832}
+  - component: {fileID: 9212106146670375122}
+  m_Layer: 6
   m_Name: HeadObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -815,13 +880,41 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5665221572061346460}
   m_LocalRotation: {x: 0.0000000016298145, y: -0.00000010179281, z: 0.00004363301, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 0.063, z: 0}
   m_LocalScale: {x: 0.6666667, y: 0.66666657, z: 0.66666657}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5624399594569609980}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &2683412848671859832
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5665221572061346460}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.16
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &9212106146670375122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5665221572061346460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e9d93138b50a6c4fba253ab1890d6e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnerHpScript: {fileID: 0}
+  BodyPart: 1
+  DamageMultiplier: 1.2
 --- !u!1 &5730699500055248682
 GameObject:
   m_ObjectHideFlags: 0
@@ -996,7 +1089,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6514131520663713175}
   m_Layer: 0
-  m_Name: SlotShop01
+  m_Name: SlotShop03
   m_TagString: UnloadingSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1605,9 +1698,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   SlotsShop:
-  - {fileID: 6514131520663713175}
-  - {fileID: 5153421162628138250}
   - {fileID: 2795767220084459791}
+  - {fileID: 5153421162628138250}
+  - {fileID: 6514131520663713175}
   PointForShopPistol01: {fileID: 0}
   PointForShopWeapon01: {fileID: 0}
   PointForShopWeapon02: {fileID: 0}
@@ -1651,7 +1744,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PointForDrop: {fileID: 5028615846564861412}
   ObjectToDrop: {fileID: 0}
-  ControlerForSlots: {fileID: 7874716152253843916}
+  ControlerSlot: {fileID: 0}
   ControlerForShoot: {fileID: 0}
   ControlerPlayer: {fileID: 9222820105927190343}
   ControlerToUi: {fileID: 1241725871821509503, guid: e17cf8c04a5bc94448773012c9e76214, type: 3}
@@ -1820,7 +1913,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d769b754154c77042aae9ea5c8dd47f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentNoiceRadiuse: 0
   DebugingTheWork: 0
 --- !u!114 &3895106789929070742
 MonoBehaviour:
@@ -1849,6 +1941,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LightSources: []
   HeadObject: {fileID: 5665221572061346460}
+  BaseIlluminationLvl: 0.2
 --- !u!114 &8884787740129407110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1983,6 +2076,10 @@ PrefabInstance:
     - target: {fileID: -8021001004253913084, guid: 32c385e148d9c094ea210cf380d5d4f9, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: -1781356600409242780, guid: 32c385e148d9c094ea210cf380d5d4f9, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 32c385e148d9c094ea210cf380d5d4f9, type: 3}
       propertyPath: m_Name

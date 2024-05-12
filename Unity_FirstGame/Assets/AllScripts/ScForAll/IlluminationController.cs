@@ -8,6 +8,7 @@ public class IlluminationController : MonoBehaviour
     public List<LightControl> LightSources = new List<LightControl>();
     [SerializeField] public GameObject HeadObject;
     GameObject Sun;
+    [SerializeField] public float BaseIlluminationLvl = 0.2f;
     void Start()
     {
         GameObject [] SunObj = GameObject.FindGameObjectsWithTag("Directional Light");
@@ -46,17 +47,18 @@ public class IlluminationController : MonoBehaviour
             return 0.0f;
         }
 
-        Debug.DrawLine(HeadObject.transform.position, HeadObject.transform.position + (-Sun.transform.forward * 50.0f));
+       // Debug.DrawLine(HeadObject.transform.position, HeadObject.transform.position + (-Sun.transform.forward * 50.0f));
         RaycastHit[] Hitresults = Physics.RaycastAll(HeadObject.transform.position, -Sun.transform.forward);
         foreach (RaycastHit Hitres in Hitresults)
         {
-            if (Hitres.collider.gameObject.transform.root.gameObject == gameObject.transform.root)
+            if (Hitres.collider.gameObject.transform.root.gameObject == gameObject.transform.root || 
+                !Hitres.collider.gameObject.transform.root.gameObject.isStatic)
             {
                 continue;
             }
             return 0.0f;
         }
        
-        return Mathf.Clamp(((Sun.transform.eulerAngles.x + 20.0f) / 60), 0.0f, 1.0f);
+        return BaseIlluminationLvl;
     }
 }

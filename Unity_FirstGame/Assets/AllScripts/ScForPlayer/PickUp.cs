@@ -131,7 +131,7 @@ public class PickUp : MethodsFromDevelopers
                                 break;
                             }
                         }
-                        Destroy(ObjectToPickUp);
+                        Destroy(ObjectToPickUp.gameObject);
                     }
                 }
             }
@@ -232,6 +232,7 @@ public class PickUp : MethodsFromDevelopers
             PutOn();
 
         }
+        
         void ChangeArmor()
         {
             Debug.Log("2");
@@ -285,22 +286,11 @@ public class PickUp : MethodsFromDevelopers
 
     void PutOn()
     {
-        //Debug.Log("Pick up armor is working !");
-
-
         if (SlotControler && !SlotControler.MyArmor) return;
         ArmorControler MyArmor = SlotControler.MyArmor.GetComponent<ArmorControler>();
-        //Debug.Log("You did the (if) !");
-
+        
         if (MyArmor && MyArmor.Use)
         {
-            //SlotControler.SlotsShop[0] = MyArmor.SlotShop01;
-            //SlotControler.SlotsShop[1] = MyArmor.SlotShop02;
-            //SlotControler.SlotsShop[2] = MyArmor.SlotShop03;
-
-            //SlotControler.SlotPistol01 = MyArmor.SlotPistol01;
-            //SlotControler.SlotKnife01 = MyArmor.SlotKnife01;
-
             if (SlotControler.Shop[0]) PutObjects(SlotControler.Shop[0], MyArmor.SlotShop01, false);
             if (SlotControler.Shop[1]) PutObjects(SlotControler.Shop[1], MyArmor.SlotShop02, false);
             if (SlotControler.Shop[2]) PutObjects(SlotControler.Shop[2], MyArmor.SlotShop03, false);

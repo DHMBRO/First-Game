@@ -192,6 +192,7 @@ GameObject:
   - component: {fileID: 9150541323002077809}
   - component: {fileID: 1494336737514438527}
   - component: {fileID: 1168737740397766884}
+  - component: {fileID: 8089945999991513139}
   m_Layer: 0
   m_Name: StelthGlok19
   m_TagString: Pistol
@@ -299,9 +300,22 @@ MonoBehaviour:
   BulletPrefabDmage: 30
   Mass: 0
   BulletPrefabSpeed: 56
-  ColletSpeed: 250
+  ColletSpeed: 5
   ChangedBulletPrefabAngle: 3.575
   UnLimitedAmmo: 0
+--- !u!114 &8089945999991513139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6427584356790551656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c57428b6a28249c4a9eb4e5d361ea5ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AimFieldFoView: 60
 --- !u!1 &6601536499366403592
 GameObject:
   m_ObjectHideFlags: 0

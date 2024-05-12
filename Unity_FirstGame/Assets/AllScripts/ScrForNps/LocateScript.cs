@@ -16,13 +16,14 @@ public class LocateScript : MonoBehaviour
     List<BaseInformationScript> Targets;
     protected HpScript MyHpScript;
     protected float FullVisionDistance = 1.5f;
-    
+    public InfScript MyInfo;
     void Start()
     {
         MyHpScript = gameObject.GetComponent<HpScript>();
         Targets = new List<BaseInformationScript>();
         ZombiePatrolScript = gameObject.GetComponent<PatrolScriptNavMesh>();
         MyHeadScript = gameObject.GetComponent<HeadScript>();
+        MyInfo = gameObject.GetComponent<InfScript>();
     }
     private void Update()
     {
@@ -39,6 +40,14 @@ public class LocateScript : MonoBehaviour
                 {
                     Targets.Add(BaseInfo);
                     DefineMyTarget();
+                }
+            }
+            //Changes
+            else if(BaseInfo.HealthScript.State == MyHpScript.State)
+            {
+                if (CanISee(BaseInfo.gameObject))
+                {
+                    MyInfo.Allies.Add(BaseInfo.gameObject);
                 }
             }
         }
@@ -130,9 +139,9 @@ public class LocateScript : MonoBehaviour
 
 
         float AngleToTestTarget = Vector3.Angle(gameObject.transform.forward, TestTarget.transform.position - gameObject.transform.position);
-
         if (AngleToTestTarget <= VisionAngle)
         {
+            Debug.DrawRay(MyHeadScript.GetHeadPosition(), gameObject.transform.forward,Color.blue);
            
             Vector3 Rotate = TestTarget.transform.position - transform.position;
             Vector3 RotateHead = BaseInfo.MyHeadScript.GetHeadPosition() - MyHeadScript.GetHeadPosition();
@@ -140,9 +149,16 @@ public class LocateScript : MonoBehaviour
 
             MyHeadScript.Head.transform.rotation = Quaternion.LookRotation(RotateHead);
             RaycastHit[] HitResults = Physics.RaycastAll(HeadForward, CurrentAgrDistance);
-            
-            foreach (RaycastHit HitResult in HitResults)
+            List<RaycastHit> HitresultsList = new List<RaycastHit>(HitResults);
+
+            HitresultsList.Sort((p1, p2) => p1.distance.CompareTo(p2.distance));
+
+
+            Debug.Log(" angles: " + AngleToTestTarget + " <= " + VisionAngle + " : " + (AngleToTestTarget <= VisionAngle));
+       
+            foreach (RaycastHit HitResult in HitresultsList)
             {
+                Debug.Log(HitResult.collider.gameObject.name + " " + HitResult.distance );
                 if (HitResult.collider.gameObject.transform.root.gameObject == gameObject)
                 {
                     continue;
@@ -157,6 +173,7 @@ public class LocateScript : MonoBehaviour
                 }
             }
         }
+        
         if ((TestTarget.transform.position - gameObject.transform.position).magnitude < 1.5f)
         {
             return true;

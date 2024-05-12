@@ -19,7 +19,9 @@ public class InfScript : MonoBehaviour
     [SerializeField] public float RotationSpeed;
     [SerializeField] public Types MyType;
     [SerializeField] public float WaitingTime;
-
+    public Vector3 InterestPosition;
+    public List<GameObject> Allies;
+    public float SpiningSpeed = 10.0f;
     public enum Types
     {
         Camper,
@@ -47,7 +49,14 @@ public class InfScript : MonoBehaviour
             SetState(new GuardState(this));
         }
     }
-
+    private void OnCollisionEnter(Collision collision)
+    {
+        Bullet BulletScr = collision.gameObject.GetComponent<Bullet>();
+        if (BulletScr && InterestPosition != Vector3.zero)
+        {
+           InterestPosition = BulletScr.LauncherBullet.transform.position;
+        }
+    }
     void Update()
     {
 
@@ -107,15 +116,13 @@ public class InfScript : MonoBehaviour
     public void SetState(ILogic NewState)
     {
        CurrentState = NewState;
+        Debug.Log("New State = " + NewState);
     }
     public bool IHearSomething()
     {
         return SoundTaker.IHearSomething;
     }
-    public Vector3 UNeedToCheckThis()
-    {  
-        return SoundTaker.InerestPos;
-    }
+   
     public void NullInterest()
     {
         SoundTaker.NullInterest();
@@ -158,5 +165,16 @@ public class InfScript : MonoBehaviour
        return BaseInfoScript.MyHeadScript.GetHeadPosition();
     }
     
+    /*public Transform WhatIShouldToCheck() 
+    {
+        foreach(Transform Position in InterestPositions)
+        {
+            //InterestPositions ;
 
+        }
+    }*/
+    public Vector3 UNeedToCheckThis()
+    {
+        return InterestPosition;
+    } 
 }

@@ -1,19 +1,19 @@
 using UnityEngine;
 public class SoundCreatorScript : MonoBehaviour
 {
-    [SerializeField] public float CurrentNoiceRadiuse = 0.0f;
+    
     [SerializeField] bool DebugingTheWork = false;
     
-    public void CreateNoise(float NewNoiceRadius)
+    public void CreateNoise(float NoiceRadius)
     {
-        CurrentNoiceRadiuse = NewNoiceRadius;
-        if(NewNoiceRadius <= 0.0f)
+        
+        if(NoiceRadius <= 0.0f)
         {
             return;
         }
         
         Collider[] Colliders;
-        Colliders = Physics.OverlapSphere(gameObject.transform.position, CurrentNoiceRadiuse);
+        Colliders = Physics.OverlapSphere(gameObject.transform.position, NoiceRadius);
         foreach (Collider Colider in Colliders)
         {
             if (Colider.gameObject && Colider.gameObject != gameObject)
@@ -27,18 +27,19 @@ public class SoundCreatorScript : MonoBehaviour
                     {
                         TakerPosition = BaseInfo.MyHeadScript.GetHeadPosition();
                     }
-                    float DistanceToNoice = (gameObject.transform.position - BaseInfo.MyHeadScript.GetHeadPosition()).magnitude;
+                    float DistanceToListener = (gameObject.transform.position - BaseInfo.MyHeadScript.GetHeadPosition()).magnitude;
+                    float CurrentNoiceRadius = NoiceRadius;
                     RaycastHit[] Hitres = Physics.RaycastAll(gameObject.transform.position, BaseInfo.MyHeadScript.GetHeadPosition());
                     foreach (RaycastHit obj in Hitres)
                     {
                         if (obj.collider.gameObject.transform.root != Colider.gameObject.transform.root && obj.collider.gameObject.isStatic)
                         {
-                            DistanceToNoice = DistanceToNoice / 5;
+                            CurrentNoiceRadius /= 5;
                         }
                     }
-                    if (DistanceToNoice >= NewNoiceRadius)
+                    if (DistanceToListener <= CurrentNoiceRadius)
                     {
-                        SoundScript.TakeSound(gameObject.transform.position);
+                            SoundScript.TakeSound(gameObject.transform.position);
                     }
                 }
             }
@@ -46,7 +47,7 @@ public class SoundCreatorScript : MonoBehaviour
         
         if (DebugingTheWork)
         {
-            Debug.Log("Sound Created " + NewNoiceRadius + " == Radius  ");
+            Debug.Log("Sound Created " + NoiceRadius + " == Radius  ");
 
         }
 
