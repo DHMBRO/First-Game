@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class ArmorControler : MonoBehaviour, IEquipment
+public class ArmorControler : MonoBehaviour, IEquipment, IDamageAbsrption
 {
     [SerializeField] public LevelObject LevelArmor;
 
@@ -83,9 +83,39 @@ public class ArmorControler : MonoBehaviour, IEquipment
         {
             Armor.transform.position = OffSetDontUse;
         }
-
-    
     }
 
+    public float ReturnNewDamage(float Damage)
+    {
+        if (ControlerArmorPlates.Count > 0)
+        {
+            if (ControlerArmorPlates[ControlerArmorPlates.Count - 1].CurrentHp > Damage)
+            {
+                ControlerArmorPlates[ControlerArmorPlates.Count - 1].CurrentHp -= Damage;
+                Damage = 0.0f;
+                
+            }
+            else 
+            {
+                Damage -= ControlerArmorPlates[ControlerArmorPlates.Count - 1].CurrentHp;
+
+                ControlerArmorPlates[ControlerArmorPlates.Count - 1].CurrentHp = 0.0f;
+                Destroy(ControlerArmorPlates[ControlerArmorPlates.Count - 1].gameObject);
+                ControlerArmorPlates.RemoveAt(ControlerArmorPlates.Count - 1);
+
+                if (ControlerArmorPlates.Count > 0)
+                { 
+                    ControlerArmorPlates[ControlerArmorPlates.Count - 1].CurrentHp -= Damage;
+                    Damage = 0.0f;
+                }
+            }
+                
+
+        } 
+
+
+
+        return Damage;
+    }
 
 }

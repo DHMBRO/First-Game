@@ -64,12 +64,20 @@ public class MovePlayer : MonoBehaviour
     public bool AuditToStandUp()
     {
         Vector3 StartPosForRay = transform.position + transform.up * HeightWneSatDown;
+        bool Result = false; 
 
         if (Physics.Raycast(StartPosForRay, transform.up, out RaycastHit HitResult, HeightWenStand))
         {
-            return false;    
+            if (HitResult.collider != null)
+            {
+                Result = true;
+            }
+            else Result = false;
+
         }
-        else return true;
+        Debug.Log(Result);
+
+        return Result; 
     }
 
     public void RotateBodyPlayer(SpeedLegsPlayer WhatSpeedPlayerLegs)

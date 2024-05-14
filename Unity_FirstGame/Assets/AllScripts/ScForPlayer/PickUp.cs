@@ -161,6 +161,8 @@ public class PickUp : MethodsFromDevelopers
                 ChangeHelmet();
             }
             else PickUpHelmet();
+
+            SlotControler.HeadDamageScript.UpdateEquipment(SlotControler.MyHelmet.gameObject);
         }
         else if (ObjectToPickUp.CompareTag("Armor"))
         {
@@ -175,6 +177,8 @@ public class PickUp : MethodsFromDevelopers
             {
                 ControlerUi.InterfaceControler();
             }
+
+            SlotControler.BodyDamageScript.UpdateEquipment(SlotControler.MyArmor.gameObject);
         }
         else if (BackPackIsPickUped.CompareTag("BackPack"))
         {
