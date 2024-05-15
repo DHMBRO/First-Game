@@ -160,12 +160,12 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             //Stelth 
             if (WhatPlayerHandsDo != HandsPlayer.CarryBody)
             {
-                if (Input.GetKeyDown(KeyCode.LeftControl))
+                if (WhatPlayerLegsDo != LegsPlayer.SatDown && Input.GetKeyDown(KeyCode.LeftControl))
                 {
                     WhatPlayerLegsDo = LegsPlayer.SatDown;
                     MovePlayer.ControlCapsuleColider(true);
                 }
-                else if (Input.GetKeyDown(KeyCode.LeftControl) && MovePlayer.AuditToStandUp())
+                else if (WhatPlayerLegsDo == LegsPlayer.SatDown && Input.GetKeyDown(KeyCode.LeftControl) && MovePlayer.AuditToStandUp())
                 {
                     WhatPlayerLegsDo = LegsPlayer.Null;
                     MovePlayer.ControlCapsuleColider(false);

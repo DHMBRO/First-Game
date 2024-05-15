@@ -223,12 +223,17 @@ public class ButtonControler : MethodsFromDevelopers
             {
                 SelectedObject = ControlerSlot.MyHelmet;
                 ControlerSlot.MyHelmet = null;
+                ControlerSlot.HeadDamageScript.UpdateEquipment();
             }
             else if (IndexToList == 7)
             {
                 SelectedObject = ControlerSlot.MyArmor;
+                
                 ControlerDrop.DropArmorVest();
-                ControlerSlot.MyArmor = null;   
+                
+                ControlerSlot.MyArmor = null;
+                ControlerSlot.BodyDamageScript.UpdateEquipment();
+                
             }
 
         }

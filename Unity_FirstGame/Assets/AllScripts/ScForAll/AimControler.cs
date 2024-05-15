@@ -27,8 +27,7 @@ public class AimControler : MonoBehaviour
 
     public void UpdateWeapoMuzzle()
     {
-        Debug.Log("UpdateWeapoMuzzle is work");
-
+        
         if (!ControlerSlot.ObjectInHand)
         {
             if (WeaponMuzzle)

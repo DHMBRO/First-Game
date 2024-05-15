@@ -38,7 +38,10 @@ public class SlotControler : MethodsFromDevelopers
     [SerializeField] public Transform SlotHelmet;
     [SerializeField] public Transform SlotArmor;
     [SerializeField] public Transform SlotBackPack;
-    
+    //
+    [SerializeField] public GetDamageScript HeadDamageScript;
+    [SerializeField] public GetDamageScript BodyDamageScript;
+    //
     [SerializeField] public Transform[] Shop = new Transform[3];
     //
     [SerializeField] public Transform[] SlotsShop = new Transform[3];
@@ -63,6 +66,8 @@ public class SlotControler : MethodsFromDevelopers
     //
     [SerializeField] public Transform ObjectInHand = null;
     [SerializeField] public Transform LastWeaponInHand = null;
+
+
 
     void Start()
     {

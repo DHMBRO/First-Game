@@ -34,3 +34,8 @@ public interface IEquipment
 {
     public void ChangePosition(bool Use);
 }
+
+public interface IDamageAbsrption
+{
+    public float ReturnNewDamage(float Damage);
+}
