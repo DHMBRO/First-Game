@@ -48,6 +48,7 @@ public class LocateScript : MonoBehaviour
                 if (CanISee(BaseInfo.gameObject))
                 {
                     MyInfo.Allies.Add(BaseInfo.gameObject);
+                    Debug.Log("add friend "+ BaseInfo.gameObject);
                 }
             }
         }
@@ -92,7 +93,7 @@ public class LocateScript : MonoBehaviour
         
         
 
-        if (!TestTarget)
+          if (!TestTarget)
         {
             return false;
         }
