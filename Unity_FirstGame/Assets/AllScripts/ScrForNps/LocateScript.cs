@@ -42,15 +42,6 @@ public class LocateScript : MonoBehaviour
                     DefineMyTarget();
                 }
             }
-            //Changes
-            else if(BaseInfo.HealthScript.State == MyHpScript.State)
-            {
-                if (CanISee(BaseInfo.gameObject))
-                {
-                    MyInfo.Allies.Add(BaseInfo.gameObject);
-                    Debug.Log("add friend "+ BaseInfo.gameObject);
-                }
-            }
         }
     }
     /* private void OnTriggerStay(Collider other)
@@ -88,7 +79,7 @@ public class LocateScript : MonoBehaviour
         DefineMyTarget();
         return Target && CanISee(Target.gameObject);
     }
-    protected bool CanISee(GameObject TestTarget)
+    public bool CanISee(GameObject TestTarget)
     {
         
         
