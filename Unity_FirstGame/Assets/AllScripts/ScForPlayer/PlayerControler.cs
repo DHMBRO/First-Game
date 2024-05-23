@@ -137,7 +137,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                 else WhatSpeedPlayerLegs = SpeedLegsPlayer.Null;
 
                 //Run
-                if (Input.GetKey(KeyCode.LeftShift) && WhatPlayerHandsDo == HandsPlayer.Null )
+                if (Input.GetKey(KeyCode.LeftShift) && WhatPlayerHandsDo == HandsPlayer.Null)
                 {
                     WhatSpeedPlayerLegs = SpeedLegsPlayer.Run;
                 }
@@ -269,13 +269,10 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                     ControlerShoot = null;
                 }
 
-                if (Input.GetKeyDown("1"))
-                {
-                    SlotControler.ChangingSlots();
-                    ControlerAim.UpdateWeapoMuzzle();
-                }
-                SlotControler.UpdateTypeWeaponInHand();
-                
+                SlotControler.ChangingSlots();
+                SlotControler.UpdateTypeWeaponInHand(); // > 
+                ControlerAim.UpdateWeapoMuzzle(); // <
+
                 if (Input.GetKeyDown(KeyCode.R))
                 {
                     SlotControler.Recharge();
