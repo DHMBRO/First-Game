@@ -428,24 +428,28 @@ public class SlotControler : MethodsFromDevelopers
         //Setup References
         
         int Count = 0;
+        
+        /*
         if (MyKnife01)
         {
             AllWeapons.Add(Count, MyKnife01.transform);
             AllSlotsForWeapon.Add(MyKnife01.name, SlotKnife01.transform);
         }
-        if (MyPistol01)
+        */
+
+        if (Input.GetKeyDown("3") && MyPistol01)
         {
             Count++;
             AllWeapons.Add(Count, MyPistol01.transform);
             AllSlotsForWeapon.Add(MyPistol01.name, SlotPistol01.transform);
         }
-        if (MyWeapon01) 
+        if (Input.GetKeyDown("1") && MyWeapon01) 
         {
             Count++;
             AllWeapons.Add(Count, MyWeapon01.transform);
             AllSlotsForWeapon.Add(MyWeapon01.name, SlotBack01.transform);
         }
-        if (MyWeapon02) 
+        if (Input.GetKeyDown("2") && MyWeapon02) 
         {
             Count++;
             AllWeapons.Add(Count, MyWeapon02.transform);
