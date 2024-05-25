@@ -15,7 +15,7 @@ public class Speedometer : MonoBehaviour
             _chekTime = _delay + Time.time;
             
             _currentSpeed = (_lastPosition - transform.position).magnitude;
-            Debug.Log(_currentSpeed);
+            //Debug.Log(_currentSpeed);
             _lastPosition = transform.position; 
             
         }

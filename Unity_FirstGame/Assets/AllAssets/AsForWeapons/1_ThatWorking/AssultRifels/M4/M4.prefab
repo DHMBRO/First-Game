@@ -204,7 +204,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AimFieldFoView: 60
-  UsingFieldFoView: 1
 --- !u!114 &6586805248889520886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,7 +232,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d769b754154c77042aae9ea5c8dd47f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentNoiceRadiuse: 0
   DebugingTheWork: 0
 --- !u!1 &2135052165428356616
 GameObject:
@@ -591,6 +589,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 6005951270125294382}
     m_Modifications:
     - target: {fileID: 558664957267930554, guid: 9beae3c03257c1943bb0f2947f464346, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402686934530012837, guid: 9beae3c03257c1943bb0f2947f464346, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}

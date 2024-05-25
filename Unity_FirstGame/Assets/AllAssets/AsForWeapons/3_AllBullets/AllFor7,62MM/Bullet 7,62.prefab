@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5853051819225235337}
   - component: {fileID: 7304925855896743491}
   - component: {fileID: 3893536265693839369}
-  - component: {fileID: 1092475189742672358}
   - component: {fileID: 4957157167008265353}
   m_Layer: 8
   m_Name: Bullet 7,62
@@ -33,6 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 967023107946412899}
+  - {fileID: 455116757884088396}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -66,114 +66,6 @@ CapsuleCollider:
   m_Height: 0.02
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0.005}
---- !u!96 &1092475189742672358
-TrailRenderer:
-  serializedVersion: 2
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2817725760091043437}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 0
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: a2d3a7d8a74094d40b74aa645d19946e, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Time: 0.5
-  m_Parameters:
-    serializedVersion: 3
-    widthMultiplier: 0.12
-    widthCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: -0.94758433
-        outSlope: -0.94758433
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.17958272
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.9900818
-        value: 0.12637329
-        inSlope: -0.9002765
-        outSlope: -0.9002765
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.10109437
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    colorGradient:
-      serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 0.6901961}
-      key1: {r: 1, g: 0.3847993, b: 0, a: 0.62352943}
-      key2: {r: 0, g: 0, b: 0, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
-      key4: {r: 0, g: 0, b: 0, a: 0}
-      key5: {r: 0, g: 0, b: 0, a: 0}
-      key6: {r: 0, g: 0, b: 0, a: 0}
-      key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 0
-      ctime1: 65535
-      ctime2: 0
-      ctime3: 0
-      ctime4: 0
-      ctime5: 0
-      ctime6: 0
-      ctime7: 0
-      atime0: 0
-      atime1: 65535
-      atime2: 0
-      atime3: 0
-      atime4: 0
-      atime5: 0
-      atime6: 0
-      atime7: 0
-      m_Mode: 0
-      m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
-    numCornerVertices: 0
-    numCapVertices: 0
-    alignment: 0
-    textureMode: 0
-    shadowBias: 0
-    generateLightingData: 0
-  m_MinVertexDistance: 50
-  m_Autodestruct: 0
-  m_Emitting: 1
 --- !u!114 &4957157167008265353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,6 +112,68 @@ Transform:
   m_Father: {fileID: 5853051819225235337}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1001 &1063410283104945909
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5853051819225235337}
+    m_Modifications:
+    - target: {fileID: 617301300034795193, guid: e9cb1fa2bedfb9344bb62907936b8def, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 617301300034795193, guid: e9cb1fa2bedfb9344bb62907936b8def, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 617301300034795193, guid: e9cb1fa2bedfb9344bb62907936b8def, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 617301300034795193, guid: e9cb1fa2bedfb9344bb62907936b8def, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 617301300034795193, guid: e9cb1fa2bedfb9344bb62907936b8def, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 617301300034795193, guid: e9cb1fa2bedfb9344bb62907936b8def, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 617301300034795193, guid: e9cb1fa2bedfb9344bb62907936b8def, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 617301300034795193, guid: e9cb1fa2bedfb9344bb62907936b8def, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 617301300034795193, guid: e9cb1fa2bedfb9344bb62907936b8def, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 617301300034795193, guid: e9cb1fa2bedfb9344bb62907936b8def, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 617301300034795193, guid: e9cb1fa2bedfb9344bb62907936b8def, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2166713341413804267, guid: e9cb1fa2bedfb9344bb62907936b8def, type: 3}
+      propertyPath: m_Name
+      value: TrailForBullets
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e9cb1fa2bedfb9344bb62907936b8def, type: 3}
+--- !u!4 &455116757884088396 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 617301300034795193, guid: e9cb1fa2bedfb9344bb62907936b8def, type: 3}
+  m_PrefabInstance: {fileID: 1063410283104945909}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1392530233591634619
 PrefabInstance:
   m_ObjectHideFlags: 0
