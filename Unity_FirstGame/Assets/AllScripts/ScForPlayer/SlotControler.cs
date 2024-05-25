@@ -418,7 +418,7 @@ public class SlotControler : MethodsFromDevelopers
     public void ChangingSlots()
     {
         //Rferences
-        Dictionary<int, Transform> AllWeapons = new Dictionary<int, Transform>();
+        //Dictionary<int, Transform> AllWeapons = new Dictionary<int, Transform>();
         Dictionary<string, Transform> AllSlotsForWeapon = new Dictionary<string, Transform>();
         
         Transform SelectedWeapon = null;
@@ -427,8 +427,8 @@ public class SlotControler : MethodsFromDevelopers
 
         //Setup References
         
-        int Count = 0;
-        
+        //int Count = 0;
+
         /*
         if (MyKnife01)
         {
@@ -437,56 +437,39 @@ public class SlotControler : MethodsFromDevelopers
         }
         */
 
-        if (Input.GetKeyDown("3") && MyPistol01)
+        if (MyWeapon01)
         {
-            Count++;
-            AllWeapons.Add(Count, MyPistol01.transform);
-            AllSlotsForWeapon.Add(MyPistol01.name, SlotPistol01.transform);
+            if(Input.GetKeyDown("1")) SelectedWeapon = MyWeapon01;
+            AllSlotsForWeapon.Add(MyWeapon01.name, SlotBack01);
         }
-        if (Input.GetKeyDown("1") && MyWeapon01) 
+        if (MyWeapon02) 
         {
-            Count++;
-            AllWeapons.Add(Count, MyWeapon01.transform);
-            AllSlotsForWeapon.Add(MyWeapon01.name, SlotBack01.transform);
+            if(Input.GetKeyDown("2")) SelectedWeapon = MyWeapon02;
+            AllSlotsForWeapon.Add(MyWeapon02.name, SlotBack02);
         }
-        if (Input.GetKeyDown("2") && MyWeapon02) 
+        if (MyPistol01)
         {
-            Count++;
-            AllWeapons.Add(Count, MyWeapon02.transform);
-            AllSlotsForWeapon.Add(MyWeapon02.name, SlotBack02.transform);
-        }
+            if(Input.GetKeyDown("3")) SelectedWeapon = MyPistol01;
+            AllSlotsForWeapon.Add(MyPistol01.name, SlotPistol01);
+        } 
 
-
-        if (ObjectInHand)
+        if (SelectedWeapon)
         {
-            for (int i = 0;i < AllWeapons.Count;i++)
-            {
-                if (AllWeapons.Count > 0 && AllWeapons[i].name == ObjectInHand.name)
-                {
-                    if (i == AllWeapons.Count - 1)
-                    {
-                        SelectedWeapon = AllWeapons[0];
-                    }
-                    else
-                    {
-                        SelectedWeapon = AllWeapons[i + 1];
-                    }
-                    break;
-                }
-            }
-
             ShootControlerWeapon = SelectedWeapon.GetComponent<ShootControler>();
+        }
+        else return;
 
+        
+        if (ObjectInHand)
+        {   
             RemoveWeapon();
             SelectSlotHand();
-            ClotheWeapon();
-
+            PutWeapon();
         }
-        else
+        else 
         {
-            SelectedWeapon = AllWeapons[0];
             SelectSlotHand();
-            ClotheWeapon();
+            PutWeapon();
         }
 
         void SelectSlotHand()
@@ -506,7 +489,7 @@ public class SlotControler : MethodsFromDevelopers
             else SlotHand = SlotHandForPistols;
         }
 
-        void ClotheWeapon()
+        void PutWeapon()
         {
             PutObjects(SelectedWeapon, SlotHand, false);
 
@@ -514,14 +497,14 @@ public class SlotControler : MethodsFromDevelopers
             {
                 SelectedWeapon.localPosition += ShootControlerWeapon.ShoulderOffSet;
             }
-
-
+            
             ObjectInHand = SelectedWeapon;
         }
 
         void RemoveWeapon()
         {
             PutObjects(ObjectInHand.transform, AllSlotsForWeapon[ObjectInHand.name], false);
+            Debug.Log("Weapon removed");
         }
 
        

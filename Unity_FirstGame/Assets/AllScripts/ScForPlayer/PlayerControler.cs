@@ -260,7 +260,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             //SlotControler
             if (SlotControler && WhatPlayerHandsDo == HandsPlayer.Null)
             {    
-                if (SlotControler.CurrentSlotHand && SlotControler.ObjectInHand)
+                if (SlotControler.CurrentSlotHand)
                 {
                     ControlerShoot = SlotControler.ObjectInHand.GetComponent<ShootControler>();
                 }
@@ -276,8 +276,8 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                 if (Input.GetKeyDown(KeyCode.R))
                 {
                     SlotControler.Recharge();
-                }
-
+                } 
+                
             }
             
             // Shooting || Weapon
