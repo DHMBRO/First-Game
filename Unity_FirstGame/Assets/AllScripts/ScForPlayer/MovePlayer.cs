@@ -64,17 +64,19 @@ public class MovePlayer : MonoBehaviour
     public bool AuditToStandUp()
     {
         Vector3 StartPosForRay = transform.position + transform.up * HeightWneSatDown;
-        bool Result = false; 
+        bool Result = false;
 
         if (Physics.Raycast(StartPosForRay, transform.up, out RaycastHit HitResult, HeightWenStand))
         {
-            if (HitResult.collider != null)
+            if (HitResult.articulationBody != null)
             {
                 Result = true;
             }
             else Result = false;
-
         }
+        else Result = true;
+
+
         Debug.Log(Result);
 
         return Result; 
@@ -163,23 +165,12 @@ public class MovePlayer : MonoBehaviour
 
         MyRigidbody.velocity = new Vector3(0, MyRigidbody.velocity.y, 0);
         
-
-
-        //transform.rotation = TargetRotation;
-        /*
-        if (MyRigidbody.velocity.magnitude - MyRigidbody.velocity.y != 0f)
-        {
-            MyRigidbody.velocity = MyRigidbody.velocity.normalized * Speed;
-        }
-        */
     }
 
 
     
     public void Jump()
     {
-       
-        
         if (!CanJump) return;
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -189,34 +180,6 @@ public class MovePlayer : MonoBehaviour
             //Debug.Log(ControlerPlayer.Juming);
         }
         else ControlerPlayer.IsJuming = false;
-
-        /*
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            RaycastHit Result = new RaycastHit();
-            //Ray RayForJump = new Ray(transform.position, -transform.up);
-
-            Debug.DrawRay(transform.position, -transform.up * 0.50f, Color.blue);
-            if (Physics.Raycast(transform.position, -transform.up, out RaycastHit HitResult, 1.0f))
-            {
-                Result = HitResult;
-                if (Result.collider)
-                {
-                    if (Result.collider.tag != "")
-                    {
-                        JumpCount = 7;
-                    }
-                }
-            }
-
-        }
-        if (JumpCount > 0)
-        {
-            MyRigidbody.AddRelativeForce(new Vector3(0f, 1f * JumpForce, 0f), ForceMode.Force);
-            JumpCount--;
-            
-        }
-        */
     }
 
 

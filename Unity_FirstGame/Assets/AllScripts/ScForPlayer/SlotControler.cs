@@ -426,7 +426,7 @@ public class SlotControler : MethodsFromDevelopers
         ShootControler ShootControlerWeapon = null;
 
         //Setup References
-        
+
         //int Count = 0;
 
         /*
@@ -451,7 +451,14 @@ public class SlotControler : MethodsFromDevelopers
         {
             if(Input.GetKeyDown("3")) SelectedWeapon = MyPistol01;
             AllSlotsForWeapon.Add(MyPistol01.name, SlotPistol01);
-        } 
+        }
+        
+        if (Input.GetKeyDown("`"))
+        {
+            RemoveWeapon();
+        }
+
+
 
         if (SelectedWeapon)
         {
@@ -504,7 +511,8 @@ public class SlotControler : MethodsFromDevelopers
         void RemoveWeapon()
         {
             PutObjects(ObjectInHand.transform, AllSlotsForWeapon[ObjectInHand.name], false);
-            Debug.Log("Weapon removed");
+            ObjectInHand = null;
+
         }
 
        

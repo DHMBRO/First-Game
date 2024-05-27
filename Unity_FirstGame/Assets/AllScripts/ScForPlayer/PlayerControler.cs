@@ -260,7 +260,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             //SlotControler
             if (SlotControler && WhatPlayerHandsDo == HandsPlayer.Null)
             {    
-                if (SlotControler.CurrentSlotHand)
+                if (SlotControler.ObjectInHand)
                 {
                     ControlerShoot = SlotControler.ObjectInHand.GetComponent<ShootControler>();
                 }
