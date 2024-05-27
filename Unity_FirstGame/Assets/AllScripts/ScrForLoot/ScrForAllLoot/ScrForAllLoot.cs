@@ -9,6 +9,7 @@ public class ScrForAllLoot : MonoBehaviour
     [SerializeField] public bool ShowTheAmmo;
     [SerializeField] public Sprite SpriteForLoot;
     [SerializeField] public bool HasOwner = false;
+    [SerializeField] public bool ShowNameOfThisObject = true;
 
     //Description Object
     [SerializeField] public string NameOfThisObject;

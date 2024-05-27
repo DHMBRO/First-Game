@@ -251,7 +251,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             //InteractionScr
             if (PlayerInteractionScr)
             {
-                if (Input.GetKeyUp(KeyCode.E))
+                if (Input.GetKeyUp(KeyCode.F))
                 {
                     PlayerInteractionScr.Work();
                 }

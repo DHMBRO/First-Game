@@ -111,14 +111,13 @@ public class UiControler : MonoBehaviour
 
     void UpdateNameOnTable(ScrForAllLoot LocalObjectScript)
     {
-        if (!TableNameObjectForPickUp)
+        if (!TableNameObjectForPickUp || !LocalObjectScript.ShowNameOfThisObject)
         {
             Debug.Log("Not set TableNameObjectForPickUp !");
             return;
         }
         TableNameObjectForPickUp.text = LocalObjectScript.NameOfThisObject;
         
-
     }
     
     public void UpdateCurrentScopeImage(Image NewScope)

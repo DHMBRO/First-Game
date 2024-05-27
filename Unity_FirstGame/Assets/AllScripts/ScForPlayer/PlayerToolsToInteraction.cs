@@ -28,8 +28,6 @@ public class PlayerToolsToInteraction : MonoBehaviour
         else Debug.Log("Not set CameraPlayer");
 
         ControlerPlayer = GetComponent<PlayerControler>();
-        
-
     }
 
     public Vector3 RaycastByInteraction()
@@ -54,8 +52,7 @@ public class PlayerToolsToInteraction : MonoBehaviour
 
 
     public void InteractionWithRayCast()
-    {
-        
+    {   
         if(!CameraCompPlayer)
         {
             Debug.Log("Not set CameraCompPlayer");
