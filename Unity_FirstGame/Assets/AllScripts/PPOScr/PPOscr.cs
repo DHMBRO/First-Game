@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PPOscr : MonoBehaviour, IInteractionWithObjects
+public class PPOscr : MonoBehaviour
 {
     private Quaternion ToTargetRotation;
     GameObject Turget;
@@ -20,21 +18,17 @@ public class PPOscr : MonoBehaviour, IInteractionWithObjects
     [SerializeField] HorisontalOrVertical RotateTo;
     float bulletSpeed = 0;
     // Start is called before the first frame update
-    void Start()
+    
+    
+    public void UpdateState(bool NewState)
     {
-        
+        PPOIsOn = NewState;        
     }
-    public bool AuditToUse()
-    {
-        return true;
-    }
-    public void Interaction()
-    {
-        PPOIsOn = false;
-    }
+    
     // Update is called once per frame
     void Update()
     {
+        
         if (GetComponentInParent<PPOSettings>().PPORotationSpeed != 0f)
         {
             RSpeed = GetComponentInParent<PPOSettings>().PPORotationSpeed;

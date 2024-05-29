@@ -1,22 +1,24 @@
 using UnityEngine;
 
-public class InteractioPPO : MonoBehaviour, IInteractionWithObjects
+public class InteractioWithObject : MonoBehaviour, IInteractionWithObjects
 {
     ScrForAllLoot ScrForAllLoot;
-    public PPOIs LocalPPO;
+    public IsEnable ObjectIs;
 
-    [SerializeField] bool PPOIsEnable = false;
     [SerializeField] string WhenEnableTextIs;
     [SerializeField] string WhenDisableTextIs;
 
-    [SerializeField] int TimesCanBeUse = 1;
-    [SerializeField] bool InfinityTimesCanBeUse = false;
+    int TimesCanBeUse = 1;
+    bool InfinityTimesCanBeUse = false;
+    bool Enable = false;
+
 
     private void Start()
     {
         ScrForAllLoot = GetComponent<ScrForAllLoot>();
+        
+        ObjectIs += UpdateInfo;
 
-        LocalPPO += UpdateInfo;
         UpdateInfo(false);        
     }
 
@@ -29,16 +31,15 @@ public class InteractioPPO : MonoBehaviour, IInteractionWithObjects
             Result = false;
         }
 
-
         return Result;
     }
 
     public void Interaction()
     {
         if(!InfinityTimesCanBeUse) TimesCanBeUse--;
-        PPOIsEnable = !PPOIsEnable;
+        Enable = !Enable;
 
-        LocalPPO(PPOIsEnable);
+        ObjectIs(Enable);
         
     }
 
@@ -53,13 +54,7 @@ public class InteractioPPO : MonoBehaviour, IInteractionWithObjects
             ScrForAllLoot.NameOfThisObject = WhenDisableTextIs;
         }
 
-        if (!InfinityTimesCanBeUse && TimesCanBeUse == 0)
-        {
-            ScrForAllLoot.ShowNameOfThisObject = false;            
-        }
-
-
-        PPOIsEnable = EnablePPO;
+        Enable = EnablePPO;
 
     }
 
