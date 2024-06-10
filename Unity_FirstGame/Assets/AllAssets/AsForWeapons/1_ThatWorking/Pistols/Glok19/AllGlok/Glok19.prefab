@@ -30,9 +30,42 @@ Transform:
   m_Children:
   - {fileID: 5462682335930476255}
   - {fileID: 6361972049594101034}
+  - {fileID: 7035237069842107462}
   m_Father: {fileID: 5738456080911321149}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &2275420924816171270
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7035237069842107462}
+  m_Layer: 0
+  m_Name: IKSetUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7035237069842107462
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2275420924816171270}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 769454014405524138}
+  m_Father: {fileID: 6003285049178130591}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4423625220979593759
 GameObject:
   m_ObjectHideFlags: 0
@@ -65,6 +98,37 @@ Transform:
   m_Father: {fileID: 6361972049594101034}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!1 &4618843881633657932
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 769454014405524138}
+  m_Layer: 0
+  m_Name: LeftArmIKPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &769454014405524138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4618843881633657932}
+  m_LocalRotation: {x: -0.5, y: -0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 0.112, y: -0.028, z: -0.044}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7035237069842107462}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 90}
 --- !u!1 &4965438261709640327
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,6 +215,7 @@ MonoBehaviour:
   ShowTheAmmo: 0
   SpriteForLoot: {fileID: 21300000, guid: 5bf1bf23c3394f64d9f63958632c2dbd, type: 3}
   HasOwner: 0
+  ShowNameOfThisObject: 1
   NameOfThisObject: Pistol - Glok19
   Descrition: 
   ParametersLoot:
@@ -172,6 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30bbbf443eeb6cf47ab83dd338f2c45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UseShoulderOffSet: 1
   SlotForUseShop: {fileID: 7749285495643769842}
   WeaponShoop: {fileID: 0}
   GameObjectForRay: {fileID: 4423625220979593759}
@@ -179,10 +245,11 @@ MonoBehaviour:
   BulletPrefab: {fileID: 6895987822013454153, guid: 85ae06ebd503ee2438ceb02f16fa97f9, type: 3}
   Collet: {fileID: 7377190171975279841, guid: ba817832a2193304fb74541789147f8b, type: 3}
   ColletPoint: {fileID: 5362117552002414686}
+  LeftArmPositionIK: {fileID: 769454014405524138}
   TheGun: 1
   CaliberToWeapon: 3
   Weapon: 0
-  ShoulderOffSet: {x: 0, y: 0.1, z: 0.8}
+  ShoulderOffSet: {x: -0.038, y: -0.001, z: 0.008}
   ShotDeley: 0.875
   ShotTime: 0
   BulletPrefabDmage: 35

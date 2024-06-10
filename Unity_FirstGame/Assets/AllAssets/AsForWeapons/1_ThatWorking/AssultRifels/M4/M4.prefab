@@ -30,6 +30,7 @@ Transform:
   m_Children:
   - {fileID: 5964182374482855598}
   - {fileID: 6919284418606839544}
+  - {fileID: 7069611152876261033}
   m_Father: {fileID: 636830789876600585}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -151,6 +152,7 @@ MonoBehaviour:
   ShowTheAmmo: 0
   SpriteForLoot: {fileID: 21300000, guid: 308dbe82aff9325459e2458344bb10d6, type: 3}
   HasOwner: 0
+  ShowNameOfThisObject: 1
   NameOfThisObject: Weapon - M4
   Descrition: 
   ParametersLoot:
@@ -172,6 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30bbbf443eeb6cf47ab83dd338f2c45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UseShoulderOffSet: 1
   SlotForUseShop: {fileID: 4399293721489520581}
   WeaponShoop: {fileID: 0}
   GameObjectForRay: {fileID: 5528742215050240608}
@@ -179,10 +182,11 @@ MonoBehaviour:
   BulletPrefab: {fileID: 4797105551472130353, guid: 9beae3c03257c1943bb0f2947f464346, type: 3}
   Collet: {fileID: 1049788153312626777, guid: 07671d050b95a524b8b8db0bf34811a6, type: 3}
   ColletPoint: {fileID: 665726274810567144}
+  LeftArmPositionIK: {fileID: 1307855198994917240}
   TheGun: 0
   CaliberToWeapon: 2
   Weapon: 0
-  ShoulderOffSet: {x: 0.2, y: 0, z: 0.45}
+  ShoulderOffSet: {x: -0.014, y: 0.101, z: 0.006}
   ShotDeley: 0.36
   ShotTime: 0
   BulletPrefabDmage: 45
@@ -363,6 +367,69 @@ Transform:
   m_Father: {fileID: 6919284418606839544}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!1 &6343007291981414964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1307855198994917240}
+  m_Layer: 0
+  m_Name: LeftArmIKPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1307855198994917240
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6343007291981414964}
+  m_LocalRotation: {x: -0.07715561, y: 0.14996107, z: 0.98148996, w: -0.09075309}
+  m_LocalPosition: {x: -0.289, y: -0.072, z: -0.105}
+  m_LocalScale: {x: 0.6666665, y: 0.6666667, z: 0.6666665}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7069611152876261033}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -16.282, y: -10.728, z: 192.105}
+--- !u!1 &8203760200101508008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7069611152876261033}
+  m_Layer: 0
+  m_Name: IKSetup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7069611152876261033
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8203760200101508008}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1307855198994917240}
+  m_Father: {fileID: 2119691628799857245}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &104393870818764167
 PrefabInstance:
   m_ObjectHideFlags: 0

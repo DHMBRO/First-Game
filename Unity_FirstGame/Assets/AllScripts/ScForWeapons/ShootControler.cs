@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShootControler : MonoBehaviour
 {
     public WeaponIsShoting SetShootDelegat;
+    public bool UseShoulderOffSet = true;
     private bool CanWork;
 
     [SerializeField] public Transform SlotForUseShop;
@@ -14,6 +15,7 @@ public class ShootControler : MonoBehaviour
     [SerializeField] private GameObject BulletPrefab;
     [SerializeField] private GameObject Collet;
     [SerializeField] private GameObject ColletPoint;
+    [SerializeField] public Transform LeftArmPositionIK;
 
     public TypeWeapon TheGun;
     public TypeCaliber CaliberToWeapon;

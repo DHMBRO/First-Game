@@ -205,7 +205,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1064926501720871172}
   m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 0, z: -0.2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1281,7 +1281,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8646621967482254202}
   m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 0, z: -0.2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1559,6 +1559,7 @@ MonoBehaviour:
   DivertAttention: {fileID: 3059040256925347778}
   EEScript: {fileID: 2320318701797134959}
   ScrAnimationsPlayer: {fileID: 69157573147947094}
+  ControlrPlayerIK: {fileID: 0}
   PlayerTools: {fileID: 1187246579547213906}
   PickUpPlayer: {fileID: 7778607237951541594}
   PlayerInteractionScr: {fileID: 5192534622578152218}
@@ -1675,8 +1676,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentSlotHand: {fileID: 0}
   SlotHandForUseLoot: {fileID: 5356016234576479898}
-  SlotHandForPistols: {fileID: 2476801796749729086}
-  SlotHandForWeapons: {fileID: 2476801796749729086}
+  SlotHandForPistols: {fileID: 8542197722180041908}
+  SlotHandForWeapons: {fileID: 3100735423632468982}
   ThatTimeSlot: {fileID: 0}
   ObjectInThatTimeSlot: {fileID: 0}
   SlotBack01: {fileID: 6130160416243130551}
@@ -2150,6 +2151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f08e8add055229f4292037adab1c388c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LeftArmPosition: {fileID: 0}
 --- !u!4 &1756812146448605311 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 32c385e148d9c094ea210cf380d5d4f9, type: 3}
