@@ -7,12 +7,13 @@ public class PlayerControler : MonoBehaviour, HeadInterface
     [SerializeField] private MovePlayer MovePlayer;
 
     //Other Components
-    [SerializeField] private ShootControler ControlerShoot;
+    [SerializeField] public ShootControler ControlerShoot;
     [SerializeField] private StelthScript StelthScript;
     [SerializeField] private DivertAttention DivertAttention;
     [SerializeField] private ExecutoreScriptToPlayer EEScript;
     [SerializeField] private ControlerAnimationsPlayer ScrAnimationsPlayer;
-    
+    [SerializeField] private IKControlerForPlayer ControlrPlayerIK;
+
     //Main Components To Work Player
     [SerializeField] private PlayerToolsToInteraction PlayerTools; 
     [SerializeField] private PickUp PickUpPlayer;
@@ -81,6 +82,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
         ControlerDrop = GetComponent<DropControler>();
         SlotControler = GetComponent<SlotControler>();
         ControlerAim = GetComponent<AimControler>();
+        ControlrPlayerIK = GetComponentInChildren<IKControlerForPlayer>();
 
         if (CameraPlayerF3)
         {
@@ -276,8 +278,9 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                 if (Input.GetKeyDown(KeyCode.R))
                 {
                     SlotControler.Recharge();
-                } 
-                
+                }
+
+                ControlrPlayerIK.SetSetupIKReferences();
             }
             
             // Shooting || Weapon

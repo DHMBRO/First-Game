@@ -102,23 +102,22 @@ public class ThirdPersonCamera : MonoBehaviour
             CurrentMoveBackDistance = MoveBackDistanceAiming;
             CurrentMoveRightDistance = MoveRightDistanceAiming;
             
+            Debug.Log("1");
+            
         }
         else
         {
             CurrentMoveBackDistance = MoveBackDistanceDefault;
             CurrentMoveRightDistance = MoveRightDistanceDefault;
+            
+            Debug.Log("2");
         }
 
-        //Set Position Default
+        //Set Position 
         transform.position = TargetCamera.TransformPoint(DesirableVector);
         
         transform.position += transform.right * CurrentMoveRightDistance;
         transform.position -= transform.forward * CurrentMoveBackDistance;
-
-        /*
-        transform.position = TargetCamera.TransformPoint(DesirableVector) + (transform.right * CurrentMoveRightDistance);
-        transform.position = TargetCamera.TransformPoint(DesirableVector) +  -(transform.forward * CurrentMoveBackDistance);
-        */
 
 
         if (ControlerPlayer.StealthKilling)
