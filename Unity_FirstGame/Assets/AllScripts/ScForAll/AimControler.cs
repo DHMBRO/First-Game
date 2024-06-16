@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AimControler : MonoBehaviour
@@ -18,6 +19,7 @@ public class AimControler : MonoBehaviour
     [SerializeField] bool CanAim = true;
     RaycastHit[] HitPoints = new RaycastHit[10];
 
+    Vector3 LookAtPoint = new Vector3(); 
 
     void Start()
     {
@@ -98,10 +100,12 @@ public class AimControler : MonoBehaviour
         if (SelectedPoint.collider != null)
         {
             WeaponMuzzle.LookAt(SelectedPoint.point);
+            LookAtPoint = SelectedPoint.collider.transform.position;
         }
         else
         {
-            WeaponMuzzle.LookAt(PlayerCamera.position + PlayerCamera.forward * MaxDistanceEyes);
+            LookAtPoint = (PlayerCamera.position + PlayerCamera.forward * MaxDistanceEyes);
+            WeaponMuzzle.LookAt(LookAtPoint);   
         }
 
         ButtSlot.LookAt(PlayerCamera.position + PlayerCamera.forward * MaxDistanceEyes);
@@ -113,5 +117,9 @@ public class AimControler : MonoBehaviour
         
     }
 
+    public Vector3 GetLookPoint()
+    {
+        return LookAtPoint;
+    }
 
 }
