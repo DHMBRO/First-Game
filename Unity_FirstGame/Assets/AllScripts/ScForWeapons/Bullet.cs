@@ -10,11 +10,8 @@ public class Bullet : MonoBehaviour
         Debug.Log("Collider: " + collision.gameObject.name);
 
         GetDamageScript GetDamageScr = collision.gameObject.GetComponent<GetDamageScript>();
-        if (GetDamageScr)
-        {
-            GetDamageScr.GetDamage(BulletDamage);
-            Destroy(gameObject);
-        }
+        if (GetDamageScr) GetDamageScr.GetDamage(BulletDamage);
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
