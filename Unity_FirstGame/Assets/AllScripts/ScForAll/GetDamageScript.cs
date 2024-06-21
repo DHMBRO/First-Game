@@ -19,6 +19,8 @@ public class GetDamageScript : MonoBehaviour
     {
         OwnerHpScript = GetComponentInParent<HpScript>();
         CurrentEqipment = GetComponentInChildren<IDamageAbsrption>();
+
+        OwnerHpScript.HitBoxes += DisableHitBoxes;
     }
 
     public void UpdateEquipment(GameObject Equipment)
@@ -46,6 +48,25 @@ public class GetDamageScript : MonoBehaviour
             Debug.Log(Damage);
 
             OwnerHpScript.InflictingDamage(Damage);
+        }
+    }
+
+    public void DisableHitBoxes()
+    {
+        SphereCollider HeadHitBox;
+        CapsuleCollider BodyHitBox;
+
+
+        if (BodyPart == PartBody.Head)
+        {
+            HeadHitBox = GetComponent<SphereCollider>();
+            HeadHitBox.enabled = false;
+        }
+
+        if (BodyPart == PartBody.Body)
+        {
+            BodyHitBox = GetComponent<CapsuleCollider>();
+            BodyHitBox.enabled = false;
         }
     }
 

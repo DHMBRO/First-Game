@@ -1,28 +1,16 @@
 using UnityEngine;
 
-public class TestScr : MonoBehaviour, IInteractionWithObjects
+public class TestScr : MonoBehaviour
 {
-    [SerializeField] Vector3 ChangeRotateTo;
-    
-    [SerializeField] bool Used = false;
-    [SerializeField] int TimesCanUse = 1;
-
-    public bool AuditToUse()
+    private void OnCollisionEnter(Collision collision)
     {
-        if (TimesCanUse > 0)
-        {
-            TimesCanUse--;
-            Used = false;
-        }
-        else Used = true;
+        Debug.Log(collision.collider.name);
 
-        return !Used;
     }
 
-    public void Interaction()
+    private void OnTriggerEnter(Collider other)
     {
-        transform.localEulerAngles += ChangeRotateTo;
-
+        Debug.Log(other.gameObject.name);
     }
 
 }

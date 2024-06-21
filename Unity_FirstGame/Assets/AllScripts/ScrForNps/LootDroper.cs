@@ -19,8 +19,6 @@ public class LootDroper : MethodsFromDevelopers
 
     void DropLoot(bool Alive)
     {
-        Debug.Log("3");
-        
         AllLoot.Add(InfoScript.Attack.TerroristWeaponScript.transform);
 
 

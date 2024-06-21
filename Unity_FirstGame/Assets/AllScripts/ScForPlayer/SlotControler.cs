@@ -502,7 +502,7 @@ public class SlotControler : MethodsFromDevelopers
 
             if (ShootControlerWeapon && ShootControlerWeapon.UseShoulderOffSet)
             {
-                SelectedWeapon.localPosition += ShootControlerWeapon.ShoulderOffSet;
+                SelectedWeapon.localPosition += ShootControlerWeapon.HandOffSet;
             }
             
             ObjectInHand = SelectedWeapon;

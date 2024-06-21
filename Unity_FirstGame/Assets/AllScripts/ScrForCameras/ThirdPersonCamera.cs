@@ -100,17 +100,12 @@ public class ThirdPersonCamera : MonoBehaviour
             TargetCamera.transform.localEulerAngles = new Vector3(0.0f, transform.localEulerAngles.y, 0.0f);
 
             CurrentMoveBackDistance = MoveBackDistanceAiming;
-            CurrentMoveRightDistance = MoveRightDistanceAiming;
-            
-            Debug.Log("1");
-            
+            CurrentMoveRightDistance = MoveRightDistanceAiming; 
         }
         else
         {
             CurrentMoveBackDistance = MoveBackDistanceDefault;
             CurrentMoveRightDistance = MoveRightDistanceDefault;
-            
-            Debug.Log("2");
         }
 
         //Set Position 

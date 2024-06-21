@@ -21,6 +21,7 @@ public class ShootControler : MonoBehaviour
     public TypeCaliber CaliberToWeapon;
     public StateWeapon Weapon;
 
+    [SerializeField] public Vector3 HandOffSet;
     [SerializeField] public Vector3 ShoulderOffSet;
     [SerializeField] public float ShotDeley = 1.0f;
     [SerializeField] public float ShotTime = 0.0f;

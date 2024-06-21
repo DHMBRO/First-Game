@@ -26,7 +26,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
     //Camera Components
     [SerializeField] private Transform PlayerCameraF1;
     [SerializeField] public ThirdPersonCamera CameraPlayerF3;
-    private ScopeControler ControlerScope;
+    [SerializeField] private ScopeControler ControlerScope;
     
     //Inventory Components
     [SerializeField] public UiControler ControlerUi;
@@ -67,7 +67,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
         //Movement
         Move = GetComponent<Move1F>();
         MovePlayer = GetComponent<MovePlayer>();
-        
+
         //Other Scripts
         DivertAttention = GetComponent<DivertAttention>();
         StelthScript = GetComponent<StelthScript>();
@@ -273,7 +273,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
 
                 SlotControler.ChangingSlots();
                 SlotControler.UpdateTypeWeaponInHand(); // > 
-                ControlerAim.UpdateWeapoMuzzle(); // <
+                if(ControlerAim && ControlerAim.enabled) ControlerAim.UpdateWeapoMuzzle(); // <
 
                 if (Input.GetKeyDown(KeyCode.R))
                 {
@@ -288,7 +288,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             {
                 ScopeScr ScrScope = ControlerShoot.GetComponent<ScopeScr>(); 
 
-                if (Input.GetKey(KeyCode.Mouse0) && ControlerShoot.NowIsEnable())
+                if (Input.GetKey(KeyCode.Mouse0) && ControlerShoot.NowIsEnable() && StateCamera == CameraPlayer.Aiming)
                 {
                     Ray ForwardCamera = new Ray(CameraPlayerF3.transform.position, CameraPlayerF3.transform.forward);
                     
@@ -296,7 +296,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                     ScrAnimationsPlayer.ShootTrigger();
                 }
 
-                ControlerScope.UseScope(ScrScope, Input.GetKey(KeyCode.Mouse1));
+                ControlerScope.UseScope(ScrScope, StateCamera == CameraPlayer.Aiming);
             }
             
             //Divert Attention 

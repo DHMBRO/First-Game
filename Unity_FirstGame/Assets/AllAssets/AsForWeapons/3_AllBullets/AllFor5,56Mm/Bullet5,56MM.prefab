@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3125150932284538947}
   - component: {fileID: 8997594846246271416}
-  - component: {fileID: 558664957267930554}
+  - component: {fileID: 6696680326395896730}
   - component: {fileID: 4042529922148702081}
   m_Layer: 8
   m_Name: Bullet5,56MM
@@ -81,11 +81,11 @@ Rigidbody:
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 1
---- !u!136 &558664957267930554
-CapsuleCollider:
+  m_CollisionDetection: 2
+--- !u!135 &6696680326395896730
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -94,10 +94,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
+  serializedVersion: 2
   m_Radius: 0.004
-  m_Height: 0.02
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0.005}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4042529922148702081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,6 +165,14 @@ PrefabInstance:
     - target: {fileID: 2166713341413804267, guid: e9cb1fa2bedfb9344bb62907936b8def, type: 3}
       propertyPath: m_Name
       value: TrailForBullets
+      objectReference: {fileID: 0}
+    - target: {fileID: 2166713341413804267, guid: e9cb1fa2bedfb9344bb62907936b8def, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3889028434160494721, guid: e9cb1fa2bedfb9344bb62907936b8def, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9cb1fa2bedfb9344bb62907936b8def, type: 3}

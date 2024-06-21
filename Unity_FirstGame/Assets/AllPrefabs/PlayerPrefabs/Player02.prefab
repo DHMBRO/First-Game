@@ -222,7 +222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2476801796749729086}
   m_Layer: 0
-  m_Name: WeaponButtSlot
+  m_Name: RightArmPoint
   m_TagString: SlotForUse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1385,6 +1385,7 @@ GameObject:
   - component: {fileID: 1420557981419096237}
   - component: {fileID: 8884787740129407110}
   - component: {fileID: 5626582941560416949}
+  - component: {fileID: 8086464743341821375}
   m_Layer: 11
   m_Name: Player02
   m_TagString: Player01
@@ -1569,6 +1570,7 @@ MonoBehaviour:
   ControlerAim: {fileID: 0}
   PlayerCameraF1: {fileID: 0}
   CameraPlayerF3: {fileID: 0}
+  ControlerScope: {fileID: 8086464743341821375}
   ControlerUi: {fileID: 0}
   UseAndDropTheLootScr: {fileID: 0}
   gameobject: {fileID: 935961475211729313}
@@ -1727,12 +1729,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerCamera: {fileID: 0}
-  MaxDistanceEyes: 100
-  ButtSlot: {fileID: 2476801796749729086}
-  PlayerShoulder: {fileID: 9067829579070537225}
+  CurrentSlotHand: {fileID: 0}
   WeaponMuzzle: {fileID: 0}
+  MaxDistanceEyes: 100
   RayMuzzleColor: {r: 1, g: 0.032516263, b: 0.013207495, a: 0}
   CanAim: 1
+  RightArmAnimation: {fileID: 5525477917567850641}
+  RightArm: {fileID: 2476801796749729086}
+  TestRightArm: {fileID: 0}
+  RightHandPoint: {x: 0, y: 0, z: 0}
+  RightHandAnimation: {fileID: 458917332383676508}
+  TestRigtHand: {fileID: 0}
+  TestObjectPoint: {fileID: 0}
 --- !u!114 &2663352457323175868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1974,6 +1982,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e8db7cde2d8e5c48a237fa655605a48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8086464743341821375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9027246094432369652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5a6b72beddebed4f9172883a0d024fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultFiledOfView: 60
 --- !u!1 &9125961473927298832
 GameObject:
   m_ObjectHideFlags: 0
@@ -2151,7 +2172,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f08e8add055229f4292037adab1c388c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LeftArmPosition: {fileID: 0}
   PlayerPivot: {fileID: 7950882967492422871}
 --- !u!4 &1756812146448605311 stripped
 Transform:
@@ -2168,6 +2188,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2559285840627121667, guid: 32c385e148d9c094ea210cf380d5d4f9, type: 3}
   m_PrefabInstance: {fileID: 2300154323563464596}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &5525477917567850641 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6000407479487422213, guid: 32c385e148d9c094ea210cf380d5d4f9, type: 3}
+  m_PrefabInstance: {fileID: 2300154323563464596}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5624399594569609980 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3321919801592875672, guid: 32c385e148d9c094ea210cf380d5d4f9, type: 3}
@@ -2176,11 +2201,6 @@ Transform:
 --- !u!4 &7977194647049271252 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8169382868667117632, guid: 32c385e148d9c094ea210cf380d5d4f9, type: 3}
-  m_PrefabInstance: {fileID: 2300154323563464596}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &9067829579070537225 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7078722787440015773, guid: 32c385e148d9c094ea210cf380d5d4f9, type: 3}
   m_PrefabInstance: {fileID: 2300154323563464596}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2487108339930390838
