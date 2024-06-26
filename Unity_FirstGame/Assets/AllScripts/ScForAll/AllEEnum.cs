@@ -74,8 +74,8 @@ public enum TypeCaliber
     C5_56MM,
     C9MM,
     C4_45ACP,
-    C12x99MM
-
+    C12x99MM,
+    Bite
 }
 
 public enum InfoToLoot

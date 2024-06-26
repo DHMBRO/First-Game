@@ -83,12 +83,15 @@ public class AimControler : MonoBehaviour
 
     public Vector3 GetLeftHandRotation()
     {
-        return new Vector3(PlayerCamera.eulerAngles.x, ControlerPlayer.ControlerShoot.LeftHandOffSetEulerAngels.y, ControlerPlayer.ControlerShoot.LeftHandOffSetEulerAngels.z);
+        return new Vector3(
+            PlayerCamera.eulerAngles.z + ControlerPlayer.ControlerShoot.LeftHandOffSetEulerAngels.x,
+            PlayerCamera.eulerAngles.y +  ControlerPlayer.ControlerShoot.LeftHandOffSetEulerAngels.y,
+            PlayerCamera.eulerAngles.x + ControlerPlayer.ControlerShoot.LeftHandOffSetEulerAngels.z);
     }
 
     private void Update()
     {
-        if (ControlerPlayer.ControlerShoot && RightArm)
+        if (ControlerPlayer.ControlerShoot && RightArm && ControlerPlayer.StateCamera == CameraPlayer.Aiming)
         {
             ShootControler CurrentWeapon = ControlerPlayer.ControlerShoot.GetComponent<ShootControler>();
 
@@ -111,8 +114,8 @@ public class AimControler : MonoBehaviour
 
             TestRigtHand.position = RightHandPoint;     
 
-            TestRightArm.position = RightArm.position;
-            TestRightArm.localEulerAngles = RightArm.eulerAngles;
+            TestRightArm.position = LeftHandPoint;
+            TestRightArm.localEulerAngles = GetLeftHandRotation();
 
              
         }
