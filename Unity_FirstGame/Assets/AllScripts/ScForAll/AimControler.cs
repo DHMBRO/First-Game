@@ -17,6 +17,7 @@ public class AimControler : MonoBehaviour
     [SerializeField] Transform TestRightArm;
 
     [SerializeField] Vector3 RightHandPoint;
+    [SerializeField] Vector3 LeftHandPoint;
     [SerializeField] Transform RightHandAnimation;
     [SerializeField] Transform TestRigtHand;
     
@@ -70,9 +71,19 @@ public class AimControler : MonoBehaviour
         return RightHandPoint;
     }
 
+    public Vector3 GetLeftHandPosition()
+    {
+        return LeftHandPoint;
+    }
+
     public Vector3 GetRightHandRotation()
     {
         return new Vector3(PlayerCamera.eulerAngles.x, PlayerCamera.eulerAngles.y, -90.0f);
+    }
+
+    public Vector3 GetLeftHandRotation()
+    {
+        return new Vector3(PlayerCamera.eulerAngles.x, ControlerPlayer.ControlerShoot.LeftHandOffSetEulerAngels.y, ControlerPlayer.ControlerShoot.LeftHandOffSetEulerAngels.z);
     }
 
     private void Update()
@@ -85,10 +96,18 @@ public class AimControler : MonoBehaviour
             RightArm.eulerAngles = new Vector3(PlayerCamera.eulerAngles.x, RightArm.eulerAngles.y, RightArm.eulerAngles.z);
 
             RightHandPoint = RightArmAnimation.position;
+            LeftHandPoint = RightArmAnimation.position;
 
+            // Right hand
             RightHandPoint += RightArm.forward * CurrentWeapon.ShoulderOffSet.z;
             RightHandPoint += RightArm.right * CurrentWeapon.ShoulderOffSet.x;
             RightHandPoint += RightArm.up * CurrentWeapon.ShoulderOffSet.y;
+            
+            // Left hand
+            LeftHandPoint += RightArm.forward * CurrentWeapon.LeftHandOffSet.z;
+            LeftHandPoint += RightArm.right * CurrentWeapon.LeftHandOffSet.x;
+            LeftHandPoint += RightArm.up * CurrentWeapon.LeftHandOffSet.y;
+
 
             TestRigtHand.position = RightHandPoint;     
 

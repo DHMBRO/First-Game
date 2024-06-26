@@ -15,6 +15,7 @@ public class ThirdPersonCamera : MonoBehaviour
     [SerializeField] Transform Cube1;
 
     //New references 
+    [SerializeField] public Vector3 CameraChangeAngle;
     [SerializeField] public Vector3 CurrentOffSetCamera;
     [SerializeField] public Vector3 DesirableVector;
 
@@ -88,11 +89,23 @@ public class ThirdPersonCamera : MonoBehaviour
 
         //Default Rotate
         EulerX = Mathf.Clamp(EulerX, -80.0f, 70.0f);
-        
-        transform.eulerAngles = new Vector3(
+
+        transform.localEulerAngles = new Vector3(
            EulerX,
            transform.eulerAngles.y + (MouseX * CurrentMouseSens),
             0.0f);
+
+        EulerX = transform.eulerAngles.x + (-MouseY * CurrentMouseSens);
+        if (EulerX <= -80.0f || EulerX >= 70.0f)
+        {
+            EulerX = 0.0f;
+        }
+        else
+        {
+            EulerX = (-MouseY * CurrentMouseSens);
+        }
+
+        CameraChangeAngle = new Vector3(EulerX, (MouseX * CurrentMouseSens), 0.0f);
 
         //Aiming Rotate
         if (ControlerPlayer.StateCamera == CameraPlayer.Aiming)

@@ -52,7 +52,7 @@ public class AtackScript : MonoBehaviour
 
             if (TargetHitBoxScr != null)
             {
-                TargetHitBoxScr.GetDamage(Damage);
+                TargetHitBoxScr.GetDamage(Damage, TypeCaliber.Null);
                 break;
             }
         }

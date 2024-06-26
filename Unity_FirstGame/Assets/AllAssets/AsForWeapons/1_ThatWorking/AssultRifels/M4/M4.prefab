@@ -188,6 +188,8 @@ MonoBehaviour:
   Weapon: 0
   HandOffSet: {x: -0.014, y: 0.101, z: 0.006}
   ShoulderOffSet: {x: 0.1, y: -0.06, z: 0.4}
+  LeftHandOffSet: {x: -0.04, y: -0.09, z: 1}
+  LeftHandOffSetEulerAngels: {x: -160, y: 180, z: 0}
   ShotDeley: 0.36
   ShotTime: 0
   BulletPrefabDmage: 45
@@ -195,6 +197,7 @@ MonoBehaviour:
   BulletPrefabSpeed: 98
   ColletSpeed: 5
   ChangedBulletPrefabAngle: 2.045
+  BulletDamage: 45
   UnLimitedAmmo: 0
 --- !u!114 &1728767424464675550
 MonoBehaviour:
@@ -391,14 +394,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6343007291981414964}
-  m_LocalRotation: {x: -0.07715561, y: 0.14996107, z: 0.98148996, w: -0.09075309}
-  m_LocalPosition: {x: -0.289, y: -0.072, z: -0.105}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6666665, y: 0.6666667, z: 0.6666665}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7069611152876261033}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -16.282, y: -10.728, z: 192.105}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8203760200101508008
 GameObject:
   m_ObjectHideFlags: 0

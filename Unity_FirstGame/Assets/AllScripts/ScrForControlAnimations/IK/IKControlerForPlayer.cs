@@ -74,19 +74,12 @@ public class IKControlerForPlayer : MonoBehaviour
         {
             //Debug.Log("2");
 
-            if (LeftArmPosition)
-            {
-                //LeftHandPoint.position = LeftArmPosition.position;
-                //LeftHandPoint.rotation = LeftArmPosition.rotation;
+            PlayerControlerAnimator.SetIKRotation(AvatarIKGoal.LeftHand, Quaternion.Euler(ControlerAim.GetLeftHandRotation()));
+            PlayerControlerAnimator.SetIKPosition(AvatarIKGoal.LeftHand, ControlerAim.GetLeftHandPosition());
 
-                PlayerControlerAnimator.SetIKPosition(AvatarIKGoal.LeftHand, LeftArmPosition.position);
-                PlayerControlerAnimator.SetIKRotation(AvatarIKGoal.LeftHand, LeftArmPosition.rotation);
-
-                //Debug.Log(LeftArmPosition.position);
-            }
-
-            PlayerControlerAnimator.SetIKPosition(AvatarIKGoal.RightHand, ControlerAim.GetRightHandPoint());
             PlayerControlerAnimator.SetIKRotation(AvatarIKGoal.RightHand, Quaternion.Euler(ControlerAim.GetRightHandRotation()));
+            PlayerControlerAnimator.SetIKPosition(AvatarIKGoal.RightHand, ControlerAim.GetRightHandPoint());
+            
         }
 
 

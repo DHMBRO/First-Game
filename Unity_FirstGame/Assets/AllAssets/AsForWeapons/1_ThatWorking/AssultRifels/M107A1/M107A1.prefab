@@ -415,6 +415,8 @@ MonoBehaviour:
   Weapon: 0
   HandOffSet: {x: -0.0383, y: 0.0722, z: 0.1892}
   ShoulderOffSet: {x: 0.1, y: -0.03, z: 0.45}
+  LeftHandOffSet: {x: 0, y: 0, z: 1}
+  LeftHandOffSetEulerAngels: {x: -160, y: 180, z: 0}
   ShotDeley: 1.1428572
   ShotTime: 0
   BulletPrefabDmage: 80
@@ -422,6 +424,7 @@ MonoBehaviour:
   BulletPrefabSpeed: 700
   ColletSpeed: 5
   ChangedBulletPrefabAngle: 0.285
+  BulletDamage: 80
   UnLimitedAmmo: 0
 --- !u!114 &4442325469855250208
 MonoBehaviour:

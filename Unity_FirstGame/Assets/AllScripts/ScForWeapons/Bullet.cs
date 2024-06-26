@@ -2,15 +2,21 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float BulletDamage = 0.0f;
-    public GameObject LauncherBullet;
+    [SerializeField] public float BulletDamage = 0.0f;
+    [SerializeField] private TypeCaliber CaliberIs;
+    [SerializeField] public GameObject LauncherBullet;
+
+    public void GetNewBulletDamage(float NewDamage) 
+    {
+        BulletDamage = NewDamage;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Collider: " + collision.gameObject.name);
 
         GetDamageScript GetDamageScr = collision.gameObject.GetComponent<GetDamageScript>();
-        if (GetDamageScr) GetDamageScr.GetDamage(BulletDamage);
+        if (GetDamageScr) GetDamageScr.GetDamage(BulletDamage, CaliberIs);
         Destroy(gameObject);
     }
 
@@ -22,7 +28,7 @@ public class Bullet : MonoBehaviour
         
         if (GetDamageScr) 
         {
-            GetDamageScr.GetDamage(BulletDamage);
+            GetDamageScr.GetDamage(BulletDamage, CaliberIs);
             Destroy(gameObject);
         }
     }

@@ -23,6 +23,10 @@ public class ShootControler : MonoBehaviour
 
     [SerializeField] public Vector3 HandOffSet;
     [SerializeField] public Vector3 ShoulderOffSet;
+
+    [SerializeField] public Vector3 LeftHandOffSet;
+    [SerializeField] public Vector3 LeftHandOffSetEulerAngels;
+
     [SerializeField] public float ShotDeley = 1.0f;
     [SerializeField] public float ShotTime = 0.0f;
     [SerializeField] float BulletPrefabDmage = 1.0f;
@@ -30,6 +34,7 @@ public class ShootControler : MonoBehaviour
     [SerializeField] private float BulletPrefabSpeed = 1.0f;
     [SerializeField] private float ColletSpeed = 1.0f;
     [SerializeField] private float ChangedBulletPrefabAngle = 0.0f;
+    [SerializeField] private float BulletDamage = 1.0f;
 
     public bool UnLimitedAmmo;
     //[SerializeField] List<Rigidbody> ColletsRig = new List<Rigidbody>();
@@ -133,12 +138,11 @@ public class ShootControler : MonoBehaviour
         NewCollet.transform.position = ColletPoint.transform.position;
         NewCollet.transform.eulerAngles = ColletPoint.transform.eulerAngles;
 
-        NewBulletScr.BulletDamage = BulletPrefabDmage;
+        NewBulletScr.GetNewBulletDamage(BulletDamage);
 
         if (gameObject.GetComponentInParent<PlayerControler>())
         {
             NewBulletScr.LauncherBullet = gameObject.GetComponentInParent<PlayerControler>().gameObject;
-
         }
 
         // Realization

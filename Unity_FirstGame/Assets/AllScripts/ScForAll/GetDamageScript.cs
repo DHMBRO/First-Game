@@ -1,10 +1,17 @@
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GetDamageScript : MonoBehaviour
 {
     [SerializeField] HpScript OwnerHpScript;
     [SerializeField] PartBody BodyPart;
-    [SerializeField] float DamageMultiplier = 1.0f;
+
+    [SerializeField] List<TypeCaliber> AllCalibers = new List<TypeCaliber>();
+    [SerializeField] List<float> ListOfMultiplerDamage = new List<float>();
+    Dictionary<TypeCaliber, float> MultiplerOfDamage = new Dictionary<TypeCaliber, float>();
+
 
     IDamageAbsrption CurrentEqipment;
 
@@ -21,6 +28,19 @@ public class GetDamageScript : MonoBehaviour
         CurrentEqipment = GetComponentInChildren<IDamageAbsrption>();
 
         OwnerHpScript.HitBoxes += DisableHitBoxes;
+
+        if (AllCalibers.Count == ListOfMultiplerDamage.Count)
+        {
+            for (int i = 0; i < AllCalibers.Count; i++)
+            {
+                MultiplerOfDamage.Add(AllCalibers[i], ListOfMultiplerDamage[i]);
+            }
+        }
+        else 
+        {
+            Debug.Log("AllCalibers.Count != ListOfMultiplerDamage.Count");
+        }
+
     }
 
     public void UpdateEquipment(GameObject Equipment)
@@ -34,13 +54,13 @@ public class GetDamageScript : MonoBehaviour
     }
 
 
-    public void GetDamage(float Damage)
+    public void GetDamage(float Damage, TypeCaliber CaliberOfBullet)
     {
         if (OwnerHpScript)
         {
             if (BodyPart == PartBody.Head)
             {
-                Damage *= DamageMultiplier;
+                Damage = Damage * MultiplerOfDamage[CaliberOfBullet];
             }
 
             if(CurrentEqipment != null) Damage = CurrentEqipment.ReturnNewDamage(Damage);
