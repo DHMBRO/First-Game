@@ -14,14 +14,6 @@ public class AtackScript : MonoBehaviour
     float RadiuseHitBoxParent = 0.0f;
     float LastLeghtOfAttackTrigger;
 
-    private void Update()
-    {
-        if (Bite)
-        {
-            Punch(TestDamage);
-        }
-    }
-
     private void OnDrawGizmos()
     {
         PositionTrigger = transform.position + transform.forward * LenghtOfAttackTrigger;
@@ -38,6 +30,7 @@ public class AtackScript : MonoBehaviour
         Hits = Physics.OverlapBox(PositionTrigger, Scale);
         //Gizmos.DrawCube(PositionTrigger, Scale);
 
+        
         foreach (Collider hit in Hits) 
         {
             TargetHitBoxScr = hit.gameObject.GetComponent<GetDamageScript>();
@@ -45,7 +38,7 @@ public class AtackScript : MonoBehaviour
             if (TargetHitBoxScr != null)
             {
                 TargetHitBoxScr.GetDamage(Damage, TypeCaliber.Bite);
-                break;
+                return;
             }
         }
         

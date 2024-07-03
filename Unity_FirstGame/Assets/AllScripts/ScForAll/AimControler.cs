@@ -66,7 +66,7 @@ public class AimControler : MonoBehaviour
         WeaponMuzzle = null;
     }
 
-    public Vector3 GetRightHandPoint()
+    public Vector3 GetRightHandPosition()
     {
         return RightHandPoint;
     }
@@ -83,15 +83,30 @@ public class AimControler : MonoBehaviour
 
     public Vector3 GetLeftHandRotation()
     {
-        return new Vector3(
-            PlayerCamera.eulerAngles.z + ControlerPlayer.ControlerShoot.LeftHandOffSetEulerAngels.x,
-            PlayerCamera.eulerAngles.y +  ControlerPlayer.ControlerShoot.LeftHandOffSetEulerAngels.y,
-            PlayerCamera.eulerAngles.x + ControlerPlayer.ControlerShoot.LeftHandOffSetEulerAngels.z);
-    }
+        //Debug.Log("Rotation: " + ControlerPlayer.ControlerShoot.transform.rotation);
+        //Debug.Log("Vector.forward: " + ControlerPlayer.ControlerShoot.transform.rotation * Vector3.forward);
+        //Debug.Log("EulerAngelse: " + ControlerPlayer.ControlerShoot.transform.eulerAngles);
+
+        return ControlerPlayer.ControlerShoot.LeftHandOffSetEulerAngels + ControlerPlayer.ControlerShoot.transform.eulerAngles;
+
+        /*
+        if (ControlerPlayer.StateCamera == CameraPlayer.Aiming)
+        {
+            return PlayerCamera.eulerAngles + ControlerPlayer.ControlerShoot.LeftHandOffSetEulerAngels;
+        }
+        else return ControlerPlayer.ControlerShoot.transform.eulerAngles + ControlerPlayer.ControlerShoot.LeftHandOffSetEulerAngels;
+
+
+        //return new Vector3(
+        //    ControlerPlayer.ControlerShoot.transform.eulerAngles.x /*+  ControlerPlayer.ControlerShoot.LeftHandOffSetEulerAngels.x*/
+        //    ControlerPlayer.ControlerShoot.transform.eulerAngles.y /*+ ControlerPlayer.ControlerShoot.LeftHandOffSetEulerAngels.y*/,
+        //    ControlerPlayer.ControlerShoot.transform.eulerAngles.z /*+ ControlerPlayer.ControlerShoot.LeftHandOffSetEulerAngels.z*/);
+    }    
+    
 
     private void Update()
     {
-        if (ControlerPlayer.ControlerShoot && RightArm && ControlerPlayer.StateCamera == CameraPlayer.Aiming)
+        if (ControlerPlayer.ControlerShoot && RightArm)
         {
             ShootControler CurrentWeapon = ControlerPlayer.ControlerShoot.GetComponent<ShootControler>();
 
@@ -99,7 +114,7 @@ public class AimControler : MonoBehaviour
             RightArm.eulerAngles = new Vector3(PlayerCamera.eulerAngles.x, RightArm.eulerAngles.y, RightArm.eulerAngles.z);
 
             RightHandPoint = RightArmAnimation.position;
-            LeftHandPoint = RightArmAnimation.position;
+            LeftHandPoint = CurrentWeapon.transform.position;
 
             // Right hand
             RightHandPoint += RightArm.forward * CurrentWeapon.ShoulderOffSet.z;
@@ -107,15 +122,15 @@ public class AimControler : MonoBehaviour
             RightHandPoint += RightArm.up * CurrentWeapon.ShoulderOffSet.y;
             
             // Left hand
-            LeftHandPoint += RightArm.forward * CurrentWeapon.LeftHandOffSet.z;
-            LeftHandPoint += RightArm.right * CurrentWeapon.LeftHandOffSet.x;
-            LeftHandPoint += RightArm.up * CurrentWeapon.LeftHandOffSet.y;
+            LeftHandPoint += CurrentWeapon.transform.forward * CurrentWeapon.LeftHandOffSet.z;
+            LeftHandPoint += CurrentWeapon.transform.right * CurrentWeapon.LeftHandOffSet.x;
+            LeftHandPoint += CurrentWeapon.transform.up * CurrentWeapon.LeftHandOffSet.y;
 
 
             TestRigtHand.position = RightHandPoint;     
 
             TestRightArm.position = LeftHandPoint;
-            TestRightArm.localEulerAngles = GetLeftHandRotation();
+            TestRightArm.eulerAngles = GetLeftHandRotation();
 
              
         }
