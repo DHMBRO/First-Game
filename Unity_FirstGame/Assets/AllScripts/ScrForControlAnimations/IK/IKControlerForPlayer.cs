@@ -52,11 +52,6 @@ public class IKControlerForPlayer : MonoBehaviour
     {
         if (!LeftArmPosition)
         {
-            Debug.Log("Not set LeftArmPosition !");
-
-            //PlayerControlerAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 0.0f);
-            //PlayerControlerAnimator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 0.0f);
-
             return;
         }
 
@@ -68,17 +63,15 @@ public class IKControlerForPlayer : MonoBehaviour
         PlayerControlerAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1.0f);
         PlayerControlerAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1.0f);
 
+        PlayerControlerAnimator.SetIKRotation(AvatarIKGoal.LeftHand, Quaternion.Euler(ControlerAim.GetLeftHandRotation()));
+        PlayerControlerAnimator.SetIKPosition(AvatarIKGoal.LeftHand, ControlerAim.GetLeftHandPosition());
 
         //Aiming of weapon
         if (ControlerPlayer.StateCamera == CameraPlayer.Aiming)
         {
-            //Debug.Log("2");
-
-            PlayerControlerAnimator.SetIKRotation(AvatarIKGoal.LeftHand, Quaternion.Euler(ControlerAim.GetLeftHandRotation()));
-            PlayerControlerAnimator.SetIKPosition(AvatarIKGoal.LeftHand, ControlerAim.GetLeftHandPosition());
-
+            
             PlayerControlerAnimator.SetIKRotation(AvatarIKGoal.RightHand, Quaternion.Euler(ControlerAim.GetRightHandRotation()));
-            PlayerControlerAnimator.SetIKPosition(AvatarIKGoal.RightHand, ControlerAim.GetRightHandPoint());
+            PlayerControlerAnimator.SetIKPosition(AvatarIKGoal.RightHand, ControlerAim.GetRightHandPosition());
             
         }
 
