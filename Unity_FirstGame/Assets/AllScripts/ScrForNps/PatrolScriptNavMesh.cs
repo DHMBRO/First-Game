@@ -78,13 +78,9 @@ public class PatrolScriptNavMesh : MonoBehaviour
         }
 
     }
-    void ReturnToPatrol()
+    public void ReturnToPatrol()
     {
-        if (!ZombieLocateScript.Target)
-        {
-            CurrentPoint = MyPointControllScript.SearchNextPosition(CurrentPoint);
-            MoveTo(MyPointControllScript.Points[CurrentPoint].transform.position);
-        }
+        MoveTo(MyPointControllScript.Points[CurrentPoint].transform.position);
     }
     
     public void CheckPosition(Vector3 CheckingPosition)
@@ -94,7 +90,7 @@ public class PatrolScriptNavMesh : MonoBehaviour
     }
     public bool IsReachTarget()
     {
-       return ZombieNavMesh.remainingDistance < 2.0f;
+        return ZombieNavMesh.hasPath && ZombieNavMesh.remainingDistance < 2.0f;
     }
     public void GoToNextPos()
     {
