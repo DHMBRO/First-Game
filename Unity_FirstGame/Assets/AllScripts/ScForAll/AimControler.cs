@@ -89,7 +89,7 @@ public class AimControler : MonoBehaviour
 
         return ControlerPlayer.ControlerShoot.LeftHandOffSetEulerAngels + ControlerPlayer.ControlerShoot.transform.eulerAngles;
 
-        /*
+        /* 
         if (ControlerPlayer.StateCamera == CameraPlayer.Aiming)
         {
             return PlayerCamera.eulerAngles + ControlerPlayer.ControlerShoot.LeftHandOffSetEulerAngels;
@@ -127,12 +127,14 @@ public class AimControler : MonoBehaviour
             LeftHandPoint += CurrentWeapon.transform.up * CurrentWeapon.LeftHandOffSet.y;
 
 
-            TestRigtHand.position = RightHandPoint;     
+            if(TestRigtHand) TestRigtHand.position = RightHandPoint;
 
-            TestRightArm.position = LeftHandPoint;
-            TestRightArm.eulerAngles = GetLeftHandRotation();
+            if (TestRightArm)
+            {
+                TestRightArm.position = LeftHandPoint;
+                TestRightArm.eulerAngles = GetLeftHandRotation();
+            }
 
-             
         }
 
 
