@@ -32,7 +32,7 @@ public class LocateScript : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         BaseInformationScript BaseInfo = other.GetComponent<BaseInformationScript>();
-        if (BaseInfo && BaseInfo.HealthScript)
+        if (BaseInfo && BaseInfo.HealthScript && MyHpScript)
         {
             if (BaseInfo.HealthScript.State != MyHpScript.State)
             {

@@ -56,9 +56,7 @@ public class HelicopterScr : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void Update()
-    {
-    }
+    
     void FixedUpdate()
     {
         if(Input.GetKeyDown(KeyCode.H))

@@ -100,7 +100,7 @@ public class PatrolState : ILogic
 {
 
     private float MoveTimePoint = 0f;
-    private bool IsPatroling = true;
+    private bool IsPatroling = false;
     public PatrolState(InfScript NewOwner):base(NewOwner)
     {
         MoveTimePoint = Time.time;
@@ -128,13 +128,22 @@ public class PatrolState : ILogic
                 gameObj.transform.rotation = Quaternion.LookRotation(Vector3.Lerp(gameObj.transform.forward, -gameObj.transform.forward, 0.1f));  
                 if (Time.time > MoveTimePoint)
                 {
-                    IsPatroling = true;
-                    InfOwner.SetFloatToAnim("CurrentSpeed", 0.5f);
-                    CurrentPoint = InfOwner.PointController.SearchNextPosition(CurrentPoint);
-                    Patrol.MoveTo(InfOwner.PointController.Points[CurrentPoint].transform.position);
+                    StartPatroling();
                 }  
             }
+            else if (!IsPatroling)
+            {
+                StartPatroling();
+            }
         }
+    }
+
+    void StartPatroling()
+    {
+        IsPatroling = true;
+        InfOwner.SetFloatToAnim("CurrentSpeed", 0.5f);
+        CurrentPoint = InfOwner.PointController.SearchNextPosition(CurrentPoint);
+        Patrol.MoveTo(InfOwner.PointController.Points[CurrentPoint].transform.position);
     }
 }
 public class ChaseState : ILogic

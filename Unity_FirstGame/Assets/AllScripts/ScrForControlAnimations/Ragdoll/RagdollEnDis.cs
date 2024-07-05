@@ -7,8 +7,8 @@ public class RagdollEnDis : MonoBehaviour
         ControlerRagdoll.SetRagdollDelegat += SetColision;
         ControlerRagdoll.SetRagdollDelegat += SetRigidboby;
 
-        ControlerRagdoll.SetRagdollDelegat = delegate (bool Enable) { Debug.Log(Enable); };
-        ControlerRagdoll.SetRagdollDelegat = (bool Enable) => { Debug.Log(Enable); }; 
+        //ControlerRagdoll.SetRagdollDelegat = delegate (bool Enable) { Debug.Log(Enable); };
+        //ControlerRagdoll.SetRagdollDelegat = (bool Enable) => { Debug.Log(Enable); }; 
                 
     }
 

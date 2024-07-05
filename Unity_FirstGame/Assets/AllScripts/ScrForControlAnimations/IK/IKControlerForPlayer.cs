@@ -2,18 +2,80 @@ using UnityEngine;
 
 public class IKControlerForPlayer : MonoBehaviour
 {
+    [SerializeField] Transform PlayerPivot = null;
+    AimControler ControlerAim;
+
+    Animator PlayerControlerAnimator;
     PlayerControler ControlerPlayer;
-    ControlerAnimationsPlayer PlayerControlerAnimations;
+    ShootControler ControlerShoot; 
+
+    [SerializeField] private Transform LeftArmPosition;
+    [SerializeField] private Transform LeftHandPoint;
+    [SerializeField] private float CurrentWeight = 1.0f;
+    [SerializeField] private Transform ParentPointObject;
+    //private Quaternion OffSetRotationRightArm = new Quaternion();
 
     void Start()
     {
         ControlerPlayer = GetComponentInParent<PlayerControler>();
-        PlayerControlerAnimations = GetComponent<ControlerAnimationsPlayer>(); ;
+        ControlerAim = GetComponentInParent<AimControler>();
+        PlayerControlerAnimator = GetComponent<Animator>(); ;
     }
 
-    void Update()
+    public void SetSetupIKReferences()
     {
+        if (!ControlerPlayer)
+        {
+            return;
+        }
+
+        if (ControlerPlayer.ControlerShoot)
+        {
+            ControlerShoot = ControlerPlayer.ControlerShoot;
+            LeftArmPosition = ControlerShoot.LeftArmPositionIK;
+        }
+        else LeftArmPosition = null;
+
+    }
+
+    private void Update()
+    {
+        if (PlayerPivot)
+        {
+            //OffSetRotationRightArm = Quaternion.LookRotation((ContrlerAim.GetLookPoint() - PlayerPivot.localPosition));
+            //OffSetRotationRightArm.eulerAngles = new Vector3(OffSetRotationRightArm.eulerAngles.x, OffSetRotationRightArm.eulerAngles.y, -90.0f);
+        }
         
     }
-    
+
+    private void OnAnimatorIK(int layerIndex)
+    {
+        if (!LeftArmPosition)
+        {
+            return;
+        }
+
+        //Debug.Log("1");
+
+        PlayerControlerAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1.0f);
+        PlayerControlerAnimator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1.0f);
+        
+        PlayerControlerAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1.0f);
+        PlayerControlerAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1.0f);
+
+        PlayerControlerAnimator.SetIKRotation(AvatarIKGoal.LeftHand, Quaternion.Euler(ControlerAim.GetLeftHandRotation()));
+        PlayerControlerAnimator.SetIKPosition(AvatarIKGoal.LeftHand, ControlerAim.GetLeftHandPosition());
+
+        //Aiming of weapon
+        if (ControlerPlayer.StateCamera == CameraPlayer.Aiming)
+        {
+            
+            PlayerControlerAnimator.SetIKRotation(AvatarIKGoal.RightHand, Quaternion.Euler(ControlerAim.GetRightHandRotation()));
+            PlayerControlerAnimator.SetIKPosition(AvatarIKGoal.RightHand, ControlerAim.GetRightHandPosition());
+            
+        }
+
+
+    }
+
 }

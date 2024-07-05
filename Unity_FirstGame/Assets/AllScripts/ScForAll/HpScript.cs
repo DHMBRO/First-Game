@@ -4,6 +4,7 @@ using TMPro;
 public class HpScript : MonoBehaviour
 {
     [SerializeField] public UpdateState StateDelegate;
+    [SerializeField] public SetHitBoxes HitBoxes;
 
     [SerializeField] private Image UiHp;
     [SerializeField] Transform ObjectForCopy;
@@ -88,6 +89,7 @@ public class HpScript : MonoBehaviour
 
                 if (StelthKill == false)
                 {
+                    if (HitBoxes != null) HitBoxes();
                     Info.SetAnimation("Death");
                 }
             }

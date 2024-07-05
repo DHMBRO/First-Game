@@ -15,6 +15,7 @@ public class ThirdPersonCamera : MonoBehaviour
     [SerializeField] Transform Cube1;
 
     //New references 
+    [SerializeField] public Vector3 CameraChangeAngle;
     [SerializeField] public Vector3 CurrentOffSetCamera;
     [SerializeField] public Vector3 DesirableVector;
 
@@ -88,11 +89,23 @@ public class ThirdPersonCamera : MonoBehaviour
 
         //Default Rotate
         EulerX = Mathf.Clamp(EulerX, -80.0f, 70.0f);
-        
-        transform.eulerAngles = new Vector3(
+
+        transform.localEulerAngles = new Vector3(
            EulerX,
            transform.eulerAngles.y + (MouseX * CurrentMouseSens),
             0.0f);
+
+        EulerX = transform.eulerAngles.x + (-MouseY * CurrentMouseSens);
+        if (EulerX <= -80.0f || EulerX >= 70.0f)
+        {
+            EulerX = 0.0f;
+        }
+        else
+        {
+            EulerX = (-MouseY * CurrentMouseSens);
+        }
+
+        CameraChangeAngle = new Vector3(EulerX, (MouseX * CurrentMouseSens), 0.0f);
 
         //Aiming Rotate
         if (ControlerPlayer.StateCamera == CameraPlayer.Aiming)
@@ -100,8 +113,7 @@ public class ThirdPersonCamera : MonoBehaviour
             TargetCamera.transform.localEulerAngles = new Vector3(0.0f, transform.localEulerAngles.y, 0.0f);
 
             CurrentMoveBackDistance = MoveBackDistanceAiming;
-            CurrentMoveRightDistance = MoveRightDistanceAiming;
-            
+            CurrentMoveRightDistance = MoveRightDistanceAiming; 
         }
         else
         {
@@ -109,16 +121,11 @@ public class ThirdPersonCamera : MonoBehaviour
             CurrentMoveRightDistance = MoveRightDistanceDefault;
         }
 
-        //Set Position Default
+        //Set Position 
         transform.position = TargetCamera.TransformPoint(DesirableVector);
         
         transform.position += transform.right * CurrentMoveRightDistance;
         transform.position -= transform.forward * CurrentMoveBackDistance;
-
-        /*
-        transform.position = TargetCamera.TransformPoint(DesirableVector) + (transform.right * CurrentMoveRightDistance);
-        transform.position = TargetCamera.TransformPoint(DesirableVector) +  -(transform.forward * CurrentMoveBackDistance);
-        */
 
 
         if (ControlerPlayer.StealthKilling)

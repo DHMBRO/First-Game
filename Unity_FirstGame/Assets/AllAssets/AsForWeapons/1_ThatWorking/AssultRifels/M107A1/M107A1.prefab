@@ -1,5 +1,68 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &651843305367101217
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6401765680535960194}
+  m_Layer: 0
+  m_Name: IKSetUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6401765680535960194
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651843305367101217}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7819591381811582304}
+  m_Father: {fileID: 3870157364669978643}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3731463197255322671
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7819591381811582304}
+  m_Layer: 0
+  m_Name: LeftArmIKPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7819591381811582304
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3731463197255322671}
+  m_LocalRotation: {x: -0.6963643, y: 0.122787856, z: 0.6963643, w: 0.122787856}
+  m_LocalPosition: {x: 0.122, y: -0.051, z: -0.191}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6401765680535960194}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -20, y: -90, z: 180}
 --- !u!1 &4447639830950894186
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,6 +257,7 @@ Transform:
   - {fileID: 2810983841270273773}
   - {fileID: 5652947959465088000}
   - {fileID: 7209563470044131969}
+  - {fileID: 6401765680535960194}
   m_Father: {fileID: 1979096304907050290}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -261,7 +325,7 @@ Transform:
   m_GameObject: {fileID: 8600588800247072252}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3870157364669978643}
@@ -315,6 +379,7 @@ MonoBehaviour:
   ShowTheAmmo: 0
   SpriteForLoot: {fileID: 0}
   HasOwner: 0
+  ShowNameOfThisObject: 1
   NameOfThisObject: Weapon - M107A1
   Descrition: 
   ParametersLoot:
@@ -336,6 +401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30bbbf443eeb6cf47ab83dd338f2c45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UseShoulderOffSet: 1
   SlotForUseShop: {fileID: 3167540722036229297}
   WeaponShoop: {fileID: 0}
   GameObjectForRay: {fileID: 7802602602309449565}
@@ -343,10 +409,14 @@ MonoBehaviour:
   BulletPrefab: {fileID: 5567339272405987103, guid: cd89a82e3dc958b4b9489848702bef6e, type: 3}
   Collet: {fileID: 2184731645126045172, guid: 16b09b5e881f5804fa14926d6c7e4bdc, type: 3}
   ColletPoint: {fileID: 6138284234073665251}
+  LeftArmPositionIK: {fileID: 7819591381811582304}
   TheGun: 0
   CaliberToWeapon: 5
   Weapon: 0
-  ShoulderOffSet: {x: 0.18, y: 0, z: 0.5}
+  HandOffSet: {x: -0.0383, y: 0.0722, z: 0.1892}
+  ShoulderOffSet: {x: 0.1, y: -0.03, z: 0.45}
+  LeftHandOffSet: {x: 0, y: 0, z: 1}
+  LeftHandOffSetEulerAngels: {x: -160, y: 180, z: 0}
   ShotDeley: 1.1428572
   ShotTime: 0
   BulletPrefabDmage: 80
@@ -354,6 +424,7 @@ MonoBehaviour:
   BulletPrefabSpeed: 700
   ColletSpeed: 5
   ChangedBulletPrefabAngle: 0.285
+  BulletDamage: 80
   UnLimitedAmmo: 0
 --- !u!114 &4442325469855250208
 MonoBehaviour:
@@ -367,8 +438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c57428b6a28249c4a9eb4e5d361ea5ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FieldFoView: 60
-  UsingFieldFoView: 1
+  AimFieldFoView: 60
 --- !u!114 &2124973576992208714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,7 +467,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d769b754154c77042aae9ea5c8dd47f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentNoiceRadiuse: 0
   DebugingTheWork: 0
 --- !u!1001 &1581280479036928742
 PrefabInstance:

@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShootControler : MonoBehaviour
 {
     public WeaponIsShoting SetShootDelegat;
+    public bool UseShoulderOffSet = true;
     private bool CanWork;
 
     [SerializeField] public Transform SlotForUseShop;
@@ -14,12 +15,18 @@ public class ShootControler : MonoBehaviour
     [SerializeField] private GameObject BulletPrefab;
     [SerializeField] private GameObject Collet;
     [SerializeField] private GameObject ColletPoint;
+    [SerializeField] public Transform LeftArmPositionIK;
 
     public TypeWeapon TheGun;
     public TypeCaliber CaliberToWeapon;
     public StateWeapon Weapon;
 
+    [SerializeField] public Vector3 HandOffSet;
     [SerializeField] public Vector3 ShoulderOffSet;
+
+    [SerializeField] public Vector3 LeftHandOffSet;
+    [SerializeField] public Vector3 LeftHandOffSetEulerAngels;
+
     [SerializeField] public float ShotDeley = 1.0f;
     [SerializeField] public float ShotTime = 0.0f;
     [SerializeField] float BulletPrefabDmage = 1.0f;
@@ -27,6 +34,7 @@ public class ShootControler : MonoBehaviour
     [SerializeField] private float BulletPrefabSpeed = 1.0f;
     [SerializeField] private float ColletSpeed = 1.0f;
     [SerializeField] private float ChangedBulletPrefabAngle = 0.0f;
+    [SerializeField] private float BulletDamage = 1.0f;
 
     public bool UnLimitedAmmo;
     //[SerializeField] List<Rigidbody> ColletsRig = new List<Rigidbody>();
@@ -130,12 +138,11 @@ public class ShootControler : MonoBehaviour
         NewCollet.transform.position = ColletPoint.transform.position;
         NewCollet.transform.eulerAngles = ColletPoint.transform.eulerAngles;
 
-        NewBulletScr.BulletDamage = BulletPrefabDmage;
+        NewBulletScr.GetNewBulletDamage(BulletDamage);
 
         if (gameObject.GetComponentInParent<PlayerControler>())
         {
             NewBulletScr.LauncherBullet = gameObject.GetComponentInParent<PlayerControler>().gameObject;
-
         }
 
         // Realization
