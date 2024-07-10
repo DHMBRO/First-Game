@@ -31,29 +31,16 @@ public class PickUp : MethodsFromDevelopers
         //Auditions
         if (!ControlerUi) Debug.Log("Not set ControlerUi");
 
-        GetComponent<PlayerToolsToInteraction>().PlayerChekToInteractionDelegat += ChekToInteraction;
+        GetComponent<PlayerToolsToInteraction>().TryToInteractionDelegate += TryToInteract;
         
     }
 
-    public void Work()
-    {
-        if (LocalObject && CanWork)
-        {
-            ComplertingTheLink();
-        }
-
-    }
-
-    private bool ChekToInteraction(Transform GivenReference)
+    public void TryToInteract(Transform GivenReference)
     {
         LocalObject = GivenReference;
-        CanWork = true;
-        
-        return GetComponent<ShootControler>() || GetComponent<ShopControler>() || GetComponent<InfoWhatDoLoot>() ||
-        GetComponent<HelmetControler>() || GetComponent<ArmorControler>() || GetComponent<BackPackContorler>();
     }
 
-    private void ComplertingTheLink()
+    private void CompletingTheLink()
     {
         ShootControler ControlerWeapon = LocalObject.GetComponent<ShootControler>();
         ShopControler ControlerShop = LocalObject.GetComponent<ShopControler>();

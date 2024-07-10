@@ -7,10 +7,10 @@ public class InteractionScr : MonoBehaviour
 
     void Start()
     {
-        GetComponent<PlayerToolsToInteraction>().PlayerChekToInteractionDelegat += ChekToInteraction;
+        GetComponent<PlayerToolsToInteraction>().TryToInteractionDelegate += Work;
     }
 
-    public void Work()
+    public void Work(Transform GivenReference)
     {
         if (LocalInetaction != null && CanWork)
         {
@@ -19,7 +19,7 @@ public class InteractionScr : MonoBehaviour
 
     }
     
-    private bool ChekToInteraction(Transform GivenReference)
+    private void TryToInteract(Transform GivenReference)
     {
         if (GivenReference && GivenReference.GetComponent<IInteractionWithObjects>() != null)
         {
@@ -31,8 +31,6 @@ public class InteractionScr : MonoBehaviour
             LocalInetaction = null;
             CanWork = false;
         }
-
-        return LocalInetaction != null;
     }
 
     private void InteractionWithSomething(IInteractionWithObjects LocalInetaction)

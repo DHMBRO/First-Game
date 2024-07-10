@@ -210,9 +210,10 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             }
             
             //Player Tools
-            if (PlayerTools /* && WhatSpeedPlayerLegs != SpeedLegsPlayer.Run && WhatPlayerHandsDo == HandsPlayer.Null*/)
+            if (PlayerTools && !ControlerUi.InventoryIsOpen)
             {
-                PlayerTools.InteractionWithRayCast();
+                //PlayerTools.InteractionWithRayCast();
+                PlayerTools.SearchObjectsByBoxOverlap();
             }
             
             if (!PlayerTools) Debug.Log("Not set PlayerTools");
@@ -222,7 +223,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             {
                 if (Input.GetKeyUp(KeyCode.F))
                 {
-                    PickUpPlayer.Work();
+                    PickUpPlayer.();
                 }
             }
             if (!PickUpPlayer) Debug.Log("Cannot  PickUpPlayer");
