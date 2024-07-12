@@ -50,7 +50,7 @@ public class UiControler : MonoBehaviour
     {
         //Setup
         InventoryIsOpen = false;
-        PlayerInventory.GetComponent<PlayerToolsToInteraction>().TryToInteractionDelegate += TryInteract;
+        PlayerInventory.GetComponent<PlayerToolsToInteraction>().TryToInteractDelegadWithOutInput += TryInteract;
         ControlerButton.GetComponent<ButtonControler>();
 
         SlotShopUi[0] = SlotShop01;
@@ -131,6 +131,7 @@ public class UiControler : MonoBehaviour
         }
         else TableNameObjectForPickUp.text = " ";
     }
+    
 
     public void InterfaceControler()
     {

@@ -5,15 +5,15 @@ using System.Linq;
 
 public class PlayerToolsToInteraction : MonoBehaviour
 {
-    public TryInteraction TryToInteractionDelegate;
+    public TryInteraction TryToInteractDelegate;
+    public TryInteraction TryToInteractDelegadWithOutInput;
 
     [SerializeField] PlayerControler ControlerPlayer; 
-    [SerializeField] Transform LastSelectedObject; 
+    [SerializeField] public Transform LastSelectedObject;
+    [SerializeField] public Transform ObjectThatWatching;
 
     [SerializeField] Transform CameraPlayer;
     [SerializeField] ThirdPersonCamera CameraCompPlayer;
-
-    [SerializeField] public Transform ObjectThatWatching;
 
     [SerializeField] float CurrentDistanceRay = 0.0f;
     [SerializeField] float DistanceRay = 1.0f;
@@ -23,7 +23,7 @@ public class PlayerToolsToInteraction : MonoBehaviour
  
     [SerializeField] Color ColorRayCast = Color.white;
 
-    public RaycastHit[] MassForInteraction;
+    [SerializeField] public RaycastHit[] MassForInteraction;
     [SerializeField] bool CanWork = true;
 
     private void Start()
@@ -38,20 +38,13 @@ public class PlayerToolsToInteraction : MonoBehaviour
         ControlerPlayer = GetComponent<PlayerControler>();
     }
 
-    /*
-    HelmetControler 
-    ArmorControler 
-    BackPackContorler
-    
-    */
-
     public bool CheckToInteract(Transform Object)
     {
-        return Object.GetComponent<IInteractionWithObjects>() != null || Object.GetComponent<ScrForAllLoot>() 
+        return Object.GetComponent<IInteractionWithObjects>() != null || Object.GetComponent<IUsebleInterFace>() != null
           || Object.GetComponent<InfoWhatDoLoot>() || Object.GetComponent<ShootControler>()
-          || Object.GetComponent<ShopControler>() || Object.GetComponent<HelmetControler>() 
-          || Object.GetComponent<HelmetControler>() || Object.GetComponent<ArmorControler>() 
-          || Object.GetComponent<BackPackContorler>();
+          || Object.GetComponent<ShopControler>() || Object.GetComponent<HelmetControler>()
+          || Object.GetComponent<HelmetControler>() || Object.GetComponent<ArmorControler>()
+          || Object.GetComponent<BackPackContorler>() || Object.GetComponent<BoneControler>();
     }
 
     public Vector3 RaycastByInteraction()
@@ -79,7 +72,7 @@ public class PlayerToolsToInteraction : MonoBehaviour
         Gizmos.DrawCube(transform.position + transform.up * 1.5f, SizeCube);
     }
 
-    private void InteractionWithRayCast()
+    public void InteractionWithRayCast()
     {   
         if(!CameraCompPlayer)
         {
@@ -87,7 +80,7 @@ public class PlayerToolsToInteraction : MonoBehaviour
             return;
         }
 
-        if (TryToInteractionDelegate == null)
+        if (TryToInteractDelegate == null)
         {
             Debug.Log("Not set TryToInteractionDelegate");
             return;
@@ -112,6 +105,7 @@ public class PlayerToolsToInteraction : MonoBehaviour
 
         Vector3 Origin = CameraPlayer.position + (CameraPlayer.forward * CameraCompPlayer.CurrentMoveBackDistance);
         Vector3 Direction = CameraPlayer.forward * CurrentDistanceRay;
+        Transform NewSelectedObject = null;
         ScrForAllLoot ForAllLootScr = null;
 
         Ray RayCast = new Ray(Origin, Direction);
@@ -125,20 +119,33 @@ public class PlayerToolsToInteraction : MonoBehaviour
         {
             ObjectThatWatching = MassForInteraction[i].transform;
             ForAllLootScr = ObjectThatWatching.GetComponent<ScrForAllLoot>();
-
-            if (MassForInteraction[i].collider && ForAllLootScr && !ForAllLootScr.HasOwner && PlayerChekToInteractionDelegat(MassForInteraction[i].collider.transform))
+            
+            if (MassForInteraction[i].collider && ForAllLootScr && !ForAllLootScr.HasOwner && CheckToInteract(MassForInteraction[i].collider.transform))
             {
                 ObjectThatWatching = MassForInteraction[i].transform;
                 LastSelectedObject = MassForInteraction[i].transform;
+                NewSelectedObject = LastSelectedObject;
 
+                TryToInteractDelegadWithOutInput(LastSelectedObject);
                 break;
             }
             else
             {
-                //PlayerChekToInteractionDelegat(null);
-                LastSelectedObject = null; 
-            }
+                continue;
+            }    
+        }
 
+        if (NewSelectedObject == null)
+        {
+            TryToInteractDelegadWithOutInput(null);
+            LastSelectedObject = null;
+        }
+
+        if (MassForInteraction.Length == 0)
+        {
+            LastSelectedObject = null;
+            ObjectThatWatching = null;
+            TryToInteractDelegadWithOutInput(null);
         }
     }
     
@@ -155,10 +162,13 @@ public class PlayerToolsToInteraction : MonoBehaviour
         
         float DistanceToCloserObject = 0.0f;
         Transform NewSelectedObject = null;
+        ScrForAllLoot ForAllLootScr = null;
 
         for (int i = 0;i < Hits.Length;i++)
         {
-            if(Hits[i].transform)
+            ForAllLootScr = Hits[i].GetComponent<ScrForAllLoot>();
+
+            if (Hits[i].transform && ForAllLootScr && !ForAllLootScr.HasOwner && CheckToInteract(Hits[i].transform))
             {
                 UsableReferences.Add(Hits[i]);
             }
@@ -166,9 +176,7 @@ public class PlayerToolsToInteraction : MonoBehaviour
 
         if(UsableReferences.Count == 1)
         {
-            //PlayerChekToInteractionDelegat(UsableReferences[0].transform);
             LastSelectedObject = UsableReferences[0].transform;
-            //CanWork = false;
         }
         else if (UsableReferences.Count > 1)
         {
@@ -187,9 +195,16 @@ public class PlayerToolsToInteraction : MonoBehaviour
             }
         }
 
-        TryToInteractionDelegate();
+        if (NewSelectedObject)
+        {
+            LastSelectedObject = NewSelectedObject;
+            TryToInteractDelegadWithOutInput(LastSelectedObject);
+        }
+        else
+        {
+            TryToInteractDelegadWithOutInput(null);
+        }
     }
-
 }
 
 
