@@ -1641,15 +1641,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5120783047b7e9f4cb7a8126480e89e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ControlerPlayer: {fileID: 0}
+  ControlerPlayer: {fileID: 9222820105927190343}
   LastSelectedObject: {fileID: 0}
+  ObjectThatWatching: {fileID: 0}
   CameraPlayer: {fileID: 0}
   CameraCompPlayer: {fileID: 0}
-  ObjectThatWatching: {fileID: 0}
   CurrentDistanceRay: 0
   DistanceRay: 4.5
   DistanceRayAiming: 100
+  SizeCube: {x: 2, y: 3, z: 2}
   ColorRayCast: {r: 0, g: 0.0009829998, b: 1, a: 1}
+  CanWork: 1
 --- !u!114 &7778607237951541594
 MonoBehaviour:
   m_ObjectHideFlags: 0

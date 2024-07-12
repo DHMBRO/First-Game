@@ -4,8 +4,7 @@ using System.Collections.Generic;
 public class PickUp : MethodsFromDevelopers 
 {
     [SerializeField] private Transform LocalObject;
-    [SerializeField] bool CanWork = false;
-
+    
     [SerializeField] private UiControler ControlerUi;
     [SerializeField] private UiInventoryOutPut InventoryUi;
 
@@ -30,31 +29,13 @@ public class PickUp : MethodsFromDevelopers
         
         //Auditions
         if (!ControlerUi) Debug.Log("Not set ControlerUi");
-
-        GetComponent<PlayerToolsToInteraction>().PlayerChekToInteractionDelegat += ChekToInteraction;
-        
+        GetComponent<PlayerToolsToInteraction>().TryToInteractDelegate += CompletingTheLink;
     }
 
-    public void Work()
-    {
-        if (LocalObject && CanWork)
-        {
-            ComplertingTheLink();
-        }
-
-    }
-
-    private bool ChekToInteraction(Transform GivenReference)
+    private void CompletingTheLink(Transform GivenReference)
     {
         LocalObject = GivenReference;
-        CanWork = true;
-        
-        return GetComponent<ShootControler>() || GetComponent<ShopControler>() || GetComponent<InfoWhatDoLoot>() ||
-        GetComponent<HelmetControler>() || GetComponent<ArmorControler>() || GetComponent<BackPackContorler>();
-    }
 
-    private void ComplertingTheLink()
-    {
         ShootControler ControlerWeapon = LocalObject.GetComponent<ShootControler>();
         ShopControler ControlerShop = LocalObject.GetComponent<ShopControler>();
 

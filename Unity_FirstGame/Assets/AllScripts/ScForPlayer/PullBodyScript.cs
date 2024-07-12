@@ -2,55 +2,44 @@ using UnityEngine;
 
 public class PullBodyScript : MonoBehaviour
 {
+    PlayerControler ControlerPlayer;
     [SerializeField] public HingeJoint PlayerHingeJoint;
-
     [SerializeField] Transform LocalBody;
-    [SerializeField] bool CanWork = false;
-
+   
     private void Start()
     {
         //Setup references
+        ControlerPlayer = GetComponent<PlayerControler>();
         PlayerHingeJoint = GetComponent<HingeJoint>();
-        GetComponent<PlayerToolsToInteraction>().PlayerChekToInteractionDelegat += ChekToInteraction;
-
+        GetComponent<PlayerToolsToInteraction>().TryToInteractDelegate += TryToInteract;
+        
         //All Debug
         if (PlayerHingeJoint) Destroy(PlayerHingeJoint);
     }
 
-    public bool CanEnable()
+    private void TryToInteract(Transform GivenReference)
     {
-        if (PlayerHingeJoint || LocalBody)
+        if (GivenReference.GetComponent<BoneControler>())
         {
-            CanWork = true;
-        }
-        else CanWork = false;
-
-        return CanWork;
-
-    }
-
-    public void Work()
-    {
-        if(CanWork)
-        {
-            PullBody();
-        }
-    }
-
-    private bool ChekToInteraction(Transform GivenReference)
-    {
-        if (GivenReference && GivenReference.GetComponent<BoneControler>())
-        {
-            CanWork = true;
             LocalBody = GivenReference;
-        }
-        else
-        {
-            LocalBody = null;
-            CanWork = false;
-        }
+            PullBody();
 
-        return LocalBody != null;
+            if (PlayerHingeJoint)
+            {
+                ControlerPlayer.WhatPlayerHandsDo = HandsPlayer.CarryBody;
+            }
+            else
+            {
+                ControlerPlayer.WhatPlayerHandsDo = HandsPlayer.Null;
+                ControlerPlayer.GetComponent<SlotControler>().UpWeapon();
+            }
+            if (ControlerPlayer.WhatPlayerLegsDo != LegsPlayer.SatDown)
+            {
+                ControlerPlayer.WhatPlayerLegsDo = LegsPlayer.SatDown;
+                ControlerPlayer.GetComponent<MovePlayer>().ControlCapsuleColider(true);
+            }
+            
+        }
     }
 
     private void PullBody()

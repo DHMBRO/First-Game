@@ -6,6 +6,5 @@ public delegate void IsEnable(bool EnablePPO);
 
 public delegate void SetHitBoxes();
 public delegate void WeaponIsShoting();
-public delegate bool ChekToInteraction(Transform ObjectThatWatching);
-
+public delegate void TryInteraction(Transform Object);
 

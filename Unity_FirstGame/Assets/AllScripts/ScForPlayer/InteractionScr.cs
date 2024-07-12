@@ -3,45 +3,21 @@ using UnityEngine;
 public class InteractionScr : MonoBehaviour
 {
     [SerializeField] IInteractionWithObjects LocalInetaction;
-    [SerializeField] bool CanWork = false;
-
+    
     void Start()
     {
-        GetComponent<PlayerToolsToInteraction>().PlayerChekToInteractionDelegat += ChekToInteraction;
+        GetComponent<PlayerToolsToInteraction>().TryToInteractDelegate += TryToInteract;
     }
 
-    public void Work()
+    public void TryToInteract(Transform GivenReference)
     {
-        if (LocalInetaction != null && CanWork)
-        {
-            InteractionWithSomething(LocalInetaction);
-        }
+        LocalInetaction = GivenReference.GetComponent<IInteractionWithObjects>();
 
-    }
-    
-    private bool ChekToInteraction(Transform GivenReference)
-    {
-        if (GivenReference && GivenReference.GetComponent<IInteractionWithObjects>() != null)
-        {
-            LocalInetaction = GivenReference.GetComponent<IInteractionWithObjects>();
-            CanWork = true;
-        }
-        else
-        {
-            LocalInetaction = null;
-            CanWork = false;
-        }
-
-        return LocalInetaction != null;
-    }
-
-    private void InteractionWithSomething(IInteractionWithObjects LocalInetaction)
-    {
         if (LocalInetaction != null && LocalInetaction.AuditToUse())
         {
             LocalInetaction.Interaction();
         }
 
     }
-
+    
 }

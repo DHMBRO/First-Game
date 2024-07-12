@@ -50,7 +50,7 @@ public class UiControler : MonoBehaviour
     {
         //Setup
         InventoryIsOpen = false;
-        PlayerInventory.GetComponent<PlayerToolsToInteraction>().PlayerChekToInteractionDelegat += ChekToInteraction;
+        PlayerInventory.GetComponent<PlayerToolsToInteraction>().TryToInteractDelegadWithOutInput += TryInteract;
         ControlerButton.GetComponent<ButtonControler>();
 
         SlotShopUi[0] = SlotShop01;
@@ -66,7 +66,7 @@ public class UiControler : MonoBehaviour
         InterfaceControler();
     }
 
-    bool ChekToInteraction(Transform GivenReference)
+    public void TryInteract(Transform GivenReference)
     {
         ScrForAllLoot LocalScrForAllLoot = null;
 
@@ -81,11 +81,8 @@ public class UiControler : MonoBehaviour
             else DeleteNameOnTable();
         }
         else DeleteNameOnTable();
-        
-        
-        return LocalScrForAllLoot != null;
     }
-    
+
     public void OpenOrCloseInventory()
     {
         InventoryIsOpen = !InventoryIsOpen;
@@ -134,6 +131,7 @@ public class UiControler : MonoBehaviour
         }
         else TableNameObjectForPickUp.text = " ";
     }
+    
 
     public void InterfaceControler()
     {

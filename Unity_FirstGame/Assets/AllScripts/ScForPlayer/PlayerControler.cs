@@ -58,7 +58,10 @@ public class PlayerControler : MonoBehaviour, HeadInterface
     // Positions
     public Vector3 PlayerLastPosition;
     //[SerializeField] public ModeMovement MovementMode;
-    
+
+    private float TimeToCallFunction_PlayerTooolsToInteraction;
+    [SerializeField] private float TimeDelayToCall_PlayerTooolsToInteraction = 1.0f;
+
     void Start()
     {
         PlayerLastPosition = gameObject.transform.position;
@@ -107,10 +110,8 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                 return;
             }
             else if(WhatPlayerDo == Player.OpenInventory) WhatPlayerDo = Player.Null;
-            
             ControlerUi.InterfaceControler();
-            ControlerUi.DeleteNameOnTable();
-
+        
         }
 
         if (UseAndDropTheLootScr)
@@ -210,28 +211,32 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             }
             
             //Player Tools
-            if (PlayerTools /* && WhatSpeedPlayerLegs != SpeedLegsPlayer.Run && WhatPlayerHandsDo == HandsPlayer.Null*/)
+            if (PlayerTools && !ControlerUi.InventoryIsOpen && Time.time >= TimeToCallFunction_PlayerTooolsToInteraction)
             {
+                TimeToCallFunction_PlayerTooolsToInteraction = Time.time + TimeDelayToCall_PlayerTooolsToInteraction;
                 PlayerTools.InteractionWithRayCast();
+                PlayerTools.SearchObjectsByBoxOverlap();
             }
             
             if (!PlayerTools) Debug.Log("Not set PlayerTools");
 
+            /*
             //PickUp
-            if (PickUpPlayer && WhatSpeedPlayerLegs != SpeedLegsPlayer.Run && WhatPlayerHandsDo == HandsPlayer.Null) 
+            if (PickUpPlayer) 
             {
                 if (Input.GetKeyUp(KeyCode.F))
                 {
-                    PickUpPlayer.Work();
+                    //PickUpPlayer.();
                 }
             }
             if (!PickUpPlayer) Debug.Log("Cannot  PickUpPlayer");
+            
 
             //PlayerPullBodyScript
-            if (PlayerPullBodyScript && PlayerPullBodyScript.CanEnable() && Input.GetKeyDown(KeyCode.X))
+            if (PlayerPullBodyScript && Input.GetKeyDown(KeyCode.X))
             {
                 SlotControler.PutWeapon();
-                PlayerPullBodyScript.Work();
+                PlayerPullBodyScript.
                 
                 if (PlayerPullBodyScript.PlayerHingeJoint)
                 {
@@ -249,13 +254,14 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                 }
 
             }
+            */
 
-            //InteractionScr
-            if (PlayerInteractionScr)
+            //Interaction
+            if ((PlayerInteractionScr || PickUpPlayer || PlayerPullBodyScript) && WhatSpeedPlayerLegs != SpeedLegsPlayer.Run && WhatPlayerHandsDo == HandsPlayer.Null)
             {
                 if (Input.GetKeyUp(KeyCode.F))
                 {
-                    PlayerInteractionScr.Work();
+                    PlayerTools.TryToInteractDelegate(PlayerTools.LastSelectedObject);
                 }
             }
 
