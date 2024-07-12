@@ -55,8 +55,37 @@ public class HelicopterScr : MonoBehaviour
         State = States.Wait;
     }
 
+    public void FlightToPlayer()
+    {
+        if (State == States.Wait)
+        {
+            State = States.FlightToPlayer;
+        }
+    }
+    public void RoamAround()
+    {
+        if (State == States.FlightToPlayer)
+        {
+            State = States.RoamAround;
+        }
+    }
+    public void Landing()
+    {
+        if (State == States.RoamAround)
+        {
+            State = States.Landing;
+        }
+    }
+    public void FlightOut()
+    {
+        if (State == States.Landing)
+        {
+            State = States.FlightOut;
+        }
+    }
+
     // Update is called once per frame
-    
+
     void FixedUpdate()
     {
         if(Input.GetKeyDown(KeyCode.H))
