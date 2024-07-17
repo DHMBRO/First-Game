@@ -4,10 +4,12 @@ public class SingleInteractionActor : MonoBehaviour, IInteractionWithObjects
 {
     [SerializeField] protected Animator Animator;
     [SerializeField] protected bool Interacted = false;
+    [SerializeField] protected bool CanWork = true;
 
     [SerializeField] protected string BeforeInteracted = "Not interacted";
     [SerializeField] protected string AfterInteracted = "Interacted";
-
+    
+    public UpdateOnEvent DelegateUpdateOnEvent;
     private ScrForAllLoot AllLootScr;
 
     void Start()
@@ -25,9 +27,15 @@ public class SingleInteractionActor : MonoBehaviour, IInteractionWithObjects
         ChangeTextUI(BeforeInteracted);
     }
 
+    public bool CheckInteractedState()
+    {
+        return Interacted;
+    }
+
     public bool AuditToUse()
     {
-        return true;
+        return CanWork;
+        
     }
 
     virtual public void Interaction()
@@ -35,12 +43,24 @@ public class SingleInteractionActor : MonoBehaviour, IInteractionWithObjects
         if (!Interacted)
         {
             Interacted = true;
-            Animator?.SetTrigger("Open");
+            
+            if(Animator) Animator.SetTrigger("Open");
+            if(DelegateUpdateOnEvent != null) DelegateUpdateOnEvent();
+
             ChangeTextUI(AfterInteracted);
+            CustomInteraction();
         }
-        
     }
 
+    virtual protected void CustomInteraction()
+    {
+
+    }
+
+    public void SetUpCanWork(bool Value)
+    {
+        CanWork = Value;
+    }
 
     protected void ChangeTextUI(string NewText)
     {

@@ -153,7 +153,6 @@ public class PlayerToolsToInteraction : MonoBehaviour
     {
         if (LastSelectedObject)
         {
-            Debug.Log("Canot work !");
             return;
         }
 
