@@ -4,19 +4,19 @@ public class SingleInteractionActor : MonoBehaviour, IInteractionWithObjects
 {
     [SerializeField] protected Animator Animator;
     [SerializeField] protected bool Interacted = false;
-    [SerializeField] protected bool CanWork = true;
+    [SerializeField] protected bool CanInteract = true;
 
     [SerializeField] protected string BeforeInteracted = "Not interacted";
     [SerializeField] protected string AfterInteracted = "Interacted";
     
     public UpdateOnEvent DelegateUpdateOnEvent;
-    private ScrForAllLoot AllLootScr;
+    [SerializeField] protected ScrForAllLoot AllLootScr;
 
     void Start()
     {
         //Search 
         Animator = GetComponent<Animator>();
-        AllLootScr = GetComponent<ScrForAllLoot>();
+        if(!AllLootScr) AllLootScr = GetComponent<ScrForAllLoot>();
 
         if (!AllLootScr)
         {
@@ -34,8 +34,7 @@ public class SingleInteractionActor : MonoBehaviour, IInteractionWithObjects
 
     public bool AuditToUse()
     {
-        return CanWork;
-        
+        return CanInteract;   
     }
 
     virtual public void Interaction()
@@ -59,12 +58,19 @@ public class SingleInteractionActor : MonoBehaviour, IInteractionWithObjects
 
     public void SetUpCanWork(bool Value)
     {
-        CanWork = Value;
+        CanInteract = Value;
     }
 
     protected void ChangeTextUI(string NewText)
     {
-        AllLootScr.NameOfThisObject = NewText;
+        if(AllLootScr) 
+        {
+            AllLootScr.NameOfThisObject = NewText;
+        }
+        else
+        {
+            Debug.Log(gameObject.name + ": Not set ScrForAllLoot !");
+        }
     }
 
 }

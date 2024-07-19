@@ -1,5 +1,83 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1364051077479645356
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4212480585928627285}
+  - component: {fileID: 8828039756580373791}
+  - component: {fileID: 5867942624285815444}
+  - component: {fileID: 6686550906015431341}
+  m_Layer: 0
+  m_Name: Radar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4212480585928627285
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364051077479645356}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3612685198237513882}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &8828039756580373791
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364051077479645356}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &5867942624285815444
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364051077479645356}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 100000
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6686550906015431341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364051077479645356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3faf55a84a3add54eafdb086e3cc52ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  helicopter: {fileID: 3612685198237513884}
+  helicopterScr: {fileID: 3612685198237513885}
+  Targets: []
 --- !u!1 &3612685198237513884
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,10 +87,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3612685198237513882}
-  - component: {fileID: 6889816045147207352}
-  - component: {fileID: 3389130409181645056}
-  - component: {fileID: 3612685198237513885}
+  - component: {fileID: 5366823552104486259}
   - component: {fileID: 181994828291859582}
+  - component: {fileID: 3612685198237513885}
+  - component: {fileID: 7318403344221790587}
+  - component: {fileID: 3996468315504607072}
+  - component: {fileID: 6429734368323847389}
   m_Layer: 0
   m_Name: Helicopter 01
   m_TagString: Helicopter
@@ -32,39 +112,42 @@ Transform:
   m_LocalScale: {x: 0.001, y: 0.001, z: 0.001}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7243178348150526246}
+  - {fileID: 5542369352184877308}
+  - {fileID: 4212480585928627285}
   - {fileID: 7334548323866302247}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &6889816045147207352
-SphereCollider:
+--- !u!54 &5366823552104486259
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3612685198237513884}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &181994828291859582
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3612685198237513884}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 100000
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3389130409181645056
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3612685198237513884}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3faf55a84a3add54eafdb086e3cc52ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  helicopter: {fileID: 3612685198237513884}
-  helicopterScr: {fileID: 3612685198237513885}
-  Targets: []
+  m_Radius: 2352.857
+  m_Height: 18145.121
+  m_Direction: 2
+  m_Center: {x: 0, y: 2774.3838, z: -1256}
 --- !u!114 &3612685198237513885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,20 +170,102 @@ MonoBehaviour:
   RandomPosition_Z: 0
   TargetToGun: {fileID: 0}
   State: 0
---- !u!136 &181994828291859582
-CapsuleCollider:
+--- !u!114 &7318403344221790587
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3612685198237513884}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 2352.857
-  m_Height: 18145.121
-  m_Direction: 2
-  m_Center: {x: 0, y: 2774.3838, z: 2615.6748}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ef3b5b486fd1d43b53d47da52f3fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mass: 0
+  CanCombining: 0
+  HaveDescription: 0
+  ShowTheAmmo: 0
+  SpriteForLoot: {fileID: 0}
+  HasOwner: 0
+  ShowNameOfThisObject: 1
+  NameOfThisObject: 
+  Descrition: 
+  ParametersLoot:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+--- !u!114 &3996468315504607072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3612685198237513884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 370f292069c565840b2f41853df3ed35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animator: {fileID: 0}
+  Interacted: 0
+  CanInteract: 1
+  BeforeInteracted: 
+  AfterInteracted: 
+  AllLootScr: {fileID: 0}
+  ScrHelicopter: {fileID: 3612685198237513885}
+  HelicopterStates: 3
+--- !u!114 &6429734368323847389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3612685198237513884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6682bd514ffffee47b20e521a106ca83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AllInteractionObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  Targetinteraction: {fileID: 0}
+--- !u!1 &4404479729313853385
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5542369352184877308}
+  m_Layer: 0
+  m_Name: VisualOfHelicopter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5542369352184877308
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4404479729313853385}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7243178348150526246}
+  m_Father: {fileID: 3612685198237513882}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8537779943400164785
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,7 +297,7 @@ Transform:
   m_Children:
   - {fileID: 8358982628028354959}
   m_Father: {fileID: 3612685198237513882}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &4025371340781296574
 MonoBehaviour:
@@ -156,7 +321,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 3612685198237513882}
+    m_TransformParent: {fileID: 5542369352184877308}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a3212ae128e15bc4c8206e91986ded26, type: 3}
       propertyPath: m_RootOrder
@@ -192,15 +357,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a3212ae128e15bc4c8206e91986ded26, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a3212ae128e15bc4c8206e91986ded26, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a3212ae128e15bc4c8206e91986ded26, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a3212ae128e15bc4c8206e91986ded26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -212,6 +377,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a3212ae128e15bc4c8206e91986ded26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3913830347813474653, guid: a3212ae128e15bc4c8206e91986ded26, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a3212ae128e15bc4c8206e91986ded26, type: 3}

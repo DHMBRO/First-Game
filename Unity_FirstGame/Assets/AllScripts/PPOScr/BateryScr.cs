@@ -12,8 +12,6 @@ public class BateryScr : MonoBehaviour
             Debug.Log("Not set ScrPPO or Computer");
             return;
         }
-
-        Computer.ObjectIs += ScrPPO.UpdateState;
     }
 
     

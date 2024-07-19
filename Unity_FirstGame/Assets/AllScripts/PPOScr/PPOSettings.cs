@@ -1,9 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PPOSettings : MonoBehaviour
+public class PPOSettings : SingleInteractionActor
 {
+    [SerializeField] bool PPOIsEnable = true;
+
+    [SerializeField] public float PPORotationSpeed;
+    [SerializeField] setPPORotationSpeed SetPPORotationSpeed;
+    
+    [SerializeField] public float BulletSpeed;
+    [SerializeField] setBulletSpeed SetBulletSpeed;
+
     enum setPPORotationSpeed
     {
         Yes,
@@ -14,18 +20,18 @@ public class PPOSettings : MonoBehaviour
         Yes,
         No
     }
-    [SerializeField] public float PPORotationSpeed;
-    [SerializeField] setPPORotationSpeed SetPPORotationSpeed;
-    [SerializeField] public float BulletSpeed;
-    [SerializeField] setBulletSpeed SetBulletSpeed;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
 
+    
+    public bool ReturnPPOIsEnable()
+    {
+        return PPOIsEnable;
     }
 
-    // Update is called once per frame
+    override protected void CustomInteraction()
+    {
+        PPOIsEnable = false;
+    }
+
     void Update()
     {
         if (SetBulletSpeed == setBulletSpeed.No)
