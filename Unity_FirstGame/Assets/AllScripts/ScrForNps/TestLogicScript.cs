@@ -73,7 +73,8 @@ public abstract class ILogic
                     if (CanIAttack())
                     {
 
-                        Debug.Log("ATTACK");
+                        //Debug.Log("ATTACK");
+
                         InfOwner.SetState(new AttackState(InfOwner));
                     }
                     else
@@ -128,21 +129,24 @@ public class PatrolState : ILogic
                 gameObj.transform.rotation = Quaternion.LookRotation(Vector3.Lerp(gameObj.transform.forward, -gameObj.transform.forward, 0.1f));  
                 if (Time.time > MoveTimePoint)
                 {
-                    StartPatroling();
+                    StartPatroling(true);
                 }  
             }
-            else if (!IsPatroling)
+            else if (!IsPatroling || !Patrol.ZombieNavMesh.hasPath)
             {
-                StartPatroling();
+                StartPatroling(false);
             }
         }
     }
 
-    void StartPatroling()
+    void StartPatroling(bool FindNextPoint)
     {
         IsPatroling = true;
         InfOwner.SetFloatToAnim("CurrentSpeed", 0.5f);
-        CurrentPoint = InfOwner.PointController.SearchNextPosition(CurrentPoint);
+        if (FindNextPoint) 
+        {
+            CurrentPoint = InfOwner.PointController.SearchNextPosition(CurrentPoint);
+        }
         Patrol.MoveTo(InfOwner.PointController.Points[CurrentPoint].transform.position);
     }
 }

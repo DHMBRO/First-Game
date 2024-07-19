@@ -47,7 +47,7 @@ public class SoundCreatorScript : MonoBehaviour
         
         if (DebugingTheWork)
         {
-            Debug.Log("Sound Created " + NoiceRadius + " == Radius  ");
+           // Debug.Log("Sound Created " + NoiceRadius + " == Radius  ");
 
         }
 

@@ -114,6 +114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletDamage: 0
+  CaliberIs: 0
+  LauncherBullet: {fileID: 0}
 --- !u!114 &1147372921518262786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +129,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceMode: 0
-  Speed: 0
+  Speed: 15
+  vfx: {fileID: 0}
+  TimeDestroy: 10
 --- !u!54 &4464431810010024435
 Rigidbody:
   m_ObjectHideFlags: 0

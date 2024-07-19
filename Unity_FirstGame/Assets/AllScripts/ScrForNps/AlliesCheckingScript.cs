@@ -5,7 +5,6 @@ using UnityEngine;
 public class AlliesCheckingScript : MonoBehaviour
 {
     protected InfScript MyInfo;
-    int LayerMask = 6;
     protected List<GameObject> DeadAllies = new List<GameObject>();
     float CheckingTime = 0.0f;
     const float Interval = 1.0f;

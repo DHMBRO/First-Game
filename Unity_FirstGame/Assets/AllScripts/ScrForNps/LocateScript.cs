@@ -144,11 +144,11 @@ public class LocateScript : MonoBehaviour
             HitresultsList.Sort((p1, p2) => p1.distance.CompareTo(p2.distance));
 
 
-            Debug.Log(" angles: " + AngleToTestTarget + " <= " + VisionAngle + " : " + (AngleToTestTarget <= VisionAngle));
+            //Debug.Log(" angles: " + AngleToTestTarget + " <= " + VisionAngle + " : " + (AngleToTestTarget <= VisionAngle));
 
             foreach (RaycastHit HitResult in HitresultsList)
             {
-                Debug.Log(HitResult.collider.gameObject.name + " " + HitResult.distance);
+               // Debug.Log(HitResult.collider.gameObject.name + " " + HitResult.distance);
                 if (HitResult.collider.gameObject.transform.root.gameObject == gameObject)
                 {
                     continue;

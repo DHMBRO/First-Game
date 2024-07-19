@@ -118,7 +118,7 @@ public class InfScript : MonoBehaviour
     public void SetState(ILogic NewState)
     {
        CurrentState = NewState;
-        Debug.Log("New State = " + NewState);
+        //Debug.Log("New State = " + NewState);
     }
     public bool IHearSomething()
     {
@@ -153,7 +153,7 @@ public class InfScript : MonoBehaviour
     }
     public void OnStealthKillEnd(string Message)
     {
-        Debug.Log(Message);
+        //Debug.Log(Message);
     }
     public Vector3 PointToAim()
     {

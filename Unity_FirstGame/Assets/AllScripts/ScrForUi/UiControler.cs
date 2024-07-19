@@ -73,7 +73,7 @@ public class UiControler : MonoBehaviour
         if (GivenReference)
         {
             LocalScrForAllLoot = GivenReference.GetComponent<ScrForAllLoot>();
-
+            
             if (LocalScrForAllLoot)
             {
                 UpdateNameOnTable(LocalScrForAllLoot);
