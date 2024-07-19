@@ -1,7 +1,8 @@
 using UnityEngine;
 
 public delegate void SetRagdoll(bool Enable);
-public delegate void UpdateState(bool Alive);
+public delegate void UpdateState(bool NewState);
+public delegate void UpdateOnEvent();
 public delegate void IsEnable(bool EnablePPO);
 
 public delegate void SetHitBoxes();

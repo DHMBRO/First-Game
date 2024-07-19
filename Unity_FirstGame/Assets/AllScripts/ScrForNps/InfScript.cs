@@ -22,10 +22,12 @@ public class InfScript : MonoBehaviour
     public Vector3 InterestPosition;
     public List<GameObject> Allies;
     public float SpiningSpeed = 10.0f;
+    protected AlliesCheckingScript AlliesCheckingScript;
     public enum Types
     {
         Camper,
         Patroller //&
+
     }
    
     void Start()
@@ -37,10 +39,10 @@ public class InfScript : MonoBehaviour
         Patrol = this.gameObject.GetComponent<PatrolScriptNavMesh>();
         Attack = this.gameObject.GetComponent<AttackMethod>();
         SoundTaker = this.gameObject.GetComponent<SoundTakerScript>();
-       
+        AlliesCheckingScript = GetComponent<AlliesCheckingScript>();
         //Animator = this.gameObject.GetComponentInParent<Animator>();
-        
-        if(MyType == Types.Patroller)
+
+        if (MyType == Types.Patroller)
         {
             SetState(new PatrolState(this));
         }
@@ -120,12 +122,13 @@ public class InfScript : MonoBehaviour
     }
     public bool IHearSomething()
     {
-        return SoundTaker.IHearSomething;
+        return SoundTaker.IHearSomething || AlliesCheckingScript.ISeeDeadPeople;
     }
    
     public void NullInterest()
     {
         SoundTaker.NullInterest();
+        AlliesCheckingScript.NullInterest();
     }
     public void GoPosition() 
     {

@@ -34,7 +34,6 @@ public class HelicopterScr : MonoBehaviour
 
     public enum States
     {
-
         Wait,
         FlightToPlayer,
         RoamAround,

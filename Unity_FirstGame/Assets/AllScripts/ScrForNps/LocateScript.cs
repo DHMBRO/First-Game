@@ -79,12 +79,10 @@ public class LocateScript : MonoBehaviour
         DefineMyTarget();
         return Target && CanISee(Target.gameObject);
     }
-    public bool CanISee(GameObject TestTarget)
-    {
-        
-        
 
-          if (!TestTarget)
+    public bool CanISee(GameObject TestTarget, bool CheckAliveOnly = true)
+    {
+        if (!TestTarget)
         {
             return false;
         }
@@ -93,10 +91,10 @@ public class LocateScript : MonoBehaviour
         {
             return false;
         }
-        HpScript Hp = TestTarget.GetComponent<HpScript>();
-        if (Hp)
+        if (CheckAliveOnly)
         {
-            if (!Hp.IsAlive())
+            HpScript Hp = TestTarget.GetComponent<HpScript>();
+            if (!Hp || !Hp.IsAlive())
             {
                 return false;
             }
@@ -107,11 +105,11 @@ public class LocateScript : MonoBehaviour
         IlluminationController TestTargetIllumin = TestTarget.GetComponentInParent<IlluminationController>();
         if (TestTargetIllumin)
         {
-            CurrentAgrDistance =  MaxDistatzeForAgr * TestTargetIllumin.GetIlluminatiLvl();
+            CurrentAgrDistance = MaxDistatzeForAgr * TestTargetIllumin.GetIlluminatiLvl();
         }
 
 
-        StelthScript TestTargetStelsScript =  TestTarget.GetComponent<StelthScript>();
+        StelthScript TestTargetStelsScript = TestTarget.GetComponent<StelthScript>();
         if (TestTargetStelsScript)
         {
             if (TestTargetStelsScript.Stelth)
@@ -133,8 +131,8 @@ public class LocateScript : MonoBehaviour
         float AngleToTestTarget = Vector3.Angle(gameObject.transform.forward, TestTarget.transform.position - gameObject.transform.position);
         if (AngleToTestTarget <= VisionAngle)
         {
-            Debug.DrawRay(MyHeadScript.GetHeadPosition(), gameObject.transform.forward,Color.blue);
-           
+            Debug.DrawRay(MyHeadScript.GetHeadPosition(), gameObject.transform.forward, Color.blue);
+
             Vector3 Rotate = TestTarget.transform.position - transform.position;
             Vector3 RotateHead = BaseInfo.MyHeadScript.GetHeadPosition() - MyHeadScript.GetHeadPosition();
             Ray HeadForward = new Ray(MyHeadScript.GetHeadPosition(), RotateHead);
@@ -147,10 +145,10 @@ public class LocateScript : MonoBehaviour
 
 
             Debug.Log(" angles: " + AngleToTestTarget + " <= " + VisionAngle + " : " + (AngleToTestTarget <= VisionAngle));
-       
+
             foreach (RaycastHit HitResult in HitresultsList)
             {
-                Debug.Log(HitResult.collider.gameObject.name + " " + HitResult.distance );
+                Debug.Log(HitResult.collider.gameObject.name + " " + HitResult.distance);
                 if (HitResult.collider.gameObject.transform.root.gameObject == gameObject)
                 {
                     continue;
@@ -165,7 +163,7 @@ public class LocateScript : MonoBehaviour
                 }
             }
         }
-        
+
         if ((TestTarget.transform.position - gameObject.transform.position).magnitude < 1.5f)
         {
             return true;
