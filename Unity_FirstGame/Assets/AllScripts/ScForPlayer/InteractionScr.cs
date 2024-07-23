@@ -11,6 +11,11 @@ public class InteractionScr : MonoBehaviour
 
     public void TryToInteract(Transform GivenReference)
     {
+        if(!GivenReference)
+        {
+            return;
+        }
+
         LocalInetaction = GivenReference.GetComponent<IInteractionWithObjects>();
 
         if (LocalInetaction != null && LocalInetaction.AuditToUse())

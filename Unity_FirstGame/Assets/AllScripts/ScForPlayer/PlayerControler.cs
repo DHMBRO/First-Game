@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class PlayerControler : MonoBehaviour, HeadInterface
 {
+    // ImportantParameters
+    [SerializeField] private bool PlayerIsDead = false;
+
     //Movement Components
     [SerializeField] private Move1F Move;
     [SerializeField] private MovePlayer MovePlayer;
@@ -22,6 +25,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
     [SerializeField] private DropControler ControlerDrop;
     [SerializeField] private SlotControler SlotControler;
     [SerializeField] private AimControler ControlerAim;
+    [SerializeField] private OnDeadScript OnDeadPlayerScript;
 
     //Camera Components
     [SerializeField] private Transform PlayerCameraF1;
@@ -53,19 +57,17 @@ public class PlayerControler : MonoBehaviour, HeadInterface
     [SerializeField] public LegsPlayer WhatPlayerLegsDo;
     [SerializeField] public SpeedLegsPlayer WhatSpeedPlayerLegs;
 
-    public Vector3 PlayerSpeed;
 
     // Positions
+    public Vector3 PlayerSpeed;
     public Vector3 PlayerLastPosition;
-    //[SerializeField] public ModeMovement MovementMode;
-
+    
     private float TimeToCallFunction_PlayerTooolsToInteraction;
     [SerializeField] private float TimeDelayToCall_PlayerTooolsToInteraction = 1.0f;
 
     void Start()
     {
         PlayerLastPosition = gameObject.transform.position;
-
 
         //Movement
         Move = GetComponent<Move1F>();
@@ -81,7 +83,8 @@ public class PlayerControler : MonoBehaviour, HeadInterface
         PickUpPlayer = GetComponent<PickUp>();
         PlayerInteractionScr = GetComponent<InteractionScr>();
         PlayerPullBodyScript = GetComponent<PullBodyScript>();
-        
+        OnDeadPlayerScript = GetComponent<OnDeadScript>();
+
         ControlerDrop = GetComponent<DropControler>();
         SlotControler = GetComponent<SlotControler>();
         ControlerAim = GetComponent<AimControler>();
@@ -98,6 +101,11 @@ public class PlayerControler : MonoBehaviour, HeadInterface
 
     void Update()
     {
+        if(OnDeadPlayerScript && OnDeadPlayerScript.IsPlayerDead() == true)
+        {
+            return;
+        }
+        
         PlayerSpeed = (PlayerLastPosition - gameObject.transform.position) / Time.deltaTime;
         PlayerLastPosition = gameObject.transform.position;
 
@@ -286,7 +294,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                     SlotControler.Recharge();
                 }
 
-                ControlrPlayerIK.SetSetupIKReferences();
+                ControlrPlayerIK.SetupIKReferences();
             }
             
             // Shooting || Weapon

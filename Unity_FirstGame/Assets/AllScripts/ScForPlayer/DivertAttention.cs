@@ -125,6 +125,7 @@ public class DivertAttention : MethodsFromDevelopers
         Vector3 Trajectory;
         Rigidbody RIGRock;
 
+        SphereCollider ColliderSphere;
         SoundCreatorScript SoundScript;
         ExecutoreScriptToRock ExecutorScript;
 
@@ -136,13 +137,16 @@ public class DivertAttention : MethodsFromDevelopers
         RIGRock = Rock.AddComponent<Rigidbody>();
         RIGRock.rotation = Quaternion.identity;
 
+        ColliderSphere = Rock.GetComponent<SphereCollider>();
         SoundScript = Rock.GetComponent<SoundCreatorScript>();
         ExecutorScript = Rock.AddComponent<ExecutoreScriptToRock>();
         LocalZoneNoise.SetActive(false);
 
+
         Trajectory = ((CameraPlayer.position + CameraPlayer.forward * 10.0f) - Rock.transform.position).normalized * PowerToDrop;
         RIGRock.AddRelativeForce(Trajectory, ForceMode.Impulse);
-         
+        ColliderSphere.enabled = true;
+
         Destroy(Rock, 10.0f);
         ControlerSlots.GetObjectInHand();
        

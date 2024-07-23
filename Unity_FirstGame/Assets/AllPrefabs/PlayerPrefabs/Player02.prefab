@@ -267,7 +267,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1728130923573974538}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.11, z: 0.067}
+  m_LocalPosition: {x: -0.00000011352188, y: 0.10999979, z: -0.56405747}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1421,6 +1421,7 @@ GameObject:
   - component: {fileID: 8382459316900287711}
   - component: {fileID: 6328347359453867729}
   - component: {fileID: 8720987067841248331}
+  - component: {fileID: 7416387611202510286}
   - component: {fileID: 3059040256925347778}
   - component: {fileID: 2320318701797134959}
   - component: {fileID: 2001030955048781610}
@@ -1596,6 +1597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d2e13c0bdd472048a4ce7b554c40e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerIsDead: 0
   Move: {fileID: 0}
   MovePlayer: {fileID: 6328347359453867729}
   ControlerShoot: {fileID: 0}
@@ -1611,6 +1613,7 @@ MonoBehaviour:
   ControlerDrop: {fileID: 2663352457323175868}
   SlotControler: {fileID: 7874716152253843916}
   ControlerAim: {fileID: 0}
+  OnDeadPlayerScript: {fileID: 7416387611202510286}
   PlayerCameraF1: {fileID: 0}
   CameraPlayerF3: {fileID: 0}
   ControlerScope: {fileID: 8086464743341821375}
@@ -1629,6 +1632,7 @@ MonoBehaviour:
   WhatSpeedPlayerLegs: 0
   PlayerSpeed: {x: 0, y: 0, z: 0}
   PlayerLastPosition: {x: 0, y: 0, z: 0}
+  TimeDelayToCall_PlayerTooolsToInteraction: 1
 --- !u!114 &1187246579547213906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1665,7 +1669,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LocalObject: {fileID: 0}
-  CanWork: 0
   ControlerUi: {fileID: 0}
   InventoryUi: {fileID: 0}
   ControlerPlayer: {fileID: 9222820105927190343}
@@ -1695,7 +1698,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerHingeJoint: {fileID: 0}
   LocalBody: {fileID: 0}
-  CanWork: 0
 --- !u!114 &5192534622578152218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1708,7 +1710,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef81a3e98ce5e324f9be79af9a10f2b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanWork: 0
 --- !u!114 &7874716152253843916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1913,6 +1914,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ControlerPlayer: {fileID: 9222820105927190343}
   Stelth: 0
+--- !u!114 &7416387611202510286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9027246094432369652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e80aeef71aebe043be9ce69765f99df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerIsDead: 0
+  ControlerIKForPlayer: {fileID: 3882174648495343349}
 --- !u!114 &3059040256925347778
 MonoBehaviour:
   m_ObjectHideFlags: 0

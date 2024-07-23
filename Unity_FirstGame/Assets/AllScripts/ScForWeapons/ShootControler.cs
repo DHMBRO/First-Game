@@ -29,7 +29,6 @@ public class ShootControler : MonoBehaviour
 
     [SerializeField] public float ShotDeley = 1.0f;
     [SerializeField] public float ShotTime = 0.0f;
-    [SerializeField] float BulletPrefabDmage = 1.0f;
     [SerializeField] public float Mass = 0.0f;
     [SerializeField] private float BulletPrefabSpeed = 1.0f;
     [SerializeField] private float ColletSpeed = 1.0f;

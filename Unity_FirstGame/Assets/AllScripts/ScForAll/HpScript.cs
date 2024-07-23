@@ -4,6 +4,7 @@ using TMPro;
 public class HpScript : MonoBehaviour
 {
     [SerializeField] public UpdateState StateDelegate;
+    [SerializeField] public UpdateOnEvent UpdateOnEvenetDelegate;
     [SerializeField] public SetHitBoxes HitBoxes;
 
     [SerializeField] private Image UiHp;
@@ -79,6 +80,10 @@ public class HpScript : MonoBehaviour
                 StateDelegate(false);
             }
 
+            if (UpdateOnEvenetDelegate != null)
+            {
+                UpdateOnEvenetDelegate();
+            }
 
             if (State != EnemyState.Another)
             {
@@ -87,7 +92,7 @@ public class HpScript : MonoBehaviour
                     MyNavMesh.ZombieNavMesh.isStopped = true;
                 }
 
-                if (StelthKill == false)
+                if (StelthKill == false && Info)
                 {
                     if (HitBoxes != null) HitBoxes();
                     Info.SetAnimation("Death");
@@ -135,6 +140,16 @@ public class HpScript : MonoBehaviour
 
     void PlusHp(float Heal)
     {
+        if (StateDelegate != null)
+        {
+            StateDelegate(true);
+        }
+
+        if(UpdateOnEvenetDelegate != null)
+        {
+            UpdateOnEvenetDelegate();
+        }
+
         if ((HealthPoint + Heal) >= MaxHp)
         {
             HealthPoint = MaxHp;

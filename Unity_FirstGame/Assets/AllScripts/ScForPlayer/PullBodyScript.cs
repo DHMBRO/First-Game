@@ -27,11 +27,12 @@ public class PullBodyScript : MonoBehaviour
             if (PlayerHingeJoint)
             {
                 ControlerPlayer.WhatPlayerHandsDo = HandsPlayer.CarryBody;
+                ControlerPlayer.GetComponent<SlotControler>().PutAwayWeapon();
             }
             else
             {
                 ControlerPlayer.WhatPlayerHandsDo = HandsPlayer.Null;
-                ControlerPlayer.GetComponent<SlotControler>().UpWeapon();
+                ControlerPlayer.GetComponent<SlotControler>().ReturnWeaponInHand();
             }
             if (ControlerPlayer.WhatPlayerLegsDo != LegsPlayer.SatDown)
             {

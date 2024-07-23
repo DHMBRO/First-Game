@@ -22,7 +22,7 @@ public class IKControlerForPlayer : MonoBehaviour
         PlayerControlerAnimator = GetComponent<Animator>(); ;
     }
 
-    public void SetSetupIKReferences()
+    public void SetupIKReferences()
     {
         if (!ControlerPlayer)
         {
@@ -38,14 +38,9 @@ public class IKControlerForPlayer : MonoBehaviour
 
     }
 
-    private void Update()
+    public void SetupIKWeight(float Value)
     {
-        if (PlayerPivot)
-        {
-            //OffSetRotationRightArm = Quaternion.LookRotation((ContrlerAim.GetLookPoint() - PlayerPivot.localPosition));
-            //OffSetRotationRightArm.eulerAngles = new Vector3(OffSetRotationRightArm.eulerAngles.x, OffSetRotationRightArm.eulerAngles.y, -90.0f);
-        }
-        
+        CurrentWeight = Value;
     }
 
     private void OnAnimatorIK(int layerIndex)
@@ -55,13 +50,12 @@ public class IKControlerForPlayer : MonoBehaviour
             return;
         }
 
-        //Debug.Log("1");
+        PlayerControlerAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand, CurrentWeight);
+        PlayerControlerAnimator.SetIKRotationWeight(AvatarIKGoal.LeftHand, CurrentWeight);
 
-        PlayerControlerAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1.0f);
-        PlayerControlerAnimator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1.0f);
-        
-        PlayerControlerAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1.0f);
-        PlayerControlerAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1.0f);
+        PlayerControlerAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, CurrentWeight);
+        PlayerControlerAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand, CurrentWeight);
+
 
         PlayerControlerAnimator.SetIKRotation(AvatarIKGoal.LeftHand, Quaternion.Euler(ControlerAim.GetLeftHandRotation()));
         PlayerControlerAnimator.SetIKPosition(AvatarIKGoal.LeftHand, ControlerAim.GetLeftHandPosition());

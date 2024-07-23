@@ -10,15 +10,20 @@ public class AtackScript : MonoBehaviour
     Vector3 PositionTrigger;
     Vector3 Scale;
 
-    float RadiuseHitBoxParent = 0.0f;
-    float LastLeghtOfAttackTrigger;
-
     private void OnDrawGizmos()
     {
         PositionTrigger = transform.position + transform.forward * LenghtOfAttackTrigger;
         Scale = new Vector3(ScaleAttakcTrigger.x, ScaleAttakcTrigger.y, (LenghtOfAttackTrigger * 2.0f) - 1.0f);
 
         Gizmos.DrawCube(PositionTrigger, Scale);
+    }
+
+    private void Update()
+    {
+        if (Bite)
+        {
+            Punch(TestDamage);
+        }
     }
 
     public void Punch(float Damage)

@@ -1,7 +1,5 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class GetDamageScript : MonoBehaviour
 {
@@ -64,8 +62,6 @@ public class GetDamageScript : MonoBehaviour
             }
 
             if(CurrentEqipment != null) Damage = CurrentEqipment.ReturnNewDamage(Damage);
-            
-            Debug.Log(Damage);
 
             OwnerHpScript.InflictingDamage(Damage);
         }

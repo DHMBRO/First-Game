@@ -83,10 +83,20 @@ public class UiControler : MonoBehaviour
         else DeleteNameOnTable();
     }
 
+    public void OpenOrCloseInventory(bool SetOpen)
+    {
+        InventoryIsOpen = SetOpen;
+        SetInventory();
+    }
+
     public void OpenOrCloseInventory()
     {
         InventoryIsOpen = !InventoryIsOpen;
+        SetInventory();
+    }
 
+    private  void SetInventory()
+    {
         //InterFace.SetActive(!InventoryIsOpen);
         Inventory.SetActive(InventoryIsOpen);
         IndexesTable.SetActive(!InventoryIsOpen);
@@ -95,7 +105,7 @@ public class UiControler : MonoBehaviour
         CurrentMassInInventory.gameObject.SetActive(InventoryIsOpen);
 
         if (InventoryUi) InventoryUi.WriteSprite();
-        if (ControlerButton) 
+        if (ControlerButton)
         {
             ControlerButton.SetDropButton(false);
             ControlerButton.DisActiveUD();
@@ -103,7 +113,6 @@ public class UiControler : MonoBehaviour
 
         if (InventoryIsOpen) Cursor.lockState = CursorLockMode.None;
         else Cursor.lockState = CursorLockMode.Locked;
-        
     }
 
     void UpdateNameOnTable(ScrForAllLoot LocalObjectScript)

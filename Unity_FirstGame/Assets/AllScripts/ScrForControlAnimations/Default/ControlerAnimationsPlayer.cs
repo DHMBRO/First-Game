@@ -9,10 +9,6 @@ public class ControlerAnimationsPlayer : MonoBehaviour
     [SerializeField] MovePlayer MovePlayer;
     [SerializeField] Rigidbody RigPlayer;
 
-    //Refrence to animations
-    //[SerializeField] float TimeStelthKill = 7.0f;
-    //[SerializeField] float WhenFinishedStelthKill;
-
     //References to additional objects
     [SerializeField] Transform BaseBodyPlayerForAnimations;
     
@@ -21,25 +17,23 @@ public class ControlerAnimationsPlayer : MonoBehaviour
     [SerializeField] float DesirableSpeed;
     
     //Additional parameters to work 
-    //[SerializeField] public float CurrentAddedRotateBodyPlayer;
-
     [SerializeField] float RotateBodyWhenAiming;
-    //[SerializeField] float RotateBodyPlayerWhenAimingInStelth;
 
 
     void Start()
     {
         Parameters = GetComponent<Animator>();
         RigPlayer = ControlerPlayer.GetComponent<Rigidbody>();
-        
+        RigPlayer.GetComponent<HpScript>().UpdateOnEvenetDelegate += SetDead;
+
         if (Parameters) Parameters.SetFloat("CurrentSpeed", 0.0f);
         else Debug.Log("Not set Parameters");
 
     }
 
-    private void Update()
+    public void SetDead()
     {
-        UpdateAnimations();
+        Parameters.SetTrigger("IsDead"); 
     }
 
     public void UpdateAnimations()

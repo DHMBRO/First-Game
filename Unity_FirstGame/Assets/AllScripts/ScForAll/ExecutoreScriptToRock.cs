@@ -19,7 +19,7 @@ public class ExecutoreScriptToRock : MonoBehaviour
         //Debug.Log("OnColisionIs work");
         //IsWorked = true;
         
-        if(DestroyOnTouch) Destroy(gameObject);
+        Destroy(gameObject);
 
 
     }

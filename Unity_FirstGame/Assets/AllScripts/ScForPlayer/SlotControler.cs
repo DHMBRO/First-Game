@@ -97,7 +97,7 @@ public class SlotControler : MethodsFromDevelopers
 
     }
         
-    public void PutWeapon()
+    public void PutAwayWeapon()
     {
         if (ObjectInHand)
         {
@@ -144,7 +144,7 @@ public class SlotControler : MethodsFromDevelopers
         else return;
     }
 
-    public void UpWeapon()
+    public void ReturnWeaponInHand()
     {
         if (LastWeaponInHand)
         {
