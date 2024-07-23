@@ -17,6 +17,7 @@ public class LocateScript : MonoBehaviour
     protected HpScript MyHpScript;
     protected float FullVisionDistance = 1.5f;
     public InfScript MyInfo;
+    //protected Vector3 TargetLastPosition;
     void Start()
     {
         MyHpScript = gameObject.GetComponent<HpScript>();
@@ -155,6 +156,7 @@ public class LocateScript : MonoBehaviour
                 }
                 if (HitResult.collider.gameObject == TestTarget || HitResult.collider.gameObject.transform.root.gameObject == TestTarget)
                 {
+                    MyInfo.InterestPosition = TestTarget.gameObject.transform.position;
                     return true;
                 }
                 else

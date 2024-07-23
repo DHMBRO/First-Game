@@ -173,6 +173,7 @@ public class ChaseState : ILogic
         }
         else
         {
+            //
             DefineState();
         }
     }
