@@ -2,44 +2,46 @@ using UnityEngine;
 
 public class PPOscr : MonoBehaviour
 {
-    private Quaternion ToTargetRotation;
-    GameObject Turget;
-    bool PPOIsOn = true;
-    [SerializeField] float RSpeed;
+    
+    [SerializeField] GameObject Target;
     [SerializeField] GameObject BulletOrRocket;
     [SerializeField] GameObject FierFrom;
+    
+    [SerializeField] HorisontalOrVertical RotateTo;
+    
+    [SerializeField] float RSpeed;
     [SerializeField] float TimeOfSet;
+
     float timer = 0.00f;
+    float bulletSpeed = 0;
+
+    private PPOSettings SettingsPPOScr;
+    private Quaternion ToTargetRotation;
+
     enum HorisontalOrVertical
     {
         Horisontal,
         Vertical
     }
-    [SerializeField] HorisontalOrVertical RotateTo;
-    float bulletSpeed = 0;
-    // Start is called before the first frame update
     
-    
-    public void UpdateState(bool NewState)
+    private void Start()
     {
-        PPOIsOn = NewState;        
+        SettingsPPOScr = GetComponentInParent<PPOSettings>();  
     }
-    
-    // Update is called once per frame
+
     void Update()
     {
-        
-        if (GetComponentInParent<PPOSettings>().PPORotationSpeed != 0f)
+        if (SettingsPPOScr && SettingsPPOScr.PPORotationSpeed != 0.0f)
         {
             RSpeed = GetComponentInParent<PPOSettings>().PPORotationSpeed;
         }
-        if (GetComponentInParent<PPOSettings>().BulletSpeed != 0f)
+        if (SettingsPPOScr && SettingsPPOScr.BulletSpeed != 0.0f)
         {
             bulletSpeed = GetComponentInParent<PPOSettings>().BulletSpeed;
         }
-        if (Turget && PPOIsOn)
+        if (Target && SettingsPPOScr.ReturnPPOIsEnable())
         {
-            ToTargetRotation = Quaternion.LookRotation(Turget.transform.position - transform.position);
+            ToTargetRotation = Quaternion.LookRotation(Target.transform.position - transform.position);
             gameObject.transform.rotation = Quaternion.RotateTowards(transform.rotation, ToTargetRotation, RSpeed);
             if (RotateTo == HorisontalOrVertical.Horisontal)
             {
@@ -69,7 +71,7 @@ public class PPOscr : MonoBehaviour
         Debug.Log("Helicopter - " + other.gameObject.name);
         if (other.gameObject.CompareTag("Helicopter"))
         {
-            Turget = other.gameObject;
+            Target = other.gameObject;
             Debug.Log("Helicopter In");
         }
         else
@@ -85,7 +87,7 @@ public class PPOscr : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Helicopter"))
         {
-            Turget = null;
+            Target = null;
         }
     }
 }
