@@ -8,9 +8,7 @@ public class StelthScript : MonoBehaviour
     void Start()
     {
         ControlerPlayer = GetComponent<PlayerControler>();
-        
     }
-
     
     private void OnTriggerStay(Collider other)
     {
