@@ -6,11 +6,11 @@ public class DivertAttention : MethodsFromDevelopers
     [SerializeField] private GameObject ZoneNoise;
     [SerializeField] private GameObject LocalZoneNoise;
 
+    [SerializeField] private PlayerControler ControlerPlayer;
     [SerializeField] private SlotControler ControlerSlots;
     [SerializeField] private LineRenderer LineRender;
     [SerializeField] private Transform CameraPlayer;
     [SerializeField] private Transform HandPlayerForThrow;
-    
 
     [SerializeField] float PowerToDrop;
     [SerializeField] int CountPoints = 10;
@@ -23,7 +23,9 @@ public class DivertAttention : MethodsFromDevelopers
 
     private void Start()
     {
+        ControlerPlayer = GetComponent<PlayerControler>();
         ControlerSlots = GetComponent<SlotControler>();
+
         LineRender = GetComponent<LineRenderer>();
         //LineRender.enabled = false;
         LineRender.enabled = true;
@@ -48,8 +50,6 @@ public class DivertAttention : MethodsFromDevelopers
 
         this.Rock = Rock;
         LineRender.enabled = true;
-
-
     }
 
 
@@ -119,9 +119,25 @@ public class DivertAttention : MethodsFromDevelopers
         
     }
 
+    public void StopDropRock()
+    {
+        if (!Rock)
+        {
+            return;
+        }
+
+        Destroy(Rock);
+
+        ControlerPlayer.WhatPlayerHandsHave = HandsPlayerHave.Null;
+        ControlerPlayer.StateCamera = global::CameraPlayer.Null;
+
+        LineRender.enabled = false;
+        LocalZoneNoise.SetActive(false);
+        
+    }
+
     public void DropRock()
     {
-        
         Vector3 Trajectory;
         Rigidbody RIGRock;
 

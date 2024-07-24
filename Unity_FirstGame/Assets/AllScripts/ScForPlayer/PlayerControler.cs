@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class PlayerControler : MonoBehaviour, HeadInterface
 {
-    // ImportantParameters
-    [SerializeField] private bool PlayerIsDead = false;
-
     //Movement Components
     [SerializeField] private Move1F Move;
     [SerializeField] private MovePlayer MovePlayer;

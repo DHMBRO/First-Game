@@ -108,9 +108,11 @@ public class AimControler : MonoBehaviour
     {
         if (ControlerPlayer.ControlerShoot && RightArm)
         {
-            TestRightArm.gameObject.SetActive(true);
-            TestRigtHand.gameObject.SetActive(true);
-
+            if (TestRightArm)
+            {
+                TestRightArm.gameObject.SetActive(true);
+                TestRigtHand.gameObject.SetActive(true);
+            }
 
             ShootControler CurrentWeapon = ControlerPlayer.ControlerShoot.GetComponent<ShootControler>();
 
@@ -142,8 +144,12 @@ public class AimControler : MonoBehaviour
         }
         else
         {
-            TestRightArm.gameObject.SetActive(false);
-            TestRigtHand.gameObject.SetActive(false);
+            if(TestRightArm)
+            {
+                TestRightArm.gameObject.SetActive(false);
+                TestRigtHand.gameObject.SetActive(false);
+            }
+
         }
 
         if (!WeaponMuzzle || !CanAim)
@@ -185,7 +191,7 @@ public class AimControler : MonoBehaviour
         {
             WeaponMuzzle.LookAt(SelectedPoint.point);
             //CurrentSlotHand.LookAt(SelectedPoint.point);
-            TestObjectPoint.position = SelectedPoint.point;
+            if(TestObjectPoint) TestObjectPoint.position = SelectedPoint.point;
         }
         else
         {

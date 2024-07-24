@@ -35,9 +35,12 @@ public class OnDeadScript : MonoBehaviour
         PlayerIsDead = true;
         
         ControlerUi.OpenOrCloseInventory(false);
-        
+        ControlerUi.DeleteNameOnTable();
+
         ControlerIKForPlayer.SetupIKWeight(0.0f);
         ControlerSlot.PutAwayWeapon();
+        ControlerPlayer.GetComponent<DivertAttention>().StopDropRock();
+
 
 
         ControlerPlayer.WhatPlayerDo = Player.Null;

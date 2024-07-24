@@ -5,14 +5,6 @@ public enum MoodCamera
     ThirdFace
 }
 
-
-public enum CameraIs
-{
-    Null,
-    Simple,
-    Aiming
-}
-
 public enum CameraPlayer
 {
     Null,
