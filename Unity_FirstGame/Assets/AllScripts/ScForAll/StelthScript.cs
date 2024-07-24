@@ -14,13 +14,28 @@ public class StelthScript : MonoBehaviour
     
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Bush") 
-        && ControlerPlayer.WhatPlayerLegsDo == LegsPlayer.SatDown 
-        && ControlerPlayer.WhatPlayerHandsDo != HandsPlayer.AimingForDoSomething)
+        if (other.gameObject.CompareTag("Bush"))
         {
-            Stelth = true;
+            if(ControlerPlayer)
+            {
+                if(ControlerPlayer.WhatPlayerLegsDo == LegsPlayer.SatDown
+                && ControlerPlayer.WhatPlayerHandsDo != HandsPlayer.AimingForDoSomething)
+                {
+                    Stelth = true;
+                }
+                else
+                {
+                    Stelth = false;
+                }
+            }
+            else
+            {
+                Stelth = true;
+            }
         }
         else Stelth = false;
+
+
 
     }
     
