@@ -18,11 +18,6 @@ public class SingleInteractionActor : MonoBehaviour, IInteractionWithObjects
         Animator = GetComponent<Animator>();
         if(!AllLootScr) AllLootScr = GetComponent<ScrForAllLoot>();
 
-        if (!AllLootScr)
-        {
-            Debug.LogError("Not set ScrForAllLoot !");
-        }
-
         //Setup 
         ChangeTextUI(BeforeInteracted);
     }
@@ -69,7 +64,8 @@ public class SingleInteractionActor : MonoBehaviour, IInteractionWithObjects
         }
         else
         {
-            Debug.Log(gameObject.name + ": Not set ScrForAllLoot !");
+            Debug.LogError(gameObject.name + ": Not set ScrForAllLoot !");
+            
         }
     }
 

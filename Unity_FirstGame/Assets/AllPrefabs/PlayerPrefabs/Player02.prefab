@@ -1597,7 +1597,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d2e13c0bdd472048a4ce7b554c40e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerIsDead: 0
   Move: {fileID: 0}
   MovePlayer: {fileID: 6328347359453867729}
   ControlerShoot: {fileID: 0}
@@ -1889,6 +1888,9 @@ MonoBehaviour:
   ColiderCapsulePlayer: {fileID: 5236544314472399362}
   CameraScr: {fileID: 0}
   CameraTransform: {fileID: 5755626125737214850}
+  AllCollisionBonesPlayer:
+  - {fileID: 5665221572061346460}
+  - {fileID: 4733894611357813331}
   MyForceMode: 0
   CurrentSpeed: 0
   SpeedWalk: 9000
@@ -1943,6 +1945,7 @@ MonoBehaviour:
   RockForDiverAttention: {fileID: 2799542706703838414, guid: 219615bf8d294d04780ab523307832cf, type: 3}
   ZoneNoise: {fileID: 8520155578379175069, guid: 4f9100f211301ba4bb541bc3a970b238, type: 3}
   LocalZoneNoise: {fileID: 0}
+  ControlerPlayer: {fileID: 0}
   ControlerSlots: {fileID: 7874716152253843916}
   LineRender: {fileID: 4595642774281171269}
   CameraPlayer: {fileID: 0}

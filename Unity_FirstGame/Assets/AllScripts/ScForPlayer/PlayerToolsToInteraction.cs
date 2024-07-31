@@ -69,7 +69,7 @@ public class PlayerToolsToInteraction : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawCube(transform.position + transform.up * 1.5f, SizeCube);
+        //Gizmos.DrawCube(transform.position + transform.up * 1.5f, SizeCube);
     }
 
     public void InteractionWithRayCast()

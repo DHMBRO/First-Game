@@ -199,7 +199,7 @@ public class AimControler : MonoBehaviour
 
             WeaponMuzzle.LookAt(SelectedPoint.point);
             //CurrentSlotHand.LookAt(SelectedPoint.point);
-            TestObjectPoint.position = SelectedPoint.point;
+            if(TestObjectPoint) TestObjectPoint.position = SelectedPoint.point;
         }
          
         //Additioanll

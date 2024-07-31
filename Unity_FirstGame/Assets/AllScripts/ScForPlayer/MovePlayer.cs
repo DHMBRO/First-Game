@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class MovePlayer : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class MovePlayer : MonoBehaviour
     
     [SerializeField] Transform CameraTransform;
 
+    [SerializeField] List<GameObject> AllCollisionBonesPlayer = new List<GameObject>();
     [SerializeField] ForceMode MyForceMode;
 
     [SerializeField] public float CurrentSpeed = 0.0f;
@@ -72,12 +74,24 @@ public class MovePlayer : MonoBehaviour
             {
                 Result = true;
             }
-            else Result = false;
+            else 
+            {
+                for (int i = 0;i < AllCollisionBonesPlayer.Count;i++)
+                {
+                    if(HitResult.collider.name == AllCollisionBonesPlayer[i].name)
+                    {
+                        Result = true;
+                    }
+                }
+
+                if(Result == false)
+                {
+                    Debug.Log(HitResult.collider.name);
+                    return Result;
+                }
+            }
         }
         else Result = true;
-
-
-        Debug.Log(Result);
 
         return Result; 
     }
