@@ -1618,6 +1618,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1813254940}
     - target: {fileID: 1241725871821509503, guid: e17cf8c04a5bc94448773012c9e76214, type: 3}
+      propertyPath: CameraPlayerScr
+      value: 
+      objectReference: {fileID: 234849551}
+    - target: {fileID: 1241725871821509503, guid: e17cf8c04a5bc94448773012c9e76214, type: 3}
+      propertyPath: ControlerPlayer
+      value: 
+      objectReference: {fileID: 1813254945}
+    - target: {fileID: 1241725871821509503, guid: e17cf8c04a5bc94448773012c9e76214, type: 3}
       propertyPath: PlayerInventory
       value: 
       objectReference: {fileID: 1813254938}
@@ -3350,7 +3358,6 @@ MonoBehaviour:
   BeforeInteracted: Not interacted
   AfterInteracted: Interacted
   AllLootScr: {fileID: 1737743544}
-  NumberOfScene: 0
 --- !u!114 &1737743544
 MonoBehaviour:
   m_ObjectHideFlags: 0

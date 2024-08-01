@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class IKControlerForPlayer : MonoBehaviour
 {
-    [SerializeField] Transform PlayerPivot = null;
+    //[SerializeField] Transform PlayerPivot = null;
     AimControler ControlerAim;
 
     Animator PlayerControlerAnimator;

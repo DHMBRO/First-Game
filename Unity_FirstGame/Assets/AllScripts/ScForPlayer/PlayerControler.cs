@@ -1,3 +1,4 @@
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 
 public class PlayerControler : MonoBehaviour, HeadInterface
@@ -41,6 +42,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
     //Bools
     [SerializeField] public bool IsJuming = false;
     [SerializeField] public bool StealthKilling = false;
+    [SerializeField] public bool MenuIsOpen = false;
 
     //Player
     [SerializeField] public Player WhatPlayerDo;
@@ -92,23 +94,45 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             ControlerScope = CameraPlayerF3.GetComponent<ScopeControler>();
         }
 
+        Cursor.lockState = CursorLockMode.Locked;
+
         //All Debug
         if (!ControlerUi) Debug.Log("Not set ControlerUi");
     }
 
     void Update()
     {
-        if(OnDeadPlayerScript && OnDeadPlayerScript.IsPlayerDead() == true)
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (ControlerUi)
+            {
+                ControlerUi.SetPanelSettings();
+            }
+        }
+
+        if (OnDeadPlayerScript && OnDeadPlayerScript.IsPlayerDead() == true)
+        {
+            if(ControlerUi)
+            {
+                ControlerUi.SetPanelSettings();
+                MenuIsOpen = true;
+            }
+
+            return;
+        }
+
+        if (MenuIsOpen)
         {
             return;
         }
-        
+
         PlayerSpeed = (PlayerLastPosition - gameObject.transform.position) / Time.deltaTime;
         PlayerLastPosition = gameObject.transform.position;
 
         if (ControlerUi)
         {
             if (Input.GetKeyDown(KeyCode.I)) ControlerUi.OpenOrCloseInventory();
+            
             if (ControlerUi.InventoryIsOpen)
             {
                 WhatPlayerDo = Player.OpenInventory;
@@ -116,7 +140,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             }
             else if(WhatPlayerDo == Player.OpenInventory) WhatPlayerDo = Player.Null;
             ControlerUi.InterfaceControler();
-        
+            
         }
 
         if (UseAndDropTheLootScr)
@@ -181,7 +205,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             }
 
             //Camera
-            if (CameraPlayerF3.CameraIsUsig)
+            if (CameraPlayerF3)
             {
                 if (Input.GetKey(KeyCode.Mouse1) || Input.GetKey(KeyCode.Z))
                 {
@@ -194,6 +218,8 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                     StateCamera = CameraPlayer.RotateSimple;
                 }
 
+                CameraPlayerF3.CameraUpdate();
+                
             }
 
             //IsAiming

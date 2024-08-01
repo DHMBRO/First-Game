@@ -1855,7 +1855,7 @@ MonoBehaviour:
   InterFace: {fileID: 3211647191048428497}
   SettingsPanel: {fileID: 7183430511616891551}
   ControlerButton: {fileID: 7097426793311847532}
-  CameraScr: {fileID: 0}
+  CameraPlayerScr: {fileID: 0}
   ControlerSlots: {fileID: 0}
   PlayerInventory: {fileID: 0}
   Inventory: {fileID: 712525104704355343}
@@ -5316,7 +5316,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1241725871821509503}
         m_TargetAssemblyTypeName: UiControler, Assembly-CSharp
-        m_MethodName: SetSettingsPanel
+        m_MethodName: SetPanelSettings
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

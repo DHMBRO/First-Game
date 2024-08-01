@@ -7,10 +7,12 @@ public class UiControler : MonoBehaviour
     //References To Canvas Components
     [SerializeField] private UiInventoryOutPut InventoryUi;
     [SerializeField] private GameObject InterFace;
+    [SerializeField] private GameObject SettingsPanel;
     [SerializeField] private ButtonControler ControlerButton;
 
     //References Ro Player Components
-    [SerializeField] private Camera CameraScr;
+    [SerializeField] private ThirdPersonCamera CameraPlayerScr;
+    [SerializeField] private PlayerControler ControlerPlayer;
     [SerializeField] private SlotControler ControlerSlots;
     [SerializeField] private Inventory PlayerInventory;
     [SerializeField] public GameObject Inventory;
@@ -52,6 +54,7 @@ public class UiControler : MonoBehaviour
         InventoryIsOpen = false;
         PlayerInventory.GetComponent<PlayerToolsToInteraction>().TryToInteractDelegadWithOutInput += TryInteract;
         ControlerButton.GetComponent<ButtonControler>();
+        ControlerPlayer = PlayerInventory.GetComponent<PlayerControler>();
 
         SlotShopUi[0] = SlotShop01;
         SlotShopUi[1] = SlotShop02;
@@ -185,8 +188,36 @@ public class UiControler : MonoBehaviour
 
     }
 
+    public void SetPanelSettings()
+    {
+        if(SettingsPanel)
+        {
+            SettingsPanel.SetActive(!SettingsPanel.activeSelf);
+            ControlerPlayer.MenuIsOpen = !ControlerPlayer.MenuIsOpen;
+            SetLookModeCursor();
+        }
+        else
+        {
+            Debug.LogError("Not set GameObject-SettingsPanel !");
+        }
+    }
 
-    void PrintUseMassAndMaxMass()
+    private void SetLookModeCursor()
+    {
+        switch (Cursor.lockState)
+        {
+            case CursorLockMode.Confined:
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                break;
+            case CursorLockMode.Locked:
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = true;
+                break;
+        }
+    }
+
+    private void PrintUseMassAndMaxMass()
     {
         string CurrentMassS;
         string MaxMassS;

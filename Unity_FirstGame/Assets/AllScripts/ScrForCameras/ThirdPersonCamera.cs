@@ -39,37 +39,22 @@ public class ThirdPersonCamera : MonoBehaviour
     [SerializeField] public float HeightStartPoint = 1.0f;
 
     [SerializeField] MoodCamera CameraMood;
-    [SerializeField] public bool CameraIsUsig = true;
-
+    
     float MouseY;
     float MouseX;
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        CameraIsUsig = true;
-
         DesirableVector = OffsetCameraSimple;
         CurrentMoveBackDistance = MoveBackDistanceDefault;
         CurrentMouseSens = DefaultMouseSens;
-
         //CurrentLenghtOfOneStep = LenghtOfOneStepIsAiming;
 
     }
 
-    private void Update()
+    public void CameraUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            CameraIsUsig = false;
-        }
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            CameraIsUsig = true;
-        }
-
-        if ((ControlerUi && ControlerUi.InventoryIsOpen) || !CameraIsUsig) return;
-        
+     
         //Prameters
         MouseY = Input.GetAxis("Mouse Y");
         MouseX = Input.GetAxis("Mouse X");
@@ -81,7 +66,7 @@ public class ThirdPersonCamera : MonoBehaviour
         CurrentMoveRightDistance = MoveRightDistanceDefault;
 
         float EulerX = transform.eulerAngles.x + (-MouseY * CurrentMouseSens);
-        
+
         if (EulerX >= 180.0f)
         {
             EulerX -= 360.0f;
@@ -113,7 +98,7 @@ public class ThirdPersonCamera : MonoBehaviour
             TargetCamera.transform.localEulerAngles = new Vector3(0.0f, transform.localEulerAngles.y, 0.0f);
 
             CurrentMoveBackDistance = MoveBackDistanceAiming;
-            CurrentMoveRightDistance = MoveRightDistanceAiming; 
+            CurrentMoveRightDistance = MoveRightDistanceAiming;
         }
         else
         {
@@ -123,7 +108,7 @@ public class ThirdPersonCamera : MonoBehaviour
 
         //Set Position 
         transform.position = TargetCamera.TransformPoint(DesirableVector);
-        
+
         transform.position += transform.right * CurrentMoveRightDistance;
         transform.position -= transform.forward * CurrentMoveBackDistance;
 
@@ -137,7 +122,7 @@ public class ThirdPersonCamera : MonoBehaviour
                 TargetCameraForAnimations.transform.position.z);
             */
             //transform.position = TargetCameraForAnimations.transform.TransformPoint(DesirableVector) + -(transform.forward * CurrentMoveBackDistance);
-            
+
         }
         //else transform.position = TargetCamera.transform.TransformPoint(DesirableVector) + -(transform.forward * CurrentMoveBackDistance);
 
@@ -180,7 +165,7 @@ public class ThirdPersonCamera : MonoBehaviour
             {
                 Debug.Log("True");
             }
-            
+
         }
 
 
@@ -188,6 +173,8 @@ public class ThirdPersonCamera : MonoBehaviour
 
 
     }
+
+
 
     /*
      
