@@ -1430,7 +1430,7 @@ GameObject:
   - component: {fileID: 8884787740129407110}
   - component: {fileID: 5626582941560416949}
   - component: {fileID: 8086464743341821375}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Player02
   m_TagString: Player01
   m_Icon: {fileID: 0}
@@ -1623,6 +1623,7 @@ MonoBehaviour:
   Head: {fileID: 5665221572061346460}
   IsJuming: 0
   StealthKilling: 0
+  MenuIsOpen: 0
   WhatPlayerDo: 0
   StateCamera: 0
   WhatPlayerHandsDo: 0
@@ -2236,7 +2237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f08e8add055229f4292037adab1c388c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerPivot: {fileID: 7950882967492422871}
   LeftArmPosition: {fileID: 0}
   LeftHandPoint: {fileID: 0}
   CurrentWeight: 1

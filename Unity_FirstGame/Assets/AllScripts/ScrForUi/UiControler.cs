@@ -4,10 +4,13 @@ using TMPro;
 
 public class UiControler : MonoBehaviour
 {
-    //References To Canvas Components
-    [SerializeField] private UiInventoryOutPut InventoryUi;
+    //All Panels
     [SerializeField] private GameObject InterFace;
     [SerializeField] private GameObject SettingsPanel;
+    [SerializeField] private GameObject DiedPanel;
+
+    //References To Canvas Components
+    [SerializeField] private UiInventoryOutPut InventoryUi;
     [SerializeField] private ButtonControler ControlerButton;
 
     //References Ro Player Components
@@ -52,6 +55,7 @@ public class UiControler : MonoBehaviour
     {
         //Setup
         InventoryIsOpen = false;
+        
         PlayerInventory.GetComponent<PlayerToolsToInteraction>().TryToInteractDelegadWithOutInput += TryInteract;
         ControlerButton.GetComponent<ButtonControler>();
         ControlerPlayer = PlayerInventory.GetComponent<PlayerControler>();
@@ -100,7 +104,7 @@ public class UiControler : MonoBehaviour
 
     private  void SetInventory()
     {
-        //InterFace.SetActive(!InventoryIsOpen);
+        
         Inventory.SetActive(InventoryIsOpen);
         IndexesTable.SetActive(!InventoryIsOpen);
         PrintUseMassAndMaxMass();
@@ -116,6 +120,9 @@ public class UiControler : MonoBehaviour
 
         if (InventoryIsOpen) Cursor.lockState = CursorLockMode.None;
         else Cursor.lockState = CursorLockMode.Locked;
+
+        Time.timeScale = InventoryIsOpen ? 0.0f : 1.0f;
+
     }
 
     void UpdateNameOnTable(ScrForAllLoot LocalObjectScript)
@@ -181,13 +188,12 @@ public class UiControler : MonoBehaviour
 
             }
 
-            
-
         }
         else for (int i = 0; i < ArmorPanels.Length; i++) ArmorPanels[i].SetActive(false);
 
     }
 
+    
     public void SetPanelSettings()
     {
         if(SettingsPanel)
@@ -195,10 +201,26 @@ public class UiControler : MonoBehaviour
             SettingsPanel.SetActive(!SettingsPanel.activeSelf);
             ControlerPlayer.MenuIsOpen = !ControlerPlayer.MenuIsOpen;
             SetLookModeCursor();
+            
+            Time.timeScale = ControlerPlayer.MenuIsOpen ? 0.0f : 1.0f;
         }
         else
         {
-            Debug.LogError("Not set GameObject-SettingsPanel !");
+            Debug.LogError("Not set GameObject-SettingsPanel !" + gameObject.name);
+        }
+    }
+    
+    public void SetPanelDied() 
+    {
+        if (DiedPanel)
+        {
+            DiedPanel.SetActive(!DiedPanel.activeSelf);
+            SetLookModeCursor();
+            Time.timeScale = 0.0f;
+        }
+        else
+        {
+            Debug.LogError("Not set GameObject-DiedPanel !" + gameObject.name);
         }
     }
 
