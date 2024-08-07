@@ -110,17 +110,6 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             }
         }
 
-        if (OnDeadPlayerScript && OnDeadPlayerScript.IsPlayerDead() == true)
-        {
-            if(ControlerUi)
-            {
-                ControlerUi.SetPanelSettings();
-                MenuIsOpen = true;
-            }
-
-            return;
-        }
-
         if (MenuIsOpen)
         {
             return;
@@ -218,8 +207,11 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                     StateCamera = CameraPlayer.RotateSimple;
                 }
 
-                CameraPlayerF3.CameraUpdate();
-                
+                if (!MenuIsOpen && !ControlerUi.InventoryIsOpen)
+                {
+                    CameraPlayerF3.CameraUpdate();
+                }
+
             }
 
             //IsAiming
@@ -266,8 +258,8 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             //PlayerPullBodyScript
             if (PlayerPullBodyScript && Input.GetKeyDown(KeyCode.X))
             {
-                SlotControler.PutWeapon();
-                PlayerPullBodyScript.
+                SlotControler.PutAwayWeapon();
+                //PlayerPullBodyScript.
                 
                 if (PlayerPullBodyScript.PlayerHingeJoint)
                 {
@@ -276,7 +268,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                 else
                 {
                     WhatPlayerHandsDo = HandsPlayer.Null;
-                    SlotControler.UpWeapon();
+                    SlotControler.ReturnWeaponInHand();
                 }
                 if (WhatPlayerLegsDo != LegsPlayer.SatDown)
                 {
@@ -357,11 +349,13 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             //MovePlayer.Jump();
 
             //Other
+            /*
             if (Input.GetKeyDown(KeyCode.T) && gameobject && Anchor)
             {
                 gameobject.transform.position = Anchor.transform.position;
 
             }
+            */
 
         }
 
@@ -375,8 +369,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
     }
     
     public Vector3 GetSpeed()
-    {
-        
+    {   
         return PlayerSpeed;
     }
 }

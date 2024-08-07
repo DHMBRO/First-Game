@@ -19,6 +19,11 @@ public class PullBodyScript : MonoBehaviour
 
     private void TryToInteract(Transform GivenReference)
     {
+        if(!GivenReference)
+        {
+            return;
+        }
+
         if (GivenReference.GetComponent<BoneControler>())
         {
             LocalBody = GivenReference;

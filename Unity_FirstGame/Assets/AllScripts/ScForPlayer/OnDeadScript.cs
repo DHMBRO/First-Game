@@ -33,24 +33,54 @@ public class OnDeadScript : MonoBehaviour
     private void DeadPlayer()
     {
         PlayerIsDead = true;
+
+        if (ControlerUi)
+        {
+            ControlerUi.OpenOrCloseInventory(false);
+            ControlerUi.DeleteNameOnTable();
+            ControlerUi.SetPanelDied();
+        }
+        else
+        {
+            Debug.LogError("Not set UIControler !" + gameObject.name);
+        }
+
+        if (ControlerIKForPlayer)
+        {
+            ControlerIKForPlayer.SetupIKWeight(0.0f);        
+        }
+        else
+        {
+            Debug.LogError("Not set ControlerIKForPlayer !" + gameObject.name);
+        }
+
+        if (ControlerSlot)
+        {
+            ControlerSlot.PutAwayWeapon();
+        }
+        else
+        {
+            Debug.LogError("Not set ControlerSlot !" + gameObject.name);
+        }
+
+        if (ControlerPlayer)
+        {
+            ControlerPlayer.GetComponent<DivertAttention>().StopDropRock();
+
+            ControlerPlayer.WhatPlayerDo = Player.Null;
+            ControlerPlayer.StateCamera = CameraPlayer.Null;
+
+            ControlerPlayer.WhatPlayerHandsDo = HandsPlayer.Null;
+            ControlerPlayer.WhatPlayerHandsHave = HandsPlayerHave.Null;
+
+            ControlerPlayer.WhatPlayerLegsDo = LegsPlayer.Null;
+            ControlerPlayer.WhatSpeedPlayerLegs = SpeedLegsPlayer.Null;
         
-        ControlerUi.OpenOrCloseInventory(false);
-        ControlerUi.DeleteNameOnTable();
+        }
+        else
+        {
+            Debug.LogError("Not set ControlerPLayer !" + gameObject.name);
+        }
 
-        ControlerIKForPlayer.SetupIKWeight(0.0f);
-        ControlerSlot.PutAwayWeapon();
-        ControlerPlayer.GetComponent<DivertAttention>().StopDropRock();
-
-
-
-        ControlerPlayer.WhatPlayerDo = Player.Null;
-        ControlerPlayer.StateCamera = CameraPlayer.Null;
-
-        ControlerPlayer.WhatPlayerHandsDo = HandsPlayer.Null;
-        ControlerPlayer.WhatPlayerHandsHave = HandsPlayerHave.Null; 
-
-        ControlerPlayer.WhatPlayerLegsDo = LegsPlayer.Null;
-        ControlerPlayer.WhatSpeedPlayerLegs = SpeedLegsPlayer.Null;
-        
     }
 }
