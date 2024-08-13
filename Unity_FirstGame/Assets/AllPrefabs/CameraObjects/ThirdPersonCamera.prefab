@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3811309240065978825}
   - component: {fileID: 7502794220233642860}
-  - component: {fileID: 7565573599107686517}
   - component: {fileID: 3994893304370285142}
   - component: {fileID: 3732007510010314477}
   - component: {fileID: 2361213168493800161}
@@ -80,14 +79,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &7565573599107686517
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6761677284600033288}
-  m_Enabled: 1
 --- !u!114 &3994893304370285142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,6 +98,7 @@ MonoBehaviour:
   TargetCameraForAnimations: {fileID: 0}
   Cube: {fileID: 0}
   Cube1: {fileID: 0}
+  CameraChangeAngle: {x: 0, y: 0, z: 0}
   CurrentOffSetCamera: {x: 0, y: 0, z: 0}
   DesirableVector: {x: 0, y: 0, z: 0}
   OffsetCameraSimple: {x: 0, y: 2.5, z: 0}
@@ -117,12 +109,12 @@ MonoBehaviour:
   MoveBackDistanceAiming: 2.02
   MoveRightDistanceDefault: 1
   MoveRightDistanceAiming: 0.15
-  MouseSens: 1
+  DefaultMouseSens: 1
+  CurrentMouseSens: 1
   MaxMagnitude: 2.4
   MinMagnitude: 0.1
   HeightStartPoint: 1
   CameraMood: 1
-  CameraIsUsig: 1
 --- !u!114 &3732007510010314477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,12 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a6b72beddebed4f9172883a0d024fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIScopeImage: {fileID: 0}
-  UsingScopeImage: 0
-  OffSetCamera: {x: 0, y: 0, z: 0}
-  UsingOffSetCamera: 0
-  ScopeEffect: 1
-  IsWorking: 0
+  DefaultFiledOfView: 60
 --- !u!114 &2361213168493800161
 MonoBehaviour:
   m_ObjectHideFlags: 0

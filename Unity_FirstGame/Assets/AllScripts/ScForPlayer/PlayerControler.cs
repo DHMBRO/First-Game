@@ -110,7 +110,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             }
         }
 
-        if (MenuIsOpen)
+        if (MenuIsOpen || OnDeadPlayerScript.IsPlayerDead())
         {
             return;
         }
@@ -207,7 +207,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                     StateCamera = CameraPlayer.RotateSimple;
                 }
 
-                if (!MenuIsOpen && !ControlerUi.InventoryIsOpen)
+                if (true)
                 {
                     CameraPlayerF3.CameraUpdate();
                 }

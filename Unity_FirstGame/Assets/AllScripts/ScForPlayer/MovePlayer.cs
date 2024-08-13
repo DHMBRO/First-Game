@@ -122,9 +122,6 @@ public class MovePlayer : MonoBehaviour
                
             }
 
-
-
-
             switch (WhatSpeedPlayerLegs)
             {
                 case SpeedLegsPlayer.CrouchWalk:
@@ -181,8 +178,6 @@ public class MovePlayer : MonoBehaviour
         
     }
 
-
-    
     public void Jump()
     {
         if (!CanJump) return;
@@ -195,7 +190,6 @@ public class MovePlayer : MonoBehaviour
         }
         else ControlerPlayer.IsJuming = false;
     }
-
 
     private void OnCollisionStay(Collision collision)
     {
