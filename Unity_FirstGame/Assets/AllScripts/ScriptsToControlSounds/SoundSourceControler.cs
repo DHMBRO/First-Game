@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MainAmbientControler : MonoBehaviour
+public class SoundSourceControler : MonoBehaviour
 {
     [SerializeField] AudioSource Source;
 
@@ -21,5 +21,10 @@ public class MainAmbientControler : MonoBehaviour
 
     }
 
+
+    public void StopPlaySound()
+    {
+        Source.Stop();
+    }
 
 }

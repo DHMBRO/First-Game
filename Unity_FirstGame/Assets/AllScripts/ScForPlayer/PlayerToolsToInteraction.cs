@@ -105,6 +105,7 @@ public class PlayerToolsToInteraction : MonoBehaviour
 
         Vector3 Origin = CameraPlayer.position + (CameraPlayer.forward * CameraCompPlayer.CurrentMoveBackDistance);
         Vector3 Direction = CameraPlayer.forward * CurrentDistanceRay;
+        
         Transform NewSelectedObject = null;
         ScrForAllLoot ForAllLootScr = null;
 
@@ -112,8 +113,6 @@ public class PlayerToolsToInteraction : MonoBehaviour
 
         MassForInteraction = new RaycastHit[10];
         MassForInteraction = Physics.RaycastAll(RayCast, CurrentDistanceRay);
-
-        Debug.DrawRay(Origin, Direction, ColorRayCast);
 
         for (int i = 0;i < MassForInteraction.Length;i++)
         {

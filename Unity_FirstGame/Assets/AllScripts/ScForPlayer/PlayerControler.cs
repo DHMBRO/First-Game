@@ -311,7 +311,13 @@ public class PlayerControler : MonoBehaviour, HeadInterface
 
                 ControlrPlayerIK.SetupIKReferences();
             }
-            
+
+            // AimControler 
+            if (ControlerAim)
+            {
+                ControlerAim.Aim();
+            }
+
             // Shooting || Weapon
             if (ControlerShoot && CameraPlayerF3)
             {

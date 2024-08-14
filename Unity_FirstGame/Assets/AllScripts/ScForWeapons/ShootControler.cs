@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -35,11 +34,8 @@ public class ShootControler : MonoBehaviour
     [SerializeField] private float ChangedBulletPrefabAngle = 0.0f;
     [SerializeField] private float BulletDamage = 1.0f;
 
-    public bool UnLimitedAmmo;
-    //[SerializeField] List<Rigidbody> ColletsRig = new List<Rigidbody>();
-
-    //[SerializeField] private float ColletSpeed = 0.0f;
-
+    [SerializeField] public bool UnLimitedAmmo;
+    [SerializeField] private bool UseChangeAngleBullet = true;
 
     void Start()
     {
@@ -131,9 +127,9 @@ public class ShootControler : MonoBehaviour
         if (!NewColletRIG) NewColletRIG = NewCollet.AddComponent<Rigidbody>();
 
         // Setup reference
-        NewBulletPrefab.transform.position = Muzzle.transform.position;
-        NewBulletPrefab.transform.eulerAngles = ChangedDirection(Muzzle.transform.eulerAngles); 
-
+        NewBulletPrefab.transform.position = Muzzle.transform.position;        
+        NewBulletPrefab.transform.eulerAngles = ChangedDirection(Muzzle.transform.eulerAngles);
+        
         NewCollet.transform.position = ColletPoint.transform.position;
         NewCollet.transform.eulerAngles = ColletPoint.transform.eulerAngles;
 
@@ -160,9 +156,12 @@ public class ShootControler : MonoBehaviour
 
     private Vector3 ChangedDirection(Vector3 CurrentDirection)
     {
-        CurrentDirection += new Vector3(Random.Range(-ChangedBulletPrefabAngle, ChangedBulletPrefabAngle), 
-        Random.Range(-ChangedBulletPrefabAngle, ChangedBulletPrefabAngle), 
-        Random.Range(-ChangedBulletPrefabAngle, ChangedBulletPrefabAngle));
+        if (UseChangeAngleBullet)
+        {
+            CurrentDirection += new Vector3(Random.Range(-ChangedBulletPrefabAngle, ChangedBulletPrefabAngle),
+            Random.Range(-ChangedBulletPrefabAngle, ChangedBulletPrefabAngle),
+            Random.Range(-ChangedBulletPrefabAngle, ChangedBulletPrefabAngle));
+        }
 
         return CurrentDirection;
     }

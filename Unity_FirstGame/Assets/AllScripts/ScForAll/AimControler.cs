@@ -14,15 +14,14 @@ public class AimControler : MonoBehaviour
 
     [SerializeField] Transform RightArmAnimation;
     [SerializeField] Transform RightArm;
-    [SerializeField] Transform TestRightArm;
-
+    
     [SerializeField] Vector3 RightHandPoint;
     [SerializeField] Vector3 LeftHandPoint;
     [SerializeField] Transform RightHandAnimation;
-    [SerializeField] Transform TestRigtHand;
-    
-    [SerializeField] Transform TestObjectPoint;
 
+    [SerializeField] Transform TestEndPoint;
+    [SerializeField] Transform TestEndPointMuzle;
+    [SerializeField] float TestBackDistance = 2.5f;
 
     RaycastHit[] HitPoints = new RaycastHit[10];
 
@@ -56,7 +55,7 @@ public class AimControler : MonoBehaviour
             WeaponMuzzle = null;
         }
 
-        if(CurrentSlotHand) CurrentSlotHand.localEulerAngles = new Vector3(-90.0f, 0.0f, 90.0f);
+        //if(CurrentSlotHand) CurrentSlotHand.localEulerAngles = new Vector3(-90.0f, 0.0f, 90.0f);
 
         CurrentSlotHand = ControlerSlot.CurrentSlotHand;
     }
@@ -108,12 +107,7 @@ public class AimControler : MonoBehaviour
     {
         if (ControlerPlayer.ControlerShoot && RightArm)
         {
-            if (TestRightArm)
-            {
-                TestRightArm.gameObject.SetActive(true);
-                TestRigtHand.gameObject.SetActive(true);
-            }
-
+         
             ShootControler CurrentWeapon = ControlerPlayer.ControlerShoot.GetComponent<ShootControler>();
 
             RightArm.position = RightArmAnimation.position;
@@ -132,32 +126,17 @@ public class AimControler : MonoBehaviour
             LeftHandPoint += CurrentWeapon.transform.right * CurrentWeapon.LeftHandOffSet.x;
             LeftHandPoint += CurrentWeapon.transform.up * CurrentWeapon.LeftHandOffSet.y;
 
-
-            if(TestRigtHand) TestRigtHand.position = RightHandPoint;
-
-            if (TestRightArm)
-            {
-                TestRightArm.position = LeftHandPoint;
-                TestRightArm.eulerAngles = GetLeftHandRotation();
-            }
-
-        }
-        else
-        {
-            if(TestRightArm)
-            {
-                TestRightArm.gameObject.SetActive(false);
-                TestRigtHand.gameObject.SetActive(false);
-            }
-
         }
 
+    }
+
+    public void Aim()
+    {
         if (!WeaponMuzzle || !CanAim)
         {
             return;
         }
 
-        
         Vector3 DirectionWeapon = CurrentSlotHand.eulerAngles;
         RaycastHit SelectedPoint = new RaycastHit();
 
@@ -166,13 +145,13 @@ public class AimControler : MonoBehaviour
 
         for (int i = 0; i < HitPoints.Length; i++)
         {
-            if (HitPoints[i].collider != null /*&& HitPoints[i].collider.gameObject.layer == LayerMask.GetMask("Hit Box")*/)
+            if (HitPoints[i].collider != null && HitPoints[i].collider.gameObject.layer == LayerMask.GetMask("Hit Box"))
             {
-                ValidValues.Add(HitPoints[i]);   
+                ValidValues.Add(HitPoints[i]);
             }
         }
 
-        for (int i = 0;i < ValidValues.Count;i++)
+        for (int i = 0; i < ValidValues.Count; i++)
         {
             if (SelectedPoint.collider == null)
             {
@@ -191,7 +170,6 @@ public class AimControler : MonoBehaviour
         {
             WeaponMuzzle.LookAt(SelectedPoint.point);
             //CurrentSlotHand.LookAt(SelectedPoint.point);
-            if(TestObjectPoint) TestObjectPoint.position = SelectedPoint.point;
         }
         else
         {
@@ -199,12 +177,19 @@ public class AimControler : MonoBehaviour
 
             WeaponMuzzle.LookAt(SelectedPoint.point);
             //CurrentSlotHand.LookAt(SelectedPoint.point);
-            if(TestObjectPoint) TestObjectPoint.position = SelectedPoint.point;
         }
-         
+
         //Additioanll
         CurrentSlotHand.eulerAngles = new Vector3(CurrentSlotHand.eulerAngles.x, DirectionWeapon.y, DirectionWeapon.z);
-        Debug.DrawRay(WeaponMuzzle.position, WeaponMuzzle.forward * MaxDistanceEyes, Color.green);
+        Debug.DrawRay(WeaponMuzzle.transform.position, WeaponMuzzle.transform.forward * MaxDistanceEyes, Color.green);
+
+        Vector3 Origin = PlayerCamera.position + (PlayerCamera.forward * PlayerCamera.GetComponent<ThirdPersonCamera>().CurrentMoveBackDistance);
+        Vector3 Direction = PlayerCamera.forward * 100.0f;
+        
+        Debug.DrawRay(Origin, Direction, Color.blue);
+
+        TestEndPointMuzle.position = WeaponMuzzle.transform.position + WeaponMuzzle.forward * (SelectedPoint.distance - TestBackDistance - (CurrentSlotHand.position - WeaponMuzzle.position).magnitude);
+        TestEndPoint.position = CurrentSlotHand.position + CurrentSlotHand.forward * (SelectedPoint.distance - TestBackDistance);
         
     }
 
