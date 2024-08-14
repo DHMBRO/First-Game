@@ -80,10 +80,16 @@ public class HpScript : MonoBehaviour
                 StateDelegate(false);
             }
 
+            
             if (UpdateOnEvenetDelegate != null)
             {
                 UpdateOnEvenetDelegate();
             }
+            else
+            {
+                Debug.Log("Not set UpdateOnEvent !" + gameObject.name);
+            }
+
 
             if (State != EnemyState.Another)
             {

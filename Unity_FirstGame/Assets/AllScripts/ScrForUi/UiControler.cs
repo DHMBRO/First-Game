@@ -12,6 +12,7 @@ public class UiControler : MonoBehaviour
     //References To Canvas Components
     [SerializeField] private UiInventoryOutPut InventoryUi;
     [SerializeField] private ButtonControler ControlerButton;
+    [SerializeField] private SceneLoader LoaderScene;
 
     //References Ro Player Components
     [SerializeField] private ThirdPersonCamera CameraPlayerScr;
@@ -216,8 +217,16 @@ public class UiControler : MonoBehaviour
         {
             DiedPanel.SetActive(!DiedPanel.activeSelf);
             SetLookModeCursor();
-            Time.timeScale = 0.0f;
-        }
+            
+            if(LoaderScene)
+            {
+                LoaderScene.Invoke("LoadSceneAfterDead", 3.0f);
+            }
+            else
+            {
+                Debug.LogError("Not set Component-SceneLoader !" + gameObject.name);
+            }
+        } 
         else
         {
             Debug.LogError("Not set GameObject-DiedPanel !" + gameObject.name);

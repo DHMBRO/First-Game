@@ -13,7 +13,7 @@ public class OnDeadScript : MonoBehaviour
     
     //Scri[ts From Animations
     [SerializeField] IKControlerForPlayer ControlerIKForPlayer;
-
+    
     void Start()
     {
         ControlerPlayer = GetComponent<PlayerControler>();

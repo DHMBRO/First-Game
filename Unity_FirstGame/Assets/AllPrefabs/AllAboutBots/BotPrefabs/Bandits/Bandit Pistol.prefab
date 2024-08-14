@@ -218,6 +218,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2939805089980668422, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2939805089980668422, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2993572067038713941, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -421,6 +429,10 @@ PrefabInstance:
     - target: {fileID: 6385217581263623021, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416061493263631005, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6418016653168648202, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
       propertyPath: m_Layer
@@ -741,6 +753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62a2c8f610c14ec498732fc365002ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ISeeDeadPeople: 0
 --- !u!114 &2038223082134148612 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5083560448480326394, guid: 8259557ca46f60641a27c0fd161a093c, type: 3}
