@@ -8,19 +8,18 @@ public class SoundSourceControler : MonoBehaviour
     {
         Source = GetComponent<AudioSource>();
         
-        if (Source)
-        {
-            Source.loop = true;
-            Source.Play();
-
-        }
-        else
+        if(!Source)
         {
             Debug.LogError("Not set AudioSource-Source !" + gameObject.name);
         }
 
     }
 
+    public void PlaySound()
+    {
+        Source.loop = true;
+        Source.Play();
+    }
 
     public void StopPlaySound()
     {

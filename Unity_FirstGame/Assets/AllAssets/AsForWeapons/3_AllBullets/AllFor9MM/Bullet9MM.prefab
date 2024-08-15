@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6215300900525056869}
   - component: {fileID: 8753470810607610775}
-  - component: {fileID: 2229657100021901154}
+  - component: {fileID: 5562842534363337035}
   - component: {fileID: 1041442918093531198}
   m_Layer: 8
   m_Name: Bullet9MM
@@ -81,11 +81,11 @@ Rigidbody:
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 1
---- !u!136 &2229657100021901154
-CapsuleCollider:
+  m_CollisionDetection: 2
+--- !u!135 &5562842534363337035
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -94,10 +94,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.006
-  m_Height: 0.016
-  m_Direction: 2
-  m_Center: {x: -0.0015, y: 0, z: 0.0015}
+  serializedVersion: 2
+  m_Radius: 0.004
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1041442918093531198
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -34,6 +34,12 @@ public class PickUp : MethodsFromDevelopers
 
     private void CompletingTheLink(Transform GivenReference)
     {
+        if(!GivenReference)
+        {
+            LocalObject = null;
+            return;
+        }
+
         LocalObject = GivenReference;
 
         ShootControler ControlerWeapon = LocalObject.GetComponent<ShootControler>();
