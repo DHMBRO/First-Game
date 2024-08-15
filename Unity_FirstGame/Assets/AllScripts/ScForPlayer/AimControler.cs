@@ -166,7 +166,7 @@ public class AimControler : MonoBehaviour
         Debug.DrawRay(Origin, Direction, Color.red);
         Debug.DrawRay(WeaponMuzzle.transform.position, WeaponMuzzle.transform.forward * MaxDistanceEyes, Color.yellow);
         Debug.DrawRay(WeaponMuzzle.transform.position, CurrentSlotHand.transform.forward * MaxDistanceEyes, Color.green);
-
+        
     }
 
 }

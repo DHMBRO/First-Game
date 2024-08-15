@@ -3,7 +3,7 @@ using UnityEngine;
 public class SoundSourceControler : MonoBehaviour
 {
     [SerializeField] AudioSource Source;
-
+    
     void Start()
     {
         Source = GetComponent<AudioSource>();
@@ -12,12 +12,15 @@ public class SoundSourceControler : MonoBehaviour
         {
             Debug.LogError("Not set AudioSource-Source !" + gameObject.name);
         }
+    }
 
+    public void SetLoop(bool Loop)
+    {
+        Source.loop = Loop;
     }
 
     public void PlaySound()
     {
-        Source.loop = true;
         Source.Play();
     }
 
