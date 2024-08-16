@@ -313,7 +313,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             }
 
             // AimControler 
-            if (ControlerAim)
+            if (ControlerAim && StateCamera == CameraPlayer.Aiming)
             {
                 ControlerAim.Aim();
             }

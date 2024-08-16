@@ -47,8 +47,6 @@ public class ShootControler : MonoBehaviour
 
     private void Update()
     {
-        Debug.DrawRay(GameObjectForRay.transform.position, GameObjectForRay.transform.forward * 100.0f, Color.yellow);
-
         Transform ParentWeapon = GetComponentInParent<Transform>();
         
         if (ParentWeapon.parent)

@@ -31,7 +31,7 @@ public class RagdollControler : MonoBehaviour
             }
         }
 
-        //SetRagdol(false);
+        SetRagdol(false);
     }
 
     public void SetRagdol(bool Enable)
