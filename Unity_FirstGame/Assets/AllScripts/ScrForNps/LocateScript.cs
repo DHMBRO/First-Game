@@ -28,7 +28,7 @@ public class LocateScript : MonoBehaviour
     }
     private void Update()
     {
-
+      
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -66,7 +66,8 @@ public class LocateScript : MonoBehaviour
             DefineMyTarget();
         }
     }
- 
+
+    
     public void RelocateTarget()
     {
         if ((ZombiePatrolScript.ZombieNavMesh.destination - Target.transform.position).magnitude >= 3.0f)
@@ -156,7 +157,12 @@ public class LocateScript : MonoBehaviour
                 }
                 if (HitResult.collider.gameObject == TestTarget || HitResult.collider.gameObject.transform.root.gameObject == TestTarget)
                 {
-                    MyInfo.InterestPosition = TestTarget.gameObject.transform.position;
+                    if (MyInfo.InterestPosition == null)
+                    {
+                        MyInfo.InterestPosition = TestTarget.gameObject.transform.position;
+
+                    }
+                    //MyInfo.InterestPosition = TestTarget.gameObject.transform.position;
                     return true;
                 }
                 else

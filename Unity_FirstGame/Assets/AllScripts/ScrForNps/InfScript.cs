@@ -51,6 +51,12 @@ public class InfScript : MonoBehaviour
             SetState(new GuardState(this));
         }
     }
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(InterestPosition, 5);
+        Debug.Log("Gizmos");
+    }
     private void OnCollisionEnter(Collision collision)
     {
         Bullet BulletScr = collision.gameObject.GetComponent<Bullet>();

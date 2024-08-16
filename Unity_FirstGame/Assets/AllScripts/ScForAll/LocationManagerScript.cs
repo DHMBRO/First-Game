@@ -8,8 +8,8 @@ public class LocationManagerScript : MonoBehaviour
     void Start()
     {
         ManagerColider = gameObject.GetComponent<SphereCollider>();
-        Collider [] AllColiders =  Physics.OverlapSphere(gameObject.transform.position, ManagerColider.radius);
-        foreach(Collider colider in AllColiders)
+        Collider[] AllColiders =  Physics.OverlapSphere(gameObject.transform.position, ManagerColider.radius); //Physics.OverlapBox(gameObject.transform.position,);
+        foreach (Collider colider in AllColiders)
         {
             InfScript ColiderInfo = colider.GetComponent<InfScript>();
             if (!ColiderInfo)

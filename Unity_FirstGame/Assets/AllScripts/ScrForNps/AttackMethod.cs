@@ -48,6 +48,7 @@ public class AttackMethod : MonoBehaviour
             if (TerroristWeaponScript.NowIsEnable())
             {
                 TerroristWeaponScript.SetShootDelegat();
+                Debug.Log("I`m bott and i`m SHOOTING");
             }
 
             
