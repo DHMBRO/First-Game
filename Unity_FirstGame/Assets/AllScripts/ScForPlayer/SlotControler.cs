@@ -437,17 +437,17 @@ public class SlotControler : MethodsFromDevelopers
         }
         */
 
-        if (MyWeapon01)
+        if (MyWeapon01 && !AllSlotsForWeapon.ContainsKey(MyWeapon01.name))
         {
             if(Input.GetKeyDown("1")) SelectedWeapon = MyWeapon01;
             AllSlotsForWeapon.Add(MyWeapon01.name, SlotBack01);
         }
-        if (MyWeapon02) 
+        if (MyWeapon02 && !AllSlotsForWeapon.ContainsKey(MyWeapon02.name)) 
         {
             if(Input.GetKeyDown("2")) SelectedWeapon = MyWeapon02;
             AllSlotsForWeapon.Add(MyWeapon02.name, SlotBack02);
         }
-        if (MyPistol01)
+        if (MyPistol01 && !AllSlotsForWeapon.ContainsKey(MyPistol01.name))
         {
             if(Input.GetKeyDown("3")) SelectedWeapon = MyPistol01;
             AllSlotsForWeapon.Add(MyPistol01.name, SlotPistol01);

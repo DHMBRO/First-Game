@@ -63,7 +63,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
     
     private float TimeToCallFunction_PlayerTooolsToInteraction;
     [SerializeField] private float TimeDelayToCall_PlayerTooolsToInteraction = 1.0f;
-
+    
     void Start()
     {
         PlayerLastPosition = gameObject.transform.position;
@@ -149,20 +149,9 @@ public class PlayerControler : MonoBehaviour, HeadInterface
         {
             
             // Movement && Executore Noice
-            bool Inputs = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D);
-            
             if (MovePlayer)
             {
-                //Change Mood Movement
-                if (Inputs) WhatSpeedPlayerLegs = SpeedLegsPlayer.Walk;
-                else WhatSpeedPlayerLegs = SpeedLegsPlayer.Null;
-
-                //Run
-                if (Input.GetKey(KeyCode.LeftShift) && WhatPlayerHandsDo == HandsPlayer.Null)
-                {
-                    WhatSpeedPlayerLegs = SpeedLegsPlayer.Run;
-                }
-                
+                CheckToMove();
             }
 
             //Drop
@@ -214,22 +203,11 @@ public class PlayerControler : MonoBehaviour, HeadInterface
 
             }
 
-            //IsAiming
-            if (WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething && Inputs && WhatSpeedPlayerLegs != SpeedLegsPlayer.CrouchWalk) 
-            {
-                WhatSpeedPlayerLegs = SpeedLegsPlayer.Walk;
-            }
-
-            if (ControlerUi)
-            {
-                //ControlerUi.Scope.gameObject.SetActive(WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething);
-
-            }
-
+            
             //Stelth
             if (WhatPlayerLegsDo == LegsPlayer.SatDown)
             {
-                if (Inputs) WhatSpeedPlayerLegs = SpeedLegsPlayer.CrouchWalk;
+                if (Input.GetAxis("Horizontal") != 0.0f || Input.GetAxis("Vertical") != 0.0f) WhatSpeedPlayerLegs = SpeedLegsPlayer.CrouchWalk;
                 else WhatSpeedPlayerLegs = SpeedLegsPlayer.Null;
             }
             
@@ -242,42 +220,6 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             }
             
             if (!PlayerTools) Debug.Log("Not set PlayerTools");
-
-            /*
-            //PickUp
-            if (PickUpPlayer) 
-            {
-                if (Input.GetKeyUp(KeyCode.F))
-                {
-                    //PickUpPlayer.();
-                }
-            }
-            if (!PickUpPlayer) Debug.Log("Cannot  PickUpPlayer");
-            
-
-            //PlayerPullBodyScript
-            if (PlayerPullBodyScript && Input.GetKeyDown(KeyCode.X))
-            {
-                SlotControler.PutAwayWeapon();
-                //PlayerPullBodyScript.
-                
-                if (PlayerPullBodyScript.PlayerHingeJoint)
-                {
-                    WhatPlayerHandsDo = HandsPlayer.CarryBody;
-                }
-                else
-                {
-                    WhatPlayerHandsDo = HandsPlayer.Null;
-                    SlotControler.ReturnWeaponInHand();
-                }
-                if (WhatPlayerLegsDo != LegsPlayer.SatDown)
-                {
-                    WhatPlayerLegsDo = LegsPlayer.SatDown;
-                    MovePlayer.ControlCapsuleColider(true);
-                }
-
-            }
-            */
 
             //Interaction
             if ((PlayerInteractionScr || PickUpPlayer || PlayerPullBodyScript) && WhatSpeedPlayerLegs != SpeedLegsPlayer.Run && WhatPlayerHandsDo == HandsPlayer.Null)
@@ -351,22 +293,39 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             else Debug.Log("Not set EEScript");
 
             //Movement
-            MovePlayer.RotateBodyPlayer(WhatSpeedPlayerLegs);
+            MovePlayer.RotateBodyPlayer();
             //MovePlayer.Jump();
-
-            //Other
-            /*
-            if (Input.GetKeyDown(KeyCode.T) && gameobject && Anchor)
-            {
-                gameobject.transform.position = Anchor.transform.position;
-
-            }
-            */
 
         }
 
         ScrAnimationsPlayer.UpdateAnimations();
 
+    }
+
+    private void CheckToMove()
+    {
+        //Change Mood Movement
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        {
+            if ((Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S)) || (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D)))
+            {
+                return;
+            }
+            else
+            {
+                WhatSpeedPlayerLegs = SpeedLegsPlayer.Walk;
+
+                //Run
+                if (Input.GetKey(KeyCode.LeftShift) && WhatPlayerHandsDo == HandsPlayer.Null)
+                {
+                    WhatSpeedPlayerLegs = SpeedLegsPlayer.Run;
+                }
+            }
+        }
+        else
+        {
+            WhatSpeedPlayerLegs = SpeedLegsPlayer.Null;
+        }
     }
 
     public Vector3 GetHeadPosition()
