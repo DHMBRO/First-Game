@@ -8,7 +8,7 @@ public class RandomEventsOfSounds : MonoBehaviour
 
     [SerializeField] float MinDeleyToPlayClip = 1.0f;
     [SerializeField] float MaxDeleyToPlayClip = 5.0f;
-    [SerializeField] float TimeToPlay;
+    float TimeToPlay;
     [SerializeField] bool WorkFromUpdate = false;
 
 
@@ -54,7 +54,7 @@ public class RandomEventsOfSounds : MonoBehaviour
 
     private void SelectClipAndPlay()
     {
-        if (!Source.isPlaying)
+        if (!Source.isPlaying && AllClips.Count > 0)
         {
             RandomClip = Random.Range(0, AllClips.Count);
             Source.clip = AllClips[RandomClip];
