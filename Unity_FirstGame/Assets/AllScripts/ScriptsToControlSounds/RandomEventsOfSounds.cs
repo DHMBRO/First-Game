@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomEventsOfSounds : MonoBehaviour
+public class RandomEventsOfSounds : SoundCreatorScript
 {
     [SerializeField] AudioSource Source;
     [SerializeField] List<AudioClip> AllClips = new List<AudioClip>();

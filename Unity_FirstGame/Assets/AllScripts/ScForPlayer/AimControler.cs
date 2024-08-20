@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class AimControler : MonoBehaviour
@@ -80,7 +81,15 @@ public class AimControler : MonoBehaviour
 
     public Vector3 GetLeftHandRotation()
     {
-        return ControlerPlayer.ControlerShoot.LeftHandOffSetEulerAngels + ControlerPlayer.ControlerShoot.transform.eulerAngles;
+        if (ControlerPlayer.ControlerShoot)
+        {
+            return ControlerPlayer.ControlerShoot.LeftHandOffSetEulerAngels + ControlerPlayer.ControlerShoot.transform.eulerAngles;
+        }
+        else
+        {
+            return Vector3.zero;
+        }
+
     }    
     
 
@@ -88,7 +97,6 @@ public class AimControler : MonoBehaviour
     {
         if (ControlerPlayer.ControlerShoot && RightArm)
         {
-         
             ShootControler CurrentWeapon = ControlerPlayer.ControlerShoot.GetComponent<ShootControler>();
 
             RightArm.position = RightArmAnimation.position;

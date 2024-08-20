@@ -8,7 +8,7 @@ public class RelocateScript : MonoBehaviour
     [SerializeField] float TimeToRelocate = 0.0f;
     [SerializeField] float RelocateDeley = 1.0f;
 
-    [SerializeField] float MinDistanceToTarget = 50.0f;
+    //[SerializeField] float MinDistanceToTarget = 50.0f;
     [SerializeField] float RandomDistance = 100.0f;
 
     Vector3 NewPosition;

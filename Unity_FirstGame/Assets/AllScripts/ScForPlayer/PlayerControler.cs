@@ -207,7 +207,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             //Stelth
             if (WhatPlayerLegsDo == LegsPlayer.SatDown)
             {
-                if (Input.GetAxis("Horizontal") != 0.0f || Input.GetAxis("Vertical") != 0.0f) WhatSpeedPlayerLegs = SpeedLegsPlayer.CrouchWalk;
+                if (Input.GetAxisRaw("Horizontal") != 0.0f || Input.GetAxisRaw("Vertical") != 0.0f) WhatSpeedPlayerLegs = SpeedLegsPlayer.CrouchWalk;
                 else WhatSpeedPlayerLegs = SpeedLegsPlayer.Null;
             }
             
@@ -222,7 +222,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             if (!PlayerTools) Debug.Log("Not set PlayerTools");
 
             //Interaction
-            if ((PlayerInteractionScr || PickUpPlayer || PlayerPullBodyScript) && WhatSpeedPlayerLegs != SpeedLegsPlayer.Run && WhatPlayerHandsDo == HandsPlayer.Null)
+            if ((PlayerInteractionScr || PickUpPlayer || PlayerPullBodyScript) && WhatSpeedPlayerLegs != SpeedLegsPlayer.Run)
             {
                 if (Input.GetKeyUp(KeyCode.F))
                 {
@@ -255,7 +255,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             }
 
             // AimControler 
-            if (ControlerAim && StateCamera == CameraPlayer.Aiming)
+            if (ControlerAim && StateCamera == CameraPlayer.Aiming && WhatPlayerHandsDo != HandsPlayer.CarryBody)
             {
                 ControlerAim.Aim();
             }

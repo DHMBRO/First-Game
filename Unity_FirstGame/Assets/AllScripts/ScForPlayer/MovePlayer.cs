@@ -15,7 +15,7 @@ public class MovePlayer : MonoBehaviour
 
     [SerializeField] public float CurrentSpeed = 0.0f;
     [SerializeField] private float SpeedWalk = 9000.0f;
-    [SerializeField] private float SpeedStelth = 8000.0f;
+    [SerializeField] private float SpeedStelth = 4500.0f;
     [SerializeField] private float SpeedRun = 28000.0f;
 
     [SerializeField] private float HeightWenStand = 3.0f;
@@ -85,7 +85,6 @@ public class MovePlayer : MonoBehaviour
 
                 if(Result == false)
                 {
-                    Debug.Log(HitResult.collider.name);
                     return Result;
                 }
             }
@@ -152,6 +151,8 @@ public class MovePlayer : MonoBehaviour
     {
         switch (ControlerPlayer.WhatSpeedPlayerLegs)
         {
+            case SpeedLegsPlayer.CrouchWalk:
+                return 0.5f;
             case SpeedLegsPlayer.Walk:
                 return 0.5f;
             case SpeedLegsPlayer.Run:

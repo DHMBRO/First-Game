@@ -6,14 +6,17 @@ public class SlotControler : MethodsFromDevelopers
     //All Slots
     [SerializeField] public Transform CurrentSlotHand;
 
+    [SerializeField] public Transform ObjectInHand = null;
+    [SerializeField] public Transform LastWeaponInHand = null;
+
     [SerializeField] public Transform SlotHandForUseLoot;
     [SerializeField] public Transform SlotHandForPistols;
     [SerializeField] public Transform SlotHandForWeapons;
     
     //
     //[SerializeField] private Transform ShoulderAnim;
-    [SerializeField] public Transform ThatTimeSlot;
-    [SerializeField] public Transform ObjectInThatTimeSlot;
+    //[SerializeField] public Transform ThatTimeSlot;
+    //[SerializeField] public Transform ObjectInThatTimeSlot;
     //
     [SerializeField] public Dictionary<string,Transform> AllSlots = new Dictionary<string,Transform>();
     //
@@ -64,10 +67,7 @@ public class SlotControler : MethodsFromDevelopers
     //
     [SerializeField] List<Transform> Slots = new List<Transform>();
     //
-    [SerializeField] public Transform ObjectInHand = null;
-    [SerializeField] public Transform LastWeaponInHand = null;
-
-
+    
 
     void Start()
     {
@@ -110,7 +110,6 @@ public class SlotControler : MethodsFromDevelopers
                     
                     LastWeaponInHand = ObjectInHand;
                     ObjectInHand = null;
-                    UpdateTypeWeaponInHand();
                 }
                 else if (LocalShootControler.TheGun == TypeWeapon.Weapon)
                 {
@@ -126,9 +125,12 @@ public class SlotControler : MethodsFromDevelopers
                         PutObjects(ObjectInHand, SlotBack02, false);
                         ObjectInHand = null;
                     }
+
                     
-                    UpdateTypeWeaponInHand();
                 }
+
+                ControlerPlayer.ControlerShoot = null;
+                UpdateTypeWeaponInHand();
             }
             else
             {
@@ -282,17 +284,14 @@ public class SlotControler : MethodsFromDevelopers
                     {
                         for (int j = 1;j < ShopToCanUse.Count; j++)
                         {
-                            //Debug.Log("1");
                             if (i < ShopToCanUse.Count && ShopToCanUse[i].CurrentAmmo > ShopToCanUse[j].CurrentAmmo || ShopToCanUse[i].CurrentAmmo == ShopToCanUse[j].CurrentAmmo)
                             {
-                                //Debug.Log("2");
                                 ShopToRecharge = ShopToCanUse[i].gameObject;
                                 Reload(ShopToCanUse[i]);
                                 return;
                             }
                             else if (j < ShopToCanUse.Count && ShopToCanUse[j].CurrentAmmo > ShopToCanUse[i].CurrentAmmo)
                             {
-                                //Debug.Log("3");
                                 ShopToRecharge = ShopToCanUse[j].gameObject;
                                 Reload(ShopToCanUse[j]);
                                 return;
@@ -317,13 +316,11 @@ public class SlotControler : MethodsFromDevelopers
                     {
                         if (ShopToCanUse[2].CurrentAmmo > ShopToUse.CurrentAmmo || ShopToCanUse[2].CurrentAmmo == ShopToUse.CurrentAmmo)
                         {
-                            //Debug.Log("4");
                             Reload(ShopToCanUse[2]);
                             return;
                         }
                         else if(ShopToCanUse[2].CurrentAmmo < ShopToUse.CurrentAmmo)
                         {
-                            //Debug.Log("5");
                             Reload(ShopToUse);
                             return;
                         }
@@ -512,7 +509,7 @@ public class SlotControler : MethodsFromDevelopers
         {
             PutObjects(ObjectInHand.transform, AllSlotsForWeapon[ObjectInHand.name], false);
             ObjectInHand = null;
-
+            ControlerPlayer.ControlerShoot = null;
         }
 
        

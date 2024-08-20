@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 
 public class PullBodyScript : MonoBehaviour
@@ -57,8 +59,7 @@ public class PullBodyScript : MonoBehaviour
 
         if (PlayerHingeJoint)
         {
-            Destroy(PlayerHingeJoint);
-            PlayerHingeJoint = null;
+            StopPullingBody();
         }
         else if (LocalBody)
         {
@@ -72,6 +73,31 @@ public class PullBodyScript : MonoBehaviour
             PlayerHingeJoint.connectedBody = LimbRigidbody;
             PlayerHingeJoint.axis = new Vector3(0.0f, 1.0f, 0.0f);
         }
+    }
+    
+    private void StopPullingBody()
+    {
+        Transform ConectedBody = PlayerHingeJoint.connectedBody.GetComponent<Transform>();
+        Transform MainParentObject = ConectedBody;
+        Transform Other = null;
+
+        while (MainParentObject.parent != null)
+        {
+            MainParentObject = MainParentObject.parent;   
+            
+            if(MainParentObject.name == "mixamorig:Hips")
+            {
+                Other = MainParentObject;
+            }
+        }
+
+        MainParentObject.position = ConectedBody.position;
+        ConectedBody.localPosition = Vector3.zero;
+        Other.localPosition = Vector3.zero;
+
+        Destroy(PlayerHingeJoint);
+        PlayerHingeJoint = null;
+
     }
 
 }
