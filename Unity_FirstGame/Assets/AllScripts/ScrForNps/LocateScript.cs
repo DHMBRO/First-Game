@@ -157,12 +157,7 @@ public class LocateScript : MonoBehaviour
                 }
                 if (HitResult.collider.gameObject == TestTarget || HitResult.collider.gameObject.transform.root.gameObject == TestTarget)
                 {
-                    if (MyInfo.InterestPosition == null)
-                    {
-                        MyInfo.InterestPosition = TestTarget.gameObject.transform.position;
-
-                    }
-                    //MyInfo.InterestPosition = TestTarget.gameObject.transform.position;
+                    MyInfo.InterestPosition = TestTarget.gameObject.transform.position;
                     return true;
                 }
                 else

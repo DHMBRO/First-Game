@@ -251,6 +251,18 @@ public class AttackState : ILogic
         }
     }
 }
+public class CheckingLastPositionState : ILogic
+{
+    public CheckingLastPositionState(InfScript NewOwner) : base(NewOwner)
+    {
+
+    }
+    override public void Update()
+    {
+
+
+    }
+}
 public class GuardState : ILogic
 {
     public GuardState(InfScript NewOwner) : base(NewOwner)
