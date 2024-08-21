@@ -59,7 +59,7 @@ public class DropControler : MethodsFromDevelopers
                 if (ControlerSlot.MyWeapon01 && ControlerSlot.ObjectInHand.gameObject == ControlerSlot.MyWeapon01.gameObject)
                 {
                     ControlerSlot.MyWeapon01 = null;
-                    ControlerToUi.SlotWeapon01.sprite = None;
+                    ControlerToUi.SlotWeapon01.sprite = None;                    
                     DeleyReferenceShops();
                 }
 

@@ -18,7 +18,7 @@ public class ControlerAnimationsPlayer : MonoBehaviour
     
     //Additional parameters to work 
     [SerializeField] float RotateBodyWhenAiming;
-
+    bool ChekMovementInputs;
 
     void Start()
     {
@@ -28,7 +28,7 @@ public class ControlerAnimationsPlayer : MonoBehaviour
 
         if (Parameters) Parameters.SetFloat("CurrentSpeed", 0.0f);
         else Debug.Log("Not set Parameters");
-
+        ChekMovementInputs = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D);
     }
 
     public void SetDead()
@@ -45,9 +45,7 @@ public class ControlerAnimationsPlayer : MonoBehaviour
         //
 
         //Speed Movement
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A)) DesirableSpeed = 0.5f;
-        else DesirableSpeed = 0.0f;
-        if (Input.GetKey(KeyCode.LeftShift)) DesirableSpeed = 1.0f;
+        DesirableSpeed = MovePlayer.GetSpeedPlayerForAnimations(); 
 
         //Change the float parameters
         if (CurrentSpeed > DesirableSpeed) CurrentSpeed -= (Time.deltaTime + 0.001f);

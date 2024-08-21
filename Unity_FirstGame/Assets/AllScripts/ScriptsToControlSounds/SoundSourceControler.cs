@@ -4,7 +4,7 @@ using UnityEngine;
 public class SoundSourceControler : MonoBehaviour
 {
     [SerializeField] AudioSource Source;
-    [SerializeField] public List<AudioSource> Clips = new List<AudioSource>();
+    [SerializeField] private List<AudioSource> Clips = new List<AudioSource>();
 
     void Start()
     {
@@ -16,14 +16,20 @@ public class SoundSourceControler : MonoBehaviour
         }
     }
 
+    public List<AudioSource> GetListOfClips()
+    {
+        List<AudioSource> NewClips = Clips;
+        return NewClips;
+    }
+
     public void SetLoop(bool Loop)
     {
         Source.loop = Loop;
     }
 
-    public void SetClip(AudioClip Clip)
+    public void SetClip(int CountOfClip)
     {
-        Source.clip = Clip;
+        Source.clip = Clips[CountOfClip].clip;
     }
 
     public void PlaySound()

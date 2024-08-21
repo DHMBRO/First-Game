@@ -15,7 +15,7 @@ public class MovePlayer : MonoBehaviour
 
     [SerializeField] public float CurrentSpeed = 0.0f;
     [SerializeField] private float SpeedWalk = 9000.0f;
-    [SerializeField] private float SpeedStelth = 8000.0f;
+    [SerializeField] private float SpeedStelth = 4500.0f;
     [SerializeField] private float SpeedRun = 28000.0f;
 
     [SerializeField] private float HeightWenStand = 3.0f;
@@ -25,8 +25,7 @@ public class MovePlayer : MonoBehaviour
     [SerializeField] bool CanJump = false;
 
     [SerializeField] float JumpForce = 1.0f;
-    //[SerializeField] float DeleyJump = 1.0f; 
-
+    
     float MoveHorizontal;
     float MoveVertical;
     float yVelocity = 0.0f;
@@ -86,7 +85,6 @@ public class MovePlayer : MonoBehaviour
 
                 if(Result == false)
                 {
-                    Debug.Log(HitResult.collider.name);
                     return Result;
                 }
             }
@@ -96,86 +94,72 @@ public class MovePlayer : MonoBehaviour
         return Result; 
     }
 
-    public void RotateBodyPlayer(SpeedLegsPlayer WhatSpeedPlayerLegs)
+    public void RotateBodyPlayer()
     {
         MoveVertical = Input.GetAxisRaw("Vertical");
         MoveHorizontal = Input.GetAxisRaw("Horizontal");
 
-        //transform.rotation = Quaternion.Euler(0f, CameraTransform.rotation.y, 0f);
-        //Vector3 ForceBack = transform.forward * MoveVertical * Speed;
-        //Vector3 ForceBack = new Vector3(MoveHorizontal, 0.0f, MoveVertical).normalized;
-
         Vector3 ForceAxis = new Vector3(MoveHorizontal, 0.0f, MoveVertical).normalized;
-        
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.LeftShift))
+
+        if (ControlerPlayer.WhatPlayerHandsDo != HandsPlayer.AimingForDoSomething && ControlerPlayer.WhatSpeedPlayerLegs != SpeedLegsPlayer.Null) //Rotate Body Player
         {
-            if (ControlerPlayer.WhatPlayerHandsDo != HandsPlayer.AimingForDoSomething && ControlerPlayer.WhatSpeedPlayerLegs != SpeedLegsPlayer.Null) //Rotate Body Player
+            Quaternion Forward = Quaternion.LookRotation(ForceAxis);
+            Quaternion TargetRotation = Forward * CameraScr.transform.rotation;
+
+            TargetRotation.x = 0;
+            TargetRotation.z = 0;
+
+            float yAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, TargetRotation.eulerAngles.y, ref yVelocity, smooth);
+            transform.rotation = Quaternion.Euler(0, yAngle, 0);
+
+        }
+
+        CurrentSpeed = GetSpeedOfPlayer();
+
+        if (CurrentSpeed != 0.0f)
+        {
+            if (ControlerPlayer.WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething)
             {
-                Quaternion Forward = Quaternion.LookRotation(ForceAxis);
-                Quaternion TargetRotation = Forward * CameraScr.transform.rotation;
-
-                TargetRotation.x = 0;
-                TargetRotation.z = 0;
-
-                float yAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, TargetRotation.eulerAngles.y, ref yVelocity, smooth);
-                transform.rotation = Quaternion.Euler(0, yAngle, 0);
-               
+                MyRigidbody.AddRelativeForce(ForceAxis * CurrentSpeed * Time.deltaTime, MyForceMode);
             }
-
-            switch (WhatSpeedPlayerLegs)
+            else
             {
-                case SpeedLegsPlayer.CrouchWalk:
-                    Move(SpeedStelth);
-                    break;
-                case SpeedLegsPlayer.Walk:
-                    Move(SpeedWalk);
-                    break;
-                case SpeedLegsPlayer.Run:
-                    Move(SpeedRun);
-                    break;
-                default:
-                    CurrentSpeed = 0.0f;
-                    break;
+                MyRigidbody.AddRelativeForce(new Vector3(0.0f, 0.0f, 1.0f * CurrentSpeed * Time.deltaTime), MyForceMode);
             }
-
-            /*
-
-            case ModeMovement.Go:
-                    Movement(SpeedGo, false);
-                    break;
-                case ModeMovement.Stelth:
-                    Movement(SpeedStels, false);
-                    break;
-                case ModeMovement.Run:
-                    Movement(SpeedRun, false);
-                    break;
-                case ModeMovement.StelsAndAiming:
-                    Movement(SpeedAiming, true);
-                    break;
-                default:
-                    CurrentSpeed = 0.0f;
-                    break;
-
-            */
-
-            void Move(float CurrentSpeedToMove/*, bool Aiming*/)
-            {
-                if (ControlerPlayer.WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething)
-                {
-                    MyRigidbody.AddRelativeForce(ForceAxis * CurrentSpeed * Time.deltaTime, MyForceMode);
-                }
-                else
-                {
-                    MyRigidbody.AddRelativeForce(new Vector3(0.0f, 0.0f, 1.0f * CurrentSpeedToMove * Time.deltaTime), MyForceMode);
-                }
-                CurrentSpeed = CurrentSpeedToMove;
-
-            }
-
         }
 
         MyRigidbody.velocity = new Vector3(0, MyRigidbody.velocity.y, 0);
         
+    }
+
+    private float GetSpeedOfPlayer()
+    {
+        switch (ControlerPlayer.WhatSpeedPlayerLegs)
+        {
+            case SpeedLegsPlayer.CrouchWalk:
+                return SpeedStelth;                
+            case SpeedLegsPlayer.Walk:
+                return SpeedWalk;                
+            case SpeedLegsPlayer.Run:
+                return SpeedRun;                
+            default:
+                return 0.0f;                
+        }
+    }
+
+    public float GetSpeedPlayerForAnimations()
+    {
+        switch (ControlerPlayer.WhatSpeedPlayerLegs)
+        {
+            case SpeedLegsPlayer.CrouchWalk:
+                return 0.5f;
+            case SpeedLegsPlayer.Walk:
+                return 0.5f;
+            case SpeedLegsPlayer.Run:
+                return 1.0f;
+            default:
+                return 0.0f;
+        }
     }
 
     public void Jump()

@@ -30,11 +30,6 @@ public class UseAndDropTheLoot : MethodsFromDevelopers
 
     }
 
-    public void CallButton()
-    {
-        Debug.Log("Button is work !");
-    }
-
     public void PrintIndexToList(int Index)
     {
         IndexToList = Index;
@@ -99,12 +94,8 @@ public class UseAndDropTheLoot : MethodsFromDevelopers
 
     public void Drop()
     {
-        //Debug.Log("3");
-
         GameObject ObjectToDrop = Instantiate(PlayerInventory.InfoForSlots[UiInventory.Count + IndexToList].ObjectToInstantiate);
         if(PlayerInventory.InfoForSlots[UiInventory.Count + IndexToList] != null) PlayerInventory.InfoForSlots[UiInventory.Count + IndexToList].GetInfo(ObjectToDrop);
-
-        //Debug.Log("Cordinates: " + ObjectToDrop.transform.position.x + " to x " + ObjectToDrop.transform.position.y + " to y " + ObjectToDrop.transform.position.z + " to z ");
 
         if (ControlerToDrop) DropObjects(ObjectToDrop.transform, ControlerToDrop.PointForDrop, false);
         else Debug.Log("Not set ControlerToDrop");
@@ -112,8 +103,6 @@ public class UseAndDropTheLoot : MethodsFromDevelopers
 
         DeleteReferenceToLoot();
         PlayerInventory.ChangeMassInInventory();
-        
-        //Debug.Log("InfoForSlots.Count"  + Inventory.InfoForSlots.Count);
         
     }
 
