@@ -23,7 +23,7 @@ public class SoundControlerForWeapon : MonoBehaviour
             return;
         }
 
-        if (WeaponControler.GetShootTime() < Time.time)
+        if (WeaponControler.GetShootTime() < Time.time && WeaponControler.HasAmmo())
         {
             SoundSource.Play();
         }

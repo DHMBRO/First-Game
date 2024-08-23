@@ -50,6 +50,19 @@ public class ShootControler : MonoBehaviour
         return ShotTime;
     }
 
+    public bool HasAmmo()
+    {
+        if (UnLimitedAmmo)
+        {
+            return true;;
+        }
+        else if(WeaponShoop.CurrentAmmo > 0)
+        {
+            return true;
+        }
+         return false;
+    }
+
     private void Update()
     {
         Transform ParentWeapon = GetComponentInParent<Transform>();
