@@ -1248,7 +1248,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6255009264939667819}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
@@ -1344,7 +1344,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6255009264939667819}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f5485fd898249b479c45eca9cea1ecc, type: 3}
   m_Name: 
@@ -2019,11 +2019,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentSlotHand: {fileID: 0}
+  ObjectInHand: {fileID: 0}
+  LastWeaponInHand: {fileID: 0}
   SlotHandForUseLoot: {fileID: 5356016234576479898}
   SlotHandForPistols: {fileID: 8542197722180041908}
   SlotHandForWeapons: {fileID: 3100735423632468982}
-  ThatTimeSlot: {fileID: 0}
-  ObjectInThatTimeSlot: {fileID: 0}
   SlotBack01: {fileID: 6130160416243130551}
   SlotBack02: {fileID: 8309072860443193568}
   SlotPistol01: {fileID: 3265514209495405674}
@@ -2056,8 +2056,6 @@ MonoBehaviour:
   PickUp: {fileID: 7778607237951541594}
   Inventory: {fileID: 0}
   Slots: []
-  ObjectInHand: {fileID: 0}
-  LastWeaponInHand: {fileID: 0}
 --- !u!114 &4995820621049572137
 MonoBehaviour:
   m_ObjectHideFlags: 0

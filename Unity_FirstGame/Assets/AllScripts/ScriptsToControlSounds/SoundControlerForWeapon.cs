@@ -1,3 +1,4 @@
+using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class SoundControlerForWeapon : MonoBehaviour
@@ -16,6 +17,12 @@ public class SoundControlerForWeapon : MonoBehaviour
 
     private void PlaySound()
     {
+        if (!SoundSource.clip)
+        {
+            Debug.Log("Not set SoundSource-AudioSource ! " + gameObject.name);
+            return;
+        }
+
         if (WeaponControler.GetShootTime() < Time.time)
         {
             SoundSource.Play();

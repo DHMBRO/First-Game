@@ -47,7 +47,11 @@ public class IKControlerForPlayer : MonoBehaviour
     {
         if (!LeftArmPosition)
         {
-            return;
+            CurrentWeight = 0.0f;
+        }
+        else
+        {
+            CurrentWeight = 1.0f;
         }
 
         PlayerControlerAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand, CurrentWeight);
@@ -56,6 +60,10 @@ public class IKControlerForPlayer : MonoBehaviour
         PlayerControlerAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, CurrentWeight);
         PlayerControlerAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand, CurrentWeight);
 
+        if (!LeftArmPosition)
+        {
+            return;
+        }
 
         PlayerControlerAnimator.SetIKRotation(AvatarIKGoal.LeftHand, Quaternion.Euler(ControlerAim.GetLeftHandRotation()));
         PlayerControlerAnimator.SetIKPosition(AvatarIKGoal.LeftHand, ControlerAim.GetLeftHandPosition());

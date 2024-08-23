@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -18,11 +16,13 @@ public class PlayerAttackScript : MonoBehaviour
     protected Animator PlayerAnimator;
     protected PlayerControler PlayerController;
     [SerializeField]  public GameObject PlayerHead;
+
     void Start()
     {
         PlayerAnimator = gameObject.GetComponentInChildren<Animator>();
         PlayerController = gameObject.GetComponent<PlayerControler>();
     }
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.V))
