@@ -86,6 +86,9 @@ public class ButtonControler : MethodsFromDevelopers
 
         if (WatchedSlot && IndexToSlots >= 0 || IndexToSlots  <= 3)
         {
+            Debug.Log(WatchedSlot.name);
+            Debug.Log(AllSlotsInPlayer[IndexToSlots].name);
+
             PutObjects(WatchedSlot.transform, AllSlotsInPlayer[IndexToSlots].transform, false);
             WatchedSlot.SetActive(true);
 

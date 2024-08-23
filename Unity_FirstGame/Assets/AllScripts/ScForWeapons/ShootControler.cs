@@ -45,6 +45,11 @@ public class ShootControler : MonoBehaviour
         SetShootDelegat += Shoot;
     }
 
+    public float GetShootTime()
+    {
+        return ShotTime;
+    }
+
     private void Update()
     {
         Transform ParentWeapon = GetComponentInParent<Transform>();

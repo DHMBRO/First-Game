@@ -14,7 +14,7 @@ public class SceneLoader :  MonoBehaviour
         Application.Quit();
     }
 
-    public void LoadSceneAfterDead()
+    public void LoadSceneStartGameScene()
     {
         LoadScene(0);
     }
