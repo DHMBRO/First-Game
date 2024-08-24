@@ -10,9 +10,7 @@ public class PlayerAttackScript : MonoBehaviour
     [SerializeField] private float MoveBackDistance = 0.0f;
     [SerializeField] private float TimeOfAnimation = 7.0f;
     [SerializeField] Transform Cube;
-    public UpdateOnEvent EventDelegate;
-
-
+    
     Collider[] Colliders;
     protected Animator PlayerAnimator;
     protected PlayerControler PlayerController;
@@ -52,7 +50,7 @@ public class PlayerAttackScript : MonoBehaviour
                             StealthKill(Collider.gameObject);
                             Invoke("OnStealthAnimateEnd", TimeOfAnimation);                            
                             HpScript.Invoke("InstanceKill", TimeOfAnimation);
-                            
+
                             HpScript.StelthKill = false;                            
                             break;
                        }
@@ -62,11 +60,6 @@ public class PlayerAttackScript : MonoBehaviour
         }
     }
     
-    public void SetPlayerAnimation(string TriggerName)
-    {
-        PlayerAnimator.SetTrigger(TriggerName);
-    }
-
     public void StealthKill(GameObject Enemy)
     {
         InfScript InfScript = Enemy.GetComponent<InfScript>();
@@ -74,12 +67,15 @@ public class PlayerAttackScript : MonoBehaviour
         gameObject.transform.eulerAngles = Enemy.transform.eulerAngles;
         gameObject.transform.position = Enemy.transform.position + -(Enemy.transform.forward * MoveBackDistance);
         
-        SetPlayerAnimation("StealthKill");
         if (InfScript)
         {
             InfScript.StelthDead();
+            PlayerAnimator.SetTrigger("StealthKill");
         }
-        
+        else
+        {
+            Debug.LogError("Not set InfScript-InfScript " + gameObject.name);        
+        }
     }
     void OnStealthAnimateEnd()
     {

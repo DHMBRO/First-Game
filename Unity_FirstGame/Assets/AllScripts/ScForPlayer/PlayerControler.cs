@@ -251,8 +251,9 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                     SlotControler.Recharge();
                 }
 
-                ControlrPlayerIK.SetupIKReferences();
             }
+
+            ControlrPlayerIK.SetupIKReferences();
 
             // AimControler 
             if (ControlerAim && StateCamera == CameraPlayer.Aiming && WhatPlayerHandsDo != HandsPlayer.CarryBody)
