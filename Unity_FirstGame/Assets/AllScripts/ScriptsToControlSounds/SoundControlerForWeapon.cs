@@ -6,16 +6,8 @@ public class SoundControlerForWeapon : MonoBehaviour
     [SerializeField] ShootControler WeaponControler;
     [SerializeField] AudioSource SoundSource;
 
-    void Start()
-    {
-        if (WeaponControler)
-        {
-            WeaponControler.SetShootDelegat += PlaySound;
-        }
-
-    }
-
-    private void PlaySound()
+    
+    public void PlaySound()
     {
         if (!SoundSource.clip)
         {
@@ -23,9 +15,7 @@ public class SoundControlerForWeapon : MonoBehaviour
             return;
         }
 
-        if (WeaponControler.GetShootTime() < Time.time && WeaponControler.HasAmmo())
-        {
-            SoundSource.Play();
-        }
+        SoundSource.Play();
+
     }
 }

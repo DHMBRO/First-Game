@@ -112,22 +112,7 @@ public class ThirdPersonCamera : MonoBehaviour
         transform.position += transform.right * CurrentMoveRightDistance;
         transform.position -= transform.forward * CurrentMoveBackDistance;
 
-
-        if (ControlerPlayer.StealthKilling)
-        {
-            /*
-            TargetCameraForAnimations.transform.position = 
-                new Vector3(TargetCameraForAnimations.transform.position.x, 
-                TargetCamera.transform.position.y, 
-                TargetCameraForAnimations.transform.position.z);
-            */
-            //transform.position = TargetCameraForAnimations.transform.TransformPoint(DesirableVector) + -(transform.forward * CurrentMoveBackDistance);
-
-        }
-        //else transform.position = TargetCamera.transform.TransformPoint(DesirableVector) + -(transform.forward * CurrentMoveBackDistance);
-
-
-        //Audit To Walls
+        //Check To Walls
         if (Physics.Raycast(transform.position + (transform.forward * CurrentMoveBackDistance), -transform.forward, out RaycastHit LocalHitResult, CurrentMoveBackDistance))
         {
             if (!LocalHitResult.collider.isTrigger) transform.position = LocalHitResult.point;
@@ -169,23 +154,8 @@ public class ThirdPersonCamera : MonoBehaviour
         }
 
 
-        //LerpCamera(DesirableVector);
-
+        
 
     }
-
-
-
-    /*
-     
-    void LerpCamera(Vector3 OffSet)
-    {
-        Vector3 TargetVector = TargetCamera.transform.TransformPoint(OffSet) + -(transform.forward * CurrentMoveBackDistance);
-
-        t = ((CurrentLenghtOfOneStep / (TargetVector - transform.position).magnitude) * Time.deltaTime);
-        transform.position = Vector3.Lerp(transform.position, TargetVector, t);
-    }
-    
-    */
 
 }

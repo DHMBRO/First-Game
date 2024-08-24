@@ -299,7 +299,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -388,7 +388,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262997491637560567}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f5485fd898249b479c45eca9cea1ecc, type: 3}
   m_Name: 
@@ -2321,9 +2321,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8259de7e900ffb444922db29c107e2bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxKillDistance: 3
+  MaxKillDistance: 2.8
   MinKillDistance: 0.5
-  MoveBackDistance: 2.2
+  MoveBackDistance: 2.5
+  TimeOfAnimation: 4.45
   Cube: {fileID: 0}
   PlayerHead: {fileID: 5665221572061346460}
 --- !u!114 &5626582941560416949

@@ -8,9 +8,10 @@ public class PlayerAttackScript : MonoBehaviour
     [SerializeField] private float MaxKillDistance = 3.0f;
     [SerializeField] private float MinKillDistance = 0.5f;
     [SerializeField] private float MoveBackDistance = 0.0f;
-
-    
+    [SerializeField] private float TimeOfAnimation = 7.0f;
     [SerializeField] Transform Cube;
+    public UpdateOnEvent EventDelegate;
+
 
     Collider[] Colliders;
     protected Animator PlayerAnimator;
@@ -19,6 +20,7 @@ public class PlayerAttackScript : MonoBehaviour
 
     void Start()
     {
+        
         PlayerAnimator = gameObject.GetComponentInChildren<Animator>();
         PlayerController = gameObject.GetComponent<PlayerControler>();
     }
@@ -46,10 +48,12 @@ public class PlayerAttackScript : MonoBehaviour
                        {
                             PlayerController.StealthKilling = true;
                             HpScript.StelthKill = true;
-                            Invoke("OnStealthAnimateEnd", 7.0f);
+
                             StealthKill(Collider.gameObject);
-                            HpScript.InstanceKill();
-                            HpScript.StelthKill = false;
+                            Invoke("OnStealthAnimateEnd", TimeOfAnimation);                            
+                            HpScript.Invoke("InstanceKill", TimeOfAnimation);
+                            
+                            HpScript.StelthKill = false;                            
                             break;
                        }
                     }
@@ -68,7 +72,7 @@ public class PlayerAttackScript : MonoBehaviour
         InfScript InfScript = Enemy.GetComponent<InfScript>();
 
         gameObject.transform.eulerAngles = Enemy.transform.eulerAngles;
-        gameObject.transform.position = Enemy.transform.position + -(Enemy.transform.forward * MoveBackDistance);//2.23f
+        gameObject.transform.position = Enemy.transform.position + -(Enemy.transform.forward * MoveBackDistance);
         
         SetPlayerAnimation("StealthKill");
         if (InfScript)
