@@ -133,7 +133,7 @@ public class ThirdPersonCamera : MonoBehaviour
             if (!LocalHitResult.collider.isTrigger)
             {
                 transform.position = LocalHitResult.point;
-                transform.position += -transform.right * 1.5f;
+                transform.position += -transform.right * 0.5f;
 
                 Debug.Log(LocalHitResult.transform.name);
             }

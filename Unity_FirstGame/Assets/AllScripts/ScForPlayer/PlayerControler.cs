@@ -231,7 +231,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             }
 
             //SlotControler
-            if (SlotControler && WhatPlayerHandsDo == HandsPlayer.Null)
+            if (SlotControler && (WhatPlayerHandsDo != HandsPlayer.CarryBody || WhatPlayerHandsDo != HandsPlayer.UseSomething))
             {    
                 if (SlotControler.ObjectInHand)
                 {
