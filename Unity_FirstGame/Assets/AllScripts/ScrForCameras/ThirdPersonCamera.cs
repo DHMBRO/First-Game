@@ -127,13 +127,15 @@ public class ThirdPersonCamera : MonoBehaviour
 
 
         //Set right position
-        Debug.DrawRay(transform.position, (transform.right * CurrentMoveRightDistance * 1.5f), Color.blue);
-        if (Physics.Raycast(transform.position, transform.right, out RaycastHit LocalHitResult, CurrentMoveRightDistance * 1.5f))
+        Debug.DrawRay(transform.position + transform.right * 0.5f, (transform.right * CurrentMoveRightDistance * 1.5f), Color.blue);
+        if (Physics.Raycast(transform.position + transform.right * 0.5f, transform.right, out RaycastHit LocalHitResult, CurrentMoveRightDistance * 1.5f))
         {
             if (!LocalHitResult.collider.isTrigger)
             {
                 transform.position = LocalHitResult.point;
-                transform.position += -transform.right * 1.0f;
+                transform.position += -transform.right * 1.5f;
+
+                Debug.Log(LocalHitResult.transform.name);
             }
         }
         else
@@ -142,12 +144,12 @@ public class ThirdPersonCamera : MonoBehaviour
 
             //Set back position            
             Debug.DrawRay(transform.position, transform.forward + -(transform.forward * CurrentMoveBackDistance * 1.5f), Color.blue);
-            if (Physics.Raycast(transform.position, transform.forward + -(transform.forward * CurrentMoveBackDistance * 1.5f), out RaycastHit LocalHitResult01, CurrentMoveBackDistance))
+            if (Physics.Raycast(transform.position, transform.forward + -(transform.forward * CurrentMoveBackDistance * 1.5f), out LocalHitResult, CurrentMoveBackDistance))
             {
-                if (!LocalHitResult01.collider.isTrigger) 
+                if (!LocalHitResult.collider.isTrigger) 
                 {
-                    transform.position = LocalHitResult01.point;
-                    transform.position += transform.forward * 2.0f; 
+                    transform.position = LocalHitResult.point;
+                    //transform.position += transform.forward * 2.0f; 
                 }
             }
             else
