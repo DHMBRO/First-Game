@@ -551,6 +551,7 @@ GameObject:
   - component: {fileID: 1271309367837362580}
   - component: {fileID: 8022685615950990206}
   - component: {fileID: 457748867706237145}
+  - component: {fileID: 9097067354339614713}
   m_Layer: 7
   m_Name: Base bot
   m_TagString: Untagged
@@ -767,6 +768,7 @@ MonoBehaviour:
   InterestPosition: {x: 0, y: 0, z: 0}
   Allies: []
   SpiningSpeed: 10
+  LastKnownEnemyPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1271309367837362580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -807,6 +809,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AllLoot: []
   DropSlot: {fileID: 1114740138334043660}
+--- !u!114 &9097067354339614713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5428616973792416952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e8db7cde2d8e5c48a237fa655605a48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6286794247434823245
 GameObject:
   m_ObjectHideFlags: 0

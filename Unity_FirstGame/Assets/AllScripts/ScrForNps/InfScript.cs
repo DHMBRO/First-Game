@@ -23,6 +23,7 @@ public class InfScript : MonoBehaviour
     public List<GameObject> Allies;
     public float SpiningSpeed = 10.0f;
     protected AlliesCheckingScript AlliesCheckingScript;
+    public Vector3 LastKnownEnemyPosition;
     public enum Types
     {
         Camper,

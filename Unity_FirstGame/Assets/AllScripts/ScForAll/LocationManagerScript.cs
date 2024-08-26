@@ -5,10 +5,12 @@ public class LocationManagerScript : MonoBehaviour
 {
     SphereCollider ManagerColider;
     List<GameObject> AllNpcInLocation = new List<GameObject>();
+    [SerializeField] BoxCollider Box;
     void Start()
     {
+        Box = gameObject.GetComponent<BoxCollider>();
         ManagerColider = gameObject.GetComponent<SphereCollider>();
-        Collider[] AllColiders =  Physics.OverlapSphere(gameObject.transform.position, ManagerColider.radius); //Physics.OverlapBox(gameObject.transform.position,);
+        Collider[] AllColiders = Physics.OverlapBox(gameObject.transform.position, Box.size); //Physics.o(gameObject.transform.position, ManagerColider.radius); 
         foreach (Collider colider in AllColiders)
         {
             InfScript ColiderInfo = colider.GetComponent<InfScript>();
