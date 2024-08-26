@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Diagnostics.CodeAnalysis;
+
 
 public class UiControler : MonoBehaviour
 {
@@ -93,6 +93,7 @@ public class UiControler : MonoBehaviour
         else DeleteNameOnTable();
     }
 
+
     public void OpenOrCloseInventory(bool SetOpen)
     {
         InventoryIsOpen = SetOpen;
@@ -105,7 +106,7 @@ public class UiControler : MonoBehaviour
         SetInventory();
     }
 
-    private  void SetInventory()
+    private void SetInventory()
     {
         
         Inventory.SetActive(InventoryIsOpen);
@@ -138,7 +139,12 @@ public class UiControler : MonoBehaviour
         TableNameObjectForPickUp.text = LocalObjectScript.NameOfThisObject;
         
     }
-    
+
+    public void UpdateNameOnTable(string Text)
+    {
+        TableNameObjectForPickUp.text = Text;
+    }
+
     public void UpdateCurrentScopeImage(Image NewScope)
     {
         CurrentScopeWeapon = NewScope;

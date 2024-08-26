@@ -14,7 +14,8 @@ public class PlayerAttackScript : MonoBehaviour
     Collider[] Colliders;
     protected Animator PlayerAnimator;
     protected PlayerControler PlayerController;
-    [SerializeField]  public GameObject PlayerHead;
+    [SerializeField] public GameObject PlayerHead;
+    [SerializeField] private string TextToCanvas;
 
     void Start()
     {
@@ -25,39 +26,42 @@ public class PlayerAttackScript : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.V))
+        
+        float HalfExtents = (MaxKillDistance - MinKillDistance) / 2;
+
+        Colliders = Physics.OverlapBox(gameObject.transform.position + 1.0f * gameObject.transform.forward, new Vector3(HalfExtents, HalfExtents, HalfExtents));
+        foreach (Collider Collider in Colliders)
         {
-              
-            float HalfExtents = (MaxKillDistance - MinKillDistance) / 2;
 
-            Colliders = Physics.OverlapBox(gameObject.transform.position + 1.0f * gameObject.transform.forward, new Vector3(HalfExtents, HalfExtents, HalfExtents));
-            foreach (Collider Collider in Colliders)
+            HpScript HpScript = Collider.gameObject.GetComponent<HpScript>();
+            LocateScript ZombieLocateScript = Collider.gameObject.GetComponent<LocateScript>();
+            InfScript InfoScript = Collider.gameObject.GetComponent<InfScript>();
+
+            if (HpScript && ZombieLocateScript && InfoScript)
             {
-
-                HpScript HpScript = Collider.gameObject.GetComponent<HpScript>();
-                LocateScript ZombieLocateScript = Collider.gameObject.GetComponent<LocateScript>();
-                InfScript InfoScript = Collider.gameObject.GetComponent<InfScript>();
-                
-                if (HpScript && ZombieLocateScript && InfoScript)
+                if (InfoScript.IsObjectFromBehinde(gameObject))
                 {
-                    if (InfoScript.IsObjectFromBehinde(gameObject))
+                    if (ZombieLocateScript.WhatForvardToMe(PlayerHead) == Collider.gameObject)
                     {
-                       if (ZombieLocateScript.WhatForvardToMe(PlayerHead) == Collider.gameObject)
-                       {
+                        PlayerController.ControlerUi.UpdateNameOnTable(TextToCanvas);
+
+                        if (Input.GetKeyDown(KeyCode.V))
+                        {
                             PlayerController.StealthKilling = true;
                             HpScript.StelthKill = true;
 
                             StealthKill(Collider.gameObject);
-                            Invoke("OnStealthAnimateEnd", TimeOfAnimation);                            
+                            Invoke("OnStealthAnimateEnd", TimeOfAnimation);
                             HpScript.Invoke("InstanceKill", TimeOfAnimation);
 
-                            HpScript.StelthKill = false;                            
+                            HpScript.StelthKill = false;
                             break;
-                       }
+                        }
                     }
                 }
             }
         }
+
     }
     
     public void StealthKill(GameObject Enemy)
