@@ -108,9 +108,6 @@ public class HpScript : MonoBehaviour
             if (WorkWithRagdollControler && MyRagdollControler)
             {
                CallRagdollControler();
-               //Invoke("CallRagdollControler", 6.117f);
-               //MyRagdollControler.SetRagdol(true);
-
             }
         }
         else if ((HealthPoint - Damage) > 0.0f)

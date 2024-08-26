@@ -231,7 +231,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             }
 
             //SlotControler
-            if (SlotControler && WhatPlayerHandsDo == HandsPlayer.Null)
+            if (SlotControler && (WhatPlayerHandsDo != HandsPlayer.CarryBody || WhatPlayerHandsDo != HandsPlayer.UseSomething))
             {    
                 if (SlotControler.ObjectInHand)
                 {
@@ -251,8 +251,9 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                     SlotControler.Recharge();
                 }
 
-                ControlrPlayerIK.SetupIKReferences();
             }
+
+            ControlrPlayerIK.SetupIKReferences();
 
             // AimControler 
             if (ControlerAim && StateCamera == CameraPlayer.Aiming && WhatPlayerHandsDo != HandsPlayer.CarryBody)
@@ -268,13 +269,15 @@ public class PlayerControler : MonoBehaviour, HeadInterface
                 if (Input.GetKey(KeyCode.Mouse0) && ControlerShoot.NowIsEnable() && StateCamera == CameraPlayer.Aiming)
                 {
                     Ray ForwardCamera = new Ray(CameraPlayerF3.transform.position, CameraPlayerF3.transform.forward);
-                    
+
                     ControlerShoot.SetShootDelegat();
                     ScrAnimationsPlayer.ShootTrigger();
+                    
                 }
 
                 ControlerScope.UseScope(ScrScope, StateCamera == CameraPlayer.Aiming);
             }
+            
             
             //Divert Attention 
             if (DivertAttention && !SlotControler.ObjectInHand)

@@ -102,19 +102,21 @@ MonoBehaviour:
   CurrentOffSetCamera: {x: 0, y: 0, z: 0}
   DesirableVector: {x: 0, y: 0, z: 0}
   OffsetCameraSimple: {x: 0, y: 2.5, z: 0}
-  OffsetCameraToAiming: {x: 1.19, y: 2.4, z: 0}
+  OffsetCameraToAiming: {x: 0, y: 2.4, z: 0}
   CurrentMoveRightDistance: 0
   CurrentMoveBackDistance: 0
   MoveBackDistanceDefault: 5
   MoveBackDistanceAiming: 2.02
   MoveRightDistanceDefault: 1
-  MoveRightDistanceAiming: 0.15
+  MoveRightDistanceAiming: 1.5
   DefaultMouseSens: 1
   CurrentMouseSens: 1
   MaxMagnitude: 2.4
   MinMagnitude: 0.1
   HeightStartPoint: 1
   CameraMood: 1
+  TestObject01: {fileID: 0}
+  TestObject02: {fileID: 0}
 --- !u!114 &3732007510010314477
 MonoBehaviour:
   m_ObjectHideFlags: 0

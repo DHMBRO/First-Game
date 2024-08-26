@@ -37,12 +37,33 @@ public class ShootControler : MonoBehaviour
     [SerializeField] public bool UnLimitedAmmo;
     [SerializeField] private bool UseChangeAngleBullet = true;
 
+    private SoundControlerForWeapon SourceOfShoot;
+
     void Start()
     {
         if (!Muzzle) Debug.Log("Not set Muzzle");
         if (!BulletPrefab) Debug.Log("Not set BulletPrefab");
 
         SetShootDelegat += Shoot;
+        SourceOfShoot = Muzzle.GetComponent<SoundControlerForWeapon>();
+    }
+
+    public float GetShootTime()
+    {
+        return ShotTime;
+    }
+
+    public bool HasAmmo()
+    {
+        if (UnLimitedAmmo)
+        {
+            return true;;
+        }
+        else if(WeaponShoop && WeaponShoop.CurrentAmmo > 0)
+        {
+            return true;
+        }
+        return false;
     }
 
     private void Update()
@@ -144,7 +165,13 @@ public class ShootControler : MonoBehaviour
         NewColletRIG.AddForce((NewCollet.transform.right + (NewCollet.transform.up / 2.0f)) * ColletSpeed, ForceMode.Impulse);
 
         NewColletRIG.AddTorque(NewCollet.transform.right * 1000.0f);
-        
+
+        // Other
+
+        SourceOfShoot.PlaySound();
+
+        // Destory
+
         Destroy(NewBulletPrefab, 10.0f);
         Destroy(NewCollet, 3.0f);
          

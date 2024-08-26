@@ -2,12 +2,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+
 public class UiControler : MonoBehaviour
 {
     //All Panels
     [SerializeField] private GameObject InterFace;
     [SerializeField] private GameObject SettingsPanel;
     [SerializeField] private GameObject DiedPanel;
+    [SerializeField] private GameObject WinPanel;
 
     //References To Canvas Components
     [SerializeField] private UiInventoryOutPut InventoryUi;
@@ -23,7 +25,7 @@ public class UiControler : MonoBehaviour
 
     //References Interface Canvas
     [SerializeField] private Image Scope;
-    [SerializeField] Image CurrentScopeWeapon;
+    [SerializeField] private Image CurrentScopeWeapon;
     [SerializeField] public TextMeshProUGUI TableNameObjectForPickUp;
     [SerializeField] private GameObject IndexesTable;
 
@@ -91,6 +93,7 @@ public class UiControler : MonoBehaviour
         else DeleteNameOnTable();
     }
 
+
     public void OpenOrCloseInventory(bool SetOpen)
     {
         InventoryIsOpen = SetOpen;
@@ -103,7 +106,7 @@ public class UiControler : MonoBehaviour
         SetInventory();
     }
 
-    private  void SetInventory()
+    private void SetInventory()
     {
         
         Inventory.SetActive(InventoryIsOpen);
@@ -136,7 +139,12 @@ public class UiControler : MonoBehaviour
         TableNameObjectForPickUp.text = LocalObjectScript.NameOfThisObject;
         
     }
-    
+
+    public void UpdateNameOnTable(string Text)
+    {
+        TableNameObjectForPickUp.text = Text;
+    }
+
     public void UpdateCurrentScopeImage(Image NewScope)
     {
         CurrentScopeWeapon = NewScope;
@@ -220,7 +228,7 @@ public class UiControler : MonoBehaviour
             
             if(LoaderScene)
             {
-                LoaderScene.Invoke("LoadSceneAfterDead", 3.0f);
+                LoaderScene.Invoke("LoadSceneStartGameScene", 3.0f);
             }
             else
             {
@@ -230,6 +238,28 @@ public class UiControler : MonoBehaviour
         else
         {
             Debug.LogError("Not set GameObject-DiedPanel !" + gameObject.name);
+        }
+    }
+
+    public void SetPanelWin()
+    {
+        if (WinPanel)
+        {
+            WinPanel.SetActive(!WinPanel.activeSelf);
+            SetLookModeCursor();
+
+            if (LoaderScene)
+            {
+                LoaderScene.Invoke("LoadSceneStartGameScene", 3.0f);
+            }
+            else
+            {
+                Debug.LogError("Not set Component-SceneLoader !" + gameObject.name);
+            }
+        }
+        else
+        {
+            Debug.LogError("Not set GameObject-WinPanel !" + gameObject.name);
         }
     }
 

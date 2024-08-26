@@ -456,7 +456,6 @@ public class SlotControler : MethodsFromDevelopers
         }
 
 
-
         if (SelectedWeapon)
         {
             ShootControlerWeapon = SelectedWeapon.GetComponent<ShootControler>();

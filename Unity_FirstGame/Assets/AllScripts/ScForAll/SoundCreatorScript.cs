@@ -23,10 +23,22 @@ public class SoundCreatorScript : MonoBehaviour
                 {
                     Vector3 TakerPosition = Colider.gameObject.transform.position;
                     BaseInformationScript BaseInfo = Colider.gameObject.GetComponentInParent<BaseInformationScript>();
+
                     if (BaseInfo)
                     {
-                        TakerPosition = BaseInfo.MyHeadScript.GetHeadPosition();
+                        if (BaseInfo.MyHeadScript == null)
+                        {
+                            //Debug.Log("Not set BaseInfo.MyHeadScript ! " + gameObject.name);
+                            return;
+                        }
                     }
+                    else
+                    {
+                        return;
+                    }
+
+                    TakerPosition = BaseInfo.MyHeadScript.GetHeadPosition();
+                    
                     float DistanceToListener = (gameObject.transform.position - BaseInfo.MyHeadScript.GetHeadPosition()).magnitude;
                     float CurrentNoiceRadius = NoiceRadius;
                     RaycastHit[] Hitres = Physics.RaycastAll(gameObject.transform.position, BaseInfo.MyHeadScript.GetHeadPosition());

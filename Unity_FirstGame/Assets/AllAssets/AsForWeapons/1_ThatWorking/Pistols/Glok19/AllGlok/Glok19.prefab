@@ -287,7 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fbe622a48536e54db11b1f9402df734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RadiuseNoise: 5
+  RadiuseNoise: 20
   DeleayToDisable: 0.25
   ZoneNoise: {fileID: 8520155578379175069, guid: 4f9100f211301ba4bb541bc3a970b238, type: 3}
   ShowZoneNoise: 0
@@ -412,7 +412,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3647308733173354312}
   - component: {fileID: 5791902411105372768}
-  - component: {fileID: 6438824255402766026}
+  - component: {fileID: 3409203573555730386}
   m_Layer: 0
   m_Name: Muzzle
   m_TagString: Untagged
@@ -446,8 +446,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 52b1ffd3e9cc8fd45a58cfce1dce7f43, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -456,10 +456,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 0.1
+  MaxDistance: 20
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -492,7 +492,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -532,7 +532,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6438824255402766026
+--- !u!114 &3409203573555730386
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -541,10 +541,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8918663486306701883}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f5485fd898249b479c45eca9cea1ecc, type: 3}
+  m_Script: {fileID: 11500000, guid: 869057ca3fed05b4bae57cf892feaabe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Source: {fileID: 5791902411105372768}
+  WeaponControler: {fileID: 4272853772287642738}
+  SoundSource: {fileID: 5791902411105372768}
 --- !u!1001 &4218901251766133897
 PrefabInstance:
   m_ObjectHideFlags: 0
