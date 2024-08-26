@@ -185,7 +185,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0.1
-  MaxDistance: 5
+  MaxDistance: 20
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -563,7 +563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fbe622a48536e54db11b1f9402df734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RadiuseNoise: 5
+  RadiuseNoise: 20
   DeleayToDisable: 0.25
   ZoneNoise: {fileID: 8520155578379175069, guid: 4f9100f211301ba4bb541bc3a970b238, type: 3}
   ShowZoneNoise: 0
