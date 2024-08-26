@@ -7,6 +7,7 @@ public class LaserControler : MonoBehaviour
     
     [SerializeField] bool HaveToWork = false;
     [SerializeField] float LaserMaxDistance = 100.0f;
+    public Vector3 LaserEndPoint;
 
     private void Start()
     {
@@ -23,22 +24,23 @@ public class LaserControler : MonoBehaviour
     {
         if (!LaserRenderer || !ShootControlerWeapon) return;
 
-        if (HaveToWork) EnableLaser();
+        if (HaveToWork) SetLaser();
 
         switch (ShootControlerWeapon.Weapon)
         {
             case StateWeapon.IsUsing:
                 LaserRenderer.enabled = true;
-                EnableLaser();
+                SetLaser();
                 break;
             default:
                 LaserRenderer.enabled = false;
+                LaserEndPoint = Vector3.zero;
                 break;
         }
 
     }
     
-    private void EnableLaser()
+    private void SetLaser()
     {
         Vector3 EndPoint = transform.position + -transform.forward * LaserMaxDistance;
 
@@ -47,8 +49,15 @@ public class LaserControler : MonoBehaviour
             EndPoint = HitResult.point;    
         }
 
+        
         LaserRenderer.SetPosition(0, transform.position);
-        LaserRenderer.SetPosition(1, EndPoint);
+        
+        if (LaserEndPoint == Vector3.zero)
+        {
+            LaserRenderer.SetPosition(1, EndPoint);
+        }
+        else LaserRenderer.SetPosition(1, LaserEndPoint);
+
         LaserRenderer.enabled = true;
 
     }

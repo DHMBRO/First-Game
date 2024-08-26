@@ -38,6 +38,7 @@ public class ShootControler : MonoBehaviour
     [SerializeField] private bool UseChangeAngleBullet = true;
 
     private SoundControlerForWeapon SourceOfShoot;
+    public LaserControler ControelrLaser;
 
     void Start()
     {

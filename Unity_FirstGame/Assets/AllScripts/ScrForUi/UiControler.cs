@@ -76,6 +76,11 @@ public class UiControler : MonoBehaviour
         InterfaceControler();
     }
 
+    public bool ActiveSelfWinPanel()
+    {
+        return WinPanel.activeSelf;
+    }
+
     public void TryInteract(Transform GivenReference)
     {
         ScrForAllLoot LocalScrForAllLoot = null;
@@ -246,8 +251,10 @@ public class UiControler : MonoBehaviour
         if (WinPanel)
         {
             WinPanel.SetActive(!WinPanel.activeSelf);
+            
             SetLookModeCursor();
-
+            ControlerPlayer.DisableAllSoundSources();
+            
             if (LoaderScene)
             {
                 LoaderScene.Invoke("LoadSceneStartGameScene", 3.0f);
@@ -256,6 +263,7 @@ public class UiControler : MonoBehaviour
             {
                 Debug.LogError("Not set Component-SceneLoader !" + gameObject.name);
             }
+
         }
         else
         {

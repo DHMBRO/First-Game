@@ -506,6 +506,8 @@ public class SlotControler : MethodsFromDevelopers
 
         void RemoveWeapon()
         {
+            if (!ObjectInHand) return;
+            
             PutObjects(ObjectInHand.transform, AllSlotsForWeapon[ObjectInHand.name], false);
             ObjectInHand = null;
             ControlerPlayer.ControlerShoot = null;

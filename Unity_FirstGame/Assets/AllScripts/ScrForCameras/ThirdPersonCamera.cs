@@ -21,7 +21,8 @@ public class ThirdPersonCamera : MonoBehaviour
 
     [SerializeField] public Vector3 OffsetCameraSimple;
     [SerializeField] Vector3 OffsetCameraToAiming;
-    
+    [SerializeField] Vector3 OffSetCameraToAimingAndCrouch;
+
     [SerializeField] public float CurrentMoveRightDistance;
     [SerializeField] public float CurrentMoveBackDistance;
 
@@ -99,7 +100,14 @@ public class ThirdPersonCamera : MonoBehaviour
         //Change states
         if (ControlerPlayer.WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething)
         {
-            DesirableVector = OffsetCameraToAiming;
+            if (ControlerPlayer.WhatPlayerLegsDo == LegsPlayer.SatDown)
+            {
+                DesirableVector = OffSetCameraToAimingAndCrouch; 
+            }
+            else
+            {
+                DesirableVector = OffsetCameraToAiming;
+            }
             CurrentMoveBackDistance = MoveBackDistanceAiming;
         }
         else

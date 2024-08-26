@@ -34,7 +34,7 @@ public class OnDeadScript : MonoBehaviour
     {
         PlayerIsDead = true;
 
-        if (ControlerUi)
+        if (ControlerUi && ControlerUi.ActiveSelfWinPanel())
         {
             ControlerUi.OpenOrCloseInventory(false);
             ControlerUi.DeleteNameOnTable();

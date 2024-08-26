@@ -538,6 +538,7 @@ MonoBehaviour:
   BulletDamage: 80
   UnLimitedAmmo: 0
   UseChangeAngleBullet: 1
+  ControelrLaser: {fileID: 3917187290877836447}
 --- !u!114 &4442325469855250208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -550,7 +551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c57428b6a28249c4a9eb4e5d361ea5ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AimFieldFoView: 60
+  AimFieldFoView: 30
 --- !u!114 &2124973576992208714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1160,6 +1161,7 @@ MonoBehaviour:
   LaserRenderer: {fileID: 0}
   HaveToWork: 0
   LaserMaxDistance: 100
+  LaserEndPoint: {x: 0, y: 0, z: 0}
 --- !u!4 &7487363455057325796 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4115101639876266, guid: 0c4a58b408c72d141bb4ae5633ef3744, type: 3}

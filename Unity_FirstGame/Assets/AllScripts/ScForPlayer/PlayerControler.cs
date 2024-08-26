@@ -100,6 +100,17 @@ public class PlayerControler : MonoBehaviour, HeadInterface
         if (!ControlerUi) Debug.Log("Not set ControlerUi");
     }
 
+    public void DisableAllSoundSources()
+    {
+        AudioSource[] AllAudioSources = FindObjectsOfType<AudioSource>();
+
+        for (int i = 0; i < AllAudioSources.Length; i++)
+        {
+            AllAudioSources[i].Stop();
+        }
+
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -113,6 +124,11 @@ public class PlayerControler : MonoBehaviour, HeadInterface
         if (MenuIsOpen || OnDeadPlayerScript.IsPlayerDead())
         {
             return;
+        }
+
+        if (Time.timeScale == 0.0f || MenuIsOpen || OnDeadPlayerScript.IsPlayerDead())
+        {
+            DisableAllSoundSources();
         }
 
         PlayerSpeed = (PlayerLastPosition - gameObject.transform.position) / Time.deltaTime;
@@ -259,6 +275,10 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             if (ControlerAim && StateCamera == CameraPlayer.Aiming && WhatPlayerHandsDo != HandsPlayer.CarryBody)
             {
                 ControlerAim.Aim();
+            }
+            else
+            {
+                ControlerAim.StopAim();
             }
 
             // Shooting || Weapon
