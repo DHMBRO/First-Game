@@ -90,7 +90,7 @@ public class PatrolScriptNavMesh : MonoBehaviour
     }
     public bool IsReachTarget()
     {
-        return ZombieNavMesh.hasPath && ZombieNavMesh.remainingDistance < 2.0f;
+        return ZombieNavMesh.hasPath && ZombieNavMesh.remainingDistance < 1.0f;
     }
     public void GoToNextPos()
     {

@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7164895814101323058}
-  - component: {fileID: 7543134263642013500}
   - component: {fileID: 5807617979551470132}
+  - component: {fileID: 3171083094700305475}
   m_Layer: 0
   m_Name: LocationManager
   m_TagString: Untagged
@@ -33,19 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &7543134263642013500
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4793762586528369728}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 50
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5807617979551470132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,3 +45,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc2212a43a3199341b1f0071780b6554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  halfExtents: 0
+--- !u!65 &3171083094700305475
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4793762586528369728}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 20, y: 20, z: 20}
+  m_Center: {x: 0, y: 0, z: 0}

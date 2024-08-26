@@ -157,7 +157,7 @@ public class LocateScript : MonoBehaviour
                 }
                 if (HitResult.collider.gameObject == TestTarget || HitResult.collider.gameObject.transform.root.gameObject == TestTarget)
                 {
-                    MyInfo.InterestPosition = TestTarget.gameObject.transform.position;
+                    MyInfo.LastKnownEnemyPosition = TestTarget.gameObject.transform.position;
                     return true;
                 }
                 else

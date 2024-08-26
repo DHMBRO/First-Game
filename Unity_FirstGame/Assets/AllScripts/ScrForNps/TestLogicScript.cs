@@ -173,8 +173,7 @@ public class ChaseState : ILogic
         }
         else
         {
-            //
-            DefineState();
+            InfOwner.SetState(new CheckingLastPositionState(InfOwner));
         }
     }
     
@@ -247,7 +246,7 @@ public class AttackState : ILogic
         {
             Attack.StopAttack();
             Patrol.ZombieNavMesh.isStopped = false;
-            InfOwner.SetState(new PatrolState(InfOwner)); // TODO  Check Last Position of enemy
+            InfOwner.SetState(new CheckingLastPositionState(InfOwner)); // TODO  Check Last Position of enemy
         }
     }
 }
@@ -259,8 +258,18 @@ public class CheckingLastPositionState : ILogic
     }
     override public void Update()
     {
-
-
+        Patrol.MoveTo(InfOwner.LastKnownEnemyPosition);
+        if (Patrol.IsReachTarget())
+        {
+            if (DoISeeEnemy())
+            {
+                InfOwner.SetState(new ChaseState(InfOwner));
+            }
+            else
+            {
+                InfOwner.SetState(new PatrolState(InfOwner));
+            }
+        }
     }
 }
 public class GuardState : ILogic
