@@ -136,7 +136,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
 
         if (ControlerUi)
         {
-            if (Input.GetKeyDown(KeyCode.I)) ControlerUi.OpenOrCloseInventory();
+            if (Input.GetKeyDown(KeyCode.I) && WhatPlayerHandsDo != HandsPlayer.AimingForDoSomething) ControlerUi.OpenOrCloseInventory();
             
             if (ControlerUi.InventoryIsOpen)
             {
