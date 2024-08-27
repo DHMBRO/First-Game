@@ -171,7 +171,7 @@ public class AimControler : MonoBehaviour
             WeaponMuzzle.LookAt(SelectedPoint.point);
         }
 
-        if (ControlerPlayer.ControlerShoot.ControelrLaser != null)
+        if (ControlerPlayer.ControlerShoot && ControlerPlayer.ControlerShoot.ControelrLaser != null)
         {
             ControlerPlayer.ControlerShoot.ControelrLaser.LaserEndPoint = SelectedPoint.point;
         }
