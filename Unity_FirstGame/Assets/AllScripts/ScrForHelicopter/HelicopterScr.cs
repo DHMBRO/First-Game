@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class HelicopterScr : MonoBehaviour
 {
-    
+    [SerializeField] GameObject prop_fly;
+    [SerializeField] GameObject prop_grou;
+    [SerializeField] GameObject sub_prop_;
+    [SerializeField] GameObject sub_prop;
     [SerializeField] GameObject Gun;
     [SerializeField] GameObject FlightFrom;
     [SerializeField] GameObject FlightTo;
@@ -51,11 +54,19 @@ public class HelicopterScr : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        sub_prop_.SetActive(false);
+        sub_prop.SetActive(true);
+        prop_fly.SetActive(false);
+        prop_grou.SetActive(true);
         State = States.Wait;
     }
 
     public void SetStateFlightToPlayer()
     {
+        sub_prop_.SetActive(true);
+        sub_prop.SetActive(false);
+        prop_fly.SetActive(true);
+        prop_grou.SetActive(false);
         if (State == States.Wait)
         {
             State = States.FlightToPlayer;
@@ -64,6 +75,10 @@ public class HelicopterScr : MonoBehaviour
 
     public void SetStateRoamAround()
     {
+        sub_prop_.SetActive(true);
+        sub_prop.SetActive(false);
+        prop_fly.SetActive(true);
+        prop_grou.SetActive(false);
         if (State == States.FlightToPlayer)
         {
             State = States.RoamAround;
@@ -80,6 +95,10 @@ public class HelicopterScr : MonoBehaviour
 
     public void SetStateFlightOut()
     {
+        sub_prop_.SetActive(true);
+        sub_prop.SetActive(false);
+        prop_fly.SetActive(true);
+        prop_grou.SetActive(false);
         if (State == States.Landing)
         {
             State = States.FlightOut;
@@ -190,6 +209,10 @@ public class HelicopterScr : MonoBehaviour
     }
     public void Landing()
     {
+        sub_prop_.SetActive(false);
+        sub_prop.SetActive(true);
+        prop_fly.SetActive(false);
+        prop_grou.SetActive(true);
         gameObject.transform.LookAt(PositionToLending * 10);
         //gameObject.transform.rotation = gameObject.transform.rotation + (Vector3(0, 90, 0));
             if (landing)
