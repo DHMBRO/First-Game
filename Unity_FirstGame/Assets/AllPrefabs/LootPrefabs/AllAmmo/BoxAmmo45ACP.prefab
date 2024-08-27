@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 3854627152845606923}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1920000531746164916}
@@ -83,6 +83,8 @@ MonoBehaviour:
   HaveDescription: 1
   ShowTheAmmo: 1
   SpriteForLoot: {fileID: 21300000, guid: 40270ff9b9a4f2041ba23360932b1bdc, type: 3}
+  HasOwner: 0
+  ShowNameOfThisObject: 1
   NameOfThisObject: Box ammo - 45ACP
   Descrition: Ammo box - adds ammo for "45ACP" caliber store with weapon
   ParametersLoot:
