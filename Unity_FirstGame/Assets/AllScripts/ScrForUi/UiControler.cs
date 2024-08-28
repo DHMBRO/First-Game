@@ -78,7 +78,7 @@ public class UiControler : MonoBehaviour
 
     public bool ActiveSelfWinPanel()
     {
-        return WinPanel.activeSelf;
+        return !WinPanel.activeSelf;
     }
 
     public void TryInteract(Transform GivenReference)

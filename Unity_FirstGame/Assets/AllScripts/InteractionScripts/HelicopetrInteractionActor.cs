@@ -5,9 +5,11 @@ public class HelicopetrInteractionActor : SingleInteractionActor
     [SerializeField] HelicopterScr ScrHelicopter;
     [SerializeField] HelicopterScr.States HelicopterStates = HelicopterScr.States.Wait;
 
-    private void Start()
+    protected void Start()
     {
-        //if(!ScrHelicopter) ScrHelicopter = GetComponent<HelicopterScr>();
+        base.Start();    
+        if (!ScrHelicopter) ScrHelicopter = GetComponent<HelicopterScr>();
+    
     }
 
     override protected void CustomInteraction()

@@ -12,7 +12,7 @@ public class SingleInteractionActor : MonoBehaviour, IInteractionWithObjects
     public UpdateOnEvent DelegateUpdateOnEvent;
     [SerializeField] protected ScrForAllLoot AllLootScr;
 
-    void Start()
+    protected void Start()
     {
         //Search 
         Animator = GetComponent<Animator>();

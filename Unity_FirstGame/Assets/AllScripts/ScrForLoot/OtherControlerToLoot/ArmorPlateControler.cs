@@ -55,16 +55,15 @@ public class ArmorPlateControler : MethodsFromDevelopers, IUsebleInterFace
         SlotControler ControlerSlots = Target.GetComponent<SlotControler>();
         ArmorControler ControlerArmor = ControlerSlots.MyArmor.GetComponent<ArmorControler>();
 
-        ControlerArmor.ControlerArmorPlates.Add(gameObject.GetComponent<ArmorPlateControler>());
+        ControlerArmor.ControlerArmorPlates.Add(this);
         PutObjects(transform, ControlerArmor.SlotToArmorPlates, false);
-        transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-
+        
         SelectObj.GetComponent<UiControler>().InterfaceControler();
         SelectObj.DeleteReferenceToLoot();
 
         //Debug.Log("Use armor plate is working !");
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
 

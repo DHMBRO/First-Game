@@ -72,18 +72,18 @@ public class UseAndDropTheLoot : MethodsFromDevelopers
                 this.ObjectToUse = ObjectToUse;
 
             }
-            else Debug.Log("Use it now doesn't have meaning !");
 
-            if (ScrForLoot.CanCombining && PlayerInventory.InfoForSlots.Count > (UiInventory.Count + IndexToList)) 
+            if (ScrForLoot.CanCombining && PlayerInventory.InfoForSlots.Count > (UiInventory.Count + IndexToList))
             {
                 CombiningLoot(PlayerInventory.InfoForSlots[UiInventory.Count + IndexToList]);
-                
+
                 ScrForUseAmmo ScrAmmo = PlayerInventory.InfoForSlots[UiInventory.Count + IndexToList].ObjectToInstantiate.GetComponent<ScrForUseAmmo>();
             }
 
             PlayerInventory.ChangeMassInInventory();
             UiInventory.WriteSprite();
         }
+        
     }
 
     public void PutLoot(Transform LootToPut)

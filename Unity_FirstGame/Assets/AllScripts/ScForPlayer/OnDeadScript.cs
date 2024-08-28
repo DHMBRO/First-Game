@@ -9,7 +9,7 @@ public class OnDeadScript : MonoBehaviour
     SlotControler ControlerSlot;
     
     //Scripts From UI
-    UiControler ControlerUi;
+    [SerializeField] UiControler ControlerUi;
     
     //Scri[ts From Animations
     [SerializeField] IKControlerForPlayer ControlerIKForPlayer;
@@ -42,7 +42,7 @@ public class OnDeadScript : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Not set UIControler !" + gameObject.name);
+            Debug.LogError("Not set UIControler in ! OnDeadScript " + gameObject.name);
         }
 
         if (ControlerIKForPlayer)

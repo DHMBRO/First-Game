@@ -333,7 +333,7 @@ MonoBehaviour:
   SpriteForLoot: {fileID: 0}
   HasOwner: 0
   ShowNameOfThisObject: 1
-  NameOfThisObject: 
+  NameOfThisObject: Interact
   Descrition: 
   ParametersLoot:
   - 
@@ -2422,6 +2422,10 @@ PrefabInstance:
       propertyPath: PlayerInventory
       value: 
       objectReference: {fileID: 1813254938}
+    - target: {fileID: 5967245349978205025, guid: e17cf8c04a5bc94448773012c9e76214, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7097426793311847532, guid: e17cf8c04a5bc94448773012c9e76214, type: 3}
       propertyPath: PlayerInventory
       value: 
@@ -4027,7 +4031,7 @@ MonoBehaviour:
   SpriteForLoot: {fileID: 0}
   HasOwner: 0
   ShowNameOfThisObject: 1
-  NameOfThisObject: 
+  NameOfThisObject: Interact
   Descrition: 
   ParametersLoot:
   - 
@@ -4093,7 +4097,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3612685198237513884, guid: 8aca49134a8e35f498cb71caa17636b7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3612685198237513885, guid: 8aca49134a8e35f498cb71caa17636b7, type: 3}
       propertyPath: FlightTo
@@ -4696,7 +4700,7 @@ MonoBehaviour:
   SpriteForLoot: {fileID: 0}
   HasOwner: 0
   ShowNameOfThisObject: 1
-  NameOfThisObject: 
+  NameOfThisObject: Interact
   Descrition: 
   ParametersLoot:
   - 
@@ -5492,6 +5496,10 @@ PrefabInstance:
       propertyPath: CameraTransform
       value: 
       objectReference: {fileID: 234849554}
+    - target: {fileID: 7416387611202510286, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
+      propertyPath: ControlerUi
+      value: 
+      objectReference: {fileID: 1898028402}
     - target: {fileID: 7778607237951541594, guid: 73796a5b1cecf7e4ab8aeb1ade3ebcaf, type: 3}
       propertyPath: ControlerUi
       value: 

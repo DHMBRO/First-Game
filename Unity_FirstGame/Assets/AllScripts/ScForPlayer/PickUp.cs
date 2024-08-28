@@ -210,8 +210,6 @@ public class PickUp : MethodsFromDevelopers
 
         void PickUpArmor()
         {
-            Debug.Log("1");
-
             if (ControlerUi) ControlerUi.SlotArmor.sprite = ScrForLoot.SpriteForLoot;
             else Debug.Log("Not set ControlerUi");
 
@@ -286,8 +284,8 @@ public class PickUp : MethodsFromDevelopers
             if (SlotControler.Shop[1]) PutObjects(SlotControler.Shop[1], MyArmor.SlotShop02, false);
             if (SlotControler.Shop[2]) PutObjects(SlotControler.Shop[2], MyArmor.SlotShop03, false);
 
-            if (SlotControler.MyPistol01) PutObjects(SlotControler.MyPistol01, MyArmor.SlotPistol01, false);
-            PutObjects(SlotControler.MyKnife01, MyArmor.SlotKnife01, false);
+            if (SlotControler.MyPistol01 && MyArmor.SlotPistol01) PutObjects(SlotControler.MyPistol01, MyArmor.SlotPistol01, false);
+            if(MyArmor.SlotKnife01) PutObjects(SlotControler.MyKnife01, MyArmor.SlotKnife01, false);
         }
         else Debug.Log("Not set Armor");
     }
