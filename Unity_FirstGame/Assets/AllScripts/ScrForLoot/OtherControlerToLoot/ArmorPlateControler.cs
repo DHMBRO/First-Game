@@ -5,7 +5,7 @@ public class ArmorPlateControler : MethodsFromDevelopers, IUsebleInterFace
     [SerializeField] public LevelObject LevelArmorPlate;
     
     //Paremters For Work
-    [SerializeField] private float MaxHp;
+    [SerializeField] public float MaxHp;
     [SerializeField] public float CurrentHp;
     [SerializeField] public float CurrentPercentAbsortionDamage;
     //Parameters For UI

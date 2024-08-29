@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
+using System;
 
 
 public class UiControler : MonoBehaviour
@@ -74,6 +76,27 @@ public class UiControler : MonoBehaviour
         
         //Use Methods
         InterfaceControler();
+    }
+
+    private void Update()
+    {
+        if (!ControlerSlots.MyArmor)
+        {
+            return;
+        }
+
+        ArmorControler ControlerArnor = ControlerSlots.MyArmor.GetComponent<ArmorControler>();
+
+        int MaxValue = Convert.ToInt32(ControlerArnor.LevelArmor);
+        float LocalHealthPoints;
+
+        for (int i = 0; i < MaxValue + 1 && i < ControlerArnor.ControlerArmorPlates.Count; i++)
+        {
+            LocalHealthPoints = ControlerArnor.ControlerArmorPlates[i].CurrentHp;
+            ArmorIndexes[i].fillAmount = LocalHealthPoints / ControlerArnor.ControlerArmorPlates[i].MaxHp;
+        }
+        
+
     }
 
     public bool ActiveSelfWinPanel()
