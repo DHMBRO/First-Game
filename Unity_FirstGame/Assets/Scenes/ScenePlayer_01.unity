@@ -636,7 +636,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &144627120
 Transform:
   m_ObjectHideFlags: 0
@@ -664,9 +664,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79678d2fb31d364ea7f548e47d9369d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScaleAttakcTrigger: {x: 5, y: 1, z: 2}
-  LenghtOfAttackTrigger: 3
-  TestDamage: 1
+  ScaleAttakcTrigger: {x: 1, y: 1, z: 1}
+  LenghtOfAttackTrigger: 1
+  TestDamage: 0.25
   Bite: 1
 --- !u!114 &144627122
 MonoBehaviour:

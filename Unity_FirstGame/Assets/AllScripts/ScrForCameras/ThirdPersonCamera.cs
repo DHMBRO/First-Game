@@ -132,8 +132,7 @@ public class ThirdPersonCamera : MonoBehaviour
 
         //Set Position 
         transform.position = TargetCamera.TransformPoint(DesirableVector);
-
-
+        
         //Set right position
         Debug.DrawRay(transform.position + transform.right * 0.5f, (transform.right * CurrentMoveRightDistance * 1.5f), Color.blue);
         if (Physics.Raycast(transform.position + transform.right * 0.5f, transform.right, out RaycastHit LocalHitResult, CurrentMoveRightDistance * 1.5f))
@@ -141,33 +140,39 @@ public class ThirdPersonCamera : MonoBehaviour
             if (!LocalHitResult.collider.isTrigger)
             {
                 transform.position = LocalHitResult.point;
-                transform.position += -transform.right * 0.5f;
-
-                Debug.Log(LocalHitResult.transform.name);
+                transform.position += -transform.right * 0.5f;             
+            }
+            else
+            {
+                transform.position += transform.right * CurrentMoveRightDistance;
             }
         }
         else
         {
             transform.position += transform.right * CurrentMoveRightDistance;
+        }
 
-            //Set back position            
-            Debug.DrawRay(transform.position, transform.forward + -(transform.forward * CurrentMoveBackDistance * 1.5f), Color.blue);
-            if (Physics.Raycast(transform.position, transform.forward + -(transform.forward * CurrentMoveBackDistance * 1.5f), out LocalHitResult, CurrentMoveBackDistance))
+        //Set back position            
+        Debug.DrawRay(transform.position, transform.forward + -(transform.forward * CurrentMoveBackDistance * 1.5f), Color.blue);
+        if (Physics.Raycast(transform.position, transform.forward + -(transform.forward * CurrentMoveBackDistance * 1.5f), out LocalHitResult, CurrentMoveBackDistance))
+        {
+            if (!LocalHitResult.collider.isTrigger)
             {
-                if (!LocalHitResult.collider.isTrigger) 
-                {
-                    transform.position = LocalHitResult.point;
-                    //transform.position += transform.forward * 2.0f; 
-                }
+                transform.position = LocalHitResult.point;
+                //transform.position += transform.forward * 2.0f; 
             }
             else
             {
                 transform.position -= transform.forward * CurrentMoveBackDistance;
             }
         }
+        else
+        {
+            transform.position -= transform.forward * CurrentMoveBackDistance;
+        }
 
-        
-        
+
+
 
         if (ControlerPlayer.WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething)
         {
@@ -178,11 +183,7 @@ public class ThirdPersonCamera : MonoBehaviour
                 //Debug.Log((TransfromOffSetAiming - CurrentOffSetCamera).magnitude);
                 //transform.position = TargetCamera.transform.TransformPoint(OffsetCameraSimple) + -(transform.forward * DesirableVector.z);
             }
-            if ((TransfromOffSetAiming - CurrentOffSetCamera).magnitude <= MinMagnitude)
-            {
-                Debug.Log("True");
-            }
-
+            
         }
 
 
