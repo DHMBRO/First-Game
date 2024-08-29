@@ -11,9 +11,6 @@ public class ThirdPersonCamera : MonoBehaviour
     
     [SerializeField] private RaycastHit HitResult;
 
-    [SerializeField] Transform Cube;
-    [SerializeField] Transform Cube1;
-
     //New references 
     [SerializeField] public Vector3 CameraChangeAngle;
     [SerializeField] public Vector3 CurrentOffSetCamera;
@@ -41,10 +38,6 @@ public class ThirdPersonCamera : MonoBehaviour
 
     [SerializeField] MoodCamera CameraMood;
 
-    [SerializeField] Transform TestObject01;
-    [SerializeField] Transform TestObject02;
-
-
     float MouseY;
     float MouseX;
 
@@ -54,6 +47,11 @@ public class ThirdPersonCamera : MonoBehaviour
         CurrentMoveBackDistance = MoveBackDistanceDefault;
         CurrentMouseSens = DefaultMouseSens;
         //CurrentLenghtOfOneStep = LenghtOfOneStepIsAiming;
+
+        if (transform.parent)
+        {
+            transform.SetParent(null);
+        }
 
     }
 

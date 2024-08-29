@@ -8,8 +8,6 @@ public class MovePlayer : MonoBehaviour
     [SerializeField] CapsuleCollider ColiderCapsulePlayer;
     [SerializeField] Camera CameraScr;
     
-    [SerializeField] Transform CameraTransform;
-
     [SerializeField] List<GameObject> AllCollisionBonesPlayer = new List<GameObject>();
     [SerializeField] ForceMode MyForceMode;
 
