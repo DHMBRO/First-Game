@@ -68,9 +68,8 @@ public class UseAndDropTheLoot : MethodsFromDevelopers
         {
             if (UseLoot.Audit(PlayerInventory.gameObject, PlayerInventory.InfoForSlots[UiInventory.Count + IndexToList], GetComponent<UseAndDropTheLoot>()))
             {
-                UseLoot.Use(PlayerInventory.gameObject, PlayerInventory.InfoForSlots[UiInventory.Count + IndexToList], GetComponent<UseAndDropTheLoot>());
                 this.ObjectToUse = ObjectToUse;
-
+                UseLoot.Use(PlayerInventory.gameObject, PlayerInventory.InfoForSlots[UiInventory.Count + IndexToList], GetComponent<UseAndDropTheLoot>());               
             }
 
             if (ScrForLoot.CanCombining && PlayerInventory.InfoForSlots.Count > (UiInventory.Count + IndexToList))

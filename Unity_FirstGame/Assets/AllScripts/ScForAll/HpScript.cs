@@ -148,11 +148,6 @@ public class HpScript : MonoBehaviour
             StateDelegate(true);
         }
 
-        if(UpdateOnEvenetDelegate != null)
-        {
-            UpdateOnEvenetDelegate();
-        }
-
         if ((HealthPoint + Heal) >= MaxHp)
         {
             HealthPoint = MaxHp;

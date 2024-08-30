@@ -61,9 +61,7 @@ public class ArmorPlateControler : MethodsFromDevelopers, IUsebleInterFace
         SelectObj.GetComponent<UiControler>().InterfaceControler();
         SelectObj.DeleteReferenceToLoot();
 
-        //Debug.Log("Use armor plate is working !");
-
-        //Destroy(gameObject);
+        SelectObj.ObjectToUse = null;
     }
 
 

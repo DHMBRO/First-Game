@@ -224,11 +224,21 @@ public class PickUp : MethodsFromDevelopers
         
         void ChangeArmor()
         {
-            Debug.Log("2");
             if (ControlerToDrop && ArmorIsPickUped.LevelArmor > ArmorIsUsing.LevelArmor)
             {
+                ArmorControler ControlerArnorVest = SlotControler.MyArmor.GetComponent<ArmorControler>();
+                ArmorControler NewControlerArnorVest = ObjectToPickUp.GetComponent<ArmorControler>();
+
                 DropObjects(SlotControler.MyArmor.transform, ControlerToDrop.PointForDrop, false);
-                
+
+                if (ControlerArnorVest.ControlerArmorPlates.Count > 0)
+                {
+                    for (int i = 0; i < ControlerArnorVest.ControlerArmorPlates.Count;i++)
+                    {
+                        NewControlerArnorVest.ControlerArmorPlates.Add(ControlerArnorVest.ControlerArmorPlates[i]);
+                    }
+                }
+
                 if (ControlerUi) ControlerUi.SlotArmor.sprite = ScrForLoot.SpriteForLoot;
                 else Debug.Log("Not set ControlerUi");
 

@@ -44,6 +44,7 @@ public class ScrForUseHeal : MethodsFromDevelopers, IUsebleInterFace
         
         //Do Use
         if (HealPointToTarget) HealPointToTarget.HealHp(HealHp);
+
         Destroy(gameObject);
         
     }

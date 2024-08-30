@@ -68,7 +68,6 @@ public class ArmorControler : MonoBehaviour, IEquipment, IDamageAbsrption
         }
     }
 
-
     public void ChangePosition(bool Use)
     {
         this.Use = Use;
