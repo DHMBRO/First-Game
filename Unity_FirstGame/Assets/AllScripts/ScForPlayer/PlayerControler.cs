@@ -202,28 +202,24 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             //Camera
             if (CameraPlayerF3)
             {
-                if ((Input.GetKey(KeyCode.Mouse1) && !Input.GetKey(KeyCode.Z)) || (Input.GetKey(KeyCode.Z) && !Input.GetKey(KeyCode.Mouse1)))
+                if (Input.GetKey(KeyCode.Mouse1) || Input.GetKey(KeyCode.Z))
                 {
-                    if (WhatPlayerHandsDo != HandsPlayer.UseSomething && WhatPlayerHandsDo != HandsPlayer.CarryBody)
+                    if (WhatPlayerHandsDo != HandsPlayer.CarryBody)
                     {
-                        if (WhatPlayerHandsDo == HandsPlayer.Null) WhatPlayerHandsDo = HandsPlayer.AimingForDoSomething;
-                        if (StateCamera == CameraPlayer.RotateSimple) StateCamera = CameraPlayer.Aiming;
+                        WhatPlayerHandsDo = HandsPlayer.AimingForDoSomething;
+                        StateCamera = CameraPlayer.Aiming;
                     }
                 }
-                else if (WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething)
+                else
                 {
                     WhatPlayerHandsDo = HandsPlayer.Null;
                     StateCamera = CameraPlayer.RotateSimple;
+                    
                 }
 
-                if (true)
-                {
-                    CameraPlayerF3.CameraUpdate();
-                }
-
+                CameraPlayerF3.CameraUpdate();
             }
 
-            
             //Stelth
             if (WhatPlayerLegsDo == LegsPlayer.SatDown)
             {
