@@ -151,7 +151,7 @@ public class ThirdPersonCamera : MonoBehaviour
             if (MassOfHitPointsToRight[i].collider != null && !MassOfHitPointsToRight[i].collider.isTrigger)
             {
                 transform.position = MassOfHitPointsToRight[i].point;
-                transform.position += -transform.right * 0.5f;
+                transform.position += -transform.right * 0.3f;
                 break;
             }
             else
@@ -177,7 +177,7 @@ public class ThirdPersonCamera : MonoBehaviour
             if (MassOfHitPointsToBack[i].collider != null && !MassOfHitPointsToBack[i].collider.isTrigger)
             {
                 transform.position = MassOfHitPointsToBack[i].point;
-                //transform.position += transform.forward * 2.0f; 
+                transform.position += transform.forward * 0.3f; 
                 break;
             }
             else
@@ -189,43 +189,6 @@ public class ThirdPersonCamera : MonoBehaviour
         {
             transform.position -= transform.forward * CurrentMoveBackDistance;
         }
-
-        /*
-        if (Physics.Raycast(transform.position + transform.right * 0.5f, transform.right, out RaycastHit LocalHitResult, CurrentMoveRightDistance * 1.5f))
-        {
-            if (!LocalHitResult.collider.isTrigger)
-            {
-                transform.position = LocalHitResult.point;
-                transform.position += -transform.right * 0.5f;             
-            }
-            else
-            {
-                transform.position += transform.right * CurrentMoveRightDistance;
-            }
-        }
-        else
-        {
-            transform.position += transform.right * CurrentMoveRightDistance;
-        }
-        
-        if (Physics.Raycast(transform.position, transform.forward + -(transform.forward * CurrentMoveBackDistance * 1.5f), out LocalHitResult, CurrentMoveBackDistance))
-        {
-            if (!LocalHitResult.collider.isTrigger)
-            {
-                transform.position = LocalHitResult.point;
-                //transform.position += transform.forward * 2.0f; 
-            }
-            else
-            {
-                transform.position -= transform.forward * CurrentMoveBackDistance;
-            }
-        }
-        else
-        {
-            transform.position -= transform.forward * CurrentMoveBackDistance;
-        }
-        */
-
 
 
         if (ControlerPlayer.WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething)
