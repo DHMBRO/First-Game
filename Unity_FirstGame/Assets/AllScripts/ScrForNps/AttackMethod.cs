@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AttackMethod : MonoBehaviour
 {
-    protected float ZombieDamage = 5;
+    [SerializeField] public float ZombieDamage = 5;
     [SerializeField] public float AttackDistance;
     [SerializeField] public float GoingDistance;
     [SerializeField] protected float AttackDelay = 3.0f;
@@ -50,19 +50,14 @@ public class AttackMethod : MonoBehaviour
                 TerroristWeaponScript.SetShootDelegat();
                 Debug.Log("I`m bott and i`m SHOOTING");
             }
-
-            
             //gameObject.transform.LookAt(Target.transform);
             if (MyAnimator)
             {
                 MyAnimator.SetBool("Aiming", true);
             }
-           
         }
         else 
         {
-            
-            
             if (Time.time >= AttackTime)
             {
                 HpScript TargetHpScript = Target.GetComponentInParent<HpScript>();
@@ -70,8 +65,9 @@ public class AttackMethod : MonoBehaviour
                 {
                     TargetHpScript.InflictingDamage(ZombieDamage);
                     ZombieLocateScript.DefineMyTarget();
+                    MyAnimator.SetTrigger("Punch Target");
+                    Debug.Log("Zombie Attack");
                 }
-
                 AttackTime = AttackDelay + Time.time;
             }
         }  
@@ -83,7 +79,7 @@ public class AttackMethod : MonoBehaviour
             MyAnimator.SetBool("Aiming", false);
         }
 
-    }
+   }
 }
 
 

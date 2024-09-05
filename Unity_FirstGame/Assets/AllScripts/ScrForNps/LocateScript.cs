@@ -32,7 +32,7 @@ public class LocateScript : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        BaseInformationScript BaseInfo = other.GetComponent<BaseInformationScript>();
+        BaseInformationScript BaseInfo = other.gameObject.transform.root.GetComponent<BaseInformationScript>();
         if (BaseInfo && BaseInfo.HealthScript && MyHpScript)
         {
             if (BaseInfo.HealthScript.State != MyHpScript.State)
@@ -45,92 +45,96 @@ public class LocateScript : MonoBehaviour
             }
         }
     }
-    /* private void OnTriggerStay(Collider other)
-     {
+    /*private void OnTriggerStay(Collider other)
+    {
 
-         if (other.gameObject.GetComponentInParent<EnemyController>())
-         {
-             LocateScript EnemyLocateScript = other.gameObject.GetComponent<LocateScript>();
-             if (State != EnemyLocateScript.State)
-             {
-                 Target = other.gameObject;
-             }
-         }
-     }*/
-    private void OnTriggerExit(Collider other)
-    {
-        BaseInformationScript BaseInfo = other.GetComponent<BaseInformationScript>();
-        if (BaseInfo && Targets.Contains(BaseInfo))
-        {
-            Targets.Remove(BaseInfo);
-            DefineMyTarget();
-        }
-    }
+       BaseInformationScript BaseInfo = other.GetComponent<BaseInformationScript>();
+       if (BaseInfo && BaseInfo.HealthScript && MyHpScript)
+       {
+           if (BaseInfo.HealthScript.State != MyHpScript.State)
+           {
+               if (BaseInfo.HealthScript.MyLive == HpScript.Live.Alive)
+               {
+                   Targets.Add(BaseInfo);
+                   DefineMyTarget();
+               }
+           }
+       }
+   }*/
+   private void OnTriggerExit(Collider other)
+   {
+       BaseInformationScript BaseInfo = other.GetComponent<BaseInformationScript>();
+       if (BaseInfo && Targets.Contains(BaseInfo))
+       {
+           Targets.Remove(BaseInfo);
+           DefineMyTarget();
+       }
+   }
 
-    
-    public void RelocateTarget()
-    {
-        if ((ZombiePatrolScript.ZombieNavMesh.destination - Target.transform.position).magnitude >= 3.0f)
-        {
-            ZombiePatrolScript.ZombieNavMesh.SetDestination(Target.transform.position);
-        }
-    }
-    //ToTarget
-    public bool CanISeeTarget()
-    {
-        DefineMyTarget();
-        return Target && CanISee(Target.gameObject);
-    }
 
-    public bool CanISee(GameObject TestTarget, bool CheckAliveOnly = true)
-    {
-        if (!TestTarget)
+   public void RelocateTarget()
+   {
+       if ((ZombiePatrolScript.ZombieNavMesh.destination - Target.transform.position).magnitude >= 3.0f)
+       {
+           ZombiePatrolScript.ZombieNavMesh.SetDestination(Target.transform.position);
+       }
+   }
+   //ToTarget
+   public bool CanISeeTarget()
+   {
+       DefineMyTarget();
+       return Target && CanISee(Target.gameObject);
+   }
+
+   public bool CanISee(GameObject TestTarget, bool CheckAliveOnly = true)
+   {
+       if (!TestTarget)
+       {
+           return false;
+       }
+       BaseInformationScript BaseInfo = TestTarget.GetComponent<BaseInformationScript>();
+       if (!BaseInfo)
+       {
+           return false;
+       }
+       if (CheckAliveOnly)
+       {
+           HpScript Hp = TestTarget.GetComponent<HpScript>();
+           if (!Hp || !Hp.IsAlive())
+           {
+               return false;
+           }
+       }
+
+
+       float CurrentAgrDistance = MaxDistatzeForAgr;
+       IlluminationController TestTargetIllumin = TestTarget.GetComponentInParent<IlluminationController>();
+       if (TestTargetIllumin)
+       {
+           CurrentAgrDistance = MaxDistatzeForAgr * TestTargetIllumin.GetIlluminatiLvl();
+       }
+
+
+       StelthScript TestTargetStelsScript = TestTarget.GetComponent<StelthScript>();
+       if (TestTargetStelsScript)
+       {
+           if (TestTargetStelsScript.Stelth)
+           {
+               TestTarget = null;
+               TestTargetStelsScript = null;
+               return false;
+           }
+       }
+
+       /* 
+        if (IsObjectFromBehinde(Target))
         {
             return false;
         }
-        BaseInformationScript BaseInfo = TestTarget.GetComponent<BaseInformationScript>();
-        if (!BaseInfo)
-        {
-            return false;
-        }
-        if (CheckAliveOnly)
-        {
-            HpScript Hp = TestTarget.GetComponent<HpScript>();
-            if (!Hp || !Hp.IsAlive())
-            {
-                return false;
-            }
-        }
+       */
 
 
-        float CurrentAgrDistance = MaxDistatzeForAgr;
-        IlluminationController TestTargetIllumin = TestTarget.GetComponentInParent<IlluminationController>();
-        if (TestTargetIllumin)
-        {
-            CurrentAgrDistance = MaxDistatzeForAgr * TestTargetIllumin.GetIlluminatiLvl();
-        }
-
-
-        StelthScript TestTargetStelsScript = TestTarget.GetComponent<StelthScript>();
-        if (TestTargetStelsScript)
-        {
-            if (TestTargetStelsScript.Stelth)
-            {
-                TestTarget = null;
-                TestTargetStelsScript = null;
-                return false;
-            }
-        }
-
-        /* 
-         if (IsObjectFromBehinde(Target))
-         {
-             return false;
-         }
-        */
-
-
-        float AngleToTestTarget = Vector3.Angle(gameObject.transform.forward, TestTarget.transform.position - gameObject.transform.position);
+    float AngleToTestTarget = Vector3.Angle(gameObject.transform.forward, TestTarget.transform.position - gameObject.transform.position);
         if (AngleToTestTarget <= VisionAngle)
         {
             Debug.DrawRay(MyHeadScript.GetHeadPosition(), gameObject.transform.forward, Color.blue);
@@ -173,7 +177,7 @@ public class LocateScript : MonoBehaviour
         }
         return false;
 
-    }
+   }
 
    
     public GameObject WhatForvardToMe(GameObject Object)
@@ -199,7 +203,7 @@ public class LocateScript : MonoBehaviour
 
     public void DefineMyTarget()
     {
-        //
+        
         float MinDistance = float.MaxValue;
         BaseInformationScript NewTarget = Target;
         for(int i = Targets.Count - 1; i >= 0; i--)
@@ -225,12 +229,15 @@ public class LocateScript : MonoBehaviour
 
         
         Target = NewTarget;
+       /* if(MyHpScript.State == EnemyState.Zombie)
+        {
+            Debug.Log("Zombie Target name " + NewTarget.name); 
+        }*/
     }
     public void ValidateTarget()
     {
         if (Target)
         {
-            
             if (Target && Target.HealthScript && Target.HealthScript.IsAlive())
             {
                 return;

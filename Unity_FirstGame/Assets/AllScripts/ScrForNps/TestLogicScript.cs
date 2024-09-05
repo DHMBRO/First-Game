@@ -226,12 +226,13 @@ public class AttackState : ILogic
                 Patrol.ZombieNavMesh.isStopped = true;
                 Quaternion NewRotation = Quaternion.RotateTowards(gameObj.transform.rotation, Quaternion.LookRotation(Locate.Target.transform.position - gameObj.transform.position),InfOwner.RotationSpeed * Time.deltaTime);
                 gameObj.transform.rotation = NewRotation;
-
+                Debug.Log("Work");
                 //Gun Rotate
-                Debug.DrawLine(Locate.Target.MyHeadScript.GetHeadPosition(), Attack.GunPos.transform.position, Color.red);
-                Vector3 DirectionToTarget = Locate.Target.MyHeadScript.GetHeadPosition() - Attack.GunPos.transform.position;
+                //Debug.DrawLine(Locate.Target.MyHeadScript.GetHeadPosition(), Attack.GunPos.transform.position, Color.red);
+                Vector3 DirectionToTarget = Locate.Target.MyHeadScript.GetHeadPosition() - Attack.GunPos.transform.position;        
                 Quaternion DirectionToTargetQ = Quaternion.LookRotation(DirectionToTarget).normalized;
 
+                
                 Attack.GunPos.transform.rotation = Quaternion.RotateTowards(Attack.GunPos.transform.rotation, DirectionToTargetQ, 50.0f * Time.deltaTime);
                 Attack.StartAttack(Locate.Target.gameObject);
             }
@@ -259,16 +260,14 @@ public class CheckingLastPositionState : ILogic
     override public void Update()
     {
         Patrol.MoveTo(InfOwner.LastKnownEnemyPosition);
-        if (Patrol.IsReachTarget())
+        if (DoISeeEnemy())
         {
-            if (DoISeeEnemy())
-            {
-                InfOwner.SetState(new ChaseState(InfOwner));
-            }
-            else
-            {
-                InfOwner.SetState(new PatrolState(InfOwner));
-            }
+            InfOwner.SetState(new ChaseState(InfOwner));
+            return;
+        }
+        if (Patrol.IsReachTarget())
+        {   
+            InfOwner.SetState(new PatrolState(InfOwner));
         }
     }
 }
