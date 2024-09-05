@@ -327,7 +327,9 @@ public class PickUp : MethodsFromDevelopers
             {
                 Debug.Log("Cant take !");
             }
-            
+
+            ControlerShoot.UnLimitedAmmo = false;
+
         }
         
     }
@@ -348,6 +350,8 @@ public class PickUp : MethodsFromDevelopers
                 PutObjects(SlotControler.MyPistol01, SlotControler.SlotPistol01, false);
                 return;
             }
+
+            ControlerShoot.UnLimitedAmmo = false;
         }
         else 
         {
