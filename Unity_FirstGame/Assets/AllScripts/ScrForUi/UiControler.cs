@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 
 public class UiControler : MonoBehaviour
@@ -76,6 +77,30 @@ public class UiControler : MonoBehaviour
         InterfaceControler();
     }
 
+    private void Update()
+    {
+        if (!ControlerSlots.MyArmor)
+        {
+            Debug.Log("Not set Armor vest !");
+            return;
+        }
+        
+        ArmorControler ControlerArnor = ControlerSlots.MyArmor.GetComponent<ArmorControler>();
+
+        int MaxValue = Convert.ToInt32(ControlerArnor.LevelArmor);
+        float LocalHealthPoints;
+
+        for (int i = 0; i < MaxValue + 1 && i < ControlerArnor.ControlerArmorPlates.Count; i++)
+        {
+            LocalHealthPoints = ControlerArnor.ControlerArmorPlates[i].CurrentHp;
+            ArmorIndexes[i].fillAmount = LocalHealthPoints / ControlerArnor.ControlerArmorPlates[i].MaxHp;
+
+            Debug.Log(ArmorIndexes[i].name + "\t" + ArmorIndexes[i].fillAmount);
+        }
+        
+
+    }
+
     public bool ActiveSelfWinPanel()
     {
         return !WinPanel.activeSelf;
@@ -127,8 +152,15 @@ public class UiControler : MonoBehaviour
             ControlerButton.DisActiveUD();
         }
 
-        if (InventoryIsOpen) Cursor.lockState = CursorLockMode.None;
-        else Cursor.lockState = CursorLockMode.Locked;
+        if (InventoryIsOpen)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        Cursor.visible = InventoryIsOpen;
 
         Time.timeScale = InventoryIsOpen ? 0.0f : 1.0f;
 
@@ -196,9 +228,9 @@ public class UiControler : MonoBehaviour
             {
                 if (i < ControlerArmor.ControlerArmorPlates.Count && ControlerArmor.ControlerArmorPlates[i] != null)
                 {
-                    ArmorIndexes[i].fillAmount = ControlerArmor.ControlerArmorPlates[i].CurrentHp;
+                    //ArmorIndexes[i].fillAmount = ControlerArmor.ControlerArmorPlates[i].CurrentHp / ControlerArmor.ControlerArmorPlates[i].MaxHp;
                 }
-                else if(i < ArmorIndexes.Length) ArmorIndexes[i].fillAmount = 0.0f;
+                //else if(i < ArmorIndexes.Length) ArmorIndexes[i].fillAmount = 0.0f;
 
             }
 

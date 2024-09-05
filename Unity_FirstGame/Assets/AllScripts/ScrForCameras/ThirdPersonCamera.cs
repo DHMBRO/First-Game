@@ -11,9 +11,6 @@ public class ThirdPersonCamera : MonoBehaviour
     
     [SerializeField] private RaycastHit HitResult;
 
-    [SerializeField] Transform Cube;
-    [SerializeField] Transform Cube1;
-
     //New references 
     [SerializeField] public Vector3 CameraChangeAngle;
     [SerializeField] public Vector3 CurrentOffSetCamera;
@@ -41,12 +38,16 @@ public class ThirdPersonCamera : MonoBehaviour
 
     [SerializeField] MoodCamera CameraMood;
 
-    [SerializeField] Transform TestObject01;
-    [SerializeField] Transform TestObject02;
+    Ray RayToRight;
+    Ray RayToBack;
 
+    RaycastHit[] MassOfHitPointsToRight;
+    RaycastHit[] MassOfHitPointsToBack;
 
     float MouseY;
     float MouseX;
+
+
 
     private void Start()
     {
@@ -54,6 +55,11 @@ public class ThirdPersonCamera : MonoBehaviour
         CurrentMoveBackDistance = MoveBackDistanceDefault;
         CurrentMouseSens = DefaultMouseSens;
         //CurrentLenghtOfOneStep = LenghtOfOneStepIsAiming;
+
+        if (transform.parent)
+        {
+            transform.SetParent(null);
+        }
 
     }
 
@@ -133,41 +139,57 @@ public class ThirdPersonCamera : MonoBehaviour
         //Set Position 
         transform.position = TargetCamera.TransformPoint(DesirableVector);
 
-
         //Set right position
-        Debug.DrawRay(transform.position + transform.right * 0.5f, (transform.right * CurrentMoveRightDistance * 1.5f), Color.blue);
-        if (Physics.Raycast(transform.position + transform.right * 0.5f, transform.right, out RaycastHit LocalHitResult, CurrentMoveRightDistance * 1.5f))
-        {
-            if (!LocalHitResult.collider.isTrigger)
-            {
-                transform.position = LocalHitResult.point;
-                transform.position += -transform.right * 0.5f;
 
-                Debug.Log(LocalHitResult.transform.name);
+        RayToRight = new Ray(transform.position + transform.right * 0.5f, transform.right * CurrentMoveRightDistance);        
+        MassOfHitPointsToRight = Physics.RaycastAll(RayToRight, CurrentMoveRightDistance);
+
+        Debug.DrawRay(transform.position + transform.right * 0.5f, (transform.right * CurrentMoveRightDistance), Color.blue);
+
+        for (int i = 0;i < MassOfHitPointsToRight.Length; i++)
+        {
+            if (MassOfHitPointsToRight[i].collider != null && !MassOfHitPointsToRight[i].collider.isTrigger)
+            {
+                transform.position = MassOfHitPointsToRight[i].point;
+                transform.position += -transform.right * 0.3f;
+                break;
+            }
+            else
+            {
+                transform.position += transform.right * CurrentMoveRightDistance;
             }
         }
-        else
+        if(MassOfHitPointsToRight.Length == 0)
         {
             transform.position += transform.right * CurrentMoveRightDistance;
+        }
 
-            //Set back position            
-            Debug.DrawRay(transform.position, transform.forward + -(transform.forward * CurrentMoveBackDistance * 1.5f), Color.blue);
-            if (Physics.Raycast(transform.position, transform.forward + -(transform.forward * CurrentMoveBackDistance * 1.5f), out LocalHitResult, CurrentMoveBackDistance))
+        //Set back position         
+
+        RayToBack = new Ray(transform.position, transform.forward + -(transform.forward * CurrentMoveBackDistance));
+        MassOfHitPointsToBack = Physics.RaycastAll(RayToBack, CurrentMoveBackDistance);
+
+
+        Debug.DrawRay(transform.position, transform.forward + -(transform.forward * CurrentMoveBackDistance * 1.25f), Color.blue);
+        
+        for (int i = 0; i < MassOfHitPointsToBack.Length ; i++)
+        {
+            if (MassOfHitPointsToBack[i].collider != null && !MassOfHitPointsToBack[i].collider.isTrigger)
             {
-                if (!LocalHitResult.collider.isTrigger) 
-                {
-                    transform.position = LocalHitResult.point;
-                    //transform.position += transform.forward * 2.0f; 
-                }
+                transform.position = MassOfHitPointsToBack[i].point;
+                transform.position += transform.forward * 0.3f; 
+                break;
             }
             else
             {
                 transform.position -= transform.forward * CurrentMoveBackDistance;
             }
         }
+        if (MassOfHitPointsToBack.Length == 0)
+        {
+            transform.position -= transform.forward * CurrentMoveBackDistance;
+        }
 
-        
-        
 
         if (ControlerPlayer.WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething)
         {
@@ -178,11 +200,7 @@ public class ThirdPersonCamera : MonoBehaviour
                 //Debug.Log((TransfromOffSetAiming - CurrentOffSetCamera).magnitude);
                 //transform.position = TargetCamera.transform.TransformPoint(OffsetCameraSimple) + -(transform.forward * DesirableVector.z);
             }
-            if ((TransfromOffSetAiming - CurrentOffSetCamera).magnitude <= MinMagnitude)
-            {
-                Debug.Log("True");
-            }
-
+            
         }
 
 

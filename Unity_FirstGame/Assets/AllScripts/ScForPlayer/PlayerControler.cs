@@ -35,8 +35,6 @@ public class PlayerControler : MonoBehaviour, HeadInterface
     [SerializeField] private UseAndDropTheLoot UseAndDropTheLootScr;
 
     //Game Objects
-    [SerializeField] Transform gameobject;
-    [SerializeField] Transform Anchor;
     [SerializeField] public GameObject Head;
 
     //Bools
@@ -154,7 +152,10 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             {
                 WhatPlayerHandsDo = HandsPlayer.UseSomething;
             }
-            
+            else
+            {
+                WhatPlayerHandsDo = HandsPlayer.Null;
+            }
         }
         else if(WhatPlayerHandsDo == HandsPlayer.UseSomething)
         {
@@ -203,23 +204,22 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             {
                 if (Input.GetKey(KeyCode.Mouse1) || Input.GetKey(KeyCode.Z))
                 {
-                    if (WhatPlayerHandsDo == HandsPlayer.Null) WhatPlayerHandsDo = HandsPlayer.AimingForDoSomething;
-                    if (StateCamera == CameraPlayer.RotateSimple) StateCamera = CameraPlayer.Aiming; 
+                    if (WhatPlayerHandsDo != HandsPlayer.CarryBody)
+                    {
+                        WhatPlayerHandsDo = HandsPlayer.AimingForDoSomething;
+                        StateCamera = CameraPlayer.Aiming;
+                    }
                 }
-                else if (WhatPlayerHandsDo == HandsPlayer.AimingForDoSomething)
+                else
                 {
                     WhatPlayerHandsDo = HandsPlayer.Null;
                     StateCamera = CameraPlayer.RotateSimple;
+                    
                 }
 
-                if (true)
-                {
-                    CameraPlayerF3.CameraUpdate();
-                }
-
+                CameraPlayerF3.CameraUpdate();
             }
 
-            
             //Stelth
             if (WhatPlayerLegsDo == LegsPlayer.SatDown)
             {
@@ -228,7 +228,7 @@ public class PlayerControler : MonoBehaviour, HeadInterface
             }
             
             //Player Tools
-            if (PlayerTools && !ControlerUi.InventoryIsOpen && Time.time >= TimeToCallFunction_PlayerTooolsToInteraction)
+            if (PlayerTools && !ControlerUi.InventoryIsOpen /*&& Time.time >= TimeToCallFunction_PlayerTooolsToInteraction*/)
             {
                 TimeToCallFunction_PlayerTooolsToInteraction = Time.time + TimeDelayToCall_PlayerTooolsToInteraction;
                 PlayerTools.InteractionWithRayCast();

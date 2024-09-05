@@ -58,10 +58,13 @@ public class GetDamageScript : MonoBehaviour
         {
             if (BodyPart == PartBody.Head)
             {
-                Damage = Damage * MultiplerOfDamage[CaliberOfBullet];
+                Damage = Damage * MultiplerOfDamage[CaliberOfBullet];                                
             }
 
-            if(CurrentEqipment != null) Damage = CurrentEqipment.ReturnNewDamage(Damage);
+            if(CurrentEqipment != null)
+            {
+                Damage = CurrentEqipment.ReturnNewDamage(Damage);
+            }
 
             OwnerHpScript.InflictingDamage(Damage);
         }

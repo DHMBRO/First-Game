@@ -148,11 +148,6 @@ public class HpScript : MonoBehaviour
             StateDelegate(true);
         }
 
-        if(UpdateOnEvenetDelegate != null)
-        {
-            UpdateOnEvenetDelegate();
-        }
-
         if ((HealthPoint + Heal) >= MaxHp)
         {
             HealthPoint = MaxHp;
@@ -167,7 +162,7 @@ public class HpScript : MonoBehaviour
 
     private void OutPutHp(float HpNow, Image HpByUi, TextMeshProUGUI HpByText)
     {
-        HpNow /= 100.0f;
+        HpNow /= MaxHp;
         HpByUi.fillAmount = HpNow;
         HpNow *= 100;
         string HpinString = HpNow.ToString();

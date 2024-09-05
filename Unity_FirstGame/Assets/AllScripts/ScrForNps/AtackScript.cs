@@ -32,8 +32,6 @@ public class AtackScript : MonoBehaviour
         GetDamageScript TargetHitBoxScr = null;
 
         Hits = Physics.OverlapBox(PositionTrigger, Scale);
-        //Gizmos.DrawCube(PositionTrigger, Scale);
-
         
         foreach (Collider hit in Hits) 
         {
@@ -41,6 +39,7 @@ public class AtackScript : MonoBehaviour
 
             if (TargetHitBoxScr != null)
             {
+                Debug.Log(TargetHitBoxScr.name);
                 TargetHitBoxScr.GetDamage(Damage, TypeCaliber.Bite);
                 return;
             }

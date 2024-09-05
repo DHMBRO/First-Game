@@ -5,7 +5,7 @@ public class ArmorPlateControler : MethodsFromDevelopers, IUsebleInterFace
     [SerializeField] public LevelObject LevelArmorPlate;
     
     //Paremters For Work
-    [SerializeField] private float MaxHp;
+    [SerializeField] public float MaxHp;
     [SerializeField] public float CurrentHp;
     [SerializeField] public float CurrentPercentAbsortionDamage;
     //Parameters For UI
@@ -61,9 +61,7 @@ public class ArmorPlateControler : MethodsFromDevelopers, IUsebleInterFace
         SelectObj.GetComponent<UiControler>().InterfaceControler();
         SelectObj.DeleteReferenceToLoot();
 
-        //Debug.Log("Use armor plate is working !");
-
-        //Destroy(gameObject);
+        SelectObj.ObjectToUse = null;
     }
 
 

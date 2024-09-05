@@ -4,17 +4,26 @@ using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 public class PostPocController : MonoBehaviour
 {
-    [SerializeField] Color NightVisionColor ;
-    [SerializeField] Color NormalVisionColor ;
+    [SerializeField] Color NightVisionColor;
+    [SerializeField] Color NormalVisionColor;
 
-    [SerializeField] bool TurnedOn = false;
-    UnityEngine.Rendering.Volume MyVolume;
+    bool CanSwitch = true;
+    bool TurnedOn = false;
+
+    [SerializeField, Range(0.0f, 10.0f)] float TurnOnDuration = 1.0f;
+    [SerializeField, Range(0.0f, 10.0f)] float TurnOffDuration = 1.0f;
+    [SerializeField, Range(0.0f, 10.0f)] float SwitchPow = 1.0f;
+
+    UnityEngine.Rendering.Volume NVVolume;
+    AudioSource NVAudioSource;
+
     void Start()
     {
-        
-        MyVolume = gameObject.GetComponent<UnityEngine.Rendering.Volume>();
-        MyVolume.weight = 0.0f;
+        NVVolume = gameObject.GetComponent<UnityEngine.Rendering.Volume>();
+        NVVolume.weight = 0.0f;
         RenderSettings.ambientLight = NormalVisionColor;
+
+        NVAudioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -24,18 +33,47 @@ public class PostPocController : MonoBehaviour
             SwitchMode();
         }
     }
+
     void SwitchMode() 
     {
+        if (!CanSwitch)
+        {
+            return;
+        }
+        CanSwitch = false;
+
         TurnedOn = !TurnedOn;
-        if (TurnedOn) 
+        StartCoroutine(SmoothSwitchMode());
+    }
+
+    IEnumerator SmoothSwitchMode()
+    {
+        if (TurnedOn)
         {
-            MyVolume.weight = 1.0f;
-            RenderSettings.ambientLight = NightVisionColor;
+            NVAudioSource.Play();
         }
-        else
+
+        Color StartColor = !TurnedOn ? NightVisionColor : NormalVisionColor;
+        Color EndColor = TurnedOn ? NightVisionColor : NormalVisionColor;
+        float StartVolumeWeight = !TurnedOn ? 1.0f : 0.0f;
+        float EndVolumeWeight = TurnedOn ? 1.0f : 0.0f;
+
+        float TimeElapsed = 0.0f;
+        float SwitchDuration = TurnedOn ? TurnOnDuration : TurnOffDuration;
+        while (TimeElapsed < SwitchDuration)
         {
-            MyVolume.weight = 0.0f;
-            RenderSettings.ambientLight = NormalVisionColor;
+            float LerpT = TimeElapsed / SwitchDuration;
+            LerpT = Mathf.Pow(LerpT, SwitchPow);
+
+            NVVolume.weight = Mathf.Lerp(StartVolumeWeight, EndVolumeWeight, LerpT);
+            RenderSettings.ambientLight = Color.Lerp(StartColor, EndColor, LerpT);
+
+            TimeElapsed += Time.deltaTime;
+            yield return null;
         }
+        NVVolume.weight = EndVolumeWeight;
+        RenderSettings.ambientLight = EndColor;
+
+        CanSwitch = true;
     }
 }
