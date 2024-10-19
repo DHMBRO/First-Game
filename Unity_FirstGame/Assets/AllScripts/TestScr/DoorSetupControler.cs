@@ -10,7 +10,7 @@ public class DoorSetupControler : MonoBehaviour, IInteractionWithObjects
         Animator = GetComponent<Animator>();
     }
 
-    public bool AuditToUse()
+    public bool CheckToUse()
     {
         if (!Animator)
         {

@@ -22,7 +22,7 @@ public class InteractioWithObject : MonoBehaviour, IInteractionWithObjects
         UpdateInfo(false);        
     }
 
-    public bool AuditToUse()
+    public bool CheckToUse()
     {
         bool Result = true;
         

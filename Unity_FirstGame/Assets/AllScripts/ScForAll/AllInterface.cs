@@ -9,7 +9,7 @@ public interface IUsebleInterFace
 
 public interface IInteractionWithObjects
 {
-    public bool AuditToUse();
+    public bool CheckToUse();
     public void Interaction();
 }
 

@@ -28,7 +28,7 @@ public class InteractChecker : MonoBehaviour
 
         Targetinteraction.SetUpCanWork(true);
 
-        if (Targetinteraction.AuditToUse())
+        if (Targetinteraction.CheckToUse())
         {
             Targetinteraction.Interaction();
         }
