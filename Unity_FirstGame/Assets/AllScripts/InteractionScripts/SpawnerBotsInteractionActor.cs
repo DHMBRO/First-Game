@@ -4,7 +4,7 @@ public class SpawnerBotsInteractionActor : MonoBehaviour, IInteractionWithObject
 {
     [SerializeField] GameObject Bot;
     [SerializeField] int CountOfAliveBots;
-    [SerializeField]
+    //[SerializeField]
 
 
     void Start()
