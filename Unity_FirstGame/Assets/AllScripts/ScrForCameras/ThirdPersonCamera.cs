@@ -33,7 +33,7 @@ public class ThirdPersonCamera : MonoBehaviour
     public float  CurrentMouseSens = 1.0f;
     
     [SerializeField] float MaxMagnitude = 2.4f;
-    [SerializeField] float MinMagnitude = 0.1f;
+    //[SerializeField] float MinMagnitude = 0.1f;
     [SerializeField] public float HeightStartPoint = 1.0f;
 
     [SerializeField] MoodCamera CameraMood;
