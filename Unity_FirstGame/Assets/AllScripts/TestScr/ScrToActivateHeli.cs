@@ -5,7 +5,7 @@ public class ScrToActivateHeli : MonoBehaviour, IInteractionWithObjects
     [SerializeField] HelicopterScr ScrHelicopter;
     bool Used = false;
 
-    public bool AuditToUse()
+    public bool CheckToUse()
     {
         if (!ScrHelicopter || Used)
         {

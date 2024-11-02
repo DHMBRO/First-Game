@@ -27,7 +27,7 @@ public class SingleInteractionActor : MonoBehaviour, IInteractionWithObjects
         return Interacted;
     }
 
-    public bool AuditToUse()
+    public bool CheckToUse()
     {
         return CanInteract;   
     }
